@@ -16,12 +16,12 @@
 <span class="macro">println!</span>(<span class="string">&quot;there are {} global commands&quot;</span>, commands.len());</code></pre></div>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-InteractionClient%3C'a%3E" class="impl"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#55-358">source</a><a href="#impl-InteractionClient%3C'a%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a&gt; <a class="struct" href="struct.InteractionClient.html" title="struct twilight_http::client::InteractionClient">InteractionClient</a>&lt;'a&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.create_response" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#75-82">source</a><h4 class="code-header">pub const fn <a href="#method.create_response" class="fn">create_response</a>(
     &amp;'a self,
-    interaction_id: Id&lt;InteractionMarker&gt;,
+    interaction_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.InteractionMarker.html" title="struct twilight_model::id::marker::InteractionMarker">InteractionMarker</a>&gt;,
     interaction_token: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    response: &amp;'a InteractionResponse
+    response: &amp;'a <a class="struct" href="../../twilight_model/http/interaction/struct.InteractionResponse.html" title="struct twilight_model::http::interaction::InteractionResponse">InteractionResponse</a>
 ) -&gt; <a class="struct" href="../request/application/interaction/struct.CreateResponse.html" title="struct twilight_http::request::application::interaction::CreateResponse">CreateResponse</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Respond to an interaction, by its ID and token.</p>
-<p>For variants of [<code>InteractionResponse</code>] that contain
-<a href="twilight_model::http::interaction::InteractionResponseData"><code>InteractionResponseData</code></a>, there is an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/struct.InteractionResponseDataBuilder.html">associated builder</a> in the
+<p>For variants of <a href="../../twilight_model/http/interaction/struct.InteractionResponse.html" title="struct twilight_model::http::interaction::InteractionResponse"><code>InteractionResponse</code></a> that contain
+<a href="../../twilight_model/http/interaction/struct.InteractionResponseData.html" title="struct twilight_model::http::interaction::InteractionResponseData"><code>InteractionResponseData</code></a>, there is an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/struct.InteractionResponseDataBuilder.html">associated builder</a> in the
 <a href="https://docs.rs/twilight-util/latest/index.html"><code>twilight-util</code></a> crate.</p>
 <p>This endpoint is not bound to the application’s global rate limit.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_response" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#87-89">source</a><h4 class="code-header">pub const fn <a href="#method.delete_response" class="fn">delete_response</a>(
@@ -61,98 +61,98 @@ client
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_followup" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#151-162">source</a><h4 class="code-header">pub const fn <a href="#method.delete_followup" class="fn">delete_followup</a>(
     &amp;'a self,
     interaction_token: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    message_id: Id&lt;MessageMarker&gt;
+    message_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.MessageMarker.html" title="struct twilight_model::id::marker::MessageMarker">MessageMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/interaction/struct.DeleteFollowup.html" title="struct twilight_http::request::application::interaction::DeleteFollowup">DeleteFollowup</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Delete a followup message to an interaction, by its token and message
 ID.</p>
 <p>This endpoint is not bound to the application’s global rate limit.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.followup" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#168-179">source</a><h4 class="code-header">pub const fn <a href="#method.followup" class="fn">followup</a>(
     &amp;'a self,
     interaction_token: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    message_id: Id&lt;MessageMarker&gt;
+    message_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.MessageMarker.html" title="struct twilight_model::id::marker::MessageMarker">MessageMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/interaction/struct.GetFollowup.html" title="struct twilight_http::request::application::interaction::GetFollowup">GetFollowup</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Get a followup message of an interaction, by its token and the message
 ID.</p>
 <p>This endpoint is not bound to the application’s global rate limit.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.update_followup" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#185-196">source</a><h4 class="code-header">pub const fn <a href="#method.update_followup" class="fn">update_followup</a>(
     &amp;'a self,
     interaction_token: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    message_id: Id&lt;MessageMarker&gt;
+    message_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.MessageMarker.html" title="struct twilight_model::id::marker::MessageMarker">MessageMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/interaction/struct.UpdateFollowup.html" title="struct twilight_http::request::application::interaction::UpdateFollowup">UpdateFollowup</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Edit a followup message of an interaction, by its token and the message
 ID.</p>
 <p>This endpoint is not bound to the application’s global rate limit.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.create_global_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#199-201">source</a><h4 class="code-header">pub const fn <a href="#method.create_global_command" class="fn">create_global_command</a>(&amp;'a self) -&gt; <a class="struct" href="../request/application/command/create_global_command/struct.CreateGlobalCommand.html" title="struct twilight_http::request::application::command::create_global_command::CreateGlobalCommand">CreateGlobalCommand</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Create a new global command.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_global_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#204-209">source</a><h4 class="code-header">pub const fn <a href="#method.delete_global_command" class="fn">delete_global_command</a>(
     &amp;self,
-    command_id: Id&lt;CommandMarker&gt;
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.DeleteGlobalCommand.html" title="struct twilight_http::request::application::command::DeleteGlobalCommand">DeleteGlobalCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Delete a global command, by ID.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.global_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#212-214">source</a><h4 class="code-header">pub const fn <a href="#method.global_command" class="fn">global_command</a>(
     &amp;self,
-    command_id: Id&lt;CommandMarker&gt;
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.GetGlobalCommand.html" title="struct twilight_http::request::application::command::GetGlobalCommand">GetGlobalCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch a global command for your application.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.global_commands" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#217-219">source</a><h4 class="code-header">pub const fn <a href="#method.global_commands" class="fn">global_commands</a>(&amp;self) -&gt; <a class="struct" href="../request/application/command/struct.GetGlobalCommands.html" title="struct twilight_http::request::application::command::GetGlobalCommands">GetGlobalCommands</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch all global commands for your application.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_global_commands" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#231-233">source</a><h4 class="code-header">pub const fn <a href="#method.set_global_commands" class="fn">set_global_commands</a>(
     &amp;'a self,
-    commands: &amp;'a [Command]
+    commands: &amp;'a [<a class="struct" href="../../twilight_model/application/command/struct.Command.html" title="struct twilight_model::application::command::Command">Command</a>]
 ) -&gt; <a class="struct" href="../request/application/command/struct.SetGlobalCommands.html" title="struct twilight_http::request::application::command::SetGlobalCommands">SetGlobalCommands</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Set global commands.</p>
 <p>This method is idempotent: it can be used on every start, without being
 ratelimited if there aren’t changes to the commands.</p>
-<p>The [<code>Command</code>] struct has an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/command/struct.CommandBuilder.html">associated builder</a> in the
+<p>The <a href="../../twilight_model/application/command/struct.Command.html" title="struct twilight_model::application::command::Command"><code>Command</code></a> struct has an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/command/struct.CommandBuilder.html">associated builder</a> in the
 <a href="https://docs.rs/twilight-util/latest/index.html"><code>twilight-util</code></a> crate.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.update_global_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#241-246">source</a><h4 class="code-header">pub const fn <a href="#method.update_global_command" class="fn">update_global_command</a>(
     &amp;self,
-    command_id: Id&lt;CommandMarker&gt;
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.UpdateGlobalCommand.html" title="struct twilight_http::request::application::command::UpdateGlobalCommand">UpdateGlobalCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Edit a global command, by ID.</p>
 <p>You must specify a name and description. See
 <a href="https://discord.com/developers/docs/interactions/application-commands#edit-global-application-command">Discord Docs/Edit Global Application Command</a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.create_guild_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#249-254">source</a><h4 class="code-header">pub const fn <a href="#method.create_guild_command" class="fn">create_guild_command</a>(
     &amp;'a self,
-    guild_id: Id&lt;GuildMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/create_guild_command/struct.CreateGuildCommand.html" title="struct twilight_http::request::application::command::create_guild_command::CreateGuildCommand">CreateGuildCommand</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Create a new command in a guild.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.delete_guild_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#257-263">source</a><h4 class="code-header">pub const fn <a href="#method.delete_guild_command" class="fn">delete_guild_command</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    command_id: Id&lt;CommandMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.DeleteGuildCommand.html" title="struct twilight_http::request::application::command::DeleteGuildCommand">DeleteGuildCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Delete a command in a guild, by ID.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.guild_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#266-272">source</a><h4 class="code-header">pub const fn <a href="#method.guild_command" class="fn">guild_command</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    command_id: Id&lt;CommandMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.GetGuildCommand.html" title="struct twilight_http::request::application::command::GetGuildCommand">GetGuildCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch a guild command for your application.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.guild_commands" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#275-277">source</a><h4 class="code-header">pub const fn <a href="#method.guild_commands" class="fn">guild_commands</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.GetGuildCommands.html" title="struct twilight_http::request::application::command::GetGuildCommands">GetGuildCommands</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch all commands for a guild, by ID.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.set_guild_commands" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#289-295">source</a><h4 class="code-header">pub const fn <a href="#method.set_guild_commands" class="fn">set_guild_commands</a>(
     &amp;'a self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    commands: &amp;'a [Command]
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    commands: &amp;'a [<a class="struct" href="../../twilight_model/application/command/struct.Command.html" title="struct twilight_model::application::command::Command">Command</a>]
 ) -&gt; <a class="struct" href="../request/application/command/struct.SetGuildCommands.html" title="struct twilight_http::request::application::command::SetGuildCommands">SetGuildCommands</a>&lt;'a&gt;</h4></section></summary><div class="docblock"><p>Set a guild’s commands.</p>
 <p>This method is idempotent: it can be used on every start, without being
 ratelimited if there aren’t changes to the commands.</p>
-<p>The [<code>Command</code>] struct has an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/command/struct.CommandBuilder.html">associated builder</a> in the
+<p>The <a href="../../twilight_model/application/command/struct.Command.html" title="struct twilight_model::application::command::Command"><code>Command</code></a> struct has an <a href="https://docs.rs/twilight-util/latest/twilight_util/builder/command/struct.CommandBuilder.html">associated builder</a> in the
 <a href="https://docs.rs/twilight_util/index.html"><code>twilight-util</code></a> crate.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.update_guild_command" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#303-309">source</a><h4 class="code-header">pub const fn <a href="#method.update_guild_command" class="fn">update_guild_command</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    command_id: Id&lt;CommandMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.UpdateGuildCommand.html" title="struct twilight_http::request::application::command::UpdateGuildCommand">UpdateGuildCommand</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Edit a command in a guild, by ID.</p>
 <p>You must specify a name and description. See
 <a href="https://discord.com/developers/docs/interactions/application-commands#edit-guild-application-command">Discord Docs/Edit Guild Application Command</a>.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.command_permissions" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#313-319">source</a><h4 class="code-header">pub const fn <a href="#method.command_permissions" class="fn">command_permissions</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    command_id: Id&lt;CommandMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.GetCommandPermissions.html" title="struct twilight_http::request::application::command::GetCommandPermissions">GetCommandPermissions</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch command permissions for a command from the current application
 in a guild.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.guild_command_permissions" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#323-328">source</a><h4 class="code-header">pub const fn <a href="#method.guild_command_permissions" class="fn">guild_command_permissions</a>(
     &amp;self,
-    guild_id: Id&lt;GuildMarker&gt;
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;
 ) -&gt; <a class="struct" href="../request/application/command/struct.GetGuildCommandPermissions.html" title="struct twilight_http::request::application::command::GetGuildCommandPermissions">GetGuildCommandPermissions</a>&lt;'_&gt;</h4></section></summary><div class="docblock"><p>Fetch command permissions for all commands from the current
 application in a guild.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.update_command_permissions" class="method"><a class="srclink rightside" href="../../src/twilight_http/client/interaction.rs.html#344-357">source</a><h4 class="code-header">pub fn <a href="#method.update_command_permissions" class="fn">update_command_permissions</a>(
     &amp;'a self,
-    guild_id: Id&lt;GuildMarker&gt;,
-    command_id: Id&lt;CommandMarker&gt;,
-    permissions: &amp;'a [CommandPermission]
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    command_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.CommandMarker.html" title="struct twilight_model::id::marker::CommandMarker">CommandMarker</a>&gt;,
+    permissions: &amp;'a [<a class="struct" href="../../twilight_model/application/command/permissions/struct.CommandPermission.html" title="struct twilight_model::application::command::permissions::CommandPermission">CommandPermission</a>]
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../request/application/command/struct.UpdateCommandPermissions.html" title="struct twilight_http::request::application::command::UpdateCommandPermissions">UpdateCommandPermissions</a>&lt;'a&gt;, CommandValidationError&gt;</h4></section></summary><div class="docblock"><p>Update command permissions for a single command in a guild.</p>
 <p>This overwrites the command permissions so the full set of permissions
 have to be sent every time.</p>

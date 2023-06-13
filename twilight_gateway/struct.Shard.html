@@ -8,7 +8,7 @@ the user.</p>
 be repeatedly called in order for the shard to maintain its connection and
 update its internal state. Note that the <a href="struct.Shard.html#method.next_event" title="method twilight_gateway::Shard::next_event"><code>next_event</code></a> method internally
 calls <a href="struct.Shard.html#method.next_message" title="method twilight_gateway::Shard::next_message"><code>next_message</code></a>.</p>
-<p>Shards go through an <a href="../twilight_gateway_queue/index.html" title="mod twilight_gateway_queue">identify queue</a> that ratelimits the amount of
+<p>Shards go through an <a href="crate::queue">identify queue</a> that ratelimits the amount of
 concurrent identifies (across all shards) per 5 seconds. Exceeding this
 limit invalidates the shard’s session and it is therefore very important to
 reuse the same queue when running multiple shards. Note that shards must be
@@ -87,11 +87,11 @@ ratelimiter will refresh.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.session" class="method"><a class="srclink rightside" href="../src/twilight_gateway/shard.rs.html#466-468">source</a><h4 class="code-header">pub const fn <a href="#method.session" class="fn">session</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.Session.html" title="struct twilight_gateway::Session">Session</a>&gt;</h4></section></summary><div class="docblock"><p>Immutable reference to the active gateway session.</p>
 <p>An active session may not be present if the shard had its session
 invalidated and has not yet reconnected.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.next_event" class="method"><a class="srclink rightside" href="../src/twilight_gateway/shard.rs.html#504-539">source</a><h4 class="code-header">pub async fn <a href="#method.next_event" class="fn">next_event</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Event, <a class="struct" href="error/struct.ReceiveMessageError.html" title="struct twilight_gateway::error::ReceiveMessageError">ReceiveMessageError</a>&gt;</h4></section></summary><div class="docblock"><p>Wait for the next Discord event from the gateway.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.next_event" class="method"><a class="srclink rightside" href="../src/twilight_gateway/shard.rs.html#504-539">source</a><h4 class="code-header">pub async fn <a href="#method.next_event" class="fn">next_event</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="../twilight_model/gateway/event/enum.Event.html" title="enum twilight_model::gateway::event::Event">Event</a>, <a class="struct" href="error/struct.ReceiveMessageError.html" title="struct twilight_gateway::error::ReceiveMessageError">ReceiveMessageError</a>&gt;</h4></section></summary><div class="docblock"><p>Wait for the next Discord event from the gateway.</p>
 <p>This is a convenience method that internally calls <a href="struct.Shard.html#method.next_message" title="method twilight_gateway::Shard::next_message"><code>next_message</code></a> and
-only returns wanted [<code>Event</code>]s, configured via
+only returns wanted <a href="../twilight_model/gateway/event/enum.Event.html" title="enum twilight_model::gateway::event::Event"><code>Event</code></a>s, configured via
 <a href="struct.ConfigBuilder.html#method.event_types" title="method twilight_gateway::ConfigBuilder::event_types"><code>ConfigBuilder::event_types</code></a>. Close messages are always considered
-wanted and map onto the [<code>Event::GatewayClose</code>] variant.</p>
+wanted and map onto the <a href="../twilight_model/gateway/event/enum.Event.html#variant.GatewayClose" title="variant twilight_model::gateway::event::Event::GatewayClose"><code>Event::GatewayClose</code></a> variant.</p>
 <p>Events not registered in Twilight are skipped. If you need to receive
 events Twilight doesn’t support, use <a href="struct.Shard.html#method.next_message" title="method twilight_gateway::Shard::next_message"><code>next_message</code></a> to receive raw
 payloads.</p>

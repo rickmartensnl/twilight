@@ -1610,10 +1610,10 @@
 ///
 /// # Errors
 ///
-/// Returns an error of type [`OptionChoiceNameLocalizationLengthInvalid`] if the name is
+/// Returns an error of type [`OptionChoiceNameLengthInvalid`] if the name is
 /// less than [`OPTION_CHOICE_NAME_LENGTH_MIN`] or more than [`OPTION_CHOICE_NAME_LENGTH_MAX`].
 ///
-/// [`OptionChoiceNameLocalizationLengthInvalid`]: CommandValidationErrorType::OptionChoiceNameLocalizationLengthInvalid
+/// [`OptionChoiceNameLengthInvalid`]: CommandValidationErrorType::OptionChoiceNameLengthInvalid
 </span><span class="kw">pub fn </span>choice_name(name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;(), CommandValidationError&gt; {
     <span class="kw">let </span>len = name.chars().count();
 
