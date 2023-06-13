@@ -209,6 +209,9 @@
 <a href="#209" id="209">209</a>
 <a href="#210" id="210">210</a>
 <a href="#211" id="211">211</a>
+<a href="#212" id="212">212</a>
+<a href="#213" id="213">213</a>
+<a href="#214" id="214">214</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>bitflags::bitflags;
 <span class="kw">use </span>serde::{
     de::{Deserialize, Deserializer, Error <span class="kw">as </span>DeError, Visitor},
@@ -283,6 +286,8 @@
         </span><span class="kw">const </span>VIEW_CREATOR_MONETIZATION_ANALYTICS = <span class="number">1 </span>&lt;&lt; <span class="number">41</span>;
         <span class="doccomment">/// Allows for using soundboard in a voice channel
         </span><span class="kw">const </span>USE_SOUNDBOARD = <span class="number">1 </span>&lt;&lt; <span class="number">42</span>;
+        <span class="doccomment">/// Allows the usage of custom soundboard sounds from other servers
+        </span><span class="kw">const </span>USE_EXTERNAL_SOUNDS = <span class="number">1 </span>&lt;&lt; <span class="number">45</span>;
         <span class="doccomment">/// Allows sending voice messages
         </span><span class="kw">const </span>SEND_VOICE_MESSAGES = <span class="number">1 </span>&lt;&lt; <span class="number">46</span>;
     }
@@ -412,6 +417,7 @@
         <span class="number">1 </span>&lt;&lt; <span class="number">41
     </span>);
     <span class="macro">const_assert_eq!</span>(Permissions::USE_SOUNDBOARD.bits(), <span class="number">1 </span>&lt;&lt; <span class="number">42</span>);
+    <span class="macro">const_assert_eq!</span>(Permissions::USE_EXTERNAL_SOUNDS.bits(), <span class="number">1 </span>&lt;&lt; <span class="number">45</span>);
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>serde() {
