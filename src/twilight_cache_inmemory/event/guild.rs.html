@@ -576,6 +576,9 @@
 <a href="#576" id="576">576</a>
 <a href="#577" id="577">577</a>
 <a href="#578" id="578">578</a>
+<a href="#579" id="579">579</a>
+<a href="#580" id="580">580</a>
+<a href="#581" id="581">581</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     config::ResourceType,
     model::{CachedGuild, CachedPresence},
@@ -629,6 +632,7 @@
             public_updates_channel_id,
             roles,
             rules_channel_id,
+            safety_alerts_channel_id,
             splash,
             stage_instances,
             stickers,
@@ -729,6 +733,7 @@
                 premium_tier,
                 public_updates_channel_id,
                 rules_channel_id,
+                safety_alerts_channel_id,
                 splash,
                 system_channel_id,
                 system_channel_flags,
@@ -1010,6 +1015,7 @@
             public_updates_channel_id: <span class="prelude-val">None</span>,
             roles: Vec::new(),
             rules_channel_id: <span class="prelude-val">None</span>,
+            safety_alerts_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">789</span>)),
             splash: <span class="prelude-val">None</span>,
             stage_instances: Vec::new(),
             stickers: Vec::new(),

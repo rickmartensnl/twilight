@@ -1085,6 +1085,26 @@
 <a href="#1085" id="1085">1085</a>
 <a href="#1086" id="1086">1086</a>
 <a href="#1087" id="1087">1087</a>
+<a href="#1088" id="1088">1088</a>
+<a href="#1089" id="1089">1089</a>
+<a href="#1090" id="1090">1090</a>
+<a href="#1091" id="1091">1091</a>
+<a href="#1092" id="1092">1092</a>
+<a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
+<a href="#1095" id="1095">1095</a>
+<a href="#1096" id="1096">1096</a>
+<a href="#1097" id="1097">1097</a>
+<a href="#1098" id="1098">1098</a>
+<a href="#1099" id="1099">1099</a>
+<a href="#1100" id="1100">1100</a>
+<a href="#1101" id="1101">1101</a>
+<a href="#1102" id="1102">1102</a>
+<a href="#1103" id="1103">1103</a>
+<a href="#1104" id="1104">1104</a>
+<a href="#1105" id="1105">1105</a>
+<a href="#1106" id="1106">1106</a>
+<a href="#1107" id="1107">1107</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Group of [`Channel`]s and [`User`]s with additional moderation options.
 //!
 //! [`Guild`]s allow, for example, assigning [`Role`]s to [`Member`]s to limit
@@ -1217,6 +1237,9 @@
     </span><span class="kw">pub </span>public_updates_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub </span>roles: Vec&lt;Role&gt;,
     <span class="kw">pub </span>rules_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
+    <span class="doccomment">/// The ID of the channel where admins and moderators of Community guilds receive safety alerts from Discord.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="kw">pub </span>safety_alerts_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub </span>splash: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Vec::is_empty&quot;</span>)]
     </span><span class="kw">pub </span>stage_instances: Vec&lt;StageInstance&gt;,
@@ -1279,6 +1302,7 @@
             Presences,
             PublicUpdatesChannelId,
             Roles,
+            SafetyAlertsChannelId,
             Splash,
             StageInstances,
             Stickers,
@@ -1340,6 +1364,7 @@
                 <span class="kw">let </span><span class="kw-2">mut </span>presences = <span class="prelude-val">None</span>;
                 <span class="kw">let </span><span class="kw-2">mut </span>public_updates_channel_id = <span class="prelude-val">None</span>::&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw">_</span>&gt;&gt;;
                 <span class="kw">let </span><span class="kw-2">mut </span>roles = <span class="prelude-val">None</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>safety_alerts_channel_id = <span class="prelude-val">None</span>::&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw">_</span>&gt;&gt;;
                 <span class="kw">let </span><span class="kw-2">mut </span>splash = <span class="prelude-val">None</span>::&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw">_</span>&gt;&gt;;
                 <span class="kw">let </span><span class="kw-2">mut </span>stage_instances = <span class="prelude-val">None</span>::&lt;Vec&lt;StageInstance&gt;&gt;;
                 <span class="kw">let </span><span class="kw-2">mut </span>stickers = <span class="prelude-val">None</span>::&lt;Vec&lt;Sticker&gt;&gt;;
@@ -1630,6 +1655,13 @@
 
                             roles = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
+                        Field::SafetyAlertsChannelId =&gt; {
+                            <span class="kw">if </span>safety_alerts_channel_id.is_some() {
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;safety_alerts_channel_id&quot;</span>));
+                            }
+
+                            safety_alerts_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
+                        }
                         Field::Splash =&gt; {
                             <span class="kw">if </span>splash.is_some() {
                                 <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;splash&quot;</span>));
@@ -1770,6 +1802,7 @@
                 <span class="kw">let </span><span class="kw-2">mut </span>presences = presences.unwrap_or_default();
                 <span class="kw">let </span>public_updates_channel_id = public_updates_channel_id.unwrap_or_default();
                 <span class="kw">let </span>rules_channel_id = rules_channel_id.unwrap_or_default();
+                <span class="kw">let </span>safety_alerts_channel_id = safety_alerts_channel_id.unwrap_or_default();
                 <span class="kw">let </span>splash = splash.unwrap_or_default();
                 <span class="kw">let </span>stage_instances = stage_instances.unwrap_or_default();
                 <span class="kw">let </span>stickers = stickers.unwrap_or_default();
@@ -1821,6 +1854,7 @@
                     <span class="question-mark">?</span>public_updates_channel_id,
                     <span class="question-mark">?</span>rules_channel_id,
                     <span class="question-mark">?</span>roles,
+                    <span class="question-mark">?</span>safety_alerts_channel_id,
                     <span class="question-mark">?</span>splash,
                     <span class="question-mark">?</span>stage_instances,
                     <span class="question-mark">?</span>stickers,
@@ -1888,6 +1922,7 @@
                     public_updates_channel_id,
                     roles,
                     rules_channel_id,
+                    safety_alerts_channel_id,
                     splash,
                     stage_instances,
                     stickers,
@@ -2013,6 +2048,7 @@
             public_updates_channel_id: <span class="prelude-val">None</span>,
             roles: Vec::new(),
             rules_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">6</span>)),
+            safety_alerts_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">9</span>)),
             splash: <span class="prelude-val">Some</span>(image_hash::SPLASH),
             stage_instances: Vec::new(),
             stickers: Vec::new(),
@@ -2032,7 +2068,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;Guild&quot;</span>,
-                    len: <span class="number">46</span>,
+                    len: <span class="number">47</span>,
                 },
                 Token::Str(<span class="string">&quot;afk_channel_id&quot;</span>),
                 Token::Some,
@@ -2136,6 +2172,10 @@
                 Token::Some,
                 Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
                 Token::Str(<span class="string">&quot;6&quot;</span>),
+                Token::Str(<span class="string">&quot;safety_alerts_channel_id&quot;</span>),
+                Token::Some,
+                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::Str(<span class="string">&quot;9&quot;</span>),
                 Token::Str(<span class="string">&quot;splash&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::SPLASH_INPUT),

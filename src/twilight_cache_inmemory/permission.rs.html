@@ -1123,6 +1123,10 @@
 <a href="#1123" id="1123">1123</a>
 <a href="#1124" id="1124">1124</a>
 <a href="#1125" id="1125">1125</a>
+<a href="#1126" id="1126">1126</a>
+<a href="#1127" id="1127">1127</a>
+<a href="#1128" id="1128">1128</a>
+<a href="#1129" id="1129">1129</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Calculate the permissions for members in on a guild- or channel-level with
 //! information from the cache.
 //!
@@ -1828,6 +1832,9 @@
     <span class="doccomment">/// ID of a thread created in the general channel.
     </span><span class="kw">const </span>THREAD_ID: Id&lt;ChannelMarker&gt; = Id::new(<span class="number">5</span>);
 
+    <span class="doccomment">/// ID of the safety alerts channel.
+    </span><span class="kw">const </span>SAFETY_ALERTS_CHANNEL_ID: Id&lt;ChannelMarker&gt; = Id::new(<span class="number">6</span>);
+
     <span class="kw">fn </span>base_guild() -&gt; Guild {
         Guild {
             id: GUILD_ID,
@@ -1869,6 +1876,7 @@
                     Permissions::CREATE_INVITE | Permissions::VIEW_AUDIT_LOG,
                 ),
             ]),
+            safety_alerts_channel_id: <span class="prelude-val">Some</span>(SAFETY_ALERTS_CHANNEL_ID),
             splash: <span class="prelude-val">None</span>,
             stage_instances: Vec::new(),
             stickers: Vec::new(),

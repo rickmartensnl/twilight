@@ -255,6 +255,10 @@
 <a href="#255" id="255">255</a>
 <a href="#256" id="256">256</a>
 <a href="#257" id="257">257</a>
+<a href="#258" id="258">258</a>
+<a href="#259" id="259">259</a>
+<a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Types for Auto Moderation.
 //!
 //! Auto Moderation is a feature which allows each guild to set up rules that
@@ -404,8 +408,9 @@
                 allow_list: <span class="prelude-val">None</span>,
                 keyword_filter: <span class="prelude-val">Some</span>(Vec::from([<span class="string">&quot;shoot&quot;</span>.into(), <span class="string">&quot;darn&quot;</span>.into()])),
                 presets: <span class="prelude-val">None</span>,
-                regex_patterns: <span class="prelude-val">Some</span>(Vec::from([<span class="string">&quot;[a-z]+&quot;</span>.into(), <span class="string">&quot;[0-9]+&quot;</span>.into()])),
+                mention_raid_protection_enabled: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
                 mention_total_limit: <span class="prelude-val">None</span>,
+                regex_patterns: <span class="prelude-val">Some</span>(Vec::from([<span class="string">&quot;[a-z]+&quot;</span>.into(), <span class="string">&quot;[0-9]+&quot;</span>.into()])),
             },
             trigger_type: AutoModerationTriggerType::Keyword,
         };
@@ -490,7 +495,7 @@
                 Token::Str(<span class="string">&quot;trigger_metadata&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;AutoModerationTriggerMetadata&quot;</span>,
-                    len: <span class="number">2</span>,
+                    len: <span class="number">3</span>,
                 },
                 Token::Str(<span class="string">&quot;keyword_filter&quot;</span>),
                 Token::Some,
@@ -498,6 +503,9 @@
                 Token::Str(<span class="string">&quot;shoot&quot;</span>),
                 Token::Str(<span class="string">&quot;darn&quot;</span>),
                 Token::SeqEnd,
+                Token::Str(<span class="string">&quot;mention_raid_protection_enabled&quot;</span>),
+                Token::Some,
+                Token::Bool(<span class="bool-val">true</span>),
                 Token::Str(<span class="string">&quot;regex_patterns&quot;</span>),
                 Token::Some,
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">2</span>) },

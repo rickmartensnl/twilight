@@ -105,6 +105,13 @@
 <a href="#105" id="105">105</a>
 <a href="#106" id="106">106</a>
 <a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::AutoModerationKeywordPresetType;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -130,6 +137,9 @@
     /// [Discord Docs/Keyword Matching Strategies]: https://discord.com/developers/docs/resources/auto-moderation#auto-moderation-rule-object-keyword-matching-strategies
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
     </span><span class="kw">pub </span>presets: <span class="prelude-ty">Option</span>&lt;Vec&lt;AutoModerationKeywordPresetType&gt;&gt;,
+    <span class="doccomment">/// Whether to automatically detect mention raids.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="kw">pub </span>mention_raid_protection_enabled: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Total number of unique role and user mentions allowed per message (Maximum of 50).
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
     </span><span class="kw">pub </span>mention_total_limit: <span class="prelude-ty">Option</span>&lt;u8&gt;,
@@ -170,6 +180,7 @@
                 AutoModerationKeywordPresetType::SexualContent,
                 AutoModerationKeywordPresetType::Slurs,
             ])),
+            mention_raid_protection_enabled: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             mention_total_limit: <span class="prelude-val">Some</span>(<span class="number">5</span>),
             regex_patterns: <span class="prelude-val">Some</span>(Vec::from([<span class="string">&quot;^\\d+$&quot;</span>.into()])),
         };
@@ -179,7 +190,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;AutoModerationTriggerMetadata&quot;</span>,
-                    len: <span class="number">5</span>,
+                    len: <span class="number">6</span>,
                 },
                 Token::Str(<span class="string">&quot;allow_list&quot;</span>),
                 Token::Some,
@@ -199,6 +210,9 @@
                 Token::U8(u8::from(AutoModerationKeywordPresetType::SexualContent)),
                 Token::U8(u8::from(AutoModerationKeywordPresetType::Slurs)),
                 Token::SeqEnd,
+                Token::Str(<span class="string">&quot;mention_raid_protection_enabled&quot;</span>),
+                Token::Some,
+                Token::Bool(<span class="bool-val">true</span>),
                 Token::Str(<span class="string">&quot;mention_total_limit&quot;</span>),
                 Token::Some,
                 Token::U8(<span class="number">5</span>),

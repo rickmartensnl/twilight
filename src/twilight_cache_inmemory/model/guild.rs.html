@@ -337,6 +337,12 @@
 <a href="#337" id="337">337</a>
 <a href="#338" id="338">338</a>
 <a href="#339" id="339">339</a>
+<a href="#340" id="340">340</a>
+<a href="#341" id="341">341</a>
+<a href="#342" id="342">342</a>
+<a href="#343" id="343">343</a>
+<a href="#344" id="344">344</a>
+<a href="#345" id="345">345</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::slice::Iter;
 
 <span class="kw">use </span>serde::Serialize;
@@ -386,6 +392,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) premium_tier: PremiumTier,
     <span class="kw">pub</span>(<span class="kw">crate</span>) public_updates_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) rules_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) safety_alerts_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) splash: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) system_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) system_channel_flags: SystemChannelFlags,
@@ -559,6 +566,11 @@
     <span class="doccomment">/// For Community guilds, the ID of the rules channel.
     </span><span class="kw">pub const fn </span>rules_channel_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt; {
         <span class="self">self</span>.rules_channel_id
+    }
+
+    <span class="doccomment">/// The ID of the channel where admins and moderators of Community guilds receive safety alerts from Discord.
+    </span><span class="kw">pub const fn </span>safety_alerts_channel_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt; {
+        <span class="self">self</span>.safety_alerts_channel_id
     }
 
     <span class="doccomment">/// Splash hash.

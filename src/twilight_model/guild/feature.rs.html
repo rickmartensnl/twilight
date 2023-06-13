@@ -236,6 +236,10 @@
 <a href="#236" id="236">236</a>
 <a href="#237" id="237">237</a>
 <a href="#238" id="238">238</a>
+<a href="#239" id="239">239</a>
+<a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
+<a href="#242" id="242">242</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(deprecated)]
 </span><span class="kw">use </span>std::borrow::Cow;
 
@@ -293,6 +297,8 @@
     </span>PreviewEnabled,
     <span class="doccomment">/// Has access to create private threads.
     </span>PrivateThreads,
+    <span class="doccomment">/// Guild has disabled alerts for join raids in the configured safety alerts channel.
+    </span>RaidAlertsDisabled,
     <span class="doccomment">/// Is able to set role icons.
     </span>RoleIcons,
     <span class="doccomment">/// Guild has role subscriptions that can be purchased.
@@ -338,6 +344,7 @@
             GuildFeature::Partnered =&gt; <span class="string">&quot;PARTNERED&quot;</span>.into(),
             GuildFeature::PreviewEnabled =&gt; <span class="string">&quot;PREVIEW_ENABLED&quot;</span>.into(),
             GuildFeature::PrivateThreads =&gt; <span class="string">&quot;PRIVATE_THREADS&quot;</span>.into(),
+            GuildFeature::RaidAlertsDisabled =&gt; <span class="string">&quot;RAID_ALERTS_DISABLED&quot;</span>.into(),
             GuildFeature::RoleIcons =&gt; <span class="string">&quot;ROLE_ICONS&quot;</span>.into(),
             GuildFeature::RoleSubscriptionsAvailableForPurchase =&gt; {
                 <span class="string">&quot;ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE&quot;</span>.into()
@@ -376,6 +383,7 @@
             <span class="string">&quot;PARTNERED&quot; </span>=&gt; <span class="self">Self</span>::Partnered,
             <span class="string">&quot;PREVIEW_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::PreviewEnabled,
             <span class="string">&quot;PRIVATE_THREADS&quot; </span>=&gt; <span class="self">Self</span>::PrivateThreads,
+            <span class="string">&quot;RAID_ALERTS_DISABLED&quot; </span>=&gt; <span class="self">Self</span>::RaidAlertsDisabled,
             <span class="string">&quot;ROLE_ICONS&quot; </span>=&gt; <span class="self">Self</span>::RoleIcons,
             <span class="string">&quot;ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE&quot; </span>=&gt; {
                 GuildFeature::RoleSubscriptionsAvailableForPurchase
