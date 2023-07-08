@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/shard.rs`."><title>shard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9bb858ba049f1f21.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.72.0-nightly (0ab38e95b 2023-07-03)" data-channel="nightly" data-search-js="search-f6292fe389d70017.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ><script src="../../static.files/storage-59fd9b8ccb335783.js"></script><script defer src="../../static.files/source-script-106908c7a7964ba4.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../twilight_gateway/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/shard.rs`."><title>shard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9bb858ba049f1f21.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.72.0-nightly (cb80ff132 2023-07-07)" data-channel="nightly" data-search-js="search-f6292fe389d70017.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ><script src="../../static.files/storage-59fd9b8ccb335783.js"></script><script defer src="../../static.files/source-script-106908c7a7964ba4.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../twilight_gateway/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1262,6 +1262,56 @@
 <a href="#1262" id="1262">1262</a>
 <a href="#1263" id="1263">1263</a>
 <a href="#1264" id="1264">1264</a>
+<a href="#1265" id="1265">1265</a>
+<a href="#1266" id="1266">1266</a>
+<a href="#1267" id="1267">1267</a>
+<a href="#1268" id="1268">1268</a>
+<a href="#1269" id="1269">1269</a>
+<a href="#1270" id="1270">1270</a>
+<a href="#1271" id="1271">1271</a>
+<a href="#1272" id="1272">1272</a>
+<a href="#1273" id="1273">1273</a>
+<a href="#1274" id="1274">1274</a>
+<a href="#1275" id="1275">1275</a>
+<a href="#1276" id="1276">1276</a>
+<a href="#1277" id="1277">1277</a>
+<a href="#1278" id="1278">1278</a>
+<a href="#1279" id="1279">1279</a>
+<a href="#1280" id="1280">1280</a>
+<a href="#1281" id="1281">1281</a>
+<a href="#1282" id="1282">1282</a>
+<a href="#1283" id="1283">1283</a>
+<a href="#1284" id="1284">1284</a>
+<a href="#1285" id="1285">1285</a>
+<a href="#1286" id="1286">1286</a>
+<a href="#1287" id="1287">1287</a>
+<a href="#1288" id="1288">1288</a>
+<a href="#1289" id="1289">1289</a>
+<a href="#1290" id="1290">1290</a>
+<a href="#1291" id="1291">1291</a>
+<a href="#1292" id="1292">1292</a>
+<a href="#1293" id="1293">1293</a>
+<a href="#1294" id="1294">1294</a>
+<a href="#1295" id="1295">1295</a>
+<a href="#1296" id="1296">1296</a>
+<a href="#1297" id="1297">1297</a>
+<a href="#1298" id="1298">1298</a>
+<a href="#1299" id="1299">1299</a>
+<a href="#1300" id="1300">1300</a>
+<a href="#1301" id="1301">1301</a>
+<a href="#1302" id="1302">1302</a>
+<a href="#1303" id="1303">1303</a>
+<a href="#1304" id="1304">1304</a>
+<a href="#1305" id="1305">1305</a>
+<a href="#1306" id="1306">1306</a>
+<a href="#1307" id="1307">1307</a>
+<a href="#1308" id="1308">1308</a>
+<a href="#1309" id="1309">1309</a>
+<a href="#1310" id="1310">1310</a>
+<a href="#1311" id="1311">1311</a>
+<a href="#1312" id="1312">1312</a>
+<a href="#1313" id="1313">1313</a>
+<a href="#1314" id="1314">1314</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Primary logic and implementation details of Discord gateway websocket
 //! connections.
 //!
@@ -1327,7 +1377,6 @@
         ProcessError, ProcessErrorType, ReceiveMessageError, ReceiveMessageErrorType, SendError,
         SendErrorType,
     },
-    future::{<span class="self">self</span>, NextMessageFuture, NextMessageFutureOutput},
     json::{<span class="self">self</span>, UnknownEventError},
     latency::Latency,
     ratelimiter::CommandRatelimiter,
@@ -1342,19 +1391,19 @@
     feature = <span class="string">&quot;rustls-webpki-roots&quot;
 </span>))]
 </span><span class="kw">use </span>std::io::ErrorKind <span class="kw">as </span>IoErrorKind;
-<span class="kw">use </span>std::{env::consts::OS, error::Error, str};
+<span class="kw">use </span>std::{
+    env::consts::OS,
+    error::Error,
+    future::{poll_fn, Future},
+    pin::Pin,
+    str,
+    task::{Context, Poll},
+};
 <span class="kw">use </span>tokio::{
     task::JoinHandle,
     time::{<span class="self">self</span>, Duration, Instant, Interval, MissedTickBehavior},
 };
-<span class="attr">#[cfg(any(
-    feature = <span class="string">&quot;native&quot;</span>,
-    feature = <span class="string">&quot;rustls-native-roots&quot;</span>,
-    feature = <span class="string">&quot;rustls-webpki-roots&quot;
-</span>))]
-</span><span class="kw">use </span>tokio_tungstenite::tungstenite::Error <span class="kw">as </span>TungsteniteError;
-<span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
-</span><span class="kw">use </span>tokio_tungstenite::tungstenite::Message <span class="kw">as </span>TungsteniteMessage;
+<span class="kw">use </span>tokio_tungstenite::tungstenite::{Error <span class="kw">as </span>TungsteniteError, Message <span class="kw">as </span>TungsteniteMessage};
 <span class="kw">use </span>twilight_model::gateway::{
     event::{Event, GatewayEventDeserializer},
     payload::{
@@ -1823,6 +1872,20 @@
     /// shard failed to send a message to the gateway, such as a heartbeat.
     </span><span class="attr">#[tracing::instrument(fields(id = %<span class="self">self</span>.id()), name = <span class="string">&quot;shard&quot;</span>, skip(<span class="self">self</span>))]
     </span><span class="kw">pub async fn </span>next_message(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, ReceiveMessageError&gt; {
+        <span class="doccomment">/// Actions the shard might take.
+        </span><span class="kw">enum </span>Action {
+            <span class="doccomment">/// Close the gateway connection with this close frame.
+            </span>Close(CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;),
+            <span class="doccomment">/// Send this command to the gateway.
+            </span>Command(String),
+            <span class="doccomment">/// Send a heartbeat command to the gateway.
+            </span>Heartbeat,
+            <span class="doccomment">/// Identify with the gateway.
+            </span>Identify,
+            <span class="doccomment">/// Handle this incoming gateway message.
+            </span>Message(<span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Result</span>&lt;TungsteniteMessage, TungsteniteError&gt;&gt;),
+        }
+
         <span class="kw">match </span><span class="self">self</span>.status {
             ConnectionStatus::Disconnected {
                 close_code,
@@ -1843,18 +1906,67 @@
         }
 
         <span class="kw">let </span>message = <span class="kw">loop </span>{
-            <span class="kw">let </span>future = NextMessageFuture::new(
-                <span class="kw-2">&amp;mut </span><span class="self">self</span>.user_channel.close_rx,
-                <span class="kw-2">&amp;mut </span><span class="self">self</span>.user_channel.command_rx,
-                <span class="kw-2">&amp;</span><span class="self">self</span>.status,
-                <span class="self">self</span>.identify_handle.as_mut(),
-                <span class="self">self</span>.connection.as_mut().expect(<span class="string">&quot;connected&quot;</span>).next(),
-                <span class="self">self</span>.heartbeat_interval.as_mut(),
-                <span class="self">self</span>.ratelimiter.as_mut(),
-            );
+            <span class="kw">let </span>next_action = |cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;| {
+                <span class="kw">if </span>!(<span class="self">self</span>.status.is_disconnected() || <span class="self">self</span>.status.is_fatally_closed()) {
+                    <span class="kw">if let </span>Poll::Ready(frame) = <span class="self">self</span>.user_channel.close_rx.poll_recv(cx) {
+                        <span class="kw">return </span>Poll::Ready(Action::Close(frame.expect(<span class="string">&quot;shard owns channel&quot;</span>)));
+                    }
+                }
 
-            <span class="kw">let </span>tungstenite_message = <span class="kw">match </span>future.<span class="kw">await </span>{
-                NextMessageFutureOutput::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(message))) =&gt; message,
+                <span class="kw">if </span><span class="self">self
+                    </span>.heartbeat_interval
+                    .as_mut()
+                    .map_or(<span class="bool-val">false</span>, |heartbeater| heartbeater.poll_tick(cx).is_ready())
+                {
+                    <span class="kw">return </span>Poll::Ready(Action::Heartbeat);
+                }
+
+                <span class="kw">let </span>ratelimited = <span class="self">self
+                    </span>.ratelimiter
+                    .as_mut()
+                    .map_or(<span class="bool-val">false</span>, |ratelimiter| ratelimiter.poll_ready(cx).is_pending());
+
+                <span class="kw">if </span>!ratelimited
+                    &amp;&amp; <span class="self">self
+                        </span>.identify_handle
+                        .as_mut()
+                        .map_or(<span class="bool-val">false</span>, |handle| Pin::new(handle).poll(cx).is_ready())
+                {
+                    <span class="kw">return </span>Poll::Ready(Action::Identify);
+                }
+
+                <span class="kw">if </span>!ratelimited &amp;&amp; <span class="self">self</span>.status.is_identified() {
+                    <span class="kw">if let </span>Poll::Ready(command) = <span class="self">self</span>.user_channel.command_rx.poll_recv(cx) {
+                        <span class="kw">return </span>Poll::Ready(Action::Command(command.expect(<span class="string">&quot;shard owns channel&quot;</span>)));
+                    }
+                }
+
+                <span class="kw">if let </span>Poll::Ready(message) =
+                    Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.connection.as_mut().expect(<span class="string">&quot;connected&quot;</span>).next()).poll(cx)
+                {
+                    <span class="kw">return </span>Poll::Ready(Action::Message(message));
+                }
+
+                Poll::Pending
+            };
+
+            <span class="kw">match </span>poll_fn(next_action).<span class="kw">await </span>{
+                Action::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(message))) =&gt; {
+                    <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+                    </span><span class="kw">if let </span>TungsteniteMessage::Binary(bytes) = <span class="kw-2">&amp;</span>message {
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(decompressed) = <span class="self">self
+                            </span>.inflater
+                            .inflate(bytes)
+                            .map_err(ReceiveMessageError::from_compression)<span class="question-mark">?
+                        </span>{
+                            <span class="macro">tracing::trace!</span>(%decompressed);
+                            <span class="kw">break </span>Message::Text(decompressed);
+                        };
+                    }
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(message) = Message::from_tungstenite(message) {
+                        <span class="kw">break </span>message;
+                    }
+                }
                 <span class="comment">// Discord, against recommendations from the WebSocket spec,
                 // does not send a close_notify prior to shutting down the TCP
                 // stream. This arm tries to gracefully handle this. The
@@ -1865,7 +1977,7 @@
                     feature = <span class="string">&quot;rustls-native-roots&quot;</span>,
                     feature = <span class="string">&quot;rustls-webpki-roots&quot;
                 </span>))]
-                </span>NextMessageFutureOutput::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(TungsteniteError::Io(e))))
+                </span>Action::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(TungsteniteError::Io(e))))
                     <span class="kw">if </span>e.kind() == IoErrorKind::UnexpectedEof
                         <span class="comment">// Assert we&#39;re directly connected to Discord&#39;s gateway.
                         </span>&amp;&amp; <span class="self">self</span>.config.proxy_url().is_none()
@@ -1873,7 +1985,7 @@
                 {
                     <span class="kw">continue
                 </span>}
-                NextMessageFutureOutput::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(source))) =&gt; {
+                Action::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(source))) =&gt; {
                     <span class="self">self</span>.disconnect(CloseInitiator::None);
 
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ReceiveMessageError {
@@ -1881,7 +1993,7 @@
                         source: <span class="prelude-val">Some</span>(Box::new(source)),
                     });
                 }
-                NextMessageFutureOutput::Message(<span class="prelude-val">None</span>) =&gt; {
+                Action::Message(<span class="prelude-val">None</span>) =&gt; {
                     <span class="macro">tracing::debug!</span>(<span class="string">&quot;gateway connection closed&quot;</span>);
                     <span class="self">self</span>.connection = <span class="prelude-val">None</span>;
 
@@ -1904,7 +2016,7 @@
 
                     <span class="kw">continue</span>;
                 }
-                NextMessageFutureOutput::SendHeartbeat =&gt; {
+                Action::Heartbeat =&gt; {
                     <span class="kw">let </span>is_first_heartbeat =
                         <span class="self">self</span>.heartbeat_interval.is_some() &amp;&amp; <span class="self">self</span>.latency.sent().is_none();
 
@@ -1928,7 +2040,7 @@
 
                     <span class="kw">continue</span>;
                 }
-                NextMessageFutureOutput::SendIdentify =&gt; {
+                Action::Identify =&gt; {
                     <span class="self">self</span>.identify_handle = <span class="prelude-val">None</span>;
 
                     <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending identify&quot;</span>);
@@ -1953,7 +2065,7 @@
 
                     <span class="kw">continue</span>;
                 }
-                NextMessageFutureOutput::UserClose(frame) =&gt; {
+                Action::Close(frame) =&gt; {
                     <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending close frame from user channel&quot;</span>);
                     <span class="self">self</span>.session = <span class="self">self
                         </span>.close(frame)
@@ -1962,29 +2074,14 @@
 
                     <span class="kw">continue</span>;
                 }
-                NextMessageFutureOutput::UserCommand(message) =&gt; {
+                Action::Command(json) =&gt; {
                     <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending command from user channel&quot;</span>);
-                    <span class="self">self</span>.send(message)
+                    <span class="self">self</span>.send(json)
                         .<span class="kw">await
                         </span>.map_err(ReceiveMessageError::from_send)<span class="question-mark">?</span>;
 
                     <span class="kw">continue</span>;
                 }
-            };
-
-            <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
-            </span><span class="kw">if let </span>TungsteniteMessage::Binary(bytes) = <span class="kw-2">&amp;</span>tungstenite_message {
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(decompressed) = <span class="self">self
-                    </span>.inflater
-                    .inflate(bytes)
-                    .map_err(ReceiveMessageError::from_compression)<span class="question-mark">?
-                </span>{
-                    <span class="macro">tracing::trace!</span>(%decompressed);
-                    <span class="kw">break </span>Message::Text(decompressed);
-                };
-            }
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(message) = Message::from_tungstenite(tungstenite_message) {
-                <span class="kw">break </span>message;
             }
         };
 
@@ -2401,7 +2498,10 @@
         close_code: <span class="prelude-ty">Option</span>&lt;u16&gt;,
         reconnect_attempts: u8,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;(), ReceiveMessageError&gt; {
-        future::reconnect_delay(reconnect_attempts).<span class="kw">await</span>;
+        <span class="kw">if </span>reconnect_attempts != <span class="number">0 </span>{
+            <span class="kw">let </span>secs = <span class="number">2u8</span>.saturating_pow(reconnect_attempts.into());
+            time::sleep(Duration::from_secs(secs.into())).<span class="kw">await</span>;
+        }
 
         <span class="kw">let </span>maybe_gateway_url = <span class="self">self
             </span>.resume_gateway_url
