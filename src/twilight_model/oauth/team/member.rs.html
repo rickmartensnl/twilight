@@ -90,9 +90,6 @@
 <a href="#90" id="90">90</a>
 <a href="#91" id="91">91</a>
 <a href="#92" id="92">92</a>
-<a href="#93" id="93">93</a>
-<a href="#94" id="94">94</a>
-<a href="#95" id="95">95</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     id::{marker::OauthTeamMarker, Id},
     oauth::team::TeamMembershipState,
@@ -123,7 +120,6 @@
             user: User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">None</span>,
-                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">false</span>,
                 discriminator: <span class="number">1</span>,
@@ -160,13 +156,11 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">9</span>,
+                    len: <span class="number">8</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
-                Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,

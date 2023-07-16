@@ -177,9 +177,6 @@
 <a href="#177" id="177">177</a>
 <a href="#178" id="178">178</a>
 <a href="#179" id="179">179</a>
-<a href="#180" id="180">180</a>
-<a href="#181" id="181">181</a>
-<a href="#182" id="182">182</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     application::interaction::InteractionType,
     guild::PartialMember,
@@ -245,7 +242,6 @@
             user: User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
-                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
                 bot: <span class="bool-val">false</span>,
                 discriminator: <span class="number">1</span>,
@@ -309,15 +305,13 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">16</span>,
+                    len: <span class="number">15</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
-                Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::BANNER_INPUT),

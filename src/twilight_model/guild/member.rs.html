@@ -249,12 +249,6 @@
 <a href="#249" id="249">249</a>
 <a href="#250" id="250">250</a>
 <a href="#251" id="251">251</a>
-<a href="#252" id="252">252</a>
-<a href="#253" id="253">253</a>
-<a href="#254" id="254">254</a>
-<a href="#255" id="255">255</a>
-<a href="#256" id="256">256</a>
-<a href="#257" id="257">257</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Mostly internal custom serde deserializers.
 
 </span><span class="kw">use </span><span class="kw">super</span>::MemberFlags;
@@ -326,7 +320,6 @@
             user: User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">None</span>,
-                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">false</span>,
                 discriminator: <span class="number">1</span>,
@@ -378,13 +371,11 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">9</span>,
+                    len: <span class="number">8</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
-                Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
@@ -429,7 +420,6 @@
             user: User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">None</span>,
-                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">false</span>,
                 discriminator: <span class="number">1</span>,
@@ -482,13 +472,11 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">9</span>,
+                    len: <span class="number">8</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
-                Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
