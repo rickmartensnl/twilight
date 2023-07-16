@@ -182,6 +182,9 @@
 <a href="#182" id="182">182</a>
 <a href="#183" id="183">183</a>
 <a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     guild::Member,
     id::{
@@ -239,6 +242,7 @@
                     id: Id::new(<span class="number">3</span>),
                     accent_color: <span class="prelude-val">None</span>,
                     avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+                    avatar_decoration: <span class="prelude-val">None</span>,
                     banner: <span class="prelude-val">None</span>,
                     bot: <span class="bool-val">false</span>,
                     discriminator: <span class="number">1</span>,
@@ -301,13 +305,15 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
+                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;bot&quot;</span>),

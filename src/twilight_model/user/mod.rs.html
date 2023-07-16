@@ -408,6 +408,17 @@
 <a href="#408" id="408">408</a>
 <a href="#409" id="409">409</a>
 <a href="#410" id="410">410</a>
+<a href="#411" id="411">411</a>
+<a href="#412" id="412">412</a>
+<a href="#413" id="413">413</a>
+<a href="#414" id="414">414</a>
+<a href="#415" id="415">415</a>
+<a href="#416" id="416">416</a>
+<a href="#417" id="417">417</a>
+<a href="#418" id="418">418</a>
+<a href="#419" id="419">419</a>
+<a href="#420" id="420">420</a>
+<a href="#421" id="421">421</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>connection;
 <span class="kw">mod </span>connection_visibility;
 <span class="kw">mod </span>current_user;
@@ -535,6 +546,8 @@
     /// This is an integer representation of a hexadecimal color code.
     </span><span class="kw">pub </span>accent_color: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
+    <span class="doccomment">/// Hash of the user&#39;s avatar decoration.
+    </span><span class="kw">pub </span>avatar_decoration: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="doccomment">/// Hash of the user&#39;s banner image.
     </span><span class="kw">pub </span>banner: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="attr">#[serde(default)]
@@ -617,13 +630,16 @@
         <span class="macro">vec!</span>[
             Token::Struct {
                 name: <span class="string">&quot;User&quot;</span>,
-                len: <span class="number">15</span>,
+                len: <span class="number">16</span>,
             },
             Token::Str(<span class="string">&quot;accent_color&quot;</span>),
             Token::None,
             Token::Str(<span class="string">&quot;avatar&quot;</span>),
             Token::Some,
             Token::Str(image_hash::AVATAR_INPUT),
+            Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+            Token::Some,
+            Token::Str(image_hash::AVATAR_DECORATION_INPUT),
             Token::Str(<span class="string">&quot;banner&quot;</span>),
             Token::Some,
             Token::Str(image_hash::BANNER_INPUT),
@@ -668,13 +684,16 @@
         <span class="macro">vec!</span>[
             Token::Struct {
                 name: <span class="string">&quot;User&quot;</span>,
-                len: <span class="number">16</span>,
+                len: <span class="number">17</span>,
             },
             Token::Str(<span class="string">&quot;accent_color&quot;</span>),
             Token::None,
             Token::Str(<span class="string">&quot;avatar&quot;</span>),
             Token::Some,
             Token::Str(image_hash::AVATAR_INPUT),
+            Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+            Token::Some,
+            Token::Str(image_hash::AVATAR_DECORATION_INPUT),
             Token::Str(<span class="string">&quot;banner&quot;</span>),
             Token::Some,
             Token::Str(image_hash::BANNER_INPUT),
@@ -733,6 +752,7 @@
         <span class="kw">let </span>value = User {
             accent_color: <span class="prelude-val">None</span>,
             avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+            avatar_decoration: <span class="prelude-val">Some</span>(image_hash::AVATAR_DECORATION),
             banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
             bot: <span class="bool-val">false</span>,
             discriminator: <span class="number">1</span>,
@@ -764,6 +784,7 @@
         <span class="kw">let </span>value = User {
             accent_color: <span class="prelude-val">None</span>,
             avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+            avatar_decoration: <span class="prelude-val">Some</span>(image_hash::AVATAR_DECORATION),
             banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
             bot: <span class="bool-val">false</span>,
             discriminator: <span class="number">0</span>,
@@ -792,6 +813,7 @@
         <span class="kw">let </span>value = User {
             accent_color: <span class="prelude-val">None</span>,
             avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+            avatar_decoration: <span class="prelude-val">Some</span>(image_hash::AVATAR_DECORATION),
             banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
             bot: <span class="bool-val">false</span>,
             discriminator: <span class="number">1</span>,

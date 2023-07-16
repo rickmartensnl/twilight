@@ -123,7 +123,16 @@
 <a href="#123" id="123">123</a>
 <a href="#124" id="124">124</a>
 <a href="#125" id="125">125</a>
-</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::AttachmentFlags;
+<span class="kw">use crate</span>::{
     id::{marker::AttachmentMarker, Id},
     util::is_false,
 };
@@ -146,6 +155,9 @@
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
     </span><span class="kw">pub </span>duration_secs: <span class="prelude-ty">Option</span>&lt;f64&gt;,
     <span class="kw">pub </span>filename: String,
+    <span class="comment">// Flags for this attachment.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;AttachmentFlags&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
     </span><span class="kw">pub </span>description: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
@@ -164,7 +176,7 @@
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
     <span class="kw">use </span><span class="kw">super</span>::Attachment;
-    <span class="kw">use </span><span class="kw">crate</span>::id::Id;
+    <span class="kw">use crate</span>::{channel::AttachmentFlags, id::Id};
     <span class="kw">use </span>serde::{Deserialize, Serialize};
     <span class="kw">use </span>serde_test::Token;
     <span class="kw">use </span>static_assertions::{assert_fields, assert_impl_all};
@@ -196,6 +208,7 @@
             content_type: <span class="prelude-val">Some</span>(<span class="string">&quot;image/png&quot;</span>.to_owned()),
             ephemeral: <span class="bool-val">false</span>,
             filename: <span class="string">&quot;a.png&quot;</span>.to_owned(),
+            flags: <span class="prelude-val">Some</span>(AttachmentFlags::IS_REMIX),
             description: <span class="prelude-val">Some</span>(<span class="string">&quot;a image&quot;</span>.to_owned()),
             duration_secs: <span class="prelude-val">Some</span>(<span class="number">3.2</span>),
             height: <span class="prelude-val">Some</span>(<span class="number">184</span>),
@@ -212,7 +225,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;Attachment&quot;</span>,
-                    len: <span class="number">11</span>,
+                    len: <span class="number">12</span>,
                 },
                 Token::Str(<span class="string">&quot;content_type&quot;</span>),
                 Token::Some,
@@ -222,6 +235,9 @@
                 Token::F64(<span class="number">3.2</span>),
                 Token::Str(<span class="string">&quot;filename&quot;</span>),
                 Token::Str(<span class="string">&quot;a.png&quot;</span>),
+                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Some,
+                Token::U64(<span class="number">4</span>),
                 Token::Str(<span class="string">&quot;description&quot;</span>),
                 Token::Some,
                 Token::Str(<span class="string">&quot;a image&quot;</span>),
