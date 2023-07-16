@@ -1,4 +1,4 @@
-var sourcesIndex = JSON.parse('{\
+var srcIndex = JSON.parse('{\
 "twilight":["",[],["lib.rs"]],\
 "twilight_cache_inmemory":["",[["event",[],["channel.rs","emoji.rs","guild.rs","integration.rs","interaction.rs","member.rs","message.rs","mod.rs","presence.rs","reaction.rs","role.rs","stage_instance.rs","sticker.rs","thread.rs","voice_state.rs"]],["model",[],["emoji.rs","guild.rs","member.rs","message.rs","mod.rs","presence.rs","sticker.rs","voice_state.rs"]]],["builder.rs","config.rs","iter.rs","lib.rs","permission.rs","stats.rs"]],\
 "twilight_gateway":["",[],["channel.rs","command.rs","config.rs","connection.rs","error.rs","event.rs","inflater.rs","json.rs","latency.rs","lib.rs","message.rs","ratelimiter.rs","session.rs","shard.rs","stream.rs","tls.rs"]],\
@@ -12,4 +12,4 @@ var sourcesIndex = JSON.parse('{\
 "twilight_util":["",[["builder",[["embed",[],["author.rs","field.rs","footer.rs","image_source.rs","mod.rs"]]],["command.rs","interaction_response_data.rs","mod.rs"]],["link",[],["mod.rs","webhook.rs"]],["permission_calculator",[],["bitops.rs","mod.rs","preset.rs"]]],["lib.rs","snowflake.rs"]],\
 "twilight_validate":["",[],["channel.rs","command.rs","component.rs","embed.rs","lib.rs","message.rs","request.rs","sticker.rs"]]\
 }');
-createSourceSidebar();
+createSrcSidebar();
