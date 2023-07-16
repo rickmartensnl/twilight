@@ -218,7 +218,16 @@
 <a href="#218" id="218">218</a>
 <a href="#219" id="219">219</a>
 <a href="#220" id="220">220</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::RoleTags;
+<a href="#221" id="221">221</a>
+<a href="#222" id="222">222</a>
+<a href="#223" id="223">223</a>
+<a href="#224" id="224">224</a>
+<a href="#225" id="225">225</a>
+<a href="#226" id="226">226</a>
+<a href="#227" id="227">227</a>
+<a href="#228" id="228">228</a>
+<a href="#229" id="229">229</a>
+</pre></div><pre class="rust"><code><span class="kw">use super</span>::{RoleFlags, RoleTags};
 <span class="kw">use crate</span>::{
     guild::Permissions,
     id::{marker::RoleMarker, Id},
@@ -247,6 +256,8 @@
     <span class="kw">pub </span>name: String,
     <span class="kw">pub </span>permissions: Permissions,
     <span class="kw">pub </span>position: i64,
+    <span class="doccomment">/// Flags for this role.
+    </span><span class="kw">pub </span>flags: RoleFlags,
     <span class="doccomment">/// Tags about the role.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
     </span><span class="kw">pub </span>tags: <span class="prelude-ty">Option</span>&lt;RoleTags&gt;,
@@ -275,7 +286,7 @@
     /// Compare the position of two roles:
     ///
     /// ```
-    /// # use twilight_model::{guild::{Permissions, Role}, id::Id};
+    /// # use twilight_model::{guild::{Permissions, Role, RoleFlags}, id::Id};
     /// # use std::cmp::Ordering;
     /// let role_a = Role {
     ///     id: Id::new(123),
@@ -287,6 +298,7 @@
     /// #   mentionable: true,
     /// #   name: &quot;test&quot;.to_owned(),
     /// #   permissions: Permissions::ADMINISTRATOR,
+    /// #   flags: RoleFlags::empty(),
     /// #   tags: None,
     /// #   unicode_emoji: None,
     ///     // ...
@@ -301,6 +313,7 @@
     /// #   mentionable: true,
     /// #   name: &quot;test&quot;.to_owned(),
     /// #   permissions: Permissions::ADMINISTRATOR,
+    /// #   flags: RoleFlags::empty(),
     /// #   tags: None,
     /// #   unicode_emoji: None,
     ///     // ...
@@ -314,7 +327,7 @@
     /// Compare the position of two roles with the same position:
     ///
     /// ```
-    /// # use twilight_model::{guild::{Permissions, Role}, id::Id};
+    /// # use twilight_model::{guild::{Permissions, Role, RoleFlags}, id::Id};
     /// # use std::cmp::Ordering;
     /// let role_a = Role {
     ///     id: Id::new(123),
@@ -326,6 +339,7 @@
     /// #   mentionable: true,
     /// #   name: &quot;test&quot;.to_owned(),
     /// #   permissions: Permissions::ADMINISTRATOR,
+    /// #   flags: RoleFlags::empty(),
     /// #   tags: None,
     /// #   unicode_emoji: None,
     /// };
@@ -339,6 +353,7 @@
     /// #   mentionable: true,
     /// #   name: &quot;test&quot;.to_owned(),
     /// #   permissions: Permissions::ADMINISTRATOR,
+    /// #   flags: RoleFlags::empty(),
     /// #   tags: None,
     /// #   unicode_emoji: None,
     /// };
@@ -363,7 +378,7 @@
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::{Permissions, Role};
-    <span class="kw">use </span><span class="kw">crate</span>::id::Id;
+    <span class="kw">use crate</span>::{guild::RoleFlags, id::Id};
     <span class="kw">use </span>serde::{Deserialize, Serialize};
     <span class="kw">use </span>serde_test::Token;
     <span class="kw">use </span>static_assertions::{assert_fields, assert_impl_all};
@@ -405,6 +420,7 @@
             name: <span class="string">&quot;test&quot;</span>.to_owned(),
             permissions: Permissions::ADMINISTRATOR,
             position: <span class="number">12</span>,
+            flags: RoleFlags::IN_PROMPT,
             tags: <span class="prelude-val">None</span>,
             unicode_emoji: <span class="prelude-val">None</span>,
         };
@@ -414,7 +430,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;Role&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;color&quot;</span>),
                 Token::U32(<span class="number">0</span>),
@@ -433,6 +449,8 @@
                 Token::Str(<span class="string">&quot;8&quot;</span>),
                 Token::Str(<span class="string">&quot;position&quot;</span>),
                 Token::I64(<span class="number">12</span>),
+                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::U64(<span class="number">1</span>),
                 Token::StructEnd,
             ],
         );

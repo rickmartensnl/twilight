@@ -568,6 +568,9 @@
 <a href="#568" id="568">568</a>
 <a href="#569" id="569">569</a>
 <a href="#570" id="570">570</a>
+<a href="#571" id="571">571</a>
+<a href="#572" id="572">572</a>
+<a href="#573" id="573">573</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     channel::{thread::ThreadMetadata, Attachment, ChannelType, Message},
     guild::{MemberFlags, Permissions, Role},
@@ -676,7 +679,7 @@
             },
             Attachment, ChannelType, Message,
         },
-        guild::{MemberFlags, PartialMember, Permissions, Role},
+        guild::{MemberFlags, PartialMember, Permissions, Role, RoleFlags},
         id::Id,
         test::image_hash,
         user::{PremiumType, User, UserFlags},
@@ -821,6 +824,7 @@
                     name: <span class="string">&quot;test&quot;</span>.to_owned(),
                     permissions: Permissions::ADMINISTRATOR,
                     position: <span class="number">12</span>,
+                    flags: RoleFlags::empty(),
                     tags: <span class="prelude-val">None</span>,
                     unicode_emoji: <span class="prelude-val">None</span>,
                 },
@@ -1058,7 +1062,7 @@
                 Token::Str(<span class="string">&quot;400&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;Role&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;color&quot;</span>),
                 Token::U32(<span class="number">0</span>),
@@ -1077,6 +1081,8 @@
                 Token::Str(<span class="string">&quot;8&quot;</span>),
                 Token::Str(<span class="string">&quot;position&quot;</span>),
                 Token::I64(<span class="number">12</span>),
+                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::U64(<span class="number">0</span>),
                 Token::StructEnd,
                 Token::MapEnd,
                 Token::Str(<span class="string">&quot;users&quot;</span>),

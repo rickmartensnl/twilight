@@ -336,6 +336,7 @@
 <a href="#336" id="336">336</a>
 <a href="#337" id="337">337</a>
 <a href="#338" id="338">338</a>
+<a href="#339" id="339">339</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, InMemoryCache, UpdateCache};
 <span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>twilight_model::{
@@ -417,7 +418,7 @@
             Channel, ChannelType, Message,
         },
         gateway::payload::incoming::InteractionCreate,
-        guild::{MemberFlags, PartialMember, Permissions, Role},
+        guild::{MemberFlags, PartialMember, Permissions, Role, RoleFlags},
         id::Id,
         user::User,
         util::{image_hash::ImageHashParseError, ImageHash, Timestamp},
@@ -579,6 +580,7 @@
                             name: <span class="string">&quot;role name&quot;</span>.into(),
                             permissions: Permissions::empty(),
                             position: <span class="number">2i64</span>,
+                            flags: RoleFlags::empty(),
                             tags: <span class="prelude-val">None</span>,
                             unicode_emoji: <span class="prelude-val">None</span>,
                         },

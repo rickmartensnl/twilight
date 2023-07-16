@@ -1106,6 +1106,7 @@
 <a href="#1106" id="1106">1106</a>
 <a href="#1107" id="1107">1107</a>
 <a href="#1108" id="1108">1108</a>
+<a href="#1109" id="1109">1109</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Group of [`Channel`]s and [`User`]s with additional moderation options.
 //!
 //! [`Guild`]s allow, for example, assigning [`Role`]s to [`Member`]s to limit
@@ -1144,6 +1145,7 @@
 <span class="kw">mod </span>preview;
 <span class="kw">mod </span>prune;
 <span class="kw">mod </span>role;
+<span class="kw">mod </span>role_flags;
 <span class="kw">mod </span>role_tags;
 <span class="kw">mod </span>system_channel_flags;
 <span class="kw">mod </span>unavailable_guild;
@@ -1161,9 +1163,9 @@
     integration_expire_behavior::IntegrationExpireBehavior, integration_type::GuildIntegrationType,
     member::Member, member_flags::MemberFlags, mfa_level::MfaLevel, partial_guild::PartialGuild,
     partial_member::PartialMember, premium_tier::PremiumTier, preview::GuildPreview,
-    prune::GuildPrune, role::Role, role_tags::RoleTags, system_channel_flags::SystemChannelFlags,
-    unavailable_guild::UnavailableGuild, vanity_url::VanityUrl,
-    verification_level::VerificationLevel, widget::GuildWidget,
+    prune::GuildPrune, role::Role, role_flags::RoleFlags, role_tags::RoleTags,
+    system_channel_flags::SystemChannelFlags, unavailable_guild::UnavailableGuild,
+    vanity_url::VanityUrl, verification_level::VerificationLevel, widget::GuildWidget,
 };
 
 <span class="kw">use </span><span class="kw">super</span>::gateway::presence::PresenceListDeserializer;
