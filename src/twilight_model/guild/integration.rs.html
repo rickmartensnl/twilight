@@ -366,6 +366,12 @@
 <a href="#366" id="366">366</a>
 <a href="#367" id="367">367</a>
 <a href="#368" id="368">368</a>
+<a href="#369" id="369">369</a>
+<a href="#370" id="370">370</a>
+<a href="#371" id="371">371</a>
+<a href="#372" id="372">372</a>
+<a href="#373" id="373">373</a>
+<a href="#374" id="374">374</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{
     GuildIntegrationType, IntegrationAccount, IntegrationApplication, IntegrationExpireBehavior,
 };
@@ -466,6 +472,7 @@
             user: <span class="prelude-val">Some</span>(User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">true</span>,
                 discriminator: <span class="number">1000</span>,
@@ -545,13 +552,15 @@
                 Token::Some,
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
+                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;bot&quot;</span>),
@@ -611,6 +620,7 @@
             user: <span class="prelude-val">Some</span>(User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+                avatar_decoration: <span class="prelude-val">None</span>,
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">true</span>,
                 discriminator: <span class="number">1000</span>,
@@ -705,13 +715,15 @@
                 Token::Some,
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
+                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;bot&quot;</span>),

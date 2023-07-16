@@ -22,9 +22,9 @@ session will be initialized, resulting in those events being missed.</p>
 <p>The ID of the session is different from the <a href="struct.ShardId.html" title="struct twilight_gateway::ShardId">ID of the shard</a>; shards are
 identified by an index, and when authenticated with the gateway the shard
 is given a unique identifier for the gateway session.</p>
-<p>Session IDs are obtained by shards via sending an <a href="twilight_model::gateway::payload::outgoing::Identify"><code>Identify</code></a> command
+<p>Session IDs are obtained by shards via sending an <a href="../twilight_model/gateway/payload/outgoing/identify/struct.Identify.html" title="struct twilight_model::gateway::payload::outgoing::identify::Identify"><code>Identify</code></a> command
 with the shard’s authentication details, and in return the session ID is
-provided via the <a href="twilight_model::gateway::payload::incoming::Ready"><code>Ready</code></a> event.</p>
+provided via the <a href="../twilight_model/gateway/payload/incoming/ready/struct.Ready.html" title="struct twilight_model::gateway::payload::incoming::ready::Ready"><code>Ready</code></a> event.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.sequence" class="method"><a class="src rightside" href="../src/twilight_gateway/session.rs.html#84-86">source</a><h4 class="code-header">pub const fn <a href="#method.sequence" class="fn">sequence</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></h4></section></summary><div class="docblock"><p>Current sequence of the connection.</p>
 <p>Number of the events that have been received during this session. A
 larger number typically correlates that the shard has been connected

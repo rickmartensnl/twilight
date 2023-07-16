@@ -330,6 +330,10 @@
 <a href="#330" id="330">330</a>
 <a href="#331" id="331">331</a>
 <a href="#332" id="332">332</a>
+<a href="#333" id="333">333</a>
+<a href="#334" id="334">334</a>
+<a href="#335" id="335">335</a>
+<a href="#336" id="336">336</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::voice::VoiceState;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>std::ops::{Deref, DerefMut};
@@ -389,6 +393,7 @@
                     id: Id::new(<span class="number">1</span>),
                     accent_color: <span class="prelude-val">None</span>,
                     avatar: <span class="prelude-val">None</span>,
+                    avatar_decoration: <span class="prelude-val">None</span>,
                     banner: <span class="prelude-val">None</span>,
                     bot: <span class="bool-val">false</span>,
                     discriminator: <span class="number">909</span>,
@@ -461,11 +466,13 @@
                 Token::Str(<span class="string">&quot;user&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;User&quot;</span>,
-                    len: <span class="number">8</span>,
+                    len: <span class="number">9</span>,
                 },
                 Token::Str(<span class="string">&quot;accent_color&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::None,
+                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
                 Token::None,
                 Token::Str(<span class="string">&quot;banner&quot;</span>),
                 Token::None,
@@ -533,6 +540,7 @@
                     id: Id::new(<span class="number">1_234_123_123_123</span>),
                     accent_color: <span class="prelude-val">None</span>,
                     avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
+                    avatar_decoration: <span class="prelude-val">None</span>,
                     banner: <span class="prelude-val">None</span>,
                     bot: <span class="bool-val">false</span>,
                     discriminator: <span class="number">4242</span>,
