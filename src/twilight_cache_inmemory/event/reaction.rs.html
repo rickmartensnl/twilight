@@ -282,6 +282,8 @@
 <a href="#282" id="282">282</a>
 <a href="#283" id="283">283</a>
 <a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, InMemoryCache, UpdateCache};
 <span class="kw">use </span>twilight_model::{
     channel::message::{Reaction, ReactionType},
@@ -473,6 +475,7 @@
             },
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             member: <span class="prelude-val">None</span>,
+            message_author_id: <span class="prelude-val">None</span>,
             message_id: Id::new(<span class="number">4</span>),
             user_id: Id::new(<span class="number">5</span>),
         }));
@@ -485,6 +488,7 @@
             },
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             member: <span class="prelude-val">None</span>,
+            message_author_id: <span class="prelude-val">None</span>,
             message_id: Id::new(<span class="number">4</span>),
             user_id: Id::new(<span class="number">5</span>),
         }));

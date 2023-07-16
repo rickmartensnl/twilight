@@ -209,6 +209,19 @@
 <a href="#209" id="209">209</a>
 <a href="#210" id="210">210</a>
 <a href="#211" id="211">211</a>
+<a href="#212" id="212">212</a>
+<a href="#213" id="213">213</a>
+<a href="#214" id="214">214</a>
+<a href="#215" id="215">215</a>
+<a href="#216" id="216">216</a>
+<a href="#217" id="217">217</a>
+<a href="#218" id="218">218</a>
+<a href="#219" id="219">219</a>
+<a href="#220" id="220">220</a>
+<a href="#221" id="221">221</a>
+<a href="#222" id="222">222</a>
+<a href="#223" id="223">223</a>
+<a href="#224" id="224">224</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     channel::message::ReactionType,
     guild::Member,
@@ -225,6 +238,9 @@
     <span class="kw">pub </span>emoji: ReactionType,
     <span class="kw">pub </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt;,
     <span class="kw">pub </span>member: <span class="prelude-ty">Option</span>&lt;Member&gt;,
+    <span class="doccomment">/// ID of the user who authored the message which was reacted to.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="kw">pub </span>message_author_id: <span class="prelude-ty">Option</span>&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="kw">pub </span>message_id: Id&lt;MessageMarker&gt;,
     <span class="kw">pub </span>user_id: Id&lt;UserMarker&gt;,
 }
@@ -285,6 +301,7 @@
                     verified: <span class="prelude-val">None</span>,
                 },
             }),
+            message_author_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">7</span>)),
             message_id: Id::new(<span class="number">3</span>),
             user_id: Id::new(<span class="number">4</span>),
         };
@@ -294,7 +311,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;GatewayReaction&quot;</span>,
-                    len: <span class="number">6</span>,
+                    len: <span class="number">7</span>,
                 },
                 Token::Str(<span class="string">&quot;channel_id&quot;</span>),
                 Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
@@ -363,6 +380,10 @@
                 Token::Str(<span class="string">&quot;test&quot;</span>),
                 Token::StructEnd,
                 Token::StructEnd,
+                Token::Str(<span class="string">&quot;message_author_id&quot;</span>),
+                Token::Some,
+                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::Str(<span class="string">&quot;7&quot;</span>),
                 Token::Str(<span class="string">&quot;message_id&quot;</span>),
                 Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
                 Token::Str(<span class="string">&quot;3&quot;</span>),
@@ -384,6 +405,7 @@
             guild_id: <span class="prelude-val">None</span>,
             member: <span class="prelude-val">None</span>,
             message_id: Id::new(<span class="number">3</span>),
+            message_author_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">7</span>)),
             user_id: Id::new(<span class="number">4</span>),
         };
 
@@ -392,7 +414,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;GatewayReaction&quot;</span>,
-                    len: <span class="number">6</span>,
+                    len: <span class="number">7</span>,
                 },
                 Token::Str(<span class="string">&quot;channel_id&quot;</span>),
                 Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
@@ -409,6 +431,10 @@
                 Token::None,
                 Token::Str(<span class="string">&quot;member&quot;</span>),
                 Token::None,
+                Token::Str(<span class="string">&quot;message_author_id&quot;</span>),
+                Token::Some,
+                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::Str(<span class="string">&quot;7&quot;</span>),
                 Token::Str(<span class="string">&quot;message_id&quot;</span>),
                 Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
                 Token::Str(<span class="string">&quot;3&quot;</span>),
