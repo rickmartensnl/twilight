@@ -534,12 +534,6 @@
 <a href="#534" id="534">534</a>
 <a href="#535" id="535">535</a>
 <a href="#536" id="536">536</a>
-<a href="#537" id="537">537</a>
-<a href="#538" id="538">538</a>
-<a href="#539" id="539">539</a>
-<a href="#540" id="540">540</a>
-<a href="#541" id="541">541</a>
-<a href="#542" id="542">542</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::wildcard_imports)]
 
 </span><span class="kw">pub mod </span>gateway;
@@ -716,13 +710,7 @@
 }
 
 <span class="kw">impl </span>Event {
-    <span class="doccomment">/// Retrieve the guild ID of an event if it took place in a guild.
-    ///
-    /// While events such as [`MessageDelete`] will never include a guild ID, events
-    /// such as [`BanAdd`] and only some [`Channel`] related events will include
-    /// one. Guild variants will include a guild ID while DM Channels don&#39;t.
-    ///
-    /// [`Channel`]: crate::channel::Channel
+    <span class="doccomment">/// Guild ID of the event, if available.
     </span><span class="kw">pub const fn </span>guild_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt; {
         <span class="kw">match </span><span class="self">self </span>{
             Event::AutoModerationActionExecution(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
@@ -733,6 +721,7 @@
             Event::BanRemove(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
             Event::ChannelCreate(e) =&gt; e.<span class="number">0</span>.guild_id,
             Event::ChannelDelete(e) =&gt; e.<span class="number">0</span>.guild_id,
+            Event::ChannelPinsUpdate(e) =&gt; e.guild_id,
             Event::ChannelUpdate(e) =&gt; e.<span class="number">0</span>.guild_id,
             Event::CommandPermissionsUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.<span class="number">0</span>.guild_id),
             Event::GuildAuditLogEntryCreate(e) =&gt; e.<span class="number">0</span>.guild_id,
@@ -758,6 +747,9 @@
             Event::MemberRemove(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
             Event::MemberUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
             Event::MessageCreate(e) =&gt; e.<span class="number">0</span>.guild_id,
+            Event::MessageDelete(e) =&gt; e.guild_id,
+            Event::MessageDeleteBulk(e) =&gt; e.guild_id,
+            Event::MessageUpdate(e) =&gt; e.guild_id,
             Event::PresenceUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.<span class="number">0</span>.guild_id),
             Event::ReactionAdd(e) =&gt; e.<span class="number">0</span>.guild_id,
             Event::ReactionRemove(e) =&gt; e.<span class="number">0</span>.guild_id,
@@ -780,17 +772,13 @@
             Event::VoiceServerUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
             Event::VoiceStateUpdate(e) =&gt; e.<span class="number">0</span>.guild_id,
             Event::WebhooksUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.guild_id),
-            Event::ChannelPinsUpdate(<span class="kw">_</span>)
-            | Event::GatewayClose(<span class="kw">_</span>)
+            Event::GatewayClose(<span class="kw">_</span>)
             | Event::GatewayHeartbeat(<span class="kw">_</span>)
             | Event::GatewayHeartbeatAck
             | Event::GatewayHello(<span class="kw">_</span>)
             | Event::GatewayInvalidateSession(<span class="kw">_</span>)
             | Event::GatewayReconnect
             | Event::GiftCodeUpdate
-            | Event::MessageDelete(<span class="kw">_</span>)
-            | Event::MessageDeleteBulk(<span class="kw">_</span>)
-            | Event::MessageUpdate(<span class="kw">_</span>)
             | Event::PresencesReplace
             | Event::Ready(<span class="kw">_</span>)
             | Event::Resumed
