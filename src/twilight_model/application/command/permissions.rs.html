@@ -219,11 +219,6 @@
 <a href="#219" id="219">219</a>
 <a href="#220" id="220">220</a>
 <a href="#221" id="221">221</a>
-<a href="#222" id="222">222</a>
-<a href="#223" id="223">223</a>
-<a href="#224" id="224">224</a>
-<a href="#225" id="225">225</a>
-<a href="#226" id="226">226</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Limit who and where commands can be executed.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::id::{
@@ -319,16 +314,11 @@
     <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">let </span>data = CommandPermissionData::deserialize(deserializer)<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>span = <span class="macro">tracing::trace_span!</span>(<span class="string">&quot;deserializing command permission&quot;</span>);
-        <span class="kw">let </span>_span_enter = span.enter();
-
         <span class="kw">let </span>id = <span class="kw">match </span>data.kind {
             CommandPermissionDataType::Role =&gt; CommandPermissionType::Role(data.id.cast()),
             CommandPermissionDataType::User =&gt; CommandPermissionType::User(data.id.cast()),
             CommandPermissionDataType::Channel =&gt; CommandPermissionType::Channel(data.id.cast()),
         };
-
-        <span class="macro">tracing::trace!</span>(id = %data.id, kind = <span class="question-mark">?</span>data.kind);
 
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
             id,

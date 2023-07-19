@@ -476,28 +476,6 @@
 <a href="#476" id="476">476</a>
 <a href="#477" id="477">477</a>
 <a href="#478" id="478">478</a>
-<a href="#479" id="479">479</a>
-<a href="#480" id="480">480</a>
-<a href="#481" id="481">481</a>
-<a href="#482" id="482">482</a>
-<a href="#483" id="483">483</a>
-<a href="#484" id="484">484</a>
-<a href="#485" id="485">485</a>
-<a href="#486" id="486">486</a>
-<a href="#487" id="487">487</a>
-<a href="#488" id="488">488</a>
-<a href="#489" id="489">489</a>
-<a href="#490" id="490">490</a>
-<a href="#491" id="491">491</a>
-<a href="#492" id="492">492</a>
-<a href="#493" id="493">493</a>
-<a href="#494" id="494">494</a>
-<a href="#495" id="495">495</a>
-<a href="#496" id="496">496</a>
-<a href="#497" id="497">497</a>
-<a href="#498" id="498">498</a>
-<a href="#499" id="499">499</a>
-<a href="#500" id="500">500</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     gateway::presence::{Presence, PresenceListDeserializer},
     guild::Member,
@@ -556,25 +534,12 @@
         <span class="kw">let </span><span class="kw-2">mut </span>not_found = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>presences = <span class="prelude-val">None</span>;
 
-        <span class="kw">let </span>span = <span class="macro">tracing::trace_span!</span>(<span class="string">&quot;deserializing member chunk&quot;</span>);
-        <span class="kw">let </span>_span_enter = span.enter();
-
         <span class="kw">loop </span>{
-            <span class="kw">let </span>span_child = <span class="macro">tracing::trace_span!</span>(<span class="string">&quot;iterating over element&quot;</span>);
-            <span class="kw">let </span>_span_child_enter = span_child.enter();
-
             <span class="kw">let </span>key = <span class="kw">match </span>map.next_key() {
-                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(key)) =&gt; {
-                    <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>key, <span class="string">&quot;found key&quot;</span>);
-
-                    key
-                }
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(key)) =&gt; key,
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; <span class="kw">break</span>,
-                <span class="prelude-val">Err</span>(why) =&gt; {
-                    <span class="comment">// Encountered when we run into an unknown key.
-                    </span>map.next_value::&lt;IgnoredAny&gt;()<span class="question-mark">?</span>;
-
-                    <span class="macro">tracing::trace!</span>(<span class="string">&quot;ran into an unknown key: {why:?}&quot;</span>);
+                <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
+                    map.next_value::&lt;IgnoredAny&gt;()<span class="question-mark">?</span>;
 
                     <span class="kw">continue</span>;
                 }
@@ -641,15 +606,6 @@
         <span class="kw">let </span>members = members.ok_or_else(|| DeError::missing_field(<span class="string">&quot;members&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let </span>not_found = not_found.unwrap_or_default();
         <span class="kw">let </span><span class="kw-2">mut </span>presences = presences.unwrap_or_default();
-
-        <span class="macro">tracing::trace!</span>(
-            %chunk_count,
-            %chunk_index,
-            <span class="question-mark">?</span>guild_id,
-            <span class="question-mark">?</span>members,
-            <span class="question-mark">?</span>not_found,
-            <span class="question-mark">?</span>presences,
-        );
 
         <span class="kw">for </span>presence <span class="kw">in </span><span class="kw-2">&amp;mut </span>presences {
             presence.guild_id = guild_id;

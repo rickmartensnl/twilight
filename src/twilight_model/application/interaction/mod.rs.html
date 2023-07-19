@@ -775,27 +775,6 @@
 <a href="#775" id="775">775</a>
 <a href="#776" id="776">776</a>
 <a href="#777" id="777">777</a>
-<a href="#778" id="778">778</a>
-<a href="#779" id="779">779</a>
-<a href="#780" id="780">780</a>
-<a href="#781" id="781">781</a>
-<a href="#782" id="782">782</a>
-<a href="#783" id="783">783</a>
-<a href="#784" id="784">784</a>
-<a href="#785" id="785">785</a>
-<a href="#786" id="786">786</a>
-<a href="#787" id="787">787</a>
-<a href="#788" id="788">788</a>
-<a href="#789" id="789">789</a>
-<a href="#790" id="790">790</a>
-<a href="#791" id="791">791</a>
-<a href="#792" id="792">792</a>
-<a href="#793" id="793">793</a>
-<a href="#794" id="794">794</a>
-<a href="#795" id="795">795</a>
-<a href="#796" id="796">796</a>
-<a href="#797" id="797">797</a>
-<a href="#798" id="798">798</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Used when receiving interactions through gateway or webhooks.
 //!
 //! See [Discord Docs/Receiving and Responding].
@@ -1009,25 +988,12 @@
         <span class="kw">let </span><span class="kw-2">mut </span>token: <span class="prelude-ty">Option</span>&lt;String&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>user: <span class="prelude-ty">Option</span>&lt;User&gt; = <span class="prelude-val">None</span>;
 
-        <span class="kw">let </span>span = <span class="macro">tracing::trace_span!</span>(<span class="string">&quot;deserializing interaction&quot;</span>);
-        <span class="kw">let </span>_span_enter = span.enter();
-
         <span class="kw">loop </span>{
-            <span class="kw">let </span>span_child = <span class="macro">tracing::trace_span!</span>(<span class="string">&quot;iterating over interaction&quot;</span>);
-            <span class="kw">let </span>_span_child_enter = span_child.enter();
-
             <span class="kw">let </span>key = <span class="kw">match </span>map.next_key() {
-                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(key)) =&gt; {
-                    <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>key, <span class="string">&quot;found key&quot;</span>);
-
-                    key
-                }
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(key)) =&gt; key,
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; <span class="kw">break</span>,
-                <span class="prelude-val">Err</span>(why) =&gt; {
-                    <span class="comment">// Encountered when we run into an unknown key.
-                    </span>map.next_value::&lt;IgnoredAny&gt;()<span class="question-mark">?</span>;
-
-                    <span class="macro">tracing::trace!</span>(<span class="string">&quot;ran into an unknown key: {why:?}&quot;</span>);
+                <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
+                    map.next_value::&lt;IgnoredAny&gt;()<span class="question-mark">?</span>;
 
                     <span class="kw">continue</span>;
                 }
@@ -1144,14 +1110,6 @@
         <span class="kw">let </span>id = id.ok_or_else(|| DeError::missing_field(<span class="string">&quot;id&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let </span>token = token.ok_or_else(|| DeError::missing_field(<span class="string">&quot;token&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let </span>kind = kind.ok_or_else(|| DeError::missing_field(<span class="string">&quot;kind&quot;</span>))<span class="question-mark">?</span>;
-
-        <span class="macro">tracing::trace!</span>(
-            %application_id,
-            %id,
-            %token,
-            <span class="question-mark">?</span>kind,
-            <span class="string">&quot;common fields of all variants exist&quot;
-        </span>);
 
         <span class="kw">let </span>data = <span class="kw">match </span>kind {
             InteractionType::Ping =&gt; <span class="prelude-val">None</span>,
