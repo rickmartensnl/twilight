@@ -1407,7 +1407,7 @@
     session::Session,
     Config, Message, ShardId,
 };
-<span class="kw">use </span>futures_util::{SinkExt, StreamExt};
+<span class="kw">use </span>futures_util::{stream::Stream, SinkExt};
 <span class="kw">use </span>serde::{de::DeserializeOwned, Deserialize};
 <span class="attr">#[cfg(any(
     feature = <span class="string">&quot;native&quot;</span>,
@@ -2010,7 +2010,7 @@
                 }
 
                 <span class="kw">if let </span>Poll::Ready(message) =
-                    Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.connection.as_mut().expect(<span class="string">&quot;connected&quot;</span>).next()).poll(cx)
+                    Pin::new(<span class="self">self</span>.connection.as_mut().expect(<span class="string">&quot;connected&quot;</span>)).poll_next(cx)
                 {
                     <span class="kw">return </span>Poll::Ready(Action::Message(message));
                 }

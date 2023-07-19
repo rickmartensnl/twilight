@@ -2,7 +2,7 @@
 <p>Multiple shards may easily be created at once, with a per shard config
 created from a <code>Fn(ShardId, ConfigBuilder) -&gt; Config</code> closure, with the help
 of the <code>create_</code> set of functions. These functions will reuse shards’
-TLS context and <a href="crate::queue">session queue</a>, something otherwise achieved by cloning an
+TLS context and <a href="../../twilight_gateway_queue/index.html" title="mod twilight_gateway_queue">session queue</a>, something otherwise achieved by cloning an
 existing <a href="../struct.Config.html" title="struct twilight_gateway::Config"><code>Config</code></a>.</p>
 <h2 id="concurrency"><a href="#concurrency">Concurrency</a></h2>
 <p>Multiple shards’ events or websocket messages may be concurrently streamed
