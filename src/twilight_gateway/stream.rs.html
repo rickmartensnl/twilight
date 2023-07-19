@@ -941,7 +941,7 @@
 
     (bucket_id..total).step_by(concurrency).map(<span class="kw">move </span>|index| {
         <span class="kw">let </span>id = ShardId::new(index, total);
-        <span class="kw">let </span>config = per_shard_config(id, ConfigBuilder::with_config(config.clone()));
+        <span class="kw">let </span>config = per_shard_config(id, config.clone().into());
 
         Shard::with_config(id, config)
     })
@@ -990,7 +990,7 @@
 
     range.map(<span class="kw">move </span>|index| {
         <span class="kw">let </span>id = ShardId::new(index, total);
-        <span class="kw">let </span>config = per_shard_config(id, ConfigBuilder::with_config(config.clone()));
+        <span class="kw">let </span>config = per_shard_config(id, config.clone().into());
 
         Shard::with_config(id, config)
     })

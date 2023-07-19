@@ -455,6 +455,12 @@
 <a href="#455" id="455">455</a>
 <a href="#456" id="456">456</a>
 <a href="#457" id="457">457</a>
+<a href="#458" id="458">458</a>
+<a href="#459" id="459">459</a>
+<a href="#460" id="460">460</a>
+<a href="#461" id="461">461</a>
+<a href="#462" id="462">462</a>
+<a href="#463" id="463">463</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! User configuration for shards.
 
 </span><span class="kw">use crate</span>::{tls::TlsContainer, EventTypeFlags, Session};
@@ -496,8 +502,7 @@
 /// May be reused by cloning, also reusing the hidden TLS context---reducing
 /// memory usage. The TLS context may still be reused with an otherwise
 /// different config by turning it into to a [`ConfigBuilder`] through the
-/// [`ConfigBuilder::with_config`] function and then rebuilding it into a new
-/// config.
+/// [`From&lt;Config&gt;`] implementation and then rebuilding it into a rew config.
 </span><span class="attr">#[derive(Clone, Debug)]
 </span><span class="kw">pub struct </span>Config {
     <span class="doccomment">/// Event type flags.
@@ -657,6 +662,7 @@
     }
 
     <span class="doccomment">/// Create a new builder from an existing configuration.
+    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.15.3&quot;</span>, note = <span class="string">&quot;use From&lt;Config&gt; instead&quot;</span>)]
     </span><span class="kw">pub const fn </span>with_config(config: Config) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{ inner: config }
     }
@@ -842,6 +848,12 @@
 
         <span class="self">self
     </span>}
+}
+
+<span class="kw">impl </span>From&lt;Config&gt; <span class="kw">for </span>ConfigBuilder {
+    <span class="kw">fn </span>from(value: Config) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ inner: value }
+    }
 }
 
 <span class="attr">#[cfg(test)]
