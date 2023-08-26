@@ -111,6 +111,10 @@
 <a href="#111" id="111">111</a>
 <a href="#112" id="112">112</a>
 <a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{day_limiter::DayLimiter, Queue};
 <span class="kw">use </span>std::{fmt::Debug, future::Future, pin::Pin, sync::Arc, time::Duration};
 <span class="kw">use </span>tokio::{
@@ -145,6 +149,10 @@
     ///
     /// The number of buckets is provided via Discord as `max_concurrency`
     /// which can be fetched with [`Client::gateway`].
+    ///
+    /// # Panics
+    ///
+    /// Panics if retrieving the session start limints fails.
     </span><span class="kw">pub async fn </span>new(buckets: usize, http: Arc&lt;Client&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>queues = Vec::with_capacity(buckets);
         <span class="kw">for _ in </span><span class="number">0</span>..buckets {

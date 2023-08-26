@@ -729,7 +729,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>lowest = i32::MAX;
         <span class="kw">let </span><span class="kw-2">mut </span>best = <span class="prelude-val">None</span>;
 
-        <span class="kw">for </span>node <span class="kw">in </span><span class="self">self</span>.nodes.iter() {
+        <span class="kw">for </span>node <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.nodes {
             <span class="kw">if </span>node.sender().is_closed() {
                 <span class="kw">continue</span>;
             }

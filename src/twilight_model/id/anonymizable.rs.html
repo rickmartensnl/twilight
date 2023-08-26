@@ -52,9 +52,6 @@
 <a href="#52" id="52">52</a>
 <a href="#53" id="53">53</a>
 <a href="#54" id="54">54</a>
-<a href="#55" id="55">55</a>
-<a href="#56" id="56">56</a>
-<a href="#57" id="57">57</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 <span class="kw">use </span><span class="kw">super</span>::Id;
@@ -68,11 +65,8 @@
 
 <span class="kw">impl</span>&lt;T&gt; Clone <span class="kw">for </span>AnonymizableId&lt;T&gt; {
     <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
-        <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Anonymized =&gt; <span class="self">Self</span>::Anonymized,
-            <span class="self">Self</span>::Id(id) =&gt; <span class="self">Self</span>::Id(<span class="kw-2">*</span>id),
-        }
-    }
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;T&gt; Copy <span class="kw">for </span>AnonymizableId&lt;T&gt; {}

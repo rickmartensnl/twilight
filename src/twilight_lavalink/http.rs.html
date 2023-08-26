@@ -547,6 +547,7 @@
 <a href="#547" id="547">547</a>
 <a href="#548" id="548">548</a>
 <a href="#549" id="549">549</a>
+<a href="#550" id="550">550</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Models to deserialize responses into and functions to create `http` crate
 //! requests.
 
@@ -844,6 +845,7 @@
 /// # Errors
 ///
 /// See the documentation for [`http::Error`].
+</span><span class="attr">#[allow(clippy::missing_panics_doc)]
 </span><span class="kw">pub fn </span>unmark_failed_address(
     node_address: <span class="kw">impl </span>Into&lt;SocketAddr&gt;,
     authorization: <span class="kw">impl </span>AsRef&lt;str&gt;,
