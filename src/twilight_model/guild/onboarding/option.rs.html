@@ -154,6 +154,7 @@
 <a href="#154" id="154">154</a>
 <a href="#155" id="155">155</a>
 <a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     guild::Emoji,
     id::{
@@ -164,7 +165,8 @@
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// An emoji for a guild onboarding prompt.
-/// This is used instead [`Emoji`] as both it&#39;s id and name can be `null` in prompt options.
+/// This is used instead of [`Emoji`] as both it&#39;s id and name can be `null` in
+/// prompt options.
 ///
 /// [`Emoji`]: crate::guild::Emoji
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
