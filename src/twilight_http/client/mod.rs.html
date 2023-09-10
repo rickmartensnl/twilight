@@ -2685,6 +2685,10 @@
 <a href="#2685" id="2685">2685</a>
 <a href="#2686" id="2686">2686</a>
 <a href="#2687" id="2687">2687</a>
+<a href="#2688" id="2688">2688</a>
+<a href="#2689" id="2689">2689</a>
+<a href="#2690" id="2690">2690</a>
+<a href="#2691" id="2691">2691</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
@@ -3730,7 +3734,11 @@
     /// #
     /// let guild_id = Id::new(100);
     /// let user_id = Id::new(3000);
-    /// let members = client.guild_members(guild_id).after(user_id).await?;
+    /// let members = client
+    ///     .guild_members(guild_id)
+    ///     .after(user_id)
+    ///     .limit(500)?
+    ///     .await?;
     /// # Ok(()) }
     /// ```
     ///

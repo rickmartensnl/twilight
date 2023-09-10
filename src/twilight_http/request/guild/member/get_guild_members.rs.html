@@ -122,6 +122,10 @@
 <a href="#122" id="122">122</a>
 <a href="#123" id="123">123</a>
 <a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -165,7 +169,11 @@
 ///
 /// let guild_id = Id::new(100);
 /// let user_id = Id::new(3000);
-/// let members = client.guild_members(guild_id).after(user_id).await?;
+/// let members = client
+///     .guild_members(guild_id)
+///     .after(user_id)
+///     .limit(500)?
+///     .await?;
 /// # Ok(()) }
 /// ```
 </span><span class="attr">#[must_use = <span class="string">&quot;requests must be configured and executed&quot;</span>]
