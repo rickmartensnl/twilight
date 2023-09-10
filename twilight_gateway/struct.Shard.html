@@ -8,7 +8,7 @@ the user.</p>
 be repeatedly called in order for the shard to maintain its connection and
 update its internal state. Note that the <a href="struct.Shard.html#method.next_event" title="method twilight_gateway::Shard::next_event"><code>next_event</code></a> method internally
 calls <a href="struct.Shard.html#method.next_message" title="method twilight_gateway::Shard::next_message"><code>next_message</code></a>.</p>
-<p>Shards go through an <a href="crate::queue">identify queue</a> that ratelimits the amount of
+<p>Shards go through an <a href="../twilight_gateway_queue/index.html" title="mod twilight_gateway_queue">identify queue</a> that ratelimits the amount of
 concurrent identifies (across all shards) per 5 seconds. Exceeding this
 limit invalidates the shard’s session and it is therefore very important to
 reuse the same queue when running multiple shards. Note that shards must be
