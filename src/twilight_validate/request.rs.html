@@ -1403,6 +1403,7 @@
 <a href="#1403" id="1403">1403</a>
 <a href="#1404" id="1404">1404</a>
 <a href="#1405" id="1405">1405</a>
+<a href="#1406" id="1406">1406</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Contains all other input validation functions.
 //!
 //! These functions are generally not related to a specific Discord model.
@@ -2727,6 +2728,7 @@
         <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;&quot;</span>).is_err());
         <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">1001</span>)).is_err());
     }
+
     <span class="attr">#[test]
     </span><span class="kw">fn </span>scheduled_event_get_users_length() {
         <span class="macro">assert!</span>(scheduled_event_get_users(<span class="number">0</span>).is_err());
