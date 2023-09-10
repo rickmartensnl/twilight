@@ -6321,7 +6321,7 @@
 ///     with_counts: true,
 /// };
 ///
-/// assert_eq!(&quot;invites/twilight-rs?with-counts=true&quot;, route.to_string());
+/// assert_eq!(&quot;invites/twilight-rs?with_counts=true&quot;, route.to_string());
 /// ```
 ///
 /// [`GetInvite`]: Self::GetInvite
@@ -7302,7 +7302,7 @@
                 f.write_str(code)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span><span class="kw-2">*</span>with_counts {
-                    f.write_str(<span class="string">&quot;?with-counts=true&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">&quot;?with_counts=true&quot;</span>)<span class="question-mark">?</span>;
                 }
 
                 <span class="prelude-val">Ok</span>(())
@@ -7317,11 +7317,11 @@
                 f.write_str(<span class="string">&quot;?&quot;</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span><span class="kw-2">*</span>with_counts {
-                    f.write_str(<span class="string">&quot;with-counts=true&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">&quot;with_counts=true&quot;</span>)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span><span class="kw-2">*</span>with_expiration {
-                    f.write_str(<span class="string">&quot;with-expiration=true&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">&quot;&amp;with_expiration=true&quot;</span>)<span class="question-mark">?</span>;
                 }
 
                 <span class="prelude-val">Ok</span>(())
