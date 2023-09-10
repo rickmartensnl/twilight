@@ -62,6 +62,14 @@
 <a href="#62" id="62">62</a>
 <a href="#63" id="63">63</a>
 <a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(deprecated)]
 </span><span class="kw">use </span>std::borrow::Cow;
 
@@ -82,6 +90,8 @@
     </span>Twitch,
     <span class="doccomment">/// Integration is a YouTube connection.
     </span>YouTube,
+    <span class="doccomment">/// Integration is a Guild Subscription.
+    </span>GuildSubscription,
     <span class="doccomment">/// Variant value is unknown to the library.
     </span>Unknown(String),
 }
@@ -92,6 +102,7 @@
             GuildIntegrationType::Discord =&gt; <span class="string">&quot;discord&quot;</span>.into(),
             GuildIntegrationType::Twitch =&gt; <span class="string">&quot;twitch&quot;</span>.into(),
             GuildIntegrationType::YouTube =&gt; <span class="string">&quot;youtube&quot;</span>.into(),
+            GuildIntegrationType::GuildSubscription =&gt; <span class="string">&quot;guild_subscription&quot;</span>.into(),
             GuildIntegrationType::Unknown(unknown) =&gt; unknown.into(),
         }
     }
@@ -103,6 +114,7 @@
             <span class="string">&quot;discord&quot; </span>=&gt; <span class="self">Self</span>::Discord,
             <span class="string">&quot;twitch&quot; </span>=&gt; <span class="self">Self</span>::Twitch,
             <span class="string">&quot;youtube&quot; </span>=&gt; <span class="self">Self</span>::YouTube,
+            <span class="string">&quot;guild_subscription&quot; </span>=&gt; <span class="self">Self</span>::GuildSubscription,
             <span class="kw">_ </span>=&gt; <span class="self">Self</span>::Unknown(value),
         }
     }
@@ -119,6 +131,10 @@
             (GuildIntegrationType::Discord, <span class="string">&quot;discord&quot;</span>),
             (GuildIntegrationType::Twitch, <span class="string">&quot;twitch&quot;</span>),
             (GuildIntegrationType::YouTube, <span class="string">&quot;youtube&quot;</span>),
+            (
+                GuildIntegrationType::GuildSubscription,
+                <span class="string">&quot;guild_subscription&quot;</span>,
+            ),
         ];
 
         <span class="kw">for </span>(integration_type, value) <span class="kw">in </span>MAP {
