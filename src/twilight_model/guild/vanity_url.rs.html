@@ -34,6 +34,11 @@
 <a href="#34" id="34">34</a>
 <a href="#35" id="35">35</a>
 <a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+<a href="#41" id="41">41</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// Information about a guild&#39;s vanity URL setting.
@@ -44,6 +49,8 @@
     /// For example, in an invite of `discord.gg/applejack`, the code is
     /// `applejack`.
     </span><span class="kw">pub </span>code: String,
+    <span class="doccomment">/// Number of times the vanity URL has been used.
+    </span><span class="kw">pub </span>uses: u64,
 }
 
 <span class="attr">#[cfg(test)]
@@ -55,16 +62,19 @@
     </span><span class="kw">fn </span>vanity_url() {
         <span class="kw">let </span>url = VanityUrl {
             code: <span class="string">&quot;a&quot;</span>.to_owned(),
+            uses: <span class="number">12</span>,
         };
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>url,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;VanityUrl&quot;</span>,
-                    len: <span class="number">1</span>,
+                    len: <span class="number">2</span>,
                 },
                 Token::String(<span class="string">&quot;code&quot;</span>),
                 Token::String(<span class="string">&quot;a&quot;</span>),
+                Token::String(<span class="string">&quot;uses&quot;</span>),
+                Token::U64(<span class="number">12</span>),
                 Token::StructEnd,
             ],
         );
