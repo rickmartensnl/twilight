@@ -1317,17 +1317,6 @@
 <a href="#1317" id="1317">1317</a>
 <a href="#1318" id="1318">1318</a>
 <a href="#1319" id="1319">1319</a>
-<a href="#1320" id="1320">1320</a>
-<a href="#1321" id="1321">1321</a>
-<a href="#1322" id="1322">1322</a>
-<a href="#1323" id="1323">1323</a>
-<a href="#1324" id="1324">1324</a>
-<a href="#1325" id="1325">1325</a>
-<a href="#1326" id="1326">1326</a>
-<a href="#1327" id="1327">1327</a>
-<a href="#1328" id="1328">1328</a>
-<a href="#1329" id="1329">1329</a>
-<a href="#1330" id="1330">1330</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Primary logic and implementation details of Discord gateway websocket
 //! connections.
 //!
@@ -1484,7 +1473,7 @@
         <span class="doccomment">/// Close code of the close message.
         </span>close_code: CloseCode,
     },
-    <span class="doccomment">/// Shard is waiting to establish an active session.
+    <span class="doccomment">/// Shard is waiting to establish or resume a session.
     </span>Identifying,
     <span class="doccomment">/// Shard is replaying missed dispatch events.
     ///
@@ -1956,6 +1945,7 @@
                 <span class="self">self</span>.send(json)
                     .<span class="kw">await
                     </span>.map_err(ReceiveMessageError::from_send)<span class="question-mark">?</span>;
+                <span class="self">self</span>.status = ConnectionStatus::Resuming;
             }
             <span class="prelude-val">Some</span>(NextAction::Heartbeat) =&gt; {
                 <span class="self">self</span>.heartbeat()
@@ -2553,19 +2543,7 @@
                     source
                 })<span class="question-mark">?</span>,
         );
-
-        <span class="kw">if </span><span class="self">self</span>.session().is_some() {
-            <span class="comment">// Defer sending a Resume event until Hello has been received to
-            // guard against the first message being a websocket close message
-            // (causing us to miss replayed dispatch events).
-            // We also set/reset the ratelimiter upon receiving Hello, which
-            // means sending anything before then will not be recorded by the
-            // ratelimiter.
-            </span><span class="self">self</span>.status = ConnectionStatus::Resuming;
-        } <span class="kw">else </span>{
-            <span class="self">self</span>.status = ConnectionStatus::Identifying;
-        }
-
+        <span class="self">self</span>.status = ConnectionStatus::Identifying;
         <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
         </span><span class="self">self</span>.inflater.reset();
 
