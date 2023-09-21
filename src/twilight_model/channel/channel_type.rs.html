@@ -178,6 +178,21 @@
 <a href="#178" id="178">178</a>
 <a href="#179" id="179">179</a>
 <a href="#180" id="180">180</a>
+<a href="#181" id="181">181</a>
+<a href="#182" id="182">182</a>
+<a href="#183" id="183">183</a>
+<a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
+<a href="#188" id="188">188</a>
+<a href="#189" id="189">189</a>
+<a href="#190" id="190">190</a>
+<a href="#191" id="191">191</a>
+<a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a>
+<a href="#194" id="194">194</a>
+<a href="#195" id="195">195</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
@@ -200,6 +215,12 @@
     </span>GuildDirectory,
     <span class="doccomment">/// Channel that can only contain threads.
     </span>GuildForum,
+    <span class="doccomment">/// Channel the can only contain threads with media content.
+    ///
+    /// See the [help center article] for more information.
+    ///
+    /// [help center article]: https://creator-support.discord.com/hc/en-us/articles/14346342766743
+    </span>GuildMedia,
     Unknown(u8),
 }
 
@@ -218,6 +239,7 @@
             <span class="number">13 </span>=&gt; ChannelType::GuildStageVoice,
             <span class="number">14 </span>=&gt; ChannelType::GuildDirectory,
             <span class="number">15 </span>=&gt; ChannelType::GuildForum,
+            <span class="number">16 </span>=&gt; ChannelType::GuildMedia,
             unknown =&gt; ChannelType::Unknown(unknown),
         }
     }
@@ -238,6 +260,7 @@
             ChannelType::GuildStageVoice =&gt; <span class="number">13</span>,
             ChannelType::GuildDirectory =&gt; <span class="number">14</span>,
             ChannelType::GuildForum =&gt; <span class="number">15</span>,
+            ChannelType::GuildMedia =&gt; <span class="number">16</span>,
             ChannelType::Unknown(unknown) =&gt; unknown,
         }
     }
@@ -257,6 +280,7 @@
     /// - [`GuildVoice`][`Self::GuildVoice`]
     /// - [`PublicThread`][`Self::PublicThread`]
     /// - [`PrivateThread`][`Self::PrivateThread`]
+    /// - [`GuildMedia`][`Self::GuildMedia`]
     </span><span class="kw">pub const fn </span>is_guild(<span class="self">self</span>) -&gt; bool {
         <span class="macro">matches!</span>(
             <span class="self">self</span>,
@@ -269,6 +293,7 @@
                 | <span class="self">Self</span>::GuildStageVoice
                 | <span class="self">Self</span>::GuildText
                 | <span class="self">Self</span>::GuildVoice
+                | <span class="self">Self</span>::GuildMedia
         )
     }
 
@@ -301,6 +326,7 @@
             <span class="self">Self</span>::Private =&gt; <span class="string">&quot;Private&quot;</span>,
             <span class="self">Self</span>::PrivateThread =&gt; <span class="string">&quot;PrivateThread&quot;</span>,
             <span class="self">Self</span>::PublicThread =&gt; <span class="string">&quot;PublicThread&quot;</span>,
+            <span class="self">Self</span>::GuildMedia =&gt; <span class="string">&quot;GuildMedia&quot;</span>,
             <span class="self">Self</span>::Unknown(<span class="kw">_</span>) =&gt; <span class="string">&quot;Unknown&quot;</span>,
         }
     }
@@ -321,6 +347,7 @@
     <span class="macro">const_assert!</span>(ChannelType::GuildStageVoice.is_guild());
     <span class="macro">const_assert!</span>(ChannelType::GuildText.is_guild());
     <span class="macro">const_assert!</span>(ChannelType::GuildVoice.is_guild());
+    <span class="macro">const_assert!</span>(ChannelType::GuildMedia.is_guild());
 
     <span class="macro">const_assert!</span>(ChannelType::AnnouncementThread.is_thread());
     <span class="macro">const_assert!</span>(ChannelType::PublicThread.is_thread());
@@ -339,6 +366,8 @@
         serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::PrivateThread, <span class="kw-2">&amp;</span>[Token::U8(<span class="number">12</span>)]);
         serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::GuildStageVoice, <span class="kw-2">&amp;</span>[Token::U8(<span class="number">13</span>)]);
         serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::GuildDirectory, <span class="kw-2">&amp;</span>[Token::U8(<span class="number">14</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::GuildForum, <span class="kw-2">&amp;</span>[Token::U8(<span class="number">15</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::GuildMedia, <span class="kw-2">&amp;</span>[Token::U8(<span class="number">16</span>)]);
         serde_test::assert_tokens(<span class="kw-2">&amp;</span>ChannelType::Unknown(<span class="number">99</span>), <span class="kw-2">&amp;</span>[Token::U8(<span class="number">99</span>)]);
     }
 
@@ -355,6 +384,7 @@
         <span class="macro">assert_eq!</span>(<span class="string">&quot;Private&quot;</span>, ChannelType::Private.name());
         <span class="macro">assert_eq!</span>(<span class="string">&quot;PrivateThread&quot;</span>, ChannelType::PrivateThread.name());
         <span class="macro">assert_eq!</span>(<span class="string">&quot;PublicThread&quot;</span>, ChannelType::PublicThread.name());
+        <span class="macro">assert_eq!</span>(<span class="string">&quot;GuildMedia&quot;</span>, ChannelType::GuildMedia.name());
         <span class="macro">assert_eq!</span>(<span class="string">&quot;Unknown&quot;</span>, ChannelType::Unknown(<span class="number">99</span>).name());
     }
 }
