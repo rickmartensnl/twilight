@@ -284,9 +284,15 @@
 <a href="#284" id="284">284</a>
 <a href="#285" id="285">285</a>
 <a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, InMemoryCache, UpdateCache};
 <span class="kw">use </span>twilight_model::{
-    channel::message::{Reaction, ReactionType},
+    channel::message::{Reaction, ReactionCountDetails, ReactionType},
     gateway::payload::incoming::{
         ReactionAdd, ReactionRemove, ReactionRemoveAll, ReactionRemoveEmoji,
     },
@@ -325,9 +331,15 @@
                 .unwrap_or_default();
 
             message.reactions.push(Reaction {
+                burst_colors: Vec::new(),
                 count: <span class="number">1</span>,
+                count_details: ReactionCountDetails {
+                    burst: <span class="number">0</span>,
+                    normal: <span class="number">1</span>,
+                },
                 emoji: <span class="self">self</span>.<span class="number">0</span>.emoji.clone(),
                 me,
+                me_burst: <span class="bool-val">false</span>,
             });
         }
     }

@@ -45,26 +45,26 @@ around the globe celebrate all things related to the loveable cat.&quot;</span>,
     self,
     name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
     location: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    scheduled_start_time: &amp;'a Timestamp,
-    scheduled_end_time: &amp;'a Timestamp
+    scheduled_start_time: &amp;'a <a class="struct" href="../../../twilight_model/util/datetime/struct.Timestamp.html" title="struct twilight_model::util::datetime::Timestamp">Timestamp</a>,
+    scheduled_end_time: &amp;'a <a class="struct" href="../../../twilight_model/util/datetime/struct.Timestamp.html" title="struct twilight_model::util::datetime::Timestamp">Timestamp</a>
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.CreateGuildExternalScheduledEvent.html" title="struct twilight_http::request::scheduled_event::CreateGuildExternalScheduledEvent">CreateGuildExternalScheduledEvent</a>&lt;'a&gt;, ValidationError&gt;</h4></section></summary><div class="docblock"><p>Create an external scheduled event in a guild.</p>
 <p>The name must be between 1 and 100 characters in length.</p>
 <h5 id="errors"><a href="#errors">Errors</a></h5>
 <p>Returns an error of type <a href="twilight_validate::request::ValidationErrorType::ScheduledEventName"><code>ScheduledEventName</code></a> if the name is invalid.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.stage_instance" class="method"><a class="src rightside" href="../../../src/twilight_http/request/scheduled_event/create_guild_scheduled_event/mod.rs.html#185-199">source</a><h4 class="code-header">pub fn <a href="#method.stage_instance" class="fn">stage_instance</a>(
     self,
-    channel_id: Id&lt;ChannelMarker&gt;,
+    channel_id: <a class="struct" href="../../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../../twilight_model/id/marker/struct.ChannelMarker.html" title="struct twilight_model::id::marker::ChannelMarker">ChannelMarker</a>&gt;,
     name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    scheduled_start_time: &amp;'a Timestamp
+    scheduled_start_time: &amp;'a <a class="struct" href="../../../twilight_model/util/datetime/struct.Timestamp.html" title="struct twilight_model::util::datetime::Timestamp">Timestamp</a>
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.CreateGuildStageInstanceScheduledEvent.html" title="struct twilight_http::request::scheduled_event::CreateGuildStageInstanceScheduledEvent">CreateGuildStageInstanceScheduledEvent</a>&lt;'a&gt;, ValidationError&gt;</h4></section></summary><div class="docblock"><p>Create a stage instance scheduled event in a guild.</p>
 <p>The name must be between 1 and 100 characters in length.</p>
 <h5 id="errors-1"><a href="#errors-1">Errors</a></h5>
 <p>Returns an error of type <a href="twilight_validate::request::ValidationErrorType::ScheduledEventName"><code>ScheduledEventName</code></a> if the name is invalid.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.voice" class="method"><a class="src rightside" href="../../../src/twilight_http/request/scheduled_event/create_guild_scheduled_event/mod.rs.html#210-224">source</a><h4 class="code-header">pub fn <a href="#method.voice" class="fn">voice</a>(
     self,
-    channel_id: Id&lt;ChannelMarker&gt;,
+    channel_id: <a class="struct" href="../../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../../twilight_model/id/marker/struct.ChannelMarker.html" title="struct twilight_model::id::marker::ChannelMarker">ChannelMarker</a>&gt;,
     name: &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
-    scheduled_start_time: &amp;'a Timestamp
+    scheduled_start_time: &amp;'a <a class="struct" href="../../../twilight_model/util/datetime/struct.Timestamp.html" title="struct twilight_model::util::datetime::Timestamp">Timestamp</a>
 ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.CreateGuildVoiceScheduledEvent.html" title="struct twilight_http::request::scheduled_event::CreateGuildVoiceScheduledEvent">CreateGuildVoiceScheduledEvent</a>&lt;'a&gt;, ValidationError&gt;</h4></section></summary><div class="docblock"><p>Create a voice channel scheduled event in a guild.</p>
 <p>The name must be between 1 and 100 characters in length.</p>
 <h5 id="errors-2"><a href="#errors-2">Errors</a></h5>

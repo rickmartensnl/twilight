@@ -153,18 +153,67 @@
 <a href="#153" id="153">153</a>
 <a href="#154" id="154">154</a>
 <a href="#155" id="155">155</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::id::{marker::EmojiMarker, Id};
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+<a href="#160" id="160">160</a>
+<a href="#161" id="161">161</a>
+<a href="#162" id="162">162</a>
+<a href="#163" id="163">163</a>
+<a href="#164" id="164">164</a>
+<a href="#165" id="165">165</a>
+<a href="#166" id="166">166</a>
+<a href="#167" id="167">167</a>
+<a href="#168" id="168">168</a>
+<a href="#169" id="169">169</a>
+<a href="#170" id="170">170</a>
+<a href="#171" id="171">171</a>
+<a href="#172" id="172">172</a>
+<a href="#173" id="173">173</a>
+<a href="#174" id="174">174</a>
+<a href="#175" id="175">175</a>
+<a href="#176" id="176">176</a>
+<a href="#177" id="177">177</a>
+<a href="#178" id="178">178</a>
+<a href="#179" id="179">179</a>
+<a href="#180" id="180">180</a>
+<a href="#181" id="181">181</a>
+<a href="#182" id="182">182</a>
+<a href="#183" id="183">183</a>
+<a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
+<a href="#188" id="188">188</a>
+<a href="#189" id="189">189</a>
+<a href="#190" id="190">190</a>
+<a href="#191" id="191">191</a>
+<a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a>
+<a href="#194" id="194">194</a>
+<a href="#195" id="195">195</a>
+</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
+    id::{marker::EmojiMarker, Id},
+    util::HexColor,
+};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// Reaction below a message.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Reaction {
+    <span class="doccomment">/// HEX colors used for super reaction.
+    </span><span class="kw">pub </span>burst_colors: Vec&lt;HexColor&gt;,
     <span class="doccomment">/// Amount of reactions this emoji has.
     </span><span class="kw">pub </span>count: u64,
+    <span class="doccomment">/// Reaction count details for each type of reaction.
+    </span><span class="kw">pub </span>count_details: ReactionCountDetails,
     <span class="doccomment">/// Emoji of this reaction.
     </span><span class="kw">pub </span>emoji: ReactionType,
     <span class="doccomment">/// Whether the current user has reacted with this emoji.
     </span><span class="kw">pub </span>me: bool,
+    <span class="doccomment">/// Whether the current user super-reacted using this emoji
+    </span><span class="kw">pub </span>me_burst: bool,
 }
 
 <span class="doccomment">/// Type of [`Reaction`].
@@ -201,20 +250,35 @@
     },
 }
 
+<span class="doccomment">/// Breakdown of normal and super reaction counts for the associated emoji.
+</span><span class="attr">#[derive(Clone, Debug, Eq, Hash, PartialEq, Deserialize, Serialize)]
+</span><span class="kw">pub struct </span>ReactionCountDetails {
+    <span class="doccomment">/// Count of super reactions.
+    </span><span class="kw">pub </span>burst: u64,
+    <span class="doccomment">/// Count of normal reactions.
+    </span><span class="kw">pub </span>normal: u64,
+}
+
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="kw">use super</span>::{Reaction, ReactionType};
-    <span class="kw">use </span><span class="kw">crate</span>::id::Id;
+    <span class="kw">use super</span>::{Reaction, ReactionCountDetails, ReactionType};
+    <span class="kw">use crate</span>::{id::Id, util::HexColor};
     <span class="kw">use </span>serde_test::Token;
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>message_reaction_unicode() {
         <span class="kw">let </span>value = Reaction {
+            burst_colors: Vec::from([HexColor(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)]),
             count: <span class="number">7</span>,
+            count_details: ReactionCountDetails {
+                burst: <span class="number">0</span>,
+                normal: <span class="number">7</span>,
+            },
             emoji: ReactionType::Unicode {
                 name: <span class="string">&quot;a&quot;</span>.to_owned(),
             },
             me: <span class="bool-val">true</span>,
+            me_burst: <span class="bool-val">false</span>,
         };
 
         serde_test::assert_tokens(
@@ -222,10 +286,24 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">&quot;Reaction&quot;</span>,
-                    len: <span class="number">3</span>,
+                    len: <span class="number">6</span>,
                 },
+                Token::Str(<span class="string">&quot;burst_colors&quot;</span>),
+                Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
+                Token::Str(<span class="string">&quot;#FFFFFF&quot;</span>),
+                Token::SeqEnd,
                 Token::Str(<span class="string">&quot;count&quot;</span>),
                 Token::U64(<span class="number">7</span>),
+                Token::Str(<span class="string">&quot;count_details&quot;</span>),
+                Token::Struct {
+                    name: <span class="string">&quot;ReactionCountDetails&quot;</span>,
+                    len: <span class="number">2</span>,
+                },
+                Token::Str(<span class="string">&quot;burst&quot;</span>),
+                Token::U64(<span class="number">0</span>),
+                Token::Str(<span class="string">&quot;normal&quot;</span>),
+                Token::U64(<span class="number">7</span>),
+                Token::StructEnd,
                 Token::Str(<span class="string">&quot;emoji&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;ReactionType&quot;</span>,
@@ -236,6 +314,8 @@
                 Token::StructEnd,
                 Token::Str(<span class="string">&quot;me&quot;</span>),
                 Token::Bool(<span class="bool-val">true</span>),
+                Token::Str(<span class="string">&quot;me_burst&quot;</span>),
+                Token::Bool(<span class="bool-val">false</span>),
                 Token::StructEnd,
             ],
         );

@@ -710,6 +710,28 @@
 <a href="#710" id="710">710</a>
 <a href="#711" id="711">711</a>
 <a href="#712" id="712">712</a>
+<a href="#713" id="713">713</a>
+<a href="#714" id="714">714</a>
+<a href="#715" id="715">715</a>
+<a href="#716" id="716">716</a>
+<a href="#717" id="717">717</a>
+<a href="#718" id="718">718</a>
+<a href="#719" id="719">719</a>
+<a href="#720" id="720">720</a>
+<a href="#721" id="721">721</a>
+<a href="#722" id="722">722</a>
+<a href="#723" id="723">723</a>
+<a href="#724" id="724">724</a>
+<a href="#725" id="725">725</a>
+<a href="#726" id="726">726</a>
+<a href="#727" id="727">727</a>
+<a href="#728" id="728">728</a>
+<a href="#729" id="729">729</a>
+<a href="#730" id="730">730</a>
+<a href="#731" id="731">731</a>
+<a href="#732" id="732">732</a>
+<a href="#733" id="733">733</a>
+<a href="#734" id="734">734</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Textual user communication method.
 </span><span class="attr">#![warn(missing_docs)]
 
@@ -738,7 +760,7 @@
     interaction::MessageInteraction,
     kind::MessageType,
     mention::Mention,
-    reaction::{Reaction, ReactionType},
+    reaction::{Reaction, ReactionCountDetails, ReactionType},
     reference::MessageReference,
     role_subscription_data::RoleSubscriptionData,
     sticker::Sticker,
@@ -908,6 +930,7 @@
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::{
+        reaction::ReactionCountDetails,
         sticker::{MessageSticker, StickerFormatType},
         Message, MessageActivity, MessageActivityType, MessageApplication, MessageFlags,
         MessageReference, MessageType, Reaction, ReactionType,
@@ -1190,11 +1213,17 @@
             mentions: Vec::new(),
             pinned: <span class="bool-val">false</span>,
             reactions: <span class="macro">vec!</span>[Reaction {
+                burst_colors: Vec::new(),
                 count: <span class="number">7</span>,
+                count_details: ReactionCountDetails {
+                    burst: <span class="number">0</span>,
+                    normal: <span class="number">7</span>,
+                },
                 emoji: ReactionType::Unicode {
                     name: <span class="string">&quot;a&quot;</span>.to_owned(),
                 },
                 me: <span class="bool-val">true</span>,
+                me_burst: <span class="bool-val">false</span>,
             }],
             reference: <span class="prelude-val">Some</span>(MessageReference {
                 channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
@@ -1365,10 +1394,23 @@
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
                     name: <span class="string">&quot;Reaction&quot;</span>,
-                    len: <span class="number">3</span>,
+                    len: <span class="number">6</span>,
                 },
+                Token::Str(<span class="string">&quot;burst_colors&quot;</span>),
+                Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
+                Token::SeqEnd,
                 Token::Str(<span class="string">&quot;count&quot;</span>),
                 Token::U64(<span class="number">7</span>),
+                Token::Str(<span class="string">&quot;count_details&quot;</span>),
+                Token::Struct {
+                    name: <span class="string">&quot;ReactionCountDetails&quot;</span>,
+                    len: <span class="number">2</span>,
+                },
+                Token::Str(<span class="string">&quot;burst&quot;</span>),
+                Token::U64(<span class="number">0</span>),
+                Token::Str(<span class="string">&quot;normal&quot;</span>),
+                Token::U64(<span class="number">7</span>),
+                Token::StructEnd,
                 Token::Str(<span class="string">&quot;emoji&quot;</span>),
                 Token::Struct {
                     name: <span class="string">&quot;ReactionType&quot;</span>,
@@ -1379,6 +1421,8 @@
                 Token::StructEnd,
                 Token::Str(<span class="string">&quot;me&quot;</span>),
                 Token::Bool(<span class="bool-val">true</span>),
+                Token::Str(<span class="string">&quot;me_burst&quot;</span>),
+                Token::Bool(<span class="bool-val">false</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
                 Token::Str(<span class="string">&quot;message_reference&quot;</span>),

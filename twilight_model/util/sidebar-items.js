@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["datetime","image_hash"]};
+window.SIDEBAR_ITEMS = {"mod":["datetime","hex_color","image_hash"]};
