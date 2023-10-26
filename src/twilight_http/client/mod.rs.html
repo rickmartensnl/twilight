@@ -2688,13 +2688,34 @@
 <a href="#2688" id="2688">2688</a>
 <a href="#2689" id="2689">2689</a>
 <a href="#2690" id="2690">2690</a>
+<a href="#2691" id="2691">2691</a>
+<a href="#2692" id="2692">2692</a>
+<a href="#2693" id="2693">2693</a>
+<a href="#2694" id="2694">2694</a>
+<a href="#2695" id="2695">2695</a>
+<a href="#2696" id="2696">2696</a>
+<a href="#2697" id="2697">2697</a>
+<a href="#2698" id="2698">2698</a>
+<a href="#2699" id="2699">2699</a>
+<a href="#2700" id="2700">2700</a>
+<a href="#2701" id="2701">2701</a>
+<a href="#2702" id="2702">2702</a>
+<a href="#2703" id="2703">2703</a>
+<a href="#2704" id="2704">2704</a>
+<a href="#2705" id="2705">2705</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
 
 <span class="kw">pub use </span><span class="self">self</span>::{builder::ClientBuilder, interaction::InteractionClient};
 
-<span class="kw">use </span><span class="kw">crate</span>::request::{guild::GetGuildOnboarding, GetCurrentAuthorizationInformation};
+<span class="kw">use </span><span class="kw">crate</span>::request::{
+    guild::{
+        update_guild_onboarding::{UpdateGuildOnboarding, UpdateGuildOnboardingFields},
+        GetGuildOnboarding,
+    },
+    GetCurrentAuthorizationInformation,
+};
 <span class="attr">#[allow(deprecated)]
 </span><span class="kw">use crate</span>::{
     client::connector::Connector,
@@ -3633,6 +3654,15 @@
         name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildChannel&lt;<span class="lifetime">&#39;a</span>&gt;, ChannelValidationError&gt; {
         CreateGuildChannel::new(<span class="self">self</span>, guild_id, name)
+    }
+
+    <span class="doccomment">/// Modify the guild onboarding flow.
+    </span><span class="kw">pub const fn </span>update_guild_onboarding(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        guild_id: Id&lt;GuildMarker&gt;,
+        fields: UpdateGuildOnboardingFields,
+    ) -&gt; UpdateGuildOnboarding {
+        UpdateGuildOnboarding::new(<span class="self">self</span>, guild_id, fields)
     }
 
     <span class="doccomment">/// Modify the positions of the channels.

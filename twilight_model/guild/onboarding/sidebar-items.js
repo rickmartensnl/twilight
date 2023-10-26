@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["OnboardingPromptType"],"struct":["Onboarding","OnboardingPrompt","OnboardingPromptEmoji","OnboardingPromptOption"]};
+window.SIDEBAR_ITEMS = {"enum":["OnboardingMode","OnboardingPromptType"],"struct":["Onboarding","OnboardingPrompt","OnboardingPromptEmoji","OnboardingPromptOption"]};

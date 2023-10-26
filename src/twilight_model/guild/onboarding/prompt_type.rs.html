@@ -92,8 +92,8 @@
 <span class="kw">impl </span>From&lt;u8&gt; <span class="kw">for </span>OnboardingPromptType {
     <span class="kw">fn </span>from(value: u8) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value {
-            <span class="number">1 </span>=&gt; <span class="self">Self</span>::MultipleChoice,
-            <span class="number">2 </span>=&gt; <span class="self">Self</span>::Dropdown,
+            <span class="number">0 </span>=&gt; <span class="self">Self</span>::MultipleChoice,
+            <span class="number">1 </span>=&gt; <span class="self">Self</span>::Dropdown,
             unknown =&gt; <span class="self">Self</span>::Unknown(unknown),
         }
     }
@@ -102,8 +102,8 @@
 <span class="kw">impl </span>From&lt;OnboardingPromptType&gt; <span class="kw">for </span>u8 {
     <span class="kw">fn </span>from(value: OnboardingPromptType) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value {
-            OnboardingPromptType::MultipleChoice =&gt; <span class="number">1</span>,
-            OnboardingPromptType::Dropdown =&gt; <span class="number">2</span>,
+            OnboardingPromptType::MultipleChoice =&gt; <span class="number">0</span>,
+            OnboardingPromptType::Dropdown =&gt; <span class="number">1</span>,
             OnboardingPromptType::Unknown(unknown) =&gt; unknown,
         }
     }
@@ -117,8 +117,8 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>onboarding_prompt_type() {
         <span class="kw">const </span>MAP: <span class="kw-2">&amp;</span>[(OnboardingPromptType, u8, <span class="kw-2">&amp;</span>str)] = <span class="kw-2">&amp;</span>[
-            (OnboardingPromptType::MultipleChoice, <span class="number">1</span>, <span class="string">&quot;MultipleChoice&quot;</span>),
-            (OnboardingPromptType::Dropdown, <span class="number">2</span>, <span class="string">&quot;DropDown&quot;</span>),
+            (OnboardingPromptType::MultipleChoice, <span class="number">0</span>, <span class="string">&quot;MultipleChoice&quot;</span>),
+            (OnboardingPromptType::Dropdown, <span class="number">1</span>, <span class="string">&quot;DropDown&quot;</span>),
             (OnboardingPromptType::Unknown(<span class="number">3</span>), <span class="number">3</span>, <span class="string">&quot;Unknown&quot;</span>),
         ];
 

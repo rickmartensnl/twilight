@@ -171,10 +171,10 @@
 /// [`Emoji`]: crate::guild::Emoji
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>OnboardingPromptEmoji {
-    name: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    id: <span class="prelude-ty">Option</span>&lt;Id&lt;EmojiMarker&gt;&gt;,
+    <span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="kw">pub </span>id: <span class="prelude-ty">Option</span>&lt;Id&lt;EmojiMarker&gt;&gt;,
     <span class="attr">#[serde(default)]
-    </span>animated: bool,
+    </span><span class="kw">pub </span>animated: bool,
 }
 
 <span class="kw">impl </span>From&lt;Emoji&gt; <span class="kw">for </span>OnboardingPromptEmoji {

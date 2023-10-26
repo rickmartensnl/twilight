@@ -2,31 +2,31 @@
 <p>Using the member calculator you can calculate the member’s permissions in
 the <a href="struct.PermissionCalculator.html#method.root" title="method twilight_util::permission_calculator::PermissionCalculator::root">root-level</a> of a guild or <a href="struct.PermissionCalculator.html#method.in_channel" title="method twilight_util::permission_calculator::PermissionCalculator::in_channel">in a given channel</a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-PermissionCalculator%3C'a%3E" class="impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#135-401">source</a><a href="#impl-PermissionCalculator%3C'a%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a&gt; <a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.new" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#144-157">source</a><h4 class="code-header">pub const fn <a href="#method.new" class="fn">new</a>(
-    guild_id: Id&lt;GuildMarker&gt;,
-    user_id: Id&lt;UserMarker&gt;,
-    everyone_role: Permissions,
-    member_roles: &amp;'a [(Id&lt;RoleMarker&gt;, Permissions)]
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+    user_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.UserMarker.html" title="struct twilight_model::id::marker::UserMarker">UserMarker</a>&gt;,
+    everyone_role: <a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a>,
+    member_roles: &amp;'a [(<a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.RoleMarker.html" title="struct twilight_model::id::marker::RoleMarker">RoleMarker</a>&gt;, <a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a>)]
 ) -&gt; Self</h4></section></summary><div class="docblock"><p>Create a calculator to calculate the permissions of a member.</p>
 <p><code>everyone_role</code> is the permissions of the <code>@everyone</code> role on a
 guild-level; the permissions may be empty. The <code>@everyone</code> role’s ID is
 the same as that of the <code>guild_id</code>.</p>
 <p>The provided member’s roles <em>should not</em> contain the <code>@everyone</code> role.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.owner_id" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#170-174">source</a><h4 class="code-header">pub const fn <a href="#method.owner_id" class="fn">owner_id</a>(self, owner_id: Id&lt;UserMarker&gt;) -&gt; Self</h4></section></summary><div class="docblock"><p>Configure the ID of the owner of the guild.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.owner_id" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#170-174">source</a><h4 class="code-header">pub const fn <a href="#method.owner_id" class="fn">owner_id</a>(self, owner_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.UserMarker.html" title="struct twilight_model::id::marker::UserMarker">UserMarker</a>&gt;) -&gt; Self</h4></section></summary><div class="docblock"><p>Configure the ID of the owner of the guild.</p>
 <p>This should be used if you don’t want to manually take the user ID and
 owner ID in account beforehand.</p>
 <p>If the member’s ID is the same as the owner’s ID then permission
 calculating methods such as <a href="struct.PermissionCalculator.html#method.root" title="method twilight_util::permission_calculator::PermissionCalculator::root"><code>root</code></a> will return all permissions
 enabled.</p>
-</div></details><details class="toggle method-toggle" open><summary><section id="method.root" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#178-216">source</a><h4 class="code-header">pub const fn <a href="#method.root" class="fn">root</a>(&amp;self) -&gt; Permissions</h4></section></summary><div class="docblock"><p>Calculate the guild-level permissions of a member.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.root" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#178-216">source</a><h4 class="code-header">pub const fn <a href="#method.root" class="fn">root</a>(&amp;self) -&gt; <a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a></h4></section></summary><div class="docblock"><p>Calculate the guild-level permissions of a member.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.in_channel" class="method"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#357-400">source</a><h4 class="code-header">pub const fn <a href="#method.in_channel" class="fn">in_channel</a>(
     self,
-    channel_type: ChannelType,
-    channel_overwrites: &amp;[PermissionOverwrite]
-) -&gt; Permissions</h4></section></summary><div class="docblock"><p>Calculate the permissions of the member in a channel, taking into
+    channel_type: <a class="enum" href="../../twilight_model/channel/channel_type/enum.ChannelType.html" title="enum twilight_model::channel::channel_type::ChannelType">ChannelType</a>,
+    channel_overwrites: &amp;[<a class="struct" href="../../twilight_model/channel/permission_overwrite/struct.PermissionOverwrite.html" title="struct twilight_model::channel::permission_overwrite::PermissionOverwrite">PermissionOverwrite</a>]
+) -&gt; <a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a></h4></section></summary><div class="docblock"><p>Calculate the permissions of the member in a channel, taking into
 account a combination of the guild-level permissions and channel-level
 permissions.</p>
 <p><strong>Note</strong> that this method will not return guild-level permissions such
-as <a href="twilight_model::guild::Permissions::MANAGE_GUILD_EXPRESSIONS">Manage Guild Expressions</a>; if you need the guild-level permissions
+as <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_GUILD_EXPRESSIONS" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_GUILD_EXPRESSIONS">Manage Guild Expressions</a>; if you need the guild-level permissions
 use <a href="struct.PermissionCalculator.html#method.root" title="method twilight_util::permission_calculator::PermissionCalculator::root"><code>root</code></a>.</p>
 <h5 id="conditional-exclusions"><a href="#conditional-exclusions">Conditional exclusions</a></h5>
 <p>When the member doesn’t have the “View Channel” permission then an empty
@@ -40,81 +40,81 @@ enabled on a member permission overwrite; or</li>
 <li>When permission isn’t enabled on a guild level and isn’t enabled via a
 permission overwrite.</li>
 </ul>
-<p>When the <a href="twilight_model::guild::Permissions::SEND_MESSAGES">Send Messages</a> permission is denied and is not similarly
-enabled like above then the <a href="twilight_model::guild::Permissions::ATTACH_FILES">Attach Files</a>, <a href="twilight_model::guild::Permissions::EMBED_LINKS">Embed Links</a>,
-<a href="twilight_model::guild::Permissions::MENTION_EVERYONE">Mention Everyone</a>, and <a href="twilight_model::guild::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a> permissions will not be
+<p>When the <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_MESSAGES">Send Messages</a> permission is denied and is not similarly
+enabled like above then the <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ATTACH_FILES" title="associated constant twilight_model::guild::permissions::Permissions::ATTACH_FILES">Attach Files</a>, <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.EMBED_LINKS" title="associated constant twilight_model::guild::permissions::Permissions::EMBED_LINKS">Embed Links</a>,
+<a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MENTION_EVERYONE" title="associated constant twilight_model::guild::permissions::Permissions::MENTION_EVERYONE">Mention Everyone</a>, and <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_TTS_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a> permissions will not be
 present in the returned permission set.</p>
 <h5 id="channel-based-exclusions"><a href="#channel-based-exclusions">Channel-based exclusions</a></h5>
 <p>Permissions are removed based on the type of a channel. For example,
 when calculating the permissions of a voice channel we can know that if
-<a href="twilight_model::guild::Permissions::SEND_MESSAGES">Send Messages</a> is granted on a guild-level to everyone then it is
+<a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_MESSAGES">Send Messages</a> is granted on a guild-level to everyone then it is
 omitted from the permissions for a specific channel.</p>
 <h6 id="stage-channels"><a href="#stage-channels">Stage Channels</a></h6>
 <p>When the given channel type is a guild stage channel then the
 following permissions will be removed:</p>
 <ul>
-<li><a href="twilight_model::guild::Permissions::ADD_REACTIONS">Add Reactions</a></li>
-<li><a href="twilight_model::guild::Permissions::ATTACH_FILES">Attach Files</a></li>
-<li><a href="twilight_model::guild::Permissions::DEAFEN_MEMBERS">Deafen Members</a></li>
-<li><a href="twilight_model::guild::Permissions::EMBED_LINKS">Embed Links</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_WEBHOOKS">Manage Webhooks</a></li>
-<li><a href="twilight_model::guild::Permissions::MENTION_EVERYONE">Mention Everyone</a></li>
-<li><a href="twilight_model::guild::Permissions::PRIORITY_SPEAKER">Priority Speaker</a></li>
-<li><a href="twilight_model::guild::Permissions::READ_MESSAGE_HISTORY">Read Message History</a></li>
-<li><a href="twilight_model::guild::Permissions::SEND_MESSAGES">Send Messages</a></li>
-<li><a href="twilight_model::guild::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a></li>
-<li><a href="twilight_model::guild::Permissions::STREAM">Stream</a></li>
-<li><a href="twilight_model::guild::Permissions::SPEAK">Speak</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_EXTERNAL_EMOJIS">Use External Emojis</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_SLASH_COMMANDS">Use Slash Commands</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_VAD">Use VAD</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ADD_REACTIONS" title="associated constant twilight_model::guild::permissions::Permissions::ADD_REACTIONS">Add Reactions</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ATTACH_FILES" title="associated constant twilight_model::guild::permissions::Permissions::ATTACH_FILES">Attach Files</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.DEAFEN_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::DEAFEN_MEMBERS">Deafen Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.EMBED_LINKS" title="associated constant twilight_model::guild::permissions::Permissions::EMBED_LINKS">Embed Links</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_WEBHOOKS" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_WEBHOOKS">Manage Webhooks</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MENTION_EVERYONE" title="associated constant twilight_model::guild::permissions::Permissions::MENTION_EVERYONE">Mention Everyone</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.PRIORITY_SPEAKER" title="associated constant twilight_model::guild::permissions::Permissions::PRIORITY_SPEAKER">Priority Speaker</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.READ_MESSAGE_HISTORY" title="associated constant twilight_model::guild::permissions::Permissions::READ_MESSAGE_HISTORY">Read Message History</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_MESSAGES">Send Messages</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_TTS_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.STREAM" title="associated constant twilight_model::guild::permissions::Permissions::STREAM">Stream</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SPEAK" title="associated constant twilight_model::guild::permissions::Permissions::SPEAK">Speak</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_EXTERNAL_EMOJIS" title="associated constant twilight_model::guild::permissions::Permissions::USE_EXTERNAL_EMOJIS">Use External Emojis</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_SLASH_COMMANDS" title="associated constant twilight_model::guild::permissions::Permissions::USE_SLASH_COMMANDS">Use Slash Commands</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_VAD" title="associated constant twilight_model::guild::permissions::Permissions::USE_VAD">Use VAD</a></li>
 </ul>
 <h6 id="text-channels"><a href="#text-channels">Text Channels</a></h6>
 <p>When the given channel type is a guild text channel then the
 following permissions will be removed:</p>
 <ul>
-<li><a href="twilight_model::guild::Permissions::CONNECT">Connect</a></li>
-<li><a href="twilight_model::guild::Permissions::DEAFEN_MEMBERS">Deafen Members</a></li>
-<li><a href="twilight_model::guild::Permissions::MOVE_MEMBERS">Move Members</a></li>
-<li><a href="twilight_model::guild::Permissions::MUTE_MEMBERS">Mute Members</a></li>
-<li><a href="twilight_model::guild::Permissions::PRIORITY_SPEAKER">Priority Speaker</a></li>
-<li><a href="twilight_model::guild::Permissions::REQUEST_TO_SPEAK">Request To Speak</a></li>
-<li><a href="twilight_model::guild::Permissions::SPEAK">Speak</a></li>
-<li><a href="twilight_model::guild::Permissions::STREAM">Stream</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_VAD">Use VAD</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.CONNECT" title="associated constant twilight_model::guild::permissions::Permissions::CONNECT">Connect</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.DEAFEN_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::DEAFEN_MEMBERS">Deafen Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MOVE_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::MOVE_MEMBERS">Move Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MUTE_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::MUTE_MEMBERS">Mute Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.PRIORITY_SPEAKER" title="associated constant twilight_model::guild::permissions::Permissions::PRIORITY_SPEAKER">Priority Speaker</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.REQUEST_TO_SPEAK" title="associated constant twilight_model::guild::permissions::Permissions::REQUEST_TO_SPEAK">Request To Speak</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SPEAK" title="associated constant twilight_model::guild::permissions::Permissions::SPEAK">Speak</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.STREAM" title="associated constant twilight_model::guild::permissions::Permissions::STREAM">Stream</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_VAD" title="associated constant twilight_model::guild::permissions::Permissions::USE_VAD">Use VAD</a></li>
 </ul>
 <h5 id="voice-channels"><a href="#voice-channels">Voice Channels</a></h5>
 <p>When the given channel type is a guild voice channel then the
 following permissions will be removed:</p>
 <ul>
-<li><a href="twilight_model::guild::Permissions::ADD_REACTIONS">Add Reactions</a></li>
-<li><a href="twilight_model::guild::Permissions::ATTACH_FILES">Attach Files</a></li>
-<li><a href="twilight_model::guild::Permissions::EMBED_LINKS">Embed Links</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_MESSAGES">Manage Messages</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_WEBHOOKS">Manage Webhooks</a></li>
-<li><a href="twilight_model::guild::Permissions::MENTION_EVERYONE">Mention Everyone</a></li>
-<li><a href="twilight_model::guild::Permissions::READ_MESSAGE_HISTORY">Read Message History</a></li>
-<li><a href="twilight_model::guild::Permissions::REQUEST_TO_SPEAK">Request To Speak</a></li>
-<li><a href="twilight_model::guild::Permissions::SEND_MESSAGES">Send Messages</a></li>
-<li><a href="twilight_model::guild::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_EXTERNAL_EMOJIS">Use External Emojis</a></li>
-<li><a href="twilight_model::guild::Permissions::USE_SLASH_COMMANDS">Use Slash Commands</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ADD_REACTIONS" title="associated constant twilight_model::guild::permissions::Permissions::ADD_REACTIONS">Add Reactions</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ATTACH_FILES" title="associated constant twilight_model::guild::permissions::Permissions::ATTACH_FILES">Attach Files</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.EMBED_LINKS" title="associated constant twilight_model::guild::permissions::Permissions::EMBED_LINKS">Embed Links</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_MESSAGES">Manage Messages</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_WEBHOOKS" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_WEBHOOKS">Manage Webhooks</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MENTION_EVERYONE" title="associated constant twilight_model::guild::permissions::Permissions::MENTION_EVERYONE">Mention Everyone</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.READ_MESSAGE_HISTORY" title="associated constant twilight_model::guild::permissions::Permissions::READ_MESSAGE_HISTORY">Read Message History</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.REQUEST_TO_SPEAK" title="associated constant twilight_model::guild::permissions::Permissions::REQUEST_TO_SPEAK">Request To Speak</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_MESSAGES">Send Messages</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.SEND_TTS_MESSAGES" title="associated constant twilight_model::guild::permissions::Permissions::SEND_TTS_MESSAGES">Send TTS Messages</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_EXTERNAL_EMOJIS" title="associated constant twilight_model::guild::permissions::Permissions::USE_EXTERNAL_EMOJIS">Use External Emojis</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.USE_SLASH_COMMANDS" title="associated constant twilight_model::guild::permissions::Permissions::USE_SLASH_COMMANDS">Use Slash Commands</a></li>
 </ul>
 <h5 id="guild-based-exclusions"><a href="#guild-based-exclusions">Guild-based exclusions</a></h5>
 <p>The following guild-level permissions will always be removed:</p>
 <ul>
-<li><a href="twilight_model::guild::Permissions::ADMINISTRATOR">Administrator</a></li>
-<li><a href="twilight_model::guild::Permissions::BAN_MEMBERS">Ban Members</a></li>
-<li><a href="twilight_model::guild::Permissions::CHANGE_NICKNAME">Change Nickname</a></li>
-<li><a href="twilight_model::guild::Permissions::KICK_MEMBERS">Kick Members</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_GUILD_EXPRESSIONS">Manage Guild Expressions</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_GUILD">Manage Guild</a></li>
-<li><a href="twilight_model::guild::Permissions::MANAGE_NICKNAMES">Manage Nicknames</a></li>
-<li><a href="twilight_model::guild::Permissions::VIEW_AUDIT_LOG">View Audit Log</a></li>
-<li><a href="twilight_model::guild::Permissions::VIEW_GUILD_INSIGHTS">View Guild Insights</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.ADMINISTRATOR" title="associated constant twilight_model::guild::permissions::Permissions::ADMINISTRATOR">Administrator</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.BAN_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::BAN_MEMBERS">Ban Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.CHANGE_NICKNAME" title="associated constant twilight_model::guild::permissions::Permissions::CHANGE_NICKNAME">Change Nickname</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.KICK_MEMBERS" title="associated constant twilight_model::guild::permissions::Permissions::KICK_MEMBERS">Kick Members</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_GUILD_EXPRESSIONS" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_GUILD_EXPRESSIONS">Manage Guild Expressions</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_GUILD" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_GUILD">Manage Guild</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.MANAGE_NICKNAMES" title="associated constant twilight_model::guild::permissions::Permissions::MANAGE_NICKNAMES">Manage Nicknames</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.VIEW_AUDIT_LOG" title="associated constant twilight_model::guild::permissions::Permissions::VIEW_AUDIT_LOG">View Audit Log</a></li>
+<li><a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.VIEW_GUILD_INSIGHTS" title="associated constant twilight_model::guild::permissions::Permissions::VIEW_GUILD_INSIGHTS">View Guild Insights</a></li>
 </ul>
 <p>If you need to know a member’s guild-level permissions - such as whether
-they have the <a href="twilight_model::guild::Permissions::VIEW_AUDIT_LOG">View Audit Log</a> permission - use <a href="struct.PermissionCalculator.html#method.root" title="method twilight_util::permission_calculator::PermissionCalculator::root"><code>root</code></a> instead.</p>
+they have the <a href="../../twilight_model/guild/permissions/struct.Permissions.html#associatedconstant.VIEW_AUDIT_LOG" title="associated constant twilight_model::guild::permissions::Permissions::VIEW_AUDIT_LOG">View Audit Log</a> permission - use <a href="struct.PermissionCalculator.html#method.root" title="method twilight_util::permission_calculator::PermissionCalculator::root"><code>root</code></a> instead.</p>
 <h5 id="examples"><a href="#examples">Examples</a></h5>
 <p>See the crate-level documentation for an example.</p>
 </div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Clone-for-PermissionCalculator%3C'a%3E" class="impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#impl-Clone-for-PermissionCalculator%3C'a%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#method.clone" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fn">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;</h4></section></summary><div class='docblock'>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="src" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#169">source</a></span><a href="#method.clone_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fn">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>)</h4></section></summary><div class='docblock'>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-Debug-for-PermissionCalculator%3C'a%3E" class="impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#impl-Debug-for-PermissionCalculator%3C'a%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.fmt" class="method trait-impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#method.fmt" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fn">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></h4></section></summary><div class='docblock'>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-PartialEq-for-PermissionCalculator%3C'a%3E" class="impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#impl-PartialEq-for-PermissionCalculator%3C'a%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a>&lt;<a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;&gt; for <a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.eq" class="method trait-impl"><a class="src rightside" href="../../src/twilight_util/permission_calculator/mod.rs.html#120">source</a><a href="#method.eq" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq" class="fn">eq</a>(&amp;self, other: &amp;<a class="struct" href="struct.PermissionCalculator.html" title="struct twilight_util::permission_calculator::PermissionCalculator">PermissionCalculator</a>&lt;'a&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class='docblock'>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used

@@ -4671,6 +4671,13 @@
 <a href="#4671" id="4671">4671</a>
 <a href="#4672" id="4672">4672</a>
 <a href="#4673" id="4673">4673</a>
+<a href="#4674" id="4674">4674</a>
+<a href="#4675" id="4675">4675</a>
+<a href="#4676" id="4676">4676</a>
+<a href="#4677" id="4677">4677</a>
+<a href="#4678" id="4678">4678</a>
+<a href="#4679" id="4679">4679</a>
+<a href="#4680" id="4680">4680</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 <span class="kw">pub use </span>twilight_http_ratelimiting::request::{Path, PathParseError, PathParseErrorType};
 
@@ -5664,6 +5671,10 @@
         <span class="doccomment">/// ID of the guild.
         </span>guild_id: u64,
     },
+    UpdateGuildOnboarding {
+        <span class="doccomment">/// The ID of the guild to update onboarding information for.
+        </span>guild_id: u64,
+    },
     <span class="doccomment">/// Route information to update a scheduled event in a guild.
     </span>UpdateGuildScheduledEvent {
         <span class="doccomment">/// ID of the guild.
@@ -5958,6 +5969,7 @@
             | <span class="self">Self</span>::SetGuildCommands { .. }
             | <span class="self">Self</span>::SyncTemplate { .. }
             | <span class="self">Self</span>::UpdateCommandPermissions { .. }
+            | <span class="self">Self</span>::UpdateGuildOnboarding { .. }
             | <span class="self">Self</span>::UpdatePermissionOverwrite { .. } =&gt; Method::Put,
         }
     }
@@ -6223,7 +6235,9 @@
             <span class="self">Self</span>::GetGuildMembers { guild_id, .. } | <span class="self">Self</span>::UpdateCurrentMember { guild_id, .. } =&gt; {
                 Path::GuildsIdMembers(guild_id)
             }
-            <span class="self">Self</span>::GetGuildOnboarding { guild_id } =&gt; Path::GuildsIdOnboarding(guild_id),
+            <span class="self">Self</span>::GetGuildOnboarding { guild_id } | <span class="self">Self</span>::UpdateGuildOnboarding { guild_id } =&gt; {
+                Path::GuildsIdOnboarding(guild_id)
+            }
             <span class="self">Self</span>::CreateGuildScheduledEvent { guild_id, .. }
             | <span class="self">Self</span>::GetGuildScheduledEvents { guild_id, .. } =&gt; {
                 Path::GuildsIdScheduledEvents(guild_id)
@@ -7067,7 +7081,7 @@
 
                 <span class="prelude-val">Ok</span>(())
             }
-            Route::GetGuildOnboarding { guild_id } =&gt; {
+            Route::GetGuildOnboarding { guild_id } | Route::UpdateGuildOnboarding { guild_id } =&gt; {
                 f.write_str(<span class="string">&quot;guilds/&quot;</span>)<span class="question-mark">?</span>;
                 Display::fmt(guild_id, f)<span class="question-mark">?</span>;
 

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["UpdateGuildOnboarding","UpdateGuildOnboardingFields","UpdateGuildOnboardingPrompt","UpdateOnboardingPromptOption"]};
