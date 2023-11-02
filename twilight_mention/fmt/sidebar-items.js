@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["MentionFormat"],"trait":["Mention"]};
+window.SIDEBAR_ITEMS = {"enum":["CommandMention"],"struct":["MentionFormat"],"trait":["Mention"]};
