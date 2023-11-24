@@ -5,7 +5,7 @@
         reconnect_attempts: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>,
     },
     FatallyClosed {
-        close_code: CloseCode,
+        close_code: <a class="enum" href="../twilight_model/gateway/close_code/enum.CloseCode.html" title="enum twilight_model::gateway::close_code::CloseCode">CloseCode</a>,
     },
     Identifying,
     Resuming,
@@ -15,11 +15,11 @@
 </div></div><div class="sub-variant-field"><span id="variant.Disconnected.field.reconnect_attempts" class="small-section-header"><a href="#variant.Disconnected.field.reconnect_attempts" class="anchor field">§</a><code>reconnect_attempts: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a></code></span><div class="docblock"><p>Number of reconnection attempts that have been made.</p>
 </div></div></div><div class="docblock"><p>Shard is disconnected from the gateway but may reconnect in the future.</p>
 <p>The underlying connection may still be open.</p>
-</div><section id="variant.FatallyClosed" class="variant"><a href="#variant.FatallyClosed" class="anchor">§</a><h3 class="code-header">FatallyClosed</h3></section><div class="sub-variant" id="variant.FatallyClosed.fields"><h4>Fields</h4><div class="sub-variant-field"><span id="variant.FatallyClosed.field.close_code" class="small-section-header"><a href="#variant.FatallyClosed.field.close_code" class="anchor field">§</a><code>close_code: CloseCode</code></span><div class="docblock"><p>Close code of the close message.</p>
+</div><section id="variant.FatallyClosed" class="variant"><a href="#variant.FatallyClosed" class="anchor">§</a><h3 class="code-header">FatallyClosed</h3></section><div class="sub-variant" id="variant.FatallyClosed.fields"><h4>Fields</h4><div class="sub-variant-field"><span id="variant.FatallyClosed.field.close_code" class="small-section-header"><a href="#variant.FatallyClosed.field.close_code" class="anchor field">§</a><code>close_code: <a class="enum" href="../twilight_model/gateway/close_code/enum.CloseCode.html" title="enum twilight_model::gateway::close_code::CloseCode">CloseCode</a></code></span><div class="docblock"><p>Close code of the close message.</p>
 </div></div></div><div class="docblock"><p>Shard has fatally closed.</p>
-<p>Possible reasons may be due to <a href="CloseCode::AuthenticationFailed">failed authentication</a>,
-<a href="CloseCode::InvalidIntents">invalid intents</a>, or other reasons. Refer to the documentation for
-[<code>CloseCode</code>] for possible reasons.</p>
+<p>Possible reasons may be due to <a href="../twilight_model/gateway/close_code/enum.CloseCode.html#variant.AuthenticationFailed" title="variant twilight_model::gateway::close_code::CloseCode::AuthenticationFailed">failed authentication</a>,
+<a href="../twilight_model/gateway/close_code/enum.CloseCode.html#variant.InvalidIntents" title="variant twilight_model::gateway::close_code::CloseCode::InvalidIntents">invalid intents</a>, or other reasons. Refer to the documentation for
+<a href="../twilight_model/gateway/close_code/enum.CloseCode.html" title="enum twilight_model::gateway::close_code::CloseCode"><code>CloseCode</code></a> for possible reasons.</p>
 </div><section id="variant.Identifying" class="variant"><a href="#variant.Identifying" class="anchor">§</a><h3 class="code-header">Identifying</h3></section><div class="docblock"><p>Shard is waiting to establish or resume a session.</p>
 </div><section id="variant.Resuming" class="variant"><a href="#variant.Resuming" class="anchor">§</a><h3 class="code-header">Resuming</h3></section><div class="docblock"><p>Shard is replaying missed dispatch events.</p>
 <p>The shard is considered identified whilst resuming.</p>
