@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/user/current_user.rs`."><title>current_user.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/user/current_user.rs`."><title>current_user.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -246,17 +247,17 @@
 
 <span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>CurrentUser {
-    <span class="doccomment">/// Accent color of the user&#39;s banner.
+    <span class="doccomment">/// Accent color of the user's banner.
     ///
     /// This is an integer representation of a hexadecimal color code.
     </span><span class="kw">pub </span>accent_color: <span class="prelude-ty">Option</span>&lt;u32&gt;,
-    <span class="doccomment">/// User&#39;s avatar hash.
+    <span class="doccomment">/// User's avatar hash.
     ///
     /// To retrieve the url to the avatar, see [Discord Docs/Image Formatting].
     ///
     /// [Discord Docs/Image Formatting]: https://discord.com/developers/docs/reference#image-formatting
     </span><span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
-    <span class="doccomment">/// Hash of the user&#39;s banner image.
+    <span class="doccomment">/// Hash of the user's banner image.
     </span><span class="kw">pub </span>banner: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="doccomment">/// Whether the user belongs to an OAuth2 application.
     </span><span class="attr">#[serde(default)]
@@ -265,7 +266,7 @@
     ///
     /// # Formatting
     ///
-    /// Because discriminators are stored as an integer they&#39;re not in the
+    /// Because discriminators are stored as an integer they're not in the
     /// format of Discord user tags due to a lack of padding with zeros. The
     /// [`discriminator`] method can be used to retrieve a formatter to pad the
     /// discriminator with zeros.
@@ -274,43 +275,43 @@
     ///
     /// The discriminator field can be deserialized from either a string or an
     /// integer. The field will always serialize into a string due to that being
-    /// the type Discord&#39;s API uses.
+    /// the type Discord's API uses.
     ///
     /// [`discriminator`]: Self::discriminator
-    </span><span class="attr">#[serde(with = <span class="string">&quot;super::discriminator&quot;</span>)]
+    </span><span class="attr">#[serde(with = <span class="string">"super::discriminator"</span>)]
     </span><span class="kw">pub </span>discriminator: u16,
-    <span class="doccomment">/// User&#39;s email address associated to the account.
+    <span class="doccomment">/// User's email address associated to the account.
     ///
     /// Requires the `email` oauth scope. See [Discord Docs/User Object].
     ///
     /// [Discord Docs/User Object]: https://discord.com/developers/docs/resources/user#user-object-user-structure
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>email: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="doccomment">/// All flags on a user&#39;s account.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// All flags on a user's account.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;UserFlags&gt;,
-    <span class="doccomment">/// User&#39;s id.
+    <span class="doccomment">/// User's id.
     </span><span class="kw">pub </span>id: Id&lt;UserMarker&gt;,
-    <span class="doccomment">/// User&#39;s chosen language option.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// User's chosen language option.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>locale: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Whether the user has two factor enabled on their account.
     </span><span class="kw">pub </span>mfa_enabled: bool,
-    <span class="doccomment">/// User&#39;s username, not unique across the platform.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;username&quot;</span>)]
+    <span class="doccomment">/// User's username, not unique across the platform.
+    </span><span class="attr">#[serde(rename = <span class="string">"username"</span>)]
     </span><span class="kw">pub </span>name: String,
-    <span class="doccomment">/// Type of Nitro subscription on a user&#39;s account.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Type of Nitro subscription on a user's account.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>premium_type: <span class="prelude-ty">Option</span>&lt;PremiumType&gt;,
-    <span class="doccomment">/// Public flags on a user&#39;s account.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Public flags on a user's account.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>public_flags: <span class="prelude-ty">Option</span>&lt;UserFlags&gt;,
     <span class="doccomment">/// Whether the email on this account has been verified.
     ///
     /// Requires the `email` oauth scope. See [Discord Docs/User Object].
     ///
     /// [Discord Docs/User Object]: https://discord.com/developers/docs/resources/user#user-object-user-structure
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>verified: <span class="prelude-ty">Option</span>&lt;bool&gt;,
 }
 
@@ -333,38 +334,38 @@
     <span class="kw">fn </span>user_tokens(discriminator_token: Token) -&gt; Vec&lt;Token&gt; {
         <span class="macro">vec!</span>[
             Token::Struct {
-                name: <span class="string">&quot;CurrentUser&quot;</span>,
+                name: <span class="string">"CurrentUser"</span>,
                 len: <span class="number">12</span>,
             },
-            Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+            Token::Str(<span class="string">"accent_color"</span>),
             Token::Some,
             Token::U32(<span class="number">16_711_680</span>),
-            Token::Str(<span class="string">&quot;avatar&quot;</span>),
+            Token::Str(<span class="string">"avatar"</span>),
             Token::Some,
             Token::Str(image_hash::AVATAR_INPUT),
-            Token::Str(<span class="string">&quot;banner&quot;</span>),
+            Token::Str(<span class="string">"banner"</span>),
             Token::None,
-            Token::Str(<span class="string">&quot;bot&quot;</span>),
+            Token::Str(<span class="string">"bot"</span>),
             Token::Bool(<span class="bool-val">true</span>),
-            Token::Str(<span class="string">&quot;discriminator&quot;</span>),
+            Token::Str(<span class="string">"discriminator"</span>),
             discriminator_token,
-            Token::Str(<span class="string">&quot;id&quot;</span>),
-            Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-            Token::Str(<span class="string">&quot;1&quot;</span>),
-            Token::Str(<span class="string">&quot;locale&quot;</span>),
+            Token::Str(<span class="string">"id"</span>),
+            Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+            Token::Str(<span class="string">"1"</span>),
+            Token::Str(<span class="string">"locale"</span>),
             Token::Some,
-            Token::Str(<span class="string">&quot;test locale&quot;</span>),
-            Token::Str(<span class="string">&quot;mfa_enabled&quot;</span>),
+            Token::Str(<span class="string">"test locale"</span>),
+            Token::Str(<span class="string">"mfa_enabled"</span>),
             Token::Bool(<span class="bool-val">true</span>),
-            Token::Str(<span class="string">&quot;username&quot;</span>),
-            Token::Str(<span class="string">&quot;test name&quot;</span>),
-            Token::Str(<span class="string">&quot;premium_type&quot;</span>),
+            Token::Str(<span class="string">"username"</span>),
+            Token::Str(<span class="string">"test name"</span>),
+            Token::Str(<span class="string">"premium_type"</span>),
             Token::Some,
             Token::U8(<span class="number">1</span>),
-            Token::Str(<span class="string">&quot;public_flags&quot;</span>),
+            Token::Str(<span class="string">"public_flags"</span>),
             Token::Some,
             Token::U64(<span class="number">1</span>),
-            Token::Str(<span class="string">&quot;verified&quot;</span>),
+            Token::Str(<span class="string">"verified"</span>),
             Token::Some,
             Token::Bool(<span class="bool-val">true</span>),
             Token::StructEnd,
@@ -374,44 +375,44 @@
     <span class="kw">fn </span>user_tokens_complete(discriminator_token: Token) -&gt; Vec&lt;Token&gt; {
         <span class="macro">vec!</span>[
             Token::Struct {
-                name: <span class="string">&quot;CurrentUser&quot;</span>,
+                name: <span class="string">"CurrentUser"</span>,
                 len: <span class="number">14</span>,
             },
-            Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+            Token::Str(<span class="string">"accent_color"</span>),
             Token::None,
-            Token::Str(<span class="string">&quot;avatar&quot;</span>),
+            Token::Str(<span class="string">"avatar"</span>),
             Token::Some,
             Token::Str(image_hash::AVATAR_INPUT),
-            Token::Str(<span class="string">&quot;banner&quot;</span>),
+            Token::Str(<span class="string">"banner"</span>),
             Token::Some,
             Token::Str(image_hash::BANNER_INPUT),
-            Token::Str(<span class="string">&quot;bot&quot;</span>),
+            Token::Str(<span class="string">"bot"</span>),
             Token::Bool(<span class="bool-val">true</span>),
-            Token::Str(<span class="string">&quot;discriminator&quot;</span>),
+            Token::Str(<span class="string">"discriminator"</span>),
             discriminator_token,
-            Token::Str(<span class="string">&quot;email&quot;</span>),
+            Token::Str(<span class="string">"email"</span>),
             Token::Some,
-            Token::Str(<span class="string">&quot;test@example.com&quot;</span>),
-            Token::Str(<span class="string">&quot;flags&quot;</span>),
+            Token::Str(<span class="string">"test@example.com"</span>),
+            Token::Str(<span class="string">"flags"</span>),
             Token::Some,
             Token::U64(<span class="number">1</span>),
-            Token::Str(<span class="string">&quot;id&quot;</span>),
-            Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-            Token::Str(<span class="string">&quot;1&quot;</span>),
-            Token::Str(<span class="string">&quot;locale&quot;</span>),
+            Token::Str(<span class="string">"id"</span>),
+            Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+            Token::Str(<span class="string">"1"</span>),
+            Token::Str(<span class="string">"locale"</span>),
             Token::Some,
-            Token::Str(<span class="string">&quot;test locale&quot;</span>),
-            Token::Str(<span class="string">&quot;mfa_enabled&quot;</span>),
+            Token::Str(<span class="string">"test locale"</span>),
+            Token::Str(<span class="string">"mfa_enabled"</span>),
             Token::Bool(<span class="bool-val">true</span>),
-            Token::Str(<span class="string">&quot;username&quot;</span>),
-            Token::Str(<span class="string">&quot;test name&quot;</span>),
-            Token::Str(<span class="string">&quot;premium_type&quot;</span>),
+            Token::Str(<span class="string">"username"</span>),
+            Token::Str(<span class="string">"test name"</span>),
+            Token::Str(<span class="string">"premium_type"</span>),
             Token::Some,
             Token::U8(<span class="number">1</span>),
-            Token::Str(<span class="string">&quot;public_flags&quot;</span>),
+            Token::Str(<span class="string">"public_flags"</span>),
             Token::Some,
             Token::U64(<span class="number">1</span>),
-            Token::Str(<span class="string">&quot;verified&quot;</span>),
+            Token::Str(<span class="string">"verified"</span>),
             Token::Some,
             Token::Bool(<span class="bool-val">true</span>),
             Token::StructEnd,
@@ -429,17 +430,17 @@
             email: <span class="prelude-val">None</span>,
             id: Id::new(<span class="number">1</span>),
             mfa_enabled: <span class="bool-val">true</span>,
-            name: <span class="string">&quot;test name&quot;</span>.to_owned(),
+            name: <span class="string">"test name"</span>.to_owned(),
             verified: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             premium_type: <span class="prelude-val">Some</span>(PremiumType::NitroClassic),
             public_flags: <span class="prelude-val">Some</span>(UserFlags::STAFF),
             flags: <span class="prelude-val">None</span>,
-            locale: <span class="prelude-val">Some</span>(<span class="string">&quot;test locale&quot;</span>.to_owned()),
+            locale: <span class="prelude-val">Some</span>(<span class="string">"test locale"</span>.to_owned()),
         };
 
         <span class="comment">// Deserializing a current user with a string discriminator (which
         // Discord provides)
-        </span>serde_test::assert_tokens(<span class="kw-2">&amp;</span>value, <span class="kw-2">&amp;</span>user_tokens(Token::Str(<span class="string">&quot;9999&quot;</span>)));
+        </span>serde_test::assert_tokens(<span class="kw-2">&amp;</span>value, <span class="kw-2">&amp;</span>user_tokens(Token::Str(<span class="string">"9999"</span>)));
 
         <span class="comment">// Deserializing a current user with an integer discriminator. Userland
         // code may have this due to being a more compact memory representation
@@ -455,20 +456,20 @@
             banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
             bot: <span class="bool-val">true</span>,
             discriminator: <span class="number">9999</span>,
-            email: <span class="prelude-val">Some</span>(<span class="string">&quot;test@example.com&quot;</span>.to_owned()),
+            email: <span class="prelude-val">Some</span>(<span class="string">"test@example.com"</span>.to_owned()),
             id: Id::new(<span class="number">1</span>),
             mfa_enabled: <span class="bool-val">true</span>,
-            name: <span class="string">&quot;test name&quot;</span>.to_owned(),
+            name: <span class="string">"test name"</span>.to_owned(),
             verified: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             premium_type: <span class="prelude-val">Some</span>(PremiumType::NitroClassic),
             public_flags: <span class="prelude-val">Some</span>(UserFlags::STAFF),
             flags: <span class="prelude-val">Some</span>(UserFlags::STAFF),
-            locale: <span class="prelude-val">Some</span>(<span class="string">&quot;test locale&quot;</span>.to_owned()),
+            locale: <span class="prelude-val">Some</span>(<span class="string">"test locale"</span>.to_owned()),
         };
 
         <span class="comment">// Deserializing a current user with a string discriminator (which
         // Discord provides)
-        </span>serde_test::assert_tokens(<span class="kw-2">&amp;</span>value, <span class="kw-2">&amp;</span>user_tokens_complete(Token::Str(<span class="string">&quot;9999&quot;</span>)));
+        </span>serde_test::assert_tokens(<span class="kw-2">&amp;</span>value, <span class="kw-2">&amp;</span>user_tokens_complete(Token::Str(<span class="string">"9999"</span>)));
 
         <span class="comment">// Deserializing a current user with an integer discriminator. Userland
         // code may have this due to being a more compact memory representation

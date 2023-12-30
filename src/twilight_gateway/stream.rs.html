@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/stream.rs`."><title>stream.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/stream.rs`."><title>stream.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -541,13 +542,13 @@
 //!
 //! Multiple shards may easily be created at once, with a per shard config
 //! created from a `Fn(ShardId, ConfigBuilder) -&gt; Config` closure, with the help
-//! of the `create_` set of functions. These functions will reuse shards&#39;
+//! of the `create_` set of functions. These functions will reuse shards'
 //! TLS context and [session queue], something otherwise achieved by cloning an
 //! existing [`Config`].
 //!
 //! # Concurrency
 //!
-//! Multiple shards&#39; events or websocket messages may be concurrently streamed
+//! Multiple shards' events or websocket messages may be concurrently streamed
 //! via [`ShardEventStream`] or [`ShardMessageStream`] respectively, returning a
 //! mutable reference to the yielded shard and its item. The yielded shard is
 //! later returned to the stream in its [`Drop`] implementation. The streams are
@@ -575,7 +576,7 @@
     future::BoxFuture,
     stream::{FuturesUnordered, Stream, StreamExt},
 };
-<span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 </span><span class="kw">use </span>std::{
     error::Error,
     fmt::{Display, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult},
@@ -586,16 +587,16 @@
     sync::mpsc,
     task::{Context, Poll},
 };
-<span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 </span><span class="kw">use </span>twilight_http::Client;
 <span class="kw">use </span>twilight_model::gateway::event::Event;
 
 <span class="doccomment">/// Generic list of unordered futures producing an item for each shard.
-</span><span class="kw">type </span>FutureList&lt;<span class="lifetime">&#39;a</span>, Item&gt; = FuturesUnordered&lt;BoxFuture&lt;<span class="lifetime">&#39;a</span>, NextItemOutput&lt;<span class="lifetime">&#39;a</span>, Item&gt;&gt;&gt;;
+</span><span class="kw">type </span>FutureList&lt;<span class="lifetime">'a</span>, Item&gt; = FuturesUnordered&lt;BoxFuture&lt;<span class="lifetime">'a</span>, NextItemOutput&lt;<span class="lifetime">'a</span>, Item&gt;&gt;&gt;;
 
-<span class="doccomment">/// Failure when fetching the recommended number of shards to use from Discord&#39;s
+<span class="doccomment">/// Failure when fetching the recommended number of shards to use from Discord's
 /// REST API.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 #[derive(Debug)]
 </span><span class="kw">pub struct </span>StartRecommendedError {
     <span class="doccomment">/// Type of error.
@@ -604,29 +605,29 @@
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) source: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;,
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 </span><span class="kw">impl </span>Display <span class="kw">for </span>StartRecommendedError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
             StartRecommendedErrorType::Deserializing =&gt; {
-                f.write_str(<span class="string">&quot;payload isn&#39;t a recognized type&quot;</span>)
+                f.write_str(<span class="string">"payload isn't a recognized type"</span>)
             }
-            StartRecommendedErrorType::Request =&gt; f.write_str(<span class="string">&quot;request failed to complete&quot;</span>),
+            StartRecommendedErrorType::Request =&gt; f.write_str(<span class="string">"request failed to complete"</span>),
         }
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 </span><span class="kw">impl </span>Error <span class="kw">for </span>StartRecommendedError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
 <span class="doccomment">/// Type of [`StartRecommendedError`] that occurred.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 #[derive(Debug)]
 </span><span class="kw">pub enum </span>StartRecommendedErrorType {
     <span class="doccomment">/// Received gateway event failed to be deserialized.
@@ -634,7 +635,7 @@
     /// The message payload is likely an unrecognized type that is not yet
     /// supported.
     </span>Deserializing,
-    <span class="doccomment">/// Requesting recommended shards from Discord&#39;s REST API failed.
+    <span class="doccomment">/// Requesting recommended shards from Discord's REST API failed.
     ///
     /// May be due to something such as a network or authentication issue.
     </span>Request,
@@ -657,7 +658,7 @@
 ///
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+/// let token = env::var("DISCORD_TOKEN")?;
 /// let client = Client::new(token.clone());
 /// let config = Config::new(token.clone(), Intents::GUILDS);
 ///
@@ -671,7 +672,7 @@
 ///     let event = match event {
 ///         Ok(event) =&gt; event,
 ///         Err(source) =&gt; {
-///             tracing::warn!(?source, &quot;error receiving event&quot;);
+///             tracing::warn!(?source, "error receiving event");
 ///
 ///             if source.is_fatal() {
 ///                 break;
@@ -681,22 +682,22 @@
 ///         }
 ///     };
 ///
-///     tracing::debug!(?event, shard = ?shard.id(), &quot;received event&quot;);
+///     tracing::debug!(?event, shard = ?shard.id(), "received event");
 /// }
 /// # Ok(()) }
 /// ```
-</span><span class="kw">pub struct </span>ShardEventStream&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>ShardEventStream&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Set of futures resolving to the next event of each shard.
-    </span>futures: FutureList&lt;<span class="lifetime">&#39;a</span>, Event&gt;,
+    </span>futures: FutureList&lt;<span class="lifetime">'a</span>, Event&gt;,
     <span class="doccomment">/// Sender to include in [`ShardRef`].
-    </span>sender: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>sender: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
     <span class="doccomment">/// Receiver to re-insert shards into to the stream.
-    </span>receiver: mpsc::Receiver&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>receiver: mpsc::Receiver&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ShardEventStream&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; ShardEventStream&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Create a new stream producing events from a set of shards.
-    </span><span class="kw">pub fn </span>new(shards: <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>new(shards: <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>(sender, receiver) = mpsc::channel();
         <span class="kw">let </span><span class="kw-2">mut </span>this = <span class="self">Self </span>{
             futures: FuturesUnordered::new(),
@@ -712,7 +713,7 @@
     }
 
     <span class="doccomment">/// Add a shard to the stream to produce a gateway event.
-    </span><span class="kw">fn </span>add_shard(<span class="kw-2">&amp;mut </span><span class="self">self</span>, shard: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard) {
+    </span><span class="kw">fn </span>add_shard(<span class="kw-2">&amp;mut </span><span class="self">self</span>, shard: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard) {
         <span class="self">self</span>.futures.push(Box::pin(<span class="kw">async </span>{
             <span class="kw">let </span>result = shard.next_event().<span class="kw">await</span>;
 
@@ -721,10 +722,10 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Stream <span class="kw">for </span>ShardEventStream&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = (ShardRef&lt;<span class="lifetime">&#39;a</span>&gt;, <span class="prelude-ty">Result</span>&lt;Event, ReceiveMessageError&gt;);
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Stream <span class="kw">for </span>ShardEventStream&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">type </span>Item = (ShardRef&lt;<span class="lifetime">'a</span>&gt;, <span class="prelude-ty">Result</span>&lt;Event, ReceiveMessageError&gt;);
 
-    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
+    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
         <span class="kw">while let </span><span class="prelude-val">Some</span>(shard) = <span class="self">self</span>.receiver.try_iter().next() {
             <span class="self">self</span>.add_shard(shard);
         }
@@ -760,7 +761,7 @@
 ///
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+/// let token = env::var("DISCORD_TOKEN")?;
 /// let client = Client::new(token.clone());
 /// let config = Config::new(token.clone(), Intents::GUILDS);
 ///
@@ -774,7 +775,7 @@
 ///     let message = match event {
 ///         Ok(message) =&gt; message,
 ///         Err(source) =&gt; {
-///             tracing::warn!(?source, &quot;error receiving message&quot;);
+///             tracing::warn!(?source, "error receiving message");
 ///
 ///             if source.is_fatal() {
 ///                 break;
@@ -784,22 +785,22 @@
 ///         }
 ///     };
 ///
-///     tracing::debug!(?message, shard = ?shard.id(), &quot;received message&quot;);
+///     tracing::debug!(?message, shard = ?shard.id(), "received message");
 /// }
 /// # Ok(()) }
 /// ```
-</span><span class="kw">pub struct </span>ShardMessageStream&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>ShardMessageStream&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Set of futures resolving to the next message of each shard.
-    </span>futures: FutureList&lt;<span class="lifetime">&#39;a</span>, Message&gt;,
+    </span>futures: FutureList&lt;<span class="lifetime">'a</span>, Message&gt;,
     <span class="doccomment">/// Sender to include in [`ShardRef`].
-    </span>sender: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>sender: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
     <span class="doccomment">/// Receiver to re-insert shards into the stream.
-    </span>receiver: mpsc::Receiver&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>receiver: mpsc::Receiver&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ShardMessageStream&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; ShardMessageStream&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Create a new stream producing websocket messages from a set of shards.
-    </span><span class="kw">pub fn </span>new(shards: <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>new(shards: <span class="kw">impl </span>Iterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>(sender, receiver) = mpsc::channel();
         <span class="kw">let </span><span class="kw-2">mut </span>this = <span class="self">Self </span>{
             futures: FuturesUnordered::new(),
@@ -815,7 +816,7 @@
     }
 
     <span class="doccomment">/// Add a shard to the stream to produce a websocket message.
-    </span><span class="kw">fn </span>add_shard(<span class="kw-2">&amp;mut </span><span class="self">self</span>, shard: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard) {
+    </span><span class="kw">fn </span>add_shard(<span class="kw-2">&amp;mut </span><span class="self">self</span>, shard: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard) {
         <span class="self">self</span>.futures.push(Box::pin(<span class="kw">async </span>{
             <span class="kw">let </span>result = shard.next_message().<span class="kw">await</span>;
 
@@ -824,10 +825,10 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Stream <span class="kw">for </span>ShardMessageStream&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = (ShardRef&lt;<span class="lifetime">&#39;a</span>&gt;, <span class="prelude-ty">Result</span>&lt;Message, ReceiveMessageError&gt;);
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Stream <span class="kw">for </span>ShardMessageStream&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">type </span>Item = (ShardRef&lt;<span class="lifetime">'a</span>&gt;, <span class="prelude-ty">Result</span>&lt;Message, ReceiveMessageError&gt;);
 
-    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
+    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
         <span class="kw">while let </span><span class="prelude-val">Some</span>(shard) = <span class="self">self</span>.receiver.try_iter().next() {
             <span class="self">self</span>.add_shard(shard);
         }
@@ -852,14 +853,14 @@
 /// shard to not be re-inserted into the stream.
 ///
 /// [not be called]: std::mem::forget
-</span><span class="kw">pub struct </span>ShardRef&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>ShardRef&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Sender pointing back to the parent stream.
-    </span>channel: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>channel: mpsc::Sender&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
     <span class="doccomment">/// Mutable reference to the shard that produced an event or message.
-    </span>shard: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard&gt;,
+    </span>shard: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard&gt;,
 }
 
-<span class="kw">impl </span>Deref <span class="kw">for </span>ShardRef&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>Deref <span class="kw">for </span>ShardRef&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Target = Shard;
 
     <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
@@ -867,13 +868,13 @@
     }
 }
 
-<span class="kw">impl </span>DerefMut <span class="kw">for </span>ShardRef&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>DerefMut <span class="kw">for </span>ShardRef&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Target {
         <span class="self">self</span>.shard.as_mut().unwrap()
     }
 }
 
-<span class="kw">impl </span>Drop <span class="kw">for </span>ShardRef&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>Drop <span class="kw">for </span>ShardRef&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(shard) = <span class="self">self</span>.shard.take() {
             <span class="kw">_ </span>= <span class="self">self</span>.channel.send(shard);
@@ -882,14 +883,14 @@
 }
 
 <span class="doccomment">/// Output of a stream, such as [`ShardMessageStream`].
-</span><span class="kw">struct </span>NextItemOutput&lt;<span class="lifetime">&#39;a</span>, Item&gt; {
+</span><span class="kw">struct </span>NextItemOutput&lt;<span class="lifetime">'a</span>, Item&gt; {
     <span class="doccomment">/// Result of the future.
     </span>result: <span class="prelude-ty">Result</span>&lt;Item, ReceiveMessageError&gt;,
     <span class="doccomment">/// Shard that produced the result.
-    </span>shard: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Shard,
+    </span>shard: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Shard,
 }
 
-<span class="doccomment">/// Create a single bucket&#39;s worth of shards.
+<span class="doccomment">/// Create a single bucket's worth of shards.
 ///
 /// Passing a primary config is required. Further customization of this config
 /// may be performed in the callback.
@@ -905,7 +906,7 @@
 ///
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+/// let token = env::var("DISCORD_TOKEN")?;
 ///
 /// let config = Config::new(token.clone(), Intents::GUILDS);
 /// let shards = stream::create_bucket(2, 10, 100, config, |_, builder| builder.build())
@@ -920,7 +921,7 @@
 ///
 /// Panics if `bucket_id &gt;= total` or if `concurrency &gt;= total`.
 ///
-/// Panics if `concurrency` doesn&#39;t fit into a usize.
+/// Panics if `concurrency` doesn't fit into a usize.
 ///
 /// Panics if loading TLS certificates fails.
 </span><span class="attr">#[track_caller]
@@ -931,10 +932,10 @@
     config: Config,
     per_shard_config: F,
 ) -&gt; <span class="kw">impl </span>Iterator&lt;Item = Shard&gt; {
-    <span class="macro">assert!</span>(bucket_id &lt; total, <span class="string">&quot;bucket id must be less than the total&quot;</span>);
+    <span class="macro">assert!</span>(bucket_id &lt; total, <span class="string">"bucket id must be less than the total"</span>);
     <span class="macro">assert!</span>(
         concurrency &lt; total,
-        <span class="string">&quot;concurrency must be less than the total&quot;
+        <span class="string">"concurrency must be less than the total"
     </span>);
 
     <span class="kw">let </span>concurrency = concurrency.try_into().unwrap();
@@ -962,7 +963,7 @@
 ///
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+/// let token = env::var("DISCORD_TOKEN")?;
 ///
 /// let config = Config::new(token.clone(), Intents::GUILDS);
 /// let shards = stream::create_range(0..10, 10, config, |_, builder| builder.build())
@@ -976,7 +977,7 @@
 /// # Panics
 ///
 /// Panics if `start &gt;= total` or if `end &gt; total`, where `start` and `end`
-/// refer to `range`&#39;s start and end.
+/// refer to `range`'s start and end.
 ///
 /// Panics if loading TLS certificates fails.
 </span><span class="attr">#[track_caller]
@@ -996,7 +997,7 @@
     })
 }
 
-<span class="doccomment">/// Create a range of shards from Discord&#39;s recommendation.
+<span class="doccomment">/// Create a range of shards from Discord's recommendation.
 ///
 /// Passing a primary config is required. Further customization of this config
 /// may be performed in the callback.
@@ -1016,7 +1017,7 @@
 /// Panics if loading TLS certificates fails.
 ///
 /// [`GetGatewayAuthed`]: twilight_http::request::GetGatewayAuthed
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;twilight-http&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"twilight-http"</span>)]
 </span><span class="kw">pub async fn </span>create_recommended&lt;F: Fn(ShardId, ConfigBuilder) -&gt; Config&gt;(
     client: <span class="kw-2">&amp;</span>Client,
     config: Config,
@@ -1043,7 +1044,7 @@
 /// # Panics
 ///
 /// Panics if `start &gt;= total` or if `end &gt; total`, where `start` and `end`
-/// refer to `range`&#39;s start and end.
+/// refer to `range`'s start and end.
 </span><span class="kw">fn </span>calculate_range(range: <span class="kw">impl </span>RangeBounds&lt;u64&gt;, total: u64) -&gt; Range&lt;u64&gt; {
     <span class="comment">// 0, or the provided start bound (inclusive).
     </span><span class="kw">let </span>start = <span class="kw">match </span>range.start_bound() {
@@ -1059,8 +1060,8 @@
         Bound::Unbounded =&gt; total,
     };
 
-    <span class="macro">assert!</span>(start &lt; total, <span class="string">&quot;range start must be less than the total&quot;</span>);
-    <span class="macro">assert!</span>(end &lt;= total, <span class="string">&quot;range end must be less than the total&quot;</span>);
+    <span class="macro">assert!</span>(start &lt; total, <span class="string">"range start must be less than the total"</span>);
+    <span class="macro">assert!</span>(end &lt;= total, <span class="string">"range end must be less than the total"</span>);
 
     start..end
 }
@@ -1072,8 +1073,8 @@
     <span class="kw">use </span>static_assertions::assert_impl_all;
     <span class="kw">use </span>std::ops::{Deref, DerefMut};
 
-    <span class="macro">assert_impl_all!</span>(ShardEventStream&lt;<span class="lifetime">&#39;_</span>&gt;: Send, Stream, Unpin);
-    <span class="macro">assert_impl_all!</span>(ShardMessageStream&lt;<span class="lifetime">&#39;_</span>&gt;: Send, Stream, Unpin);
-    <span class="macro">assert_impl_all!</span>(ShardRef&lt;<span class="lifetime">&#39;_</span>&gt;: Deref, DerefMut, Send);
+    <span class="macro">assert_impl_all!</span>(ShardEventStream&lt;<span class="lifetime">'_</span>&gt;: Send, Stream, Unpin);
+    <span class="macro">assert_impl_all!</span>(ShardMessageStream&lt;<span class="lifetime">'_</span>&gt;: Send, Stream, Unpin);
+    <span class="macro">assert_impl_all!</span>(ShardRef&lt;<span class="lifetime">'_</span>&gt;: Deref, DerefMut, Send);
 }
 </code></pre></div></section></main></body></html>

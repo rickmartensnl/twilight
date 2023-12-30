@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/shard.rs`."><title>shard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/shard.rs`."><title>shard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1322,14 +1323,14 @@
 //!
 //! Shards are, at their heart, a websocket connection with some state for
 //! maintaining an identified session with the Discord gateway. For more
-//! information about what a shard is in the context of Discord&#39;s gateway API,
+//! information about what a shard is in the context of Discord's gateway API,
 //! refer to the documentation for [`Shard`].
 //!
 //! # Implementation Flow
 //!
 //! Other than informative methods and getters, shards have two functions:
 //! sending websocket messages and receiving websocket messages, called
-//! &quot;events&quot; in the context of the Discord gateway.
+//! "events" in the context of the Discord gateway.
 //!
 //! Sending a message is simple and the flow of it looks like:
 //!
@@ -1355,12 +1356,12 @@
 //!   which is then forwarded via [`Shard::send`]; or
 //!   e. the shard receives a message from Discord via the websocket connection.
 //! 4. In the case of 3(a) through 3(d), 3 is repeated; otherwise...
-//! 5. If the message is not a close it&#39;s [processed] by the shard;
+//! 5. If the message is not a close it's [processed] by the shard;
 //! 6. The raw Websocket message is returned to the user
 //!
 //! If the user called [`Shard::next_event`] instead of [`Shard::next_message`],
 //! then the previous steps are taken and the resultant message is deserialized
-//! into a [`GatewayEvent`] if it matches the user&#39;s [`EventTypeFlags`].
+//! into a [`GatewayEvent`] if it matches the user's [`EventTypeFlags`].
 //!
 //! [`GatewayEvent`]: twilight_model::gateway::event::GatewayEvent
 //! [command]: crate::Command
@@ -1372,7 +1373,7 @@
 //! [websocket connection]: Shard::connection
 //! [websocket message]: Message
 
-</span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+</span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
 </span><span class="kw">use </span><span class="kw">crate</span>::inflater::Inflater;
 <span class="kw">use crate</span>::{
     channel::{MessageChannel, MessageSender},
@@ -1391,9 +1392,9 @@
 <span class="kw">use </span>futures_util::{stream::Stream, SinkExt};
 <span class="kw">use </span>serde::{de::DeserializeOwned, Deserialize};
 <span class="attr">#[cfg(any(
-    feature = <span class="string">&quot;native&quot;</span>,
-    feature = <span class="string">&quot;rustls-native-roots&quot;</span>,
-    feature = <span class="string">&quot;rustls-webpki-roots&quot;
+    feature = <span class="string">"native"</span>,
+    feature = <span class="string">"rustls-native-roots"</span>,
+    feature = <span class="string">"rustls-webpki-roots"
 </span>))]
 </span><span class="kw">use </span>std::io::ErrorKind <span class="kw">as </span>IoErrorKind;
 <span class="kw">use </span>std::{
@@ -1541,7 +1542,7 @@
 </span><span class="attr">#[derive(Deserialize)]
 </span><span class="kw">struct </span>MinimalEvent&lt;T&gt; {
     <span class="doccomment">/// Attached data of the gateway event.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;d&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"d"</span>)]
     </span>data: T,
 }
 
@@ -1584,7 +1585,7 @@
 ///
 /// Shards go through an [identify queue][`queue`] that ratelimits the amount of
 /// concurrent identifies (across all shards) per 5 seconds. Exceeding this
-/// limit invalidates the shard&#39;s session and it is therefore very important to
+/// limit invalidates the shard's session and it is therefore very important to
 /// reuse the same queue when running multiple shards. Note that shards must be
 /// identified before they start receiving dispatch events and are able to send
 /// [`Command`]s.
@@ -1598,11 +1599,11 @@
 ///
 /// # Sending shard commands in different tasks
 ///
-/// Because shards should not be used across multiple tasks it&#39;s not always easy
+/// Because shards should not be used across multiple tasks it's not always easy
 /// to directly send [gateway commands] over a shard. As a convenience method,
 /// [`Shard::sender`] can be used to receive an MPSC channel sender which, in
 /// addition to being cheaply cloned, also only sends queued up commands when
-/// the shard is identified and not ratelimited. Multiple shards&#39; senders can,
+/// the shard is identified and not ratelimited. Multiple shards' senders can,
 /// for example, be collected into an `Arc&lt;Vec&lt;MessageSender&gt;&gt;` and be shared
 /// across all event handler tasks.
 ///
@@ -1615,10 +1616,10 @@
 /// use twilight_gateway::{Config, Event, EventTypeFlags, Intents, Shard, ShardId};
 ///
 /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// // Use the value of the &quot;DISCORD_TOKEN&quot; environment variable as the bot&#39;s
+/// // Use the value of the "DISCORD_TOKEN" environment variable as the bot's
 /// // token. Of course, this value may be passed into the program however is
 /// // preferred.
-/// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+/// let token = env::var("DISCORD_TOKEN")?;
 /// let event_types = EventTypeFlags::MESSAGE_CREATE | EventTypeFlags::MESSAGE_DELETE;
 ///
 /// let config = Config::builder(token, Intents::GUILD_MESSAGES)
@@ -1632,7 +1633,7 @@
 ///     let event = match shard.next_event().await {
 ///         Ok(event) =&gt; event,
 ///         Err(source) =&gt; {
-///             tracing::warn!(?source, &quot;error receiving event&quot;);
+///             tracing::warn!(?source, "error receiving event");
 ///
 ///             if source.is_fatal() {
 ///                 break;
@@ -1644,10 +1645,10 @@
 ///
 ///     match event {
 ///         Event::MessageCreate(message) =&gt; {
-///             println!(&quot;message received with content: {}&quot;, message.content);
+///             println!("message received with content: {}", message.content);
 ///         }
 ///         Event::MessageDelete(message) =&gt; {
-///             println!(&quot;message with ID {} deleted&quot;, message.id);
+///             println!("message with ID {} deleted", message.id);
 ///         }
 ///         _ =&gt; {}
 ///     }
@@ -1668,7 +1669,7 @@
     /// Configurations are provided or created in shard initializing via
     /// [`Shard::new`] or [`Shard::with_config`].
     </span>config: Config,
-    <span class="doccomment">/// Websocket connection, which may be connected to Discord&#39;s gateway.
+    <span class="doccomment">/// Websocket connection, which may be connected to Discord's gateway.
     ///
     /// The connection should only be dropped after it has returned `Ok(None)`
     /// to comply with the WebSocket protocol.
@@ -1689,7 +1690,7 @@
     <span class="doccomment">/// Identify queue background task handle.
     </span>identify_handle: <span class="prelude-ty">Option</span>&lt;JoinHandle&lt;()&gt;&gt;,
     <span class="doccomment">/// Zlib decompressor.
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
     </span>inflater: Inflater,
     <span class="doccomment">/// Next action to take in response to certain gateway events.
     </span>next_action: <span class="prelude-ty">Option</span>&lt;NextAction&gt;,
@@ -1707,7 +1708,7 @@
     </span>resume_gateway_url: <span class="prelude-ty">Option</span>&lt;Box&lt;str&gt;&gt;,
     <span class="doccomment">/// Active session of the shard.
     ///
-    /// The shard may not have an active session if it hasn&#39;t yet identified and
+    /// The shard may not have an active session if it hasn't yet identified and
     /// received a `READY` dispatch event response.
     </span>session: <span class="prelude-ty">Option</span>&lt;Session&gt;,
     <span class="doccomment">/// Current connection status of the Websocket connection.
@@ -1736,7 +1737,7 @@
             heartbeat_interval_event: <span class="bool-val">false</span>,
             id: shard_id,
             identify_handle: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+            <span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
             </span>inflater: Inflater::new(),
             next_action: <span class="prelude-val">None</span>,
             latency: Latency::new(),
@@ -1764,7 +1765,7 @@
     <span class="doccomment">/// Zlib decompressor statistics.
     ///
     /// Reset when reconnecting to the gateway.
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
     </span><span class="kw">pub const fn </span>inflater(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Inflater {
         <span class="kw-2">&amp;</span><span class="self">self</span>.inflater
     }
@@ -1785,7 +1786,7 @@
     <span class="doccomment">/// Statistics about the number of available commands and when the command
     /// ratelimiter will refresh.
     ///
-    /// This won&#39;t be present if ratelimiting was disabled via
+    /// This won't be present if ratelimiting was disabled via
     /// [`ConfigBuilder::ratelimit_messages`] or if the shard is disconnected.
     ///
     /// [`ConfigBuilder::ratelimit_messages`]: crate::ConfigBuilder::ratelimit_messages
@@ -1809,7 +1810,7 @@
     /// wanted and map onto the [`Event::GatewayClose`] variant.
     ///
     /// Events not registered in Twilight are skipped. If you need to receive
-    /// events Twilight doesn&#39;t support, use [`next_message`] to receive raw
+    /// events Twilight doesn't support, use [`next_message`] to receive raw
     /// payloads.
     ///
     /// # Errors
@@ -1827,7 +1828,7 @@
     /// failed to internally process a received event.
     ///
     /// Returns a [`ReceiveMessageErrorType::Reconnect`] error type if the shard
-    /// failed to reconnect to the gateway. This isn&#39;t a fatal error and can be
+    /// failed to reconnect to the gateway. This isn't a fatal error and can be
     /// retried.
     ///
     /// Returns a [`ReceiveMessageErrorType::SendingMessage`] error type if the
@@ -1843,7 +1844,7 @@
                     <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(event)) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(event.into()),
                     <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; {}
                     <span class="prelude-val">Err</span>(source) =&gt; {
-                        <span class="comment">// Discord has many events that aren&#39;t documented, so we
+                        <span class="comment">// Discord has many events that aren't documented, so we
                         // need to skip over errors caused by unknown events or
                         // opcodes.
                         //
@@ -1859,7 +1860,7 @@
                                 id=%<span class="self">self</span>.id,
                                 event_type=<span class="question-mark">?</span>unknown_event.event_type,
                                 opcode=<span class="question-mark">?</span>unknown_event.opcode,
-                                <span class="string">&quot;skipped deserializing unknown event&quot;</span>,
+                                <span class="string">"skipped deserializing unknown event"</span>,
                             );
 
                             <span class="kw">continue</span>;
@@ -1886,17 +1887,17 @@
     /// failed to internally process a received event.
     ///
     /// Returns a [`ReceiveMessageErrorType::Reconnect`] error type if the shard
-    /// failed to reconnect to the gateway. This isn&#39;t a fatal error and can be
+    /// failed to reconnect to the gateway. This isn't a fatal error and can be
     /// retried.
     ///
     /// Returns a [`ReceiveMessageErrorType::SendingMessage`] error type if the
     /// shard failed to send a message to the gateway, such as a heartbeat.
-    </span><span class="attr">#[tracing::instrument(fields(id = %<span class="self">self</span>.id()), name = <span class="string">&quot;shard&quot;</span>, skip(<span class="self">self</span>))]
+    </span><span class="attr">#[tracing::instrument(fields(id = %<span class="self">self</span>.id()), name = <span class="string">"shard"</span>, skip(<span class="self">self</span>))]
     </span><span class="kw">pub async fn </span>next_message(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, ReceiveMessageError&gt; {
         <span class="doccomment">/// Actions the shard might take.
         </span><span class="kw">enum </span>Action {
             <span class="doccomment">/// Close the gateway connection with this close frame.
-            </span>Close(CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;),
+            </span>Close(CloseFrame&lt;<span class="lifetime">'static</span>&gt;),
             <span class="doccomment">/// Send this command to the gateway.
             </span>Command(String),
             <span class="doccomment">/// Send a heartbeat command to the gateway.
@@ -1939,7 +1940,7 @@
                     </span>.map_err(ReceiveMessageError::from_send)<span class="question-mark">?</span>;
             }
             <span class="prelude-val">Some</span>(NextAction::Resume) =&gt; {
-                <span class="kw">let </span>session = <span class="self">self</span>.session().expect(<span class="string">&quot;variant only set if some&quot;</span>);
+                <span class="kw">let </span>session = <span class="self">self</span>.session().expect(<span class="string">"variant only set if some"</span>);
                 <span class="kw">let </span>resume = Resume::new(session.sequence(), session.id(), <span class="self">self</span>.config().token());
                 <span class="kw">let </span>json = command::prepare(<span class="kw-2">&amp;</span>resume).map_err(ReceiveMessageError::from_send)<span class="question-mark">?</span>;
                 <span class="self">self</span>.send(json)
@@ -1956,10 +1957,10 @@
         }
 
         <span class="kw">let </span>message = <span class="kw">loop </span>{
-            <span class="kw">let </span>next_action = |cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;| {
+            <span class="kw">let </span>next_action = |cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;| {
                 <span class="kw">if </span>!(<span class="self">self</span>.status.is_disconnected() || <span class="self">self</span>.status.is_fatally_closed()) {
                     <span class="kw">if let </span>Poll::Ready(frame) = <span class="self">self</span>.user_channel.close_rx.poll_recv(cx) {
-                        <span class="kw">return </span>Poll::Ready(Action::Close(frame.expect(<span class="string">&quot;shard owns channel&quot;</span>)));
+                        <span class="kw">return </span>Poll::Ready(Action::Close(frame.expect(<span class="string">"shard owns channel"</span>)));
                     }
                 }
 
@@ -1987,12 +1988,12 @@
 
                 <span class="kw">if </span>!ratelimited &amp;&amp; <span class="self">self</span>.status.is_identified() {
                     <span class="kw">if let </span>Poll::Ready(command) = <span class="self">self</span>.user_channel.command_rx.poll_recv(cx) {
-                        <span class="kw">return </span>Poll::Ready(Action::Command(command.expect(<span class="string">&quot;shard owns channel&quot;</span>)));
+                        <span class="kw">return </span>Poll::Ready(Action::Command(command.expect(<span class="string">"shard owns channel"</span>)));
                     }
                 }
 
                 <span class="kw">if let </span>Poll::Ready(message) =
-                    Pin::new(<span class="self">self</span>.connection.as_mut().expect(<span class="string">&quot;connected&quot;</span>)).poll_next(cx)
+                    Pin::new(<span class="self">self</span>.connection.as_mut().expect(<span class="string">"connected"</span>)).poll_next(cx)
                 {
                     <span class="kw">return </span>Poll::Ready(Action::Message(message));
                 }
@@ -2002,7 +2003,7 @@
 
             <span class="kw">match </span>poll_fn(next_action).<span class="kw">await </span>{
                 Action::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(message))) =&gt; {
-                    <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+                    <span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
                     </span><span class="kw">if let </span>TungsteniteMessage::Binary(bytes) = <span class="kw-2">&amp;</span>message {
                         <span class="kw">if let </span><span class="prelude-val">Some</span>(decompressed) = <span class="self">self
                             </span>.inflater
@@ -2023,13 +2024,13 @@
                 // connection is considered unusable after encountering an io
                 // error, returning `None`.
                 </span><span class="attr">#[cfg(any(
-                    feature = <span class="string">&quot;native&quot;</span>,
-                    feature = <span class="string">&quot;rustls-native-roots&quot;</span>,
-                    feature = <span class="string">&quot;rustls-webpki-roots&quot;
+                    feature = <span class="string">"native"</span>,
+                    feature = <span class="string">"rustls-native-roots"</span>,
+                    feature = <span class="string">"rustls-webpki-roots"
                 </span>))]
                 </span>Action::Message(<span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(TungsteniteError::Io(e))))
                     <span class="kw">if </span>e.kind() == IoErrorKind::UnexpectedEof
-                        <span class="comment">// Assert we&#39;re directly connected to Discord&#39;s gateway.
+                        <span class="comment">// Assert we're directly connected to Discord's gateway.
                         </span>&amp;&amp; <span class="self">self</span>.config.proxy_url().is_none()
                         &amp;&amp; (<span class="self">self</span>.status.is_disconnected() || <span class="self">self</span>.status.is_fatally_closed()) =&gt;
                 {
@@ -2044,7 +2045,7 @@
                     });
                 }
                 Action::Message(<span class="prelude-val">None</span>) =&gt; {
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;gateway connection closed&quot;</span>);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"gateway connection closed"</span>);
                     <span class="self">self</span>.connection = <span class="prelude-val">None</span>;
 
                     <span class="comment">// This match statement should be similar the initial one in
@@ -2058,9 +2059,9 @@
                             <span class="kw">return </span><span class="prelude-val">Err</span>(ReceiveMessageError::from_fatally_closed(close_code))
                         }
                         <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(
-                            <span class="string">&quot;stream ended because websocket is closed (received close frame sets \
+                            <span class="string">"stream ended because websocket is closed (received close frame sets \
                             status to disconnected or fatally closed) or because it errored (which \
-                            also sets status to disconnected)&quot;
+                            also sets status to disconnected)"
                         </span>),
                     };
 
@@ -2071,12 +2072,12 @@
                         <span class="self">self</span>.heartbeat_interval.is_some() &amp;&amp; <span class="self">self</span>.latency.sent().is_none();
 
                     <span class="comment">// Discord never responded after the last heartbeat,
-                    // connection is failed or &quot;zombied&quot;, see
+                    // connection is failed or "zombied", see
                     // https://discord.com/developers/docs/topics/gateway#heartbeat-interval-example-heartbeat-ack
                     // Note that unlike documented *any* event is okay; it does
                     // not have to be a heartbeat ACK.
                     </span><span class="kw">if </span>!is_first_heartbeat &amp;&amp; !<span class="self">self</span>.heartbeat_interval_event {
-                        <span class="macro">tracing::info!</span>(<span class="string">&quot;connection is failed or \&quot;zombied\&quot;&quot;</span>);
+                        <span class="macro">tracing::info!</span>(<span class="string">"connection is failed or \"zombied\""</span>);
                         <span class="self">self</span>.session = <span class="self">self
                             </span>.close(CloseFrame::RESUME)
                             .<span class="kw">await
@@ -2093,7 +2094,7 @@
                 Action::Identify =&gt; {
                     <span class="self">self</span>.identify_handle = <span class="prelude-val">None</span>;
 
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending identify&quot;</span>);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"sending identify"</span>);
                     <span class="kw">let </span>identify = Identify::new(IdentifyInfo {
                         compress: <span class="bool-val">false</span>,
                         intents: <span class="self">self</span>.config.intents(),
@@ -2116,7 +2117,7 @@
                     <span class="kw">continue</span>;
                 }
                 Action::Close(frame) =&gt; {
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending close frame from user channel&quot;</span>);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"sending close frame from user channel"</span>);
                     <span class="self">self</span>.session = <span class="self">self
                         </span>.close(frame)
                         .<span class="kw">await
@@ -2125,7 +2126,7 @@
                     <span class="kw">continue</span>;
                 }
                 Action::Command(json) =&gt; {
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending command from user channel&quot;</span>);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"sending command from user channel"</span>);
                     <span class="self">self</span>.send(json)
                         .<span class="kw">await
                         </span>.map_err(ReceiveMessageError::from_send)<span class="question-mark">?</span>;
@@ -2138,8 +2139,8 @@
         <span class="kw">match </span><span class="kw-2">&amp;</span>message {
             Message::Close(frame) =&gt; {
                 <span class="comment">// Tungstenite automatically replies to the close message.
-                </span><span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>frame, <span class="string">&quot;received websocket close message&quot;</span>);
-                <span class="comment">// Don&#39;t run `disconnect` if we initiated the close.
+                </span><span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>frame, <span class="string">"received websocket close message"</span>);
+                <span class="comment">// Don't run `disconnect` if we initiated the close.
                 </span><span class="kw">if </span>!<span class="self">self</span>.status.is_disconnected() {
                     <span class="self">self</span>.disconnect(CloseInitiator::Gateway(
                         frame.as_ref().map(|frame| frame.code),
@@ -2163,7 +2164,7 @@
     ///
     /// # Examples
     ///
-    /// Request members whose names start with &quot;tw&quot; in a guild:
+    /// Request members whose names start with "tw" in a guild:
     ///
     /// ```no_run
     /// # #[tokio::main]
@@ -2173,7 +2174,7 @@
     /// use twilight_model::{gateway::payload::outgoing::RequestGuildMembers, id::Id};
     ///
     /// let intents = Intents::GUILD_VOICE_STATES;
-    /// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
+    /// let token = env::var("DISCORD_TOKEN")?;
     ///
     /// let mut shard = Shard::new(ShardId::ONE, token, intents);
     ///
@@ -2184,9 +2185,9 @@
     ///     shard.next_message().await?;
     /// }
     ///
-    /// // Query members whose names start with &quot;tw&quot; and limit the results to 10
+    /// // Query members whose names start with "tw" and limit the results to 10
     /// // members.
-    /// let request = RequestGuildMembers::builder(Id::new(1)).query(&quot;tw&quot;, Some(10));
+    /// let request = RequestGuildMembers::builder(Id::new(1)).query("tw", Some(10));
     ///
     /// // Send the request over the shard.
     /// shard.command(&amp;request).await?;
@@ -2219,7 +2220,7 @@
 
     <span class="doccomment">/// Send a JSON encoded gateway event.
     ///
-    /// A permit from the shard&#39;s [ratelimiter] is first awaited (if
+    /// A permit from the shard's [ratelimiter] is first awaited (if
     /// ratelimiting is [enabled]) before sending the event.
     ///
     /// # Errors
@@ -2258,18 +2259,18 @@
     /// gateway.
     ///
     /// This is primarily useful for sending to other tasks and threads where
-    /// the shard won&#39;t be available.
+    /// the shard won't be available.
     </span><span class="kw">pub fn </span>sender(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MessageSender {
         <span class="self">self</span>.user_channel.sender()
     }
 
     <span class="doccomment">/// Send a Websocket close frame indicating whether to also invalidate the
-    /// shard&#39;s session.
+    /// shard's session.
     ///
-    /// Returns the shard&#39;s session if the close frame code is not `1000` or
-    /// `1001`, which invalidates the session and shows the application&#39;s bot as
-    /// offline. Otherwise Discord will not invalidate the shard&#39;s session and
-    /// will continue to show the application&#39;s bot as online until its presence
+    /// Returns the shard's session if the close frame code is not `1000` or
+    /// `1001`, which invalidates the session and shows the application's bot as
+    /// offline. Otherwise Discord will not invalidate the shard's session and
+    /// will continue to show the application's bot as online until its presence
     /// times out.
     ///
     /// Sets status to [`ConnectionStatus::Disconnected`] with the `close_code`
@@ -2297,14 +2298,14 @@
     /// loop {
     ///     match shard.next_message().await {
     ///         Ok(Message::Close(_)) =&gt; {
-    ///             // We&#39;ve now received a close message response from the
+    ///             // We've now received a close message response from the
     ///             // Gateway.
     ///             // Further calls to `next_message` would cause a reconnect.
     ///             break;
     ///         }
-    ///         Ok(Message::Text(_)) =&gt; unimplemented!(&quot;handle message&quot;),
+    ///         Ok(Message::Text(_)) =&gt; unimplemented!("handle message"),
     ///         Err(source) if matches!(source.kind(), ReceiveMessageErrorType::Io) =&gt; break,
-    ///         Err(source) =&gt; tracing::warn!(?source, &quot;error receiving message&quot;),
+    ///         Err(source) =&gt; tracing::warn!(?source, "error receiving message"),
     ///     }
     /// }
     /// # Ok(()) }
@@ -2319,11 +2320,11 @@
     /// [`ConfigBuilder::session`]: crate::ConfigBuilder::session
     </span><span class="kw">pub async fn </span>close(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
-        close_frame: CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;,
+        close_frame: CloseFrame&lt;<span class="lifetime">'static</span>&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Session&gt;, SendError&gt; {
         <span class="kw">let </span>close_code = close_frame.code;
 
-        <span class="macro">tracing::debug!</span>(frame = <span class="question-mark">?</span>close_frame, <span class="string">&quot;sending websocket close message&quot;</span>);
+        <span class="macro">tracing::debug!</span>(frame = <span class="question-mark">?</span>close_frame, <span class="string">"sending websocket close message"</span>);
         <span class="kw">let </span>message = Message::Close(<span class="prelude-val">Some</span>(close_frame));
 
         <span class="self">self</span>.send_unratelimited(message).<span class="kw">await</span><span class="question-mark">?</span>;
@@ -2358,7 +2359,7 @@
     </span><span class="kw">async fn </span>heartbeat(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
         <span class="comment">// Sequence should be null if no dispatch event has been received.
         </span><span class="kw">let </span>sequence = <span class="self">self</span>.session().map(Session::sequence);
-        <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>sequence, <span class="string">&quot;sending heartbeat&quot;</span>);
+        <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>sequence, <span class="string">"sending heartbeat"</span>);
         <span class="kw">let </span>message = Message::Text(command::prepare(<span class="kw-2">&amp;</span>Heartbeat::new(sequence))<span class="question-mark">?</span>);
         <span class="comment">// The ratelimiter reserves capacity for heartbeat messages.
         </span><span class="self">self</span>.send_unratelimited(message).<span class="kw">await</span><span class="question-mark">?</span>;
@@ -2368,18 +2369,18 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="doccomment">/// Updates the shard&#39;s internal state from a gateway event by recording
+    <span class="doccomment">/// Updates the shard's internal state from a gateway event by recording
     /// and/or responding to certain Discord events.
     ///
     /// # Errors
     ///
     /// Returns a [`ProcessErrorType::Deserializing`] error type if the gateway
-    /// event isn&#39;t a recognized structure, which may be the case for new or
+    /// event isn't a recognized structure, which may be the case for new or
     /// undocumented events.
     ///
     /// Returns a [`ProcessErrorType::SendingMessage`] error type if a Websocket
-    /// message couldn&#39;t be sent over the connection, which may be the case if
-    /// the connection isn&#39;t connected.
+    /// message couldn't be sent over the connection, which may be the case if
+    /// the connection isn't connected.
     ///
     /// [`GatewayEvent`]: twilight_model::gateway::event::GatewayEvent
     </span><span class="attr">#[allow(clippy::too_many_lines)]
@@ -2390,7 +2391,7 @@
                     kind: ProcessErrorType::Deserializing {
                         event: event.to_owned(),
                     },
-                    source: <span class="prelude-val">Some</span>(<span class="string">&quot;missing opcode&quot;</span>.into()),
+                    source: <span class="prelude-val">Some</span>(<span class="string">"missing opcode"</span>.into()),
                 })<span class="question-mark">?
                 </span>.into_parts();
 
@@ -2404,25 +2405,25 @@
                     kind: ProcessErrorType::Deserializing {
                         event: event.to_owned(),
                     },
-                    source: <span class="prelude-val">Some</span>(<span class="string">&quot;missing dispatch event type&quot;</span>.into()),
+                    source: <span class="prelude-val">Some</span>(<span class="string">"missing dispatch event type"</span>.into()),
                 })<span class="question-mark">?</span>;
                 <span class="kw">let </span>sequence = maybe_sequence.ok_or(ProcessError {
                     kind: ProcessErrorType::Deserializing {
                         event: event.to_owned(),
                     },
-                    source: <span class="prelude-val">Some</span>(<span class="string">&quot;missing sequence&quot;</span>.into()),
+                    source: <span class="prelude-val">Some</span>(<span class="string">"missing sequence"</span>.into()),
                 })<span class="question-mark">?</span>;
-                <span class="macro">tracing::debug!</span>(%event_type, %sequence, <span class="string">&quot;received dispatch&quot;</span>);
+                <span class="macro">tracing::debug!</span>(%event_type, %sequence, <span class="string">"received dispatch"</span>);
 
                 <span class="kw">match </span>event_type.as_ref() {
-                    <span class="string">&quot;READY&quot; </span>=&gt; {
+                    <span class="string">"READY" </span>=&gt; {
                         <span class="kw">let </span>event = <span class="self">Self</span>::parse_event::&lt;MinimalReady&gt;(event)<span class="question-mark">?</span>;
 
                         <span class="self">self</span>.resume_gateway_url = <span class="prelude-val">Some</span>(event.data.resume_gateway_url);
                         <span class="self">self</span>.session = <span class="prelude-val">Some</span>(Session::new(sequence, event.data.session_id));
                         <span class="self">self</span>.status = ConnectionStatus::Connected;
                     }
-                    <span class="string">&quot;RESUMED&quot; </span>=&gt; <span class="self">self</span>.status = ConnectionStatus::Connected,
+                    <span class="string">"RESUMED" </span>=&gt; <span class="self">self</span>.status = ConnectionStatus::Connected,
                     <span class="kw">_ </span>=&gt; {}
                 }
 
@@ -2431,16 +2432,16 @@
                 }
             }
             <span class="prelude-val">Some</span>(OpCode::Heartbeat) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;received heartbeat&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">"received heartbeat"</span>);
                 <span class="self">self</span>.next_action = <span class="prelude-val">Some</span>(NextAction::Heartbeat);
             }
             <span class="prelude-val">Some</span>(OpCode::HeartbeatAck) =&gt; {
                 <span class="kw">let </span>requested = <span class="self">self</span>.latency.received().is_none() &amp;&amp; <span class="self">self</span>.latency.sent().is_some();
                 <span class="kw">if </span>requested {
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;received heartbeat ack&quot;</span>);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"received heartbeat ack"</span>);
                     <span class="self">self</span>.latency.record_received();
                 } <span class="kw">else </span>{
-                    <span class="macro">tracing::info!</span>(<span class="string">&quot;received unrequested heartbeat ack&quot;</span>);
+                    <span class="macro">tracing::info!</span>(<span class="string">"received unrequested heartbeat ack"</span>);
                 }
             }
             <span class="prelude-val">Some</span>(OpCode::Hello) =&gt; {
@@ -2449,7 +2450,7 @@
                 <span class="comment">// First heartbeat should have some jitter, see
                 // https://discord.com/developers/docs/topics/gateway#heartbeat-interval
                 </span><span class="kw">let </span>jitter = heartbeat_interval.mul_f64(rand::random());
-                <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>heartbeat_interval, <span class="question-mark">?</span>jitter, <span class="string">&quot;received hello&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>heartbeat_interval, <span class="question-mark">?</span>jitter, <span class="string">"received hello"</span>);
 
                 <span class="kw">if </span><span class="self">self</span>.config().ratelimit_messages() {
                     <span class="self">self</span>.ratelimiter = <span class="prelude-val">Some</span>(CommandRatelimiter::new(heartbeat_interval));
@@ -2488,7 +2489,7 @@
             }
             <span class="prelude-val">Some</span>(OpCode::InvalidSession) =&gt; {
                 <span class="kw">let </span>resumable = <span class="self">Self</span>::parse_event(event)<span class="question-mark">?</span>.data;
-                <span class="macro">tracing::debug!</span>(resumable, <span class="string">&quot;received invalid session&quot;</span>);
+                <span class="macro">tracing::debug!</span>(resumable, <span class="string">"received invalid session"</span>);
                 <span class="kw">if </span>resumable {
                     <span class="self">self</span>.next_action = <span class="prelude-val">Some</span>(NextAction::CloseResume);
                 } <span class="kw">else </span>{
@@ -2496,10 +2497,10 @@
                 }
             }
             <span class="prelude-val">Some</span>(OpCode::Reconnect) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;received reconnect&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">"received reconnect"</span>);
                 <span class="self">self</span>.next_action = <span class="prelude-val">Some</span>(NextAction::CloseResume);
             }
-            <span class="kw">_ </span>=&gt; <span class="macro">tracing::info!</span>(<span class="string">&quot;received an unknown opcode: {raw_opcode}&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">tracing::info!</span>(<span class="string">"received an unknown opcode: {raw_opcode}"</span>),
         }
 
         <span class="prelude-val">Ok</span>(())
@@ -2544,7 +2545,7 @@
                 })<span class="question-mark">?</span>,
         );
         <span class="self">self</span>.status = ConnectionStatus::Identifying;
-        <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+        <span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
         </span><span class="self">self</span>.inflater.reset();
 
         <span class="prelude-val">Ok</span>(())
@@ -2555,7 +2556,7 @@
     /// # Errors
     ///
     /// Returns a [`ProcessErrorType::Deserializing`] error type if the gateway
-    /// event isn&#39;t a recognized structure, which may be the case for new or
+    /// event isn't a recognized structure, which may be the case for new or
     /// undocumented events.
     ///
     /// [processing]: Self::process
@@ -2569,12 +2570,12 @@
     }
 }
 
-<span class="doccomment">/// Default identify properties to use when the user hasn&#39;t customized it in
+<span class="doccomment">/// Default identify properties to use when the user hasn't customized it in
 /// [`Config::identify_properties`].
 ///
 /// [`Config::identify_properties`]: Config::identify_properties
 </span><span class="kw">fn </span>default_identify_properties() -&gt; IdentifyProperties {
-    IdentifyProperties::new(<span class="string">&quot;twilight.rs&quot;</span>, <span class="string">&quot;twilight.rs&quot;</span>, OS)
+    IdentifyProperties::new(<span class="string">"twilight.rs"</span>, <span class="string">"twilight.rs"</span>, OS)
 }
 
 <span class="attr">#[cfg(test)]

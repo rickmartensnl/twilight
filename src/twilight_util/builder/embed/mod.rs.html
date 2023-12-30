@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/builder/embed/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/builder/embed/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -458,10 +459,10 @@
 /// use twilight_util::builder::embed::{EmbedBuilder, EmbedFieldBuilder};
 ///
 /// let embed = EmbedBuilder::new()
-///     .description(&quot;Here&#39;s a list of reasons why Twilight is the best pony:&quot;)
-///     .field(EmbedFieldBuilder::new(&quot;Wings&quot;, &quot;She has wings.&quot;).inline())
+///     .description("Here's a list of reasons why Twilight is the best pony:")
+///     .field(EmbedFieldBuilder::new("Wings", "She has wings.").inline())
 ///     .field(
-///         EmbedFieldBuilder::new(&quot;Horn&quot;, &quot;She can do magic, and she&#39;s really good at it.&quot;)
+///         EmbedFieldBuilder::new("Horn", "She can do magic, and she's really good at it.")
 ///             .inline(),
 ///     )
 ///     .validate()?
@@ -476,14 +477,14 @@
 /// use twilight_util::builder::embed::{EmbedBuilder, ImageSource};
 ///
 /// let embed = EmbedBuilder::new()
-///     .description(&quot;Here&#39;s a cool image of Twilight Sparkle&quot;)
-///     .image(ImageSource::attachment(&quot;bestpony.png&quot;)?)
+///     .description("Here's a cool image of Twilight Sparkle")
+///     .image(ImageSource::attachment("bestpony.png")?)
 ///     .validate()?
 ///     .build();
 /// # Ok(()) }
 /// ```
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into an embed&quot;</span>]
+#[must_use = <span class="string">"must be built into an embed"</span>]
 </span><span class="kw">pub struct </span>EmbedBuilder(Embed);
 
 <span class="kw">impl </span>EmbedBuilder {
@@ -496,7 +497,7 @@
             fields: Vec::new(),
             footer: <span class="prelude-val">None</span>,
             image: <span class="prelude-val">None</span>,
-            kind: <span class="string">&quot;rich&quot;</span>.to_owned(),
+            kind: <span class="string">"rich"</span>.to_owned(),
             provider: <span class="prelude-val">None</span>,
             thumbnail: <span class="prelude-val">None</span>,
             timestamp: <span class="prelude-val">None</span>,
@@ -508,7 +509,7 @@
 
     <span class="doccomment">/// Build this into an embed.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used as part of something like a message&quot;</span>]
+    #[must_use = <span class="string">"should be used as part of something like a message"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Embed {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -538,8 +539,8 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_util::builder::embed::{EmbedAuthorBuilder, EmbedBuilder};
     ///
-    /// let author = EmbedAuthorBuilder::new(&quot;Twilight&quot;)
-    ///     .url(&quot;https://github.com/twilight-rs/twilight&quot;)
+    /// let author = EmbedAuthorBuilder::new("Twilight")
+    ///     .url("https://github.com/twilight-rs/twilight")
     ///     .build();
     ///
     /// let embed = EmbedBuilder::new().author(author).validate()?.build();
@@ -566,7 +567,7 @@
     ///
     /// let embed = EmbedBuilder::new()
     ///     .color(0xfd_69_b3)
-    ///     .description(&quot;a description&quot;)
+    ///     .description("a description")
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -591,7 +592,7 @@
     /// use twilight_util::builder::embed::EmbedBuilder;
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .description(&quot;this is an embed&quot;)
+    ///     .description("this is an embed")
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -613,8 +614,8 @@
     /// use twilight_util::builder::embed::{EmbedBuilder, EmbedFieldBuilder};
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .description(&quot;this is an embed&quot;)
-    ///     .field(EmbedFieldBuilder::new(&quot;a field&quot;, &quot;and its value&quot;))
+    ///     .description("this is an embed")
+    ///     .field(EmbedFieldBuilder::new("a field", "and its value"))
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -634,8 +635,8 @@
     /// use twilight_util::builder::embed::{EmbedBuilder, EmbedFooterBuilder};
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .description(&quot;this is an embed&quot;)
-    ///     .footer(EmbedFooterBuilder::new(&quot;a footer&quot;))
+    ///     .description("this is an embed")
+    ///     .footer(EmbedFooterBuilder::new("a footer"))
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -657,9 +658,9 @@
     /// use twilight_util::builder::embed::{EmbedBuilder, EmbedFooterBuilder, ImageSource};
     ///
     /// let source =
-    ///     ImageSource::url(&quot;https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png&quot;)?;
+    ///     ImageSource::url("https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png")?;
     /// let embed = EmbedBuilder::new()
-    ///     .footer(EmbedFooterBuilder::new(&quot;twilight&quot;))
+    ///     .footer(EmbedFooterBuilder::new("twilight"))
     ///     .image(source)
     ///     .validate()?
     ///     .build();
@@ -682,15 +683,15 @@
     /// # Examples
     ///
     /// Set the thumbnail to an image attachment with the filename
-    /// `&quot;twilight.png&quot;`:
+    /// `"twilight.png"`:
     ///
     /// ```
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_util::builder::embed::{EmbedBuilder, ImageSource};
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .description(&quot;a picture of twilight&quot;)
-    ///     .thumbnail(ImageSource::attachment(&quot;twilight.png&quot;)?)
+    ///     .description("a picture of twilight")
+    ///     .thumbnail(ImageSource::attachment("twilight.png")?)
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -721,15 +722,15 @@
     ///
     /// # Examples
     ///
-    /// Set the title to &quot;twilight&quot;:
+    /// Set the title to "twilight":
     ///
     /// ```
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_util::builder::embed::EmbedBuilder;
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .title(&quot;twilight&quot;)
-    ///     .url(&quot;https://github.com/twilight-rs/twilight&quot;)
+    ///     .title("twilight")
+    ///     .url("https://github.com/twilight-rs/twilight")
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
@@ -746,21 +747,21 @@
     ///
     /// # Examples
     ///
-    /// Set the URL to [twilight&#39;s repository]:
+    /// Set the URL to [twilight's repository]:
     ///
     /// ```
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_util::builder::embed::{EmbedBuilder, EmbedFooterBuilder};
     ///
     /// let embed = EmbedBuilder::new()
-    ///     .description(&quot;twilight&#39;s repository&quot;)
-    ///     .url(&quot;https://github.com/twilight-rs/twilight&quot;)
+    ///     .description("twilight's repository")
+    ///     .url("https://github.com/twilight-rs/twilight")
     ///     .validate()?
     ///     .build();
     /// # Ok(()) }
     /// ```
     ///
-    /// [twilight&#39;s repository]: https://github.com/twilight-rs/twilight
+    /// [twilight's repository]: https://github.com/twilight-rs/twilight
     </span><span class="kw">pub fn </span>url(<span class="kw-2">mut </span><span class="self">self</span>, url: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.url = <span class="prelude-val">Some</span>(url.into());
 
@@ -771,7 +772,7 @@
 <span class="kw">impl </span>Default <span class="kw">for </span>EmbedBuilder {
     <span class="doccomment">/// Create an embed builder with a default embed.
     ///
-    /// All embeds have a &quot;rich&quot; type.
+    /// All embeds have a "rich" type.
     </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new()
     }
@@ -780,7 +781,7 @@
 <span class="kw">impl </span>From&lt;Embed&gt; <span class="kw">for </span>EmbedBuilder {
     <span class="kw">fn </span>from(value: Embed) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(Embed {
-            kind: <span class="string">&quot;rich&quot;</span>.to_owned(),
+            kind: <span class="string">"rich"</span>.to_owned(),
             ..value
         })
     }
@@ -810,39 +811,39 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>builder() {
         <span class="kw">let </span>footer_image = ImageSource::url(
-            <span class="string">&quot;https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png&quot;</span>,
+            <span class="string">"https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png"</span>,
         )
         .unwrap();
-        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_580_608_922</span>).expect(<span class="string">&quot;non zero&quot;</span>);
+        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_580_608_922</span>).expect(<span class="string">"non zero"</span>);
 
         <span class="kw">let </span>embed = EmbedBuilder::new()
             .color(<span class="number">0x00_43_ff</span>)
-            .description(<span class="string">&quot;Description&quot;</span>)
+            .description(<span class="string">"Description"</span>)
             .timestamp(timestamp)
-            .footer(EmbedFooterBuilder::new(<span class="string">&quot;Warn&quot;</span>).icon_url(footer_image))
-            .field(EmbedFieldBuilder::new(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;title&quot;</span>).inline())
+            .footer(EmbedFooterBuilder::new(<span class="string">"Warn"</span>).icon_url(footer_image))
+            .field(EmbedFieldBuilder::new(<span class="string">"name"</span>, <span class="string">"title"</span>).inline())
             .build();
 
         <span class="kw">let </span>expected = Embed {
             author: <span class="prelude-val">None</span>,
             color: <span class="prelude-val">Some</span>(<span class="number">0x00_43_ff</span>),
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;Description&quot;</span>.to_string()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"Description"</span>.to_string()),
             fields: [EmbedField {
                 inline: <span class="bool-val">true</span>,
-                name: <span class="string">&quot;name&quot;</span>.to_string(),
-                value: <span class="string">&quot;title&quot;</span>.to_string(),
+                name: <span class="string">"name"</span>.to_string(),
+                value: <span class="string">"title"</span>.to_string(),
             }]
             .to_vec(),
             footer: <span class="prelude-val">Some</span>(EmbedFooter {
                 icon_url: <span class="prelude-val">Some</span>(
-                    <span class="string">&quot;https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png&quot;
+                    <span class="string">"https://raw.githubusercontent.com/twilight-rs/twilight/main/logo.png"
                         </span>.to_string(),
                 ),
                 proxy_icon_url: <span class="prelude-val">None</span>,
-                text: <span class="string">&quot;Warn&quot;</span>.to_string(),
+                text: <span class="string">"Warn"</span>.to_string(),
             }),
             image: <span class="prelude-val">None</span>,
-            kind: <span class="string">&quot;rich&quot;</span>.to_string(),
+            kind: <span class="string">"rich"</span>.to_string(),
             provider: <span class="prelude-val">None</span>,
             thumbnail: <span class="prelude-val">None</span>,
             timestamp: <span class="prelude-val">Some</span>(timestamp),

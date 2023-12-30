@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/permission_calculator/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/permission_calculator/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -729,7 +730,7 @@
 //! denied the [Send Messages] permission that their second role was granted on
 //! a root level.
 //!
-//! Let&#39;s see that in code:
+//! Let's see that in code:
 //!
 //! ```
 //! use twilight_model::{
@@ -778,10 +779,10 @@
 //! let calculator = PermissionCalculator::new(guild_id, user_id, everyone_role, member_roles);
 //! let calculated_permissions = calculator.in_channel(ChannelType::GuildText, channel_overwrites);
 //!
-//! // Now that we&#39;ve got the member&#39;s permissions in the channel, we can
+//! // Now that we've got the member's permissions in the channel, we can
 //! // check that they have the server-wide View Channel permission and
 //! // the Add Reactions permission granted, but their guild-wide Send Messages
-//! // permission was denied. Additionally, since the user can&#39;t send messages,
+//! // permission was denied. Additionally, since the user can't send messages,
 //! // their Embed Links permission was removed.
 //!
 //! let expected = Permissions::ADD_REACTIONS | Permissions::VIEW_CHANNEL;
@@ -816,40 +817,40 @@
 
 <span class="doccomment">/// Calculate the permissions of a member.
 ///
-/// Using the member calculator you can calculate the member&#39;s permissions in
+/// Using the member calculator you can calculate the member's permissions in
 /// the [root-level][`root`] of a guild or [in a given channel][`in_channel`].
 ///
 /// [`in_channel`]: Self::in_channel
 /// [`root`]: Self::root
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;calculators aren&#39;t useful if you don&#39;t calculate permissions&quot;</span>]
-</span><span class="kw">pub struct </span>PermissionCalculator&lt;<span class="lifetime">&#39;a</span>&gt; {
+#[must_use = <span class="string">"calculators aren't useful if you don't calculate permissions"</span>]
+</span><span class="kw">pub struct </span>PermissionCalculator&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Permissions of the `@everyone` role for the guild.
     </span>everyone_role: Permissions,
     <span class="doccomment">/// ID of the guild.
     </span>guild_id: Id&lt;GuildMarker&gt;,
-    <span class="doccomment">/// Slice of tuples of the member&#39;s roles and their permissions.
-    </span>member_roles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[(Id&lt;RoleMarker&gt;, Permissions)],
+    <span class="doccomment">/// Slice of tuples of the member's roles and their permissions.
+    </span>member_roles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[(Id&lt;RoleMarker&gt;, Permissions)],
     <span class="doccomment">/// ID of the owner.
     </span>owner_id: <span class="prelude-ty">Option</span>&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="doccomment">/// ID of the user whose permissions are being calculated.
     </span>user_id: Id&lt;UserMarker&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PermissionCalculator&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PermissionCalculator&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Create a calculator to calculate the permissions of a member.
     ///
     /// `everyone_role` is the permissions of the `@everyone` role on a
-    /// guild-level; the permissions may be empty. The `@everyone` role&#39;s ID is
+    /// guild-level; the permissions may be empty. The `@everyone` role's ID is
     /// the same as that of the `guild_id`.
     ///
-    /// The provided member&#39;s roles *should not* contain the `@everyone` role.
-    </span><span class="attr">#[must_use = <span class="string">&quot;calculators should be used to calculate permissions&quot;</span>]
+    /// The provided member's roles *should not* contain the `@everyone` role.
+    </span><span class="attr">#[must_use = <span class="string">"calculators should be used to calculate permissions"</span>]
     </span><span class="kw">pub const fn </span>new(
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
         everyone_role: Permissions,
-        member_roles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[(Id&lt;RoleMarker&gt;, Permissions)],
+        member_roles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[(Id&lt;RoleMarker&gt;, Permissions)],
     ) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             everyone_role,
@@ -862,15 +863,15 @@
 
     <span class="doccomment">/// Configure the ID of the owner of the guild.
     ///
-    /// This should be used if you don&#39;t want to manually take the user ID and
+    /// This should be used if you don't want to manually take the user ID and
     /// owner ID in account beforehand.
     ///
-    /// If the member&#39;s ID is the same as the owner&#39;s ID then permission
+    /// If the member's ID is the same as the owner's ID then permission
     /// calculating methods such as [`root`] will return all permissions
     /// enabled.
     ///
     /// [`root`]: Self::root
-    </span><span class="attr">#[must_use = <span class="string">&quot;calculators should be used to calculate permissions&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"calculators should be used to calculate permissions"</span>]
     </span><span class="kw">pub const fn </span>owner_id(<span class="kw-2">mut </span><span class="self">self</span>, owner_id: Id&lt;UserMarker&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.owner_id = <span class="prelude-val">Some</span>(owner_id);
 
@@ -878,7 +879,7 @@
     </span>}
 
     <span class="doccomment">/// Calculate the guild-level permissions of a member.
-    </span><span class="attr">#[must_use = <span class="string">&quot;calculating permissions is only useful if they&#39;re used&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"calculating permissions is only useful if they're used"</span>]
     </span><span class="kw">pub const fn </span>root(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Permissions {
         <span class="comment">// If the user is the owner, then we can just return all of the
         // permissions.
@@ -895,12 +896,12 @@
         <span class="comment">// The permissions that the @everyone role has is the baseline.
         </span><span class="kw">let </span><span class="kw-2">mut </span>permissions = <span class="self">self</span>.everyone_role;
 
-        <span class="comment">// At time of writing `const` functions don&#39;t support `for` loops, so we
+        <span class="comment">// At time of writing `const` functions don't support `for` loops, so we
         // use a `while` loop.
         </span><span class="kw">let </span>member_role_count = <span class="self">self</span>.member_roles.len();
         <span class="kw">let </span><span class="kw-2">mut </span>idx = <span class="number">0</span>;
 
-        <span class="comment">// Loop over all of the member&#39;s roles, adding them to the total
+        <span class="comment">// Loop over all of the member's roles, adding them to the total
         // permissions. Role permissions are only additive.
         //
         // If one of the roles contains the `ADMINISTRATOR` permission then the
@@ -929,15 +930,15 @@
     ///
     /// # Conditional exclusions
     ///
-    /// When the member doesn&#39;t have the &quot;View Channel&quot; permission then an empty
+    /// When the member doesn't have the "View Channel" permission then an empty
     /// permission set will be returned. This will happen in the following
     /// circumstances:
     ///
     /// - When the permission is denied on the role level and
-    /// isn&#39;t enabled on a role or member permission overwrite;
-    /// - When the permission is denied on a role permission overwrite but isn&#39;t
+    /// isn't enabled on a role or member permission overwrite;
+    /// - When the permission is denied on a role permission overwrite but isn't
     /// enabled on a member permission overwrite; or
-    /// - When permission isn&#39;t enabled on a guild level and isn&#39;t enabled via a
+    /// - When permission isn't enabled on a guild level and isn't enabled via a
     /// permission overwrite.
     ///
     /// When the [Send Messages] permission is denied and is not similarly
@@ -1020,7 +1021,7 @@
     /// - [View Audit Log]
     /// - [View Guild Insights]
     ///
-    /// If you need to know a member&#39;s guild-level permissions - such as whether
+    /// If you need to know a member's guild-level permissions - such as whether
     /// they have the [View Audit Log] permission - use [`root`] instead.
     ///
     /// # Examples
@@ -1057,7 +1058,7 @@
     /// [Use VAD]: twilight_model::guild::Permissions::USE_VAD
     /// [View Audit Log]: twilight_model::guild::Permissions::VIEW_AUDIT_LOG
     /// [View Guild Insights]: twilight_model::guild::Permissions::VIEW_GUILD_INSIGHTS
-    </span><span class="attr">#[must_use = <span class="string">&quot;calculating permissions is only useful if they&#39;re used&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"calculating permissions is only useful if they're used"</span>]
     </span><span class="kw">pub const fn </span>in_channel(
         <span class="self">self</span>,
         channel_type: ChannelType,
@@ -1081,12 +1082,12 @@
             <span class="self">self</span>.user_id,
         );
 
-        <span class="comment">// If the permission set is empty then we don&#39;t need to do any removals.
+        <span class="comment">// If the permission set is empty then we don't need to do any removals.
         </span><span class="kw">if </span>permissions.is_empty() {
             <span class="kw">return </span>permissions;
         }
 
-        <span class="comment">// Remove permissions that can&#39;t be used in a channel, i.e. are relevant
+        <span class="comment">// Remove permissions that can't be used in a channel, i.e. are relevant
         // to guild-level permission calculating.
         </span>permissions = bitops::remove(permissions, PERMISSIONS_ROOT_ONLY);
 
@@ -1144,7 +1145,7 @@
         <span class="kw">match </span>overwrite.kind {
             PermissionOverwriteType::Role =&gt; {
                 <span class="comment">// We need to process the @everyone role first, so apply it
-                // straight to the permissions. The other roles&#39; permissions
+                // straight to the permissions. The other roles' permissions
                 // will be applied later.
                 </span><span class="kw">if </span>overwrite.id.get() == configured_guild_id.get() {
                     permissions = bitops::remove(permissions, overwrite.deny);
@@ -1231,7 +1232,7 @@
         id::Id,
     };
 
-    <span class="macro">assert_impl_all!</span>(PermissionCalculator&lt;<span class="lifetime">&#39;_</span>&gt;: Clone, Debug, Eq, PartialEq, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(PermissionCalculator&lt;<span class="lifetime">'_</span>&gt;: Clone, Debug, Eq, PartialEq, Send, Sync);
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>owner_is_admin() {
@@ -1246,7 +1247,7 @@
         <span class="macro">assert_eq!</span>(Permissions::all(), calculator.root());
     }
 
-    <span class="comment">// Test that a permission overwrite denying the &quot;View Channel&quot; permission
+    <span class="comment">// Test that a permission overwrite denying the "View Channel" permission
     // implicitly denies all other permissions.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>view_channel_deny_implicit() {
@@ -1256,7 +1257,7 @@
         <span class="kw">let </span>roles = <span class="kw-2">&amp;</span>[(Id::new(<span class="number">3</span>), Permissions::empty())];
 
         {
-            <span class="comment">// First, test when it&#39;s denied for an overwrite on a role the user
+            <span class="comment">// First, test when it's denied for an overwrite on a role the user
             // has.
             </span><span class="kw">let </span>overwrites = <span class="kw-2">&amp;</span>[PermissionOverwrite {
                 allow: Permissions::SEND_TTS_MESSAGES,
@@ -1271,7 +1272,7 @@
             <span class="macro">assert_eq!</span>(calculated, Permissions::empty());
         }
 
-        <span class="comment">// And now that it&#39;s denied for an overwrite on the member.
+        <span class="comment">// And now that it's denied for an overwrite on the member.
         </span>{
             <span class="kw">let </span>overwrites = <span class="kw-2">&amp;</span>[PermissionOverwrite {
                 allow: Permissions::SEND_TTS_MESSAGES,
@@ -1338,12 +1339,12 @@
         <span class="kw">let </span>calculated = PermissionCalculator::new(guild_id, user_id, everyone_role, roles)
             .in_channel(ChannelType::GuildText, <span class="kw-2">&amp;</span>[]);
 
-        <span class="comment">// The `CONNECT` permission isn&#39;t included because text channels don&#39;t
+        <span class="comment">// The `CONNECT` permission isn't included because text channels don't
         // have the permission.
         </span><span class="macro">assert_eq!</span>(calculated, Permissions::SEND_MESSAGES);
     }
 
-    <span class="comment">// Test that denying the &quot;Send Messages&quot; permission denies all message
+    <span class="comment">// Test that denying the "Send Messages" permission denies all message
     // send related permissions.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>deny_send_messages_removes_related() {
@@ -1353,7 +1354,7 @@
             Permissions::MANAGE_MESSAGES | Permissions::EMBED_LINKS | Permissions::MENTION_EVERYONE;
         <span class="kw">let </span>roles = <span class="kw-2">&amp;</span>[(Id::new(<span class="number">3</span>), Permissions::empty())];
 
-        <span class="comment">// First, test when it&#39;s denied for an overwrite on a role the user has.
+        <span class="comment">// First, test when it's denied for an overwrite on a role the user has.
         </span><span class="kw">let </span>overwrites = <span class="kw-2">&amp;</span>[PermissionOverwrite {
             allow: Permissions::ATTACH_FILES,
             deny: Permissions::SEND_MESSAGES,
@@ -1367,7 +1368,7 @@
         <span class="macro">assert_eq!</span>(calculated, Permissions::MANAGE_MESSAGES);
     }
 
-    <span class="doccomment">/// Test that a member that has a role with the &quot;administrator&quot; permission
+    <span class="doccomment">/// Test that a member that has a role with the "administrator" permission
     /// has all denying overwrites ignored.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>admin() {
@@ -1376,7 +1377,7 @@
             PermissionCalculator::new(Id::new(<span class="number">1</span>), Id::new(<span class="number">2</span>), Permissions::empty(), member_roles);
         <span class="macro">assert!</span>(calc.root().is_all());
 
-        <span class="comment">// Ensure that the denial of &quot;send messages&quot; doesn&#39;t actually occur due
+        <span class="comment">// Ensure that the denial of "send messages" doesn't actually occur due
         // to the user being an administrator.
         </span><span class="macro">assert!</span>(calc.in_channel(ChannelType::GuildText, <span class="kw-2">&amp;</span>[]).is_all());
     }

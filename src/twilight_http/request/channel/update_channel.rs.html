@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/update_channel.rs`."><title>update_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/update_channel.rs`."><title>update_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -439,46 +440,46 @@
     request::{audit_reason <span class="kw">as </span>validate_audit_reason, ValidationError},
 };
 
-<span class="comment">// The Discord API doesn&#39;t require the `name` and `kind` fields to be present,
+<span class="comment">// The Discord API doesn't require the `name` and `kind` fields to be present,
 // but it does require them to be non-null.
 </span><span class="attr">#[derive(Serialize)]
-</span><span class="kw">struct </span>UpdateChannelFields&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>available_tags: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[ForumTag]&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+</span><span class="kw">struct </span>UpdateChannelFields&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>available_tags: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>bitrate: <span class="prelude-ty">Option</span>&lt;u32&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>default_forum_layout: <span class="prelude-ty">Option</span>&lt;ForumLayout&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>DefaultReaction&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>DefaultReaction&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>default_sort_order: <span class="prelude-ty">Option</span>&lt;Nullable&lt;ForumSortOrder&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>default_thread_rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;Nullable&lt;u16&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>flags: <span class="prelude-ty">Option</span>&lt;ChannelFlags&gt;,
-    <span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>kind: <span class="prelude-ty">Option</span>&lt;ChannelType&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>nsfw: <span class="prelude-ty">Option</span>&lt;bool&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>parent_id: <span class="prelude-ty">Option</span>&lt;Nullable&lt;Id&lt;ChannelMarker&gt;&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[PermissionOverwrite]&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[PermissionOverwrite]&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>position: <span class="prelude-ty">Option</span>&lt;u64&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;u16&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>rtc_region: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>rtc_region: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>user_limit: <span class="prelude-ty">Option</span>&lt;u16&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>video_quality_mode: <span class="prelude-ty">Option</span>&lt;VideoQualityMode&gt;,
 }
 
@@ -486,16 +487,16 @@
 ///
 /// All fields are optional. The minimum length of the name is 1 UTF-16 character
 /// and the maximum is 100 UTF-16 characters.
-</span><span class="attr">#[must_use = <span class="string">&quot;requests must be configured and executed&quot;</span>]
-</span><span class="kw">pub struct </span>UpdateChannel&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
+</span><span class="kw">pub struct </span>UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
     channel_id: Id&lt;ChannelMarker&gt;,
-    fields: UpdateChannelFields&lt;<span class="lifetime">&#39;a</span>&gt;,
-    http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    fields: UpdateChannelFields&lt;<span class="lifetime">'a</span>&gt;,
+    http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
+    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; UpdateChannel&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client, channel_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client, channel_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             channel_id,
             fields: UpdateChannelFields {
@@ -524,7 +525,7 @@
     }
 
     <span class="doccomment">/// Set the available tags for the forum.
-    </span><span class="kw">pub const fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub const fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.available_tags = <span class="prelude-val">Some</span>(available_tags);
 
         <span class="self">self
@@ -560,7 +561,7 @@
     <span class="doccomment">/// Set the default reaction emoji for new forum threads.
     </span><span class="kw">pub const fn </span>default_reaction_emoji(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>DefaultReaction&gt;,
+        default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>DefaultReaction&gt;,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.default_reaction_emoji = <span class="prelude-val">Some</span>(Nullable(default_reaction_emoji));
 
@@ -577,8 +578,8 @@
     <span class="doccomment">/// Set the default number of seconds that a user must wait before before
     /// they are able to send another message in new forum threads.
     ///
-    /// The minimum is 0 and the maximum is 21600. This is also known as &quot;Slow
-    /// Mode&quot;. See [Discord Docs/Channel Object].
+    /// The minimum is 0 and the maximum is 21600. This is also known as "Slow
+    /// Mode". See [Discord Docs/Channel Object].
     ///
     /// # Errors
     ///
@@ -626,7 +627,7 @@
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
     /// [`ForumTopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::ForumTopicInvalid
     /// [`GuildForum`]: twilight_model::channel::ChannelType::GuildForum
-    </span><span class="kw">pub fn </span>forum_topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
+    </span><span class="kw">pub fn </span>forum_topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(topic) = topic {
             validate_forum_topic(topic)<span class="question-mark">?</span>;
         }
@@ -646,7 +647,7 @@
     /// Returns an error of type [`NameInvalid`] if the name is invalid.
     ///
     /// [`NameInvalid`]: twilight_validate::channel::ChannelValidationErrorType::NameInvalid
-    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
         validate_name(name)<span class="question-mark">?</span>;
 
         <span class="self">self</span>.fields.name = <span class="prelude-val">Some</span>(name);
@@ -673,7 +674,7 @@
     /// channel currently has, so use with caution!
     </span><span class="kw">pub const fn </span>permission_overwrites(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        permission_overwrites: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[PermissionOverwrite],
+        permission_overwrites: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[PermissionOverwrite],
     ) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.permission_overwrites = <span class="prelude-val">Some</span>(permission_overwrites);
 
@@ -693,8 +694,8 @@
     <span class="doccomment">/// Set the number of seconds that a user must wait before before they are able to send another
     /// message.
     ///
-    /// The minimum is 0 and the maximum is 21600. This is also known as &quot;Slow
-    /// Mode&quot;. See [Discord Docs/Channel Object].
+    /// The minimum is 0 and the maximum is 21600. This is also known as "Slow
+    /// Mode". See [Discord Docs/Channel Object].
     ///
     /// # Errors
     ///
@@ -717,10 +718,10 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// For voice and stage channels, set the channel&#39;s RTC region.
+    <span class="doccomment">/// For voice and stage channels, set the channel's RTC region.
     ///
     /// Set to `None` to clear.
-    </span><span class="kw">pub const fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub const fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.rtc_region = <span class="prelude-val">Some</span>(Nullable(rtc_region));
 
         <span class="self">self
@@ -737,7 +738,7 @@
     ///
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
     /// [`TopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TopicInvalid
-    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
+    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
         validate_topic(topic)<span class="question-mark">?</span>;
 
         <span class="self">self</span>.fields.topic.replace(topic);
@@ -785,14 +786,14 @@
     </span>}
 
     <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.14.0&quot;</span>, note = <span class="string">&quot;use `.await` or `into_future` instead&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
     </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Channel&gt; {
         <span class="self">self</span>.into_future()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AuditLogReason&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
         validate_audit_reason(reason)<span class="question-mark">?</span>;
 
         <span class="self">self</span>.reason.replace(reason);
@@ -801,7 +802,7 @@
     }
 }
 
-<span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;Response&lt;Channel&gt;, Error&gt;;
 
     <span class="kw">type </span>IntoFuture = ResponseFuture&lt;Channel&gt;;
@@ -816,7 +817,7 @@
     }
 }
 
-<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::UpdateChannel {
             channel_id: <span class="self">self</span>.channel_id.get(),

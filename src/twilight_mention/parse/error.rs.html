@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-mention/src/parse/error.rs`."><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_mention" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-mention/src/parse/error.rs`."><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_mention" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -328,30 +329,30 @@
 
 <span class="doccomment">/// Parsing a mention failed due to invalid syntax.
 </span><span class="attr">#[derive(Debug)]
-</span><span class="kw">pub struct </span>ParseMentionError&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">super</span>) kind: ParseMentionErrorType&lt;<span class="lifetime">&#39;a</span>&gt;,
+</span><span class="kw">pub struct </span>ParseMentionError&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">super</span>) kind: ParseMentionErrorType&lt;<span class="lifetime">'a</span>&gt;,
     <span class="kw">pub</span>(<span class="kw">super</span>) source: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ParseMentionError&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; ParseMentionError&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
-    </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ParseMentionErrorType&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
+    </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ParseMentionErrorType&lt;<span class="lifetime">'_</span>&gt; {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
-        ParseMentionErrorType&lt;<span class="lifetime">&#39;a</span>&gt;,
+        ParseMentionErrorType&lt;<span class="lifetime">'a</span>&gt;,
         <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;,
     ) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
@@ -365,105 +366,105 @@
     }
 }
 
-<span class="kw">impl </span>Display <span class="kw">for </span>ParseMentionError&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+<span class="kw">impl </span>Display <span class="kw">for </span>ParseMentionError&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             ParseMentionErrorType::IdNotU64 { found, .. } =&gt; {
-                f.write_str(<span class="string">&quot;id portion (&#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"id portion ('"</span>)<span class="question-mark">?</span>;
                 Display::fmt(found, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;&#39;) of mention is not a u64&quot;</span>)
+                f.write_str(<span class="string">"') of mention is not a u64"</span>)
             }
             ParseMentionErrorType::ExtraneousPart { found } =&gt; {
-                f.write_str(<span class="string">&quot;found extraneous part &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"found extraneous part "</span>)<span class="question-mark">?</span>;
                 Debug::fmt(found, f)
             }
             ParseMentionErrorType::LeadingArrow { found } =&gt; {
-                f.write_str(<span class="string">&quot;expected to find a leading arrow (&#39;&lt;&#39;) but instead found &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"expected to find a leading arrow ('&lt;') but instead found "</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(c) = found {
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"'"</span>)<span class="question-mark">?</span>;
                     f.write_str(c.encode_utf8(<span class="kw-2">&amp;mut </span>[<span class="number">0</span>; <span class="number">4</span>]))<span class="question-mark">?</span>;
 
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)
+                    f.write_str(<span class="string">"'"</span>)
                 } <span class="kw">else </span>{
-                    f.write_str(<span class="string">&quot;nothing&quot;</span>)
+                    f.write_str(<span class="string">"nothing"</span>)
                 }
             }
             ParseMentionErrorType::PartMissing { expected, found } =&gt; {
-                f.write_str(<span class="string">&quot;expected &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"expected "</span>)<span class="question-mark">?</span>;
                 Display::fmt(expected, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; parts but only found &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" parts but only found "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(found, f)
             }
             ParseMentionErrorType::Sigil { expected, found } =&gt; {
-                f.write_str(<span class="string">&quot;expected to find a mention sigil (&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"expected to find a mention sigil ("</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">for </span>(idx, sigil) <span class="kw">in </span>expected.iter().enumerate() {
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"'"</span>)<span class="question-mark">?</span>;
                     f.write_str(sigil)<span class="question-mark">?</span>;
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"'"</span>)<span class="question-mark">?</span>;
 
                     <span class="kw">if </span>idx &lt; expected.len() - <span class="number">1 </span>{
-                        f.write_str(<span class="string">&quot;, &quot;</span>)<span class="question-mark">?</span>;
+                        f.write_str(<span class="string">", "</span>)<span class="question-mark">?</span>;
                     }
                 }
 
-                f.write_str(<span class="string">&quot;) but instead found &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">") but instead found "</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(c) = found {
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"'"</span>)<span class="question-mark">?</span>;
                     f.write_str(c.encode_utf8(<span class="kw-2">&amp;mut </span>[<span class="number">0</span>; <span class="number">4</span>]))<span class="question-mark">?</span>;
 
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)
+                    f.write_str(<span class="string">"'"</span>)
                 } <span class="kw">else </span>{
-                    f.write_str(<span class="string">&quot;nothing&quot;</span>)
+                    f.write_str(<span class="string">"nothing"</span>)
                 }
             }
             ParseMentionErrorType::TimestampStyleInvalid { found } =&gt; {
-                f.write_str(<span class="string">&quot;timestamp style value &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"timestamp style value '"</span>)<span class="question-mark">?</span>;
                 f.write_str(found)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;&#39; is invalid&quot;</span>)
+                f.write_str(<span class="string">"' is invalid"</span>)
             }
             ParseMentionErrorType::TrailingArrow { found } =&gt; {
-                f.write_str(<span class="string">&quot;expected to find a trailing arrow (&#39;&gt;&#39;) but instead found &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"expected to find a trailing arrow ('&gt;') but instead found "</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(c) = found {
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"'"</span>)<span class="question-mark">?</span>;
                     f.write_str(c.encode_utf8(<span class="kw-2">&amp;mut </span>[<span class="number">0</span>; <span class="number">4</span>]))<span class="question-mark">?</span>;
 
-                    f.write_str(<span class="string">&quot;&#39;&quot;</span>)
+                    f.write_str(<span class="string">"'"</span>)
                 } <span class="kw">else </span>{
-                    f.write_str(<span class="string">&quot;nothing&quot;</span>)
+                    f.write_str(<span class="string">"nothing"</span>)
                 }
             }
         }
     }
 }
 
-<span class="kw">impl </span>Error <span class="kw">for </span>ParseMentionError&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+<span class="kw">impl </span>Error <span class="kw">for </span>ParseMentionError&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
 <span class="doccomment">/// Type of [`ParseMentionError`] that occurred.
 </span><span class="attr">#[derive(Debug, Eq, PartialEq)]
 #[non_exhaustive]
-</span><span class="kw">pub enum </span>ParseMentionErrorType&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="doccomment">/// ID portion of the mention isn&#39;t a u64.
+</span><span class="kw">pub enum </span>ParseMentionErrorType&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="doccomment">/// ID portion of the mention isn't a u64.
     </span>IdNotU64 {
         <span class="doccomment">/// String that could not be parsed into a u64.
-        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     },
-    <span class="doccomment">/// An extra part was found that shouldn&#39;t be present.
+    <span class="doccomment">/// An extra part was found that shouldn't be present.
     </span>ExtraneousPart {
         <span class="doccomment">/// The extra part that was found.
-        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     },
     <span class="doccomment">/// Leading arrow (`&lt;`) is not present.
     </span>LeadingArrow {
@@ -474,26 +475,26 @@
     ///
     /// For example, an emoji mention - `&lt;:name:id&gt;` - has two parts: the `name`
     /// and the `id`, separated by the sigil (`:`). If the second sigil denoting
-    /// the second part can&#39;t be found, then it is missing.
+    /// the second part can't be found, then it is missing.
     </span>PartMissing {
         <span class="doccomment">/// Number of parts that are expected.
         </span>expected: usize,
         <span class="doccomment">/// Number of parts that have been found.
         </span>found: usize,
     },
-    <span class="doccomment">/// Mention&#39;s sigil is not present.
+    <span class="doccomment">/// Mention's sigil is not present.
     ///
     /// Users, for example, have the sigil `@`.
     </span>Sigil {
         <span class="doccomment">/// Possible sigils that were expected for the mention type.
-        </span>expected: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        </span>expected: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str],
         <span class="doccomment">/// Character that was instead found where the sigil should be.
         </span>found: <span class="prelude-ty">Option</span>&lt;char&gt;,
     },
     <span class="doccomment">/// Timestamp style value is invalid.
     </span>TimestampStyleInvalid {
         <span class="doccomment">/// Value of the style.
-        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        </span>found: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     },
     <span class="doccomment">/// Trailing arrow (`&gt;`) is not present.
     </span>TrailingArrow {
@@ -514,43 +515,43 @@
     <span class="macro">assert_fields!</span>(ParseMentionErrorType::Sigil: expected, found);
     <span class="macro">assert_fields!</span>(ParseMentionErrorType::TimestampStyleInvalid: found);
     <span class="macro">assert_fields!</span>(ParseMentionErrorType::TrailingArrow: found);
-    <span class="macro">assert_impl_all!</span>(ParseMentionErrorType&lt;<span class="lifetime">&#39;_</span>&gt;: Debug, Send, Sync);
-    <span class="macro">assert_impl_all!</span>(ParseMentionError&lt;<span class="lifetime">&#39;_</span>&gt;: Debug, Error, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(ParseMentionErrorType&lt;<span class="lifetime">'_</span>&gt;: Debug, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(ParseMentionError&lt;<span class="lifetime">'_</span>&gt;: Debug, Error, Send, Sync);
 
     <span class="attr">#[allow(clippy::too_many_lines)]
     #[test]
     </span><span class="kw">fn </span>display() {
-        <span class="kw">let </span><span class="kw-2">mut </span>expected = <span class="string">&quot;id portion (&#39;abcd&#39;) of mention is not a u64&quot;</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>expected = <span class="string">"id portion ('abcd') of mention is not a u64"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
-                kind: ParseMentionErrorType::IdNotU64 { found: <span class="string">&quot;abcd&quot; </span>},
-                source: <span class="prelude-val">Some</span>(Box::new(<span class="string">&quot;abcd&quot;</span>.parse::&lt;u64&gt;().unwrap_err())),
+                kind: ParseMentionErrorType::IdNotU64 { found: <span class="string">"abcd" </span>},
+                source: <span class="prelude-val">Some</span>(Box::new(<span class="string">"abcd"</span>.parse::&lt;u64&gt;().unwrap_err())),
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;found extraneous part \&quot;abc\&quot;&quot;</span>;
+        expected = <span class="string">"found extraneous part \"abc\""</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
-                kind: ParseMentionErrorType::ExtraneousPart { found: <span class="string">&quot;abc&quot; </span>},
+                kind: ParseMentionErrorType::ExtraneousPart { found: <span class="string">"abc" </span>},
                 source: <span class="prelude-val">None
             </span>}
             .to_string()
         );
 
-        expected = <span class="string">&quot;expected to find a leading arrow (&#39;&lt;&#39;) but instead found &#39;a&#39;&quot;</span>;
+        expected = <span class="string">"expected to find a leading arrow ('&lt;') but instead found 'a'"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
-                kind: ParseMentionErrorType::LeadingArrow { found: <span class="prelude-val">Some</span>(<span class="string">&#39;a&#39;</span>) },
+                kind: ParseMentionErrorType::LeadingArrow { found: <span class="prelude-val">Some</span>(<span class="string">'a'</span>) },
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a leading arrow (&#39;&lt;&#39;) but instead found nothing&quot;</span>;
+        expected = <span class="string">"expected to find a leading arrow ('&lt;') but instead found nothing"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
@@ -560,25 +561,25 @@
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a mention sigil (&#39;@&#39;) but instead found &#39;#&#39;&quot;</span>;
+        expected = <span class="string">"expected to find a mention sigil ('@') but instead found '#'"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
                 kind: ParseMentionErrorType::Sigil {
-                    expected: <span class="kw-2">&amp;</span>[<span class="string">&quot;@&quot;</span>],
-                    found: <span class="prelude-val">Some</span>(<span class="string">&#39;#&#39;</span>)
+                    expected: <span class="kw-2">&amp;</span>[<span class="string">"@"</span>],
+                    found: <span class="prelude-val">Some</span>(<span class="string">'#'</span>)
                 },
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a mention sigil (&#39;@&#39;) but instead found nothing&quot;</span>;
+        expected = <span class="string">"expected to find a mention sigil ('@') but instead found nothing"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
                 kind: ParseMentionErrorType::Sigil {
-                    expected: <span class="kw-2">&amp;</span>[<span class="string">&quot;@&quot;</span>],
+                    expected: <span class="kw-2">&amp;</span>[<span class="string">"@"</span>],
                     found: <span class="prelude-val">None
                 </span>},
                 source: <span class="prelude-val">None</span>,
@@ -586,52 +587,52 @@
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a mention sigil (&#39;@&#39;) but instead found &#39;#&#39;&quot;</span>;
+        expected = <span class="string">"expected to find a mention sigil ('@') but instead found '#'"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
                 kind: ParseMentionErrorType::Sigil {
-                    expected: <span class="kw-2">&amp;</span>[<span class="string">&quot;@&quot;</span>],
-                    found: <span class="prelude-val">Some</span>(<span class="string">&#39;#&#39;</span>),
+                    expected: <span class="kw-2">&amp;</span>[<span class="string">"@"</span>],
+                    found: <span class="prelude-val">Some</span>(<span class="string">'#'</span>),
                 },
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a mention sigil (&#39;@&#39;) but instead found nothing&quot;</span>;
+        expected = <span class="string">"expected to find a mention sigil ('@') but instead found nothing"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
                 kind: ParseMentionErrorType::Sigil {
-                    expected: <span class="kw-2">&amp;</span>[<span class="string">&quot;@&quot;</span>],
+                    expected: <span class="kw-2">&amp;</span>[<span class="string">"@"</span>],
                     found: <span class="prelude-val">None
                 </span>},
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
-        expected = <span class="string">&quot;timestamp style value &#39;E&#39; is invalid&quot;</span>;
+        expected = <span class="string">"timestamp style value 'E' is invalid"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
-                kind: ParseMentionErrorType::TimestampStyleInvalid { found: <span class="string">&quot;E&quot; </span>},
+                kind: ParseMentionErrorType::TimestampStyleInvalid { found: <span class="string">"E" </span>},
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a trailing arrow (&#39;&gt;&#39;) but instead found &#39;a&#39;&quot;</span>;
+        expected = <span class="string">"expected to find a trailing arrow ('&gt;') but instead found 'a'"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {
-                kind: ParseMentionErrorType::TrailingArrow { found: <span class="prelude-val">Some</span>(<span class="string">&#39;a&#39;</span>) },
+                kind: ParseMentionErrorType::TrailingArrow { found: <span class="prelude-val">Some</span>(<span class="string">'a'</span>) },
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
         );
 
-        expected = <span class="string">&quot;expected to find a trailing arrow (&#39;&gt;&#39;) but instead found nothing&quot;</span>;
+        expected = <span class="string">"expected to find a trailing arrow ('&gt;') but instead found nothing"</span>;
         <span class="macro">assert_eq!</span>(
             expected,
             ParseMentionError {

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1031,36 +1032,36 @@
 
 <span class="kw">impl </span>RoleFieldsError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>RoleFieldsErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (RoleFieldsErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>RoleFieldsError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             RoleFieldsErrorType::ColorNotRgb { color } =&gt; {
-                f.write_str(<span class="string">&quot;the color &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the color "</span>)<span class="question-mark">?</span>;
                 Display::fmt(color, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; is invalid&quot;</span>)
+                f.write_str(<span class="string">" is invalid"</span>)
             }
             RoleFieldsErrorType::IdInvalid =&gt; {
-                f.write_str(<span class="string">&quot;the given id value is 1, which is not acceptable&quot;</span>)
+                f.write_str(<span class="string">"the given id value is 1, which is not acceptable"</span>)
             }
         }
     }
@@ -1083,7 +1084,7 @@
 
 <span class="doccomment">/// A builder for role fields.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into a role&quot;</span>]
+#[must_use = <span class="string">"must be built into a role"</span>]
 </span><span class="kw">pub struct </span>RoleFieldsBuilder(RoleFields);
 
 <span class="kw">impl </span>RoleFieldsBuilder {
@@ -1118,7 +1119,7 @@
     <span class="doccomment">/// Set the role color.
     ///
     /// This must be a valid hexadecimal RGB value. `0x000000` is ignored
-    /// and doesn&#39;t count towards the final computed color in the user list.
+    /// and doesn't count towards the final computed color in the user list.
     /// Refer to [`Self::COLOR_MAXIMUM`] for the maximum
     /// acceptable value.
     ///
@@ -1193,46 +1194,46 @@
 
 <span class="kw">impl </span>TextFieldsError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>TextFieldsErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (TextFieldsErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>TextFieldsError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             TextFieldsErrorType::NameTooShort { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too short: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too short: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
             TextFieldsErrorType::NameTooLong { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too long: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too long: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
             TextFieldsErrorType::RateLimitInvalid { limit } =&gt; {
-                f.write_str(<span class="string">&quot;the rate limit &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the rate limit "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; is invalid&quot;</span>)
+                f.write_str(<span class="string">" is invalid"</span>)
             }
             TextFieldsErrorType::TopicTooLong { topic } =&gt; {
-                f.write_str(<span class="string">&quot;the topic is too long: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the topic is too long: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>topic.len(), f)
             }
@@ -1270,7 +1271,7 @@
 
 <span class="doccomment">/// A builder for text fields.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into a text channel&quot;</span>]
+#[must_use = <span class="string">"must be built into a text channel"</span>]
 </span><span class="kw">pub struct </span>TextFieldsBuilder(TextFields);
 
 <span class="kw">impl </span>TextFieldsBuilder {
@@ -1349,14 +1350,14 @@
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the channel&#39;s permission overwrites.
+    <span class="doccomment">/// Set the channel's permission overwrites.
     </span><span class="kw">pub fn </span>permission_overwrites(<span class="kw-2">mut </span><span class="self">self</span>, overwrites: Vec&lt;PermissionOverwrite&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.permission_overwrites.replace(overwrites);
 
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the channel&#39;s rate limit per user.
+    <span class="doccomment">/// Set the channel's rate limit per user.
     ///
     /// # Errors
     ///
@@ -1374,7 +1375,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Set the channel&#39;s topic.
+    <span class="doccomment">/// Set the channel's topic.
     ///
     /// # Errors
     ///
@@ -1401,35 +1402,35 @@
 
 <span class="kw">impl </span>VoiceFieldsError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>VoiceFieldsErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (VoiceFieldsErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>VoiceFieldsError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             VoiceFieldsErrorType::NameTooShort { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too short: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too short: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
             VoiceFieldsErrorType::NameTooLong { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too long: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too long: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
@@ -1457,7 +1458,7 @@
 
 <span class="doccomment">/// A builder for voice fields.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into a voice channel&quot;</span>]
+#[must_use = <span class="string">"must be built into a voice channel"</span>]
 </span><span class="kw">pub struct </span>VoiceFieldsBuilder(VoiceFields);
 
 <span class="kw">impl </span>VoiceFieldsBuilder {
@@ -1514,21 +1515,21 @@
         <span class="self">self</span>.<span class="number">0
     </span>}
 
-    <span class="doccomment">/// Set the voice channel&#39;s bitrate.
+    <span class="doccomment">/// Set the voice channel's bitrate.
     </span><span class="kw">pub const fn </span>bitrate(<span class="kw-2">mut </span><span class="self">self</span>, bitrate: u32) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.bitrate = <span class="prelude-val">Some</span>(bitrate);
 
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the channel&#39;s permission overwrites.
+    <span class="doccomment">/// Set the channel's permission overwrites.
     </span><span class="kw">pub fn </span>permission_overwrites(<span class="kw-2">mut </span><span class="self">self</span>, overwrites: Vec&lt;PermissionOverwrite&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.permission_overwrites.replace(overwrites);
 
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the voice channel&#39;s user limit.
+    <span class="doccomment">/// Set the voice channel's user limit.
     </span><span class="kw">pub const fn </span>user_limit(<span class="kw-2">mut </span><span class="self">self</span>, limit: u16) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.user_limit = <span class="prelude-val">Some</span>(limit);
 
@@ -1544,20 +1545,20 @@
 
 <span class="kw">impl </span>CategoryFieldsError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CategoryFieldsErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -1569,15 +1570,15 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>CategoryFieldsError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             CategoryFieldsErrorType::NameTooShort { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too short: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too short: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
             CategoryFieldsErrorType::NameTooLong { name } =&gt; {
-                f.write_str(<span class="string">&quot;the name is too long: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the name is too long: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>name.len(), f)
             }
@@ -1605,7 +1606,7 @@
 
 <span class="doccomment">/// A builder for a category channel, and its children.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into a category channel&quot;</span>]
+#[must_use = <span class="string">"must be built into a category channel"</span>]
 </span><span class="kw">pub struct </span>CategoryFieldsBuilder {
     fields: CategoryFields,
     channels: Vec&lt;GuildChannelFields&gt;,
@@ -1693,7 +1694,7 @@
 
 <span class="doccomment">/// A builder for a list of channels.
 </span><span class="attr">#[derive(Clone, Debug, Default, Eq, PartialEq)]
-#[must_use = <span class="string">&quot;must be built into a list of channels&quot;</span>]
+#[must_use = <span class="string">"must be built into a list of channels"</span>]
 </span><span class="kw">pub struct </span>GuildChannelFieldsBuilder(Vec&lt;GuildChannelFields&gt;);
 
 <span class="kw">impl </span>GuildChannelFieldsBuilder {
@@ -1791,7 +1792,7 @@
     }
 
     <span class="kw">fn </span>voice() -&gt; VoiceFields {
-        VoiceFieldsBuilder::new(<span class="string">&quot;voicename&quot;</span>.to_owned())
+        VoiceFieldsBuilder::new(<span class="string">"voicename"</span>.to_owned())
             .unwrap()
             .bitrate(<span class="number">96_000</span>)
             .permission_overwrites(<span class="macro">vec!</span>[overwrite()])
@@ -1802,14 +1803,14 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>role_fields() {
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            RoleFieldsBuilder::new(<span class="string">&quot;role&quot;</span>.to_owned())
+            RoleFieldsBuilder::new(<span class="string">"role"</span>.to_owned())
                 .color(<span class="number">123_123_123</span>)
                 .unwrap_err()
                 .kind(),
             RoleFieldsErrorType::ColorNotRgb { color: <span class="number">123_123_123 </span>},
         ));
 
-        <span class="kw">let </span>fields = RoleFieldsBuilder::new(<span class="string">&quot;rolename&quot;</span>.to_owned())
+        <span class="kw">let </span>fields = RoleFieldsBuilder::new(<span class="string">"rolename"</span>.to_owned())
             .color(<span class="number">0x12_34_56</span>)
             .unwrap()
             .hoist()
@@ -1826,7 +1827,7 @@
                 hoist: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
                 id: Id::new(<span class="number">2</span>),
                 mentionable: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
-                name: String::from(<span class="string">&quot;rolename&quot;</span>),
+                name: String::from(<span class="string">"rolename"</span>),
                 permissions: <span class="prelude-val">Some</span>(Permissions::empty()),
                 position: <span class="prelude-val">Some</span>(<span class="number">1</span>),
             }
@@ -1847,7 +1848,7 @@
                 bitrate: <span class="prelude-val">Some</span>(<span class="number">96_000</span>),
                 id: Id::new(<span class="number">1</span>),
                 kind: ChannelType::GuildVoice,
-                name: String::from(<span class="string">&quot;voicename&quot;</span>),
+                name: String::from(<span class="string">"voicename"</span>),
                 permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                     allow: <span class="prelude-val">Some</span>(perms()),
                     deny: <span class="prelude-val">Some</span>(Permissions::empty()),
@@ -1861,13 +1862,13 @@
     }
 
     <span class="kw">fn </span>text() -&gt; TextFields {
-        TextFieldsBuilder::new(<span class="string">&quot;textname&quot;</span>.to_owned())
+        TextFieldsBuilder::new(<span class="string">"textname"</span>.to_owned())
             .unwrap()
             .nsfw()
             .permission_overwrites(<span class="macro">vec!</span>[overwrite()])
             .rate_limit_per_user(<span class="number">4_000</span>)
             .unwrap()
-            .topic(<span class="string">&quot;a topic&quot;</span>.to_owned())
+            .topic(<span class="string">"a topic"</span>.to_owned())
             .unwrap()
             .build()
     }
@@ -1885,7 +1886,7 @@
             TextFields {
                 id: Id::new(<span class="number">1</span>),
                 kind: ChannelType::GuildText,
-                name: String::from(<span class="string">&quot;textname&quot;</span>),
+                name: String::from(<span class="string">"textname"</span>),
                 nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
                 permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                     allow: <span class="prelude-val">Some</span>(perms()),
@@ -1895,13 +1896,13 @@
                 }]),
                 parent_id: <span class="prelude-val">None</span>,
                 rate_limit_per_user: <span class="prelude-val">Some</span>(<span class="number">4_000</span>),
-                topic: <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;a topic&quot;</span>)),
+                topic: <span class="prelude-val">Some</span>(String::from(<span class="string">"a topic"</span>)),
             }
         );
     }
 
     <span class="kw">fn </span>category() -&gt; CategoryFieldsBuilder {
-        CategoryFieldsBuilder::new(<span class="string">&quot;category&quot;</span>.to_owned())
+        CategoryFieldsBuilder::new(<span class="string">"category"</span>.to_owned())
             .unwrap()
             .add_text(text())
             .add_voice(voice())
@@ -1924,13 +1925,13 @@
                 GuildChannelFields::Category(CategoryFields {
                     id: Id::new(<span class="number">2</span>),
                     kind: ChannelType::GuildCategory,
-                    name: String::from(<span class="string">&quot;category&quot;</span>),
+                    name: String::from(<span class="string">"category"</span>),
                     permission_overwrites: <span class="prelude-val">None</span>,
                 }),
                 GuildChannelFields::Text(TextFields {
                     id: Id::new(<span class="number">1</span>),
                     kind: ChannelType::GuildText,
-                    name: String::from(<span class="string">&quot;textname&quot;</span>),
+                    name: String::from(<span class="string">"textname"</span>),
                     nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
                     permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                         allow: <span class="prelude-val">Some</span>(
@@ -1944,13 +1945,13 @@
                     }]),
                     parent_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">2</span>)),
                     rate_limit_per_user: <span class="prelude-val">Some</span>(<span class="number">4_000</span>),
-                    topic: <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;a topic&quot;</span>)),
+                    topic: <span class="prelude-val">Some</span>(String::from(<span class="string">"a topic"</span>)),
                 }),
                 GuildChannelFields::Voice(VoiceFields {
                     bitrate: <span class="prelude-val">Some</span>(<span class="number">96_000</span>),
                     id: Id::new(<span class="number">1</span>),
                     kind: ChannelType::GuildVoice,
-                    name: String::from(<span class="string">&quot;voicename&quot;</span>),
+                    name: String::from(<span class="string">"voicename"</span>),
                     permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                         allow: <span class="prelude-val">Some</span>(
                             Permissions::CONNECT
@@ -1980,7 +1981,7 @@
                 GuildChannelFields::Text(TextFields {
                     id: Id::new(<span class="number">1</span>),
                     kind: ChannelType::GuildText,
-                    name: String::from(<span class="string">&quot;textname&quot;</span>),
+                    name: String::from(<span class="string">"textname"</span>),
                     nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
                     permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                         allow: <span class="prelude-val">Some</span>(
@@ -1994,13 +1995,13 @@
                     }]),
                     parent_id: <span class="prelude-val">None</span>,
                     rate_limit_per_user: <span class="prelude-val">Some</span>(<span class="number">4_000</span>),
-                    topic: <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;a topic&quot;</span>)),
+                    topic: <span class="prelude-val">Some</span>(String::from(<span class="string">"a topic"</span>)),
                 }),
                 GuildChannelFields::Voice(VoiceFields {
                     bitrate: <span class="prelude-val">Some</span>(<span class="number">96_000</span>),
                     id: Id::new(<span class="number">1</span>),
                     kind: ChannelType::GuildVoice,
-                    name: String::from(<span class="string">&quot;voicename&quot;</span>),
+                    name: String::from(<span class="string">"voicename"</span>),
                     permission_overwrites: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[PermissionOverwrite {
                         allow: <span class="prelude-val">Some</span>(
                             Permissions::CONNECT

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/event/voice_state.rs`."><title>voice_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/event/voice_state.rs`."><title>voice_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -377,7 +378,7 @@
     }
 
     <span class="kw">fn </span>cache_voice_state(<span class="kw-2">&amp;</span><span class="self">self</span>, voice_state: VoiceState) {
-        <span class="comment">// This should always exist, but let&#39;s check just in case.
+        <span class="comment">// This should always exist, but let's check just in case.
         </span><span class="kw">let </span><span class="prelude-val">Some</span>(guild_id) = voice_state.guild_id <span class="kw">else </span>{
             <span class="kw">return</span>;
         };
@@ -476,9 +477,9 @@
 
         <span class="comment">// Note: Channel ids are `&lt;guildid&gt;&lt;idx&gt;` where idx is the index of the channel id
         // This is done to prevent channel id collisions between guilds
-        // The other 2 ids are not special since they can&#39;t overlap
+        // The other 2 ids are not special since they can't overlap
 
-        // User 1 joins guild 1&#39;s channel 11 (1 channel, 1 guild)
+        // User 1 joins guild 1's channel 11 (1 channel, 1 guild)
         </span>{
             <span class="comment">// Ids for this insert
             </span><span class="kw">let </span>(guild_id, channel_id, user_id) = (Id::new(<span class="number">1</span>), Id::new(<span class="number">11</span>), Id::new(<span class="number">1</span>));
@@ -498,7 +499,7 @@
             <span class="macro">assert_eq!</span>(<span class="number">1</span>, cache.voice_state_guilds.len());
         }
 
-        <span class="comment">// User 2 joins guild 2&#39;s channel 21 (2 channels, 2 guilds)
+        <span class="comment">// User 2 joins guild 2's channel 21 (2 channels, 2 guilds)
         </span>{
             <span class="comment">// Ids for this insert
             </span><span class="kw">let </span>(guild_id, channel_id, user_id) = (Id::new(<span class="number">2</span>), Id::new(<span class="number">21</span>), Id::new(<span class="number">2</span>));
@@ -518,7 +519,7 @@
             <span class="macro">assert_eq!</span>(<span class="number">2</span>, cache.voice_state_guilds.len());
         }
 
-        <span class="comment">// User 3 joins guild 1&#39;s channel 12  (3 channels, 2 guilds)
+        <span class="comment">// User 3 joins guild 1's channel 12  (3 channels, 2 guilds)
         </span>{
             <span class="comment">// Ids for this insert
             </span><span class="kw">let </span>(guild_id, channel_id, user_id) = (Id::new(<span class="number">1</span>), Id::new(<span class="number">12</span>), Id::new(<span class="number">3</span>));
@@ -539,7 +540,7 @@
             </span><span class="macro">assert_eq!</span>(<span class="number">2</span>, cache.voice_state_guilds.len());
         }
 
-        <span class="comment">// User 3 moves to guild 1&#39;s channel 11 (2 channels, 2 guilds)
+        <span class="comment">// User 3 moves to guild 1's channel 11 (2 channels, 2 guilds)
         </span>{
             <span class="comment">// Ids for this insert
             </span><span class="kw">let </span>(guild_id, channel_id, user_id) = (Id::new(<span class="number">1</span>), Id::new(<span class="number">11</span>), Id::new(<span class="number">3</span>));
@@ -636,22 +637,22 @@
             self_mute: <span class="bool-val">false</span>,
             self_stream: <span class="bool-val">false</span>,
             self_video: <span class="bool-val">false</span>,
-            session_id: <span class="string">&quot;38fj3jfkh3pfho3prh2&quot;</span>.to_string(),
+            session_id: <span class="string">"38fj3jfkh3pfho3prh2"</span>.to_string(),
             suppress: <span class="bool-val">false</span>,
             user_id: Id::new(<span class="number">1</span>),
             request_to_speak_timestamp: <span class="prelude-val">Some</span>(
-                Timestamp::from_str(<span class="string">&quot;2021-04-21T22:16:50+00:00&quot;</span>).expect(<span class="string">&quot;proper datetime&quot;</span>),
+                Timestamp::from_str(<span class="string">"2021-04-21T22:16:50+00:00"</span>).expect(<span class="string">"proper datetime"</span>),
             ),
         }));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>voice_states_members() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
 
         <span class="kw">let </span>cache = InMemoryCache::new();
 
-        <span class="kw">let </span>avatar = ImageHash::parse(<span class="string">b&quot;169280485ba78d541a9090e7ea35a14e&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>avatar = ImageHash::parse(<span class="string">b"169280485ba78d541a9090e7ea35a14e"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>mutation = VoiceStateUpdate(VoiceState {
@@ -678,11 +679,11 @@
                     discriminator: <span class="number">1</span>,
                     email: <span class="prelude-val">None</span>,
                     flags: <span class="prelude-val">None</span>,
-                    global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                    global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                     id: Id::new(<span class="number">3</span>),
                     locale: <span class="prelude-val">None</span>,
                     mfa_enabled: <span class="prelude-val">None</span>,
-                    name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                    name: <span class="string">"test"</span>.to_owned(),
                     premium_type: <span class="prelude-val">None</span>,
                     public_flags: <span class="prelude-val">None</span>,
                     system: <span class="prelude-val">None</span>,
@@ -698,7 +699,7 @@
             suppress: <span class="bool-val">false</span>,
             user_id: Id::new(<span class="number">3</span>),
             request_to_speak_timestamp: <span class="prelude-val">Some</span>(
-                Timestamp::from_str(<span class="string">&quot;2021-04-21T22:16:50+00:00&quot;</span>).expect(<span class="string">&quot;proper datetime&quot;</span>),
+                Timestamp::from_str(<span class="string">"2021-04-21T22:16:50+00:00"</span>).expect(<span class="string">"proper datetime"</span>),
             ),
         });
 

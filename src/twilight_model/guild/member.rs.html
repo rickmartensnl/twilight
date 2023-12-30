@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/member.rs`."><title>member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/member.rs`."><title>member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -273,8 +274,8 @@
 /// [`Guild`]: super::Guild
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Member {
-    <span class="doccomment">/// Member&#39;s guild avatar.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Member's guild avatar.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="kw">pub </span>communication_disabled_until: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="kw">pub </span>deaf: bool,
@@ -285,11 +286,11 @@
     <span class="kw">pub </span>joined_at: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="kw">pub </span>mute: bool,
     <span class="kw">pub </span>nick: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="doccomment">/// Whether the user has yet to pass the guild&#39;s [Membership Screening]
+    <span class="doccomment">/// Whether the user has yet to pass the guild's [Membership Screening]
     /// requirements.
     </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>pending: bool,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>premium_since: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="kw">pub </span>roles: Vec&lt;Id&lt;RoleMarker&gt;&gt;,
     <span class="kw">pub </span>user: User,
@@ -310,8 +311,8 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>member_deserializer() -&gt; <span class="prelude-ty">Result</span>&lt;(), TimestampParseError&gt; {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>)<span class="question-mark">?</span>);
-        <span class="kw">let </span>premium_since = Timestamp::from_str(<span class="string">&quot;2021-03-16T14:29:19.046000+00:00&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>premium_since = Timestamp::from_str(<span class="string">"2021-03-16T14:29:19.046000+00:00"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>value = Member {
@@ -321,7 +322,7 @@
             flags,
             joined_at,
             mute: <span class="bool-val">true</span>,
-            nick: <span class="prelude-val">Some</span>(<span class="string">&quot;twilight&quot;</span>.to_owned()),
+            nick: <span class="prelude-val">Some</span>(<span class="string">"twilight"</span>.to_owned()),
             pending: <span class="bool-val">false</span>,
             premium_since: <span class="prelude-val">Some</span>(premium_since),
             roles: Vec::new(),
@@ -334,11 +335,11 @@
                 discriminator: <span class="number">1</span>,
                 email: <span class="prelude-val">None</span>,
                 flags: <span class="prelude-val">None</span>,
-                global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                 id: Id::new(<span class="number">3</span>),
                 locale: <span class="prelude-val">None</span>,
                 mfa_enabled: <span class="prelude-val">None</span>,
-                name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+                name: <span class="string">"twilight"</span>.to_owned(),
                 premium_type: <span class="prelude-val">None</span>,
                 public_flags: <span class="prelude-val">None</span>,
                 system: <span class="prelude-val">None</span>,
@@ -350,59 +351,59 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Member&quot;</span>,
+                    name: <span class="string">"Member"</span>,
                     len: <span class="number">11</span>,
                 },
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
-                Token::Str(<span class="string">&quot;communication_disabled_until&quot;</span>),
+                Token::Str(<span class="string">"communication_disabled_until"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;deaf&quot;</span>),
+                Token::Str(<span class="string">"deaf"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Str(<span class="string">"flags"</span>),
                 Token::U64(flags.bits()),
-                Token::Str(<span class="string">&quot;joined_at&quot;</span>),
+                Token::Str(<span class="string">"joined_at"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;mute&quot;</span>),
+                Token::Str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>),
+                Token::Str(<span class="string">"mute"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;nick&quot;</span>),
+                Token::Str(<span class="string">"nick"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
-                Token::Str(<span class="string">&quot;pending&quot;</span>),
+                Token::Str(<span class="string">"twilight"</span>),
+                Token::Str(<span class="string">"pending"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;premium_since&quot;</span>),
+                Token::Str(<span class="string">"premium_since"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2021-03-16T14:29:19.046000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;roles&quot;</span>),
+                Token::Str(<span class="string">"2021-03-16T14:29:19.046000+00:00"</span>),
+                Token::Str(<span class="string">"roles"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;user&quot;</span>),
+                Token::Str(<span class="string">"user"</span>),
                 Token::Struct {
-                    name: <span class="string">&quot;User&quot;</span>,
+                    name: <span class="string">"User"</span>,
                     len: <span class="number">9</span>,
                 },
-                Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+                Token::Str(<span class="string">"accent_color"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::Str(<span class="string">"avatar_decoration"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;banner&quot;</span>),
+                Token::Str(<span class="string">"banner"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;bot&quot;</span>),
+                Token::Str(<span class="string">"bot"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;discriminator&quot;</span>),
-                Token::Str(<span class="string">&quot;0001&quot;</span>),
-                Token::Str(<span class="string">&quot;global_name&quot;</span>),
+                Token::Str(<span class="string">"discriminator"</span>),
+                Token::Str(<span class="string">"0001"</span>),
+                Token::Str(<span class="string">"global_name"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;3&quot;</span>),
-                Token::Str(<span class="string">&quot;username&quot;</span>),
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
+                Token::Str(<span class="string">"test"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"3"</span>),
+                Token::Str(<span class="string">"username"</span>),
+                Token::Str(<span class="string">"twilight"</span>),
                 Token::StructEnd,
                 Token::StructEnd,
             ],
@@ -413,9 +414,9 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>guild_member_communication_disabled_until() -&gt; <span class="prelude-ty">Result</span>&lt;(), TimestampParseError&gt; {
-        <span class="kw">let </span>communication_disabled_until = Timestamp::from_str(<span class="string">&quot;2021-12-23T14:29:19.046000+00:00&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>)<span class="question-mark">?</span>);
-        <span class="kw">let </span>premium_since = Timestamp::from_str(<span class="string">&quot;2021-03-16T14:29:19.046000+00:00&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>communication_disabled_until = Timestamp::from_str(<span class="string">"2021-12-23T14:29:19.046000+00:00"</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>premium_since = Timestamp::from_str(<span class="string">"2021-03-16T14:29:19.046000+00:00"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>value = Member {
@@ -425,7 +426,7 @@
             flags,
             joined_at,
             mute: <span class="bool-val">true</span>,
-            nick: <span class="prelude-val">Some</span>(<span class="string">&quot;twilight&quot;</span>.to_owned()),
+            nick: <span class="prelude-val">Some</span>(<span class="string">"twilight"</span>.to_owned()),
             pending: <span class="bool-val">false</span>,
             premium_since: <span class="prelude-val">Some</span>(premium_since),
             roles: Vec::new(),
@@ -438,11 +439,11 @@
                 discriminator: <span class="number">1</span>,
                 email: <span class="prelude-val">None</span>,
                 flags: <span class="prelude-val">None</span>,
-                global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                 id: Id::new(<span class="number">3</span>),
                 locale: <span class="prelude-val">None</span>,
                 mfa_enabled: <span class="prelude-val">None</span>,
-                name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+                name: <span class="string">"twilight"</span>.to_owned(),
                 premium_type: <span class="prelude-val">None</span>,
                 public_flags: <span class="prelude-val">None</span>,
                 system: <span class="prelude-val">None</span>,
@@ -454,60 +455,60 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Member&quot;</span>,
+                    name: <span class="string">"Member"</span>,
                     len: <span class="number">11</span>,
                 },
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
-                Token::Str(<span class="string">&quot;communication_disabled_until&quot;</span>),
+                Token::Str(<span class="string">"communication_disabled_until"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2021-12-23T14:29:19.046000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;deaf&quot;</span>),
+                Token::Str(<span class="string">"2021-12-23T14:29:19.046000+00:00"</span>),
+                Token::Str(<span class="string">"deaf"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Str(<span class="string">"flags"</span>),
                 Token::U64(flags.bits()),
-                Token::Str(<span class="string">&quot;joined_at&quot;</span>),
+                Token::Str(<span class="string">"joined_at"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;mute&quot;</span>),
+                Token::Str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>),
+                Token::Str(<span class="string">"mute"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;nick&quot;</span>),
+                Token::Str(<span class="string">"nick"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
-                Token::Str(<span class="string">&quot;pending&quot;</span>),
+                Token::Str(<span class="string">"twilight"</span>),
+                Token::Str(<span class="string">"pending"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;premium_since&quot;</span>),
+                Token::Str(<span class="string">"premium_since"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2021-03-16T14:29:19.046000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;roles&quot;</span>),
+                Token::Str(<span class="string">"2021-03-16T14:29:19.046000+00:00"</span>),
+                Token::Str(<span class="string">"roles"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;user&quot;</span>),
+                Token::Str(<span class="string">"user"</span>),
                 Token::Struct {
-                    name: <span class="string">&quot;User&quot;</span>,
+                    name: <span class="string">"User"</span>,
                     len: <span class="number">9</span>,
                 },
-                Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+                Token::Str(<span class="string">"accent_color"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::Str(<span class="string">"avatar_decoration"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;banner&quot;</span>),
+                Token::Str(<span class="string">"banner"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;bot&quot;</span>),
+                Token::Str(<span class="string">"bot"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;discriminator&quot;</span>),
-                Token::Str(<span class="string">&quot;0001&quot;</span>),
-                Token::Str(<span class="string">&quot;global_name&quot;</span>),
+                Token::Str(<span class="string">"discriminator"</span>),
+                Token::Str(<span class="string">"0001"</span>),
+                Token::Str(<span class="string">"global_name"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;3&quot;</span>),
-                Token::Str(<span class="string">&quot;username&quot;</span>),
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
+                Token::Str(<span class="string">"test"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"3"</span>),
+                Token::Str(<span class="string">"username"</span>),
+                Token::Str(<span class="string">"twilight"</span>),
                 Token::StructEnd,
                 Token::StructEnd,
             ],

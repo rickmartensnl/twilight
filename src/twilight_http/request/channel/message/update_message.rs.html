@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/message/update_message.rs`."><title>update_message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/message/update_message.rs`."><title>update_message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -407,22 +408,22 @@
 };
 
 <span class="attr">#[derive(Serialize)]
-</span><span class="kw">struct </span>UpdateMessageFields&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>allowed_mentions: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>AllowedMentions&gt;&gt;,
+</span><span class="kw">struct </span>UpdateMessageFields&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>allowed_mentions: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>AllowedMentions&gt;&gt;,
     <span class="doccomment">/// List of attachments to keep, and new attachments to add.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>attachments: <span class="prelude-ty">Option</span>&lt;Nullable&lt;Vec&lt;PartialAttachment&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>components: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Component]&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>content: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>embeds: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Embed]&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>attachments: <span class="prelude-ty">Option</span>&lt;Nullable&lt;Vec&lt;PartialAttachment&lt;<span class="lifetime">'a</span>&gt;&gt;&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>components: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Component]&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>content: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>embeds: <span class="prelude-ty">Option</span>&lt;Nullable&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Embed]&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>flags: <span class="prelude-ty">Option</span>&lt;MessageFlags&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>payload_json: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>payload_json: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]&gt;,
 }
 
 <span class="doccomment">/// Update a message by [`Id&lt;ChannelMarker&gt;`] and [`Id&lt;MessageMarker&gt;`].
@@ -434,22 +435,22 @@
 ///
 /// # Examples
 ///
-/// Replace the content with `&quot;test update&quot;`:
+/// Replace the content with `"test update"`:
 ///
 /// ```no_run
 /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 /// use twilight_http::Client;
 /// use twilight_model::id::Id;
 ///
-/// let client = Client::new(&quot;my token&quot;.to_owned());
+/// let client = Client::new("my token".to_owned());
 /// client
 ///     .update_message(Id::new(1), Id::new(2))
-///     .content(Some(&quot;test update&quot;))?
+///     .content(Some("test update"))?
 ///     .await?;
 /// # Ok(()) }
 /// ```
 ///
-/// Remove the message&#39;s content:
+/// Remove the message's content:
 ///
 /// ```no_run
 /// # use twilight_http::Client;
@@ -457,7 +458,7 @@
 /// #
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// # let client = Client::new(&quot;my token&quot;.to_owned());
+/// # let client = Client::new("my token".to_owned());
 /// client
 ///     .update_message(Id::new(1), Id::new(2))
 ///     .content(None)?
@@ -468,18 +469,18 @@
 /// [`attachments`]: Self::attachments
 /// [`content`]: Self::content
 /// [`embeds`]: Self::embeds
-</span><span class="attr">#[must_use = <span class="string">&quot;requests must be configured and executed&quot;</span>]
-</span><span class="kw">pub struct </span>UpdateMessage&lt;<span class="lifetime">&#39;a</span>&gt; {
-    attachment_manager: AttachmentManager&lt;<span class="lifetime">&#39;a</span>&gt;,
+</span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
+</span><span class="kw">pub struct </span>UpdateMessage&lt;<span class="lifetime">'a</span>&gt; {
+    attachment_manager: AttachmentManager&lt;<span class="lifetime">'a</span>&gt;,
     channel_id: Id&lt;ChannelMarker&gt;,
-    fields: UpdateMessageFields&lt;<span class="lifetime">&#39;a</span>&gt;,
-    http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
+    fields: UpdateMessageFields&lt;<span class="lifetime">'a</span>&gt;,
+    http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
     message_id: Id&lt;MessageMarker&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; UpdateMessage&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; UpdateMessage&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(
-        http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
+        http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
     ) -&gt; <span class="self">Self </span>{
@@ -502,9 +503,9 @@
 
     <span class="doccomment">/// Specify the [`AllowedMentions`] for the message.
     ///
-    /// If not called, the request will use the client&#39;s default allowed
+    /// If not called, the request will use the client's default allowed
     /// mentions.
-    </span><span class="kw">pub const fn </span>allowed_mentions(<span class="kw-2">mut </span><span class="self">self</span>, allowed_mentions: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>AllowedMentions&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub const fn </span>allowed_mentions(<span class="kw-2">mut </span><span class="self">self</span>, allowed_mentions: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>AllowedMentions&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.allowed_mentions = <span class="prelude-val">Some</span>(Nullable(allowed_mentions));
 
         <span class="self">self
@@ -517,7 +518,7 @@
     /// # Errors
     ///
     /// Returns an error of type [`AttachmentDescriptionTooLarge`] if
-    /// the attachments&#39;s description is too large.
+    /// the attachments's description is too large.
     ///
     /// Returns an error of type [`AttachmentFilename`] if any filename is
     /// invalid.
@@ -526,7 +527,7 @@
     /// [`AttachmentFilename`]: twilight_validate::message::MessageValidationErrorType::AttachmentFilename
     </span><span class="kw">pub fn </span>attachments(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        attachments: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Attachment],
+        attachments: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Attachment],
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
         attachments.iter().try_for_each(validate_attachment)<span class="question-mark">?</span>;
 
@@ -537,7 +538,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Set the message&#39;s list of [`Component`]s.
+    <span class="doccomment">/// Set the message's list of [`Component`]s.
     ///
     /// Calling this method will clear previous calls.
     ///
@@ -552,7 +553,7 @@
     /// may be returned as a result of validating each provided component.
     </span><span class="kw">pub fn </span>components(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        components: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Component]&gt;,
+        components: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Component]&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(components) = components {
             validate_components(components)<span class="question-mark">?</span>;
@@ -563,7 +564,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Set the message&#39;s content.
+    <span class="doccomment">/// Set the message's content.
     ///
     /// The maximum length is 2000 UTF-16 characters.
     ///
@@ -579,7 +580,7 @@
     /// long.
     ///
     /// [`ContentInvalid`]: twilight_validate::message::MessageValidationErrorType::ContentInvalid
-    </span><span class="kw">pub fn </span>content(<span class="kw-2">mut </span><span class="self">self</span>, content: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
+    </span><span class="kw">pub fn </span>content(<span class="kw-2">mut </span><span class="self">self</span>, content: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(content_ref) = content.as_ref() {
             validate_content(content_ref)<span class="question-mark">?</span>;
         }
@@ -589,7 +590,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Set the message&#39;s list of embeds.
+    <span class="doccomment">/// Set the message's list of embeds.
     ///
     /// Calling this method will clear previous calls.
     ///
@@ -617,7 +618,7 @@
     /// [`EMBED_COUNT_LIMIT`]: twilight_validate::message::EMBED_COUNT_LIMIT
     /// [`EMBED_TOTAL_LENGTH`]: twilight_validate::embed::EMBED_TOTAL_LENGTH
     /// [`TooManyEmbeds`]: twilight_validate::message::MessageValidationErrorType::TooManyEmbeds
-    </span><span class="kw">pub fn </span>embeds(<span class="kw-2">mut </span><span class="self">self</span>, embeds: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Embed]&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
+    </span><span class="kw">pub fn </span>embeds(<span class="kw-2">mut </span><span class="self">self</span>, embeds: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Embed]&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(embeds) = embeds {
             validate_embeds(embeds)<span class="question-mark">?</span>;
         }
@@ -627,7 +628,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Set the message&#39;s flags.
+    <span class="doccomment">/// Set the message's flags.
     ///
     /// The only supported flag is [`SUPPRESS_EMBEDS`].
     ///
@@ -647,7 +648,7 @@
     /// or `sticker_ids`. If not called, all attachments will be kept.
     ///
     /// [`attachments`]: Self::attachments
-    </span><span class="kw">pub fn </span>keep_attachment_ids(<span class="kw-2">mut </span><span class="self">self</span>, attachment_ids: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Id&lt;AttachmentMarker&gt;]) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>keep_attachment_ids(<span class="kw-2">mut </span><span class="self">self</span>, attachment_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;AttachmentMarker&gt;]) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.attachment_manager = <span class="self">self</span>.attachment_manager.set_ids(attachment_ids.to_vec());
 
         <span class="comment">// Set an empty list. This will be overwritten in `TryIntoRequest` if
@@ -669,20 +670,20 @@
     /// [Discord Docs/Uploading Files]: https://discord.com/developers/docs/reference#uploading-files
     /// [`ExecuteWebhook::payload_json`]: crate::request::channel::webhook::ExecuteWebhook::payload_json
     /// [`attachments`]: Self::attachments
-    </span><span class="kw">pub const fn </span>payload_json(<span class="kw-2">mut </span><span class="self">self</span>, payload_json: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub const fn </span>payload_json(<span class="kw-2">mut </span><span class="self">self</span>, payload_json: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.payload_json = <span class="prelude-val">Some</span>(payload_json);
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.14.0&quot;</span>, note = <span class="string">&quot;use `.await` or `into_future` instead&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
     </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Message&gt; {
         <span class="self">self</span>.into_future()
     }
 }
 
-<span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;Response&lt;Message&gt;, Error&gt;;
 
     <span class="kw">type </span>IntoFuture = ResponseFuture&lt;Message&gt;;
@@ -697,7 +698,7 @@
     }
 }
 
-<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::UpdateMessage {
             channel_id: <span class="self">self</span>.channel_id.get(),
@@ -747,16 +748,16 @@
         <span class="kw">const </span>CHANNEL_ID: Id&lt;ChannelMarker&gt; = Id::new(<span class="number">1</span>);
         <span class="kw">const </span>MESSAGE_ID: Id&lt;MessageMarker&gt; = Id::new(<span class="number">2</span>);
 
-        <span class="kw">let </span>client = Client::new(<span class="string">&quot;token&quot;</span>.into());
+        <span class="kw">let </span>client = Client::new(<span class="string">"token"</span>.into());
 
-        <span class="kw">let </span>expected = <span class="string">r#&quot;{&quot;attachments&quot;:[]}&quot;#</span>;
+        <span class="kw">let </span>expected = <span class="string">r#"{"attachments":[]}"#</span>;
         <span class="kw">let </span>actual = UpdateMessage::new(<span class="kw-2">&amp;</span>client, CHANNEL_ID, MESSAGE_ID)
             .keep_attachment_ids(<span class="kw-2">&amp;</span>[])
             .try_into_request()<span class="question-mark">?</span>;
 
         <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(expected.as_bytes()), actual.body());
 
-        <span class="kw">let </span>expected = <span class="string">r&quot;{}&quot;</span>;
+        <span class="kw">let </span>expected = <span class="string">r"{}"</span>;
         <span class="kw">let </span>actual = UpdateMessage::new(<span class="kw-2">&amp;</span>client, CHANNEL_ID, MESSAGE_ID).try_into_request()<span class="question-mark">?</span>;
 
         <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(expected.as_bytes()), actual.body());

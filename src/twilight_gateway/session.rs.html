@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/session.rs`."><title>session.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/session.rs`."><title>session.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -169,9 +170,9 @@
 </span><span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>std::mem;
 
-<span class="doccomment">/// Gateway session information for a shard&#39;s active connection.
+<span class="doccomment">/// Gateway session information for a shard's active connection.
 ///
-/// A session is a stateful identifier on Discord&#39;s end for running a [shard].
+/// A session is a stateful identifier on Discord's end for running a [shard].
 /// It is used for maintaining an authenticated Websocket connection based on
 /// an [identifier]. While a session is only connected to one shard, one shard
 /// can have more than one session: if a shard shuts down its connection and
@@ -181,15 +182,15 @@
 /// # Reusing sessions
 ///
 /// Sessions are able to be reused across connections to Discord. If an
-/// application&#39;s process needs to be restarted, then this session
+/// application's process needs to be restarted, then this session
 /// information—which can be (de)serialized via serde—can be stored, the
 /// application restarted, and then used again via [`ConfigBuilder::session`].
 ///
-/// If the delay between disconnecting from the gateway and reconnecting isn&#39;t
-/// too long and Discord hasn&#39;t invalidated the session, then the session will
-/// be reused by Discord. As a result, any events that were &quot;missed&quot; while
+/// If the delay between disconnecting from the gateway and reconnecting isn't
+/// too long and Discord hasn't invalidated the session, then the session will
+/// be reused by Discord. As a result, any events that were "missed" while
 /// restarting and reconnecting will be played back, meaning the application
-/// won&#39;t have missed any events. If the delay has been too long, then a new
+/// won't have missed any events. If the delay has been too long, then a new
 /// session will be initialized, resulting in those events being missed.
 ///
 /// [`ConfigBuilder::session`]: crate::ConfigBuilder::session
@@ -225,7 +226,7 @@
     /// is given a unique identifier for the gateway session.
     ///
     /// Session IDs are obtained by shards via sending an [`Identify`] command
-    /// with the shard&#39;s authentication details, and in return the session ID is
+    /// with the shard's authentication details, and in return the session ID is
     /// provided via the [`Ready`] event.
     ///
     /// [`Identify`]: twilight_model::gateway::payload::outgoing::Identify
@@ -240,7 +241,7 @@
     /// Number of the events that have been received during this session. A
     /// larger number typically correlates that the shard has been connected
     /// with this session for a longer time, while a smaller number typically
-    /// correlates to meaning that it&#39;s been connected with this session for a
+    /// correlates to meaning that it's been connected with this session for a
     /// shorter duration of time.
     ///
     /// As a shard is connected to the gateway and receives events this sequence
@@ -268,7 +269,7 @@
     <span class="macro">assert_impl_all!</span>(
         Session: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -280,7 +281,7 @@
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>serde() {
         <span class="kw">const </span>SEQUENCE: u64 = <span class="number">56_132</span>;
-        <span class="kw">const </span>SESSION_ID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;thisisanid&quot;</span>;
+        <span class="kw">const </span>SESSION_ID: <span class="kw-2">&amp;</span>str = <span class="string">"thisisanid"</span>;
 
         <span class="kw">let </span>value = Session::new(SEQUENCE, SESSION_ID.to_owned());
 
@@ -288,12 +289,12 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Session&quot;</span>,
+                    name: <span class="string">"Session"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;id&quot;</span>),
+                Token::Str(<span class="string">"id"</span>),
                 Token::Str(SESSION_ID),
-                Token::Str(<span class="string">&quot;sequence&quot;</span>),
+                Token::Str(<span class="string">"sequence"</span>),
                 Token::U64(SEQUENCE),
                 Token::StructEnd,
             ],
@@ -303,7 +304,7 @@
     <span class="doccomment">/// Test that session getters return the provided values.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>session() {
-        <span class="kw">const </span>SESSIONS: [(u64, <span class="kw-2">&amp;</span>str); <span class="number">2</span>] = [(<span class="number">1</span>, <span class="string">&quot;a&quot;</span>), (<span class="number">2</span>, <span class="string">&quot;b&quot;</span>)];
+        <span class="kw">const </span>SESSIONS: [(u64, <span class="kw-2">&amp;</span>str); <span class="number">2</span>] = [(<span class="number">1</span>, <span class="string">"a"</span>), (<span class="number">2</span>, <span class="string">"b"</span>)];
 
         <span class="kw">for </span>(sequence, session_id) <span class="kw">in </span>SESSIONS {
             <span class="kw">let </span>session = Session::new(sequence, session_id.to_owned());
@@ -324,7 +325,7 @@
         <span class="kw">let </span>old = session.set_sequence(SEQUENCE_NEXT);
         <span class="macro">assert_eq!</span>(old, SEQUENCE_INITIAL);
 
-        <span class="comment">// although we don&#39;t expect to skip sequences the setter should still
+        <span class="comment">// although we don't expect to skip sequences the setter should still
         // handle them as usual
         </span><span class="kw">let </span>skipped_old = session.set_sequence(SEQUENCE_SKIPPED);
         <span class="macro">assert_eq!</span>(skipped_old, SEQUENCE_NEXT);

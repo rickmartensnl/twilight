@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/invite_create.rs`."><title>invite_create.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/invite_create.rs`."><title>invite_create.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -234,7 +235,7 @@
     <span class="doccomment">/// ID of the guild being invited to.
     </span><span class="kw">pub </span>guild_id: Id&lt;GuildMarker&gt;,
     <span class="doccomment">/// Information about the user who created the invite.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>inviter: <span class="prelude-ty">Option</span>&lt;User&gt;,
     <span class="doccomment">/// Maximum age before the invite expires.
     ///
@@ -243,15 +244,15 @@
     <span class="doccomment">/// Maximum number of uses before the invite expires.
     </span><span class="kw">pub </span>max_uses: u64,
     <span class="doccomment">/// Target of the invite.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>target_user_type: <span class="prelude-ty">Option</span>&lt;TargetType&gt;,
     <span class="doccomment">/// User whose stream to display for this voice channel stream invite.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>target_user: <span class="prelude-ty">Option</span>&lt;PartialUser&gt;,
     <span class="doccomment">/// Whether the invite is temporary.
     ///
     /// Invited users will be kicked when they are disconnected from an audio
-    /// channel unless they&#39;re assigned a role.
+    /// channel unless they're assigned a role.
     </span><span class="kw">pub </span>temporary: bool,
     <span class="doccomment">/// Number of times the invite has been used.
     ///
@@ -263,7 +264,7 @@
 /// stream invite.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>PartialUser {
-    <span class="doccomment">/// Hash of the user&#39;s avatar.
+    <span class="doccomment">/// Hash of the user's avatar.
     </span><span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="doccomment">/// Discriminator used to differentiate people with the same [`username`].
     ///
@@ -273,8 +274,8 @@
     ///
     /// The discriminator field can be deserialized from either a string or an
     /// integer. The field will always serialize into a string due to that being
-    /// the type Discord&#39;s API uses.
-    </span><span class="attr">#[serde(with = <span class="string">&quot;user::discriminator&quot;</span>)]
+    /// the type Discord's API uses.
+    </span><span class="attr">#[serde(with = <span class="string">"user::discriminator"</span>)]
     </span><span class="kw">pub </span>discriminator: u16,
     <span class="doccomment">/// ID of the user.
     </span><span class="kw">pub </span>id: Id&lt;UserMarker&gt;,
@@ -317,7 +318,7 @@
     <span class="macro">assert_impl_all!</span>(
         InviteCreate: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         Hash,
         PartialEq,
@@ -328,7 +329,7 @@
     <span class="macro">assert_impl_all!</span>(
         PartialUser: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         Hash,
         PartialEq,
@@ -339,11 +340,11 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>invite_create() {
-        <span class="kw">let </span>created_at = Timestamp::from_secs(<span class="number">1_609_459_200</span>).expect(<span class="string">&quot;non zero&quot;</span>);
+        <span class="kw">let </span>created_at = Timestamp::from_secs(<span class="number">1_609_459_200</span>).expect(<span class="string">"non zero"</span>);
 
         <span class="kw">let </span>value = InviteCreate {
             channel_id: Id::new(<span class="number">1</span>),
-            code: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">7</span>),
+            code: <span class="string">"a"</span>.repeat(<span class="number">7</span>),
             created_at,
             guild_id: Id::new(<span class="number">2</span>),
             inviter: <span class="prelude-val">None</span>,
@@ -359,26 +360,26 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;InviteCreate&quot;</span>,
+                    name: <span class="string">"InviteCreate"</span>,
                     len: <span class="number">8</span>,
                 },
-                Token::Str(<span class="string">&quot;channel_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;code&quot;</span>),
-                Token::Str(<span class="string">&quot;aaaaaaa&quot;</span>),
-                Token::Str(<span class="string">&quot;created_at&quot;</span>),
-                Token::Str(<span class="string">&quot;2021-01-01T00:00:00.000000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;guild_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
-                Token::Str(<span class="string">&quot;max_age&quot;</span>),
+                Token::Str(<span class="string">"channel_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"code"</span>),
+                Token::Str(<span class="string">"aaaaaaa"</span>),
+                Token::Str(<span class="string">"created_at"</span>),
+                Token::Str(<span class="string">"2021-01-01T00:00:00.000000+00:00"</span>),
+                Token::Str(<span class="string">"guild_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"max_age"</span>),
                 Token::U64(<span class="number">3600</span>),
-                Token::Str(<span class="string">&quot;max_uses&quot;</span>),
+                Token::Str(<span class="string">"max_uses"</span>),
                 Token::U64(<span class="number">5</span>),
-                Token::Str(<span class="string">&quot;temporary&quot;</span>),
+                Token::Str(<span class="string">"temporary"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;uses&quot;</span>),
+                Token::Str(<span class="string">"uses"</span>),
                 Token::U8(<span class="number">0</span>),
                 Token::StructEnd,
             ],
@@ -391,26 +392,26 @@
             avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
             discriminator: <span class="number">123</span>,
             id: Id::new(<span class="number">1</span>),
-            username: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+            username: <span class="string">"twilight"</span>.to_owned(),
         };
 
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;PartialUser&quot;</span>,
+                    name: <span class="string">"PartialUser"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
-                Token::Str(<span class="string">&quot;discriminator&quot;</span>),
-                Token::Str(<span class="string">&quot;0123&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;username&quot;</span>),
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
+                Token::Str(<span class="string">"discriminator"</span>),
+                Token::Str(<span class="string">"0123"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"username"</span>),
+                Token::Str(<span class="string">"twilight"</span>),
                 Token::StructEnd,
             ],
         );

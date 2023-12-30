@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/reaction/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/reaction/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -158,7 +159,7 @@
 
 <span class="doccomment">/// Handle a reaction of either a custom or unicode emoji.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
-</span><span class="kw">pub enum </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub enum </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Reaction of a custom emoji.
     </span>Custom {
         <span class="doccomment">/// ID of the custom emoji.
@@ -167,12 +168,12 @@
         ///
         /// This is not strictly required, but may be helpful for Discord to
         /// work with.
-        </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
     },
-    <span class="doccomment">/// Reaction of a unicode emoji, such as &quot;🌈&quot;.
+    <span class="doccomment">/// Reaction of a unicode emoji, such as "🌈".
     </span>Unicode {
         <span class="doccomment">/// Unicode emoji.
-        </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        </span>name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     },
 }
 
@@ -188,10 +189,10 @@
 ///
 /// let reaction = RequestReactionType::Custom {
 ///     id: Id::new(123),
-///     name: Some(&quot;rarity&quot;),
+///     name: Some("rarity"),
 /// };
 ///
-/// assert_eq!(&quot;rarity:123&quot;, reaction.to_string());
+/// assert_eq!("rarity:123", reaction.to_string());
 /// ```
 ///
 /// Format the transgeneder flag for use in a URL:
@@ -200,25 +201,25 @@
 /// use twilight_http::request::channel::reaction::RequestReactionType;
 ///
 /// let reaction = RequestReactionType::Unicode {
-///     name: &quot;🏳️‍⚧️&quot;
+///     name: "🏳️‍⚧️"
 /// };
 ///
 /// assert_eq!(
-///     &quot;%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%E2%9A%A7%EF%B8%8F&quot;,
+///     "%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%E2%9A%A7%EF%B8%8F",
 ///     reaction.to_string(),
 /// );
 /// ```
-</span><span class="kw">impl </span>Display <span class="kw">for </span>RequestReactionType&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+</span><span class="kw">impl </span>Display <span class="kw">for </span>RequestReactionType&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self </span>{
             RequestReactionType::Custom { id, name } =&gt; {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(name) = name {
                     f.write_str(name)<span class="question-mark">?</span>;
                 } <span class="kw">else </span>{
-                    f.write_str(<span class="string">&quot;e&quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">"e"</span>)<span class="question-mark">?</span>;
                 }
 
-                f.write_str(<span class="string">&quot;:&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">":"</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(id, f)
             }
@@ -231,7 +232,7 @@
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="comment">// `clippy::non_ascii_literal` can&#39;t be allowed on an item level; it can
+    <span class="comment">// `clippy::non_ascii_literal` can't be allowed on an item level; it can
     // only be enabled on a module level.
     </span><span class="attr">#![allow(clippy::non_ascii_literal)]
 
@@ -245,16 +246,16 @@
 
     <span class="macro">assert_fields!</span>(RequestReactionType::Custom: id, name);
     <span class="macro">assert_fields!</span>(RequestReactionType::Unicode: name);
-    <span class="macro">assert_impl_all!</span>(RequestReactionType&lt;<span class="lifetime">&#39;_</span>&gt;: Clone, Copy, Debug, Display, Eq, Hash, PartialEq, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(RequestReactionType&lt;<span class="lifetime">'_</span>&gt;: Clone, Copy, Debug, Display, Eq, Hash, PartialEq, Send, Sync);
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>display_custom_with_name() {
         <span class="kw">let </span>reaction = RequestReactionType::Custom {
             id: Id::new(<span class="number">123</span>),
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>),
+            name: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>),
         };
 
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;foo:123&quot;</span>, reaction.to_string());
+        <span class="macro">assert_eq!</span>(<span class="string">"foo:123"</span>, reaction.to_string());
     }
 
     <span class="attr">#[test]
@@ -264,20 +265,20 @@
             name: <span class="prelude-val">None</span>,
         };
 
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;e:123&quot;</span>, reaction.to_string());
+        <span class="macro">assert_eq!</span>(<span class="string">"e:123"</span>, reaction.to_string());
     }
 
     <span class="doccomment">/// Test that unicode reactions format with percent encoding.
-    </span><span class="comment">// We can&#39;t use the actual flag here
+    </span><span class="comment">// We can't use the actual flag here
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>display_unicode() {
         <span class="kw">let </span>reaction = RequestReactionType::Unicode {
             <span class="comment">// Rainbow flag 🏳️‍🌈
-            </span>name: <span class="string">&quot;🏳️‍🌈&quot;</span>,
+            </span>name: <span class="string">"🏳️‍🌈"</span>,
         };
 
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88&quot;</span>,
+            <span class="string">"%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88"</span>,
             reaction.to_string()
         );
     }

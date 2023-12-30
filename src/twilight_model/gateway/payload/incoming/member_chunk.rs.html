@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/member_chunk.rs`."><title>member_chunk.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/member_chunk.rs`."><title>member_chunk.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -496,7 +497,7 @@
     <span class="kw">pub </span>chunk_index: u32,
     <span class="kw">pub </span>guild_id: Id&lt;GuildMarker&gt;,
     <span class="kw">pub </span>members: Vec&lt;Member&gt;,
-    <span class="attr">#[serde(default, skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(default, skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>nonce: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>not_found: Vec&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="attr">#[serde(default)]
@@ -504,7 +505,7 @@
 }
 
 <span class="attr">#[derive(Debug, Deserialize)]
-#[serde(field_identifier, rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+#[serde(field_identifier, rename_all = <span class="string">"snake_case"</span>)]
 </span><span class="kw">enum </span>Field {
     ChunkCount,
     ChunkIndex,
@@ -517,15 +518,15 @@
 
 <span class="kw">struct </span>MemberChunkVisitor;
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>MemberChunkVisitor {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>MemberChunkVisitor {
     <span class="kw">type </span>Value = MemberChunk;
 
-    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;struct MemberChunk&quot;</span>)
+    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"struct MemberChunk"</span>)
     }
 
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
+    </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>chunk_count = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>chunk_index = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>guild_id = <span class="prelude-val">None</span>;
@@ -548,49 +549,49 @@
             <span class="kw">match </span>key {
                 Field::ChunkCount =&gt; {
                     <span class="kw">if </span>chunk_count.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;chunk_count&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"chunk_count"</span>));
                     }
 
                     chunk_count = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::ChunkIndex =&gt; {
                     <span class="kw">if </span>chunk_index.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;chunk_index&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"chunk_index"</span>));
                     }
 
                     chunk_index = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::GuildId =&gt; {
                     <span class="kw">if </span>guild_id.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;guild_id&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"guild_id"</span>));
                     }
 
                     guild_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Members =&gt; {
                     <span class="kw">if </span>members.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;members&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"members"</span>));
                     }
 
                     members = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Nonce =&gt; {
                     <span class="kw">if </span>nonce.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;nonce&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"nonce"</span>));
                     }
 
                     nonce = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::NotFound =&gt; {
                     <span class="kw">if </span>not_found.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;not_found&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"not_found"</span>));
                     }
 
                     not_found = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Presences =&gt; {
                     <span class="kw">if </span>presences.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;presences&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"presences"</span>));
                     }
 
                     <span class="kw">let </span>deserializer = PresenceListDeserializer::new(Id::new(<span class="number">1</span>));
@@ -600,10 +601,10 @@
             }
         }
 
-        <span class="kw">let </span>chunk_count = chunk_count.ok_or_else(|| DeError::missing_field(<span class="string">&quot;chunk_count&quot;</span>))<span class="question-mark">?</span>;
-        <span class="kw">let </span>chunk_index = chunk_index.ok_or_else(|| DeError::missing_field(<span class="string">&quot;chunk_index&quot;</span>))<span class="question-mark">?</span>;
-        <span class="kw">let </span>guild_id = guild_id.ok_or_else(|| DeError::missing_field(<span class="string">&quot;guild_id&quot;</span>))<span class="question-mark">?</span>;
-        <span class="kw">let </span>members = members.ok_or_else(|| DeError::missing_field(<span class="string">&quot;members&quot;</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>chunk_count = chunk_count.ok_or_else(|| DeError::missing_field(<span class="string">"chunk_count"</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>chunk_index = chunk_index.ok_or_else(|| DeError::missing_field(<span class="string">"chunk_index"</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>guild_id = guild_id.ok_or_else(|| DeError::missing_field(<span class="string">"guild_id"</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>members = members.ok_or_else(|| DeError::missing_field(<span class="string">"members"</span>))<span class="question-mark">?</span>;
         <span class="kw">let </span>not_found = not_found.unwrap_or_default();
         <span class="kw">let </span><span class="kw-2">mut </span>presences = presences.unwrap_or_default();
 
@@ -623,19 +624,19 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>MemberChunk {
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>MemberChunk {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">const </span>FIELDS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
-            <span class="string">&quot;chunk_count&quot;</span>,
-            <span class="string">&quot;chunk_index&quot;</span>,
-            <span class="string">&quot;guild_id&quot;</span>,
-            <span class="string">&quot;members&quot;</span>,
-            <span class="string">&quot;nonce&quot;</span>,
-            <span class="string">&quot;not_found&quot;</span>,
-            <span class="string">&quot;presences&quot;</span>,
+            <span class="string">"chunk_count"</span>,
+            <span class="string">"chunk_index"</span>,
+            <span class="string">"guild_id"</span>,
+            <span class="string">"members"</span>,
+            <span class="string">"nonce"</span>,
+            <span class="string">"not_found"</span>,
+            <span class="string">"presences"</span>,
         ];
 
-        deserializer.deserialize_struct(<span class="string">&quot;MemberChunk&quot;</span>, FIELDS, MemberChunkVisitor)
+        deserializer.deserialize_struct(<span class="string">"MemberChunk"</span>, FIELDS, MemberChunkVisitor)
     }
 }
 
@@ -655,114 +656,114 @@
     <span class="attr">#[allow(clippy::too_many_lines)]
     #[test]
     </span><span class="kw">fn </span>simple_member_chunk() -&gt; <span class="prelude-ty">Result</span>&lt;(), TimestampParseError&gt; {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">&quot;2020-04-04T04:04:04.000000+00:00&quot;</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2020-04-04T04:04:04.000000+00:00"</span>)<span class="question-mark">?</span>);
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>input = <span class="macro">serde_json::json!</span>({
-            <span class="string">&quot;chunk_count&quot;</span>: <span class="number">1</span>,
-            <span class="string">&quot;chunk_index&quot;</span>: <span class="number">0</span>,
-            <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-            <span class="string">&quot;members&quot;</span>: [{
-                <span class="string">&quot;communication_disabled_until&quot;</span>: null,
-                <span class="string">&quot;deaf&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;flags&quot;</span>: flags.bits(),
-                <span class="string">&quot;hoisted_role&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;joined_at&quot;</span>: <span class="string">&quot;2020-04-04T04:04:04.000000+00:00&quot;</span>,
-                <span class="string">&quot;mute&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;nick&quot;</span>: <span class="string">&quot;chunk&quot;</span>,
-                <span class="string">&quot;pending&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;roles&quot;</span>: [<span class="string">&quot;6&quot;</span>],
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;avatar&quot;</span>: image_hash::AVATAR_INPUT,
-                    <span class="string">&quot;discriminator&quot;</span>: <span class="string">&quot;0001&quot;</span>,
-                    <span class="string">&quot;global_name&quot;</span>: <span class="string">&quot;test&quot;</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;5&quot;</span>,
-                    <span class="string">&quot;public_flags&quot;</span>: <span class="number">131_072</span>,
-                    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;test&quot;</span>,
+            <span class="string">"chunk_count"</span>: <span class="number">1</span>,
+            <span class="string">"chunk_index"</span>: <span class="number">0</span>,
+            <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+            <span class="string">"members"</span>: [{
+                <span class="string">"communication_disabled_until"</span>: null,
+                <span class="string">"deaf"</span>: <span class="bool-val">false</span>,
+                <span class="string">"flags"</span>: flags.bits(),
+                <span class="string">"hoisted_role"</span>: <span class="string">"6"</span>,
+                <span class="string">"joined_at"</span>: <span class="string">"2020-04-04T04:04:04.000000+00:00"</span>,
+                <span class="string">"mute"</span>: <span class="bool-val">false</span>,
+                <span class="string">"nick"</span>: <span class="string">"chunk"</span>,
+                <span class="string">"pending"</span>: <span class="bool-val">true</span>,
+                <span class="string">"roles"</span>: [<span class="string">"6"</span>],
+                <span class="string">"user"</span>: {
+                    <span class="string">"avatar"</span>: image_hash::AVATAR_INPUT,
+                    <span class="string">"discriminator"</span>: <span class="string">"0001"</span>,
+                    <span class="string">"global_name"</span>: <span class="string">"test"</span>,
+                    <span class="string">"id"</span>: <span class="string">"5"</span>,
+                    <span class="string">"public_flags"</span>: <span class="number">131_072</span>,
+                    <span class="string">"username"</span>: <span class="string">"test"</span>,
                 },
             }, {
-                <span class="string">&quot;communication_disabled_until&quot;</span>: null,
-                <span class="string">&quot;deaf&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;flags&quot;</span>: flags.bits(),
-                <span class="string">&quot;hoisted_role&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;joined_at&quot;</span>: <span class="string">&quot;2020-04-04T04:04:04.000000+00:00&quot;</span>,
-                <span class="string">&quot;mute&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;nick&quot;</span>: <span class="string">&quot;chunk&quot;</span>,
-                <span class="string">&quot;roles&quot;</span>: [<span class="string">&quot;6&quot;</span>],
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;avatar&quot;</span>: image_hash::AVATAR_INPUT,
-                    <span class="string">&quot;discriminator&quot;</span>: <span class="string">&quot;0001&quot;</span>,
-                    <span class="string">&quot;global_name&quot;</span>: <span class="string">&quot;test&quot;</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;test&quot;</span>,
+                <span class="string">"communication_disabled_until"</span>: null,
+                <span class="string">"deaf"</span>: <span class="bool-val">false</span>,
+                <span class="string">"flags"</span>: flags.bits(),
+                <span class="string">"hoisted_role"</span>: <span class="string">"6"</span>,
+                <span class="string">"joined_at"</span>: <span class="string">"2020-04-04T04:04:04.000000+00:00"</span>,
+                <span class="string">"mute"</span>: <span class="bool-val">false</span>,
+                <span class="string">"nick"</span>: <span class="string">"chunk"</span>,
+                <span class="string">"roles"</span>: [<span class="string">"6"</span>],
+                <span class="string">"user"</span>: {
+                    <span class="string">"avatar"</span>: image_hash::AVATAR_INPUT,
+                    <span class="string">"discriminator"</span>: <span class="string">"0001"</span>,
+                    <span class="string">"global_name"</span>: <span class="string">"test"</span>,
+                    <span class="string">"id"</span>: <span class="string">"6"</span>,
+                    <span class="string">"username"</span>: <span class="string">"test"</span>,
                 },
             }, {
-                <span class="string">&quot;communication_disabled_until&quot;</span>: null,
-                <span class="string">&quot;deaf&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;flags&quot;</span>: flags.bits(),
-                <span class="string">&quot;hoisted_role&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;joined_at&quot;</span>: <span class="string">&quot;2020-04-04T04:04:04.000000+00:00&quot;</span>,
-                <span class="string">&quot;mute&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;nick&quot;</span>: <span class="string">&quot;chunk&quot;</span>,
-                <span class="string">&quot;roles&quot;</span>: [<span class="string">&quot;6&quot;</span>],
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;avatar&quot;</span>: image_hash::AVATAR_INPUT,
-                    <span class="string">&quot;bot&quot;</span>: <span class="bool-val">true</span>,
-                    <span class="string">&quot;discriminator&quot;</span>: <span class="string">&quot;0001&quot;</span>,
-                    <span class="string">&quot;global_name&quot;</span>: <span class="string">&quot;test&quot;</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;3&quot;</span>,
-                    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;test&quot;</span>,
+                <span class="string">"communication_disabled_until"</span>: null,
+                <span class="string">"deaf"</span>: <span class="bool-val">false</span>,
+                <span class="string">"flags"</span>: flags.bits(),
+                <span class="string">"hoisted_role"</span>: <span class="string">"6"</span>,
+                <span class="string">"joined_at"</span>: <span class="string">"2020-04-04T04:04:04.000000+00:00"</span>,
+                <span class="string">"mute"</span>: <span class="bool-val">false</span>,
+                <span class="string">"nick"</span>: <span class="string">"chunk"</span>,
+                <span class="string">"roles"</span>: [<span class="string">"6"</span>],
+                <span class="string">"user"</span>: {
+                    <span class="string">"avatar"</span>: image_hash::AVATAR_INPUT,
+                    <span class="string">"bot"</span>: <span class="bool-val">true</span>,
+                    <span class="string">"discriminator"</span>: <span class="string">"0001"</span>,
+                    <span class="string">"global_name"</span>: <span class="string">"test"</span>,
+                    <span class="string">"id"</span>: <span class="string">"3"</span>,
+                    <span class="string">"username"</span>: <span class="string">"test"</span>,
                 },
             }, {
-                <span class="string">&quot;communication_disabled_until&quot;</span>: null,
-                <span class="string">&quot;deaf&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;flags&quot;</span>: flags.bits(),
-                <span class="string">&quot;hoisted_role&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;joined_at&quot;</span>: <span class="string">&quot;2020-04-04T04:04:04.000000+00:00&quot;</span>,
-                <span class="string">&quot;mute&quot;</span>: <span class="bool-val">false</span>,
-                <span class="string">&quot;nick&quot;</span>: <span class="string">&quot;chunk&quot;</span>,
-                <span class="string">&quot;roles&quot;</span>: [
-                    <span class="string">&quot;6&quot;</span>,
-                    <span class="string">&quot;7&quot;</span>,
+                <span class="string">"communication_disabled_until"</span>: null,
+                <span class="string">"deaf"</span>: <span class="bool-val">false</span>,
+                <span class="string">"flags"</span>: flags.bits(),
+                <span class="string">"hoisted_role"</span>: <span class="string">"6"</span>,
+                <span class="string">"joined_at"</span>: <span class="string">"2020-04-04T04:04:04.000000+00:00"</span>,
+                <span class="string">"mute"</span>: <span class="bool-val">false</span>,
+                <span class="string">"nick"</span>: <span class="string">"chunk"</span>,
+                <span class="string">"roles"</span>: [
+                    <span class="string">"6"</span>,
+                    <span class="string">"7"</span>,
                 ],
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;avatar&quot;</span>: image_hash::AVATAR_INPUT,
-                    <span class="string">&quot;bot&quot;</span>: <span class="bool-val">true</span>,
-                    <span class="string">&quot;discriminator&quot;</span>: <span class="string">&quot;0001&quot;</span>,
-                    <span class="string">&quot;global_name&quot;</span>: <span class="string">&quot;test&quot;</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;test&quot;</span>,
+                <span class="string">"user"</span>: {
+                    <span class="string">"avatar"</span>: image_hash::AVATAR_INPUT,
+                    <span class="string">"bot"</span>: <span class="bool-val">true</span>,
+                    <span class="string">"discriminator"</span>: <span class="string">"0001"</span>,
+                    <span class="string">"global_name"</span>: <span class="string">"test"</span>,
+                    <span class="string">"id"</span>: <span class="string">"2"</span>,
+                    <span class="string">"username"</span>: <span class="string">"test"</span>,
                 },
             }],
-            <span class="string">&quot;presences&quot;</span>: [{
-                <span class="string">&quot;activities&quot;</span>: [],
-                <span class="string">&quot;client_status&quot;</span>: {
-                    <span class="string">&quot;web&quot;</span>: <span class="string">&quot;online&quot;</span>,
+            <span class="string">"presences"</span>: [{
+                <span class="string">"activities"</span>: [],
+                <span class="string">"client_status"</span>: {
+                    <span class="string">"web"</span>: <span class="string">"online"</span>,
                 },
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;online&quot;</span>,
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                },
-            }, {
-                <span class="string">&quot;activities&quot;</span>: [],
-                <span class="string">&quot;client_status&quot;</span>: {
-                    <span class="string">&quot;web&quot;</span>: <span class="string">&quot;online&quot;</span>,
-                },
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;online&quot;</span>,
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;3&quot;</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"status"</span>: <span class="string">"online"</span>,
+                <span class="string">"user"</span>: {
+                    <span class="string">"id"</span>: <span class="string">"2"</span>,
                 },
             }, {
-                <span class="string">&quot;activities&quot;</span>: [],
-                <span class="string">&quot;client_status&quot;</span>: {
-                    <span class="string">&quot;desktop&quot;</span>: <span class="string">&quot;dnd&quot;</span>,
+                <span class="string">"activities"</span>: [],
+                <span class="string">"client_status"</span>: {
+                    <span class="string">"web"</span>: <span class="string">"online"</span>,
                 },
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;dnd&quot;</span>,
-                <span class="string">&quot;user&quot;</span>: {
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;5&quot;</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"status"</span>: <span class="string">"online"</span>,
+                <span class="string">"user"</span>: {
+                    <span class="string">"id"</span>: <span class="string">"3"</span>,
+                },
+            }, {
+                <span class="string">"activities"</span>: [],
+                <span class="string">"client_status"</span>: {
+                    <span class="string">"desktop"</span>: <span class="string">"dnd"</span>,
+                },
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"status"</span>: <span class="string">"dnd"</span>,
+                <span class="string">"user"</span>: {
+                    <span class="string">"id"</span>: <span class="string">"5"</span>,
                 },
             }],
         });
@@ -779,7 +780,7 @@
                     flags,
                     joined_at,
                     mute: <span class="bool-val">false</span>,
-                    nick: <span class="prelude-val">Some</span>(<span class="string">&quot;chunk&quot;</span>.to_owned()),
+                    nick: <span class="prelude-val">Some</span>(<span class="string">"chunk"</span>.to_owned()),
                     pending: <span class="bool-val">false</span>,
                     premium_since: <span class="prelude-val">None</span>,
                     roles: <span class="macro">vec!</span>[Id::new(<span class="number">6</span>), Id::new(<span class="number">7</span>)],
@@ -791,13 +792,13 @@
                         banner: <span class="prelude-val">None</span>,
                         bot: <span class="bool-val">true</span>,
                         discriminator: <span class="number">1</span>,
-                        name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                        name: <span class="string">"test"</span>.to_owned(),
                         mfa_enabled: <span class="prelude-val">None</span>,
                         locale: <span class="prelude-val">None</span>,
                         verified: <span class="prelude-val">None</span>,
                         email: <span class="prelude-val">None</span>,
                         flags: <span class="prelude-val">None</span>,
-                        global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                        global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                         premium_type: <span class="prelude-val">None</span>,
                         system: <span class="prelude-val">None</span>,
                         public_flags: <span class="prelude-val">None</span>,
@@ -810,7 +811,7 @@
                     flags,
                     joined_at,
                     mute: <span class="bool-val">false</span>,
-                    nick: <span class="prelude-val">Some</span>(<span class="string">&quot;chunk&quot;</span>.to_owned()),
+                    nick: <span class="prelude-val">Some</span>(<span class="string">"chunk"</span>.to_owned()),
                     pending: <span class="bool-val">false</span>,
                     premium_since: <span class="prelude-val">None</span>,
                     roles: <span class="macro">vec!</span>[Id::new(<span class="number">6</span>)],
@@ -822,13 +823,13 @@
                         banner: <span class="prelude-val">None</span>,
                         bot: <span class="bool-val">true</span>,
                         discriminator: <span class="number">1</span>,
-                        name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                        name: <span class="string">"test"</span>.to_owned(),
                         mfa_enabled: <span class="prelude-val">None</span>,
                         locale: <span class="prelude-val">None</span>,
                         verified: <span class="prelude-val">None</span>,
                         email: <span class="prelude-val">None</span>,
                         flags: <span class="prelude-val">None</span>,
-                        global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                        global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                         premium_type: <span class="prelude-val">None</span>,
                         system: <span class="prelude-val">None</span>,
                         public_flags: <span class="prelude-val">None</span>,
@@ -841,7 +842,7 @@
                     flags,
                     joined_at,
                     mute: <span class="bool-val">false</span>,
-                    nick: <span class="prelude-val">Some</span>(<span class="string">&quot;chunk&quot;</span>.to_owned()),
+                    nick: <span class="prelude-val">Some</span>(<span class="string">"chunk"</span>.to_owned()),
                     pending: <span class="bool-val">true</span>,
                     premium_since: <span class="prelude-val">None</span>,
                     roles: <span class="macro">vec!</span>[Id::new(<span class="number">6</span>)],
@@ -853,13 +854,13 @@
                         banner: <span class="prelude-val">None</span>,
                         bot: <span class="bool-val">false</span>,
                         discriminator: <span class="number">1</span>,
-                        name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                        name: <span class="string">"test"</span>.to_owned(),
                         mfa_enabled: <span class="prelude-val">None</span>,
                         locale: <span class="prelude-val">None</span>,
                         verified: <span class="prelude-val">None</span>,
                         email: <span class="prelude-val">None</span>,
                         flags: <span class="prelude-val">None</span>,
-                        global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                        global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                         premium_type: <span class="prelude-val">None</span>,
                         system: <span class="prelude-val">None</span>,
                         public_flags: <span class="prelude-val">Some</span>(UserFlags::VERIFIED_DEVELOPER),
@@ -872,7 +873,7 @@
                     flags,
                     joined_at,
                     mute: <span class="bool-val">false</span>,
-                    nick: <span class="prelude-val">Some</span>(<span class="string">&quot;chunk&quot;</span>.to_owned()),
+                    nick: <span class="prelude-val">Some</span>(<span class="string">"chunk"</span>.to_owned()),
                     pending: <span class="bool-val">false</span>,
                     premium_since: <span class="prelude-val">None</span>,
                     roles: <span class="macro">vec!</span>[Id::new(<span class="number">6</span>)],
@@ -884,13 +885,13 @@
                         banner: <span class="prelude-val">None</span>,
                         bot: <span class="bool-val">false</span>,
                         discriminator: <span class="number">1</span>,
-                        name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                        name: <span class="string">"test"</span>.to_owned(),
                         mfa_enabled: <span class="prelude-val">None</span>,
                         locale: <span class="prelude-val">None</span>,
                         verified: <span class="prelude-val">None</span>,
                         email: <span class="prelude-val">None</span>,
                         flags: <span class="prelude-val">None</span>,
-                        global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                        global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                         premium_type: <span class="prelude-val">None</span>,
                         system: <span class="prelude-val">None</span>,
                         public_flags: <span class="prelude-val">None</span>,

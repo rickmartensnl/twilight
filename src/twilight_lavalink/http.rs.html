@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/http.rs`."><title>http.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/http.rs`."><title>http.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -562,7 +563,7 @@
 <span class="doccomment">/// The type of search result given.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;SCREAMING_SNAKE_CASE&quot;</span>)]
+#[serde(rename_all = <span class="string">"SCREAMING_SNAKE_CASE"</span>)]
 </span><span class="kw">pub enum </span>LoadType {
     <span class="doccomment">/// Loading the results failed.
     </span>LoadFailed,
@@ -579,7 +580,7 @@
 <span class="doccomment">/// A track within a search result.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>Track {
     <span class="doccomment">/// Details about a track, such as the author and title.
     </span><span class="kw">pub </span>info: TrackInfo,
@@ -592,7 +593,7 @@
 <span class="doccomment">/// Additional information about a track, such as the author.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>TrackInfo {
     <span class="doccomment">/// The name of the author, if provided.
     </span><span class="kw">pub </span>author: <span class="prelude-ty">Option</span>&lt;String&gt;,
@@ -615,19 +616,19 @@
 <span class="doccomment">/// Information about a playlist from a search result.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>PlaylistInfo {
     <span class="doccomment">/// The name of the playlist, if available.
     </span><span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// The selected track within the playlist, if available.
-    </span><span class="attr">#[serde(default, deserialize_with = <span class="string">&quot;deserialize_selected_track&quot;</span>)]
+    </span><span class="attr">#[serde(default, deserialize_with = <span class="string">"deserialize_selected_track"</span>)]
     </span><span class="kw">pub </span>selected_track: <span class="prelude-ty">Option</span>&lt;u64&gt;,
 }
 
 <span class="comment">// Any negative value should be treated as None.
-</span><span class="kw">fn </span>deserialize_selected_track&lt;<span class="lifetime">&#39;de</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;u64&gt;, D::Error&gt;
+</span><span class="kw">fn </span>deserialize_selected_track&lt;<span class="lifetime">'de</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;u64&gt;, D::Error&gt;
 <span class="kw">where
-    </span>D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+    </span>D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
 {
     <span class="prelude-val">Ok</span>(<span class="prelude-ty">Option</span>::&lt;i64&gt;::deserialize(deserializer)
         .ok()
@@ -638,7 +639,7 @@
 <span class="doccomment">/// Possible track results for a query.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>LoadedTracks {
     <span class="doccomment">/// The type of search result, such as a list of tracks or a playlist.
     </span><span class="kw">pub </span>load_type: LoadType,
@@ -651,7 +652,7 @@
 <span class="doccomment">/// A failing IP address within the planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>FailingAddress {
     <span class="doccomment">/// The IP address.
     </span><span class="kw">pub </span>address: String,
@@ -666,10 +667,10 @@
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>IpBlockType {
     <span class="doccomment">/// An IPv4 block type.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;Inet4Address&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"Inet4Address"</span>)]
     </span>Inet4,
     <span class="doccomment">/// An IPv6 block type.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;Inet6Address&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"Inet6Address"</span>)]
     </span>Inet6,
 }
 
@@ -679,14 +680,14 @@
 </span><span class="kw">pub struct </span>IpBlock {
     <span class="doccomment">/// The IP version of the IP block.
     </span><span class="kw">pub </span>kind: IpBlockType,
-    <span class="doccomment">/// The size of the block&#39;s addresses.
+    <span class="doccomment">/// The size of the block's addresses.
     </span><span class="kw">pub </span>size: u64,
 }
 
 <span class="doccomment">/// The type of route planner in use.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;PascalCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"PascalCase"</span>)]
 </span><span class="kw">pub enum </span>RoutePlannerType {
     <span class="doccomment">/// A Nano IP route planner.
     </span>NanoIp,
@@ -712,7 +713,7 @@
 <span class="doccomment">/// A Nano IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>NanoIpRoutePlanner {
     <span class="doccomment">/// The type of planner that is currently active.
     ///
@@ -725,7 +726,7 @@
 <span class="doccomment">/// Information about a Nano IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>NanoIpDetails {
     <span class="doccomment">/// The active offset within the IP block.
     </span><span class="kw">pub </span>current_address_index: u64,
@@ -738,7 +739,7 @@
 <span class="doccomment">/// A Rotating IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>RotatingIpRoutePlanner {
     <span class="doccomment">/// The type of planner that is currently active.
     ///
@@ -751,7 +752,7 @@
 <span class="doccomment">/// Information about a Rotating IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>RotatingIpDetails {
     <span class="doccomment">/// The currently used IP address.
     </span><span class="kw">pub </span>current_address: String,
@@ -768,7 +769,7 @@
 <span class="doccomment">/// A Rotating Nano IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>RotatingNanoIpRoutePlanner {
     <span class="doccomment">/// The type of planner that is currently active.
     ///
@@ -781,7 +782,7 @@
 <span class="doccomment">/// Information about a Rotating Nano IP planner.
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>RotatingNanoIpDetails {
     <span class="doccomment">/// The block IPs that are chosen.
     </span><span class="kw">pub </span>block_index: String,
@@ -805,17 +806,17 @@
     address: SocketAddr,
     identifier: <span class="kw">impl </span>AsRef&lt;str&gt;,
     authorization: <span class="kw">impl </span>AsRef&lt;str&gt;,
-) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]&gt;, HttpError&gt; {
+) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u8]&gt;, HttpError&gt; {
     <span class="kw">let </span>identifier =
         percent_encoding::percent_encode(identifier.as_ref().as_bytes(), NON_ALPHANUMERIC);
-    <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">&quot;http://{address}/loadtracks?identifier={identifier}&quot;</span>);
+    <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">"http://{address}/loadtracks?identifier={identifier}"</span>);
 
     <span class="kw">let </span><span class="kw-2">mut </span>req = Request::get(url);
 
     <span class="kw">let </span>auth_value = HeaderValue::from_str(authorization.as_ref())<span class="question-mark">?</span>;
     req = req.header(AUTHORIZATION, auth_value);
 
-    req.body(<span class="string">b&quot;&quot;</span>)
+    req.body(<span class="string">b""</span>)
 }
 
 <span class="doccomment">/// Get the configured route planner for a node by address.
@@ -829,13 +830,13 @@
 </span><span class="kw">pub fn </span>get_route_planner(
     address: SocketAddr,
     authorization: <span class="kw">impl </span>AsRef&lt;str&gt;,
-) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]&gt;, HttpError&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>req = Request::get(<span class="macro">format!</span>(<span class="string">&quot;{address}/routeplanner/status&quot;</span>));
+) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u8]&gt;, HttpError&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>req = Request::get(<span class="macro">format!</span>(<span class="string">"{address}/routeplanner/status"</span>));
 
     <span class="kw">let </span>auth_value = HeaderValue::from_str(authorization.as_ref())<span class="question-mark">?</span>;
     req = req.header(AUTHORIZATION, auth_value);
 
-    req.body(<span class="string">b&quot;&quot;</span>)
+    req.body(<span class="string">b""</span>)
 }
 
 <span class="doccomment">/// Unmark an IP address as being failed, meaning that it can be used again.
@@ -851,16 +852,16 @@
     authorization: <span class="kw">impl </span>AsRef&lt;str&gt;,
     route_address: <span class="kw">impl </span>Into&lt;IpAddr&gt;,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;Vec&lt;u8&gt;&gt;, HttpError&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>req = Request::post(<span class="macro">format!</span>(<span class="string">&quot;{}/routeplanner/status&quot;</span>, node_address.into()));
+    <span class="kw">let </span><span class="kw-2">mut </span>req = Request::post(<span class="macro">format!</span>(<span class="string">"{}/routeplanner/status"</span>, node_address.into()));
 
     <span class="kw">let </span>auth_value = HeaderValue::from_str(authorization.as_ref())<span class="question-mark">?</span>;
     req = req.header(AUTHORIZATION, auth_value);
 
     req.body(
         serde_json::to_vec(<span class="kw-2">&amp;</span><span class="macro">serde_json::json!</span>({
-            <span class="string">&quot;address&quot;</span>: route_address.into(),
+            <span class="string">"address"</span>: route_address.into(),
         }))
-        .expect(<span class="string">&quot;valid json&quot;</span>),
+        .expect(<span class="string">"valid json"</span>),
     )
 }
 
@@ -881,7 +882,7 @@
     <span class="macro">assert_impl_all!</span>(
         FailingAddress: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -891,7 +892,7 @@
     <span class="macro">assert_impl_all!</span>(
         IpBlockType: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -902,7 +903,7 @@
     <span class="macro">assert_impl_all!</span>(
         IpBlock: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -912,7 +913,7 @@
     <span class="macro">assert_impl_all!</span>(
         LoadType: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -923,7 +924,7 @@
     <span class="macro">assert_impl_all!</span>(
         LoadedTracks: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -938,7 +939,7 @@
     <span class="macro">assert_impl_all!</span>(
         NanoIpDetails: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -949,7 +950,7 @@
     <span class="macro">assert_impl_all!</span>(
         NanoIpRoutePlanner: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -960,7 +961,7 @@
     <span class="macro">assert_impl_all!</span>(
         PlaylistInfo: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -977,7 +978,7 @@
     <span class="macro">assert_impl_all!</span>(
         RotatingIpDetails: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -988,7 +989,7 @@
     <span class="macro">assert_impl_all!</span>(
         RotatingIpRoutePlanner: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1004,7 +1005,7 @@
     <span class="macro">assert_impl_all!</span>(
         RotatingNanoIpDetails: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1015,7 +1016,7 @@
     <span class="macro">assert_impl_all!</span>(
         RotatingNanoIpRoutePlanner: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1025,7 +1026,7 @@
     <span class="macro">assert_impl_all!</span>(
         RoutePlannerType: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1035,7 +1036,7 @@
     <span class="macro">assert_impl_all!</span>(
         RoutePlanner: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1055,7 +1056,7 @@
     <span class="macro">assert_impl_all!</span>(
         TrackInfo: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1066,7 +1067,7 @@
     <span class="macro">assert_impl_all!</span>(
         Track: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -1077,7 +1078,7 @@
     <span class="attr">#[test]
     </span><span class="kw">pub fn </span>test_deserialize_playlist_info_negative_selected_track() {
         <span class="kw">let </span>value = PlaylistInfo {
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;Test Playlist&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"Test Playlist"</span>.to_owned()),
             selected_track: <span class="prelude-val">None</span>,
         };
 
@@ -1085,13 +1086,13 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;PlaylistInfo&quot;</span>,
+                    name: <span class="string">"PlaylistInfo"</span>,
                     len: <span class="number">13</span>,
                 },
-                Token::Str(<span class="string">&quot;name&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;Test Playlist&quot;</span>),
-                Token::Str(<span class="string">&quot;selectedTrack&quot;</span>),
+                Token::Str(<span class="string">"Test Playlist"</span>),
+                Token::Str(<span class="string">"selectedTrack"</span>),
                 Token::I64(-<span class="number">1</span>),
                 Token::StructEnd,
             ],

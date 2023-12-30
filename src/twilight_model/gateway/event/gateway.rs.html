@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/gateway.rs`."><title>gateway.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/gateway.rs`."><title>gateway.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -945,7 +946,7 @@
 }
 
 <span class="attr">#[derive(Clone, Copy, Debug, Deserialize, PartialEq)]
-#[serde(field_identifier, rename_all = <span class="string">&quot;lowercase&quot;</span>)]
+#[serde(field_identifier, rename_all = <span class="string">"lowercase"</span>)]
 </span><span class="kw">enum </span>Field {
     D,
     Op,
@@ -956,16 +957,16 @@
 <span class="doccomment">/// Deserialize into a [`GatewayEvent`] by knowing its dispatch event type and
 /// opcode.
 </span><span class="attr">#[derive(Debug)]
-</span><span class="kw">pub struct </span>GatewayEventDeserializer&lt;<span class="lifetime">&#39;a</span>&gt; {
-    event_type: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
+</span><span class="kw">pub struct </span>GatewayEventDeserializer&lt;<span class="lifetime">'a</span>&gt; {
+    event_type: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
     op: u8,
     sequence: <span class="prelude-ty">Option</span>&lt;u64&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; GatewayEventDeserializer&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; GatewayEventDeserializer&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Create a new gateway event deserializer when you already know the opcode
     /// and dispatch event type.
-    </span><span class="kw">pub fn </span>new(op: u8, event_type: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>new(op: u8, event_type: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             event_type: event_type.map(Into::into),
             op,
@@ -975,7 +976,7 @@
 
     <span class="doccomment">/// Create a gateway event deserializer by scanning the JSON payload for its
     /// opcode and dispatch event type.
-    </span><span class="kw">pub fn </span>from_json(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+    </span><span class="kw">pub fn </span>from_json(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
         <span class="kw">let </span>op = <span class="self">Self</span>::find_opcode(input)<span class="question-mark">?</span>;
         <span class="kw">let </span>event_type = <span class="self">Self</span>::find_event_type(input).map(Into::into);
         <span class="kw">let </span>sequence = <span class="self">Self</span>::find_sequence(input);
@@ -991,7 +992,7 @@
     ///
     /// This is necessary when using a mutable deserialization library such as
     /// `simd-json`.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; GatewayEventDeserializer&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; GatewayEventDeserializer&lt;<span class="lifetime">'static</span>&gt; {
         GatewayEventDeserializer {
             event_type: <span class="self">self
                 </span>.event_type
@@ -1003,7 +1004,7 @@
 
     <span class="doccomment">/// Consume the deserializer, returning its components.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (u8, <span class="prelude-ty">Option</span>&lt;u64&gt;, <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;) {
+    </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (u8, <span class="prelude-ty">Option</span>&lt;u64&gt;, <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) {
         (<span class="self">self</span>.op, <span class="self">self</span>.sequence, <span class="self">self</span>.event_type)
     }
 
@@ -1025,62 +1026,62 @@
         <span class="self">self</span>.sequence
     }
 
-    <span class="kw">fn </span>find_event_type(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
-        <span class="comment">// We&#39;re going to search for the event type key from the start. Discord
+    <span class="kw">fn </span>find_event_type(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt; {
+        <span class="comment">// We're going to search for the event type key from the start. Discord
         // always puts it at the front before the D key from some testing of
         // several hundred payloads.
         //
-        // If we find it, add 4, since that&#39;s the length of what we&#39;re searching
+        // If we find it, add 4, since that's the length of what we're searching
         // for.
-        </span><span class="kw">let </span>from = input.find(<span class="string">r#&quot;&quot;t&quot;:&quot;#</span>)<span class="question-mark">? </span>+ <span class="number">4</span>;
+        </span><span class="kw">let </span>from = input.find(<span class="string">r#""t":"#</span>)<span class="question-mark">? </span>+ <span class="number">4</span>;
 
-        <span class="comment">// Now let&#39;s find where the value starts, which may be a string or null.
-        // Or maybe something else. If it&#39;s anything but a string, then there&#39;s
+        <span class="comment">// Now let's find where the value starts, which may be a string or null.
+        // Or maybe something else. If it's anything but a string, then there's
         // no event type.
         </span><span class="kw">let </span>start = input.get(from..)<span class="question-mark">?</span>.find(|c: char| !c.is_whitespace())<span class="question-mark">? </span>+ from + <span class="number">1</span>;
 
-        <span class="comment">// Check if the character just before the cursor is &#39;&quot;&#39;.
-        </span><span class="kw">if </span>input.as_bytes().get(start - <span class="number">1</span>).copied()<span class="question-mark">? </span>!= <span class="string">b&#39;&quot;&#39; </span>{
+        <span class="comment">// Check if the character just before the cursor is '"'.
+        </span><span class="kw">if </span>input.as_bytes().get(start - <span class="number">1</span>).copied()<span class="question-mark">? </span>!= <span class="string">b'"' </span>{
             <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let </span>to = input.get(start..)<span class="question-mark">?</span>.find(<span class="string">&#39;&quot;&#39;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>to = input.get(start..)<span class="question-mark">?</span>.find(<span class="string">'"'</span>)<span class="question-mark">?</span>;
 
         input.get(start..start + to)
     }
 
-    <span class="kw">fn </span>find_opcode(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;u8&gt; {
-        <span class="self">Self</span>::find_integer(input, <span class="string">r#&quot;&quot;op&quot;:&quot;#</span>)
+    <span class="kw">fn </span>find_opcode(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;u8&gt; {
+        <span class="self">Self</span>::find_integer(input, <span class="string">r#""op":"#</span>)
     }
 
-    <span class="kw">fn </span>find_sequence(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;u64&gt; {
-        <span class="self">Self</span>::find_integer(input, <span class="string">r#&quot;&quot;s&quot;:&quot;#</span>)
+    <span class="kw">fn </span>find_sequence(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Option</span>&lt;u64&gt; {
+        <span class="self">Self</span>::find_integer(input, <span class="string">r#""s":"#</span>)
     }
 
-    <span class="kw">fn </span>find_integer&lt;T: FromStr&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, key: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
-        <span class="comment">// Find the op key&#39;s position and then search for where the first
-        // character that&#39;s not base 10 is. This&#39;ll give us the bytes with the
+    <span class="kw">fn </span>find_integer&lt;T: FromStr&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str, key: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="comment">// Find the op key's position and then search for where the first
+        // character that's not base 10 is. This'll give us the bytes with the
         // op which can be parsed.
         //
-        // Add 5 at the end since that&#39;s the length of what we&#39;re finding.
+        // Add 5 at the end since that's the length of what we're finding.
         </span><span class="kw">let </span>from = input.find(key)<span class="question-mark">? </span>+ key.len();
 
-        <span class="comment">// Look for the first thing that isn&#39;t a base 10 digit or whitespace,
+        <span class="comment">// Look for the first thing that isn't a base 10 digit or whitespace,
         // i.e. a comma (denoting another JSON field), curly brace (end of the
-        // object), etc. This&#39;ll give us the op number, maybe with a little
+        // object), etc. This'll give us the op number, maybe with a little
         // whitespace.
-        </span><span class="kw">let </span>to = input.get(from..)<span class="question-mark">?</span>.find(<span class="kw-2">&amp;</span>[<span class="string">&#39;,&#39;</span>, <span class="string">&#39;}&#39;</span>] <span class="kw">as </span><span class="kw-2">&amp;</span>[<span class="kw">_</span>])<span class="question-mark">?</span>;
-        <span class="comment">// We might have some whitespace, so let&#39;s trim this.
+        </span><span class="kw">let </span>to = input.get(from..)<span class="question-mark">?</span>.find(<span class="kw-2">&amp;</span>[<span class="string">','</span>, <span class="string">'}'</span>] <span class="kw">as </span><span class="kw-2">&amp;</span>[<span class="kw">_</span>])<span class="question-mark">?</span>;
+        <span class="comment">// We might have some whitespace, so let's trim this.
         </span><span class="kw">let </span>clean = input.get(from..from + to)<span class="question-mark">?</span>.trim();
 
         T::from_str(clean).ok()
     }
 }
 
-<span class="kw">struct </span>GatewayEventVisitor&lt;<span class="lifetime">&#39;a</span>&gt;(u8, <span class="prelude-ty">Option</span>&lt;u64&gt;, <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;);
+<span class="kw">struct </span>GatewayEventVisitor&lt;<span class="lifetime">'a</span>&gt;(u8, <span class="prelude-ty">Option</span>&lt;u64&gt;, <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;);
 
-<span class="kw">impl </span>GatewayEventVisitor&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>field&lt;<span class="lifetime">&#39;de</span>, T: Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;, V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(
+<span class="kw">impl </span>GatewayEventVisitor&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>field&lt;<span class="lifetime">'de</span>, T: Deserialize&lt;<span class="lifetime">'de</span>&gt;, V: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(
         map: <span class="kw-2">&amp;mut </span>V,
         field: Field,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;T, V::Error&gt; {
@@ -1102,15 +1103,15 @@
 
         found.ok_or_else(|| {
             DeError::missing_field(<span class="kw">match </span>field {
-                Field::D =&gt; <span class="string">&quot;d&quot;</span>,
-                Field::Op =&gt; <span class="string">&quot;op&quot;</span>,
-                Field::S =&gt; <span class="string">&quot;s&quot;</span>,
-                Field::T =&gt; <span class="string">&quot;t&quot;</span>,
+                Field::D =&gt; <span class="string">"d"</span>,
+                Field::Op =&gt; <span class="string">"op"</span>,
+                Field::S =&gt; <span class="string">"s"</span>,
+                Field::T =&gt; <span class="string">"t"</span>,
             })
         })
     }
 
-    <span class="kw">fn </span>ignore_all&lt;<span class="lifetime">&#39;de</span>, V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(map: <span class="kw-2">&amp;mut </span>V) -&gt; <span class="prelude-ty">Result</span>&lt;(), V::Error&gt; {
+    <span class="kw">fn </span>ignore_all&lt;<span class="lifetime">'de</span>, V: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(map: <span class="kw-2">&amp;mut </span>V) -&gt; <span class="prelude-ty">Result</span>&lt;(), V::Error&gt; {
         <span class="kw">while let </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="kw">_</span>)) | <span class="prelude-val">Err</span>(<span class="kw">_</span>) = map.next_key::&lt;Field&gt;() {
             map.next_value::&lt;IgnoredAny&gt;()<span class="question-mark">?</span>;
         }
@@ -1119,26 +1120,26 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>GatewayEventVisitor&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>GatewayEventVisitor&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Value = GatewayEvent;
 
-    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        formatter.write_str(<span class="string">&quot;struct GatewayEvent&quot;</span>)
+    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        formatter.write_str(<span class="string">"struct GatewayEvent"</span>)
     }
 
     <span class="attr">#[allow(clippy::too_many_lines)]
     </span><span class="kw">fn </span>visit_map&lt;V&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;GatewayEvent, V::Error&gt;
     <span class="kw">where
-        </span>V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;,
+        </span>V: MapAccess&lt;<span class="lifetime">'de</span>&gt;,
     {
         <span class="kw">static </span>VALID_OPCODES: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
-            <span class="string">&quot;EVENT&quot;</span>,
-            <span class="string">&quot;HEARTBEAT&quot;</span>,
-            <span class="string">&quot;HEARTBEAT_ACK&quot;</span>,
-            <span class="string">&quot;HELLO&quot;</span>,
-            <span class="string">&quot;IDENTIFY&quot;</span>,
-            <span class="string">&quot;INVALID_SESSION&quot;</span>,
-            <span class="string">&quot;RECONNECT&quot;</span>,
+            <span class="string">"EVENT"</span>,
+            <span class="string">"HEARTBEAT"</span>,
+            <span class="string">"HEARTBEAT_ACK"</span>,
+            <span class="string">"HELLO"</span>,
+            <span class="string">"IDENTIFY"</span>,
+            <span class="string">"INVALID_SESSION"</span>,
+            <span class="string">"RECONNECT"</span>,
         ];
 
         <span class="kw">let </span>op_deser: U8Deserializer&lt;V::Error&gt; = <span class="self">self</span>.<span class="number">0</span>.into_deserializer();
@@ -1146,14 +1147,14 @@
         <span class="kw">let </span>op = OpCode::deserialize(op_deser).ok().ok_or_else(|| {
             <span class="kw">let </span>unexpected = Unexpected::Unsigned(u64::from(<span class="self">self</span>.<span class="number">0</span>));
 
-            DeError::invalid_value(unexpected, <span class="kw-2">&amp;</span><span class="string">&quot;an opcode&quot;</span>)
+            DeError::invalid_value(unexpected, <span class="kw-2">&amp;</span><span class="string">"an opcode"</span>)
         })<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>op {
             OpCode::Dispatch =&gt; {
                 <span class="kw">let </span>t = <span class="self">self
                     </span>.<span class="number">2
-                    </span>.ok_or_else(|| DeError::custom(<span class="string">&quot;event type not provided beforehand&quot;</span>))<span class="question-mark">?</span>;
+                    </span>.ok_or_else(|| DeError::custom(<span class="string">"event type not provided beforehand"</span>))<span class="question-mark">?</span>;
 
                 <span class="kw">let </span><span class="kw-2">mut </span>d = <span class="prelude-val">None</span>;
                 <span class="kw">let </span><span class="kw-2">mut </span>s = <span class="prelude-val">None</span>;
@@ -1172,7 +1173,7 @@
                     <span class="kw">match </span>key {
                         Field::D =&gt; {
                             <span class="kw">if </span>d.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;d&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"d"</span>));
                             }
 
                             <span class="kw">let </span>deserializer = DispatchEventWithTypeDeserializer::new(<span class="kw-2">&amp;</span>t);
@@ -1181,7 +1182,7 @@
                         }
                         Field::S =&gt; {
                             <span class="kw">if </span>s.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;s&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"s"</span>));
                             }
 
                             s = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -1192,8 +1193,8 @@
                     }
                 }
 
-                <span class="kw">let </span>d = d.ok_or_else(|| DeError::missing_field(<span class="string">&quot;d&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>s = s.ok_or_else(|| DeError::missing_field(<span class="string">&quot;s&quot;</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>d = d.ok_or_else(|| DeError::missing_field(<span class="string">"d"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>s = s.ok_or_else(|| DeError::missing_field(<span class="string">"s"</span>))<span class="question-mark">?</span>;
 
                 GatewayEvent::Dispatch(s, d)
             }
@@ -1223,7 +1224,7 @@
 
                 GatewayEvent::InvalidateSession(invalidate)
             }
-            OpCode::Identify =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">&quot;Identify&quot;</span>, VALID_OPCODES)),
+            OpCode::Identify =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">"Identify"</span>, VALID_OPCODES)),
             OpCode::Reconnect =&gt; {
                 <span class="self">Self</span>::ignore_all(<span class="kw-2">&amp;mut </span>map)<span class="question-mark">?</span>;
 
@@ -1231,29 +1232,29 @@
             }
             OpCode::RequestGuildMembers =&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(
-                    <span class="string">&quot;RequestGuildMembers&quot;</span>,
+                    <span class="string">"RequestGuildMembers"</span>,
                     VALID_OPCODES,
                 ))
             }
-            OpCode::Resume =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">&quot;Resume&quot;</span>, VALID_OPCODES)),
+            OpCode::Resume =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">"Resume"</span>, VALID_OPCODES)),
             OpCode::PresenceUpdate =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">&quot;PresenceUpdate&quot;</span>, VALID_OPCODES))
+                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">"PresenceUpdate"</span>, VALID_OPCODES))
             }
             OpCode::VoiceStateUpdate =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">&quot;VoiceStateUpdate&quot;</span>, VALID_OPCODES))
+                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(<span class="string">"VoiceStateUpdate"</span>, VALID_OPCODES))
             }
         })
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; DeserializeSeed&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>GatewayEventDeserializer&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; DeserializeSeed&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>GatewayEventDeserializer&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Value = GatewayEvent;
 
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(<span class="self">self</span>, deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, D::Error&gt; {
-        <span class="kw">const </span>FIELDS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">&quot;op&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;s&quot;</span>, <span class="string">&quot;t&quot;</span>];
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(<span class="self">self</span>, deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, D::Error&gt; {
+        <span class="kw">const </span>FIELDS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">"op"</span>, <span class="string">"d"</span>, <span class="string">"s"</span>, <span class="string">"t"</span>];
 
         deserializer.deserialize_struct(
-            <span class="string">&quot;GatewayEvent&quot;</span>,
+            <span class="string">"GatewayEvent"</span>,
             FIELDS,
             GatewayEventVisitor(<span class="self">self</span>.op, <span class="self">self</span>.sequence, <span class="self">self</span>.event_type),
         )
@@ -1273,35 +1274,35 @@
             }
         }
 
-        <span class="kw">let </span><span class="kw-2">mut </span>s = serializer.serialize_struct(<span class="string">&quot;GatewayEvent&quot;</span>, <span class="number">4</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>s = serializer.serialize_struct(<span class="string">"GatewayEvent"</span>, <span class="number">4</span>)<span class="question-mark">?</span>;
 
         <span class="kw">if let </span><span class="self">Self</span>::Dispatch(sequence, event) = <span class="self">self </span>{
-            s.serialize_field(<span class="string">&quot;t&quot;</span>, <span class="kw-2">&amp;</span>event.kind())<span class="question-mark">?</span>;
-            s.serialize_field(<span class="string">&quot;s&quot;</span>, <span class="kw-2">&amp;</span>sequence)<span class="question-mark">?</span>;
-            s.serialize_field(<span class="string">&quot;op&quot;</span>, <span class="kw-2">&amp;</span>opcode(<span class="self">self</span>))<span class="question-mark">?</span>;
-            s.serialize_field(<span class="string">&quot;d&quot;</span>, <span class="kw-2">&amp;</span>event)<span class="question-mark">?</span>;
+            s.serialize_field(<span class="string">"t"</span>, <span class="kw-2">&amp;</span>event.kind())<span class="question-mark">?</span>;
+            s.serialize_field(<span class="string">"s"</span>, <span class="kw-2">&amp;</span>sequence)<span class="question-mark">?</span>;
+            s.serialize_field(<span class="string">"op"</span>, <span class="kw-2">&amp;</span>opcode(<span class="self">self</span>))<span class="question-mark">?</span>;
+            s.serialize_field(<span class="string">"d"</span>, <span class="kw-2">&amp;</span>event)<span class="question-mark">?</span>;
 
             <span class="kw">return </span>s.end();
         }
 
         <span class="comment">// S and T are always null when not a Dispatch event
-        </span>s.serialize_field(<span class="string">&quot;t&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;<span class="kw-2">&amp;</span>str&gt;)<span class="question-mark">?</span>;
-        s.serialize_field(<span class="string">&quot;s&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;u64&gt;)<span class="question-mark">?</span>;
-        s.serialize_field(<span class="string">&quot;op&quot;</span>, <span class="kw-2">&amp;</span>opcode(<span class="self">self</span>))<span class="question-mark">?</span>;
+        </span>s.serialize_field(<span class="string">"t"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;<span class="kw-2">&amp;</span>str&gt;)<span class="question-mark">?</span>;
+        s.serialize_field(<span class="string">"s"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;u64&gt;)<span class="question-mark">?</span>;
+        s.serialize_field(<span class="string">"op"</span>, <span class="kw-2">&amp;</span>opcode(<span class="self">self</span>))<span class="question-mark">?</span>;
 
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Dispatch(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;dispatch already handled&quot;</span>),
+            <span class="self">Self</span>::Dispatch(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(<span class="string">"dispatch already handled"</span>),
             <span class="self">Self</span>::Heartbeat(sequence) =&gt; {
-                s.serialize_field(<span class="string">&quot;d&quot;</span>, <span class="kw-2">&amp;</span>sequence)<span class="question-mark">?</span>;
+                s.serialize_field(<span class="string">"d"</span>, <span class="kw-2">&amp;</span>sequence)<span class="question-mark">?</span>;
             }
             <span class="self">Self</span>::Hello(hello) =&gt; {
-                s.serialize_field(<span class="string">&quot;d&quot;</span>, <span class="kw-2">&amp;</span>hello)<span class="question-mark">?</span>;
+                s.serialize_field(<span class="string">"d"</span>, <span class="kw-2">&amp;</span>hello)<span class="question-mark">?</span>;
             }
             <span class="self">Self</span>::InvalidateSession(invalidate) =&gt; {
-                s.serialize_field(<span class="string">&quot;d&quot;</span>, <span class="kw-2">&amp;</span>invalidate)<span class="question-mark">?</span>;
+                s.serialize_field(<span class="string">"d"</span>, <span class="kw-2">&amp;</span>invalidate)<span class="question-mark">?</span>;
             }
             <span class="self">Self</span>::HeartbeatAck | <span class="self">Self</span>::Reconnect =&gt; {
-                s.serialize_field(<span class="string">&quot;d&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;u64&gt;)<span class="question-mark">?</span>;
+                s.serialize_field(<span class="string">"d"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">None</span>::&lt;u64&gt;)<span class="question-mark">?</span>;
             }
         }
 
@@ -1323,15 +1324,15 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_dispatch_role_delete() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;d&quot;: {
-                &quot;guild_id&quot;: &quot;1&quot;,
-                &quot;role_id&quot;: &quot;2&quot;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "d": {
+                "guild_id": "1",
+                "role_id": "2"
             },
-            &quot;op&quot;: 0,
-            &quot;s&quot;: 7,
-            &quot;t&quot;: &quot;GUILD_ROLE_DELETE&quot;
-        }&quot;#</span>;
+            "op": 0,
+            "s": 7,
+            "t": "GUILD_ROLE_DELETE"
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1342,71 +1343,71 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_dispatch_guild_update() {
         <span class="kw">let </span>input = <span class="macro">format!</span>(
-            <span class="string">r#&quot;{{
-  &quot;d&quot;: {{
-    &quot;afk_channel_id&quot;: &quot;1337&quot;,
-    &quot;afk_timeout&quot;: 300,
-    &quot;application_id&quot;: null,
-    &quot;banner&quot;: null,
-    &quot;default_message_notifications&quot;: 0,
-    &quot;description&quot;: null,
-    &quot;discovery_splash&quot;: null,
-    &quot;emojis&quot;: [
+            <span class="string">r#"{{
+  "d": {{
+    "afk_channel_id": "1337",
+    "afk_timeout": 300,
+    "application_id": null,
+    "banner": null,
+    "default_message_notifications": 0,
+    "description": null,
+    "discovery_splash": null,
+    "emojis": [
       {{
-        &quot;animated&quot;: false,
-        &quot;available&quot;: true,
-        &quot;id&quot;: &quot;1338&quot;,
-        &quot;managed&quot;: false,
-        &quot;name&quot;: &quot;goodboi&quot;,
-        &quot;require_colons&quot;: true,
-        &quot;roles&quot;: []
+        "animated": false,
+        "available": true,
+        "id": "1338",
+        "managed": false,
+        "name": "goodboi",
+        "require_colons": true,
+        "roles": []
       }}
     ],
-    &quot;explicit_content_filter&quot;: 0,
-    &quot;features&quot;: [
-      &quot;INVITE_SPLASH&quot;,
-      &quot;ANIMATED_ICON&quot;
+    "explicit_content_filter": 0,
+    "features": [
+      "INVITE_SPLASH",
+      "ANIMATED_ICON"
     ],
-    &quot;guild_id&quot;: &quot;1339&quot;,
-    &quot;icon&quot;: &quot;{icon}&quot;,
-    &quot;id&quot;: &quot;13310&quot;,
-    &quot;max_members&quot;: 250000,
-    &quot;max_presences&quot;: null,
-    &quot;mfa_level&quot;: 0,
-    &quot;name&quot;: &quot;FooBaz&quot;,
-    &quot;nsfw_level&quot;: 1,
-    &quot;owner_id&quot;: &quot;13311&quot;,
-    &quot;preferred_locale&quot;: &quot;en-US&quot;,
-    &quot;premium_progress_bar_enabled&quot;: true,
-    &quot;premium_subscription_count&quot;: 4,
-    &quot;premium_tier&quot;: 1,
-    &quot;region&quot;: &quot;eu-central&quot;,
-    &quot;roles&quot;: [
+    "guild_id": "1339",
+    "icon": "{icon}",
+    "id": "13310",
+    "max_members": 250000,
+    "max_presences": null,
+    "mfa_level": 0,
+    "name": "FooBaz",
+    "nsfw_level": 1,
+    "owner_id": "13311",
+    "preferred_locale": "en-US",
+    "premium_progress_bar_enabled": true,
+    "premium_subscription_count": 4,
+    "premium_tier": 1,
+    "region": "eu-central",
+    "roles": [
       {{
-        &quot;color&quot;: 0,
-        &quot;hoist&quot;: false,
-        &quot;id&quot;: &quot;13312&quot;,
-        &quot;managed&quot;: false,
-        &quot;mentionable&quot;: false,
-        &quot;name&quot;: &quot;@everyone&quot;,
-        &quot;permissions&quot;: &quot;104193601&quot;,
-        &quot;position&quot;: 0,
-        &quot;flags&quot;: 0
+        "color": 0,
+        "hoist": false,
+        "id": "13312",
+        "managed": false,
+        "mentionable": false,
+        "name": "@everyone",
+        "permissions": "104193601",
+        "position": 0,
+        "flags": 0
       }}
     ],
-    &quot;rules_channel_id&quot;: null,
-    &quot;splash&quot;: &quot;{splash}&quot;,
-    &quot;system_channel_flags&quot;: 0,
-    &quot;system_channel_id&quot;: &quot;13313&quot;,
-    &quot;vanity_url_code&quot;: null,
-    &quot;verification_level&quot;: 0,
-    &quot;widget_channel_id&quot;: null,
-    &quot;widget_enabled&quot;: false
+    "rules_channel_id": null,
+    "splash": "{splash}",
+    "system_channel_flags": 0,
+    "system_channel_id": "13313",
+    "vanity_url_code": null,
+    "verification_level": 0,
+    "widget_channel_id": null,
+    "widget_enabled": false
   }},
-  &quot;op&quot;: 0,
-  &quot;s&quot;: 42,
-  &quot;t&quot;: &quot;GUILD_UPDATE&quot;
-}}&quot;#</span>,
+  "op": 0,
+  "s": 42,
+  "t": "GUILD_UPDATE"
+}}"#</span>,
             icon = image_hash::ICON_INPUT,
             splash = image_hash::SPLASH_INPUT,
         );
@@ -1421,68 +1422,68 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_dispatch_guild_update_2() {
         <span class="kw">let </span>input = <span class="macro">format!</span>(
-            <span class="string">r#&quot;{{
-  &quot;d&quot;: {{
-    &quot;afk_channel_id&quot;: null,
-    &quot;afk_timeout&quot;: 300,
-    &quot;application_id&quot;: null,
-    &quot;banner&quot;: null,
-    &quot;default_message_notifications&quot;: 0,
-    &quot;description&quot;: null,
-    &quot;discovery_splash&quot;: null,
-    &quot;emojis&quot;: [
+            <span class="string">r#"{{
+  "d": {{
+    "afk_channel_id": null,
+    "afk_timeout": 300,
+    "application_id": null,
+    "banner": null,
+    "default_message_notifications": 0,
+    "description": null,
+    "discovery_splash": null,
+    "emojis": [
       {{
-        &quot;animated&quot;: false,
-        &quot;available&quot;: true,
-        &quot;id&quot;: &quot;42&quot;,
-        &quot;managed&quot;: false,
-        &quot;name&quot;: &quot;emmet&quot;,
-        &quot;require_colons&quot;: true,
-        &quot;roles&quot;: []
+        "animated": false,
+        "available": true,
+        "id": "42",
+        "managed": false,
+        "name": "emmet",
+        "require_colons": true,
+        "roles": []
       }}
     ],
-    &quot;explicit_content_filter&quot;: 2,
-    &quot;features&quot;: [],
-    &quot;guild_id&quot;: &quot;43&quot;,
-    &quot;icon&quot;: &quot;{icon}&quot;,
-    &quot;id&quot;: &quot;45&quot;,
-    &quot;max_members&quot;: 250000,
-    &quot;max_presences&quot;: null,
-    &quot;mfa_level&quot;: 0,
-    &quot;name&quot;: &quot;FooBar&quot;,
-    &quot;nsfw_level&quot;: 0,
-    &quot;owner_id&quot;: &quot;46&quot;,
-    &quot;preferred_locale&quot;: &quot;en-US&quot;,
-    &quot;premium_progress_bar_enabled&quot;: false,
-    &quot;premium_subscription_count&quot;: null,
-    &quot;premium_tier&quot;: 0,
-    &quot;region&quot;: &quot;us-central&quot;,
-    &quot;roles&quot;: [
+    "explicit_content_filter": 2,
+    "features": [],
+    "guild_id": "43",
+    "icon": "{icon}",
+    "id": "45",
+    "max_members": 250000,
+    "max_presences": null,
+    "mfa_level": 0,
+    "name": "FooBar",
+    "nsfw_level": 0,
+    "owner_id": "46",
+    "preferred_locale": "en-US",
+    "premium_progress_bar_enabled": false,
+    "premium_subscription_count": null,
+    "premium_tier": 0,
+    "region": "us-central",
+    "roles": [
       {{
-        &quot;color&quot;: 0,
-        &quot;hoist&quot;: false,
-        &quot;id&quot;: &quot;47&quot;,
-        &quot;managed&quot;: false,
-        &quot;mentionable&quot;: false,
-        &quot;name&quot;: &quot;@everyone&quot;,
-        &quot;permissions&quot;: &quot;104324673&quot;,
-        &quot;position&quot;: 0,
-        &quot;flags&quot;: 0
+        "color": 0,
+        "hoist": false,
+        "id": "47",
+        "managed": false,
+        "mentionable": false,
+        "name": "@everyone",
+        "permissions": "104324673",
+        "position": 0,
+        "flags": 0
       }}
     ],
-    &quot;rules_channel_id&quot;: null,
-    &quot;splash&quot;: null,
-    &quot;system_channel_flags&quot;: 0,
-    &quot;system_channel_id&quot;: &quot;48&quot;,
-    &quot;vanity_url_code&quot;: null,
-    &quot;verification_level&quot;: 4,
-    &quot;widget_channel_id&quot;: null,
-    &quot;widget_enabled&quot;: true
+    "rules_channel_id": null,
+    "splash": null,
+    "system_channel_flags": 0,
+    "system_channel_id": "48",
+    "vanity_url_code": null,
+    "verification_level": 4,
+    "widget_channel_id": null,
+    "widget_enabled": true
   }},
-  &quot;op&quot;: 0,
-  &quot;s&quot;: 1190911,
-  &quot;t&quot;: &quot;GUILD_UPDATE&quot;
-}}&quot;#</span>,
+  "op": 0,
+  "s": 1190911,
+  "t": "GUILD_UPDATE"
+}}"#</span>,
             icon = image_hash::ICON_INPUT
         );
 
@@ -1497,16 +1498,16 @@
     // they contain it
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_dispatch_resumed() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-  &quot;t&quot;: &quot;RESUMED&quot;,
-  &quot;s&quot;: 37448,
-  &quot;op&quot;: 0,
-  &quot;d&quot;: {
-    &quot;_trace&quot;: [
-      &quot;[\&quot;gateway-prd-main-zqnl\&quot;,{\&quot;micros\&quot;:11488,\&quot;calls\&quot;:[\&quot;discord-sessions-prd-1-38\&quot;,{\&quot;micros\&quot;:1756}]}]&quot;
+        <span class="kw">let </span>input = <span class="string">r#"{
+  "t": "RESUMED",
+  "s": 37448,
+  "op": 0,
+  "d": {
+    "_trace": [
+      "[\"gateway-prd-main-zqnl\",{\"micros\":11488,\"calls\":[\"discord-sessions-prd-1-38\",{\"micros\":1756}]}]"
     ]
   }
-}&quot;#</span>;
+}"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1517,12 +1518,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_heartbeat() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: null,
-            &quot;s&quot;: null,
-            &quot;op&quot;: 1,
-            &quot;d&quot;: 123
-        }&quot;#</span>;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": null,
+            "s": null,
+            "op": 1,
+            "d": 123
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1533,12 +1534,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_heartbeat_ack() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: null,
-            &quot;s&quot;: null,
-            &quot;op&quot;: 11,
-            &quot;d&quot;: null
-        }&quot;#</span>;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": null,
+            "s": null,
+            "op": 11,
+            "d": null
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1549,17 +1550,17 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_hello() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: null,
-            &quot;s&quot;: null,
-            &quot;op&quot;: 10,
-            &quot;d&quot;: {
-                &quot;heartbeat_interval&quot;: 41250,
-                &quot;_trace&quot;: [
-                    &quot;[\&quot;gateway-prd-main-mjmw\&quot;,{\&quot;micros\&quot;:0.0}]&quot;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": null,
+            "s": null,
+            "op": 10,
+            "d": {
+                "heartbeat_interval": 41250,
+                "_trace": [
+                    "[\"gateway-prd-main-mjmw\",{\"micros\":0.0}]"
                 ]
             }
-        }&quot;#</span>;
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1575,12 +1576,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_invalidate_session() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: null,
-            &quot;s&quot;: null,
-            &quot;op&quot;: 9,
-            &quot;d&quot;: true
-        }&quot;#</span>;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": null,
+            "s": null,
+            "op": 9,
+            "d": true
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1591,12 +1592,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>deserialize_reconnect() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: null,
-            &quot;s&quot;: null,
-            &quot;op&quot;: 7,
-            &quot;d&quot;: null
-        }&quot;#</span>;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": null,
+            "s": null,
+            "op": 7,
+            "d": null
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1605,21 +1606,21 @@
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(event, GatewayEvent::Reconnect));
     }
 
-    <span class="doccomment">/// Test that the deserializer won&#39;t mess up on a nested &quot;t&quot; in user input
+    <span class="doccomment">/// Test that the deserializer won't mess up on a nested "t" in user input
     /// while searching for the event type.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>deserializer_from_json_nested_quotes() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{
-            &quot;t&quot;: &quot;DOESNT_MATTER&quot;,
-            &quot;s&quot;: 5144,
-            &quot;op&quot;: 0,
-            &quot;d&quot;: {
-                &quot;name&quot;: &quot;a \&quot;t\&quot;role&quot;
+        <span class="kw">let </span>input = <span class="string">r#"{
+            "t": "DOESNT_MATTER",
+            "s": 5144,
+            "op": 0,
+            "d": {
+                "name": "a \"t\"role"
             }
-        }&quot;#</span>;
+        }"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
-        <span class="macro">assert_eq!</span>(deserializer.event_type(), <span class="prelude-val">Some</span>(<span class="string">&quot;DOESNT_MATTER&quot;</span>));
+        <span class="macro">assert_eq!</span>(deserializer.event_type(), <span class="prelude-val">Some</span>(<span class="string">"DOESNT_MATTER"</span>));
         <span class="macro">assert_eq!</span>(deserializer.op, <span class="number">0</span>);
     }
 
@@ -1628,7 +1629,7 @@
     </span><span class="attr">#[allow(unused)]
     #[test]
     </span><span class="kw">fn </span>deserializer_handles_null_event_types() {
-        <span class="kw">let </span>input = <span class="string">r#&quot;{&quot;t&quot;:null,&quot;op&quot;:11}&quot;#</span>;
+        <span class="kw">let </span>input = <span class="string">r#"{"t":null,"op":11}"#</span>;
 
         <span class="kw">let </span>deserializer = GatewayEventDeserializer::from_json(input).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
@@ -1649,29 +1650,29 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::UnitVariant {
-                    name: <span class="string">&quot;EventType&quot;</span>,
-                    variant: <span class="string">&quot;GUILD_ROLE_DELETE&quot;</span>,
+                    name: <span class="string">"EventType"</span>,
+                    variant: <span class="string">"GUILD_ROLE_DELETE"</span>,
                 },
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::U64(<span class="number">2_048</span>),
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::Dispatch <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::Struct {
-                    name: <span class="string">&quot;RoleDelete&quot;</span>,
+                    name: <span class="string">"RoleDelete"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;guild_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;role_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
+                Token::Str(<span class="string">"guild_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"role_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
                 Token::StructEnd,
                 Token::StructEnd,
             ],
@@ -1684,16 +1685,16 @@
             <span class="kw-2">&amp;</span>GatewayEvent::Heartbeat(<span class="number">1024</span>),
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::Heartbeat <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::U64(<span class="number">1024</span>),
                 Token::StructEnd,
             ],
@@ -1706,16 +1707,16 @@
             <span class="kw-2">&amp;</span>GatewayEvent::HeartbeatAck,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::HeartbeatAck <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::None,
                 Token::StructEnd,
             ],
@@ -1730,21 +1731,21 @@
             }),
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::Hello <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::Struct {
-                    name: <span class="string">&quot;Hello&quot;</span>,
+                    name: <span class="string">"Hello"</span>,
                     len: <span class="number">1</span>,
                 },
-                Token::Str(<span class="string">&quot;heartbeat_interval&quot;</span>),
+                Token::Str(<span class="string">"heartbeat_interval"</span>),
                 Token::U64(<span class="number">41250</span>),
                 Token::StructEnd,
                 Token::StructEnd,
@@ -1760,16 +1761,16 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::InvalidSession <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
                 Token::StructEnd,
             ],
@@ -1782,16 +1783,16 @@
             <span class="kw-2">&amp;</span>GatewayEvent::Reconnect,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GatewayEvent&quot;</span>,
+                    name: <span class="string">"GatewayEvent"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;t&quot;</span>),
+                Token::Str(<span class="string">"t"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;s&quot;</span>),
+                Token::Str(<span class="string">"s"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;op&quot;</span>),
+                Token::Str(<span class="string">"op"</span>),
                 Token::U8(OpCode::Reconnect <span class="kw">as </span>u8),
-                Token::Str(<span class="string">&quot;d&quot;</span>),
+                Token::Str(<span class="string">"d"</span>),
                 Token::None,
                 Token::StructEnd,
             ],

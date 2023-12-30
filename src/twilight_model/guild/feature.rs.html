@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/feature.rs`."><title>feature.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/feature.rs`."><title>feature.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -252,7 +253,7 @@
 /// [Discord Docs/Guild Features]: https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(from = <span class="string">&quot;String&quot;</span>, into = <span class="string">&quot;Cow&lt;&#39;static, str&gt;&quot;</span>)]
+#[serde(from = <span class="string">"String"</span>, into = <span class="string">"Cow&lt;'static, str&gt;"</span>)]
 </span><span class="kw">pub enum </span>GuildFeature {
     <span class="doccomment">/// Has access to set an animated guild banner image.
     </span>AnimatedBanner,
@@ -285,7 +286,7 @@
     <span class="doccomment">/// Has enabled membership screening.
     </span>MemberVerificationGateEnabled,
     <span class="doccomment">/// Has enabled monetization.
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.14.1&quot;</span>, note = <span class="string">&quot;not in active use by discord&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.1"</span>, note = <span class="string">"not in active use by discord"</span>)]
     </span>MonetizationEnabled,
     <span class="doccomment">/// Has increased custom sticker slots.
     </span>MoreStickers,
@@ -319,42 +320,42 @@
     </span>Unknown(String),
 }
 
-<span class="kw">impl </span>From&lt;GuildFeature&gt; <span class="kw">for </span>Cow&lt;<span class="lifetime">&#39;static</span>, str&gt; {
+<span class="kw">impl </span>From&lt;GuildFeature&gt; <span class="kw">for </span>Cow&lt;<span class="lifetime">'static</span>, str&gt; {
     <span class="kw">fn </span>from(value: GuildFeature) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value {
-            GuildFeature::AnimatedBanner =&gt; <span class="string">&quot;ANIMATED_BANNER&quot;</span>.into(),
-            GuildFeature::AnimatedIcon =&gt; <span class="string">&quot;ANIMATED_ICON&quot;</span>.into(),
-            GuildFeature::AutoModeration =&gt; <span class="string">&quot;AUTO_MODERATION&quot;</span>.into(),
-            GuildFeature::Banner =&gt; <span class="string">&quot;BANNER&quot;</span>.into(),
-            GuildFeature::Commerce =&gt; <span class="string">&quot;COMMERCE&quot;</span>.into(),
-            GuildFeature::Community =&gt; <span class="string">&quot;COMMUNITY&quot;</span>.into(),
-            GuildFeature::CreatorMonetizableProvisional =&gt; <span class="string">&quot;CREATOR_MONETIZABLE_PROVISIONAL&quot;</span>.into(),
-            GuildFeature::CreatorStorePage =&gt; <span class="string">&quot;CREATOR_STORE_PAGE&quot;</span>.into(),
-            GuildFeature::DeveloperSupportServer =&gt; <span class="string">&quot;DEVELOPER_SUPPORT_SERVER&quot;</span>.into(),
-            GuildFeature::Discoverable =&gt; <span class="string">&quot;DISCOVERABLE&quot;</span>.into(),
-            GuildFeature::Featurable =&gt; <span class="string">&quot;FEATURABLE&quot;</span>.into(),
-            GuildFeature::InvitesDisabled =&gt; <span class="string">&quot;INVITES_DISABLED&quot;</span>.into(),
-            GuildFeature::InviteSplash =&gt; <span class="string">&quot;INVITE_SPLASH&quot;</span>.into(),
+            GuildFeature::AnimatedBanner =&gt; <span class="string">"ANIMATED_BANNER"</span>.into(),
+            GuildFeature::AnimatedIcon =&gt; <span class="string">"ANIMATED_ICON"</span>.into(),
+            GuildFeature::AutoModeration =&gt; <span class="string">"AUTO_MODERATION"</span>.into(),
+            GuildFeature::Banner =&gt; <span class="string">"BANNER"</span>.into(),
+            GuildFeature::Commerce =&gt; <span class="string">"COMMERCE"</span>.into(),
+            GuildFeature::Community =&gt; <span class="string">"COMMUNITY"</span>.into(),
+            GuildFeature::CreatorMonetizableProvisional =&gt; <span class="string">"CREATOR_MONETIZABLE_PROVISIONAL"</span>.into(),
+            GuildFeature::CreatorStorePage =&gt; <span class="string">"CREATOR_STORE_PAGE"</span>.into(),
+            GuildFeature::DeveloperSupportServer =&gt; <span class="string">"DEVELOPER_SUPPORT_SERVER"</span>.into(),
+            GuildFeature::Discoverable =&gt; <span class="string">"DISCOVERABLE"</span>.into(),
+            GuildFeature::Featurable =&gt; <span class="string">"FEATURABLE"</span>.into(),
+            GuildFeature::InvitesDisabled =&gt; <span class="string">"INVITES_DISABLED"</span>.into(),
+            GuildFeature::InviteSplash =&gt; <span class="string">"INVITE_SPLASH"</span>.into(),
             GuildFeature::MemberVerificationGateEnabled =&gt; {
-                <span class="string">&quot;MEMBER_VERIFICATION_GATE_ENABLED&quot;</span>.into()
+                <span class="string">"MEMBER_VERIFICATION_GATE_ENABLED"</span>.into()
             }
-            GuildFeature::MonetizationEnabled =&gt; <span class="string">&quot;MONETIZATION_ENABLED&quot;</span>.into(),
-            GuildFeature::MoreStickers =&gt; <span class="string">&quot;MORE_STICKERS&quot;</span>.into(),
-            GuildFeature::News =&gt; <span class="string">&quot;NEWS&quot;</span>.into(),
-            GuildFeature::Partnered =&gt; <span class="string">&quot;PARTNERED&quot;</span>.into(),
-            GuildFeature::PreviewEnabled =&gt; <span class="string">&quot;PREVIEW_ENABLED&quot;</span>.into(),
-            GuildFeature::PrivateThreads =&gt; <span class="string">&quot;PRIVATE_THREADS&quot;</span>.into(),
-            GuildFeature::RaidAlertsDisabled =&gt; <span class="string">&quot;RAID_ALERTS_DISABLED&quot;</span>.into(),
-            GuildFeature::RoleIcons =&gt; <span class="string">&quot;ROLE_ICONS&quot;</span>.into(),
+            GuildFeature::MonetizationEnabled =&gt; <span class="string">"MONETIZATION_ENABLED"</span>.into(),
+            GuildFeature::MoreStickers =&gt; <span class="string">"MORE_STICKERS"</span>.into(),
+            GuildFeature::News =&gt; <span class="string">"NEWS"</span>.into(),
+            GuildFeature::Partnered =&gt; <span class="string">"PARTNERED"</span>.into(),
+            GuildFeature::PreviewEnabled =&gt; <span class="string">"PREVIEW_ENABLED"</span>.into(),
+            GuildFeature::PrivateThreads =&gt; <span class="string">"PRIVATE_THREADS"</span>.into(),
+            GuildFeature::RaidAlertsDisabled =&gt; <span class="string">"RAID_ALERTS_DISABLED"</span>.into(),
+            GuildFeature::RoleIcons =&gt; <span class="string">"ROLE_ICONS"</span>.into(),
             GuildFeature::RoleSubscriptionsAvailableForPurchase =&gt; {
-                <span class="string">&quot;ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE&quot;</span>.into()
+                <span class="string">"ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE"</span>.into()
             }
-            GuildFeature::RoleSubscriptionsEnabled =&gt; <span class="string">&quot;ROLE_SUBSCRIPTIONS_ENABLED&quot;</span>.into(),
-            GuildFeature::TicketedEventsEnabled =&gt; <span class="string">&quot;TICKETED_EVENTS_ENABLED&quot;</span>.into(),
-            GuildFeature::VanityUrl =&gt; <span class="string">&quot;VANITY_URL&quot;</span>.into(),
-            GuildFeature::Verified =&gt; <span class="string">&quot;VERIFIED&quot;</span>.into(),
-            GuildFeature::VipRegions =&gt; <span class="string">&quot;VIP_REGIONS&quot;</span>.into(),
-            GuildFeature::WelcomeScreenEnabled =&gt; <span class="string">&quot;WELCOME_SCREEN_ENABLED&quot;</span>.into(),
+            GuildFeature::RoleSubscriptionsEnabled =&gt; <span class="string">"ROLE_SUBSCRIPTIONS_ENABLED"</span>.into(),
+            GuildFeature::TicketedEventsEnabled =&gt; <span class="string">"TICKETED_EVENTS_ENABLED"</span>.into(),
+            GuildFeature::VanityUrl =&gt; <span class="string">"VANITY_URL"</span>.into(),
+            GuildFeature::Verified =&gt; <span class="string">"VERIFIED"</span>.into(),
+            GuildFeature::VipRegions =&gt; <span class="string">"VIP_REGIONS"</span>.into(),
+            GuildFeature::WelcomeScreenEnabled =&gt; <span class="string">"WELCOME_SCREEN_ENABLED"</span>.into(),
             GuildFeature::Unknown(unknown) =&gt; unknown.into(),
         }
     }
@@ -363,37 +364,37 @@
 <span class="kw">impl </span>From&lt;String&gt; <span class="kw">for </span>GuildFeature {
     <span class="kw">fn </span>from(value: String) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value.as_str() {
-            <span class="string">&quot;ANIMATED_BANNER&quot; </span>=&gt; <span class="self">Self</span>::AnimatedBanner,
-            <span class="string">&quot;ANIMATED_ICON&quot; </span>=&gt; <span class="self">Self</span>::AnimatedIcon,
-            <span class="string">&quot;AUTO_MODERATION&quot; </span>=&gt; <span class="self">Self</span>::AutoModeration,
-            <span class="string">&quot;BANNER&quot; </span>=&gt; <span class="self">Self</span>::Banner,
-            <span class="string">&quot;COMMERCE&quot; </span>=&gt; <span class="self">Self</span>::Commerce,
-            <span class="string">&quot;COMMUNITY&quot; </span>=&gt; <span class="self">Self</span>::Community,
-            <span class="string">&quot;CREATOR_MONETIZABLE_PROVISIONAL&quot; </span>=&gt; GuildFeature::CreatorMonetizableProvisional,
-            <span class="string">&quot;CREATOR_STORE_PAGE&quot; </span>=&gt; GuildFeature::CreatorStorePage,
-            <span class="string">&quot;DEVELOPER_SUPPORT_SERVER&quot; </span>=&gt; <span class="self">Self</span>::DeveloperSupportServer,
-            <span class="string">&quot;DISCOVERABLE&quot; </span>=&gt; <span class="self">Self</span>::Discoverable,
-            <span class="string">&quot;FEATURABLE&quot; </span>=&gt; <span class="self">Self</span>::Featurable,
-            <span class="string">&quot;INVITES_DISABLED&quot; </span>=&gt; <span class="self">Self</span>::InvitesDisabled,
-            <span class="string">&quot;INVITE_SPLASH&quot; </span>=&gt; <span class="self">Self</span>::InviteSplash,
-            <span class="string">&quot;MEMBER_VERIFICATION_GATE_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::MemberVerificationGateEnabled,
-            <span class="string">&quot;MONETIZATION_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::MonetizationEnabled,
-            <span class="string">&quot;MORE_STICKERS&quot; </span>=&gt; <span class="self">Self</span>::MoreStickers,
-            <span class="string">&quot;NEWS&quot; </span>=&gt; <span class="self">Self</span>::News,
-            <span class="string">&quot;PARTNERED&quot; </span>=&gt; <span class="self">Self</span>::Partnered,
-            <span class="string">&quot;PREVIEW_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::PreviewEnabled,
-            <span class="string">&quot;PRIVATE_THREADS&quot; </span>=&gt; <span class="self">Self</span>::PrivateThreads,
-            <span class="string">&quot;RAID_ALERTS_DISABLED&quot; </span>=&gt; <span class="self">Self</span>::RaidAlertsDisabled,
-            <span class="string">&quot;ROLE_ICONS&quot; </span>=&gt; <span class="self">Self</span>::RoleIcons,
-            <span class="string">&quot;ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE&quot; </span>=&gt; {
+            <span class="string">"ANIMATED_BANNER" </span>=&gt; <span class="self">Self</span>::AnimatedBanner,
+            <span class="string">"ANIMATED_ICON" </span>=&gt; <span class="self">Self</span>::AnimatedIcon,
+            <span class="string">"AUTO_MODERATION" </span>=&gt; <span class="self">Self</span>::AutoModeration,
+            <span class="string">"BANNER" </span>=&gt; <span class="self">Self</span>::Banner,
+            <span class="string">"COMMERCE" </span>=&gt; <span class="self">Self</span>::Commerce,
+            <span class="string">"COMMUNITY" </span>=&gt; <span class="self">Self</span>::Community,
+            <span class="string">"CREATOR_MONETIZABLE_PROVISIONAL" </span>=&gt; GuildFeature::CreatorMonetizableProvisional,
+            <span class="string">"CREATOR_STORE_PAGE" </span>=&gt; GuildFeature::CreatorStorePage,
+            <span class="string">"DEVELOPER_SUPPORT_SERVER" </span>=&gt; <span class="self">Self</span>::DeveloperSupportServer,
+            <span class="string">"DISCOVERABLE" </span>=&gt; <span class="self">Self</span>::Discoverable,
+            <span class="string">"FEATURABLE" </span>=&gt; <span class="self">Self</span>::Featurable,
+            <span class="string">"INVITES_DISABLED" </span>=&gt; <span class="self">Self</span>::InvitesDisabled,
+            <span class="string">"INVITE_SPLASH" </span>=&gt; <span class="self">Self</span>::InviteSplash,
+            <span class="string">"MEMBER_VERIFICATION_GATE_ENABLED" </span>=&gt; <span class="self">Self</span>::MemberVerificationGateEnabled,
+            <span class="string">"MONETIZATION_ENABLED" </span>=&gt; <span class="self">Self</span>::MonetizationEnabled,
+            <span class="string">"MORE_STICKERS" </span>=&gt; <span class="self">Self</span>::MoreStickers,
+            <span class="string">"NEWS" </span>=&gt; <span class="self">Self</span>::News,
+            <span class="string">"PARTNERED" </span>=&gt; <span class="self">Self</span>::Partnered,
+            <span class="string">"PREVIEW_ENABLED" </span>=&gt; <span class="self">Self</span>::PreviewEnabled,
+            <span class="string">"PRIVATE_THREADS" </span>=&gt; <span class="self">Self</span>::PrivateThreads,
+            <span class="string">"RAID_ALERTS_DISABLED" </span>=&gt; <span class="self">Self</span>::RaidAlertsDisabled,
+            <span class="string">"ROLE_ICONS" </span>=&gt; <span class="self">Self</span>::RoleIcons,
+            <span class="string">"ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE" </span>=&gt; {
                 GuildFeature::RoleSubscriptionsAvailableForPurchase
             }
-            <span class="string">&quot;ROLE_SUBSCRIPTIONS_ENABLED&quot; </span>=&gt; GuildFeature::RoleSubscriptionsEnabled,
-            <span class="string">&quot;TICKETED_EVENTS_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::TicketedEventsEnabled,
-            <span class="string">&quot;VANITY_URL&quot; </span>=&gt; <span class="self">Self</span>::VanityUrl,
-            <span class="string">&quot;VERIFIED&quot; </span>=&gt; <span class="self">Self</span>::Verified,
-            <span class="string">&quot;VIP_REGIONS&quot; </span>=&gt; <span class="self">Self</span>::VipRegions,
-            <span class="string">&quot;WELCOME_SCREEN_ENABLED&quot; </span>=&gt; <span class="self">Self</span>::WelcomeScreenEnabled,
+            <span class="string">"ROLE_SUBSCRIPTIONS_ENABLED" </span>=&gt; GuildFeature::RoleSubscriptionsEnabled,
+            <span class="string">"TICKETED_EVENTS_ENABLED" </span>=&gt; <span class="self">Self</span>::TicketedEventsEnabled,
+            <span class="string">"VANITY_URL" </span>=&gt; <span class="self">Self</span>::VanityUrl,
+            <span class="string">"VERIFIED" </span>=&gt; <span class="self">Self</span>::Verified,
+            <span class="string">"VIP_REGIONS" </span>=&gt; <span class="self">Self</span>::VipRegions,
+            <span class="string">"WELCOME_SCREEN_ENABLED" </span>=&gt; <span class="self">Self</span>::WelcomeScreenEnabled,
             <span class="kw">_ </span>=&gt; <span class="self">Self</span>::Unknown(value),
         }
     }
@@ -408,77 +409,77 @@
     </span><span class="kw">fn </span>variants() {
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::AnimatedBanner,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;ANIMATED_BANNER&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"ANIMATED_BANNER"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::AnimatedIcon, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;ANIMATED_ICON&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::AnimatedIcon, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"ANIMATED_ICON"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::AutoModeration,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;AUTO_MODERATION&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"AUTO_MODERATION"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Banner, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;BANNER&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Commerce, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;COMMERCE&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Community, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;COMMUNITY&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Banner, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"BANNER"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Commerce, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"COMMERCE"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Community, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"COMMUNITY"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::CreatorMonetizableProvisional,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;CREATOR_MONETIZABLE_PROVISIONAL&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"CREATOR_MONETIZABLE_PROVISIONAL"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::CreatorStorePage,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;CREATOR_STORE_PAGE&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"CREATOR_STORE_PAGE"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::DeveloperSupportServer,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;DEVELOPER_SUPPORT_SERVER&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"DEVELOPER_SUPPORT_SERVER"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Discoverable, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;DISCOVERABLE&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Featurable, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;FEATURABLE&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Discoverable, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"DISCOVERABLE"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Featurable, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"FEATURABLE"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::InvitesDisabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;INVITES_DISABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"INVITES_DISABLED"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::InviteSplash, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;INVITE_SPLASH&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::InviteSplash, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"INVITE_SPLASH"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::MemberVerificationGateEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;MEMBER_VERIFICATION_GATE_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"MEMBER_VERIFICATION_GATE_ENABLED"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::MonetizationEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;MONETIZATION_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"MONETIZATION_ENABLED"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::MoreStickers, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;MORE_STICKERS&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::News, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;NEWS&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Partnered, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;PARTNERED&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::MoreStickers, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"MORE_STICKERS"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::News, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"NEWS"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Partnered, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"PARTNERED"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::PreviewEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;PREVIEW_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"PREVIEW_ENABLED"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::PrivateThreads,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;PRIVATE_THREADS&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"PRIVATE_THREADS"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::RoleIcons, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;ROLE_ICONS&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::RoleIcons, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"ROLE_ICONS"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::RoleSubscriptionsAvailableForPurchase,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::RoleSubscriptionsEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;ROLE_SUBSCRIPTIONS_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"ROLE_SUBSCRIPTIONS_ENABLED"</span>)],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::TicketedEventsEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;TICKETED_EVENTS_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"TICKETED_EVENTS_ENABLED"</span>)],
         );
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::VanityUrl, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;VANITY_URL&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Verified, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;VERIFIED&quot;</span>)]);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::VipRegions, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;VIP_REGIONS&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::VanityUrl, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"VANITY_URL"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::Verified, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"VERIFIED"</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>GuildFeature::VipRegions, <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"VIP_REGIONS"</span>)]);
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>GuildFeature::WelcomeScreenEnabled,
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;WELCOME_SCREEN_ENABLED&quot;</span>)],
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"WELCOME_SCREEN_ENABLED"</span>)],
         );
         serde_test::assert_tokens(
-            <span class="kw-2">&amp;</span>GuildFeature::Unknown(<span class="string">&quot;UNKNOWN&quot;</span>.to_owned()),
-            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;UNKNOWN&quot;</span>)],
+            <span class="kw-2">&amp;</span>GuildFeature::Unknown(<span class="string">"UNKNOWN"</span>.to_owned()),
+            <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"UNKNOWN"</span>)],
         );
     }
 }

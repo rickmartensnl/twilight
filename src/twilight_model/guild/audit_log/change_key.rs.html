@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/audit_log/change_key.rs`."><title>change_key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/audit_log/change_key.rs`."><title>change_key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -806,7 +807,7 @@
 /// [1]: https://discord.com/developers/docs/resources/audit-log#audit-log-change-object-audit-log-change-key
 </span><span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+#[serde(rename_all = <span class="string">"snake_case"</span>)]
 </span><span class="kw">pub enum </span>AuditLogChangeKey {
     <span class="doccomment">/// AFK voice channel for a guild.
     </span>AfkChannelId,
@@ -852,7 +853,7 @@
     </span>Deny,
     <span class="doccomment">/// Description of a guild.
     </span>Description,
-    <span class="doccomment">/// Hash of a guild&#39;s discovery splash.
+    <span class="doccomment">/// Hash of a guild's discovery splash.
     </span>DiscoverySplashHash,
     <span class="doccomment">/// Whether emoticons are enabled.
     </span>EnableEmoticons,
@@ -890,7 +891,7 @@
     </span>MaxUses,
     <span class="doccomment">/// Whether a role can be mentioned in a message.
     </span>Mentionable,
-    <span class="doccomment">/// Multi-Factor Authentication level required of a guild&#39;s moderators.
+    <span class="doccomment">/// Multi-Factor Authentication level required of a guild's moderators.
     </span>MfaLevel,
     <span class="doccomment">/// Whether a user is guild muted.
     </span>Mute,
@@ -914,27 +915,27 @@
     </span>PreferredLocale,
     <span class="doccomment">/// Privacy level of a stage instance.
     </span>PrivacyLevel,
-    <span class="doccomment">/// Number of days&#39; worth of inactivity for a guild prune.
+    <span class="doccomment">/// Number of days' worth of inactivity for a guild prune.
     </span>PruneDeleteDays,
-    <span class="doccomment">/// ID of a guild&#39;s public updates channel.
+    <span class="doccomment">/// ID of a guild's public updates channel.
     </span>PublicUpdatesChannelId,
     <span class="doccomment">/// Ratelimit per user in a textual channel.
     </span>RateLimitPerUser,
     <span class="doccomment">/// Region of a guild changed.
     </span>Region,
     <span class="doccomment">/// Role added to a user.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;$add&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"$add"</span>)]
     </span>RoleAdded,
     <span class="doccomment">/// Role removed from a user.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;$remove&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"$remove"</span>)]
     </span>RoleRemoved,
-    <span class="doccomment">/// ID of a guild&#39;s rules channel.
+    <span class="doccomment">/// ID of a guild's rules channel.
     </span>RulesChannelId,
-    <span class="doccomment">/// Hash of a guild&#39;s splash.
+    <span class="doccomment">/// Hash of a guild's splash.
     </span>SplashHash,
     <span class="doccomment">/// Status of guild scheduled event was changed.
     </span>Status,
-    <span class="doccomment">/// ID of a guild&#39;s system channel.
+    <span class="doccomment">/// ID of a guild's system channel.
     </span>SystemChannelId,
     <span class="doccomment">/// Related emoji of a sticker.
     </span>Tags,
@@ -950,7 +951,7 @@
     </span>UserLimit,
     <span class="doccomment">/// Number of uses of an invite.
     </span>Uses,
-    <span class="doccomment">/// Code of a guild&#39;s vanity invite.
+    <span class="doccomment">/// Code of a guild's vanity invite.
     </span>VanityUrlCode,
     <span class="doccomment">/// Required verification level of new members in a guild.
     </span>VerificationLevel,
@@ -972,93 +973,93 @@
     /// ```
     /// use twilight_model::guild::audit_log::AuditLogChangeKey;
     ///
-    /// assert_eq!(&quot;allow&quot;, AuditLogChangeKey::Allow.name());
-    /// assert_eq!(&quot;banner_hash&quot;, AuditLogChangeKey::BannerHash.name());
+    /// assert_eq!("allow", AuditLogChangeKey::Allow.name());
+    /// assert_eq!("banner_hash", AuditLogChangeKey::BannerHash.name());
     /// ```
     ///
     /// [`Allow`]: Self::Allow
     /// [`BannerHash`]: Self::BannerHash
-    </span><span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    </span><span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::AfkChannelId =&gt; <span class="string">&quot;afk_channel_id&quot;</span>,
-            <span class="self">Self</span>::AfkTimeout =&gt; <span class="string">&quot;afk_timeout&quot;</span>,
-            <span class="self">Self</span>::Allow =&gt; <span class="string">&quot;allow&quot;</span>,
-            <span class="self">Self</span>::ApplicationId =&gt; <span class="string">&quot;application_id&quot;</span>,
-            <span class="self">Self</span>::Archived =&gt; <span class="string">&quot;archived&quot;</span>,
-            <span class="self">Self</span>::Asset =&gt; <span class="string">&quot;asset&quot;</span>,
-            <span class="self">Self</span>::AutoArchiveDuration =&gt; <span class="string">&quot;auto_archive_duration&quot;</span>,
-            <span class="self">Self</span>::Available =&gt; <span class="string">&quot;available&quot;</span>,
-            <span class="self">Self</span>::AvatarHash =&gt; <span class="string">&quot;avatar_hash&quot;</span>,
-            <span class="self">Self</span>::BannerHash =&gt; <span class="string">&quot;banner_hash&quot;</span>,
-            <span class="self">Self</span>::Bitrate =&gt; <span class="string">&quot;bitrate&quot;</span>,
-            <span class="self">Self</span>::ChannelId =&gt; <span class="string">&quot;channel_id&quot;</span>,
-            <span class="self">Self</span>::Code =&gt; <span class="string">&quot;code&quot;</span>,
-            <span class="self">Self</span>::Color =&gt; <span class="string">&quot;color&quot;</span>,
-            <span class="self">Self</span>::CommandId =&gt; <span class="string">&quot;command_id&quot;</span>,
-            <span class="self">Self</span>::CommunicationDisabledUntil =&gt; <span class="string">&quot;communication_disabled_until&quot;</span>,
-            <span class="self">Self</span>::Deaf =&gt; <span class="string">&quot;deaf&quot;</span>,
-            <span class="self">Self</span>::DefaultAutoArchiveDuration =&gt; <span class="string">&quot;default_auto_archive_duration&quot;</span>,
-            <span class="self">Self</span>::DefaultMessageNotifications =&gt; <span class="string">&quot;default_message_notifications&quot;</span>,
-            <span class="self">Self</span>::Deny =&gt; <span class="string">&quot;deny&quot;</span>,
-            <span class="self">Self</span>::Description =&gt; <span class="string">&quot;description&quot;</span>,
-            <span class="self">Self</span>::DiscoverySplashHash =&gt; <span class="string">&quot;discovery_splash_hash&quot;</span>,
-            <span class="self">Self</span>::EnableEmoticons =&gt; <span class="string">&quot;enable_emoticons&quot;</span>,
-            <span class="self">Self</span>::EntityType =&gt; <span class="string">&quot;entity_type&quot;</span>,
-            <span class="self">Self</span>::ExpireBehavior =&gt; <span class="string">&quot;expire_behavior&quot;</span>,
-            <span class="self">Self</span>::ExpireGracePeriod =&gt; <span class="string">&quot;expire_grace_period&quot;</span>,
-            <span class="self">Self</span>::ExplicitContentFilter =&gt; <span class="string">&quot;explicit_content_filter&quot;</span>,
-            <span class="self">Self</span>::FormatType =&gt; <span class="string">&quot;format_type&quot;</span>,
-            <span class="self">Self</span>::GuildId =&gt; <span class="string">&quot;guild_id&quot;</span>,
-            <span class="self">Self</span>::Hoist =&gt; <span class="string">&quot;hoist&quot;</span>,
-            <span class="self">Self</span>::IconHash =&gt; <span class="string">&quot;icon_hash&quot;</span>,
-            <span class="self">Self</span>::Id =&gt; <span class="string">&quot;id&quot;</span>,
-            <span class="self">Self</span>::ImageHash =&gt; <span class="string">&quot;image_hash&quot;</span>,
-            <span class="self">Self</span>::Invitable =&gt; <span class="string">&quot;invitable&quot;</span>,
-            <span class="self">Self</span>::InviterId =&gt; <span class="string">&quot;inviter_id&quot;</span>,
-            <span class="self">Self</span>::Location =&gt; <span class="string">&quot;location&quot;</span>,
-            <span class="self">Self</span>::Locked =&gt; <span class="string">&quot;locked&quot;</span>,
-            <span class="self">Self</span>::MaxAge =&gt; <span class="string">&quot;max_age&quot;</span>,
-            <span class="self">Self</span>::MaxUses =&gt; <span class="string">&quot;max_uses&quot;</span>,
-            <span class="self">Self</span>::Mentionable =&gt; <span class="string">&quot;mentionable&quot;</span>,
-            <span class="self">Self</span>::MfaLevel =&gt; <span class="string">&quot;mfa_level&quot;</span>,
-            <span class="self">Self</span>::Mute =&gt; <span class="string">&quot;mute&quot;</span>,
-            <span class="self">Self</span>::Name =&gt; <span class="string">&quot;name&quot;</span>,
-            <span class="self">Self</span>::Nick =&gt; <span class="string">&quot;nick&quot;</span>,
-            <span class="self">Self</span>::Nsfw =&gt; <span class="string">&quot;nsfw&quot;</span>,
-            <span class="self">Self</span>::NsfwLevel =&gt; <span class="string">&quot;nsfw_level&quot;</span>,
-            <span class="self">Self</span>::OwnerId =&gt; <span class="string">&quot;owner_id&quot;</span>,
-            <span class="self">Self</span>::PermissionOverwrites =&gt; <span class="string">&quot;permission_overwrites&quot;</span>,
-            <span class="self">Self</span>::Permissions =&gt; <span class="string">&quot;permissions&quot;</span>,
-            <span class="self">Self</span>::Position =&gt; <span class="string">&quot;position&quot;</span>,
-            <span class="self">Self</span>::PreferredLocale =&gt; <span class="string">&quot;preferred_locale&quot;</span>,
-            <span class="self">Self</span>::PrivacyLevel =&gt; <span class="string">&quot;privacy_level&quot;</span>,
-            <span class="self">Self</span>::PruneDeleteDays =&gt; <span class="string">&quot;prune_delete_days&quot;</span>,
-            <span class="self">Self</span>::PublicUpdatesChannelId =&gt; <span class="string">&quot;public_updates_channel_id&quot;</span>,
-            <span class="self">Self</span>::RateLimitPerUser =&gt; <span class="string">&quot;rate_limit_per_user&quot;</span>,
-            <span class="self">Self</span>::Region =&gt; <span class="string">&quot;region&quot;</span>,
-            <span class="self">Self</span>::RoleAdded =&gt; <span class="string">&quot;$add&quot;</span>,
-            <span class="self">Self</span>::RoleRemoved =&gt; <span class="string">&quot;$remove&quot;</span>,
-            <span class="self">Self</span>::RulesChannelId =&gt; <span class="string">&quot;rules_channel_id&quot;</span>,
-            <span class="self">Self</span>::SplashHash =&gt; <span class="string">&quot;splash_hash&quot;</span>,
-            <span class="self">Self</span>::Status =&gt; <span class="string">&quot;status&quot;</span>,
-            <span class="self">Self</span>::SystemChannelId =&gt; <span class="string">&quot;system_channel_id&quot;</span>,
-            <span class="self">Self</span>::Tags =&gt; <span class="string">&quot;tags&quot;</span>,
-            <span class="self">Self</span>::Temporary =&gt; <span class="string">&quot;temporary&quot;</span>,
-            <span class="self">Self</span>::Topic =&gt; <span class="string">&quot;topic&quot;</span>,
-            <span class="self">Self</span>::Type =&gt; <span class="string">&quot;type&quot;</span>,
-            <span class="self">Self</span>::UnicodeEmoji =&gt; <span class="string">&quot;unicode_emoji&quot;</span>,
-            <span class="self">Self</span>::UserLimit =&gt; <span class="string">&quot;user_limit&quot;</span>,
-            <span class="self">Self</span>::Uses =&gt; <span class="string">&quot;uses&quot;</span>,
-            <span class="self">Self</span>::VanityUrlCode =&gt; <span class="string">&quot;vanity_url_code&quot;</span>,
-            <span class="self">Self</span>::VerificationLevel =&gt; <span class="string">&quot;verification_level&quot;</span>,
-            <span class="self">Self</span>::WidgetChannelId =&gt; <span class="string">&quot;widget_channel_id&quot;</span>,
-            <span class="self">Self</span>::WidgetEnabled =&gt; <span class="string">&quot;widget_enabled&quot;</span>,
+            <span class="self">Self</span>::AfkChannelId =&gt; <span class="string">"afk_channel_id"</span>,
+            <span class="self">Self</span>::AfkTimeout =&gt; <span class="string">"afk_timeout"</span>,
+            <span class="self">Self</span>::Allow =&gt; <span class="string">"allow"</span>,
+            <span class="self">Self</span>::ApplicationId =&gt; <span class="string">"application_id"</span>,
+            <span class="self">Self</span>::Archived =&gt; <span class="string">"archived"</span>,
+            <span class="self">Self</span>::Asset =&gt; <span class="string">"asset"</span>,
+            <span class="self">Self</span>::AutoArchiveDuration =&gt; <span class="string">"auto_archive_duration"</span>,
+            <span class="self">Self</span>::Available =&gt; <span class="string">"available"</span>,
+            <span class="self">Self</span>::AvatarHash =&gt; <span class="string">"avatar_hash"</span>,
+            <span class="self">Self</span>::BannerHash =&gt; <span class="string">"banner_hash"</span>,
+            <span class="self">Self</span>::Bitrate =&gt; <span class="string">"bitrate"</span>,
+            <span class="self">Self</span>::ChannelId =&gt; <span class="string">"channel_id"</span>,
+            <span class="self">Self</span>::Code =&gt; <span class="string">"code"</span>,
+            <span class="self">Self</span>::Color =&gt; <span class="string">"color"</span>,
+            <span class="self">Self</span>::CommandId =&gt; <span class="string">"command_id"</span>,
+            <span class="self">Self</span>::CommunicationDisabledUntil =&gt; <span class="string">"communication_disabled_until"</span>,
+            <span class="self">Self</span>::Deaf =&gt; <span class="string">"deaf"</span>,
+            <span class="self">Self</span>::DefaultAutoArchiveDuration =&gt; <span class="string">"default_auto_archive_duration"</span>,
+            <span class="self">Self</span>::DefaultMessageNotifications =&gt; <span class="string">"default_message_notifications"</span>,
+            <span class="self">Self</span>::Deny =&gt; <span class="string">"deny"</span>,
+            <span class="self">Self</span>::Description =&gt; <span class="string">"description"</span>,
+            <span class="self">Self</span>::DiscoverySplashHash =&gt; <span class="string">"discovery_splash_hash"</span>,
+            <span class="self">Self</span>::EnableEmoticons =&gt; <span class="string">"enable_emoticons"</span>,
+            <span class="self">Self</span>::EntityType =&gt; <span class="string">"entity_type"</span>,
+            <span class="self">Self</span>::ExpireBehavior =&gt; <span class="string">"expire_behavior"</span>,
+            <span class="self">Self</span>::ExpireGracePeriod =&gt; <span class="string">"expire_grace_period"</span>,
+            <span class="self">Self</span>::ExplicitContentFilter =&gt; <span class="string">"explicit_content_filter"</span>,
+            <span class="self">Self</span>::FormatType =&gt; <span class="string">"format_type"</span>,
+            <span class="self">Self</span>::GuildId =&gt; <span class="string">"guild_id"</span>,
+            <span class="self">Self</span>::Hoist =&gt; <span class="string">"hoist"</span>,
+            <span class="self">Self</span>::IconHash =&gt; <span class="string">"icon_hash"</span>,
+            <span class="self">Self</span>::Id =&gt; <span class="string">"id"</span>,
+            <span class="self">Self</span>::ImageHash =&gt; <span class="string">"image_hash"</span>,
+            <span class="self">Self</span>::Invitable =&gt; <span class="string">"invitable"</span>,
+            <span class="self">Self</span>::InviterId =&gt; <span class="string">"inviter_id"</span>,
+            <span class="self">Self</span>::Location =&gt; <span class="string">"location"</span>,
+            <span class="self">Self</span>::Locked =&gt; <span class="string">"locked"</span>,
+            <span class="self">Self</span>::MaxAge =&gt; <span class="string">"max_age"</span>,
+            <span class="self">Self</span>::MaxUses =&gt; <span class="string">"max_uses"</span>,
+            <span class="self">Self</span>::Mentionable =&gt; <span class="string">"mentionable"</span>,
+            <span class="self">Self</span>::MfaLevel =&gt; <span class="string">"mfa_level"</span>,
+            <span class="self">Self</span>::Mute =&gt; <span class="string">"mute"</span>,
+            <span class="self">Self</span>::Name =&gt; <span class="string">"name"</span>,
+            <span class="self">Self</span>::Nick =&gt; <span class="string">"nick"</span>,
+            <span class="self">Self</span>::Nsfw =&gt; <span class="string">"nsfw"</span>,
+            <span class="self">Self</span>::NsfwLevel =&gt; <span class="string">"nsfw_level"</span>,
+            <span class="self">Self</span>::OwnerId =&gt; <span class="string">"owner_id"</span>,
+            <span class="self">Self</span>::PermissionOverwrites =&gt; <span class="string">"permission_overwrites"</span>,
+            <span class="self">Self</span>::Permissions =&gt; <span class="string">"permissions"</span>,
+            <span class="self">Self</span>::Position =&gt; <span class="string">"position"</span>,
+            <span class="self">Self</span>::PreferredLocale =&gt; <span class="string">"preferred_locale"</span>,
+            <span class="self">Self</span>::PrivacyLevel =&gt; <span class="string">"privacy_level"</span>,
+            <span class="self">Self</span>::PruneDeleteDays =&gt; <span class="string">"prune_delete_days"</span>,
+            <span class="self">Self</span>::PublicUpdatesChannelId =&gt; <span class="string">"public_updates_channel_id"</span>,
+            <span class="self">Self</span>::RateLimitPerUser =&gt; <span class="string">"rate_limit_per_user"</span>,
+            <span class="self">Self</span>::Region =&gt; <span class="string">"region"</span>,
+            <span class="self">Self</span>::RoleAdded =&gt; <span class="string">"$add"</span>,
+            <span class="self">Self</span>::RoleRemoved =&gt; <span class="string">"$remove"</span>,
+            <span class="self">Self</span>::RulesChannelId =&gt; <span class="string">"rules_channel_id"</span>,
+            <span class="self">Self</span>::SplashHash =&gt; <span class="string">"splash_hash"</span>,
+            <span class="self">Self</span>::Status =&gt; <span class="string">"status"</span>,
+            <span class="self">Self</span>::SystemChannelId =&gt; <span class="string">"system_channel_id"</span>,
+            <span class="self">Self</span>::Tags =&gt; <span class="string">"tags"</span>,
+            <span class="self">Self</span>::Temporary =&gt; <span class="string">"temporary"</span>,
+            <span class="self">Self</span>::Topic =&gt; <span class="string">"topic"</span>,
+            <span class="self">Self</span>::Type =&gt; <span class="string">"type"</span>,
+            <span class="self">Self</span>::UnicodeEmoji =&gt; <span class="string">"unicode_emoji"</span>,
+            <span class="self">Self</span>::UserLimit =&gt; <span class="string">"user_limit"</span>,
+            <span class="self">Self</span>::Uses =&gt; <span class="string">"uses"</span>,
+            <span class="self">Self</span>::VanityUrlCode =&gt; <span class="string">"vanity_url_code"</span>,
+            <span class="self">Self</span>::VerificationLevel =&gt; <span class="string">"verification_level"</span>,
+            <span class="self">Self</span>::WidgetChannelId =&gt; <span class="string">"widget_channel_id"</span>,
+            <span class="self">Self</span>::WidgetEnabled =&gt; <span class="string">"widget_enabled"</span>,
         }
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>AuditLogChangeKey {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         f.write_str(<span class="self">self</span>.name())
     }
 }
@@ -1078,7 +1079,7 @@
         AuditLogChangeKey: Clone,
         Copy,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Display,
         Eq,
         Hash,
@@ -1090,102 +1091,102 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>name() {
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;afk_channel_id&quot;</span>, AuditLogChangeKey::AfkChannelId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;afk_timeout&quot;</span>, AuditLogChangeKey::AfkTimeout.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;allow&quot;</span>, AuditLogChangeKey::Allow.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;application_id&quot;</span>, AuditLogChangeKey::ApplicationId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;avatar_hash&quot;</span>, AuditLogChangeKey::AvatarHash.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;banner_hash&quot;</span>, AuditLogChangeKey::BannerHash.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;bitrate&quot;</span>, AuditLogChangeKey::Bitrate.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;channel_id&quot;</span>, AuditLogChangeKey::ChannelId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;code&quot;</span>, AuditLogChangeKey::Code.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;color&quot;</span>, AuditLogChangeKey::Color.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;command_id&quot;</span>, AuditLogChangeKey::CommandId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"afk_channel_id"</span>, AuditLogChangeKey::AfkChannelId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"afk_timeout"</span>, AuditLogChangeKey::AfkTimeout.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"allow"</span>, AuditLogChangeKey::Allow.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"application_id"</span>, AuditLogChangeKey::ApplicationId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"avatar_hash"</span>, AuditLogChangeKey::AvatarHash.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"banner_hash"</span>, AuditLogChangeKey::BannerHash.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"bitrate"</span>, AuditLogChangeKey::Bitrate.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"channel_id"</span>, AuditLogChangeKey::ChannelId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"code"</span>, AuditLogChangeKey::Code.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"color"</span>, AuditLogChangeKey::Color.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"command_id"</span>, AuditLogChangeKey::CommandId.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;communication_disabled_until&quot;</span>,
+            <span class="string">"communication_disabled_until"</span>,
             AuditLogChangeKey::CommunicationDisabledUntil.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;deaf&quot;</span>, AuditLogChangeKey::Deaf.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"deaf"</span>, AuditLogChangeKey::Deaf.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;default_message_notifications&quot;</span>,
+            <span class="string">"default_message_notifications"</span>,
             AuditLogChangeKey::DefaultMessageNotifications.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;deny&quot;</span>, AuditLogChangeKey::Deny.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;description&quot;</span>, AuditLogChangeKey::Description.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"deny"</span>, AuditLogChangeKey::Deny.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"description"</span>, AuditLogChangeKey::Description.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;discovery_splash_hash&quot;</span>,
+            <span class="string">"discovery_splash_hash"</span>,
             AuditLogChangeKey::DiscoverySplashHash.name()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;enable_emoticons&quot;</span>,
+            <span class="string">"enable_emoticons"</span>,
             AuditLogChangeKey::EnableEmoticons.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;expire_behavior&quot;</span>, AuditLogChangeKey::ExpireBehavior.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"expire_behavior"</span>, AuditLogChangeKey::ExpireBehavior.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;expire_grace_period&quot;</span>,
+            <span class="string">"expire_grace_period"</span>,
             AuditLogChangeKey::ExpireGracePeriod.name()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;explicit_content_filter&quot;</span>,
+            <span class="string">"explicit_content_filter"</span>,
             AuditLogChangeKey::ExplicitContentFilter.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;hoist&quot;</span>, AuditLogChangeKey::Hoist.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;icon_hash&quot;</span>, AuditLogChangeKey::IconHash.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;id&quot;</span>, AuditLogChangeKey::Id.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;image_hash&quot;</span>, AuditLogChangeKey::ImageHash.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;invitable&quot;</span>, AuditLogChangeKey::Invitable.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;inviter_id&quot;</span>, AuditLogChangeKey::InviterId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;max_age&quot;</span>, AuditLogChangeKey::MaxAge.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;max_uses&quot;</span>, AuditLogChangeKey::MaxUses.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;mentionable&quot;</span>, AuditLogChangeKey::Mentionable.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;mfa_level&quot;</span>, AuditLogChangeKey::MfaLevel.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;mute&quot;</span>, AuditLogChangeKey::Mute.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;name&quot;</span>, AuditLogChangeKey::Name.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;nick&quot;</span>, AuditLogChangeKey::Nick.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;nsfw_level&quot;</span>, AuditLogChangeKey::NsfwLevel.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;owner_id&quot;</span>, AuditLogChangeKey::OwnerId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;permissions&quot;</span>, AuditLogChangeKey::Permissions.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;position&quot;</span>, AuditLogChangeKey::Position.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"hoist"</span>, AuditLogChangeKey::Hoist.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"icon_hash"</span>, AuditLogChangeKey::IconHash.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"id"</span>, AuditLogChangeKey::Id.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"image_hash"</span>, AuditLogChangeKey::ImageHash.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"invitable"</span>, AuditLogChangeKey::Invitable.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"inviter_id"</span>, AuditLogChangeKey::InviterId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"max_age"</span>, AuditLogChangeKey::MaxAge.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"max_uses"</span>, AuditLogChangeKey::MaxUses.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"mentionable"</span>, AuditLogChangeKey::Mentionable.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"mfa_level"</span>, AuditLogChangeKey::MfaLevel.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"mute"</span>, AuditLogChangeKey::Mute.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"name"</span>, AuditLogChangeKey::Name.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"nick"</span>, AuditLogChangeKey::Nick.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"nsfw_level"</span>, AuditLogChangeKey::NsfwLevel.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"owner_id"</span>, AuditLogChangeKey::OwnerId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"permissions"</span>, AuditLogChangeKey::Permissions.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"position"</span>, AuditLogChangeKey::Position.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;preferred_locale&quot;</span>,
+            <span class="string">"preferred_locale"</span>,
             AuditLogChangeKey::PreferredLocale.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;privacy_level&quot;</span>, AuditLogChangeKey::PrivacyLevel.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"privacy_level"</span>, AuditLogChangeKey::PrivacyLevel.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;prune_delete_days&quot;</span>,
+            <span class="string">"prune_delete_days"</span>,
             AuditLogChangeKey::PruneDeleteDays.name()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;public_updates_channel_id&quot;</span>,
+            <span class="string">"public_updates_channel_id"</span>,
             AuditLogChangeKey::PublicUpdatesChannelId.name()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;rate_limit_per_user&quot;</span>,
+            <span class="string">"rate_limit_per_user"</span>,
             AuditLogChangeKey::RateLimitPerUser.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;$add&quot;</span>, AuditLogChangeKey::RoleAdded.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;$remove&quot;</span>, AuditLogChangeKey::RoleRemoved.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;rules_channel_id&quot;</span>, AuditLogChangeKey::RulesChannelId.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;splash_hash&quot;</span>, AuditLogChangeKey::SplashHash.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"$add"</span>, AuditLogChangeKey::RoleAdded.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"$remove"</span>, AuditLogChangeKey::RoleRemoved.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"rules_channel_id"</span>, AuditLogChangeKey::RulesChannelId.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"splash_hash"</span>, AuditLogChangeKey::SplashHash.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;system_channel_id&quot;</span>,
+            <span class="string">"system_channel_id"</span>,
             AuditLogChangeKey::SystemChannelId.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;temporary&quot;</span>, AuditLogChangeKey::Temporary.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;topic&quot;</span>, AuditLogChangeKey::Topic.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;type&quot;</span>, AuditLogChangeKey::Type.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;user_limit&quot;</span>, AuditLogChangeKey::UserLimit.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;uses&quot;</span>, AuditLogChangeKey::Uses.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;vanity_url_code&quot;</span>, AuditLogChangeKey::VanityUrlCode.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"temporary"</span>, AuditLogChangeKey::Temporary.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"topic"</span>, AuditLogChangeKey::Topic.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"type"</span>, AuditLogChangeKey::Type.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"user_limit"</span>, AuditLogChangeKey::UserLimit.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"uses"</span>, AuditLogChangeKey::Uses.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"vanity_url_code"</span>, AuditLogChangeKey::VanityUrlCode.name());
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;verification_level&quot;</span>,
+            <span class="string">"verification_level"</span>,
             AuditLogChangeKey::VerificationLevel.name()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;widget_channel_id&quot;</span>,
+            <span class="string">"widget_channel_id"</span>,
             AuditLogChangeKey::WidgetChannelId.name()
         );
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;widget_enabled&quot;</span>, AuditLogChangeKey::WidgetEnabled.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"widget_enabled"</span>, AuditLogChangeKey::WidgetEnabled.name());
     }
 
     <span class="attr">#[allow(clippy::too_many_lines)]
@@ -1194,400 +1195,400 @@
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::AfkChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;afk_channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"afk_channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::AfkTimeout,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;afk_timeout&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"afk_timeout"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Allow,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;allow&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"allow"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ApplicationId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;application_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"application_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::AvatarHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;avatar_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"avatar_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::BannerHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;banner_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"banner_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Bitrate,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;bitrate&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"bitrate"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Code,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;code&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"code"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Color,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;color&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"color"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::CommandId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;command_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"command_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::CommunicationDisabledUntil,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;communication_disabled_until&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"communication_disabled_until"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Deaf,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;deaf&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"deaf"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::DefaultMessageNotifications,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;default_message_notifications&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"default_message_notifications"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Deny,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;deny&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"deny"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Description,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;description&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"description"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::DiscoverySplashHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;discovery_splash_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"discovery_splash_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::EnableEmoticons,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;enable_emoticons&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"enable_emoticons"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ExpireBehavior,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;expire_behavior&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"expire_behavior"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ExpireGracePeriod,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;expire_grace_period&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"expire_grace_period"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ExplicitContentFilter,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;explicit_content_filter&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"explicit_content_filter"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Hoist,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;hoist&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"hoist"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::IconHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;icon_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"icon_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Id,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::ImageHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;image_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"image_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Invitable,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;invitable&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"invitable"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::InviterId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;inviter_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"inviter_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::MaxAge,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;max_age&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"max_age"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::MaxUses,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;max_uses&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"max_uses"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Mentionable,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;mentionable&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"mentionable"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::MfaLevel,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;mfa_level&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"mfa_level"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Mute,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;mute&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"mute"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Name,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;name&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"name"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Nick,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;nick&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"nick"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::NsfwLevel,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;nsfw_level&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"nsfw_level"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::OwnerId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;owner_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"owner_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Permissions,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;permissions&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"permissions"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Position,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;position&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"position"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::PreferredLocale,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;preferred_locale&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"preferred_locale"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::PrivacyLevel,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;privacy_level&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"privacy_level"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::PruneDeleteDays,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;prune_delete_days&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"prune_delete_days"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::PublicUpdatesChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;public_updates_channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"public_updates_channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::RateLimitPerUser,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;rate_limit_per_user&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"rate_limit_per_user"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::RoleAdded,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;$add&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"$add"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::RoleRemoved,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;$remove&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"$remove"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::RulesChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;rules_channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"rules_channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::SplashHash,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;splash_hash&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"splash_hash"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::SystemChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;system_channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"system_channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Temporary,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;temporary&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"temporary"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Topic,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;topic&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"topic"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Type,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;type&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"type"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::UserLimit,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;user_limit&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"user_limit"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::Uses,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;uses&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"uses"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::VanityUrlCode,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;vanity_url_code&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"vanity_url_code"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::VerificationLevel,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;verification_level&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"verification_level"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::WidgetChannelId,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;widget_channel_id&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"widget_channel_id"</span>,
             }],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>AuditLogChangeKey::WidgetEnabled,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;AuditLogChangeKey&quot;</span>,
-                variant: <span class="string">&quot;widget_enabled&quot;</span>,
+                name: <span class="string">"AuditLogChangeKey"</span>,
+                variant: <span class="string">"widget_enabled"</span>,
             }],
         );
     }

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/future.rs`."><title>future.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/future.rs`."><title>future.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -428,12 +429,12 @@
 }
 
 <span class="kw">struct </span>Chunking {
-    future: Pin&lt;Box&lt;<span class="kw">dyn </span>Future&lt;Output = <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt;&gt; + Send + Sync + <span class="lifetime">&#39;static</span>&gt;&gt;,
+    future: Pin&lt;Box&lt;<span class="kw">dyn </span>Future&lt;Output = <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, Error&gt;&gt; + Send + Sync + <span class="lifetime">'static</span>&gt;&gt;,
     status: HyperStatusCode,
 }
 
 <span class="kw">impl </span>Chunking {
-    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
+    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
         <span class="kw">let </span>bytes = <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.future).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(bytes)) =&gt; bytes,
             Poll::Ready(<span class="prelude-val">Err</span>(source)) =&gt; <span class="kw">return </span>InnerPoll::Ready(<span class="prelude-val">Err</span>(source)),
@@ -466,7 +467,7 @@
 }
 
 <span class="kw">impl </span>Failed {
-    <span class="kw">fn </span>poll&lt;T&gt;(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
+    <span class="kw">fn </span>poll&lt;T&gt;(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
         InnerPoll::Ready(<span class="prelude-val">Err</span>(<span class="self">self</span>.source))
     }
 }
@@ -478,7 +479,7 @@
 }
 
 <span class="kw">impl </span>InFlight {
-    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
+    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
         <span class="kw">let </span>resp = <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.future).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(resp))) =&gt; resp,
             Poll::Ready(<span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(source))) =&gt; {
@@ -496,7 +497,7 @@
             Poll::Pending =&gt; <span class="kw">return </span>InnerPoll::Pending(ResponseFutureStage::InFlight(<span class="self">self</span>)),
         };
 
-        <span class="comment">// If the API sent back an Unauthorized response, then the client&#39;s
+        <span class="comment">// If the API sent back an Unauthorized response, then the client's
         // configured token is permanently invalid and future requests must be
         // ignored to avoid API bans.
         </span><span class="kw">if </span>resp.status() == HyperStatusCode::UNAUTHORIZED {
@@ -516,7 +517,7 @@
                     <span class="kw">let </span>_res = tx.headers(<span class="prelude-val">Some</span>(v));
                 }
                 <span class="prelude-val">Err</span>(source) =&gt; {
-                    <span class="macro">tracing::warn!</span>(<span class="string">&quot;header parsing failed: {source:?}; {resp:?}&quot;</span>);
+                    <span class="macro">tracing::warn!</span>(<span class="string">"header parsing failed: {source:?}; {resp:?}"</span>);
 
                     <span class="kw">let </span>_res = tx.headers(<span class="prelude-val">None</span>);
                 }
@@ -526,10 +527,10 @@
         <span class="kw">let </span>status = resp.status();
 
         <span class="kw">if </span>status.is_success() {
-            <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
             </span><span class="kw">let </span><span class="kw-2">mut </span>resp = resp;
             <span class="comment">// Inaccurate since end-users can only access the decompressed body.
-            </span><span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+            </span><span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
             </span>resp.headers_mut().remove(hyper::header::CONTENT_LENGTH);
 
             <span class="kw">return </span>InnerPoll::Ready(<span class="prelude-val">Ok</span>(Response::new(resp)));
@@ -537,7 +538,7 @@
 
         <span class="kw">match </span>status {
             HyperStatusCode::TOO_MANY_REQUESTS =&gt; {
-                <span class="macro">tracing::warn!</span>(<span class="string">&quot;429 response: {resp:?}&quot;</span>);
+                <span class="macro">tracing::warn!</span>(<span class="string">"429 response: {resp:?}"</span>);
             }
             HyperStatusCode::SERVICE_UNAVAILABLE =&gt; {
                 <span class="kw">return </span>InnerPoll::Ready(<span class="prelude-val">Err</span>(Error {
@@ -569,12 +570,12 @@
     invalid_token: <span class="prelude-ty">Option</span>&lt;Arc&lt;AtomicBool&gt;&gt;,
     response_future: HyperResponseFuture,
     timeout: Duration,
-    pre_flight_check: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>FnOnce() -&gt; bool + Send + <span class="lifetime">&#39;static</span>&gt;&gt;,
+    pre_flight_check: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>FnOnce() -&gt; bool + Send + <span class="lifetime">'static</span>&gt;&gt;,
     wait_for_sender: WaitForTicketFuture,
 }
 
 <span class="kw">impl </span>RatelimitQueue {
-    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
+    <span class="kw">fn </span>poll&lt;T&gt;(<span class="kw-2">mut </span><span class="self">self</span>, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; InnerPoll&lt;T&gt; {
         <span class="kw">let </span>tx = <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.wait_for_sender).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(tx)) =&gt; tx,
             Poll::Ready(<span class="prelude-val">Err</span>(source)) =&gt; {
@@ -652,7 +653,7 @@
 /// [`ErrorType::Response`]: crate::error::ErrorType::Response
 /// [`ErrorType::ServiceUnavailable`]: crate::error::ErrorType::ServiceUnavailable
 /// [`Response`]: super::Response
-</span><span class="attr">#[must_use = <span class="string">&quot;futures do nothing unless you `.await` or poll them&quot;</span>]
+</span><span class="attr">#[must_use = <span class="string">"futures do nothing unless you `.await` or poll them"</span>]
 </span><span class="kw">pub struct </span>ResponseFuture&lt;T&gt; {
     phantom: PhantomData&lt;T&gt;,
     stage: ResponseFutureStage,
@@ -707,14 +708,14 @@
     ///     Arc::new(Mutex::new(map))
     /// };
     ///
-    /// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+    /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let mut req = client.delete_message(channel_id, message_id).into_future();
     ///
     /// let channels_ignored_clone = channels_ignored.clone();
     /// req.set_pre_flight(Box::new(move || {
     ///     // imagine you have some logic here to external state that checks
     ///     // whether the request should still be performed
-    ///     let channels_ignored = channels_ignored_clone.lock().expect(&quot;channels poisoned&quot;);
+    ///     let channels_ignored = channels_ignored_clone.lock().expect("channels poisoned");
     ///
     ///     !channels_ignored.contains(&amp;channel_id)
     /// }));
@@ -728,7 +729,7 @@
     /// ```
     </span><span class="kw">pub fn </span>set_pre_flight(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
-        pre_flight: Box&lt;<span class="kw">dyn </span>FnOnce() -&gt; bool + Send + <span class="lifetime">&#39;static</span>&gt;,
+        pre_flight: Box&lt;<span class="kw">dyn </span>FnOnce() -&gt; bool + Send + <span class="lifetime">'static</span>&gt;,
     ) -&gt; bool {
         <span class="kw">if let </span>ResponseFutureStage::RatelimitQueue(queue) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.stage {
             queue.pre_flight_check = <span class="prelude-val">Some</span>(pre_flight);
@@ -768,13 +769,13 @@
 <span class="kw">impl</span>&lt;T: Unpin&gt; Future <span class="kw">for </span>ResponseFuture&lt;T&gt; {
     <span class="kw">type </span>Output = Output&lt;T&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         <span class="kw">loop </span>{
             <span class="kw">let </span>stage = mem::replace(<span class="kw-2">&amp;mut </span><span class="self">self</span>.stage, ResponseFutureStage::Completed);
 
             <span class="kw">let </span>result = <span class="kw">match </span>stage {
                 ResponseFutureStage::Chunking(chunking) =&gt; chunking.poll(cx),
-                ResponseFutureStage::Completed =&gt; <span class="macro">panic!</span>(<span class="string">&quot;future already completed&quot;</span>),
+                ResponseFutureStage::Completed =&gt; <span class="macro">panic!</span>(<span class="string">"future already completed"</span>),
                 ResponseFutureStage::Failed(failed) =&gt; failed.poll(cx),
                 ResponseFutureStage::InFlight(in_flight) =&gt; in_flight.poll(cx),
                 ResponseFutureStage::RatelimitQueue(queue) =&gt; queue.poll(cx),

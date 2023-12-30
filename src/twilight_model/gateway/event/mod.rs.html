@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -570,28 +571,28 @@
     </span>AutoModerationRuleUpdate(Box&lt;AutoModerationRuleUpdate&gt;),
     <span class="doccomment">/// A user was banned from a guild.
     </span>BanAdd(BanAdd),
-    <span class="doccomment">/// A user&#39;s ban from a guild was removed.
+    <span class="doccomment">/// A user's ban from a guild was removed.
     </span>BanRemove(BanRemove),
     <span class="doccomment">/// A channel was created.
     </span>ChannelCreate(Box&lt;ChannelCreate&gt;),
     <span class="doccomment">/// A channel was deleted.
     </span>ChannelDelete(Box&lt;ChannelDelete&gt;),
-    <span class="doccomment">/// A channel&#39;s pins were updated.
+    <span class="doccomment">/// A channel's pins were updated.
     </span>ChannelPinsUpdate(ChannelPinsUpdate),
     <span class="doccomment">/// A channel was updated.
     </span>ChannelUpdate(Box&lt;ChannelUpdate&gt;),
-    <span class="doccomment">/// A command&#39;s permissions were updated.
+    <span class="doccomment">/// A command's permissions were updated.
     </span>CommandPermissionsUpdate(CommandPermissionsUpdate),
     <span class="doccomment">/// Close message with an optional frame including information about the
     /// reason for the close.
-    </span>GatewayClose(<span class="prelude-ty">Option</span>&lt;CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;&gt;),
+    </span>GatewayClose(<span class="prelude-ty">Option</span>&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;),
     <span class="doccomment">/// A heartbeat was sent to or received from the gateway.
     </span>GatewayHeartbeat(u64),
     <span class="doccomment">/// A heartbeat acknowledgement was received from the gateway.
     </span>GatewayHeartbeatAck,
-    <span class="doccomment">/// A &quot;hello&quot; packet was received from the gateway.
+    <span class="doccomment">/// A "hello" packet was received from the gateway.
     </span>GatewayHello(Hello),
-    <span class="doccomment">/// A shard&#39;s session was invalidated.
+    <span class="doccomment">/// A shard's session was invalidated.
     ///
     /// `true` if resumable. If not, then the shard must do a full reconnect.
     </span>GatewayInvalidateSession(bool),
@@ -605,9 +606,9 @@
     </span>GuildCreate(Box&lt;GuildCreate&gt;),
     <span class="doccomment">/// A guild was deleted or the current user was removed from a guild.
     </span>GuildDelete(GuildDelete),
-    <span class="doccomment">/// A guild&#39;s emojis were updated.
+    <span class="doccomment">/// A guild's emojis were updated.
     </span>GuildEmojisUpdate(GuildEmojisUpdate),
-    <span class="doccomment">/// A guild&#39;s integrations were updated.
+    <span class="doccomment">/// A guild's integrations were updated.
     </span>GuildIntegrationsUpdate(GuildIntegrationsUpdate),
     <span class="doccomment">/// A guild scheduled event was created.
     </span>GuildScheduledEventCreate(Box&lt;GuildScheduledEventCreate&gt;),
@@ -619,7 +620,7 @@
     </span>GuildScheduledEventUserAdd(GuildScheduledEventUserAdd),
     <span class="doccomment">/// A user was removed from a guild scheduled event.
     </span>GuildScheduledEventUserRemove(GuildScheduledEventUserRemove),
-    <span class="doccomment">/// A guild&#39;s stickers were updated.
+    <span class="doccomment">/// A guild's stickers were updated.
     </span>GuildStickersUpdate(GuildStickersUpdate),
     <span class="doccomment">/// A guild was updated.
     </span>GuildUpdate(Box&lt;GuildUpdate&gt;),
@@ -639,7 +640,7 @@
     </span>MemberAdd(Box&lt;MemberAdd&gt;),
     <span class="doccomment">/// A user was removed from a guild.
     </span>MemberRemove(MemberRemove),
-    <span class="doccomment">/// A user&#39;s member object in a guild was updated.
+    <span class="doccomment">/// A user's member object in a guild was updated.
     </span>MemberUpdate(Box&lt;MemberUpdate&gt;),
     <span class="doccomment">/// A chunk of members were received from the gateway.
     </span>MemberChunk(MemberChunk),
@@ -651,7 +652,7 @@
     </span>MessageDeleteBulk(MessageDeleteBulk),
     <span class="doccomment">/// A message was updated in a channel.
     </span>MessageUpdate(Box&lt;MessageUpdate&gt;),
-    <span class="doccomment">/// A user&#39;s active presence (such as game or online status) was updated.
+    <span class="doccomment">/// A user's active presence (such as game or online status) was updated.
     </span>PresenceUpdate(Box&lt;PresenceUpdate&gt;),
     <span class="doccomment">/// Multiple presences outside of a guild were updated.
     ///
@@ -666,7 +667,7 @@
     <span class="doccomment">/// All instances of a given emoji from the reactions of a message were
     /// removed.
     </span>ReactionRemoveEmoji(ReactionRemoveEmoji),
-    <span class="doccomment">/// A shard is now &quot;ready&quot; and fully connected.
+    <span class="doccomment">/// A shard is now "ready" and fully connected.
     </span>Ready(Box&lt;Ready&gt;),
     <span class="doccomment">/// A shard has successfully resumed.
     </span>Resumed,
@@ -974,8 +975,8 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>EventConversionError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;event variant failed to convert&quot;</span>)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"event variant failed to convert"</span>)
     }
 }
 
@@ -988,14 +989,14 @@
     //! ensure that in the case the events themselves grow or shrink past the
     //! threshold, they are properly boxed or unboxed respectively.
     //!
-    //! If a field has been added to an event in the &quot;unboxed&quot; section and its
+    //! If a field has been added to an event in the "unboxed" section and its
     //! assertion now fails, then you will need to wrap the event in a box in
-    //! the `Event` type and move the assertion to the &quot;boxed&quot; section.
+    //! the `Event` type and move the assertion to the "boxed" section.
     //!
-    //! Likewise, if a field has been removed from an event in the &quot;boxed&quot;
+    //! Likewise, if a field has been removed from an event in the "boxed"
     //! section and the assertion now fails, you will need to remove the box
     //! wrapping the event in the `Event` type and move the assertion to the
-    //! &quot;unboxed&quot; section.
+    //! "unboxed" section.
 
     </span><span class="kw">use super</span>::{<span class="kw">super</span>::payload::incoming::<span class="kw-2">*</span>, Event};
     <span class="kw">use </span>static_assertions::const_assert;

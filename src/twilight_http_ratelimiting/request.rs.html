@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/request.rs`."><title>request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/request.rs`."><title>request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -586,43 +587,43 @@
 
 <span class="kw">impl </span>PathParseError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>PathParseErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (PathParseErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>PathParseError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             PathParseErrorType::IntegerParsing { .. } =&gt; {
-                f.write_str(<span class="string">&quot;An ID in a segment was invalid&quot;</span>)
+                f.write_str(<span class="string">"An ID in a segment was invalid"</span>)
             }
             PathParseErrorType::MessageIdWithoutMethod { .. } =&gt; {
-                f.write_str(<span class="string">&quot;A message path was detected but the method wasn&#39;t given&quot;</span>)
+                f.write_str(<span class="string">"A message path was detected but the method wasn't given"</span>)
             }
-            PathParseErrorType::NoMatch =&gt; f.write_str(<span class="string">&quot;There was no matched path&quot;</span>),
+            PathParseErrorType::NoMatch =&gt; f.write_str(<span class="string">"There was no matched path"</span>),
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>PathParseError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -630,7 +631,7 @@
 </span><span class="attr">#[derive(Debug)]
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>PathParseErrorType {
-    <span class="doccomment">/// The ID couldn&#39;t be parsed as an integer.
+    <span class="doccomment">/// The ID couldn't be parsed as an integer.
     </span>IntegerParsing,
     <span class="doccomment">/// When parsing into a [`Path::ChannelsIdMessagesId`] variant, the method
     /// must also be specified via its `TryFrom` impl.
@@ -638,7 +639,7 @@
         <span class="doccomment">/// The ID of the channel.
         </span>channel_id: u64,
     },
-    <span class="doccomment">/// A static path for the provided path string wasn&#39;t found.
+    <span class="doccomment">/// A static path for the provided path string wasn't found.
     </span>NoMatch,
 }
 
@@ -657,42 +658,42 @@
     </span>ApplicationGuildCommandId(u64),
     <span class="doccomment">/// Operating on a channel.
     </span>ChannelsId(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s followers.
+    <span class="doccomment">/// Operating on a channel's followers.
     </span>ChannelsIdFollowers(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s invites.
+    <span class="doccomment">/// Operating on a channel's invites.
     </span>ChannelsIdInvites(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s messages.
+    <span class="doccomment">/// Operating on a channel's messages.
     </span>ChannelsIdMessages(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s messages by bulk deleting.
+    <span class="doccomment">/// Operating on a channel's messages by bulk deleting.
     </span>ChannelsIdMessagesBulkDelete(u64),
-    <span class="doccomment">/// Operating on an individual channel&#39;s message.
+    <span class="doccomment">/// Operating on an individual channel's message.
     </span>ChannelsIdMessagesId(Method, u64),
-    <span class="doccomment">/// Crossposting an individual channel&#39;s message.
+    <span class="doccomment">/// Crossposting an individual channel's message.
     </span>ChannelsIdMessagesIdCrosspost(u64),
-    <span class="doccomment">/// Operating on an individual channel&#39;s message&#39;s reactions.
+    <span class="doccomment">/// Operating on an individual channel's message's reactions.
     </span>ChannelsIdMessagesIdReactions(u64),
-    <span class="doccomment">/// Operating on an individual channel&#39;s message&#39;s reactions while
+    <span class="doccomment">/// Operating on an individual channel's message's reactions while
     /// specifying the user ID and emoji type.
     </span>ChannelsIdMessagesIdReactionsUserIdType(u64),
-    <span class="doccomment">/// Operating on an individual channel&#39;s message&#39;s threads.
+    <span class="doccomment">/// Operating on an individual channel's message's threads.
     </span>ChannelsIdMessagesIdThreads(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s permission overwrites by ID.
+    <span class="doccomment">/// Operating on a channel's permission overwrites by ID.
     </span>ChannelsIdPermissionsOverwriteId(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s pins.
+    <span class="doccomment">/// Operating on a channel's pins.
     </span>ChannelsIdPins(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s individual pinned message.
+    <span class="doccomment">/// Operating on a channel's individual pinned message.
     </span>ChannelsIdPinsMessageId(u64),
-    <span class="doccomment">/// Operating on a group DM&#39;s recipients.
+    <span class="doccomment">/// Operating on a group DM's recipients.
     </span>ChannelsIdRecipients(u64),
-    <span class="doccomment">/// Operating on a thread&#39;s members.
+    <span class="doccomment">/// Operating on a thread's members.
     </span>ChannelsIdThreadMembers(u64),
-    <span class="doccomment">/// Operating on a thread&#39;s member.
+    <span class="doccomment">/// Operating on a thread's member.
     </span>ChannelsIdThreadMembersId(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s threads.
+    <span class="doccomment">/// Operating on a channel's threads.
     </span>ChannelsIdThreads(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s typing indicator.
+    <span class="doccomment">/// Operating on a channel's typing indicator.
     </span>ChannelsIdTyping(u64),
-    <span class="doccomment">/// Operating on a channel&#39;s webhooks.
+    <span class="doccomment">/// Operating on a channel's webhooks.
     </span>ChannelsIdWebhooks(u64),
     <span class="doccomment">/// Operating with the gateway information.
     </span>Gateway,
@@ -700,95 +701,95 @@
     </span>GatewayBot,
     <span class="doccomment">/// Operating on the guild resource.
     </span>Guilds,
-    <span class="doccomment">/// Operating on one of user&#39;s guilds.
+    <span class="doccomment">/// Operating on one of user's guilds.
     </span>GuildsId(u64),
-    <span class="doccomment">/// Operating on a ban from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a ban from one of the user's guilds.
     </span>GuildsIdAuditLogs(u64),
-    <span class="doccomment">/// Operating on a guild&#39;s auto moderation rules.
+    <span class="doccomment">/// Operating on a guild's auto moderation rules.
     </span>GuildsIdAutoModerationRules(u64),
-    <span class="doccomment">/// Operating on an auto moderation rule from  one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on an auto moderation rule from  one of the user's guilds.
     </span>GuildsIdAutoModerationRulesId(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; bans.
+    <span class="doccomment">/// Operating on one of the user's guilds' bans.
     </span>GuildsIdBans(u64),
-    <span class="doccomment">/// Operating on a ban from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a ban from one of the user's guilds.
     </span>GuildsIdBansId(u64),
-    <span class="doccomment">/// Operating on specific member&#39;s ban from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on specific member's ban from one of the user's guilds.
     </span>GuildsIdBansUserId(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; channels.
+    <span class="doccomment">/// Operating on one of the user's guilds' channels.
     </span>GuildsIdChannels(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; emojis.
+    <span class="doccomment">/// Operating on one of the user's guilds' emojis.
     </span>GuildsIdEmojis(u64),
-    <span class="doccomment">/// Operating on an emoji from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on an emoji from one of the user's guilds.
     </span>GuildsIdEmojisId(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; integrations.
+    <span class="doccomment">/// Operating on one of the user's guilds' integrations.
     </span>GuildsIdIntegrations(u64),
-    <span class="doccomment">/// Operating on an integration from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on an integration from one of the user's guilds.
     </span>GuildsIdIntegrationsId(u64),
-    <span class="doccomment">/// Operating on an integration from one of the user&#39;s guilds by synchronizing it.
+    <span class="doccomment">/// Operating on an integration from one of the user's guilds by synchronizing it.
     </span>GuildsIdIntegrationsIdSync(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; invites.
+    <span class="doccomment">/// Operating on one of the user's guilds' invites.
     </span>GuildsIdInvites(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; members.
+    <span class="doccomment">/// Operating on one of the user's guilds' members.
     </span>GuildsIdMembers(u64),
-    <span class="doccomment">/// Operating on a member from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a member from one of the user's guilds.
     </span>GuildsIdMembersId(u64),
-    <span class="doccomment">/// Operating on a role of a member from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a role of a member from one of the user's guilds.
     </span>GuildsIdMembersIdRolesId(u64),
-    <span class="doccomment">/// Operating on the user&#39;s nickname in one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on the user's nickname in one of the user's guilds.
     </span>GuildsIdMembersMeNick(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; members by searching.
+    <span class="doccomment">/// Operating on one of the user's guilds' members by searching.
     </span>GuildsIdMembersSearch(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; MFA level.
+    <span class="doccomment">/// Operating on one of the user's guilds' MFA level.
     </span>GuildsIdMfa(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; onboarding.
+    <span class="doccomment">/// Operating on one of the user's guilds' onboarding.
     </span>GuildsIdOnboarding(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; by previewing it.
+    <span class="doccomment">/// Operating on one of the user's guilds' by previewing it.
     </span>GuildsIdPreview(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; by pruning members.
+    <span class="doccomment">/// Operating on one of the user's guilds' by pruning members.
     </span>GuildsIdPrune(u64),
-    <span class="doccomment">/// Operating on the voice regions of one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on the voice regions of one of the user's guilds.
     </span>GuildsIdRegions(u64),
-    <span class="doccomment">/// Operating on the roles of one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on the roles of one of the user's guilds.
     </span>GuildsIdRoles(u64),
-    <span class="doccomment">/// Operating on a role of one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a role of one of the user's guilds.
     </span>GuildsIdRolesId(u64),
-    <span class="doccomment">/// Operating on the guild&#39;s scheduled events.
+    <span class="doccomment">/// Operating on the guild's scheduled events.
     </span>GuildsIdScheduledEvents(u64),
-    <span class="doccomment">/// Operating on a particular guild&#39;s scheduled events.
+    <span class="doccomment">/// Operating on a particular guild's scheduled events.
     </span>GuildsIdScheduledEventsId(u64),
-    <span class="doccomment">/// Operating on a particular guild&#39;s scheduled event users.
+    <span class="doccomment">/// Operating on a particular guild's scheduled event users.
     </span>GuildsIdScheduledEventsIdUsers(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; stickers.
+    <span class="doccomment">/// Operating on one of the user's guilds' stickers.
     </span>GuildsIdStickers(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; templates.
+    <span class="doccomment">/// Operating on one of the user's guilds' templates.
     </span>GuildsIdTemplates(u64),
-    <span class="doccomment">/// Operating on a template from one of the user&#39;s guilds.
+    <span class="doccomment">/// Operating on a template from one of the user's guilds.
     </span>GuildsIdTemplatesCode(u64, String),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; threads.
+    <span class="doccomment">/// Operating on one of the user's guilds' threads.
     </span>GuildsIdThreads(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; vanity URL.
+    <span class="doccomment">/// Operating on one of the user's guilds' vanity URL.
     </span>GuildsIdVanityUrl(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; voice states.
+    <span class="doccomment">/// Operating on one of the user's guilds' voice states.
     </span>GuildsIdVoiceStates(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; webhooks.
+    <span class="doccomment">/// Operating on one of the user's guilds' webhooks.
     </span>GuildsIdWebhooks(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guilds&#39; welcome screen.
+    <span class="doccomment">/// Operating on one of the user's guilds' welcome screen.
     </span>GuildsIdWelcomeScreen(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guild&#39;s widget settings.
+    <span class="doccomment">/// Operating on one of the user's guild's widget settings.
     </span>GuildsIdWidget(u64),
-    <span class="doccomment">/// Operating on one of the user&#39;s guild&#39;s widget.
+    <span class="doccomment">/// Operating on one of the user's guild's widget.
     </span>GuildsIdWidgetJson(u64),
     <span class="doccomment">/// Operating on a guild template.
     </span>GuildsTemplatesCode(String),
-    <span class="doccomment">/// Operating on an interaction&#39;s callback.
+    <span class="doccomment">/// Operating on an interaction's callback.
     ///
-    /// This path is not bound to the application&#39;s global rate limit.
+    /// This path is not bound to the application's global rate limit.
     </span>InteractionCallback(u64),
     <span class="doccomment">/// Operating on an invite.
     </span>InvitesCode,
-    <span class="doccomment">/// Operating on the user&#39;s application information.
+    <span class="doccomment">/// Operating on the user's application information.
     </span>OauthApplicationsMe,
-    <span class="doccomment">/// Operating on the current authorization&#39;s information.
+    <span class="doccomment">/// Operating on the current authorization's information.
     </span>OauthMe,
     <span class="doccomment">/// Operating on stage instances.
     </span>StageInstances,
@@ -798,9 +799,9 @@
     </span>Stickers,
     <span class="doccomment">/// Operating on a sticker.
     </span>UsersId,
-    <span class="doccomment">/// Operating on the user&#39;s private channels.
+    <span class="doccomment">/// Operating on the user's private channels.
     </span>UsersIdChannels,
-    <span class="doccomment">/// Operating on the user&#39;s connections.
+    <span class="doccomment">/// Operating on the user's connections.
     </span>UsersIdConnections,
     <span class="doccomment">/// Operating on the state of a guild that the user is in.
     </span>UsersIdGuilds,
@@ -814,12 +815,12 @@
     </span>WebhooksId(u64),
     <span class="doccomment">/// Operating on a webhook as a webhook.
     ///
-    /// When used with interactions, this path is not bound to the application&#39;s
+    /// When used with interactions, this path is not bound to the application's
     /// global rate limit.
     </span>WebhooksIdToken(u64, String),
     <span class="doccomment">/// Operating on a message created by a webhook.
     ///
-    /// When used with interactions, this path is not bound to the application&#39;s
+    /// When used with interactions, this path is not bound to the application's
     /// global rate limit.
     </span>WebhooksIdTokenMessagesId(u64, String),
 }
@@ -838,10 +839,10 @@
     /// use twilight_http_ratelimiting::Path;
     ///
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// assert_eq!(Path::VoiceRegions, Path::from_str(&quot;/voice/regions&quot;)?);
+    /// assert_eq!(Path::VoiceRegions, Path::from_str("/voice/regions")?);
     /// assert_eq!(
     ///     Path::ChannelsIdMessages(123),
-    ///     Path::from_str(&quot;channels/123/messages&quot;)?,
+    ///     Path::from_str("channels/123/messages")?,
     /// );
     /// # Ok(()) }
     /// ```
@@ -857,29 +858,29 @@
             })
         }
 
-        <span class="kw">let </span>skip = usize::from(s.starts_with(<span class="string">&#39;/&#39;</span>));
+        <span class="kw">let </span>skip = usize::from(s.starts_with(<span class="string">'/'</span>));
 
-        <span class="kw">let </span>parts = s.split(<span class="string">&#39;/&#39;</span>).skip(skip).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>str&gt;&gt;();
+        <span class="kw">let </span>parts = s.split(<span class="string">'/'</span>).skip(skip).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>str&gt;&gt;();
 
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>parts[..] {
-            [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;commands&quot;</span>] =&gt; ApplicationCommand(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;commands&quot;</span>, <span class="kw">_</span>] =&gt; ApplicationCommandId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;commands&quot;</span>]
-            | [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;commands&quot;</span>, <span class="string">&quot;permissions&quot;</span>] =&gt; {
+            [<span class="string">"applications"</span>, id, <span class="string">"commands"</span>] =&gt; ApplicationCommand(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"applications"</span>, id, <span class="string">"commands"</span>, <span class="kw">_</span>] =&gt; ApplicationCommandId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"applications"</span>, id, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"commands"</span>]
+            | [<span class="string">"applications"</span>, id, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"commands"</span>, <span class="string">"permissions"</span>] =&gt; {
                 ApplicationGuildCommand(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;commands&quot;</span>, <span class="kw">_</span>]
-            | [<span class="string">&quot;applications&quot;</span>, id, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;commands&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;permissions&quot;</span>] =&gt; {
+            [<span class="string">"applications"</span>, id, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"commands"</span>, <span class="kw">_</span>]
+            | [<span class="string">"applications"</span>, id, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"commands"</span>, <span class="kw">_</span>, <span class="string">"permissions"</span>] =&gt; {
                 ApplicationGuildCommandId(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id] =&gt; ChannelsId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;followers&quot;</span>] =&gt; ChannelsIdFollowers(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;invites&quot;</span>] =&gt; ChannelsIdInvites(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>] =&gt; ChannelsIdMessages(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="string">&quot;bulk-delete&quot;</span>] =&gt; {
+            [<span class="string">"channels"</span>, id] =&gt; ChannelsId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"followers"</span>] =&gt; ChannelsIdFollowers(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"invites"</span>] =&gt; ChannelsIdInvites(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>] =&gt; ChannelsIdMessages(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="string">"bulk-delete"</span>] =&gt; {
                 ChannelsIdMessagesBulkDelete(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>] =&gt; {
                 <span class="comment">// can not map to path without method since they have different ratelimits
                 </span><span class="kw">return </span><span class="prelude-val">Err</span>(PathParseError {
                     kind: PathParseErrorType::MessageIdWithoutMethod {
@@ -888,94 +889,94 @@
                     source: <span class="prelude-val">None</span>,
                 });
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;crosspost&quot;</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>, <span class="string">"crosspost"</span>] =&gt; {
                 ChannelsIdMessagesIdCrosspost(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;reactions&quot;</span>]
-            | [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;reactions&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>, <span class="string">"reactions"</span>]
+            | [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>, <span class="string">"reactions"</span>, <span class="kw">_</span>] =&gt; {
                 ChannelsIdMessagesIdReactions(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;reactions&quot;</span>, <span class="kw">_</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>, <span class="string">"reactions"</span>, <span class="kw">_</span>, <span class="kw">_</span>] =&gt; {
                 ChannelsIdMessagesIdReactionsUserIdType(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;threads&quot;</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"messages"</span>, <span class="kw">_</span>, <span class="string">"threads"</span>] =&gt; {
                 ChannelsIdMessagesIdThreads(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;permissions&quot;</span>, <span class="kw">_</span>] =&gt; ChannelsIdPermissionsOverwriteId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;pins&quot;</span>] =&gt; ChannelsIdPins(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;pins&quot;</span>, <span class="kw">_</span>] =&gt; ChannelsIdPinsMessageId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;recipients&quot;</span>] | [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;recipients&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"permissions"</span>, <span class="kw">_</span>] =&gt; ChannelsIdPermissionsOverwriteId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"pins"</span>] =&gt; ChannelsIdPins(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"pins"</span>, <span class="kw">_</span>] =&gt; ChannelsIdPinsMessageId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"recipients"</span>] | [<span class="string">"channels"</span>, id, <span class="string">"recipients"</span>, <span class="kw">_</span>] =&gt; {
                 ChannelsIdRecipients(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;thread-members&quot;</span>] =&gt; ChannelsIdThreadMembers(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;thread-members&quot;</span>, <span class="kw">_</span>] =&gt; ChannelsIdThreadMembersId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;threads&quot;</span>] =&gt; ChannelsIdThreads(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;typing&quot;</span>] =&gt; ChannelsIdTyping(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;webhooks&quot;</span>] | [<span class="string">&quot;channels&quot;</span>, id, <span class="string">&quot;webhooks&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"channels"</span>, id, <span class="string">"thread-members"</span>] =&gt; ChannelsIdThreadMembers(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"thread-members"</span>, <span class="kw">_</span>] =&gt; ChannelsIdThreadMembersId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"threads"</span>] =&gt; ChannelsIdThreads(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"typing"</span>] =&gt; ChannelsIdTyping(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"channels"</span>, id, <span class="string">"webhooks"</span>] | [<span class="string">"channels"</span>, id, <span class="string">"webhooks"</span>, <span class="kw">_</span>] =&gt; {
                 ChannelsIdWebhooks(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;gateway&quot;</span>] =&gt; Gateway,
-            [<span class="string">&quot;gateway&quot;</span>, <span class="string">&quot;bot&quot;</span>] =&gt; GatewayBot,
-            [<span class="string">&quot;guilds&quot;</span>] =&gt; Guilds,
-            [<span class="string">&quot;guilds&quot;</span>, <span class="string">&quot;templates&quot;</span>, code] =&gt; GuildsTemplatesCode(code.to_string()),
-            [<span class="string">&quot;guilds&quot;</span>, id] =&gt; GuildsId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;audit-logs&quot;</span>] =&gt; GuildsIdAuditLogs(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;bans&quot;</span>] =&gt; GuildsIdBans(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;bans&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdBansUserId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;channels&quot;</span>] =&gt; GuildsIdChannels(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;emojis&quot;</span>] =&gt; GuildsIdEmojis(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;emojis&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdEmojisId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;integrations&quot;</span>] =&gt; GuildsIdIntegrations(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;integrations&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdIntegrationsId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;integrations&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;sync&quot;</span>] =&gt; GuildsIdIntegrationsIdSync(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;invites&quot;</span>] =&gt; GuildsIdInvites(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;members&quot;</span>] =&gt; GuildsIdMembers(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;members&quot;</span>, <span class="string">&quot;search&quot;</span>] =&gt; GuildsIdMembersSearch(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;members&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdMembersId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;members&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;roles&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdMembersIdRolesId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;members&quot;</span>, <span class="string">&quot;@me&quot;</span>, <span class="string">&quot;nick&quot;</span>] =&gt; GuildsIdMembersMeNick(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;onboarding&quot;</span>] =&gt; GuildsIdOnboarding(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;preview&quot;</span>] =&gt; GuildsIdPreview(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;prune&quot;</span>] =&gt; GuildsIdPrune(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;regions&quot;</span>] =&gt; GuildsIdRegions(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;roles&quot;</span>] =&gt; GuildsIdRoles(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;roles&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdRolesId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;scheduled-events&quot;</span>] =&gt; GuildsIdScheduledEvents(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;scheduled-events&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdScheduledEventsId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;scheduled-events&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;users&quot;</span>] =&gt; {
+            [<span class="string">"gateway"</span>] =&gt; Gateway,
+            [<span class="string">"gateway"</span>, <span class="string">"bot"</span>] =&gt; GatewayBot,
+            [<span class="string">"guilds"</span>] =&gt; Guilds,
+            [<span class="string">"guilds"</span>, <span class="string">"templates"</span>, code] =&gt; GuildsTemplatesCode(code.to_string()),
+            [<span class="string">"guilds"</span>, id] =&gt; GuildsId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"audit-logs"</span>] =&gt; GuildsIdAuditLogs(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"bans"</span>] =&gt; GuildsIdBans(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"bans"</span>, <span class="kw">_</span>] =&gt; GuildsIdBansUserId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"channels"</span>] =&gt; GuildsIdChannels(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"emojis"</span>] =&gt; GuildsIdEmojis(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"emojis"</span>, <span class="kw">_</span>] =&gt; GuildsIdEmojisId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"integrations"</span>] =&gt; GuildsIdIntegrations(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"integrations"</span>, <span class="kw">_</span>] =&gt; GuildsIdIntegrationsId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"integrations"</span>, <span class="kw">_</span>, <span class="string">"sync"</span>] =&gt; GuildsIdIntegrationsIdSync(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"invites"</span>] =&gt; GuildsIdInvites(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"members"</span>] =&gt; GuildsIdMembers(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"members"</span>, <span class="string">"search"</span>] =&gt; GuildsIdMembersSearch(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"members"</span>, <span class="kw">_</span>] =&gt; GuildsIdMembersId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"members"</span>, <span class="kw">_</span>, <span class="string">"roles"</span>, <span class="kw">_</span>] =&gt; GuildsIdMembersIdRolesId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"members"</span>, <span class="string">"@me"</span>, <span class="string">"nick"</span>] =&gt; GuildsIdMembersMeNick(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"onboarding"</span>] =&gt; GuildsIdOnboarding(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"preview"</span>] =&gt; GuildsIdPreview(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"prune"</span>] =&gt; GuildsIdPrune(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"regions"</span>] =&gt; GuildsIdRegions(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"roles"</span>] =&gt; GuildsIdRoles(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"roles"</span>, <span class="kw">_</span>] =&gt; GuildsIdRolesId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"scheduled-events"</span>] =&gt; GuildsIdScheduledEvents(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"scheduled-events"</span>, <span class="kw">_</span>] =&gt; GuildsIdScheduledEventsId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"scheduled-events"</span>, <span class="kw">_</span>, <span class="string">"users"</span>] =&gt; {
                 GuildsIdScheduledEventsIdUsers(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;stickers&quot;</span>] | [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;stickers&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"guilds"</span>, id, <span class="string">"stickers"</span>] | [<span class="string">"guilds"</span>, id, <span class="string">"stickers"</span>, <span class="kw">_</span>] =&gt; {
                 GuildsIdStickers(parse_id(id)<span class="question-mark">?</span>)
             }
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;templates&quot;</span>] =&gt; GuildsIdTemplates(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;templates&quot;</span>, code] =&gt; {
+            [<span class="string">"guilds"</span>, id, <span class="string">"templates"</span>] =&gt; GuildsIdTemplates(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"templates"</span>, code] =&gt; {
                 GuildsIdTemplatesCode(parse_id(id)<span class="question-mark">?</span>, code.to_string())
             }
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;threads&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdThreads(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;vanity-url&quot;</span>] =&gt; GuildsIdVanityUrl(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;voice-states&quot;</span>, <span class="kw">_</span>] =&gt; GuildsIdVoiceStates(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;welcome-screen&quot;</span>] =&gt; GuildsIdWelcomeScreen(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;webhooks&quot;</span>] =&gt; GuildsIdWebhooks(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;widget&quot;</span>] =&gt; GuildsIdWidget(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;guilds&quot;</span>, id, <span class="string">&quot;widget.json&quot;</span>] =&gt; GuildsIdWidgetJson(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;invites&quot;</span>, <span class="kw">_</span>] =&gt; InvitesCode,
-            [<span class="string">&quot;interactions&quot;</span>, id, <span class="kw">_</span>, <span class="string">&quot;callback&quot;</span>] =&gt; InteractionCallback(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;stage-instances&quot;</span>, <span class="kw">_</span>] =&gt; StageInstances,
-            [<span class="string">&quot;sticker-packs&quot;</span>] =&gt; StickerPacks,
-            [<span class="string">&quot;stickers&quot;</span>, <span class="kw">_</span>] =&gt; Stickers,
-            [<span class="string">&quot;oauth2&quot;</span>, <span class="string">&quot;applications&quot;</span>, <span class="string">&quot;@me&quot;</span>] =&gt; OauthApplicationsMe,
-            [<span class="string">&quot;oauth2&quot;</span>, <span class="string">&quot;@me&quot;</span>] =&gt; OauthMe,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>] =&gt; UsersId,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;connections&quot;</span>] =&gt; UsersIdConnections,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;channels&quot;</span>] =&gt; UsersIdChannels,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;guilds&quot;</span>] =&gt; UsersIdGuilds,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>] =&gt; UsersIdGuildsId,
-            [<span class="string">&quot;users&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;guilds&quot;</span>, <span class="kw">_</span>, <span class="string">&quot;member&quot;</span>] =&gt; UsersIdGuildsIdMember,
-            [<span class="string">&quot;voice&quot;</span>, <span class="string">&quot;regions&quot;</span>] =&gt; VoiceRegions,
-            [<span class="string">&quot;webhooks&quot;</span>, id] =&gt; WebhooksId(parse_id(id)<span class="question-mark">?</span>),
-            [<span class="string">&quot;webhooks&quot;</span>, id, token] =&gt; WebhooksIdToken(parse_id(id)<span class="question-mark">?</span>, token.to_string()),
-            [<span class="string">&quot;webhooks&quot;</span>, id, token, <span class="string">&quot;messages&quot;</span>, <span class="kw">_</span>] =&gt; {
+            [<span class="string">"guilds"</span>, id, <span class="string">"threads"</span>, <span class="kw">_</span>] =&gt; GuildsIdThreads(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"vanity-url"</span>] =&gt; GuildsIdVanityUrl(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"voice-states"</span>, <span class="kw">_</span>] =&gt; GuildsIdVoiceStates(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"welcome-screen"</span>] =&gt; GuildsIdWelcomeScreen(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"webhooks"</span>] =&gt; GuildsIdWebhooks(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"widget"</span>] =&gt; GuildsIdWidget(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"guilds"</span>, id, <span class="string">"widget.json"</span>] =&gt; GuildsIdWidgetJson(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"invites"</span>, <span class="kw">_</span>] =&gt; InvitesCode,
+            [<span class="string">"interactions"</span>, id, <span class="kw">_</span>, <span class="string">"callback"</span>] =&gt; InteractionCallback(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"stage-instances"</span>, <span class="kw">_</span>] =&gt; StageInstances,
+            [<span class="string">"sticker-packs"</span>] =&gt; StickerPacks,
+            [<span class="string">"stickers"</span>, <span class="kw">_</span>] =&gt; Stickers,
+            [<span class="string">"oauth2"</span>, <span class="string">"applications"</span>, <span class="string">"@me"</span>] =&gt; OauthApplicationsMe,
+            [<span class="string">"oauth2"</span>, <span class="string">"@me"</span>] =&gt; OauthMe,
+            [<span class="string">"users"</span>, <span class="kw">_</span>] =&gt; UsersId,
+            [<span class="string">"users"</span>, <span class="kw">_</span>, <span class="string">"connections"</span>] =&gt; UsersIdConnections,
+            [<span class="string">"users"</span>, <span class="kw">_</span>, <span class="string">"channels"</span>] =&gt; UsersIdChannels,
+            [<span class="string">"users"</span>, <span class="kw">_</span>, <span class="string">"guilds"</span>] =&gt; UsersIdGuilds,
+            [<span class="string">"users"</span>, <span class="kw">_</span>, <span class="string">"guilds"</span>, <span class="kw">_</span>] =&gt; UsersIdGuildsId,
+            [<span class="string">"users"</span>, <span class="kw">_</span>, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"member"</span>] =&gt; UsersIdGuildsIdMember,
+            [<span class="string">"voice"</span>, <span class="string">"regions"</span>] =&gt; VoiceRegions,
+            [<span class="string">"webhooks"</span>, id] =&gt; WebhooksId(parse_id(id)<span class="question-mark">?</span>),
+            [<span class="string">"webhooks"</span>, id, token] =&gt; WebhooksIdToken(parse_id(id)<span class="question-mark">?</span>, token.to_string()),
+            [<span class="string">"webhooks"</span>, id, token, <span class="string">"messages"</span>, <span class="kw">_</span>] =&gt; {
                 WebhooksIdTokenMessagesId(parse_id(id)<span class="question-mark">?</span>, token.to_string())
             }
             <span class="kw">_ </span>=&gt; {
@@ -1020,17 +1021,17 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>prefix_unimportant() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="macro">assert_eq!</span>(Path::Guilds, Path::from_str(<span class="string">&quot;guilds&quot;</span>)<span class="question-mark">?</span>);
-        <span class="macro">assert_eq!</span>(Path::Guilds, Path::from_str(<span class="string">&quot;/guilds&quot;</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert_eq!</span>(Path::Guilds, Path::from_str(<span class="string">"guilds"</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert_eq!</span>(Path::Guilds, Path::from_str(<span class="string">"/guilds"</span>)<span class="question-mark">?</span>);
 
         <span class="prelude-val">Ok</span>(())
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>from_str() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="macro">assert_eq!</span>(Path::ChannelsId(<span class="number">123</span>), Path::from_str(<span class="string">&quot;/channels/123&quot;</span>)<span class="question-mark">?</span>);
-        <span class="macro">assert_eq!</span>(Path::WebhooksId(<span class="number">123</span>), Path::from_str(<span class="string">&quot;/webhooks/123&quot;</span>)<span class="question-mark">?</span>);
-        <span class="macro">assert_eq!</span>(Path::InvitesCode, Path::from_str(<span class="string">&quot;/invites/abc&quot;</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert_eq!</span>(Path::ChannelsId(<span class="number">123</span>), Path::from_str(<span class="string">"/channels/123"</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert_eq!</span>(Path::WebhooksId(<span class="number">123</span>), Path::from_str(<span class="string">"/webhooks/123"</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert_eq!</span>(Path::InvitesCode, Path::from_str(<span class="string">"/invites/abc"</span>)<span class="question-mark">?</span>);
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -1038,14 +1039,14 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>message_id() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            Path::from_str(<span class="string">&quot;channels/123/messages/456&quot;</span>)
+            Path::from_str(<span class="string">"channels/123/messages/456"</span>)
                 .unwrap_err()
                 .kind(),
             PathParseErrorType::MessageIdWithoutMethod { channel_id: <span class="number">123 </span>},
         ));
         <span class="macro">assert_eq!</span>(
             Path::ChannelsIdMessagesId(Method::Get, <span class="number">123</span>),
-            Path::try_from((Method::Get, <span class="string">&quot;/channels/123/messages/456&quot;</span>))<span class="question-mark">?</span>,
+            Path::try_from((Method::Get, <span class="string">"/channels/123/messages/456"</span>))<span class="question-mark">?</span>,
         );
 
         <span class="prelude-val">Ok</span>(())

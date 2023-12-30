@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/model/member.rs`."><title>member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/model/member.rs`."><title>member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -380,7 +381,7 @@
 }
 
 <span class="kw">impl </span>CachedMember {
-    <span class="doccomment">/// Member&#39;s guild avatar.
+    <span class="doccomment">/// Member's guild avatar.
     </span><span class="kw">pub const fn </span>avatar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;ImageHash&gt; {
         <span class="self">self</span>.avatar
     }
@@ -388,7 +389,7 @@
     <span class="doccomment">/// When the user can resume communication in a guild again.
     ///
     /// Checking if this value is [`Some`] is not enough to know if a used is currently
-    /// timed out as Discord doesn&#39;t send any events when the timeout expires, and
+    /// timed out as Discord doesn't send any events when the timeout expires, and
     /// therefore the cache is not updated accordingly. You should ensure that the
     /// provided [`Timestamp`] is not in the past. See [discord-api-docs#4269].
     ///
@@ -409,7 +410,7 @@
         <span class="self">self</span>.flags
     }
 
-    <span class="doccomment">/// [`Timestamp`] of this member&#39;s join date.
+    <span class="doccomment">/// [`Timestamp`] of this member's join date.
     </span><span class="kw">pub const fn </span>joined_at(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Timestamp&gt; {
         <span class="self">self</span>.joined_at
     }
@@ -424,7 +425,7 @@
         <span class="self">self</span>.nick.as_deref()
     }
 
-    <span class="doccomment">/// Whether the member has not yet passed the guild&#39;s Membership Screening
+    <span class="doccomment">/// Whether the member has not yet passed the guild's Membership Screening
     /// requirements.
     </span><span class="kw">pub const fn </span>pending(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="self">self</span>.pending
@@ -477,7 +478,7 @@
         }
     }
 
-    <span class="comment">// clippy: the member field&#39;s destructor needs to drop
+    <span class="comment">// clippy: the member field's destructor needs to drop
     // clippy: the contents of `fields` is consumed
     </span><span class="attr">#[allow(clippy::missing_const_for_fn, clippy::needless_pass_by_value)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_interaction_member(
@@ -603,7 +604,7 @@
     );
 
     <span class="kw">fn </span>cached_member() -&gt; CachedMember {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
         CachedMember {
             avatar: <span class="prelude-val">None</span>,
@@ -612,7 +613,7 @@
             flags,
             joined_at,
             mute: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
-            nick: <span class="prelude-val">Some</span>(<span class="string">&quot;member nick&quot;</span>.to_owned()),
+            nick: <span class="prelude-val">Some</span>(<span class="string">"member nick"</span>.to_owned()),
             pending: <span class="bool-val">false</span>,
             premium_since: <span class="prelude-val">None</span>,
             roles: Vec::new(),
@@ -630,11 +631,11 @@
             discriminator: <span class="number">1</span>,
             email: <span class="prelude-val">None</span>,
             flags: <span class="prelude-val">None</span>,
-            global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+            global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
             id: Id::new(<span class="number">1</span>),
             locale: <span class="prelude-val">None</span>,
             mfa_enabled: <span class="prelude-val">None</span>,
-            name: <span class="string">&quot;bar&quot;</span>.to_owned(),
+            name: <span class="string">"bar"</span>.to_owned(),
             premium_type: <span class="prelude-val">None</span>,
             public_flags: <span class="prelude-val">None</span>,
             system: <span class="prelude-val">None</span>,
@@ -644,7 +645,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>eq_member() {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>member = Member {
@@ -654,7 +655,7 @@
             flags,
             joined_at,
             mute: <span class="bool-val">true</span>,
-            nick: <span class="prelude-val">Some</span>(<span class="string">&quot;member nick&quot;</span>.to_owned()),
+            nick: <span class="prelude-val">Some</span>(<span class="string">"member nick"</span>.to_owned()),
             pending: <span class="bool-val">false</span>,
             premium_since: <span class="prelude-val">None</span>,
             roles: Vec::new(),
@@ -666,7 +667,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>eq_partial_member() {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>member = PartialMember {
@@ -676,7 +677,7 @@
             flags,
             joined_at,
             mute: <span class="bool-val">true</span>,
-            nick: <span class="prelude-val">Some</span>(<span class="string">&quot;member nick&quot;</span>.to_owned()),
+            nick: <span class="prelude-val">Some</span>(<span class="string">"member nick"</span>.to_owned()),
             permissions: <span class="prelude-val">None</span>,
             premium_since: <span class="prelude-val">None</span>,
             roles: Vec::new(),

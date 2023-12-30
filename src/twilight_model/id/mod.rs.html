@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/id/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/id/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -807,7 +808,7 @@
 //!
 //! When IDs are simple 64-bit integers then it may be easy to accidentally use
 //! the ID of a role in place of where one means to use the ID of a user. This
-//! is a programmatic error; it&#39;s on the programmer to notice. By using IDs with
+//! is a programmatic error; it's on the programmer to notice. By using IDs with
 //! typed markers, it can be ensured that only an ID with a guild marker is used
 //! where an ID with a guild marker is requested.
 //!
@@ -829,7 +830,7 @@
 //!
 //! Discord may have constraints where IDs are the same across resources. For
 //! example, the `@everyone` role of a guild has the same ID as the guild
-//! itself. In this case, all one needs to do is use the guild&#39;s ID in place of
+//! itself. In this case, all one needs to do is use the guild's ID in place of
 //! a role in order to operate on the `@everyone` role of the guild. IDs can be
 //! easily casted in order to fulfill this:
 //!
@@ -839,7 +840,7 @@
 //!     Id,
 //! };
 //!
-//! // Often Rust&#39;s type inference will be able to infer the type of ID.
+//! // Often Rust's type inference will be able to infer the type of ID.
 //! let guild_id = Id::&lt;GuildMarker&gt;::new(123);
 //! let role_id = guild_id.cast::&lt;RoleMarker&gt;();
 //!
@@ -869,7 +870,7 @@
 <span class="doccomment">/// ID of a resource, such as the ID of a [channel] or [user].
 ///
 /// Markers themselves perform no logical action, and are only used to ensure
-/// that IDs of incorrect types aren&#39;t used. Read the [marker documentation] for
+/// that IDs of incorrect types aren't used. Read the [marker documentation] for
 /// additional information.
 ///
 /// # serde
@@ -907,7 +908,7 @@
     ///
     /// const ID: Id&lt;GenericMarker&gt; = Id::new(123);
     ///
-    /// println!(&quot;id: {ID}&quot;);
+    /// println!("id: {ID}");
     /// ```
     ///
     /// # Panics
@@ -920,7 +921,7 @@
         <span class="kw">if let </span><span class="prelude-val">Some</span>(id) = <span class="self">Self</span>::new_checked(n) {
             id
         } <span class="kw">else </span>{
-            <span class="macro">panic!</span>(<span class="string">&quot;value is zero&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"value is zero"</span>);
         }
     }
 
@@ -1024,30 +1025,30 @@
 <span class="kw">impl</span>&lt;T&gt; Copy <span class="kw">for </span>Id&lt;T&gt; {}
 
 <span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Id&lt;T&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;Id&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"Id"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>type_name = any::type_name::&lt;T&gt;();
 
-        <span class="comment">// `any::type_name` will usually provide an FQN, so we&#39;ll do our best
+        <span class="comment">// `any::type_name` will usually provide an FQN, so we'll do our best
         // (and simplest) method here of removing it to only get the type name
         // itself.
-        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(position) = type_name.rfind(<span class="string">&quot;::&quot;</span>) {
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(position) = type_name.rfind(<span class="string">"::"</span>) {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(slice) = type_name.get(position + <span class="number">2</span>..) {
-                f.write_str(<span class="string">&quot;&lt;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"&lt;"</span>)<span class="question-mark">?</span>;
                 f.write_str(slice)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;&gt;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"&gt;"</span>)<span class="question-mark">?</span>;
             }
         }
 
-        f.write_str(<span class="string">&quot;(&quot;</span>)<span class="question-mark">?</span>;
+        f.write_str(<span class="string">"("</span>)<span class="question-mark">?</span>;
         Debug::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>.value, f)<span class="question-mark">?</span>;
 
-        f.write_str(<span class="string">&quot;)&quot;</span>)
+        f.write_str(<span class="string">")"</span>)
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>, T&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>Id&lt;T&gt; {
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>, T&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Id&lt;T&gt; {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">struct </span>IdVisitor&lt;T&gt; {
             phantom: PhantomData&lt;T&gt;,
         }
@@ -1060,16 +1061,16 @@
             }
         }
 
-        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>, T&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>IdVisitor&lt;T&gt; {
+        <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>, T&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>IdVisitor&lt;T&gt; {
             <span class="kw">type </span>Value = Id&lt;T&gt;;
 
-            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-                f.write_str(<span class="string">&quot;a discord snowflake&quot;</span>)
+            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+                f.write_str(<span class="string">"a discord snowflake"</span>)
             }
 
             <span class="kw">fn </span>visit_u64&lt;E: DeError&gt;(<span class="self">self</span>, value: u64) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt; {
                 <span class="kw">let </span>value = NonZeroU64::new(value).ok_or_else(|| {
-                    DeError::invalid_value(Unexpected::Unsigned(value), <span class="kw-2">&amp;</span><span class="string">&quot;non zero u64&quot;</span>)
+                    DeError::invalid_value(Unexpected::Unsigned(value), <span class="kw-2">&amp;</span><span class="string">"non zero u64"</span>)
                 })<span class="question-mark">?</span>;
 
                 <span class="prelude-val">Ok</span>(Id::from(value))
@@ -1077,13 +1078,13 @@
 
             <span class="kw">fn </span>visit_i64&lt;E: DeError&gt;(<span class="self">self</span>, value: i64) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt; {
                 <span class="kw">let </span>unsigned = u64::try_from(value).map_err(|<span class="kw">_</span>| {
-                    DeError::invalid_value(Unexpected::Signed(value), <span class="kw-2">&amp;</span><span class="string">&quot;non zero u64&quot;</span>)
+                    DeError::invalid_value(Unexpected::Signed(value), <span class="kw-2">&amp;</span><span class="string">"non zero u64"</span>)
                 })<span class="question-mark">?</span>;
 
                 <span class="self">self</span>.visit_u64(unsigned)
             }
 
-            <span class="kw">fn </span>visit_newtype_struct&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(
+            <span class="kw">fn </span>visit_newtype_struct&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(
                 <span class="self">self</span>,
                 deserializer: D,
             ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, D::Error&gt; {
@@ -1094,7 +1095,7 @@
                 <span class="kw">let </span>value = v.parse().map_err(|<span class="kw">_</span>| {
                     <span class="kw">let </span>unexpected = Unexpected::Str(v);
 
-                    DeError::invalid_value(unexpected, <span class="kw-2">&amp;</span><span class="string">&quot;non zero u64 string&quot;</span>)
+                    DeError::invalid_value(unexpected, <span class="kw-2">&amp;</span><span class="string">"non zero u64 string"</span>)
                 })<span class="question-mark">?</span>;
 
                 <span class="self">self</span>.visit_u64(value)
@@ -1106,7 +1107,7 @@
 }
 
 <span class="kw">impl</span>&lt;T&gt; Display <span class="kw">for </span>Id&lt;T&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         Display::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>.value.get(), f)
     }
 }
@@ -1193,7 +1194,7 @@
 
 <span class="kw">impl</span>&lt;T&gt; Serialize <span class="kw">for </span>Id&lt;T&gt; {
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
-        serializer.serialize_newtype_struct(<span class="string">&quot;Id&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.to_string())
+        serializer.serialize_newtype_struct(<span class="string">"Id"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.to_string())
     }
 }
 
@@ -1259,7 +1260,7 @@
     <span class="macro">assert_impl_all!</span>(UserMarker: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(WebhookMarker: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(Id&lt;GenericMarker&gt;:
-        Clone, Copy, Debug, Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;, Display, Eq, From&lt;NonZeroU64&gt;,
+        Clone, Copy, Debug, Deserialize&lt;<span class="lifetime">'static</span>&gt;, Display, Eq, From&lt;NonZeroU64&gt;,
         FromStr, Hash, Into&lt;NonZeroU64&gt;, Into&lt;u64&gt;, Ord, PartialEq, PartialEq&lt;i64&gt;, PartialEq&lt;u64&gt;, PartialOrd, Send, Serialize, Sync,
         TryFrom&lt;i64&gt;, TryFrom&lt;u64&gt;
     );
@@ -1267,7 +1268,7 @@
     </span><span class="macro">assert_impl_all!</span>(Id&lt;<span class="kw-2">*const </span>()&gt;: Send, Sync);
 
     <span class="doccomment">/// Test that various methods of initializing IDs are correct, such as via
-    /// [`Id::new`] or [`Id`]&#39;s [`TryFrom`] implementations.
+    /// [`Id::new`] or [`Id`]'s [`TryFrom`] implementations.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>initializers() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="comment">// `Id::new_checked`
@@ -1280,13 +1281,13 @@
         <span class="comment">// `From`
         </span><span class="macro">assert_eq!</span>(
             <span class="number">123_u64</span>,
-            Id::&lt;GenericMarker&gt;::from(NonZeroU64::new(<span class="number">123</span>).expect(<span class="string">&quot;non zero&quot;</span>))
+            Id::&lt;GenericMarker&gt;::from(NonZeroU64::new(<span class="number">123</span>).expect(<span class="string">"non zero"</span>))
         );
 
         <span class="comment">// `FromStr`
-        </span><span class="macro">assert_eq!</span>(<span class="number">123_u64</span>, Id::&lt;GenericMarker&gt;::from_str(<span class="string">&quot;123&quot;</span>)<span class="question-mark">?</span>);
-        <span class="macro">assert!</span>(Id::&lt;GenericMarker&gt;::from_str(<span class="string">&quot;0&quot;</span>).is_err());
-        <span class="macro">assert!</span>(Id::&lt;GenericMarker&gt;::from_str(<span class="string">&quot;123a&quot;</span>).is_err());
+        </span><span class="macro">assert_eq!</span>(<span class="number">123_u64</span>, Id::&lt;GenericMarker&gt;::from_str(<span class="string">"123"</span>)<span class="question-mark">?</span>);
+        <span class="macro">assert!</span>(Id::&lt;GenericMarker&gt;::from_str(<span class="string">"0"</span>).is_err());
+        <span class="macro">assert!</span>(Id::&lt;GenericMarker&gt;::from_str(<span class="string">"123a"</span>).is_err());
 
         <span class="comment">// `TryFrom`
         </span><span class="macro">assert!</span>(Id::&lt;GenericMarker&gt;::try_from(-<span class="number">123_i64</span>).is_err());
@@ -1304,13 +1305,13 @@
         <span class="comment">// `Into`
         </span><span class="macro">assert_eq!</span>(<span class="number">1</span>, u64::from(Id::&lt;GenericMarker&gt;::new(<span class="number">1</span>)));
         <span class="macro">assert_eq!</span>(
-            NonZeroU64::new(<span class="number">1</span>).expect(<span class="string">&quot;non zero&quot;</span>),
+            NonZeroU64::new(<span class="number">1</span>).expect(<span class="string">"non zero"</span>),
             NonZeroU64::from(Id::&lt;GenericMarker&gt;::new(<span class="number">1</span>))
         );
     }
 
     <span class="doccomment">/// Test that creating an ID via [`Id::new`] with a value of zero panics.
-    </span><span class="attr">#[should_panic(expected = <span class="string">&quot;value is zero&quot;</span>)]
+    </span><span class="attr">#[should_panic(expected = <span class="string">"value is zero"</span>)]
     #[test]
     </span><span class="kw">const fn </span>test_new_checked_zero() {
         <span class="kw">_ </span>= Id::&lt;GenericMarker&gt;::new(<span class="number">0</span>);
@@ -1328,7 +1329,7 @@
     </span><span class="kw">fn </span>debug() {
         <span class="kw">let </span>id = Id::&lt;RoleMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>);
 
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;Id&lt;RoleMarker&gt;(114941315417899012)&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{id:?}&quot;</span>));
+        <span class="macro">assert_eq!</span>(<span class="string">"Id&lt;RoleMarker&gt;(114941315417899012)"</span>, <span class="macro">format!</span>(<span class="string">"{id:?}"</span>));
     }
 
     <span class="doccomment">/// Test that display formatting an ID formats the value.
@@ -1336,7 +1337,7 @@
     </span><span class="kw">fn </span>display() {
         <span class="kw">let </span>id = Id::&lt;GenericMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>);
 
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;114941315417899012&quot;</span>, id.to_string());
+        <span class="macro">assert_eq!</span>(<span class="string">"114941315417899012"</span>, id.to_string());
     }
 
     <span class="doccomment">/// Test that hashing an ID is equivalent to hashing only its inner value.
@@ -1371,238 +1372,238 @@
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;ApplicationMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;ApplicationMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;AttachmentMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;AttachmentMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;AuditLogEntryMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;AuditLogEntryMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;ChannelMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;ChannelMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;CommandMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;CommandMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;CommandVersionMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;CommandVersionMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;EmojiMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;EmojiMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;GenericMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;GenericMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;GuildMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;GuildMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;IntegrationMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;IntegrationMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;InteractionMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;InteractionMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;MessageMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;MessageMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;RoleMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;RoleMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;RoleSubscriptionSkuMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;StageMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;StageMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;UserMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;UserMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;WebhookMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;114941315417899012&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"114941315417899012"</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;WebhookMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::U64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );
         serde_test::assert_de_tokens(
             <span class="kw-2">&amp;</span>Id::&lt;WebhookMarker&gt;::new(<span class="number">114_941_315_417_899_012</span>),
             <span class="kw-2">&amp;</span>[
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::I64(<span class="number">114_941_315_417_899_012</span>),
             ],
         );

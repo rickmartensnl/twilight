@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -726,66 +727,66 @@
 /// checking [`Channel::kind`], which can be used to determine what fields you
 /// might expect to be present.
 ///
-/// For Discord&#39;s documentation on channels, refer to [Discord Docs/Channel].
+/// For Discord's documentation on channels, refer to [Discord Docs/Channel].
 ///
 /// [Discord Docs/Channel]: https://discord.com/developers/docs/resources/channel
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Channel {
     <span class="doccomment">/// ID of the application that created the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>application_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ApplicationMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>applied_tags: <span class="prelude-ty">Option</span>&lt;Vec&lt;Id&lt;TagMarker&gt;&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>available_tags: <span class="prelude-ty">Option</span>&lt;Vec&lt;ForumTag&gt;&gt;,
     <span class="doccomment">/// Bitrate (in bits) setting of audio channels.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>bitrate: <span class="prelude-ty">Option</span>&lt;u32&gt;,
-    <span class="doccomment">/// Default duration without messages before the channel&#39;s threads
+    <span class="doccomment">/// Default duration without messages before the channel's threads
     /// automatically archive.
     ///
-    /// Automatic archive durations are not locked behind the guild&#39;s boost
+    /// Automatic archive durations are not locked behind the guild's boost
     /// level.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>default_auto_archive_duration: <span class="prelude-ty">Option</span>&lt;AutoArchiveDuration&gt;,
     <span class="doccomment">/// Default forum layout view used to display posts in forum channels.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>default_forum_layout: <span class="prelude-ty">Option</span>&lt;ForumLayout&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;DefaultReaction&gt;,
     <span class="doccomment">/// Default sort order used to display posts in forum channels.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>default_sort_order: <span class="prelude-ty">Option</span>&lt;ForumSortOrder&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>default_thread_rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;u16&gt;,
     <span class="doccomment">/// Flags of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;ChannelFlags&gt;,
     <span class="doccomment">/// ID of the guild the channel is in.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt;,
-    <span class="doccomment">/// Hash of the channel&#39;s icon.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Hash of the channel's icon.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>icon: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="doccomment">/// ID of the channel.
     </span><span class="kw">pub </span>id: Id&lt;ChannelMarker&gt;,
     <span class="doccomment">/// Whether users can be invited.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>invitable: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Type of the channel.
     ///
     /// This can be used to determine what fields *might* be available.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: ChannelType,
     <span class="doccomment">/// For text channels, this is the ID of the last message sent in the
     /// channel.
     ///
     /// For forum channels, this is the ID of the last created thread in the
     /// forum.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>last_message_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GenericMarker&gt;&gt;,
     <span class="doccomment">/// ID of the last message pinned in the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>last_pin_timestamp: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="doccomment">/// Whether the channel is managed by an application via the [`gdm.join`]
     /// oauth scope.
@@ -794,71 +795,71 @@
     ///
     /// [`gdm.join`]: crate::oauth::scope::GDM_JOIN
     /// [group channels]: ChannelType::Group
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>managed: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Member that created the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>member: <span class="prelude-ty">Option</span>&lt;ThreadMember&gt;,
     <span class="doccomment">/// Number of members in the channel.
     ///
     /// At most a value of 50 is provided although the real number may be
     /// higher.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>member_count: <span class="prelude-ty">Option</span>&lt;i8&gt;,
     <span class="doccomment">/// Number of messages in the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>message_count: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="doccomment">/// Name of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Whether a thread was newly created.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>newly_created: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Whether the channel has been configured to be NSFW.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>nsfw: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// ID of the creator of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>owner_id: <span class="prelude-ty">Option</span>&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="doccomment">/// ID of the parent channel.
     ///
     /// For guild channels this is the ID of the parent category channel.
     ///
     /// For threads this is the ID of the channel the thread was created in.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>parent_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="doccomment">/// Explicit permission overwrites for members and roles.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;Vec&lt;PermissionOverwrite&gt;&gt;,
     <span class="doccomment">/// Sorting position of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>position: <span class="prelude-ty">Option</span>&lt;i32&gt;,
     <span class="doccomment">/// Amount of seconds a user has to wait before sending another message.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;u16&gt;,
     <span class="doccomment">/// Recipients of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>recipients: <span class="prelude-ty">Option</span>&lt;Vec&lt;User&gt;&gt;,
     <span class="doccomment">/// ID of the voice region for the channel.
     ///
     /// Defaults to automatic for applicable channels.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>rtc_region: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Metadata about a thread.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>thread_metadata: <span class="prelude-ty">Option</span>&lt;ThreadMetadata&gt;,
     <span class="doccomment">/// Topic of the channel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>topic: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Number of users that may be in the channel.
     ///
     /// Zero refers to no limit.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>user_limit: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="doccomment">/// Camera video quality mode of the channel.
     ///
     /// Defaults to [`VideoQualityMode::Auto`] for applicable channels.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>video_quality_mode: <span class="prelude-ty">Option</span>&lt;VideoQualityMode&gt;,
 }
 
@@ -873,34 +874,34 @@
     };
 
     <span class="comment">// The deserializer for GuildChannel should skip over fields names that
-    // it couldn&#39;t deserialize.
+    // it couldn't deserialize.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>guild_channel_unknown_field_deserialization() {
         <span class="kw">let </span>input = <span class="macro">serde_json::json!</span>({
-            <span class="string">&quot;type&quot;</span>: <span class="number">0</span>,
-            <span class="string">&quot;topic&quot;</span>: <span class="string">&quot;a&quot;</span>,
-            <span class="string">&quot;rate_limit_per_user&quot;</span>: <span class="number">0</span>,
-            <span class="string">&quot;position&quot;</span>: <span class="number">0</span>,
-            <span class="string">&quot;permission_overwrites&quot;</span>: [],
-            <span class="string">&quot;parent_id&quot;</span>: null,
-            <span class="string">&quot;nsfw&quot;</span>: <span class="bool-val">false</span>,
-            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;hey&quot;</span>,
-            <span class="string">&quot;last_message_id&quot;</span>: <span class="string">&quot;3&quot;</span>,
-            <span class="string">&quot;id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-            <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-            <span class="string">&quot;guild_hashes&quot;</span>: {
-                <span class="string">&quot;version&quot;</span>: <span class="number">1</span>,
-                <span class="string">&quot;roles&quot;</span>: {
-                    <span class="string">&quot;hash&quot;</span>: <span class="string">&quot;aaaaaaaaaaa&quot;
+            <span class="string">"type"</span>: <span class="number">0</span>,
+            <span class="string">"topic"</span>: <span class="string">"a"</span>,
+            <span class="string">"rate_limit_per_user"</span>: <span class="number">0</span>,
+            <span class="string">"position"</span>: <span class="number">0</span>,
+            <span class="string">"permission_overwrites"</span>: [],
+            <span class="string">"parent_id"</span>: null,
+            <span class="string">"nsfw"</span>: <span class="bool-val">false</span>,
+            <span class="string">"name"</span>: <span class="string">"hey"</span>,
+            <span class="string">"last_message_id"</span>: <span class="string">"3"</span>,
+            <span class="string">"id"</span>: <span class="string">"2"</span>,
+            <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+            <span class="string">"guild_hashes"</span>: {
+                <span class="string">"version"</span>: <span class="number">1</span>,
+                <span class="string">"roles"</span>: {
+                    <span class="string">"hash"</span>: <span class="string">"aaaaaaaaaaa"
                 </span>},
-                <span class="string">&quot;metadata&quot;</span>: {
-                    <span class="string">&quot;hash&quot;</span>: <span class="string">&quot;bbbbbbbbbbb&quot;
+                <span class="string">"metadata"</span>: {
+                    <span class="string">"hash"</span>: <span class="string">"bbbbbbbbbbb"
                 </span>},
-                <span class="string">&quot;channels&quot;</span>: {
-                    <span class="string">&quot;hash&quot;</span>: <span class="string">&quot;ccccccccccc&quot;
+                <span class="string">"channels"</span>: {
+                    <span class="string">"hash"</span>: <span class="string">"ccccccccccc"
                 </span>}
             },
-            <span class="string">&quot;unknown_field&quot;</span>: <span class="string">&quot;the deserializer should skip unknown field names&quot;</span>,
+            <span class="string">"unknown_field"</span>: <span class="string">"the deserializer should skip unknown field names"</span>,
         });
 
         <span class="kw">let </span>value = Channel {
@@ -925,7 +926,7 @@
             member: <span class="prelude-val">None</span>,
             member_count: <span class="prelude-val">None</span>,
             message_count: <span class="prelude-val">None</span>,
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;hey&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"hey"</span>.to_owned()),
             newly_created: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
             owner_id: <span class="prelude-val">None</span>,
@@ -936,7 +937,7 @@
             recipients: <span class="prelude-val">None</span>,
             rtc_region: <span class="prelude-val">None</span>,
             thread_metadata: <span class="prelude-val">None</span>,
-            topic: <span class="prelude-val">Some</span>(<span class="string">&quot;a&quot;</span>.to_owned()),
+            topic: <span class="prelude-val">Some</span>(<span class="string">"a"</span>.to_owned()),
             user_limit: <span class="prelude-val">None</span>,
             video_quality_mode: <span class="prelude-val">None</span>,
         };
@@ -968,7 +969,7 @@
             member: <span class="prelude-val">None</span>,
             member_count: <span class="prelude-val">None</span>,
             message_count: <span class="prelude-val">None</span>,
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>.to_owned()),
             newly_created: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">None</span>,
             owner_id: <span class="prelude-val">None</span>,
@@ -988,12 +989,12 @@
         <span class="macro">assert_eq!</span>(
             value,
             serde_json::from_value(<span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;guild_id&quot;</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;2&quot;</span>),
-                <span class="string">&quot;name&quot;</span>: <span class="string">&quot;foo&quot;</span>,
-                <span class="string">&quot;permission_overwrites&quot;</span>: permission_overwrites,
-                <span class="string">&quot;position&quot;</span>: <span class="number">3</span>,
-                <span class="string">&quot;type&quot;</span>: <span class="number">4</span>,
+                <span class="string">"id"</span>: <span class="string">"1"</span>,
+                <span class="string">"guild_id"</span>: <span class="prelude-val">Some</span>(<span class="string">"2"</span>),
+                <span class="string">"name"</span>: <span class="string">"foo"</span>,
+                <span class="string">"permission_overwrites"</span>: permission_overwrites,
+                <span class="string">"position"</span>: <span class="number">3</span>,
+                <span class="string">"type"</span>: <span class="number">4</span>,
             }))
             .unwrap()
         );
@@ -1023,7 +1024,7 @@
             member: <span class="prelude-val">None</span>,
             member_count: <span class="prelude-val">None</span>,
             message_count: <span class="prelude-val">None</span>,
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;news&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"news"</span>.to_owned()),
             newly_created: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             owner_id: <span class="prelude-val">None</span>,
@@ -1034,7 +1035,7 @@
             recipients: <span class="prelude-val">None</span>,
             rtc_region: <span class="prelude-val">None</span>,
             thread_metadata: <span class="prelude-val">None</span>,
-            topic: <span class="prelude-val">Some</span>(<span class="string">&quot;a news channel&quot;</span>.to_owned()),
+            topic: <span class="prelude-val">Some</span>(<span class="string">"a news channel"</span>.to_owned()),
             user_limit: <span class="prelude-val">None</span>,
             video_quality_mode: <span class="prelude-val">None</span>,
         };
@@ -1043,16 +1044,16 @@
         <span class="macro">assert_eq!</span>(
             value,
             serde_json::from_value(<span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                <span class="string">&quot;name&quot;</span>: <span class="string">&quot;news&quot;</span>,
-                <span class="string">&quot;nsfw&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;last_message_id&quot;</span>: <span class="string">&quot;4&quot;</span>,
-                <span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
-                <span class="string">&quot;permission_overwrites&quot;</span>: permission_overwrites,
-                <span class="string">&quot;position&quot;</span>: <span class="number">3</span>,
-                <span class="string">&quot;topic&quot;</span>: <span class="string">&quot;a news channel&quot;</span>,
-                <span class="string">&quot;type&quot;</span>: ChannelType::GuildAnnouncement,
+                <span class="string">"id"</span>: <span class="string">"1"</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"2"</span>,
+                <span class="string">"name"</span>: <span class="string">"news"</span>,
+                <span class="string">"nsfw"</span>: <span class="bool-val">true</span>,
+                <span class="string">"last_message_id"</span>: <span class="string">"4"</span>,
+                <span class="string">"parent_id"</span>: <span class="string">"5"</span>,
+                <span class="string">"permission_overwrites"</span>: permission_overwrites,
+                <span class="string">"position"</span>: <span class="number">3</span>,
+                <span class="string">"topic"</span>: <span class="string">"a news channel"</span>,
+                <span class="string">"type"</span>: ChannelType::GuildAnnouncement,
             }))
             .unwrap()
         );
@@ -1060,7 +1061,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>guild_announcement_thread_deserialization() {
-        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">&quot;non zero&quot;</span>);
+        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">"non zero"</span>);
         <span class="kw">let </span>formatted = timestamp.iso_8601().to_string();
 
         <span class="kw">let </span>value = Channel {
@@ -1092,7 +1093,7 @@
             }),
             member_count: <span class="prelude-val">Some</span>(<span class="number">50</span>),
             message_count: <span class="prelude-val">Some</span>(<span class="number">50</span>),
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;newsthread&quot;</span>.into()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"newsthread"</span>.into()),
             newly_created: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             nsfw: <span class="prelude-val">None</span>,
             owner_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">5</span>)),
@@ -1118,31 +1119,31 @@
         <span class="macro">assert_eq!</span>(
             value,
             serde_json::from_value(<span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;id&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;type&quot;</span>: ChannelType::AnnouncementThread,
-                <span class="string">&quot;last_message_id&quot;</span>: <span class="string">&quot;3&quot;</span>,
-                <span class="string">&quot;member&quot;</span>: {
-                    <span class="string">&quot;flags&quot;</span>: <span class="number">0</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;4&quot;</span>,
-                    <span class="string">&quot;join_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;user_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
+                <span class="string">"id"</span>: <span class="string">"6"</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"type"</span>: ChannelType::AnnouncementThread,
+                <span class="string">"last_message_id"</span>: <span class="string">"3"</span>,
+                <span class="string">"member"</span>: {
+                    <span class="string">"flags"</span>: <span class="number">0</span>,
+                    <span class="string">"id"</span>: <span class="string">"4"</span>,
+                    <span class="string">"join_timestamp"</span>: formatted,
+                    <span class="string">"user_id"</span>: <span class="string">"5"</span>,
                 },
-                <span class="string">&quot;default_auto_archive_duration&quot;</span>: <span class="number">60</span>,
-                <span class="string">&quot;managed&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;member_count&quot;</span>: <span class="number">50</span>,
-                <span class="string">&quot;message_count&quot;</span>: <span class="number">50</span>,
-                <span class="string">&quot;name&quot;</span>: <span class="string">&quot;newsthread&quot;</span>,
-                <span class="string">&quot;newly_created&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;owner_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
-                <span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                <span class="string">&quot;rate_limit_per_user&quot;</span>: <span class="number">1000</span>,
-                <span class="string">&quot;thread_metadata&quot;</span>: {
-                    <span class="string">&quot;archive_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;archived&quot;</span>: <span class="bool-val">false</span>,
-                    <span class="string">&quot;auto_archive_duration&quot;</span>: AutoArchiveDuration::Day,
-                    <span class="string">&quot;create_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;locked&quot;</span>: <span class="bool-val">false
+                <span class="string">"default_auto_archive_duration"</span>: <span class="number">60</span>,
+                <span class="string">"managed"</span>: <span class="bool-val">true</span>,
+                <span class="string">"member_count"</span>: <span class="number">50</span>,
+                <span class="string">"message_count"</span>: <span class="number">50</span>,
+                <span class="string">"name"</span>: <span class="string">"newsthread"</span>,
+                <span class="string">"newly_created"</span>: <span class="bool-val">true</span>,
+                <span class="string">"owner_id"</span>: <span class="string">"5"</span>,
+                <span class="string">"parent_id"</span>: <span class="string">"2"</span>,
+                <span class="string">"rate_limit_per_user"</span>: <span class="number">1000</span>,
+                <span class="string">"thread_metadata"</span>: {
+                    <span class="string">"archive_timestamp"</span>: formatted,
+                    <span class="string">"archived"</span>: <span class="bool-val">false</span>,
+                    <span class="string">"auto_archive_duration"</span>: AutoArchiveDuration::Day,
+                    <span class="string">"create_timestamp"</span>: formatted,
+                    <span class="string">"locked"</span>: <span class="bool-val">false
                 </span>}
             }))
             .unwrap()
@@ -1151,7 +1152,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>public_thread_deserialization() {
-        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">&quot;non zero&quot;</span>);
+        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">"non zero"</span>);
 
         <span class="kw">let </span>value = Channel {
             application_id: <span class="prelude-val">None</span>,
@@ -1182,7 +1183,7 @@
             }),
             member_count: <span class="prelude-val">Some</span>(<span class="number">50</span>),
             message_count: <span class="prelude-val">Some</span>(<span class="number">50</span>),
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;publicthread&quot;</span>.into()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"publicthread"</span>.into()),
             newly_created: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             nsfw: <span class="prelude-val">None</span>,
             owner_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">5</span>)),
@@ -1208,31 +1209,31 @@
         <span class="macro">assert_eq!</span>(
             value,
             serde_json::from_value(<span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;id&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;type&quot;</span>: ChannelType::PublicThread,
-                <span class="string">&quot;last_message_id&quot;</span>: <span class="string">&quot;3&quot;</span>,
-                <span class="string">&quot;member&quot;</span>: {
-                    <span class="string">&quot;flags&quot;</span>: <span class="number">0</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;4&quot;</span>,
-                    <span class="string">&quot;join_timestamp&quot;</span>: timestamp,
-                    <span class="string">&quot;user_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
+                <span class="string">"id"</span>: <span class="string">"6"</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"type"</span>: ChannelType::PublicThread,
+                <span class="string">"last_message_id"</span>: <span class="string">"3"</span>,
+                <span class="string">"member"</span>: {
+                    <span class="string">"flags"</span>: <span class="number">0</span>,
+                    <span class="string">"id"</span>: <span class="string">"4"</span>,
+                    <span class="string">"join_timestamp"</span>: timestamp,
+                    <span class="string">"user_id"</span>: <span class="string">"5"</span>,
                 },
-                <span class="string">&quot;default_auto_archive_duration&quot;</span>: <span class="number">60</span>,
-                <span class="string">&quot;managed&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;member_count&quot;</span>: <span class="number">50</span>,
-                <span class="string">&quot;message_count&quot;</span>: <span class="number">50</span>,
-                <span class="string">&quot;name&quot;</span>: <span class="string">&quot;publicthread&quot;</span>,
-                <span class="string">&quot;newly_created&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;owner_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
-                <span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                <span class="string">&quot;rate_limit_per_user&quot;</span>: <span class="number">1000</span>,
-                <span class="string">&quot;thread_metadata&quot;</span>: {
-                    <span class="string">&quot;archive_timestamp&quot;</span>: timestamp,
-                    <span class="string">&quot;archived&quot;</span>: <span class="bool-val">false</span>,
-                    <span class="string">&quot;auto_archive_duration&quot;</span>: AutoArchiveDuration::Day,
-                    <span class="string">&quot;create_timestamp&quot;</span>: timestamp,
-                    <span class="string">&quot;locked&quot;</span>: <span class="bool-val">false
+                <span class="string">"default_auto_archive_duration"</span>: <span class="number">60</span>,
+                <span class="string">"managed"</span>: <span class="bool-val">true</span>,
+                <span class="string">"member_count"</span>: <span class="number">50</span>,
+                <span class="string">"message_count"</span>: <span class="number">50</span>,
+                <span class="string">"name"</span>: <span class="string">"publicthread"</span>,
+                <span class="string">"newly_created"</span>: <span class="bool-val">true</span>,
+                <span class="string">"owner_id"</span>: <span class="string">"5"</span>,
+                <span class="string">"parent_id"</span>: <span class="string">"2"</span>,
+                <span class="string">"rate_limit_per_user"</span>: <span class="number">1000</span>,
+                <span class="string">"thread_metadata"</span>: {
+                    <span class="string">"archive_timestamp"</span>: timestamp,
+                    <span class="string">"archived"</span>: <span class="bool-val">false</span>,
+                    <span class="string">"auto_archive_duration"</span>: AutoArchiveDuration::Day,
+                    <span class="string">"create_timestamp"</span>: timestamp,
+                    <span class="string">"locked"</span>: <span class="bool-val">false
                 </span>}
             }))
             .unwrap()
@@ -1241,7 +1242,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>private_thread_deserialization() {
-        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">&quot;non zero&quot;</span>);
+        <span class="kw">let </span>timestamp = Timestamp::from_secs(<span class="number">1_632_074_792</span>).expect(<span class="string">"non zero"</span>);
         <span class="kw">let </span>formatted = timestamp.iso_8601().to_string();
 
         <span class="kw">let </span>value = Channel {
@@ -1275,7 +1276,7 @@
             // we keep negative member counts around.
             </span>member_count: <span class="prelude-val">Some</span>(-<span class="number">1</span>),
             message_count: <span class="prelude-val">Some</span>(<span class="number">50</span>),
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;privatethread&quot;</span>.into()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"privatethread"</span>.into()),
             newly_created: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             nsfw: <span class="prelude-val">None</span>,
             owner_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">5</span>)),
@@ -1306,39 +1307,39 @@
         <span class="macro">assert_eq!</span>(
             value,
             serde_json::from_value(<span class="macro">serde_json::json!</span>({
-                <span class="string">&quot;id&quot;</span>: <span class="string">&quot;6&quot;</span>,
-                <span class="string">&quot;guild_id&quot;</span>: <span class="string">&quot;1&quot;</span>,
-                <span class="string">&quot;type&quot;</span>: ChannelType::PrivateThread,
-                <span class="string">&quot;last_message_id&quot;</span>: <span class="string">&quot;3&quot;</span>,
-                <span class="string">&quot;member&quot;</span>: {
-                    <span class="string">&quot;flags&quot;</span>: <span class="number">0</span>,
-                    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;4&quot;</span>,
-                    <span class="string">&quot;join_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;user_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
+                <span class="string">"id"</span>: <span class="string">"6"</span>,
+                <span class="string">"guild_id"</span>: <span class="string">"1"</span>,
+                <span class="string">"type"</span>: ChannelType::PrivateThread,
+                <span class="string">"last_message_id"</span>: <span class="string">"3"</span>,
+                <span class="string">"member"</span>: {
+                    <span class="string">"flags"</span>: <span class="number">0</span>,
+                    <span class="string">"id"</span>: <span class="string">"4"</span>,
+                    <span class="string">"join_timestamp"</span>: formatted,
+                    <span class="string">"user_id"</span>: <span class="string">"5"</span>,
                 },
-                <span class="string">&quot;default_auto_archive_duration&quot;</span>: <span class="number">60</span>,
-                <span class="string">&quot;invitable&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;managed&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;member_count&quot;</span>: -<span class="number">1</span>,
-                <span class="string">&quot;message_count&quot;</span>: <span class="number">50</span>,
-                <span class="string">&quot;name&quot;</span>: <span class="string">&quot;privatethread&quot;</span>,
-                <span class="string">&quot;newly_created&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;owner_id&quot;</span>: <span class="string">&quot;5&quot;</span>,
-                <span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2&quot;</span>,
-                <span class="string">&quot;rate_limit_per_user&quot;</span>: <span class="number">1000</span>,
-                <span class="string">&quot;thread_metadata&quot;</span>: {
-                    <span class="string">&quot;archive_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;archived&quot;</span>: <span class="bool-val">false</span>,
-                    <span class="string">&quot;auto_archive_duration&quot;</span>: AutoArchiveDuration::Day,
-                    <span class="string">&quot;create_timestamp&quot;</span>: formatted,
-                    <span class="string">&quot;locked&quot;</span>: <span class="bool-val">false
+                <span class="string">"default_auto_archive_duration"</span>: <span class="number">60</span>,
+                <span class="string">"invitable"</span>: <span class="bool-val">true</span>,
+                <span class="string">"managed"</span>: <span class="bool-val">true</span>,
+                <span class="string">"member_count"</span>: -<span class="number">1</span>,
+                <span class="string">"message_count"</span>: <span class="number">50</span>,
+                <span class="string">"name"</span>: <span class="string">"privatethread"</span>,
+                <span class="string">"newly_created"</span>: <span class="bool-val">true</span>,
+                <span class="string">"owner_id"</span>: <span class="string">"5"</span>,
+                <span class="string">"parent_id"</span>: <span class="string">"2"</span>,
+                <span class="string">"rate_limit_per_user"</span>: <span class="number">1000</span>,
+                <span class="string">"thread_metadata"</span>: {
+                    <span class="string">"archive_timestamp"</span>: formatted,
+                    <span class="string">"archived"</span>: <span class="bool-val">false</span>,
+                    <span class="string">"auto_archive_duration"</span>: AutoArchiveDuration::Day,
+                    <span class="string">"create_timestamp"</span>: formatted,
+                    <span class="string">"locked"</span>: <span class="bool-val">false
                 </span>},
-                <span class="string">&quot;permission_overwrites&quot;</span>: [
+                <span class="string">"permission_overwrites"</span>: [
                     {
-                        <span class="string">&quot;allow&quot;</span>: <span class="string">&quot;0&quot;</span>,
-                        <span class="string">&quot;deny&quot;</span>: <span class="string">&quot;0&quot;</span>,
-                        <span class="string">&quot;type&quot;</span>: <span class="number">1</span>,
-                        <span class="string">&quot;id&quot;</span>: <span class="string">&quot;5&quot;
+                        <span class="string">"allow"</span>: <span class="string">"0"</span>,
+                        <span class="string">"deny"</span>: <span class="string">"0"</span>,
+                        <span class="string">"type"</span>: <span class="number">1</span>,
+                        <span class="string">"id"</span>: <span class="string">"5"
                     </span>}
                 ]
             }))

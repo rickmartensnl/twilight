@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -193,7 +194,7 @@
 
 <span class="doccomment">/// A builder for [`Client`].
 </span><span class="attr">#[derive(Debug)]
-#[must_use = <span class="string">&quot;has no effect if not built into a Client&quot;</span>]
+#[must_use = <span class="string">"has no effect if not built into a Client"</span>]
 </span><span class="kw">pub struct </span>ClientBuilder {
     <span class="kw">pub</span>(<span class="kw">crate</span>) default_allowed_mentions: <span class="prelude-ty">Option</span>&lt;AllowedMentions&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) proxy: <span class="prelude-ty">Option</span>&lt;Box&lt;str&gt;&gt;,
@@ -246,8 +247,8 @@
 
     <span class="doccomment">/// Set the proxy to use for all HTTP(S) requests.
     ///
-    /// **Note** that this isn&#39;t currently a traditional proxy, but is for
-    /// working with something like [twilight&#39;s HTTP proxy server].
+    /// **Note** that this isn't currently a traditional proxy, but is for
+    /// working with something like [twilight's HTTP proxy server].
     ///
     /// # Examples
     ///
@@ -258,12 +259,12 @@
     ///
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// let client = Client::builder()
-    ///     .proxy(&quot;twilight_http_proxy.internal&quot;.to_owned(), true)
+    ///     .proxy("twilight_http_proxy.internal".to_owned(), true)
     ///     .build();
     /// # Ok(()) }
     /// ```
     ///
-    /// [twilight&#39;s HTTP proxy server]: https://github.com/twilight-rs/http-proxy
+    /// [twilight's HTTP proxy server]: https://github.com/twilight-rs/http-proxy
     </span><span class="kw">pub fn </span>proxy(<span class="kw-2">mut </span><span class="self">self</span>, proxy_url: String, use_http: bool) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.proxy.replace(proxy_url.into_boxed_str());
         <span class="self">self</span>.use_http = use_http;
@@ -273,7 +274,7 @@
 
     <span class="doccomment">/// Set a ratelimiter to use.
     ///
-    /// If the argument is `None` then the client&#39;s ratelimiter will be skipped
+    /// If the argument is `None` then the client's ratelimiter will be skipped
     /// before making a request.
     ///
     /// If this method is not called at all then a default [`InMemoryRatelimiter`] will be
@@ -316,13 +317,13 @@
 
     <span class="doccomment">/// Set the token to use for HTTP requests.
     </span><span class="kw">pub fn </span>token(<span class="kw-2">mut </span><span class="self">self</span>, <span class="kw-2">mut </span>token: String) -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span>is_bot = token.starts_with(<span class="string">&quot;Bot &quot;</span>);
-        <span class="kw">let </span>is_bearer = token.starts_with(<span class="string">&quot;Bearer &quot;</span>);
+        <span class="kw">let </span>is_bot = token.starts_with(<span class="string">"Bot "</span>);
+        <span class="kw">let </span>is_bearer = token.starts_with(<span class="string">"Bearer "</span>);
 
-        <span class="comment">// Make sure it is either a bot or bearer token, and assume it&#39;s a bot
+        <span class="comment">// Make sure it is either a bot or bearer token, and assume it's a bot
         // token if no prefix is given
         </span><span class="kw">if </span>!is_bot &amp;&amp; !is_bearer {
-            token.insert_str(<span class="number">0</span>, <span class="string">&quot;Bot &quot;</span>);
+            token.insert_str(<span class="number">0</span>, <span class="string">"Bot "</span>);
         }
 
         <span class="self">self</span>.token.replace(Token::new(token.into_boxed_str()));
@@ -358,10 +359,10 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>client_debug() {
         <span class="macro">assert!</span>(
-            <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, ClientBuilder::new().token(<span class="string">&quot;Bot foo&quot;</span>.to_owned()))
-                .contains(<span class="string">&quot;token: Some(&lt;redacted&gt;)&quot;</span>)
+            <span class="macro">format!</span>(<span class="string">"{:?}"</span>, ClientBuilder::new().token(<span class="string">"Bot foo"</span>.to_owned()))
+                .contains(<span class="string">"token: Some(&lt;redacted&gt;)"</span>)
         );
-        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, ClientBuilder::new()).contains(<span class="string">&quot;token: None&quot;</span>));
+        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, ClientBuilder::new()).contains(<span class="string">"token: None"</span>));
     }
 }
 </code></pre></div></section></main></body></html>

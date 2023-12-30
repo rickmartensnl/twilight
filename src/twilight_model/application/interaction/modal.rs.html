@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/modal.rs`."><title>modal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/modal.rs`."><title>modal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -202,10 +203,10 @@
 
 <span class="kw">impl </span>Serialize <span class="kw">for </span>ModalInteractionDataActionRow {
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">&quot;ModalInteractionDataActionRow&quot;</span>, <span class="number">2</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">"ModalInteractionDataActionRow"</span>, <span class="number">2</span>)<span class="question-mark">?</span>;
 
-        state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::ActionRow)<span class="question-mark">?</span>;
-        state.serialize_field(<span class="string">&quot;components&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.components)<span class="question-mark">?</span>;
+        state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::ActionRow)<span class="question-mark">?</span>;
+        state.serialize_field(<span class="string">"components"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.components)<span class="question-mark">?</span>;
 
         state.end()
     }
@@ -225,7 +226,7 @@
     /// [Discord Docs/Custom ID]: https://discord.com/developers/docs/interactions/message-components#custom-id
     </span><span class="kw">pub </span>custom_id: String,
     <span class="doccomment">/// Type of the component.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: ComponentType,
     <span class="doccomment">/// Value submitted by the user.
     </span><span class="kw">pub </span>value: <span class="prelude-ty">Option</span>&lt;String&gt;,
@@ -242,7 +243,7 @@
     <span class="macro">assert_impl_all!</span>(
         ModalInteractionData: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -254,7 +255,7 @@
     <span class="macro">assert_impl_all!</span>(
         ModalInteractionDataActionRow: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -266,7 +267,7 @@
     <span class="macro">assert_impl_all!</span>(
         ModalInteractionDataComponent: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Send,
@@ -277,12 +278,12 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>modal_data() {
         <span class="kw">let </span>value = ModalInteractionData {
-            custom_id: <span class="string">&quot;test-modal&quot;</span>.to_owned(),
+            custom_id: <span class="string">"test-modal"</span>.to_owned(),
             components: Vec::from([ModalInteractionDataActionRow {
                 components: Vec::from([ModalInteractionDataComponent {
-                    custom_id: <span class="string">&quot;the-data-id&quot;</span>.to_owned(),
+                    custom_id: <span class="string">"the-data-id"</span>.to_owned(),
                     kind: ComponentType::TextInput,
-                    value: <span class="prelude-val">Some</span>(<span class="string">&quot;input value&quot;</span>.into()),
+                    value: <span class="prelude-val">Some</span>(<span class="string">"input value"</span>.into()),
                 }]),
             }]),
         };
@@ -291,36 +292,36 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;ModalInteractionData&quot;</span>,
+                    name: <span class="string">"ModalInteractionData"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::String(<span class="string">&quot;components&quot;</span>),
+                Token::String(<span class="string">"components"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;ModalInteractionDataActionRow&quot;</span>,
+                    name: <span class="string">"ModalInteractionDataActionRow"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(ComponentType::ActionRow.into()),
-                Token::String(<span class="string">&quot;components&quot;</span>),
+                Token::String(<span class="string">"components"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;ModalInteractionDataComponent&quot;</span>,
+                    name: <span class="string">"ModalInteractionDataComponent"</span>,
                     len: <span class="number">3</span>,
                 },
-                Token::String(<span class="string">&quot;custom_id&quot;</span>),
-                Token::String(<span class="string">&quot;the-data-id&quot;</span>),
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"custom_id"</span>),
+                Token::String(<span class="string">"the-data-id"</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(ComponentType::TextInput.into()),
-                Token::String(<span class="string">&quot;value&quot;</span>),
+                Token::String(<span class="string">"value"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;input value&quot;</span>),
+                Token::String(<span class="string">"input value"</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
                 Token::StructEnd,
                 Token::SeqEnd,
-                Token::String(<span class="string">&quot;custom_id&quot;</span>),
-                Token::String(<span class="string">&quot;test-modal&quot;</span>),
+                Token::String(<span class="string">"custom_id"</span>),
+                Token::String(<span class="string">"test-modal"</span>),
                 Token::StructEnd,
             ],
         );

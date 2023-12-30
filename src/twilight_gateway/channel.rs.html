@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/channel.rs`."><title>channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/channel.rs`."><title>channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -172,7 +173,7 @@
 <a href="#172" id="172">172</a>
 <a href="#173" id="173">173</a>
 <a href="#174" id="174">174</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! Channel for users to send messages when calling [`Shard::send`] isn&#39;t
+</pre></div><pre class="rust"><code><span class="doccomment">//! Channel for users to send messages when calling [`Shard::send`] isn't
 //! possible.
 //!
 //! [`Shard::send`]: crate::Shard::send
@@ -187,11 +188,11 @@
 <span class="doccomment">/// Channel between a user and shard for sending outgoing gateway messages.
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>MessageChannel {
-    <span class="doccomment">/// Receiving half for shards to receive users&#39; close frames.
-    </span><span class="kw">pub </span>close_rx: mpsc::Receiver&lt;CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;&gt;,
+    <span class="doccomment">/// Receiving half for shards to receive users' close frames.
+    </span><span class="kw">pub </span>close_rx: mpsc::Receiver&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
     <span class="doccomment">/// Sending half for users to send close frames via shards.
-    </span>close_tx: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;&gt;,
-    <span class="doccomment">/// Receiving half for shards to receive users&#39; commands.
+    </span>close_tx: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
+    <span class="doccomment">/// Receiving half for shards to receive users' commands.
     </span><span class="kw">pub </span>command_rx: mpsc::UnboundedReceiver&lt;String&gt;,
     <span class="doccomment">/// Sending half for users to send commands via shards.
     </span>command_tx: mpsc::UnboundedSender&lt;String&gt;,
@@ -230,7 +231,7 @@
 </span><span class="attr">#[derive(Clone, Debug)]
 </span><span class="kw">pub struct </span>MessageSender {
     <span class="doccomment">/// Sending half of the close channel.
-    </span>close: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;&gt;,
+    </span>close: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
     <span class="doccomment">/// Sending half of the command channel.
     </span>command: mpsc::UnboundedSender&lt;String&gt;,
 }
@@ -274,7 +275,7 @@
 
     <span class="doccomment">/// Send a Websocket close frame to the associated shard.
     ///
-    /// Subsequent calls may be queued up to be sent once the shard&#39;s
+    /// Subsequent calls may be queued up to be sent once the shard's
     /// reestablished a Websocket connection or ignored if the queue is full.
     /// The internal queue capacity is currently `1`.
     ///
@@ -286,7 +287,7 @@
     /// closed.
     ///
     /// [`Shard::close`]: crate::Shard::close
-    </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;</span><span class="self">self</span>, close_frame: CloseFrame&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
+    </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;</span><span class="self">self</span>, close_frame: CloseFrame&lt;<span class="lifetime">'static</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
         <span class="kw">match </span><span class="self">self</span>.close.try_send(close_frame) {
             <span class="prelude-val">Ok</span>(()) | <span class="prelude-val">Err</span>(TrySendError::Full(<span class="kw">_</span>)) =&gt; <span class="prelude-val">Ok</span>(()),
             <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(SendError {
@@ -322,7 +323,7 @@
         <span class="macro">assert!</span>(channel.close_rx.try_recv().is_err());
 
         <span class="kw">let </span>frame = CloseFrame::NORMAL;
-        <span class="kw">let </span>request = RequestGuildMembers::builder(Id::new(<span class="number">1</span>)).query(<span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>);
+        <span class="kw">let </span>request = RequestGuildMembers::builder(Id::new(<span class="number">1</span>)).query(<span class="string">""</span>, <span class="prelude-val">None</span>);
         <span class="kw">let </span>heartbeat = Heartbeat::new(<span class="prelude-val">Some</span>(<span class="number">30_000</span>));
         <span class="kw">let </span>heartbeat_string = json::to_string(<span class="kw-2">&amp;</span>heartbeat)<span class="question-mark">?</span>;
         <span class="macro">assert!</span>(sender.command(<span class="kw-2">&amp;</span>request).is_ok());

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/ticket.rs`."><title>ticket.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/ticket.rs`."><title>ticket.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -175,7 +176,7 @@
 <a href="#175" id="175">175</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Flow for managing ratelimit tickets.
 //!
-//! Tickets are the [`Ratelimiter`]&#39;s method of managing approval for a consumer
+//! Tickets are the [`Ratelimiter`]'s method of managing approval for a consumer
 //! to be able to send a request.
 //!
 //! # Ratelimit Consumer
@@ -192,7 +193,7 @@
 //! ## 3. Receiving approval
 //!
 //! When a ticket is approved and the future resolves, a [`TicketSender`] is
-//! provided. This must be used to provide the ratelimiter with the response&#39;s
+//! provided. This must be used to provide the ratelimiter with the response's
 //! ratelimit headers.
 //!
 //! ## 4. Performing the request
@@ -204,7 +205,7 @@
 //!
 //! # Ratelimiter
 //!
-//! ## 1. Initializing a ticket&#39;s channels
+//! ## 1. Initializing a ticket's channels
 //!
 //! Ratelimiters will accept a request for a ticket when [`Ratelimiter::ticket`]
 //! is called. You must call [`channel`] to create a channel between the
@@ -219,12 +220,12 @@
 //! ## 3. Notifying the consumer of ticket approval
 //!
 //! When any ratelimits have passed and a user is free to perform their request,
-//! call [`TicketNotifier::available`]. If the user hasn&#39;t canceled their
+//! call [`TicketNotifier::available`]. If the user hasn't canceled their
 //! request for a ticket, you will receive a [`TicketHeaders`].
 //!
-//! ## 4. Receiving the response&#39;s headers
+//! ## 4. Receiving the response's headers
 //!
-//! The consumer will perform their HTTP request and parse the response&#39;s
+//! The consumer will perform their HTTP request and parse the response's
 //! headers. Once the headers (or lack of headers) are available the user will
 //! send them along the channel. Poll the provided [`TicketHeaders`] for those
 //! headers to complete the cycle.
@@ -252,7 +253,7 @@
 <span class="kw">impl </span>Future <span class="kw">for </span>TicketHeaders {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;RatelimitHeaders&gt;, RecvError&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0</span>).poll(cx)
     }
 }
@@ -288,14 +289,14 @@
 /// an available ratelimit ticket.
 ///
 /// Once one is available, a [`TicketSender`] will be produced which can be used to
-/// send the associated HTTP response&#39;s ratelimit headers.
+/// send the associated HTTP response's ratelimit headers.
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>TicketReceiver(Receiver&lt;Sender&lt;<span class="prelude-ty">Option</span>&lt;RatelimitHeaders&gt;&gt;&gt;);
 
 <span class="kw">impl </span>Future <span class="kw">for </span>TicketReceiver {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;TicketSender, RecvError&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0</span>).poll(cx).map_ok(TicketSender)
     }
 }
@@ -314,11 +315,11 @@
 </span><span class="kw">pub struct </span>TicketSender(Sender&lt;<span class="prelude-ty">Option</span>&lt;RatelimitHeaders&gt;&gt;);
 
 <span class="kw">impl </span>TicketSender {
-    <span class="doccomment">/// Send the response&#39;s ratelimit headers to the ratelimiter.
+    <span class="doccomment">/// Send the response's ratelimit headers to the ratelimiter.
     ///
     /// This will allow the ratelimiter to complete the cycle and acknowledge
     /// that the request has been completed. This must be done so that the
-    /// ratelimiter can process information such as whether there&#39;s a global
+    /// ratelimiter can process information such as whether there's a global
     /// ratelimit.
     ///
     /// # Errors

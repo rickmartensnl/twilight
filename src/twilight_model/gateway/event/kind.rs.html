@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/kind.rs`."><title>kind.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/kind.rs`."><title>kind.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -375,21 +376,21 @@
 
 <span class="doccomment">/// The type of an event.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
-#[serde(rename_all = <span class="string">&quot;SCREAMING_SNAKE_CASE&quot;</span>)]
+#[serde(rename_all = <span class="string">"SCREAMING_SNAKE_CASE"</span>)]
 </span><span class="kw">pub enum </span>EventType {
     AutoModerationActionExecution,
     AutoModerationRuleCreate,
     AutoModerationRuleDelete,
     AutoModerationRuleUpdate,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_BAN_ADD&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_BAN_ADD"</span>)]
     </span>BanAdd,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_BAN_REMOVE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_BAN_REMOVE"</span>)]
     </span>BanRemove,
     ChannelCreate,
     ChannelDelete,
     ChannelPinsUpdate,
     ChannelUpdate,
-    <span class="attr">#[serde(rename = <span class="string">&quot;APPLICATION_COMMAND_PERMISSIONS_UPDATE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"APPLICATION_COMMAND_PERMISSIONS_UPDATE"</span>)]
     </span>CommandPermissionsUpdate,
     GatewayClose,
     GatewayHeartbeat,
@@ -416,13 +417,13 @@
     InteractionCreate,
     InviteCreate,
     InviteDelete,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_MEMBER_ADD&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_MEMBER_ADD"</span>)]
     </span>MemberAdd,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_MEMBERS_CHUNK&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_MEMBERS_CHUNK"</span>)]
     </span>MemberChunk,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_MEMBER_REMOVE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_MEMBER_REMOVE"</span>)]
     </span>MemberRemove,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_MEMBER_UPDATE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_MEMBER_UPDATE"</span>)]
     </span>MemberUpdate,
     MessageCreate,
     MessageDelete,
@@ -430,21 +431,21 @@
     MessageUpdate,
     PresenceUpdate,
     PresencesReplace,
-    <span class="attr">#[serde(rename = <span class="string">&quot;MESSAGE_REACTION_ADD&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"MESSAGE_REACTION_ADD"</span>)]
     </span>ReactionAdd,
-    <span class="attr">#[serde(rename = <span class="string">&quot;MESSAGE_REACTION_REMOVE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"MESSAGE_REACTION_REMOVE"</span>)]
     </span>ReactionRemove,
-    <span class="attr">#[serde(rename = <span class="string">&quot;MESSAGE_REACTION_REMOVE_ALL&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"MESSAGE_REACTION_REMOVE_ALL"</span>)]
     </span>ReactionRemoveAll,
-    <span class="attr">#[serde(rename = <span class="string">&quot;MESSAGE_REACTION_REMOVE_EMOJI&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"MESSAGE_REACTION_REMOVE_EMOJI"</span>)]
     </span>ReactionRemoveEmoji,
     Ready,
     Resumed,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_ROLE_CREATE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_ROLE_CREATE"</span>)]
     </span>RoleCreate,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_ROLE_DELETE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_ROLE_DELETE"</span>)]
     </span>RoleDelete,
-    <span class="attr">#[serde(rename = <span class="string">&quot;GUILD_ROLE_UPDATE&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"GUILD_ROLE_UPDATE"</span>)]
     </span>RoleUpdate,
     StageInstanceCreate,
     StageInstanceDelete,
@@ -464,72 +465,72 @@
 }
 
 <span class="kw">impl </span>EventType {
-    <span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+    <span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::AutoModerationActionExecution =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;AUTO_MODERATION_ACTION_EXECUTION&quot;</span>),
-            <span class="self">Self</span>::AutoModerationRuleCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;AUTO_MODERATION_RULE_CREATE&quot;</span>),
-            <span class="self">Self</span>::AutoModerationRuleDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;AUTO_MODERATION_RULE_DELETE&quot;</span>),
-            <span class="self">Self</span>::AutoModerationRuleUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;AUTO_MODERATION_RULE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::BanAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_BAN_ADD&quot;</span>),
-            <span class="self">Self</span>::BanRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_BAN_REMOVE&quot;</span>),
-            <span class="self">Self</span>::ChannelCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;CHANNEL_CREATE&quot;</span>),
-            <span class="self">Self</span>::ChannelDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;CHANNEL_DELETE&quot;</span>),
-            <span class="self">Self</span>::ChannelPinsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;CHANNEL_PINS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::ChannelUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;CHANNEL_UPDATE&quot;</span>),
-            <span class="self">Self</span>::CommandPermissionsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;APPLICATION_COMMAND_PERMISSIONS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GiftCodeUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GIFT_CODE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GuildAuditLogEntryCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_AUDIT_LOG_ENTRY_CREATE&quot;</span>),
-            <span class="self">Self</span>::GuildCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_CREATE&quot;</span>),
-            <span class="self">Self</span>::GuildDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_DELETE&quot;</span>),
-            <span class="self">Self</span>::GuildEmojisUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_EMOJIS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GuildIntegrationsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_INTEGRATIONS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GuildScheduledEventCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_SCHEDULED_EVENT_CREATE&quot;</span>),
-            <span class="self">Self</span>::GuildScheduledEventDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_SCHEDULED_EVENT_DELETE&quot;</span>),
-            <span class="self">Self</span>::GuildScheduledEventUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_SCHEDULED_EVENT_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GuildScheduledEventUserAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_ADD&quot;</span>),
-            <span class="self">Self</span>::GuildScheduledEventUserRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_REMOVE&quot;</span>),
-            <span class="self">Self</span>::GuildStickersUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_STICKERS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::GuildUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_UPDATE&quot;</span>),
-            <span class="self">Self</span>::IntegrationCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INTEGRATION_CREATE&quot;</span>),
-            <span class="self">Self</span>::IntegrationDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INTEGRATION_DELETE&quot;</span>),
-            <span class="self">Self</span>::IntegrationUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INTEGRATION_UPDATE&quot;</span>),
-            <span class="self">Self</span>::InteractionCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INTERACTION_CREATE&quot;</span>),
-            <span class="self">Self</span>::InviteCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INVITE_CREATE&quot;</span>),
-            <span class="self">Self</span>::InviteDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;INVITE_DELETE&quot;</span>),
-            <span class="self">Self</span>::MemberAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_MEMBER_ADD&quot;</span>),
-            <span class="self">Self</span>::MemberChunk =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_MEMBERS_CHUNK&quot;</span>),
-            <span class="self">Self</span>::MemberRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_MEMBER_REMOVE&quot;</span>),
-            <span class="self">Self</span>::MemberUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_MEMBER_UPDATE&quot;</span>),
-            <span class="self">Self</span>::MessageCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_CREATE&quot;</span>),
-            <span class="self">Self</span>::MessageDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_DELETE&quot;</span>),
-            <span class="self">Self</span>::MessageDeleteBulk =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_DELETE_BULK&quot;</span>),
-            <span class="self">Self</span>::MessageUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::PresencesReplace =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;PRESENCES_REPLACE&quot;</span>),
-            <span class="self">Self</span>::PresenceUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;PRESENCE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::ReactionAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_REACTION_ADD&quot;</span>),
-            <span class="self">Self</span>::ReactionRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_REACTION_REMOVE&quot;</span>),
-            <span class="self">Self</span>::ReactionRemoveAll =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_REACTION_REMOVE_ALL&quot;</span>),
-            <span class="self">Self</span>::ReactionRemoveEmoji =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;MESSAGE_REACTION_REMOVE_EMOJI&quot;</span>),
-            <span class="self">Self</span>::Ready =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;READY&quot;</span>),
-            <span class="self">Self</span>::Resumed =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;RESUMED&quot;</span>),
-            <span class="self">Self</span>::RoleCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_ROLE_CREATE&quot;</span>),
-            <span class="self">Self</span>::RoleDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_ROLE_DELETE&quot;</span>),
-            <span class="self">Self</span>::RoleUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;GUILD_ROLE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::StageInstanceCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;STAGE_INSTANCE_CREATE&quot;</span>),
-            <span class="self">Self</span>::StageInstanceDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;STAGE_INSTANCE_DELETE&quot;</span>),
-            <span class="self">Self</span>::StageInstanceUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;STAGE_INSTANCE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::ThreadCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_CREATE&quot;</span>),
-            <span class="self">Self</span>::ThreadDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_DELETE&quot;</span>),
-            <span class="self">Self</span>::ThreadListSync =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_LIST_SYNC&quot;</span>),
-            <span class="self">Self</span>::ThreadMembersUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_MEMBERS_UPDATE&quot;</span>),
-            <span class="self">Self</span>::ThreadMemberUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_MEMBER_UPDATE&quot;</span>),
-            <span class="self">Self</span>::ThreadUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;THREAD_UPDATE&quot;</span>),
-            <span class="self">Self</span>::TypingStart =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;TYPING_START&quot;</span>),
-            <span class="self">Self</span>::UnavailableGuild =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;UNAVAILABLE_GUILD&quot;</span>),
-            <span class="self">Self</span>::UserUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;USER_UPDATE&quot;</span>),
-            <span class="self">Self</span>::VoiceServerUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;VOICE_SERVER_UPDATE&quot;</span>),
-            <span class="self">Self</span>::VoiceStateUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;VOICE_STATE_UPDATE&quot;</span>),
-            <span class="self">Self</span>::WebhooksUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;WEBHOOKS_UPDATE&quot;</span>),
+            <span class="self">Self</span>::AutoModerationActionExecution =&gt; <span class="prelude-val">Some</span>(<span class="string">"AUTO_MODERATION_ACTION_EXECUTION"</span>),
+            <span class="self">Self</span>::AutoModerationRuleCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"AUTO_MODERATION_RULE_CREATE"</span>),
+            <span class="self">Self</span>::AutoModerationRuleDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"AUTO_MODERATION_RULE_DELETE"</span>),
+            <span class="self">Self</span>::AutoModerationRuleUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"AUTO_MODERATION_RULE_UPDATE"</span>),
+            <span class="self">Self</span>::BanAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_BAN_ADD"</span>),
+            <span class="self">Self</span>::BanRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_BAN_REMOVE"</span>),
+            <span class="self">Self</span>::ChannelCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"CHANNEL_CREATE"</span>),
+            <span class="self">Self</span>::ChannelDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"CHANNEL_DELETE"</span>),
+            <span class="self">Self</span>::ChannelPinsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"CHANNEL_PINS_UPDATE"</span>),
+            <span class="self">Self</span>::ChannelUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"CHANNEL_UPDATE"</span>),
+            <span class="self">Self</span>::CommandPermissionsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"APPLICATION_COMMAND_PERMISSIONS_UPDATE"</span>),
+            <span class="self">Self</span>::GiftCodeUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GIFT_CODE_UPDATE"</span>),
+            <span class="self">Self</span>::GuildAuditLogEntryCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_AUDIT_LOG_ENTRY_CREATE"</span>),
+            <span class="self">Self</span>::GuildCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_CREATE"</span>),
+            <span class="self">Self</span>::GuildDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_DELETE"</span>),
+            <span class="self">Self</span>::GuildEmojisUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_EMOJIS_UPDATE"</span>),
+            <span class="self">Self</span>::GuildIntegrationsUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_INTEGRATIONS_UPDATE"</span>),
+            <span class="self">Self</span>::GuildScheduledEventCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_SCHEDULED_EVENT_CREATE"</span>),
+            <span class="self">Self</span>::GuildScheduledEventDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_SCHEDULED_EVENT_DELETE"</span>),
+            <span class="self">Self</span>::GuildScheduledEventUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_SCHEDULED_EVENT_UPDATE"</span>),
+            <span class="self">Self</span>::GuildScheduledEventUserAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_SCHEDULED_EVENT_USER_ADD"</span>),
+            <span class="self">Self</span>::GuildScheduledEventUserRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_SCHEDULED_EVENT_USER_REMOVE"</span>),
+            <span class="self">Self</span>::GuildStickersUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_STICKERS_UPDATE"</span>),
+            <span class="self">Self</span>::GuildUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_UPDATE"</span>),
+            <span class="self">Self</span>::IntegrationCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"INTEGRATION_CREATE"</span>),
+            <span class="self">Self</span>::IntegrationDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"INTEGRATION_DELETE"</span>),
+            <span class="self">Self</span>::IntegrationUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"INTEGRATION_UPDATE"</span>),
+            <span class="self">Self</span>::InteractionCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"INTERACTION_CREATE"</span>),
+            <span class="self">Self</span>::InviteCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"INVITE_CREATE"</span>),
+            <span class="self">Self</span>::InviteDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"INVITE_DELETE"</span>),
+            <span class="self">Self</span>::MemberAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_MEMBER_ADD"</span>),
+            <span class="self">Self</span>::MemberChunk =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_MEMBERS_CHUNK"</span>),
+            <span class="self">Self</span>::MemberRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_MEMBER_REMOVE"</span>),
+            <span class="self">Self</span>::MemberUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_MEMBER_UPDATE"</span>),
+            <span class="self">Self</span>::MessageCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_CREATE"</span>),
+            <span class="self">Self</span>::MessageDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_DELETE"</span>),
+            <span class="self">Self</span>::MessageDeleteBulk =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_DELETE_BULK"</span>),
+            <span class="self">Self</span>::MessageUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_UPDATE"</span>),
+            <span class="self">Self</span>::PresencesReplace =&gt; <span class="prelude-val">Some</span>(<span class="string">"PRESENCES_REPLACE"</span>),
+            <span class="self">Self</span>::PresenceUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"PRESENCE_UPDATE"</span>),
+            <span class="self">Self</span>::ReactionAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_ADD"</span>),
+            <span class="self">Self</span>::ReactionRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_REMOVE"</span>),
+            <span class="self">Self</span>::ReactionRemoveAll =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_REMOVE_ALL"</span>),
+            <span class="self">Self</span>::ReactionRemoveEmoji =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_REMOVE_EMOJI"</span>),
+            <span class="self">Self</span>::Ready =&gt; <span class="prelude-val">Some</span>(<span class="string">"READY"</span>),
+            <span class="self">Self</span>::Resumed =&gt; <span class="prelude-val">Some</span>(<span class="string">"RESUMED"</span>),
+            <span class="self">Self</span>::RoleCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_ROLE_CREATE"</span>),
+            <span class="self">Self</span>::RoleDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_ROLE_DELETE"</span>),
+            <span class="self">Self</span>::RoleUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"GUILD_ROLE_UPDATE"</span>),
+            <span class="self">Self</span>::StageInstanceCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"STAGE_INSTANCE_CREATE"</span>),
+            <span class="self">Self</span>::StageInstanceDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"STAGE_INSTANCE_DELETE"</span>),
+            <span class="self">Self</span>::StageInstanceUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"STAGE_INSTANCE_UPDATE"</span>),
+            <span class="self">Self</span>::ThreadCreate =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_CREATE"</span>),
+            <span class="self">Self</span>::ThreadDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_DELETE"</span>),
+            <span class="self">Self</span>::ThreadListSync =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_LIST_SYNC"</span>),
+            <span class="self">Self</span>::ThreadMembersUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_MEMBERS_UPDATE"</span>),
+            <span class="self">Self</span>::ThreadMemberUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_MEMBER_UPDATE"</span>),
+            <span class="self">Self</span>::ThreadUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"THREAD_UPDATE"</span>),
+            <span class="self">Self</span>::TypingStart =&gt; <span class="prelude-val">Some</span>(<span class="string">"TYPING_START"</span>),
+            <span class="self">Self</span>::UnavailableGuild =&gt; <span class="prelude-val">Some</span>(<span class="string">"UNAVAILABLE_GUILD"</span>),
+            <span class="self">Self</span>::UserUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"USER_UPDATE"</span>),
+            <span class="self">Self</span>::VoiceServerUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"VOICE_SERVER_UPDATE"</span>),
+            <span class="self">Self</span>::VoiceStateUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"VOICE_STATE_UPDATE"</span>),
+            <span class="self">Self</span>::WebhooksUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"WEBHOOKS_UPDATE"</span>),
             <span class="self">Self</span>::GatewayClose
             | <span class="self">Self</span>::GatewayHeartbeat
             | <span class="self">Self</span>::GatewayHeartbeatAck
@@ -540,74 +541,74 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFrom&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; <span class="kw">for </span>EventType {
-    <span class="kw">type </span>Error = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; TryFrom&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt; <span class="kw">for </span>EventType {
+    <span class="kw">type </span>Error = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str;
 
-    <span class="kw">fn </span>try_from(event_type: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
+    <span class="kw">fn </span>try_from(event_type: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
         <span class="kw">match </span>event_type {
-            <span class="string">&quot;AUTO_MODERATION_ACTION_EXECUTION&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationActionExecution),
-            <span class="string">&quot;AUTO_MODERATION_RULE_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleCreate),
-            <span class="string">&quot;AUTO_MODERATION_RULE_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleDelete),
-            <span class="string">&quot;AUTO_MODERATION_RULE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleUpdate),
-            <span class="string">&quot;GUILD_AUDIT_LOG_ENTRY_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildAuditLogEntryCreate),
-            <span class="string">&quot;GUILD_BAN_ADD&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::BanAdd),
-            <span class="string">&quot;GUILD_BAN_REMOVE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::BanRemove),
-            <span class="string">&quot;CHANNEL_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelCreate),
-            <span class="string">&quot;CHANNEL_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelDelete),
-            <span class="string">&quot;CHANNEL_PINS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelPinsUpdate),
-            <span class="string">&quot;CHANNEL_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelUpdate),
-            <span class="string">&quot;APPLICATION_COMMAND_PERMISSIONS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::CommandPermissionsUpdate),
-            <span class="string">&quot;GIFT_CODE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GiftCodeUpdate),
-            <span class="string">&quot;GUILD_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildCreate),
-            <span class="string">&quot;GUILD_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildDelete),
-            <span class="string">&quot;GUILD_EMOJIS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildEmojisUpdate),
-            <span class="string">&quot;GUILD_INTEGRATIONS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildIntegrationsUpdate),
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventCreate),
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventDelete),
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUpdate),
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_ADD&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUserAdd),
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_REMOVE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUserRemove),
-            <span class="string">&quot;GUILD_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildUpdate),
-            <span class="string">&quot;INTEGRATION_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationCreate),
-            <span class="string">&quot;INTEGRATION_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationDelete),
-            <span class="string">&quot;INTEGRATION_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationUpdate),
-            <span class="string">&quot;INTERACTION_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InteractionCreate),
-            <span class="string">&quot;INVITE_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InviteCreate),
-            <span class="string">&quot;INVITE_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InviteDelete),
-            <span class="string">&quot;GUILD_MEMBER_ADD&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberAdd),
-            <span class="string">&quot;GUILD_MEMBER_REMOVE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberRemove),
-            <span class="string">&quot;GUILD_MEMBER_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberUpdate),
-            <span class="string">&quot;GUILD_MEMBERS_CHUNK&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberChunk),
-            <span class="string">&quot;MESSAGE_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageCreate),
-            <span class="string">&quot;MESSAGE_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDelete),
-            <span class="string">&quot;MESSAGE_DELETE_BULK&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDeleteBulk),
-            <span class="string">&quot;MESSAGE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageUpdate),
-            <span class="string">&quot;PRESENCE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::PresenceUpdate),
-            <span class="string">&quot;PRESENCES_REPLACE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::PresencesReplace),
-            <span class="string">&quot;MESSAGE_REACTION_ADD&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionAdd),
-            <span class="string">&quot;MESSAGE_REACTION_REMOVE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemove),
-            <span class="string">&quot;MESSAGE_REACTION_REMOVE_ALL&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemoveAll),
-            <span class="string">&quot;MESSAGE_REACTION_REMOVE_EMOJI&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemoveEmoji),
-            <span class="string">&quot;READY&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Ready),
-            <span class="string">&quot;RESUMED&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Resumed),
-            <span class="string">&quot;GUILD_ROLE_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleCreate),
-            <span class="string">&quot;GUILD_ROLE_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleDelete),
-            <span class="string">&quot;GUILD_ROLE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleUpdate),
-            <span class="string">&quot;STAGE_INSTANCE_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceCreate),
-            <span class="string">&quot;STAGE_INSTANCE_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceDelete),
-            <span class="string">&quot;STAGE_INSTANCE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceUpdate),
-            <span class="string">&quot;THREAD_CREATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadCreate),
-            <span class="string">&quot;THREAD_DELETE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadDelete),
-            <span class="string">&quot;THREAD_LIST_SYNC&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadListSync),
-            <span class="string">&quot;THREAD_MEMBER_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadMemberUpdate),
-            <span class="string">&quot;THREAD_MEMBERS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadMembersUpdate),
-            <span class="string">&quot;THREAD_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadUpdate),
-            <span class="string">&quot;TYPING_START&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::TypingStart),
-            <span class="string">&quot;UNAVAILABLE_GUILD&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::UnavailableGuild),
-            <span class="string">&quot;USER_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::UserUpdate),
-            <span class="string">&quot;VOICE_SERVER_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::VoiceServerUpdate),
-            <span class="string">&quot;VOICE_STATE_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::VoiceStateUpdate),
-            <span class="string">&quot;WEBHOOKS_UPDATE&quot; </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::WebhooksUpdate),
+            <span class="string">"AUTO_MODERATION_ACTION_EXECUTION" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationActionExecution),
+            <span class="string">"AUTO_MODERATION_RULE_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleCreate),
+            <span class="string">"AUTO_MODERATION_RULE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleDelete),
+            <span class="string">"AUTO_MODERATION_RULE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::AutoModerationRuleUpdate),
+            <span class="string">"GUILD_AUDIT_LOG_ENTRY_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildAuditLogEntryCreate),
+            <span class="string">"GUILD_BAN_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::BanAdd),
+            <span class="string">"GUILD_BAN_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::BanRemove),
+            <span class="string">"CHANNEL_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelCreate),
+            <span class="string">"CHANNEL_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelDelete),
+            <span class="string">"CHANNEL_PINS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelPinsUpdate),
+            <span class="string">"CHANNEL_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ChannelUpdate),
+            <span class="string">"APPLICATION_COMMAND_PERMISSIONS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::CommandPermissionsUpdate),
+            <span class="string">"GIFT_CODE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GiftCodeUpdate),
+            <span class="string">"GUILD_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildCreate),
+            <span class="string">"GUILD_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildDelete),
+            <span class="string">"GUILD_EMOJIS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildEmojisUpdate),
+            <span class="string">"GUILD_INTEGRATIONS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildIntegrationsUpdate),
+            <span class="string">"GUILD_SCHEDULED_EVENT_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventCreate),
+            <span class="string">"GUILD_SCHEDULED_EVENT_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventDelete),
+            <span class="string">"GUILD_SCHEDULED_EVENT_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUpdate),
+            <span class="string">"GUILD_SCHEDULED_EVENT_USER_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUserAdd),
+            <span class="string">"GUILD_SCHEDULED_EVENT_USER_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildScheduledEventUserRemove),
+            <span class="string">"GUILD_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::GuildUpdate),
+            <span class="string">"INTEGRATION_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationCreate),
+            <span class="string">"INTEGRATION_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationDelete),
+            <span class="string">"INTEGRATION_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::IntegrationUpdate),
+            <span class="string">"INTERACTION_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InteractionCreate),
+            <span class="string">"INVITE_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InviteCreate),
+            <span class="string">"INVITE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::InviteDelete),
+            <span class="string">"GUILD_MEMBER_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberAdd),
+            <span class="string">"GUILD_MEMBER_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberRemove),
+            <span class="string">"GUILD_MEMBER_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberUpdate),
+            <span class="string">"GUILD_MEMBERS_CHUNK" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MemberChunk),
+            <span class="string">"MESSAGE_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageCreate),
+            <span class="string">"MESSAGE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDelete),
+            <span class="string">"MESSAGE_DELETE_BULK" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDeleteBulk),
+            <span class="string">"MESSAGE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageUpdate),
+            <span class="string">"PRESENCE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::PresenceUpdate),
+            <span class="string">"PRESENCES_REPLACE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::PresencesReplace),
+            <span class="string">"MESSAGE_REACTION_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionAdd),
+            <span class="string">"MESSAGE_REACTION_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemove),
+            <span class="string">"MESSAGE_REACTION_REMOVE_ALL" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemoveAll),
+            <span class="string">"MESSAGE_REACTION_REMOVE_EMOJI" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemoveEmoji),
+            <span class="string">"READY" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Ready),
+            <span class="string">"RESUMED" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Resumed),
+            <span class="string">"GUILD_ROLE_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleCreate),
+            <span class="string">"GUILD_ROLE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleDelete),
+            <span class="string">"GUILD_ROLE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::RoleUpdate),
+            <span class="string">"STAGE_INSTANCE_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceCreate),
+            <span class="string">"STAGE_INSTANCE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceDelete),
+            <span class="string">"STAGE_INSTANCE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::StageInstanceUpdate),
+            <span class="string">"THREAD_CREATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadCreate),
+            <span class="string">"THREAD_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadDelete),
+            <span class="string">"THREAD_LIST_SYNC" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadListSync),
+            <span class="string">"THREAD_MEMBER_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadMemberUpdate),
+            <span class="string">"THREAD_MEMBERS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadMembersUpdate),
+            <span class="string">"THREAD_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ThreadUpdate),
+            <span class="string">"TYPING_START" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::TypingStart),
+            <span class="string">"UNAVAILABLE_GUILD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::UnavailableGuild),
+            <span class="string">"USER_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::UserUpdate),
+            <span class="string">"VOICE_SERVER_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::VoiceServerUpdate),
+            <span class="string">"VOICE_STATE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::VoiceStateUpdate),
+            <span class="string">"WEBHOOKS_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::WebhooksUpdate),
             <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(event_type),
         }
     }
@@ -618,11 +619,11 @@
     <span class="kw">use </span><span class="kw">super</span>::EventType;
     <span class="kw">use </span>serde_test::Token;
 
-    <span class="kw">fn </span>assert_variant(kind: EventType, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) {
+    <span class="kw">fn </span>assert_variant(kind: EventType, name: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str) {
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>kind,
             <span class="kw-2">&amp;</span>[Token::UnitVariant {
-                name: <span class="string">&quot;EventType&quot;</span>,
+                name: <span class="string">"EventType"</span>,
                 variant: name,
             }],
         );
@@ -633,115 +634,115 @@
     </span><span class="kw">fn </span>variants() {
         assert_variant(
             EventType::AutoModerationActionExecution,
-            <span class="string">&quot;AUTO_MODERATION_ACTION_EXECUTION&quot;</span>,
+            <span class="string">"AUTO_MODERATION_ACTION_EXECUTION"</span>,
         );
         assert_variant(
             EventType::AutoModerationRuleCreate,
-            <span class="string">&quot;AUTO_MODERATION_RULE_CREATE&quot;</span>,
+            <span class="string">"AUTO_MODERATION_RULE_CREATE"</span>,
         );
         assert_variant(
             EventType::AutoModerationRuleDelete,
-            <span class="string">&quot;AUTO_MODERATION_RULE_DELETE&quot;</span>,
+            <span class="string">"AUTO_MODERATION_RULE_DELETE"</span>,
         );
         assert_variant(
             EventType::AutoModerationRuleUpdate,
-            <span class="string">&quot;AUTO_MODERATION_RULE_UPDATE&quot;</span>,
+            <span class="string">"AUTO_MODERATION_RULE_UPDATE"</span>,
         );
-        assert_variant(EventType::BanAdd, <span class="string">&quot;GUILD_BAN_ADD&quot;</span>);
-        assert_variant(EventType::BanRemove, <span class="string">&quot;GUILD_BAN_REMOVE&quot;</span>);
-        assert_variant(EventType::ChannelCreate, <span class="string">&quot;CHANNEL_CREATE&quot;</span>);
-        assert_variant(EventType::ChannelDelete, <span class="string">&quot;CHANNEL_DELETE&quot;</span>);
-        assert_variant(EventType::ChannelPinsUpdate, <span class="string">&quot;CHANNEL_PINS_UPDATE&quot;</span>);
-        assert_variant(EventType::ChannelUpdate, <span class="string">&quot;CHANNEL_UPDATE&quot;</span>);
+        assert_variant(EventType::BanAdd, <span class="string">"GUILD_BAN_ADD"</span>);
+        assert_variant(EventType::BanRemove, <span class="string">"GUILD_BAN_REMOVE"</span>);
+        assert_variant(EventType::ChannelCreate, <span class="string">"CHANNEL_CREATE"</span>);
+        assert_variant(EventType::ChannelDelete, <span class="string">"CHANNEL_DELETE"</span>);
+        assert_variant(EventType::ChannelPinsUpdate, <span class="string">"CHANNEL_PINS_UPDATE"</span>);
+        assert_variant(EventType::ChannelUpdate, <span class="string">"CHANNEL_UPDATE"</span>);
         assert_variant(
             EventType::CommandPermissionsUpdate,
-            <span class="string">&quot;APPLICATION_COMMAND_PERMISSIONS_UPDATE&quot;</span>,
+            <span class="string">"APPLICATION_COMMAND_PERMISSIONS_UPDATE"</span>,
         );
-        assert_variant(EventType::GatewayClose, <span class="string">&quot;GATEWAY_CLOSE&quot;</span>);
-        assert_variant(EventType::GatewayHeartbeat, <span class="string">&quot;GATEWAY_HEARTBEAT&quot;</span>);
-        assert_variant(EventType::GatewayHeartbeatAck, <span class="string">&quot;GATEWAY_HEARTBEAT_ACK&quot;</span>);
-        assert_variant(EventType::GatewayHello, <span class="string">&quot;GATEWAY_HELLO&quot;</span>);
+        assert_variant(EventType::GatewayClose, <span class="string">"GATEWAY_CLOSE"</span>);
+        assert_variant(EventType::GatewayHeartbeat, <span class="string">"GATEWAY_HEARTBEAT"</span>);
+        assert_variant(EventType::GatewayHeartbeatAck, <span class="string">"GATEWAY_HEARTBEAT_ACK"</span>);
+        assert_variant(EventType::GatewayHello, <span class="string">"GATEWAY_HELLO"</span>);
         assert_variant(
             EventType::GatewayInvalidateSession,
-            <span class="string">&quot;GATEWAY_INVALIDATE_SESSION&quot;</span>,
+            <span class="string">"GATEWAY_INVALIDATE_SESSION"</span>,
         );
-        assert_variant(EventType::GatewayReconnect, <span class="string">&quot;GATEWAY_RECONNECT&quot;</span>);
-        assert_variant(EventType::GiftCodeUpdate, <span class="string">&quot;GIFT_CODE_UPDATE&quot;</span>);
+        assert_variant(EventType::GatewayReconnect, <span class="string">"GATEWAY_RECONNECT"</span>);
+        assert_variant(EventType::GiftCodeUpdate, <span class="string">"GIFT_CODE_UPDATE"</span>);
         assert_variant(
             EventType::GuildAuditLogEntryCreate,
-            <span class="string">&quot;GUILD_AUDIT_LOG_ENTRY_CREATE&quot;</span>,
+            <span class="string">"GUILD_AUDIT_LOG_ENTRY_CREATE"</span>,
         );
-        assert_variant(EventType::GuildCreate, <span class="string">&quot;GUILD_CREATE&quot;</span>);
-        assert_variant(EventType::GuildDelete, <span class="string">&quot;GUILD_DELETE&quot;</span>);
-        assert_variant(EventType::GuildEmojisUpdate, <span class="string">&quot;GUILD_EMOJIS_UPDATE&quot;</span>);
+        assert_variant(EventType::GuildCreate, <span class="string">"GUILD_CREATE"</span>);
+        assert_variant(EventType::GuildDelete, <span class="string">"GUILD_DELETE"</span>);
+        assert_variant(EventType::GuildEmojisUpdate, <span class="string">"GUILD_EMOJIS_UPDATE"</span>);
         assert_variant(
             EventType::GuildIntegrationsUpdate,
-            <span class="string">&quot;GUILD_INTEGRATIONS_UPDATE&quot;</span>,
+            <span class="string">"GUILD_INTEGRATIONS_UPDATE"</span>,
         );
         assert_variant(
             EventType::GuildScheduledEventCreate,
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_CREATE&quot;</span>,
+            <span class="string">"GUILD_SCHEDULED_EVENT_CREATE"</span>,
         );
         assert_variant(
             EventType::GuildScheduledEventDelete,
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_DELETE&quot;</span>,
+            <span class="string">"GUILD_SCHEDULED_EVENT_DELETE"</span>,
         );
         assert_variant(
             EventType::GuildScheduledEventUpdate,
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_UPDATE&quot;</span>,
+            <span class="string">"GUILD_SCHEDULED_EVENT_UPDATE"</span>,
         );
         assert_variant(
             EventType::GuildScheduledEventUserAdd,
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_ADD&quot;</span>,
+            <span class="string">"GUILD_SCHEDULED_EVENT_USER_ADD"</span>,
         );
         assert_variant(
             EventType::GuildScheduledEventUserRemove,
-            <span class="string">&quot;GUILD_SCHEDULED_EVENT_USER_REMOVE&quot;</span>,
+            <span class="string">"GUILD_SCHEDULED_EVENT_USER_REMOVE"</span>,
         );
-        assert_variant(EventType::GuildUpdate, <span class="string">&quot;GUILD_UPDATE&quot;</span>);
-        assert_variant(EventType::IntegrationCreate, <span class="string">&quot;INTEGRATION_CREATE&quot;</span>);
-        assert_variant(EventType::IntegrationDelete, <span class="string">&quot;INTEGRATION_DELETE&quot;</span>);
-        assert_variant(EventType::IntegrationUpdate, <span class="string">&quot;INTEGRATION_UPDATE&quot;</span>);
-        assert_variant(EventType::InteractionCreate, <span class="string">&quot;INTERACTION_CREATE&quot;</span>);
-        assert_variant(EventType::InviteCreate, <span class="string">&quot;INVITE_CREATE&quot;</span>);
-        assert_variant(EventType::InviteDelete, <span class="string">&quot;INVITE_DELETE&quot;</span>);
-        assert_variant(EventType::MemberAdd, <span class="string">&quot;GUILD_MEMBER_ADD&quot;</span>);
-        assert_variant(EventType::MemberChunk, <span class="string">&quot;GUILD_MEMBERS_CHUNK&quot;</span>);
-        assert_variant(EventType::MemberRemove, <span class="string">&quot;GUILD_MEMBER_REMOVE&quot;</span>);
-        assert_variant(EventType::MemberUpdate, <span class="string">&quot;GUILD_MEMBER_UPDATE&quot;</span>);
-        assert_variant(EventType::MessageCreate, <span class="string">&quot;MESSAGE_CREATE&quot;</span>);
-        assert_variant(EventType::MessageDelete, <span class="string">&quot;MESSAGE_DELETE&quot;</span>);
-        assert_variant(EventType::MessageDeleteBulk, <span class="string">&quot;MESSAGE_DELETE_BULK&quot;</span>);
-        assert_variant(EventType::MessageUpdate, <span class="string">&quot;MESSAGE_UPDATE&quot;</span>);
-        assert_variant(EventType::PresenceUpdate, <span class="string">&quot;PRESENCE_UPDATE&quot;</span>);
-        assert_variant(EventType::PresencesReplace, <span class="string">&quot;PRESENCES_REPLACE&quot;</span>);
-        assert_variant(EventType::ReactionAdd, <span class="string">&quot;MESSAGE_REACTION_ADD&quot;</span>);
-        assert_variant(EventType::ReactionRemove, <span class="string">&quot;MESSAGE_REACTION_REMOVE&quot;</span>);
-        assert_variant(EventType::ReactionRemoveAll, <span class="string">&quot;MESSAGE_REACTION_REMOVE_ALL&quot;</span>);
+        assert_variant(EventType::GuildUpdate, <span class="string">"GUILD_UPDATE"</span>);
+        assert_variant(EventType::IntegrationCreate, <span class="string">"INTEGRATION_CREATE"</span>);
+        assert_variant(EventType::IntegrationDelete, <span class="string">"INTEGRATION_DELETE"</span>);
+        assert_variant(EventType::IntegrationUpdate, <span class="string">"INTEGRATION_UPDATE"</span>);
+        assert_variant(EventType::InteractionCreate, <span class="string">"INTERACTION_CREATE"</span>);
+        assert_variant(EventType::InviteCreate, <span class="string">"INVITE_CREATE"</span>);
+        assert_variant(EventType::InviteDelete, <span class="string">"INVITE_DELETE"</span>);
+        assert_variant(EventType::MemberAdd, <span class="string">"GUILD_MEMBER_ADD"</span>);
+        assert_variant(EventType::MemberChunk, <span class="string">"GUILD_MEMBERS_CHUNK"</span>);
+        assert_variant(EventType::MemberRemove, <span class="string">"GUILD_MEMBER_REMOVE"</span>);
+        assert_variant(EventType::MemberUpdate, <span class="string">"GUILD_MEMBER_UPDATE"</span>);
+        assert_variant(EventType::MessageCreate, <span class="string">"MESSAGE_CREATE"</span>);
+        assert_variant(EventType::MessageDelete, <span class="string">"MESSAGE_DELETE"</span>);
+        assert_variant(EventType::MessageDeleteBulk, <span class="string">"MESSAGE_DELETE_BULK"</span>);
+        assert_variant(EventType::MessageUpdate, <span class="string">"MESSAGE_UPDATE"</span>);
+        assert_variant(EventType::PresenceUpdate, <span class="string">"PRESENCE_UPDATE"</span>);
+        assert_variant(EventType::PresencesReplace, <span class="string">"PRESENCES_REPLACE"</span>);
+        assert_variant(EventType::ReactionAdd, <span class="string">"MESSAGE_REACTION_ADD"</span>);
+        assert_variant(EventType::ReactionRemove, <span class="string">"MESSAGE_REACTION_REMOVE"</span>);
+        assert_variant(EventType::ReactionRemoveAll, <span class="string">"MESSAGE_REACTION_REMOVE_ALL"</span>);
         assert_variant(
             EventType::ReactionRemoveEmoji,
-            <span class="string">&quot;MESSAGE_REACTION_REMOVE_EMOJI&quot;</span>,
+            <span class="string">"MESSAGE_REACTION_REMOVE_EMOJI"</span>,
         );
-        assert_variant(EventType::Ready, <span class="string">&quot;READY&quot;</span>);
-        assert_variant(EventType::Resumed, <span class="string">&quot;RESUMED&quot;</span>);
-        assert_variant(EventType::RoleCreate, <span class="string">&quot;GUILD_ROLE_CREATE&quot;</span>);
-        assert_variant(EventType::RoleDelete, <span class="string">&quot;GUILD_ROLE_DELETE&quot;</span>);
-        assert_variant(EventType::RoleUpdate, <span class="string">&quot;GUILD_ROLE_UPDATE&quot;</span>);
-        assert_variant(EventType::StageInstanceCreate, <span class="string">&quot;STAGE_INSTANCE_CREATE&quot;</span>);
-        assert_variant(EventType::StageInstanceDelete, <span class="string">&quot;STAGE_INSTANCE_DELETE&quot;</span>);
-        assert_variant(EventType::StageInstanceUpdate, <span class="string">&quot;STAGE_INSTANCE_UPDATE&quot;</span>);
-        assert_variant(EventType::ThreadCreate, <span class="string">&quot;THREAD_CREATE&quot;</span>);
-        assert_variant(EventType::ThreadDelete, <span class="string">&quot;THREAD_DELETE&quot;</span>);
-        assert_variant(EventType::ThreadListSync, <span class="string">&quot;THREAD_LIST_SYNC&quot;</span>);
-        assert_variant(EventType::ThreadMemberUpdate, <span class="string">&quot;THREAD_MEMBER_UPDATE&quot;</span>);
-        assert_variant(EventType::ThreadMembersUpdate, <span class="string">&quot;THREAD_MEMBERS_UPDATE&quot;</span>);
-        assert_variant(EventType::ThreadUpdate, <span class="string">&quot;THREAD_UPDATE&quot;</span>);
-        assert_variant(EventType::TypingStart, <span class="string">&quot;TYPING_START&quot;</span>);
-        assert_variant(EventType::UnavailableGuild, <span class="string">&quot;UNAVAILABLE_GUILD&quot;</span>);
-        assert_variant(EventType::UserUpdate, <span class="string">&quot;USER_UPDATE&quot;</span>);
-        assert_variant(EventType::VoiceServerUpdate, <span class="string">&quot;VOICE_SERVER_UPDATE&quot;</span>);
-        assert_variant(EventType::VoiceStateUpdate, <span class="string">&quot;VOICE_STATE_UPDATE&quot;</span>);
-        assert_variant(EventType::WebhooksUpdate, <span class="string">&quot;WEBHOOKS_UPDATE&quot;</span>);
+        assert_variant(EventType::Ready, <span class="string">"READY"</span>);
+        assert_variant(EventType::Resumed, <span class="string">"RESUMED"</span>);
+        assert_variant(EventType::RoleCreate, <span class="string">"GUILD_ROLE_CREATE"</span>);
+        assert_variant(EventType::RoleDelete, <span class="string">"GUILD_ROLE_DELETE"</span>);
+        assert_variant(EventType::RoleUpdate, <span class="string">"GUILD_ROLE_UPDATE"</span>);
+        assert_variant(EventType::StageInstanceCreate, <span class="string">"STAGE_INSTANCE_CREATE"</span>);
+        assert_variant(EventType::StageInstanceDelete, <span class="string">"STAGE_INSTANCE_DELETE"</span>);
+        assert_variant(EventType::StageInstanceUpdate, <span class="string">"STAGE_INSTANCE_UPDATE"</span>);
+        assert_variant(EventType::ThreadCreate, <span class="string">"THREAD_CREATE"</span>);
+        assert_variant(EventType::ThreadDelete, <span class="string">"THREAD_DELETE"</span>);
+        assert_variant(EventType::ThreadListSync, <span class="string">"THREAD_LIST_SYNC"</span>);
+        assert_variant(EventType::ThreadMemberUpdate, <span class="string">"THREAD_MEMBER_UPDATE"</span>);
+        assert_variant(EventType::ThreadMembersUpdate, <span class="string">"THREAD_MEMBERS_UPDATE"</span>);
+        assert_variant(EventType::ThreadUpdate, <span class="string">"THREAD_UPDATE"</span>);
+        assert_variant(EventType::TypingStart, <span class="string">"TYPING_START"</span>);
+        assert_variant(EventType::UnavailableGuild, <span class="string">"UNAVAILABLE_GUILD"</span>);
+        assert_variant(EventType::UserUpdate, <span class="string">"USER_UPDATE"</span>);
+        assert_variant(EventType::VoiceServerUpdate, <span class="string">"VOICE_SERVER_UPDATE"</span>);
+        assert_variant(EventType::VoiceStateUpdate, <span class="string">"VOICE_STATE_UPDATE"</span>);
+        assert_variant(EventType::WebhooksUpdate, <span class="string">"WEBHOOKS_UPDATE"</span>);
     }
 }
 </code></pre></div></section></main></body></html>

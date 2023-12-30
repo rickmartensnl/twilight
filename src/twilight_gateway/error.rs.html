@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/error.rs`."><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/error.rs`."><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -392,7 +393,7 @@
 <a href="#392" id="392">392</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Errors returned by gateway operations.
 
-</span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+</span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::inflater::{CompressionError, CompressionErrorType};
 
 <span class="kw">use </span>std::{
@@ -401,7 +402,7 @@
 };
 <span class="kw">use </span>twilight_model::gateway::CloseCode;
 
-<span class="doccomment">/// Received gateway message couldn&#39;t be processed.
+<span class="doccomment">/// Received gateway message couldn't be processed.
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>ProcessError {
     <span class="doccomment">/// Type of error.
@@ -412,44 +413,44 @@
 
 <span class="kw">impl </span>ProcessError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ProcessErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (ProcessErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ProcessError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             ProcessErrorType::Deserializing { event } =&gt; {
-                f.write_str(<span class="string">&quot;gateway event could not be deserialized: event=&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"gateway event could not be deserialized: event="</span>)<span class="question-mark">?</span>;
                 f.write_str(event)
             }
             <span class="attr">#[allow(deprecated)]
             </span>ProcessErrorType::SendingMessage =&gt; {
-                f.write_str(<span class="string">&quot;failed to send a message over the websocket&quot;</span>)
+                f.write_str(<span class="string">"failed to send a message over the websocket"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>ProcessError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -468,7 +469,7 @@
     ///
     /// This may happen when the shard sends heartbeats or attempts to identify
     /// a new gateway session.
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.15.3&quot;</span>, note = <span class="string">&quot;not actively constructed&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.15.3"</span>, note = <span class="string">"not actively constructed"</span>)]
     </span>SendingMessage,
 }
 
@@ -491,19 +492,19 @@
     }
 
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ReceiveMessageErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -514,7 +515,7 @@
     }
 
     <span class="doccomment">/// Shortcut to create a new error for a message compression error.
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_compression(source: CompressionError) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             kind: ReceiveMessageErrorType::Compression,
@@ -540,38 +541,38 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ReceiveMessageError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
-            <span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+            <span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
             </span>ReceiveMessageErrorType::Compression =&gt; {
-                f.write_str(<span class="string">&quot;binary message could not be decompressed&quot;</span>)
+                f.write_str(<span class="string">"binary message could not be decompressed"</span>)
             }
             ReceiveMessageErrorType::Deserializing { <span class="kw-2">ref </span>event } =&gt; {
-                f.write_str(<span class="string">&quot;gateway event could not be deserialized: event=&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"gateway event could not be deserialized: event="</span>)<span class="question-mark">?</span>;
                 f.write_str(event)
             }
             ReceiveMessageErrorType::FatallyClosed { close_code } =&gt; {
-                f.write_str(<span class="string">&quot;shard fatally closed: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"shard fatally closed: "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>close_code, f)
             }
-            ReceiveMessageErrorType::Io =&gt; f.write_str(<span class="string">&quot;websocket connection error&quot;</span>),
+            ReceiveMessageErrorType::Io =&gt; f.write_str(<span class="string">"websocket connection error"</span>),
             ReceiveMessageErrorType::Process =&gt; {
-                f.write_str(<span class="string">&quot;failed to internally process the received message&quot;</span>)
+                f.write_str(<span class="string">"failed to internally process the received message"</span>)
             }
-            ReceiveMessageErrorType::Reconnect =&gt; f.write_str(<span class="string">&quot;failed to reconnect to the gateway&quot;</span>),
+            ReceiveMessageErrorType::Reconnect =&gt; f.write_str(<span class="string">"failed to reconnect to the gateway"</span>),
             ReceiveMessageErrorType::SendingMessage =&gt; {
-                f.write_str(<span class="string">&quot;failed to send a message over the websocket&quot;</span>)
+                f.write_str(<span class="string">"failed to send a message over the websocket"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>ReceiveMessageError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -582,7 +583,7 @@
     <span class="doccomment">/// Binary message could not be decompressed.
     ///
     /// The associated error downcasts to [`CompressionError`].
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
     </span>Compression,
     <span class="doccomment">/// Gateway event could not be deserialized.
     </span>Deserializing {
@@ -622,38 +623,38 @@
 
 <span class="kw">impl </span>SendError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>SendErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (SendErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>SendError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
-            SendErrorType::Sending =&gt; f.write_str(<span class="string">&quot;sending the message over the websocket failed&quot;</span>),
-            SendErrorType::Serializing =&gt; f.write_str(<span class="string">&quot;serializing the value as json failed&quot;</span>),
+            SendErrorType::Sending =&gt; f.write_str(<span class="string">"sending the message over the websocket failed"</span>),
+            SendErrorType::Serializing =&gt; f.write_str(<span class="string">"serializing the value as json failed"</span>),
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>SendError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -691,15 +692,15 @@
         <span class="kw">let </span>messages: [(ProcessErrorType, <span class="kw-2">&amp;</span>str); <span class="number">2</span>] = [
             (
                 ProcessErrorType::Deserializing {
-                    event: <span class="string">r#&quot;{&quot;t&quot;:null,&quot;s&quot;:null,&quot;op&quot;:10,&quot;d&quot;:{&quot;heartbeat_interval&quot;:41250,&quot;_trace&quot;:[&quot;[\&quot;gateway-prd-us-east1-b-0568\&quot;,{\&quot;micros\&quot;:0.0}]&quot;]}}&quot;#
+                    event: <span class="string">r#"{"t":null,"s":null,"op":10,"d":{"heartbeat_interval":41250,"_trace":["[\"gateway-prd-us-east1-b-0568\",{\"micros\":0.0}]"]}}"#
                         </span>.to_owned(),
                 },
-                <span class="string">r#&quot;gateway event could not be deserialized: event={&quot;t&quot;:null,&quot;s&quot;:null,&quot;op&quot;:10,&quot;d&quot;:{&quot;heartbeat_interval&quot;:41250,&quot;_trace&quot;:[&quot;[\&quot;gateway-prd-us-east1-b-0568\&quot;,{\&quot;micros\&quot;:0.0}]&quot;]}}&quot;#</span>,
+                <span class="string">r#"gateway event could not be deserialized: event={"t":null,"s":null,"op":10,"d":{"heartbeat_interval":41250,"_trace":["[\"gateway-prd-us-east1-b-0568\",{\"micros\":0.0}]"]}}"#</span>,
             ),
             (
                 <span class="attr">#[allow(deprecated)]
                 </span>ProcessErrorType::SendingMessage,
-                <span class="string">&quot;failed to send a message over the websocket&quot;</span>,
+                <span class="string">"failed to send a message over the websocket"</span>,
             ),
         ];
 
@@ -715,32 +716,32 @@
         <span class="kw">let </span>messages: [(ReceiveMessageErrorType, <span class="kw-2">&amp;</span>str); <span class="number">7</span>] = [
             (
                 ReceiveMessageErrorType::Compression,
-                <span class="string">&quot;binary message could not be decompressed&quot;</span>,
+                <span class="string">"binary message could not be decompressed"</span>,
             ),
             (
                 ReceiveMessageErrorType::Deserializing {
-                    event: <span class="string">r#&quot;{&quot;t&quot;:null,&quot;s&quot;:null,&quot;op&quot;:10,&quot;d&quot;:{&quot;heartbeat_interval&quot;:41250,&quot;_trace&quot;:[&quot;[\&quot;gateway-prd-us-east1-b-0568\&quot;,{\&quot;micros\&quot;:0.0}]&quot;]}}&quot;#</span>.to_owned(),
+                    event: <span class="string">r#"{"t":null,"s":null,"op":10,"d":{"heartbeat_interval":41250,"_trace":["[\"gateway-prd-us-east1-b-0568\",{\"micros\":0.0}]"]}}"#</span>.to_owned(),
                 },
-                <span class="string">r#&quot;gateway event could not be deserialized: event={&quot;t&quot;:null,&quot;s&quot;:null,&quot;op&quot;:10,&quot;d&quot;:{&quot;heartbeat_interval&quot;:41250,&quot;_trace&quot;:[&quot;[\&quot;gateway-prd-us-east1-b-0568\&quot;,{\&quot;micros\&quot;:0.0}]&quot;]}}&quot;#</span>,
+                <span class="string">r#"gateway event could not be deserialized: event={"t":null,"s":null,"op":10,"d":{"heartbeat_interval":41250,"_trace":["[\"gateway-prd-us-east1-b-0568\",{\"micros\":0.0}]"]}}"#</span>,
             ),
             (
                 ReceiveMessageErrorType::FatallyClosed {
                     close_code: CloseCode::InvalidIntents,
                 },
-                <span class="string">&quot;shard fatally closed: Invalid Intents&quot;</span>,
+                <span class="string">"shard fatally closed: Invalid Intents"</span>,
             ),
-            (ReceiveMessageErrorType::Io, <span class="string">&quot;websocket connection error&quot;</span>),
+            (ReceiveMessageErrorType::Io, <span class="string">"websocket connection error"</span>),
             (
                 ReceiveMessageErrorType::Process,
-                <span class="string">&quot;failed to internally process the received message&quot;</span>,
+                <span class="string">"failed to internally process the received message"</span>,
             ),
             (
                 ReceiveMessageErrorType::Reconnect,
-                <span class="string">&quot;failed to reconnect to the gateway&quot;</span>,
+                <span class="string">"failed to reconnect to the gateway"</span>,
             ),
             (
                 ReceiveMessageErrorType::SendingMessage,
-                <span class="string">&quot;failed to send a message over the websocket&quot;</span>,
+                <span class="string">"failed to send a message over the websocket"</span>,
             ),
         ];
 
@@ -770,7 +771,7 @@
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
-            <span class="string">&quot;sending the message over the websocket failed&quot;
+            <span class="string">"sending the message over the websocket failed"
         </span>);
         <span class="macro">assert_eq!</span>(
             SendError {
@@ -778,7 +779,7 @@
                 source: <span class="prelude-val">None</span>,
             }
             .to_string(),
-            <span class="string">&quot;serializing the value as json failed&quot;
+            <span class="string">"serializing the value as json failed"
         </span>);
     }
 }

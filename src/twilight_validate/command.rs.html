@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/command.rs`."><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/command.rs`."><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1095,16 +1096,16 @@
 <span class="doccomment">/// The maximum combined command length in codepoints.
 </span><span class="kw">pub const </span>COMMAND_TOTAL_LENGTH: usize = <span class="number">4000</span>;
 
-<span class="doccomment">/// Maximum length of a command&#39;s description.
+<span class="doccomment">/// Maximum length of a command's description.
 </span><span class="kw">pub const </span>DESCRIPTION_LENGTH_MAX: usize = <span class="number">100</span>;
 
-<span class="doccomment">/// Minimum length of a command&#39;s description.
+<span class="doccomment">/// Minimum length of a command's description.
 </span><span class="kw">pub const </span>DESCRIPTION_LENGTH_MIN: usize = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of a command&#39;s name.
+<span class="doccomment">/// Maximum length of a command's name.
 </span><span class="kw">pub const </span>NAME_LENGTH_MAX: usize = <span class="number">32</span>;
 
-<span class="doccomment">/// Minimum length of a command&#39;s name.
+<span class="doccomment">/// Minimum length of a command's name.
 </span><span class="kw">pub const </span>NAME_LENGTH_MIN: usize = <span class="number">1</span>;
 
 <span class="doccomment">/// Maximum amount of options a command may have.
@@ -1122,16 +1123,16 @@
 <span class="doccomment">/// Minimum length of an option choice string value.
 </span><span class="kw">pub const </span>OPTION_CHOICE_STRING_VALUE_LENGTH_MIN: usize = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of a command&#39;s description.
+<span class="doccomment">/// Maximum length of a command's description.
 </span><span class="kw">pub const </span>OPTION_DESCRIPTION_LENGTH_MAX: usize = <span class="number">100</span>;
 
-<span class="doccomment">/// Minimum length of a command&#39;s description.
+<span class="doccomment">/// Minimum length of a command's description.
 </span><span class="kw">pub const </span>OPTION_DESCRIPTION_LENGTH_MIN: usize = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of a command&#39;s name.
+<span class="doccomment">/// Maximum length of a command's name.
 </span><span class="kw">pub const </span>OPTION_NAME_LENGTH_MAX: usize = <span class="number">32</span>;
 
-<span class="doccomment">/// Minimum length of a command&#39;s name.
+<span class="doccomment">/// Minimum length of a command's name.
 </span><span class="kw">pub const </span>OPTION_NAME_LENGTH_MIN: usize = <span class="number">1</span>;
 
 <span class="doccomment">/// Maximum number of commands an application may have in an individual
@@ -1159,20 +1160,20 @@
     };
 
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CommandValidationErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -1186,7 +1187,7 @@
     /// the duplicated option name.
     ///
     /// [`OptionNameNotUnique`]: CommandValidationErrorType::OptionNameNotUnique
-    </span><span class="attr">#[must_use = <span class="string">&quot;creating an error has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"creating an error has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>option_name_not_unique(option_index: usize) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             kind: CommandValidationErrorType::OptionNameNotUnique { option_index },
@@ -1196,7 +1197,7 @@
     <span class="doccomment">/// Create an error of type [`OptionsRequiredFirst`] with a provided index.
     ///
     /// [`OptionsRequiredFirst`]: CommandValidationErrorType::OptionsRequiredFirst
-    </span><span class="attr">#[must_use = <span class="string">&quot;creating an error has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"creating an error has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>option_required_first(index: usize) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             kind: CommandValidationErrorType::OptionsRequiredFirst { index },
@@ -1205,101 +1206,101 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>CommandValidationError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             CommandValidationErrorType::CountInvalid =&gt; {
-                f.write_str(<span class="string">&quot;more than &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"more than "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_COMMAND_LIMIT, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; commands were set&quot;</span>)
+                f.write_str(<span class="string">" commands were set"</span>)
             }
             CommandValidationErrorType::CommandTooLarge { characters } =&gt; {
-                f.write_str(<span class="string">&quot;the combined total length of the command is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the combined total length of the command is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(characters, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>COMMAND_TOTAL_LENGTH, f)
             }
             CommandValidationErrorType::DescriptionInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command description must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command description must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>DESCRIPTION_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>DESCRIPTION_LENGTH_MAX, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; characters&quot;</span>)
+                f.write_str(<span class="string">" characters"</span>)
             }
             CommandValidationErrorType::NameLengthInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command name must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command name must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>NAME_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>NAME_LENGTH_MAX, f)
             }
             CommandValidationErrorType::NameCharacterInvalid { character } =&gt; {
                 f.write_str(
-                    <span class="string">&quot;command name must only contain lowercase alphanumeric characters, found `&quot;</span>,
+                    <span class="string">"command name must only contain lowercase alphanumeric characters, found `"</span>,
                 )<span class="question-mark">?</span>;
                 Display::fmt(character, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;`&quot;</span>)
+                f.write_str(<span class="string">"`"</span>)
             }
             CommandValidationErrorType::OptionDescriptionInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command option description must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option description must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_DESCRIPTION_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_DESCRIPTION_LENGTH_MAX, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; characters&quot;</span>)
+                f.write_str(<span class="string">" characters"</span>)
             }
             CommandValidationErrorType::OptionNameNotUnique { option_index } =&gt; {
-                f.write_str(<span class="string">&quot;command option at index &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option at index "</span>)<span class="question-mark">?</span>;
                 Display::fmt(option_index, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; has the same name as another option&quot;</span>)
+                f.write_str(<span class="string">" has the same name as another option"</span>)
             }
             CommandValidationErrorType::OptionNameLengthInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command option name must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option name must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_NAME_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_NAME_LENGTH_MAX, f)
             }
             CommandValidationErrorType::OptionNameCharacterInvalid { character } =&gt; {
-                f.write_str(<span class="string">&quot;command option name must only contain lowercase alphanumeric characters, found `&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option name must only contain lowercase alphanumeric characters, found `"</span>)<span class="question-mark">?</span>;
                 Display::fmt(character, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;`&quot;</span>)
+                f.write_str(<span class="string">"`"</span>)
             }
             CommandValidationErrorType::OptionChoiceNameLengthInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command option choice name must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option choice name must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_CHOICE_NAME_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_CHOICE_NAME_LENGTH_MAX, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; characters&quot;</span>)
+                f.write_str(<span class="string">" characters"</span>)
             }
             CommandValidationErrorType::OptionChoiceStringValueLengthInvalid =&gt; {
-                f.write_str(<span class="string">&quot;command option choice string value must be between &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"command option choice string value must be between "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_CHOICE_STRING_VALUE_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTION_CHOICE_STRING_VALUE_LENGTH_MAX, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; characters&quot;</span>)
+                f.write_str(<span class="string">" characters"</span>)
             }
             CommandValidationErrorType::OptionsCountInvalid =&gt; {
-                f.write_str(<span class="string">&quot;more than &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"more than "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>OPTIONS_LIMIT, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; options were set&quot;</span>)
+                f.write_str(<span class="string">" options were set"</span>)
             }
             CommandValidationErrorType::OptionsRequiredFirst { .. } =&gt; {
-                f.write_str(<span class="string">&quot;optional command options must be added after required&quot;</span>)
+                f.write_str(<span class="string">"optional command options must be added after required"</span>)
             }
             CommandValidationErrorType::PermissionsCountInvalid =&gt; {
-                f.write_str(<span class="string">&quot;more than &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"more than "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_COMMAND_PERMISSION_LIMIT, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; permission overwrites were set&quot;</span>)
+                f.write_str(<span class="string">" permission overwrites were set"</span>)
             }
         }
     }
@@ -1631,7 +1632,7 @@
     <span class="kw">let </span>chars = value.as_ref().chars();
 
     <span class="kw">for </span>char <span class="kw">in </span>chars {
-        <span class="kw">if </span>!char.is_alphanumeric() &amp;&amp; char != <span class="string">&#39;_&#39; </span>&amp;&amp; char != <span class="string">&#39;-&#39; </span>{
+        <span class="kw">if </span>!char.is_alphanumeric() &amp;&amp; char != <span class="string">'_' </span>&amp;&amp; char != <span class="string">'-' </span>{
             <span class="kw">return </span><span class="prelude-val">Err</span>(CommandValidationError {
                 kind: CommandValidationErrorType::NameCharacterInvalid { character: char },
             });
@@ -1816,17 +1817,17 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>choice_name_limit() {
         <span class="kw">let </span>valid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+            name: <span class="string">"a"</span>.repeat(<span class="number">100</span>),
             name_localizations: <span class="prelude-val">None</span>,
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;a&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"a"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>valid_choice).is_ok());
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>),
+            name: <span class="string">"a"</span>.repeat(<span class="number">101</span>),
             name_localizations: <span class="prelude-val">None</span>,
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;b&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"b"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
@@ -1834,7 +1835,7 @@
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
             name: String::new(),
             name_localizations: <span class="prelude-val">None</span>,
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;c&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"c"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
@@ -1843,47 +1844,47 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>choice_name_localizations() {
         <span class="kw">let </span><span class="kw-2">mut </span>name_localizations = HashMap::new();
-        name_localizations.insert(<span class="string">&quot;en-US&quot;</span>.to_string(), <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>));
+        name_localizations.insert(<span class="string">"en-US"</span>.to_string(), <span class="string">"a"</span>.repeat(<span class="number">100</span>));
 
         <span class="kw">let </span>valid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.to_string(),
+            name: <span class="string">"a"</span>.to_string(),
             name_localizations: <span class="prelude-val">Some</span>(name_localizations),
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;a&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"a"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>valid_choice).is_ok());
 
         <span class="kw">let </span><span class="kw-2">mut </span>name_localizations = HashMap::new();
-        name_localizations.insert(<span class="string">&quot;en-US&quot;</span>.to_string(), <span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>));
+        name_localizations.insert(<span class="string">"en-US"</span>.to_string(), <span class="string">"a"</span>.repeat(<span class="number">101</span>));
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.to_string(),
+            name: <span class="string">"a"</span>.to_string(),
             name_localizations: <span class="prelude-val">Some</span>(name_localizations),
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;b&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"b"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
 
         <span class="kw">let </span><span class="kw-2">mut </span>name_localizations = HashMap::new();
-        name_localizations.insert(<span class="string">&quot;en-US&quot;</span>.to_string(), String::new());
+        name_localizations.insert(<span class="string">"en-US"</span>.to_string(), String::new());
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.to_string(),
+            name: <span class="string">"a"</span>.to_string(),
             name_localizations: <span class="prelude-val">Some</span>(name_localizations),
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;c&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"c"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
 
         <span class="kw">let </span><span class="kw-2">mut </span>name_localizations = HashMap::new();
-        name_localizations.insert(<span class="string">&quot;en-US&quot;</span>.to_string(), String::from(<span class="string">&quot;a&quot;</span>));
-        name_localizations.insert(<span class="string">&quot;en-GB&quot;</span>.to_string(), <span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>));
-        name_localizations.insert(<span class="string">&quot;es-ES&quot;</span>.to_string(), <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>));
+        name_localizations.insert(<span class="string">"en-US"</span>.to_string(), String::from(<span class="string">"a"</span>));
+        name_localizations.insert(<span class="string">"en-GB"</span>.to_string(), <span class="string">"a"</span>.repeat(<span class="number">101</span>));
+        name_localizations.insert(<span class="string">"es-ES"</span>.to_string(), <span class="string">"a"</span>.repeat(<span class="number">100</span>));
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.to_string(),
+            name: <span class="string">"a"</span>.to_string(),
             name_localizations: <span class="prelude-val">Some</span>(name_localizations),
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;c&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"c"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
@@ -1892,23 +1893,23 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>choice_string_value() {
         <span class="kw">let </span>valid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;a&quot;</span>.to_string(),
+            name: <span class="string">"a"</span>.to_string(),
             name_localizations: <span class="prelude-val">None</span>,
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;a&quot;</span>.to_string()),
+            value: CommandOptionChoiceValue::String(<span class="string">"a"</span>.to_string()),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>valid_choice).is_ok());
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;b&quot;</span>.to_string(),
+            name: <span class="string">"b"</span>.to_string(),
             name_localizations: <span class="prelude-val">None</span>,
-            value: CommandOptionChoiceValue::String(<span class="string">&quot;b&quot;</span>.repeat(<span class="number">101</span>)),
+            value: CommandOptionChoiceValue::String(<span class="string">"b"</span>.repeat(<span class="number">101</span>)),
         };
 
         <span class="macro">assert!</span>(choice(<span class="kw-2">&amp;</span>invalid_choice).is_err());
 
         <span class="kw">let </span>invalid_choice = CommandOptionChoice {
-            name: <span class="string">&quot;c&quot;</span>.to_string(),
+            name: <span class="string">"c"</span>.to_string(),
             name_localizations: <span class="prelude-val">None</span>,
             value: CommandOptionChoiceValue::String(String::new()),
         };
@@ -1923,16 +1924,16 @@
             application_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             default_member_permissions: <span class="prelude-val">None</span>,
             dm_permission: <span class="prelude-val">None</span>,
-            description: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+            description: <span class="string">"a"</span>.repeat(<span class="number">100</span>),
             description_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                <span class="string">&quot;en-US&quot;</span>.to_string(),
-                <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+                <span class="string">"en-US"</span>.to_string(),
+                <span class="string">"a"</span>.repeat(<span class="number">100</span>),
             )])),
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">2</span>)),
             id: <span class="prelude-val">Some</span>(Id::new(<span class="number">3</span>)),
             kind: CommandType::ChatInput,
-            name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>),
-            name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">&quot;en-US&quot;</span>.to_string(), <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>))])),
+            name: <span class="string">"b"</span>.repeat(<span class="number">32</span>),
+            name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">"en-US"</span>.to_string(), <span class="string">"b"</span>.repeat(<span class="number">32</span>))])),
             nsfw: <span class="prelude-val">None</span>,
             options: Vec::new(),
             version: Id::new(<span class="number">4</span>),
@@ -1941,8 +1942,8 @@
         <span class="macro">assert!</span>(command(<span class="kw-2">&amp;</span>valid_command).is_ok());
 
         <span class="kw">let </span>invalid_message_command = Command {
-            description: <span class="string">&quot;c&quot;</span>.repeat(<span class="number">101</span>),
-            name: <span class="string">&quot;d&quot;</span>.repeat(<span class="number">33</span>),
+            description: <span class="string">"c"</span>.repeat(<span class="number">101</span>),
+            name: <span class="string">"d"</span>.repeat(<span class="number">33</span>),
             ..valid_command.clone()
         };
         <span class="macro">assert!</span>(command(<span class="kw-2">&amp;</span>invalid_message_command).is_err());
@@ -1956,7 +1957,7 @@
         <span class="macro">assert!</span>(command(<span class="kw-2">&amp;</span>valid_context_menu_command).is_ok());
 
         <span class="kw">let </span>invalid_context_menu_command = Command {
-            description: <span class="string">&quot;example description&quot;</span>.to_string(),
+            description: <span class="string">"example description"</span>.to_string(),
             kind: CommandType::Message,
             ..valid_command
         };
@@ -1966,16 +1967,16 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>name_allowed_characters() {
-        <span class="macro">assert!</span>(name_characters(<span class="string">&quot;hello-command&quot;</span>).is_ok()); <span class="comment">// Latin language
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;Hello&quot;</span>).is_err()); <span class="comment">// Latin language with uppercase
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;hello!&quot;</span>).is_err()); <span class="comment">// Latin language with non-alphanumeric
+        <span class="macro">assert!</span>(name_characters(<span class="string">"hello-command"</span>).is_ok()); <span class="comment">// Latin language
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"Hello"</span>).is_err()); <span class="comment">// Latin language with uppercase
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"hello!"</span>).is_err()); <span class="comment">// Latin language with non-alphanumeric
 
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;здрасти&quot;</span>).is_ok()); <span class="comment">// Russian
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;Здрасти&quot;</span>).is_err()); <span class="comment">// Russian with uppercase
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;здрасти!&quot;</span>).is_err()); <span class="comment">// Russian with non-alphanumeric
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"здрасти"</span>).is_ok()); <span class="comment">// Russian
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"Здрасти"</span>).is_err()); <span class="comment">// Russian with uppercase
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"здрасти!"</span>).is_err()); <span class="comment">// Russian with non-alphanumeric
 
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;你好&quot;</span>).is_ok()); <span class="comment">// Chinese (no upper and lowercase variants)
-        </span><span class="macro">assert!</span>(name_characters(<span class="string">&quot;你好。&quot;</span>).is_err()); <span class="comment">// Chinese with non-alphanumeric
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"你好"</span>).is_ok()); <span class="comment">// Chinese (no upper and lowercase variants)
+        </span><span class="macro">assert!</span>(name_characters(<span class="string">"你好。"</span>).is_err()); <span class="comment">// Chinese with non-alphanumeric
     </span>}
 
     <span class="attr">#[test]
@@ -1993,77 +1994,77 @@
             application_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             default_member_permissions: <span class="prelude-val">None</span>,
             dm_permission: <span class="prelude-val">None</span>,
-            description: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">10</span>),
+            description: <span class="string">"a"</span>.repeat(<span class="number">10</span>),
             description_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                <span class="string">&quot;en-US&quot;</span>.to_string(),
-                <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+                <span class="string">"en-US"</span>.to_string(),
+                <span class="string">"a"</span>.repeat(<span class="number">100</span>),
             )])),
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">2</span>)),
             id: <span class="prelude-val">Some</span>(Id::new(<span class="number">3</span>)),
             kind: CommandType::ChatInput,
-            name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">10</span>),
-            name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">&quot;en-US&quot;</span>.to_string(), <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>))])),
+            name: <span class="string">"b"</span>.repeat(<span class="number">10</span>),
+            name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">"en-US"</span>.to_string(), <span class="string">"b"</span>.repeat(<span class="number">32</span>))])),
             nsfw: <span class="prelude-val">None</span>,
             options: Vec::from([CommandOption {
                 autocomplete: <span class="prelude-val">None</span>,
                 channel_types: <span class="prelude-val">None</span>,
                 choices: <span class="prelude-val">None</span>,
-                description: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">10</span>),
+                description: <span class="string">"a"</span>.repeat(<span class="number">10</span>),
                 description_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                    <span class="string">&quot;en-US&quot;</span>.to_string(),
-                    <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+                    <span class="string">"en-US"</span>.to_string(),
+                    <span class="string">"a"</span>.repeat(<span class="number">100</span>),
                 )])),
                 kind: CommandOptionType::SubCommandGroup,
                 max_length: <span class="prelude-val">None</span>,
                 max_value: <span class="prelude-val">None</span>,
                 min_length: <span class="prelude-val">None</span>,
                 min_value: <span class="prelude-val">None</span>,
-                name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">10</span>),
-                name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">&quot;en-US&quot;</span>.to_string(), <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>))])),
+                name: <span class="string">"b"</span>.repeat(<span class="number">10</span>),
+                name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(<span class="string">"en-US"</span>.to_string(), <span class="string">"b"</span>.repeat(<span class="number">32</span>))])),
                 options: <span class="prelude-val">Some</span>(Vec::from([CommandOption {
                     autocomplete: <span class="prelude-val">None</span>,
                     channel_types: <span class="prelude-val">None</span>,
                     choices: <span class="prelude-val">None</span>,
-                    description: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+                    description: <span class="string">"a"</span>.repeat(<span class="number">100</span>),
                     description_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                        <span class="string">&quot;en-US&quot;</span>.to_string(),
-                        <span class="string">&quot;a&quot;</span>.repeat(<span class="number">10</span>),
+                        <span class="string">"en-US"</span>.to_string(),
+                        <span class="string">"a"</span>.repeat(<span class="number">10</span>),
                     )])),
                     kind: CommandOptionType::SubCommand,
                     max_length: <span class="prelude-val">None</span>,
                     max_value: <span class="prelude-val">None</span>,
                     min_length: <span class="prelude-val">None</span>,
                     min_value: <span class="prelude-val">None</span>,
-                    name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>),
+                    name: <span class="string">"b"</span>.repeat(<span class="number">32</span>),
                     name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                        <span class="string">&quot;en-US&quot;</span>.to_string(),
-                        <span class="string">&quot;b&quot;</span>.repeat(<span class="number">10</span>),
+                        <span class="string">"en-US"</span>.to_string(),
+                        <span class="string">"b"</span>.repeat(<span class="number">10</span>),
                     )])),
                     options: <span class="prelude-val">Some</span>(Vec::from([CommandOption {
                         autocomplete: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
                         channel_types: <span class="prelude-val">None</span>,
                         choices: <span class="prelude-val">Some</span>(Vec::from([CommandOptionChoice {
-                            name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>),
+                            name: <span class="string">"b"</span>.repeat(<span class="number">32</span>),
                             name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                                <span class="string">&quot;en-US&quot;</span>.to_string(),
-                                <span class="string">&quot;b&quot;</span>.repeat(<span class="number">10</span>),
+                                <span class="string">"en-US"</span>.to_string(),
+                                <span class="string">"b"</span>.repeat(<span class="number">10</span>),
                             )])),
-                            value: CommandOptionChoiceValue::String(<span class="string">&quot;c&quot;</span>.repeat(<span class="number">100</span>)),
+                            value: CommandOptionChoiceValue::String(<span class="string">"c"</span>.repeat(<span class="number">100</span>)),
                         }])),
-                        description: <span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>),
+                        description: <span class="string">"a"</span>.repeat(<span class="number">100</span>),
                         description_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                            <span class="string">&quot;en-US&quot;</span>.to_string(),
-                            <span class="string">&quot;a&quot;</span>.repeat(<span class="number">10</span>),
+                            <span class="string">"en-US"</span>.to_string(),
+                            <span class="string">"a"</span>.repeat(<span class="number">10</span>),
                         )])),
                         kind: CommandOptionType::String,
                         max_length: <span class="prelude-val">None</span>,
                         max_value: <span class="prelude-val">None</span>,
                         min_length: <span class="prelude-val">None</span>,
                         min_value: <span class="prelude-val">None</span>,
-                        name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">32</span>),
+                        name: <span class="string">"b"</span>.repeat(<span class="number">32</span>),
                         name_localizations: <span class="prelude-val">Some</span>(HashMap::from([(
-                            <span class="string">&quot;en-US&quot;</span>.to_string(),
-                            <span class="string">&quot;b&quot;</span>.repeat(<span class="number">10</span>),
+                            <span class="string">"en-US"</span>.to_string(),
+                            <span class="string">"b"</span>.repeat(<span class="number">10</span>),
                         )])),
                         options: <span class="prelude-val">None</span>,
                         required: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
@@ -2078,7 +2079,7 @@
         <span class="macro">assert_eq!</span>(command_characters(<span class="kw-2">&amp;</span>command), <span class="number">660</span>);
         <span class="macro">assert!</span>(<span class="kw">super</span>::command(<span class="kw-2">&amp;</span>command).is_ok());
 
-        command.description = <span class="string">&quot;a&quot;</span>.repeat(<span class="number">3441</span>);
+        command.description = <span class="string">"a"</span>.repeat(<span class="number">3441</span>);
         <span class="macro">assert_eq!</span>(command_characters(<span class="kw-2">&amp;</span>command), <span class="number">4001</span>);
 
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
@@ -2087,21 +2088,21 @@
         ));
     }
 
-    <span class="doccomment">/// Assert that a list of options can&#39;t contain the same name.
+    <span class="doccomment">/// Assert that a list of options can't contain the same name.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>option_name_uniqueness() {
         <span class="kw">let </span>option = CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
             channel_types: <span class="prelude-val">None</span>,
             choices: <span class="prelude-val">None</span>,
-            description: <span class="string">&quot;a description&quot;</span>.to_owned(),
+            description: <span class="string">"a description"</span>.to_owned(),
             description_localizations: <span class="prelude-val">None</span>,
             kind: CommandOptionType::String,
             max_length: <span class="prelude-val">None</span>,
             max_value: <span class="prelude-val">None</span>,
             min_length: <span class="prelude-val">None</span>,
             min_value: <span class="prelude-val">None</span>,
-            name: <span class="string">&quot;name&quot;</span>.to_owned(),
+            name: <span class="string">"name"</span>.to_owned(),
             name_localizations: <span class="prelude-val">None</span>,
             options: <span class="prelude-val">None</span>,
             required: <span class="prelude-val">None</span>,
@@ -2127,27 +2128,27 @@
             max_value: <span class="prelude-val">None</span>,
             min_length: <span class="prelude-val">None</span>,
             min_value: <span class="prelude-val">None</span>,
-            name: <span class="string">&quot;testcommand&quot;</span>.to_string(),
+            name: <span class="string">"testcommand"</span>.to_string(),
             name_localizations: <span class="prelude-val">None</span>,
             options: <span class="prelude-val">None</span>,
             required: <span class="prelude-val">None</span>,
         };
         <span class="kw">let </span>toolong = CommandOption {
-            description: <span class="string">&quot;e&quot;</span>.repeat(OPTION_DESCRIPTION_LENGTH_MAX + <span class="number">1</span>),
+            description: <span class="string">"e"</span>.repeat(OPTION_DESCRIPTION_LENGTH_MAX + <span class="number">1</span>),
             ..base.clone()
         };
         <span class="kw">let </span>tooshort = CommandOption {
-            description: <span class="string">&quot;e&quot;</span>.repeat(OPTION_DESCRIPTION_LENGTH_MIN - <span class="number">1</span>),
+            description: <span class="string">"e"</span>.repeat(OPTION_DESCRIPTION_LENGTH_MIN - <span class="number">1</span>),
             ..base.clone()
         };
         <span class="kw">let </span>maxlen = CommandOption {
-            description: <span class="string">&quot;e&quot;</span>.repeat(OPTION_DESCRIPTION_LENGTH_MAX),
+            description: <span class="string">"e"</span>.repeat(OPTION_DESCRIPTION_LENGTH_MAX),
             ..base.clone()
         };
         <span class="comment">// clippy yells at us if this value is 1, but just using to_string would be incorrect
         </span><span class="attr">#[allow(clippy::repeat_once)]
         </span><span class="kw">let </span>minlen = CommandOption {
-            description: <span class="string">&quot;e&quot;</span>.repeat(OPTION_DESCRIPTION_LENGTH_MIN),
+            description: <span class="string">"e"</span>.repeat(OPTION_DESCRIPTION_LENGTH_MIN),
             ..base
         };
         <span class="macro">assert!</span>(option(<span class="kw-2">&amp;</span>toolong).is_err());

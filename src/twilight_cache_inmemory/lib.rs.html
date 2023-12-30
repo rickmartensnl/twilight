@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1020,7 +1021,7 @@
 <a href="#1020" id="1020">1020</a>
 <a href="#1021" id="1021">1021</a>
 </pre></div><pre class="rust"><code><span class="attr">#![cfg_attr(docsrs, feature(doc_auto_cfg))]
-#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]
+#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![warn(
     clippy::missing_const_for_fn,
     clippy::pedantic,
@@ -1036,7 +1037,7 @@
 </span><span class="kw">pub mod </span>iter;
 <span class="kw">pub mod </span>model;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;permission-calculator&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
 </span><span class="kw">pub mod </span>permission;
 
 <span class="kw">mod </span>builder;
@@ -1053,7 +1054,7 @@
     stats::InMemoryCacheStats,
 };
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;permission-calculator&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
 </span><span class="kw">pub use </span><span class="self">self</span>::permission::InMemoryCachePermissions;
 
 <span class="kw">use </span><span class="self">self</span>::{
@@ -1090,8 +1091,8 @@
 
 <span class="doccomment">/// Resource associated with a guild.
 ///
-/// This is used when a resource does not itself include its associated guild&#39;s
-/// ID. In lieu of the resource itself storing its guild&#39;s ID this relation
+/// This is used when a resource does not itself include its associated guild's
+/// ID. In lieu of the resource itself storing its guild's ID this relation
 /// includes it.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq)]
 </span><span class="kw">pub struct </span>GuildResource&lt;T&gt; {
@@ -1105,7 +1106,7 @@
         <span class="self">self</span>.guild_id
     }
 
-    <span class="doccomment">/// Immutable reference to the resource&#39;s value.
+    <span class="doccomment">/// Immutable reference to the resource's value.
     </span><span class="kw">pub const fn </span>resource(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>T {
         <span class="kw-2">&amp;</span><span class="self">self</span>.value
     }
@@ -1121,37 +1122,37 @@
 
 <span class="doccomment">/// Immutable reference to a resource in the cache.
 </span><span class="comment">// We need this so as not to expose the underlying cache implementation.
-</span><span class="kw">pub struct </span>Reference&lt;<span class="lifetime">&#39;a</span>, K, V&gt; {
-    inner: Ref&lt;<span class="lifetime">&#39;a</span>, K, V&gt;,
+</span><span class="kw">pub struct </span>Reference&lt;<span class="lifetime">'a</span>, K, V&gt; {
+    inner: Ref&lt;<span class="lifetime">'a</span>, K, V&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, K: Eq + Hash, V&gt; Reference&lt;<span class="lifetime">&#39;a</span>, K, V&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, K: Eq + Hash, V&gt; Reference&lt;<span class="lifetime">'a</span>, K, V&gt; {
     <span class="doccomment">/// Create a new reference from a `DashMap` reference.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    </span><span class="kw">fn </span>new(inner: Ref&lt;<span class="lifetime">&#39;a</span>, K, V&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">fn </span>new(inner: Ref&lt;<span class="lifetime">'a</span>, K, V&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{ inner }
     }
 
     <span class="doccomment">/// Immutable reference to the key identifying the resource.
-    </span><span class="kw">pub fn </span>key(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>K {
+    </span><span class="kw">pub fn </span>key(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>K {
         <span class="self">self</span>.inner.key()
     }
 
     <span class="doccomment">/// Immutable reference to the underlying value.
-    </span><span class="kw">pub fn </span>value(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>V {
+    </span><span class="kw">pub fn </span>value(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>V {
         <span class="self">self</span>.inner.value()
     }
 }
 
-<span class="kw">impl</span>&lt;K: Eq + Hash, V: Debug&gt; Debug <span class="kw">for </span>Reference&lt;<span class="lifetime">&#39;_</span>, K, V&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.debug_struct(<span class="string">&quot;Reference&quot;</span>)
-            .field(<span class="string">&quot;inner&quot;</span>, <span class="self">self</span>.value())
+<span class="kw">impl</span>&lt;K: Eq + Hash, V: Debug&gt; Debug <span class="kw">for </span>Reference&lt;<span class="lifetime">'_</span>, K, V&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.debug_struct(<span class="string">"Reference"</span>)
+            .field(<span class="string">"inner"</span>, <span class="self">self</span>.value())
             .finish()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, K: Eq + Hash, V&gt; Deref <span class="kw">for </span>Reference&lt;<span class="lifetime">&#39;a</span>, K, V&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, K: Eq + Hash, V&gt; Deref <span class="kw">for </span>Reference&lt;<span class="lifetime">'a</span>, K, V&gt; {
     <span class="kw">type </span>Target = V;
 
     <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
@@ -1213,7 +1214,7 @@
     config: Config,
     channels: DashMap&lt;Id&lt;ChannelMarker&gt;, Channel&gt;,
     channel_messages: DashMap&lt;Id&lt;ChannelMarker&gt;, VecDeque&lt;Id&lt;MessageMarker&gt;&gt;&gt;,
-    <span class="comment">// So long as the lock isn&#39;t held across await or panic points this is fine.
+    <span class="comment">// So long as the lock isn't held across await or panic points this is fine.
     </span>current_user: Mutex&lt;<span class="prelude-ty">Option</span>&lt;CurrentUser&gt;&gt;,
     emojis: DashMap&lt;Id&lt;EmojiMarker&gt;, GuildResource&lt;CachedEmoji&gt;&gt;,
     guilds: DashMap&lt;Id&lt;GuildMarker&gt;, CachedGuild&gt;,
@@ -1277,7 +1278,7 @@
         <span class="self">self</span>.channel_messages.clear();
         <span class="self">self</span>.current_user
             .lock()
-            .expect(<span class="string">&quot;current user poisoned&quot;</span>)
+            .expect(<span class="string">"current user poisoned"</span>)
             .take();
         <span class="self">self</span>.emojis.clear();
         <span class="self">self</span>.guilds.clear();
@@ -1324,11 +1325,11 @@
     ///
     /// // later in the application...
     /// for guild in cache.iter().guilds() {
-    ///     println!(&quot;{}: {}&quot;, guild.id(), guild.name());
+    ///     println!("{}: {}", guild.id(), guild.name());
     /// }
     /// ```
     </span><span class="attr">#[allow(clippy::iter_not_returning_iterator)]
-    </span><span class="kw">pub const fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheIter&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheIter&lt;<span class="lifetime">'_</span>&gt; {
         InMemoryCacheIter::new(<span class="self">self</span>)
     }
 
@@ -1345,9 +1346,9 @@
     ///
     /// // later on...
     /// let guilds = cache.stats().guilds();
-    /// println!(&quot;guild count: {guilds}&quot;);
+    /// println!("guild count: {guilds}");
     /// ```
-    </span><span class="kw">pub const fn </span>stats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheStats&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>stats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheStats&lt;<span class="lifetime">'_</span>&gt; {
         InMemoryCacheStats::new(<span class="self">self</span>)
     }
 
@@ -1377,11 +1378,11 @@
     /// let user_id = Id::new(5);
     ///
     /// let permissions = cache.permissions().in_channel(user_id, channel_id)?;
-    /// println!(&quot;member has these permissions: {permissions:?}&quot;);
+    /// println!("member has these permissions: {permissions:?}");
     /// # Ok(()) }
     /// ```
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;permission-calculator&quot;</span>)]
-    </span><span class="kw">pub const fn </span>permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCachePermissions&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
+    </span><span class="kw">pub const fn </span>permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCachePermissions&lt;<span class="lifetime">'_</span>&gt; {
         InMemoryCachePermissions::new(<span class="self">self</span>)
     }
 
@@ -1395,7 +1396,7 @@
     </span><span class="kw">pub fn </span>current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;CurrentUser&gt; {
         <span class="self">self</span>.current_user
             .lock()
-            .expect(<span class="string">&quot;current user poisoned&quot;</span>)
+            .expect(<span class="string">"current user poisoned"</span>)
             .clone()
     }
 
@@ -1403,7 +1404,7 @@
     </span><span class="kw">pub fn </span>channel(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;ChannelMarker&gt;, Channel&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;ChannelMarker&gt;, Channel&gt;&gt; {
         <span class="self">self</span>.channels.get(<span class="kw-2">&amp;</span>channel_id).map(Reference::new)
     }
 
@@ -1416,7 +1417,7 @@
     </span><span class="kw">pub fn </span>channel_messages(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;ChannelMarker&gt;, VecDeque&lt;Id&lt;MessageMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;ChannelMarker&gt;, VecDeque&lt;Id&lt;MessageMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.channel_messages.get(<span class="kw-2">&amp;</span>channel_id).map(Reference::new)
     }
 
@@ -1428,7 +1429,7 @@
     </span><span class="kw">pub fn </span>emoji(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         emoji_id: Id&lt;EmojiMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;EmojiMarker&gt;, GuildResource&lt;CachedEmoji&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;EmojiMarker&gt;, GuildResource&lt;CachedEmoji&gt;&gt;&gt; {
         <span class="self">self</span>.emojis.get(<span class="kw-2">&amp;</span>emoji_id).map(Reference::new)
     }
 
@@ -1440,7 +1441,7 @@
     </span><span class="kw">pub fn </span>guild(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, CachedGuild&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, CachedGuild&gt;&gt; {
         <span class="self">self</span>.guilds.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1452,7 +1453,7 @@
     </span><span class="kw">pub fn </span>guild_channels(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;ChannelMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;ChannelMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_channels.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1466,7 +1467,7 @@
     </span><span class="kw">pub fn </span>guild_emojis(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;EmojiMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;EmojiMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_emojis.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1479,7 +1480,7 @@
     </span><span class="kw">pub fn </span>guild_integrations(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;IntegrationMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;IntegrationMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_integrations.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1493,7 +1494,7 @@
     </span><span class="kw">pub fn </span>guild_members(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_members.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1507,7 +1508,7 @@
     </span><span class="kw">pub fn </span>guild_presences(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_presences.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1519,7 +1520,7 @@
     </span><span class="kw">pub fn </span>guild_roles(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;RoleMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;RoleMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_roles.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1531,7 +1532,7 @@
     </span><span class="kw">pub fn </span>guild_stage_instances(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StageMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StageMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_stage_instances
             .get(<span class="kw-2">&amp;</span>guild_id)
             .map(Reference::new)
@@ -1549,7 +1550,7 @@
     </span><span class="kw">pub fn </span>guild_stickers(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StickerMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StickerMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.guild_stickers.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1562,7 +1563,7 @@
     </span><span class="kw">pub fn </span>guild_voice_states(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.voice_state_guilds.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1578,7 +1579,7 @@
         guild_id: Id&lt;GuildMarker&gt;,
         integration_id: Id&lt;IntegrationMarker&gt;,
     ) -&gt; <span class="prelude-ty">Option</span>&lt;
-        Reference&lt;<span class="lifetime">&#39;_</span>, (Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;), GuildResource&lt;GuildIntegration&gt;&gt;,
+        Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;), GuildResource&lt;GuildIntegration&gt;&gt;,
     &gt; {
         <span class="self">self</span>.integrations
             .get(<span class="kw-2">&amp;</span>(guild_id, integration_id))
@@ -1595,7 +1596,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedMember&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedMember&gt;&gt; {
         <span class="self">self</span>.members.get(<span class="kw-2">&amp;</span>(guild_id, user_id)).map(Reference::new)
     }
 
@@ -1609,7 +1610,7 @@
     </span><span class="kw">pub fn </span>message(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;MessageMarker&gt;, CachedMessage&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;MessageMarker&gt;, CachedMessage&gt;&gt; {
         <span class="self">self</span>.messages.get(<span class="kw-2">&amp;</span>message_id).map(Reference::new)
     }
 
@@ -1623,7 +1624,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedPresence&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedPresence&gt;&gt; {
         <span class="self">self</span>.presences.get(<span class="kw-2">&amp;</span>(guild_id, user_id)).map(Reference::new)
     }
 
@@ -1635,7 +1636,7 @@
     </span><span class="kw">pub fn </span>role(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;RoleMarker&gt;, GuildResource&lt;Role&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;RoleMarker&gt;, GuildResource&lt;Role&gt;&gt;&gt; {
         <span class="self">self</span>.roles.get(<span class="kw-2">&amp;</span>role_id).map(Reference::new)
     }
 
@@ -1647,7 +1648,7 @@
     </span><span class="kw">pub fn </span>stage_instance(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         stage_id: Id&lt;StageMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;StageMarker&gt;, GuildResource&lt;StageInstance&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StageMarker&gt;, GuildResource&lt;StageInstance&gt;&gt;&gt; {
         <span class="self">self</span>.stage_instances.get(<span class="kw-2">&amp;</span>stage_id).map(Reference::new)
     }
 
@@ -1662,7 +1663,7 @@
     </span><span class="kw">pub fn </span>sticker(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         sticker_id: Id&lt;StickerMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;StickerMarker&gt;, GuildResource&lt;CachedSticker&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StickerMarker&gt;, GuildResource&lt;CachedSticker&gt;&gt;&gt; {
         <span class="self">self</span>.stickers.get(<span class="kw-2">&amp;</span>sticker_id).map(Reference::new)
     }
 
@@ -1671,7 +1672,7 @@
     /// This requires the [`GUILD_MEMBERS`] intent.
     ///
     /// [`GUILD_MEMBERS`]: ::twilight_model::gateway::Intents::GUILD_MEMBERS
-    </span><span class="kw">pub fn </span>user(<span class="kw-2">&amp;</span><span class="self">self</span>, user_id: Id&lt;UserMarker&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;UserMarker&gt;, User&gt;&gt; {
+    </span><span class="kw">pub fn </span>user(<span class="kw-2">&amp;</span><span class="self">self</span>, user_id: Id&lt;UserMarker&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;UserMarker&gt;, User&gt;&gt; {
         <span class="self">self</span>.users.get(<span class="kw-2">&amp;</span>user_id).map(Reference::new)
     }
 
@@ -1689,7 +1690,7 @@
     </span><span class="kw">pub fn </span>user_guilds(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, Id&lt;UserMarker&gt;, HashSet&lt;Id&lt;GuildMarker&gt;&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;UserMarker&gt;, HashSet&lt;Id&lt;GuildMarker&gt;&gt;&gt;&gt; {
         <span class="self">self</span>.user_guilds.get(<span class="kw-2">&amp;</span>user_id).map(Reference::new)
     }
 
@@ -1702,7 +1703,7 @@
     </span><span class="kw">pub fn </span>voice_channel_states(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;VoiceChannelStates&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;VoiceChannelStates&lt;<span class="lifetime">'_</span>&gt;&gt; {
         <span class="kw">let </span>user_ids = <span class="self">self</span>.voice_state_channels.get(<span class="kw-2">&amp;</span>channel_id)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Some</span>(VoiceChannelStates {
@@ -1723,7 +1724,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         user_id: Id&lt;UserMarker&gt;,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">&#39;_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;&gt; {
         <span class="self">self</span>.voice_states
             .get(<span class="kw-2">&amp;</span>(guild_id, user_id))
             .map(Reference::new)
@@ -1843,16 +1844,16 @@
     </span><span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {}
 }
 
-<span class="doccomment">/// Iterator over a voice channel&#39;s list of voice states.
-</span><span class="kw">pub struct </span>VoiceChannelStates&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="doccomment">/// Iterator over a voice channel's list of voice states.
+</span><span class="kw">pub struct </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>&gt; {
     index: usize,
     <span class="attr">#[allow(clippy::type_complexity)]
-    </span>user_ids: Ref&lt;<span class="lifetime">&#39;a</span>, Id&lt;ChannelMarker&gt;, HashSet&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;)&gt;&gt;,
-    voice_states: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;,
+    </span>user_ids: Ref&lt;<span class="lifetime">'a</span>, Id&lt;ChannelMarker&gt;, HashSet&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;)&gt;&gt;,
+    voice_states: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VoiceChannelStates&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = Reference&lt;<span class="lifetime">&#39;a</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">type </span>Item = Reference&lt;<span class="lifetime">'a</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="kw">while let </span><span class="prelude-val">Some</span>((guild_id, user_id)) = <span class="self">self</span>.user_ids.iter().nth(<span class="self">self</span>.index) {
@@ -1978,7 +1979,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>highest_role() {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
         <span class="kw">let </span>cache = InMemoryCache::new();
         <span class="kw">let </span>guild_id = Id::new(<span class="number">1</span>);
         <span class="kw">let </span>user = test::user(Id::new(<span class="number">1</span>));
@@ -2010,7 +2011,7 @@
                     id: Id::new(<span class="number">1</span>),
                     managed: <span class="bool-val">false</span>,
                     mentionable: <span class="bool-val">false</span>,
-                    name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                    name: <span class="string">"test"</span>.to_owned(),
                     permissions: Permissions::empty(),
                     position: <span class="number">0</span>,
                     flags: RoleFlags::empty(),
@@ -2024,7 +2025,7 @@
                     id: Id::new(<span class="number">2</span>),
                     managed: <span class="bool-val">false</span>,
                     mentionable: <span class="bool-val">false</span>,
-                    name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                    name: <span class="string">"test"</span>.to_owned(),
                     permissions: Permissions::empty(),
                     position: <span class="number">1</span>,
                     flags: RoleFlags::empty(),

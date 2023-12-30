@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/try_into_request.rs`."><title>try_into_request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/try_into_request.rs`."><title>try_into_request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -455,182 +456,182 @@
 
     <span class="kw">pub trait </span>Sealed {}
 
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddGuildMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddRoleToMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateBan&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateFollowup&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateForumThreadMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalChatInputCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalMessageCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalUserCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildChatInputCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildExternalScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildFromTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildMessageCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildPrune&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildUserCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateInvite&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreatePin&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreatePrivateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateReaction&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateResponse&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateRole&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateThread&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateThreadFromMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateTypingTrigger&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>CrosspostMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAllReaction&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAllReactions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteBan&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannelPermission&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannelPermissionConfigured&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteFollowup&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGlobalCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuild&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildIntegration&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteInvite&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteMessages&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeletePin&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteReaction&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteResponse&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteRole&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhookMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhookAndWait&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>FollowNewsChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetActiveThreads&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAuditLog&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetBan&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetBans&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelInvites&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelMessages&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelMessagesConfigured&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelWebhooks&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCommandPermissions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUser&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentAuthorizationInformation&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserConnections&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserGuildMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserGuilds&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetEmojis&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetFollowup&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGateway&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGatewayAuthed&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGlobalCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGlobalCommands&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuild&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildAutoModerationRules&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildChannels&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommandPermissions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommands&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildIntegrations&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildInvites&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildMembers&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildOnboarding&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildPreview&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildPruneCount&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildRoles&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEventUsers&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEvents&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildStickers&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildVanityUrl&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildVoiceRegions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWebhooks&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWelcomeScreen&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWidget&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWidgetSettings&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetInvite&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetJoinedPrivateArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetNitroStickerPacks&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPins&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPrivateArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPublicArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetReactions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetResponse&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetSticker&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetTemplates&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetThreadMembers&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetUser&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetUserApplicationInfo&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetVoiceRegions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetWebhookMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>JoinThread&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>LeaveGuild&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>LeaveThread&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveRoleFromMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>SearchGuildMembers&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>SetGlobalCommands&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>SetGuildCommands&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>SyncTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateChannelPermission&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCommandPermissions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentUser&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentUserVoiceState&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateFollowup&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGlobalCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuild&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildChannelPositions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildCommand&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildMember&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildMfa&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildOnboarding&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildWelcomeScreen&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildWidgetSettings&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateResponse&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateRole&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateRolePositions&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateTemplate&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateThread&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateUserVoiceState&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhookMessage&lt;<span class="lifetime">&#39;_</span>&gt; {}
-    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhookWithToken&lt;<span class="lifetime">&#39;_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddGuildMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddRoleToMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>AddThreadMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateBan&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateEmoji&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateFollowup&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateForumThreadMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalChatInputCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalMessageCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGlobalUserCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildChatInputCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildExternalScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildFromTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildMessageCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildPrune&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildSticker&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildUserCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateInvite&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreatePin&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreatePrivateChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateReaction&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateResponse&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateRole&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateStageInstance&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateThread&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateThreadFromMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateTypingTrigger&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CreateWebhook&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>CrosspostMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAllReaction&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAllReactions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteBan&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannelPermission&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteChannelPermissionConfigured&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteEmoji&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteFollowup&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGlobalCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuild&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildIntegration&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteGuildSticker&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteInvite&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteMessages&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeletePin&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteReaction&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteResponse&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteRole&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteStageInstance&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhook&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhookMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhook&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhookAndWait&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>FollowNewsChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetActiveThreads&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAuditLog&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetBan&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetBans&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelInvites&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelMessages&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelMessagesConfigured&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetChannelWebhooks&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCommandPermissions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUser&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentAuthorizationInformation&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserConnections&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserGuildMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetCurrentUserGuilds&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetEmoji&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetEmojis&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetFollowup&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGateway&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGatewayAuthed&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGlobalCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGlobalCommands&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuild&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildAutoModerationRules&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildChannels&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommandPermissions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildCommands&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildIntegrations&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildInvites&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildMembers&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildOnboarding&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildPreview&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildPruneCount&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildRoles&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEventUsers&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildScheduledEvents&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildSticker&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildStickers&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildVanityUrl&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildVoiceRegions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWebhooks&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWelcomeScreen&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWidget&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetGuildWidgetSettings&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetInvite&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetJoinedPrivateArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetNitroStickerPacks&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPins&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPrivateArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetPublicArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetReactions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetResponse&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetStageInstance&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetSticker&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetTemplates&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetThreadMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetThreadMembers&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetUser&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetUserApplicationInfo&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetVoiceRegions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetWebhook&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetWebhookMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>JoinThread&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>LeaveGuild&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>LeaveThread&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveRoleFromMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>RemoveThreadMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>SearchGuildMembers&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>SetGlobalCommands&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>SetGuildCommands&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>SyncTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateChannelPermission&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCommandPermissions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentUser&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateCurrentUserVoiceState&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateEmoji&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateFollowup&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGlobalCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuild&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildChannelPositions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildCommand&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildMember&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildMfa&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildOnboarding&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildSticker&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildWelcomeScreen&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateGuildWidgetSettings&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateResponse&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateRole&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateRolePositions&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateStageInstance&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateTemplate&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateThread&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateUserVoiceState&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhook&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhookMessage&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>UpdateWebhookWithToken&lt;<span class="lifetime">'_</span>&gt; {}
 }
 
 <span class="kw">use </span><span class="kw">super</span>::base::Request;
@@ -655,19 +656,19 @@
 /// use twilight_http::{client::Client, request::TryIntoRequest};
 /// use twilight_model::{channel::Message, id::Id};
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let channel_id = Id::new(1);
 /// let builder = client
 ///     .create_message(channel_id)
-///     .content(&quot;This is a test message!&quot;)?
+///     .content("This is a test message!")?
 ///     .tts(false);
 ///
 /// let request = builder.try_into_request()?;
 ///
-/// println!(&quot;{:?} {}&quot;, request.method(), request.path());
+/// println!("{:?} {}", request.method(), request.path());
 ///
 /// if let Some(body) = request.body() {
-///     println!(&quot;{}&quot;, str::from_utf8(body)?);
+///     println!("{}", str::from_utf8(body)?);
 /// }
 ///
 /// // Because a raw request is being performed, the output type must be
@@ -710,12 +711,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>conversion() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span>client = Client::new(<span class="string">&quot;token&quot;</span>.to_owned());
+        <span class="kw">let </span>client = Client::new(<span class="string">"token"</span>.to_owned());
         <span class="kw">let </span>channel_id = Id::new(<span class="number">1</span>);
-        <span class="kw">let </span>builder = client.create_message(channel_id).content(<span class="string">&quot;test&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>builder = client.create_message(channel_id).content(<span class="string">"test"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>request = builder.try_into_request()<span class="question-mark">?</span>;
 
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">br#&quot;{&quot;content&quot;:&quot;test&quot;}&quot;#</span>.as_ref()), request.body());
+        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">br#"{"content":"test"}"#</span>.as_ref()), request.body());
         <span class="macro">assert!</span>(request.form().is_none());
         <span class="macro">assert_eq!</span>(Method::Post, request.method());
 

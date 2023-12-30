@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/api_error.rs`."><title>api_error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/api_error.rs`."><title>api_error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -268,7 +269,7 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ApiError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::General(inner) =&gt; Display::fmt(inner, f),
             <span class="self">Self</span>::Message(inner) =&gt; Display::fmt(inner, f),
@@ -285,10 +286,10 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>GeneralApiError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;Error code &quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"Error code "</span>)<span class="question-mark">?</span>;
         Display::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>.code, f)<span class="question-mark">?</span>;
-        f.write_str(<span class="string">&quot;: &quot;</span>)<span class="question-mark">?</span>;
+        f.write_str(<span class="string">": "</span>)<span class="question-mark">?</span>;
 
         f.write_str(<span class="kw-2">&amp;</span><span class="self">self</span>.message)
     }
@@ -304,11 +305,11 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>MessageApiError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;message fields invalid: &quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"message fields invalid: "</span>)<span class="question-mark">?</span>;
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(embed) = <span class="kw-2">&amp;</span><span class="self">self</span>.embed {
-            f.write_str(<span class="string">&quot;embed (&quot;</span>)<span class="question-mark">?</span>;
+            f.write_str(<span class="string">"embed ("</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let </span>field_count = embed.len().saturating_sub(<span class="number">1</span>);
 
@@ -316,11 +317,11 @@
                 Display::fmt(field, f)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>idx == field_count {
-                    f.write_str(<span class="string">&quot;, &quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">", "</span>)<span class="question-mark">?</span>;
                 }
             }
 
-            f.write_str(<span class="string">&quot;)&quot;</span>)<span class="question-mark">?</span>;
+            f.write_str(<span class="string">")"</span>)<span class="question-mark">?</span>;
         }
 
         <span class="prelude-val">Ok</span>(())
@@ -332,19 +333,19 @@
 /// [embed]: MessageApiError::embed
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+#[serde(rename_all = <span class="string">"snake_case"</span>)]
 </span><span class="kw">pub enum </span>MessageApiErrorEmbedField {
     <span class="doccomment">/// Something was wrong with the provided fields.
     </span>Fields,
-    <span class="doccomment">/// The provided timestamp wasn&#39;t a valid RFC3339 string.
+    <span class="doccomment">/// The provided timestamp wasn't a valid RFC3339 string.
     </span>Timestamp,
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>MessageApiErrorEmbedField {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         f.write_str(<span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Fields =&gt; <span class="string">&quot;fields&quot;</span>,
-            <span class="self">Self</span>::Timestamp =&gt; <span class="string">&quot;timestamp&quot;</span>,
+            <span class="self">Self</span>::Fields =&gt; <span class="string">"fields"</span>,
+            <span class="self">Self</span>::Timestamp =&gt; <span class="string">"timestamp"</span>,
         })
     }
 }
@@ -361,17 +362,17 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>RatelimitedApiError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;Got &quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"Got "</span>)<span class="question-mark">?</span>;
 
         <span class="kw">if </span><span class="self">self</span>.global {
-            f.write_str(<span class="string">&quot;global &quot;</span>)<span class="question-mark">?</span>;
+            f.write_str(<span class="string">"global "</span>)<span class="question-mark">?</span>;
         }
 
-        f.write_str(<span class="string">&quot;ratelimited for &quot;</span>)<span class="question-mark">?</span>;
+        f.write_str(<span class="string">"ratelimited for "</span>)<span class="question-mark">?</span>;
         Display::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>.retry_after, f)<span class="question-mark">?</span>;
 
-        f.write_str(<span class="string">&quot;s&quot;</span>)
+        f.write_str(<span class="string">"s"</span>)
     }
 }
 
@@ -394,20 +395,20 @@
     </span><span class="kw">fn </span>api_error_deser() {
         <span class="kw">let </span>expected = GeneralApiError {
             code: <span class="number">10001</span>,
-            message: <span class="string">&quot;Unknown account&quot;</span>.to_owned(),
+            message: <span class="string">"Unknown account"</span>.to_owned(),
         };
 
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>expected,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GeneralApiError&quot;</span>,
+                    name: <span class="string">"GeneralApiError"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;code&quot;</span>),
+                Token::Str(<span class="string">"code"</span>),
                 Token::U64(<span class="number">10001</span>),
-                Token::Str(<span class="string">&quot;message&quot;</span>),
-                Token::Str(<span class="string">&quot;Unknown account&quot;</span>),
+                Token::Str(<span class="string">"message"</span>),
+                Token::Str(<span class="string">"Unknown account"</span>),
                 Token::StructEnd,
             ],
         );
@@ -429,19 +430,19 @@
             <span class="kw-2">&amp;</span>expected,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;MessageApiError&quot;</span>,
+                    name: <span class="string">"MessageApiError"</span>,
                     len: <span class="number">1</span>,
                 },
-                Token::Str(<span class="string">&quot;embed&quot;</span>),
+                Token::Str(<span class="string">"embed"</span>),
                 Token::Some,
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">2</span>) },
                 Token::UnitVariant {
-                    name: <span class="string">&quot;MessageApiErrorEmbedField&quot;</span>,
-                    variant: <span class="string">&quot;fields&quot;</span>,
+                    name: <span class="string">"MessageApiErrorEmbedField"</span>,
+                    variant: <span class="string">"fields"</span>,
                 },
                 Token::UnitVariant {
-                    name: <span class="string">&quot;MessageApiErrorEmbedField&quot;</span>,
-                    variant: <span class="string">&quot;timestamp&quot;</span>,
+                    name: <span class="string">"MessageApiErrorEmbedField"</span>,
+                    variant: <span class="string">"timestamp"</span>,
                 },
                 Token::SeqEnd,
                 Token::StructEnd,
@@ -453,7 +454,7 @@
     </span><span class="kw">fn </span>ratelimited_api_error() {
         <span class="kw">let </span>expected = RatelimitedApiError {
             global: <span class="bool-val">true</span>,
-            message: <span class="string">&quot;You are being rate limited.&quot;</span>.to_owned(),
+            message: <span class="string">"You are being rate limited."</span>.to_owned(),
             retry_after: <span class="number">6.457</span>,
         };
 
@@ -461,14 +462,14 @@
             <span class="kw-2">&amp;</span>expected,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;RatelimitedApiError&quot;</span>,
+                    name: <span class="string">"RatelimitedApiError"</span>,
                     len: <span class="number">3</span>,
                 },
-                Token::Str(<span class="string">&quot;global&quot;</span>),
+                Token::Str(<span class="string">"global"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;message&quot;</span>),
-                Token::Str(<span class="string">&quot;You are being rate limited.&quot;</span>),
-                Token::Str(<span class="string">&quot;retry_after&quot;</span>),
+                Token::Str(<span class="string">"message"</span>),
+                Token::Str(<span class="string">"You are being rate limited."</span>),
+                Token::Str(<span class="string">"retry_after"</span>),
                 Token::F64(<span class="number">6.457</span>),
                 Token::StructEnd,
             ],
@@ -486,7 +487,7 @@
     </span><span class="kw">fn </span>api_error_variant_ratelimited() {
         <span class="kw">let </span>expected = ApiError::Ratelimited(RatelimitedApiError {
             global: <span class="bool-val">false</span>,
-            message: <span class="string">&quot;You are being rate limited.&quot;</span>.to_owned(),
+            message: <span class="string">"You are being rate limited."</span>.to_owned(),
             retry_after: <span class="number">0.362</span>,
         });
 
@@ -494,14 +495,14 @@
             <span class="kw-2">&amp;</span>expected,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;RatelimitedApiError&quot;</span>,
+                    name: <span class="string">"RatelimitedApiError"</span>,
                     len: <span class="number">3</span>,
                 },
-                Token::Str(<span class="string">&quot;global&quot;</span>),
+                Token::Str(<span class="string">"global"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;message&quot;</span>),
-                Token::Str(<span class="string">&quot;You are being rate limited.&quot;</span>),
-                Token::Str(<span class="string">&quot;retry_after&quot;</span>),
+                Token::Str(<span class="string">"message"</span>),
+                Token::Str(<span class="string">"You are being rate limited."</span>),
+                Token::Str(<span class="string">"retry_after"</span>),
                 Token::F64(<span class="number">0.362</span>),
                 Token::StructEnd,
             ],

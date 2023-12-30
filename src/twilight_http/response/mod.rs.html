@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -684,8 +685,8 @@
 <a href="#684" id="684">684</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Response utility type and related types.
 //!
-//! The heart of the response module is the [`Response`] itself: it&#39;s a wrapper
-//! over the underlying HTTP client&#39;s response, containing helper methods for
+//! The heart of the response module is the [`Response`] itself: it's a wrapper
+//! over the underlying HTTP client's response, containing helper methods for
 //! things like [getting the raw bytes][`bytes`] of the response body, getting
 //! an [iterator of the response headers][`headers`], or
 //! [deserializing the body into a model][`model`].
@@ -696,7 +697,7 @@
 //! # Examples
 //!
 //! Get a user by ID, check if the request was successful, and if so deserialize
-//! the response body via [`Response::model`][`model`] and print the user&#39;s
+//! the response body via [`Response::model`][`model`] and print the user's
 //! name:
 //!
 //! ```no_run
@@ -706,11 +707,11 @@
 //! use std::env;
 //! use twilight_http::Client;
 //!
-//! let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+//! let client = Client::new(env::var("DISCORD_TOKEN")?);
 //! let response = client.user(user_id).await?;
 //!
 //! if !response.status().is_success() {
-//!     println!(&quot;failed to get user&quot;);
+//!     println!("failed to get user");
 //!
 //!     return Ok(());
 //! }
@@ -719,7 +720,7 @@
 //! // `twilight_model::user::User`.
 //! let user = response.model().await?;
 //!
-//! println!(&quot;user&#39;s name: {}:{}&quot;, user.name, user.discriminator);
+//! println!("user's name: {}:{}", user.name, user.discriminator);
 //! # Ok(()) }
 //! ```
 //!
@@ -762,19 +763,19 @@
 
 <span class="kw">impl </span>DeserializeBodyError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>DeserializeBodyErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -786,30 +787,30 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>DeserializeBodyError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             <span class="kw-2">&amp;</span>DeserializeBodyErrorType::BodyNotUtf8 { .. } =&gt; {
-                f.write_str(<span class="string">&quot;response body is not a utf-8 valid string&quot;</span>)
+                f.write_str(<span class="string">"response body is not a utf-8 valid string"</span>)
             }
             DeserializeBodyErrorType::Chunking { .. } =&gt; {
-                f.write_str(<span class="string">&quot;failed to chunk response body&quot;</span>)
+                f.write_str(<span class="string">"failed to chunk response body"</span>)
             }
-            <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
             </span>DeserializeBodyErrorType::Decompressing { .. } =&gt; {
-                f.write_str(<span class="string">&quot;failed to decompress response body&quot;</span>)
+                f.write_str(<span class="string">"failed to decompress response body"</span>)
             }
             DeserializeBodyErrorType::Deserializing { .. } =&gt; {
-                f.write_str(<span class="string">&quot;failed to deserialize response body&quot;</span>)
+                f.write_str(<span class="string">"failed to deserialize response body"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>DeserializeBodyError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -823,20 +824,20 @@
         /// valid string.
         </span>bytes: Vec&lt;u8&gt;,
     },
-    <span class="doccomment">/// Response body couldn&#39;t be chunked.
+    <span class="doccomment">/// Response body couldn't be chunked.
     </span>Chunking,
     <span class="doccomment">/// Decompressing the response failed.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
     </span>Decompressing,
     <span class="doccomment">/// Deserializing the model failed.
     </span>Deserializing,
 }
 
-<span class="doccomment">/// Response wrapper containing helper functions over the HTTP client&#39;s
+<span class="doccomment">/// Response wrapper containing helper functions over the HTTP client's
 /// response.
 ///
 /// This exists so that it can be determined whether to deserialize the body.
-/// This is useful when you don&#39;t need the body and therefore don&#39;t want to
+/// This is useful when you don't need the body and therefore don't want to
 /// spend the time to deserialize it.
 ///
 /// # Examples
@@ -848,12 +849,12 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let response = client.user(user_id).await?;
-/// println!(&quot;status code: {}&quot;, response.status());
+/// println!("status code: {}", response.status());
 ///
 /// let user = response.model().await?;
-/// println!(&quot;username: {}#{:04}&quot;, user.name, user.discriminator);
+/// println!("username: {}#{:04}", user.name, user.discriminator);
 /// # Ok(()) }
 /// ```
 </span><span class="attr">#[derive(Debug)]
@@ -871,13 +872,13 @@
     }
 
     <span class="doccomment">/// Iterator of the response headers.
-    </span><span class="attr">#[must_use = <span class="string">&quot;creating an iterator of the headers has no use on its own&quot;</span>]
-    </span><span class="kw">pub fn </span>headers(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; HeaderIter&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="attr">#[must_use = <span class="string">"creating an iterator of the headers has no use on its own"</span>]
+    </span><span class="kw">pub fn </span>headers(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; HeaderIter&lt;<span class="lifetime">'_</span>&gt; {
         HeaderIter(<span class="self">self</span>.inner.headers().iter())
     }
 
     <span class="doccomment">/// Status code of the response.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the status code has no use on its own&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the status code has no use on its own"</span>]
     </span><span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; StatusCode {
         <span class="comment">// Convert the `hyper` status code into its raw form in order to return
         // our own.
@@ -902,11 +903,11 @@
     /// use std::env;
     /// use twilight_http::Client;
     ///
-    /// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+    /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let response = client.user(user_id).await?;
     /// let bytes = response.bytes().await?;
     ///
-    /// println!(&quot;size of body: {}&quot;, bytes.len());
+    /// println!("size of body: {}", bytes.len());
     /// # Ok(()) }
     /// ```
     ///
@@ -917,7 +918,7 @@
     ///
     /// [`text`]: Self::text
     </span><span class="kw">pub fn </span>bytes(<span class="self">self</span>) -&gt; BytesFuture {
-        <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
         </span><span class="kw">let </span>compressed = <span class="self">self
             </span>.inner
             .headers()
@@ -928,7 +929,7 @@
 
         <span class="kw">let </span>fut = <span class="kw">async move </span>{
             {
-                <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
                 </span><span class="kw">if </span>compressed {
                     <span class="kw">return </span>decompress(body).<span class="kw">await</span>;
                 }
@@ -961,11 +962,11 @@
     /// use std::env;
     /// use twilight_http::Client;
     ///
-    /// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+    /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let response = client.current_user().await?;
     /// let text = response.text().await?;
     ///
-    /// println!(&quot;body: {text}&quot;);
+    /// println!("body: {text}");
     /// # Ok(()) }
     /// ```
     ///
@@ -985,7 +986,7 @@
 
 <span class="kw">impl</span>&lt;T: DeserializeOwned&gt; Response&lt;T&gt; {
     <span class="doccomment">/// Consume the response, chunking the body and then deserializing it into
-    /// the request&#39;s matching model.
+    /// the request's matching model.
     ///
     /// # Errors
     ///
@@ -1053,28 +1054,28 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let response = client.create_message(channel_id)
-</span><span class="comment">//      .content(&quot;test&quot;)?
+</span><span class="comment">//      .content("test")?
 </span><span class="doccomment">///     .await?;
 /// let mut headers = response.headers();
 ///
 /// while let Some((name, value)) = headers.next() {
-///     println!(&quot;{name}: {}&quot;, String::from_utf8_lossy(value));
+///     println!("{name}: {}", String::from_utf8_lossy(value));
 /// }
 /// # Ok(()) }
 /// ```
 </span><span class="attr">#[derive(Debug)]
-#[must_use = <span class="string">&quot;iterators do nothing unless used&quot;</span>]
-</span><span class="kw">pub struct </span>HeaderIter&lt;<span class="lifetime">&#39;a</span>&gt;(HeaderMapIter&lt;<span class="lifetime">&#39;a</span>, HeaderValue&gt;);
+#[must_use = <span class="string">"iterators do nothing unless used"</span>]
+</span><span class="kw">pub struct </span>HeaderIter&lt;<span class="lifetime">'a</span>&gt;(HeaderMapIter&lt;<span class="lifetime">'a</span>, HeaderValue&gt;);
 
 <span class="comment">// `hyper::header::Iter` implements `FusedIterator` so this is a free impl.
-</span><span class="kw">impl </span>FusedIterator <span class="kw">for </span>HeaderIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
+</span><span class="kw">impl </span>FusedIterator <span class="kw">for </span>HeaderIter&lt;<span class="lifetime">'_</span>&gt; {}
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>HeaderIter&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="comment">// Header names are UTF-8 valid but values aren&#39;t, so the value item has
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>HeaderIter&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="comment">// Header names are UTF-8 valid but values aren't, so the value item has
     // to be a slice of the bytes.
-    </span><span class="kw">type </span>Item = (<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]);
+    </span><span class="kw">type </span>Item = (<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]);
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="kw">let </span>(name, value) = <span class="self">self</span>.<span class="number">0</span>.next()<span class="question-mark">?</span>;
@@ -1106,11 +1107,11 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let response = client.message(channel_id, message_id).await?;
 /// let bytes = response.bytes().await?;
 ///
-/// println!(&quot;bytes of the body: {bytes:?}&quot;);
+/// println!("bytes of the body: {bytes:?}");
 /// # Ok(()) }
 /// ```
 ///
@@ -1118,16 +1119,16 @@
 ///
 /// Returns a [`DeserializeBodyErrorType::Chunking`] error type if the
 /// response body could not be entirely read.
-</span><span class="attr">#[must_use = <span class="string">&quot;futures do nothing unless you `.await` or poll them&quot;</span>]
+</span><span class="attr">#[must_use = <span class="string">"futures do nothing unless you `.await` or poll them"</span>]
 </span><span class="kw">pub struct </span>BytesFuture {
     inner:
-        Pin&lt;Box&lt;<span class="kw">dyn </span>Future&lt;Output = <span class="prelude-ty">Result</span>&lt;Bytes, DeserializeBodyError&gt;&gt; + Send + Sync + <span class="lifetime">&#39;static</span>&gt;&gt;,
+        Pin&lt;Box&lt;<span class="kw">dyn </span>Future&lt;Output = <span class="prelude-ty">Result</span>&lt;Bytes, DeserializeBodyError&gt;&gt; + Send + Sync + <span class="lifetime">'static</span>&gt;&gt;,
 }
 
 <span class="kw">impl </span>Future <span class="kw">for </span>BytesFuture {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, DeserializeBodyError&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         <span class="kw">if let </span>Poll::Ready(result) = Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.inner).poll(cx) {
             Poll::Ready(result.map(|b| b.to_vec()))
         } <span class="kw">else </span>{
@@ -1152,10 +1153,10 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let emoji = client.emoji(guild_id, emoji_id).await?.model().await?;
 ///
-/// println!(&quot;emoji name: {}&quot;, emoji.name);
+/// println!("emoji name: {}", emoji.name);
 /// # Ok(()) }
 /// ```
 ///
@@ -1166,7 +1167,7 @@
 ///
 /// Returns a [`DeserializeBodyErrorType::Deserializing`] error type if the
 /// response body could not be deserialized into a model.
-</span><span class="attr">#[must_use = <span class="string">&quot;futures do nothing unless you `.await` or poll them&quot;</span>]
+</span><span class="attr">#[must_use = <span class="string">"futures do nothing unless you `.await` or poll them"</span>]
 </span><span class="kw">pub struct </span>ModelFuture&lt;T&gt; {
     future: BytesFuture,
     phantom: PhantomData&lt;T&gt;,
@@ -1184,7 +1185,7 @@
 <span class="kw">impl</span>&lt;T: DeserializeOwned + Unpin&gt; Future <span class="kw">for </span>ModelFuture&lt;T&gt; {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;T, DeserializeBodyError&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.future).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(bytes)) =&gt; {
                 Poll::Ready(<span class="kw">crate</span>::json::from_bytes(<span class="kw-2">&amp;</span>bytes).map_err(|source| {
@@ -1218,11 +1219,11 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+/// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let response = client.message(channel_id, message_id).await?;
 /// let text = response.text().await?;
 ///
-/// println!(&quot;body: {text}&quot;);
+/// println!("body: {text}");
 /// # Ok(()) }
 /// ```
 ///
@@ -1233,17 +1234,17 @@
 ///
 /// Returns a [`DeserializeBodyErrorType::Chunking`] error type if the
 /// response body could not be entirely read.
-</span><span class="attr">#[must_use = <span class="string">&quot;futures do nothing unless you `.await` or poll them&quot;</span>]
+</span><span class="attr">#[must_use = <span class="string">"futures do nothing unless you `.await` or poll them"</span>]
 </span><span class="kw">pub struct </span>TextFuture(BytesFuture);
 
 <span class="kw">impl </span>Future <span class="kw">for </span>TextFuture {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;String, DeserializeBodyError&gt;;
 
-    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
+    <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0</span>).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(bytes)) =&gt; Poll::Ready(String::from_utf8(bytes).map_err(|source| {
                 <span class="comment">// This is a very cold path. Converting a response body to a
-                // UTF-8 valid string should basically never fail anyway; it&#39;s
+                // UTF-8 valid string should basically never fail anyway; it's
                 // worth it to have the context readily available for the user.
                 </span><span class="kw">let </span>copy = source.as_bytes().to_owned();
 
@@ -1258,7 +1259,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
 </span><span class="kw">async fn </span>decompress(body: Body) -&gt; <span class="prelude-ty">Result</span>&lt;Bytes, DeserializeBodyError&gt; {
     <span class="kw">use </span>brotli::Decompressor;
     <span class="kw">use </span>hyper::body::Buf;
@@ -1298,19 +1299,19 @@
     <span class="kw">use </span>std::{fmt::Debug, future::Future, iter::FusedIterator};
     <span class="kw">use </span>twilight_model::{channel::Message, guild::Emoji};
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
     </span><span class="kw">use </span>std::error::Error;
 
     <span class="macro">assert_impl_all!</span>(BytesFuture: Future);
     <span class="macro">assert_impl_all!</span>(DeserializeBodyErrorType: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(DeserializeBodyError: Debug, Send, Sync);
-    <span class="macro">assert_impl_all!</span>(HeaderIter&lt;<span class="lifetime">&#39;_</span>&gt;: Debug, FusedIterator, Iterator, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(HeaderIter&lt;<span class="lifetime">'_</span>&gt;: Debug, FusedIterator, Iterator, Send, Sync);
     <span class="macro">assert_impl_all!</span>(ModelFuture&lt;Emoji&gt;: Future);
     <span class="macro">assert_impl_all!</span>(Response&lt;EmptyBody&gt;: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(Response&lt;ListBody&lt;Message&gt;&gt;: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(TextFuture: Future);
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
     #[tokio::test]
     </span><span class="kw">async fn </span>test_decompression() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="kw">use </span><span class="kw">super</span>::decompress;
@@ -1361,7 +1362,7 @@
 
         <span class="kw">let </span>deserialized = serde_json::from_slice::&lt;Invite&gt;(<span class="kw-2">&amp;</span>decompressed)<span class="question-mark">?</span>;
 
-        <span class="macro">assert_eq!</span>(deserialized.code, <span class="string">&quot;twilight-rs&quot;</span>);
+        <span class="macro">assert_eq!</span>(deserialized.code, <span class="string">"twilight-rs"</span>);
 
         <span class="prelude-val">Ok</span>(())
     }

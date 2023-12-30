@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/presence/activity_button.rs`."><title>activity_button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/presence/activity_button.rs`."><title>activity_button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -328,15 +329,15 @@
 /// use twilight_model::gateway::presence::activity_button::{ActivityButton, ActivityButtonLink};
 ///
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// const JSON: &amp;str = r#&quot;{
-///     &quot;label&quot;: &quot;a&quot;,
-///     &quot;url&quot;: &quot;b&quot;
-/// }&quot;#;
+/// const JSON: &amp;str = r#"{
+///     "label": "a",
+///     "url": "b"
+/// }"#;
 ///
 /// assert_eq!(
 ///     ActivityButton::Link(ActivityButtonLink {
-///         label: &quot;a&quot;.to_owned(),
-///         url: &quot;b&quot;.to_owned(),
+///         label: "a".to_owned(),
+///         url: "b".to_owned(),
 ///     }),
 ///     serde_json::from_str(JSON)?,
 /// );
@@ -345,7 +346,7 @@
 ///
 /// An activity button without a URL - an [`ActivityButtonText`] - will
 /// deserialize and serialize as a string. This means that a textual activity
-/// button with a label of &quot;test&quot; will serialize as simply the string &quot;test&quot; and
+/// button with a label of "test" will serialize as simply the string "test" and
 /// vice versa.
 ///
 /// ```
@@ -354,9 +355,9 @@
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 /// assert_eq!(
 ///     ActivityButton::Text(ActivityButtonText {
-///         label: &quot;test&quot;.to_owned(),
+///         label: "test".to_owned(),
 ///     }),
-///     serde_json::from_str(r#&quot;&quot;test&quot;&quot;#)?,
+///     serde_json::from_str(r#""test""#)?,
 /// );
 /// # Ok(()) }
 /// ```
@@ -402,7 +403,7 @@
 }
 
 <span class="attr">#[derive(Debug, Deserialize)]
-#[serde(field_identifier, rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+#[serde(field_identifier, rename_all = <span class="string">"snake_case"</span>)]
 </span><span class="kw">enum </span>ActivityButtonField {
     Label,
     Url,
@@ -410,11 +411,11 @@
 
 <span class="kw">struct </span>ActivityButtonVisitor;
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>ActivityButtonVisitor {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>ActivityButtonVisitor {
     <span class="kw">type </span>Value = ActivityButton;
 
-    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;activity button struct or string&quot;</span>)
+    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"activity button struct or string"</span>)
     }
 
     <span class="kw">fn </span>visit_string&lt;E: DeError&gt;(<span class="self">self</span>, v: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt; {
@@ -427,7 +428,7 @@
         }))
     }
 
-    <span class="kw">fn </span>visit_map&lt;A: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: A) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, A::Error&gt; {
+    <span class="kw">fn </span>visit_map&lt;A: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: A) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, A::Error&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>label = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>url = <span class="prelude-val">None</span>;
 
@@ -445,14 +446,14 @@
             <span class="kw">match </span>key {
                 ActivityButtonField::Label =&gt; {
                     <span class="kw">if </span>label.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;label&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"label"</span>));
                     }
 
                     label = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 ActivityButtonField::Url =&gt; {
                     <span class="kw">if </span>url.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;url&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"url"</span>));
                     }
 
                     url = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -460,15 +461,15 @@
             }
         }
 
-        <span class="kw">let </span>label = label.ok_or_else(|| DeError::missing_field(<span class="string">&quot;label&quot;</span>))<span class="question-mark">?</span>;
-        <span class="kw">let </span>url = url.ok_or_else(|| DeError::missing_field(<span class="string">&quot;url&quot;</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>label = label.ok_or_else(|| DeError::missing_field(<span class="string">"label"</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>url = url.ok_or_else(|| DeError::missing_field(<span class="string">"url"</span>))<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(ActivityButton::Link(ActivityButtonLink { label, url }))
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>ActivityButton {
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>ActivityButton {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         deserializer.deserialize_any(ActivityButtonVisitor)
     }
 }
@@ -477,16 +478,16 @@
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::Link(link) =&gt; {
-                <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">&quot;ActivityButton&quot;</span>, <span class="number">2</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">"ActivityButton"</span>, <span class="number">2</span>)<span class="question-mark">?</span>;
 
-                state.serialize_field(<span class="string">&quot;label&quot;</span>, <span class="kw-2">&amp;</span>link.label)<span class="question-mark">?</span>;
-                state.serialize_field(<span class="string">&quot;url&quot;</span>, <span class="kw-2">&amp;</span>link.url)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"label"</span>, <span class="kw-2">&amp;</span>link.label)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"url"</span>, <span class="kw-2">&amp;</span>link.url)<span class="question-mark">?</span>;
 
                 state.end()
             }
             <span class="self">Self</span>::Text(text) =&gt; serializer.serialize_str(<span class="kw-2">&amp;</span>text.label),
             <span class="self">Self</span>::Unknown =&gt; <span class="prelude-val">Err</span>(serde::ser::Error::custom(
-                <span class="string">&quot;Can&#39;t serialize an unknown activity button type&quot;</span>,
+                <span class="string">"Can't serialize an unknown activity button type"</span>,
             )),
         }
     }
@@ -506,16 +507,16 @@
 /// # serde
 ///
 /// Textual activity buttons deserialize and serialize as a string. This means
-/// that a textual activity button with a label of &quot;test&quot; will serialize as
-/// simply the string &quot;test&quot; and vice versa.
+/// that a textual activity button with a label of "test" will serialize as
+/// simply the string "test" and vice versa.
 ///
 /// ```ignore
 /// use twilight_model::gateway::presence::activity_button::ActivityButtonText;
 ///
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 /// assert_eq!(
-///     ActivityButtonText { label: &quot;test&quot;.to_owned() },
-///     serde_json::from_str(r#&quot;&quot;test&quot;&quot;#)?,
+///     ActivityButtonText { label: "test".to_owned() },
+///     serde_json::from_str(r#""test""#)?,
 /// );
 /// # Ok(()) }
 /// ```
@@ -538,7 +539,7 @@
     <span class="macro">assert_impl_all!</span>(
         ActivityButtonLink: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Serialize
@@ -547,7 +548,7 @@
     <span class="macro">assert_impl_all!</span>(
         ActivityButtonText: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Serialize
@@ -555,7 +556,7 @@
     <span class="macro">assert_impl_all!</span>(
         ActivityButton: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         PartialEq,
         Serialize
@@ -563,14 +564,14 @@
 
     <span class="kw">fn </span>link() -&gt; ActivityButtonLink {
         ActivityButtonLink {
-            label: <span class="string">&quot;a&quot;</span>.to_owned(),
-            url: <span class="string">&quot;b&quot;</span>.to_owned(),
+            label: <span class="string">"a"</span>.to_owned(),
+            url: <span class="string">"b"</span>.to_owned(),
         }
     }
 
     <span class="kw">fn </span>text() -&gt; ActivityButtonText {
         ActivityButtonText {
-            label: <span class="string">&quot;a&quot;</span>.to_owned(),
+            label: <span class="string">"a"</span>.to_owned(),
         }
     }
 
@@ -580,13 +581,13 @@
             <span class="kw-2">&amp;</span>link(),
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;ActivityButtonLink&quot;</span>,
+                    name: <span class="string">"ActivityButtonLink"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;label&quot;</span>),
-                Token::Str(<span class="string">&quot;a&quot;</span>),
-                Token::Str(<span class="string">&quot;url&quot;</span>),
-                Token::Str(<span class="string">&quot;b&quot;</span>),
+                Token::Str(<span class="string">"label"</span>),
+                Token::Str(<span class="string">"a"</span>),
+                Token::Str(<span class="string">"url"</span>),
+                Token::Str(<span class="string">"b"</span>),
                 Token::StructEnd,
             ],
         );
@@ -594,7 +595,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>activity_button_text() {
-        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>text(), <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;a&quot;</span>)]);
+        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>text(), <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"a"</span>)]);
     }
 
     <span class="attr">#[test]
@@ -603,13 +604,13 @@
             <span class="kw-2">&amp;</span>ActivityButton::Link(link()),
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;ActivityButton&quot;</span>,
+                    name: <span class="string">"ActivityButton"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;label&quot;</span>),
-                Token::Str(<span class="string">&quot;a&quot;</span>),
-                Token::Str(<span class="string">&quot;url&quot;</span>),
-                Token::Str(<span class="string">&quot;b&quot;</span>),
+                Token::Str(<span class="string">"label"</span>),
+                Token::Str(<span class="string">"a"</span>),
+                Token::Str(<span class="string">"url"</span>),
+                Token::Str(<span class="string">"b"</span>),
                 Token::StructEnd,
             ],
         );
@@ -617,7 +618,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>activity_button_without_url() {
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ActivityButton::Text(text()), <span class="kw-2">&amp;</span>[Token::Str(<span class="string">&quot;a&quot;</span>)]);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ActivityButton::Text(text()), <span class="kw-2">&amp;</span>[Token::Str(<span class="string">"a"</span>)]);
     }
 }
 </code></pre></div></section></main></body></html>

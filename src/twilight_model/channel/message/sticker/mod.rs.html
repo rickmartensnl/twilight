@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/sticker/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/sticker/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -294,32 +295,32 @@
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Sticker {
     <span class="doccomment">/// Whether the sticker is available.
-    </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">&quot;is_false&quot;</span>)]
+    </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">"is_false"</span>)]
     </span><span class="kw">pub </span>available: bool,
     <span class="doccomment">/// Description of the sticker.
     </span><span class="kw">pub </span>description: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Format type.
     </span><span class="kw">pub </span>format_type: StickerFormatType,
     <span class="doccomment">/// ID of the guild that owns the sticker.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt;,
     <span class="doccomment">/// Unique ID of the sticker.
     </span><span class="kw">pub </span>id: Id&lt;StickerMarker&gt;,
     <span class="doccomment">/// Kind of sticker.
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: StickerType,
     <span class="doccomment">/// Name of the sticker.
     </span><span class="kw">pub </span>name: String,
     <span class="doccomment">/// Unique ID of the pack the sticker is in.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>pack_id: <span class="prelude-ty">Option</span>&lt;Id&lt;StickerPackMarker&gt;&gt;,
-    <span class="doccomment">/// Sticker&#39;s sort order within a pack.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Sticker's sort order within a pack.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>sort_value: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="doccomment">/// CSV list of tags the sticker is assigned to, if any.
     </span><span class="kw">pub </span>tags: String,
     <span class="doccomment">/// ID of the user that uploaded the sticker.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;User&gt;,
 }
 
@@ -353,7 +354,7 @@
     <span class="macro">assert_impl_all!</span>(
         Sticker: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         Hash,
         PartialEq,
@@ -366,15 +367,15 @@
     </span><span class="kw">fn </span>minimal() {
         <span class="kw">let </span>value = Sticker {
             available: <span class="bool-val">false</span>,
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;foo2&quot;</span>.to_owned()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"foo2"</span>.to_owned()),
             format_type: StickerFormatType::Png,
             guild_id: <span class="prelude-val">None</span>,
             id: Id::new(<span class="number">1</span>),
             kind: StickerType::Standard,
-            name: <span class="string">&quot;sticker name&quot;</span>.to_owned(),
+            name: <span class="string">"sticker name"</span>.to_owned(),
             pack_id: <span class="prelude-val">None</span>,
             sort_value: <span class="prelude-val">None</span>,
-            tags: <span class="string">&quot;foo,bar,baz&quot;</span>.to_owned(),
+            tags: <span class="string">"foo,bar,baz"</span>.to_owned(),
             user: <span class="prelude-val">None</span>,
         };
 
@@ -382,23 +383,23 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Sticker&quot;</span>,
+                    name: <span class="string">"Sticker"</span>,
                     len: <span class="number">6</span>,
                 },
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;foo2&quot;</span>),
-                Token::Str(<span class="string">&quot;format_type&quot;</span>),
+                Token::Str(<span class="string">"foo2"</span>),
+                Token::Str(<span class="string">"format_type"</span>),
                 Token::U8(StickerFormatType::Png.into()),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;sticker name&quot;</span>),
-                Token::Str(<span class="string">&quot;tags&quot;</span>),
-                Token::Str(<span class="string">&quot;foo,bar,baz&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"sticker name"</span>),
+                Token::Str(<span class="string">"tags"</span>),
+                Token::Str(<span class="string">"foo,bar,baz"</span>),
                 Token::StructEnd,
             ],
         );
@@ -409,15 +410,15 @@
     </span><span class="kw">fn </span>full() {
         <span class="kw">let </span>value = Sticker {
             available: <span class="bool-val">true</span>,
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;sticker&quot;</span>.into()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"sticker"</span>.into()),
             format_type: StickerFormatType::Png,
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             id: Id::new(<span class="number">2</span>),
             kind: StickerType::Guild,
-            name: <span class="string">&quot;stick&quot;</span>.into(),
+            name: <span class="string">"stick"</span>.into(),
             pack_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">3</span>)),
             sort_value: <span class="prelude-val">Some</span>(<span class="number">1</span>),
-            tags: <span class="string">&quot;foo,bar,baz&quot;</span>.into(),
+            tags: <span class="string">"foo,bar,baz"</span>.into(),
             user: <span class="prelude-val">Some</span>(User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">Some</span>(image_hash::AVATAR),
@@ -425,13 +426,13 @@
                 banner: <span class="prelude-val">None</span>,
                 bot: <span class="bool-val">false</span>,
                 discriminator: <span class="number">1</span>,
-                email: <span class="prelude-val">Some</span>(<span class="string">&quot;address@example.com&quot;</span>.to_owned()),
+                email: <span class="prelude-val">Some</span>(<span class="string">"address@example.com"</span>.to_owned()),
                 flags: <span class="prelude-val">Some</span>(UserFlags::PREMIUM_EARLY_SUPPORTER | UserFlags::VERIFIED_DEVELOPER),
-                global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                 id: Id::new(<span class="number">1</span>),
-                locale: <span class="prelude-val">Some</span>(<span class="string">&quot;en-us&quot;</span>.to_owned()),
+                locale: <span class="prelude-val">Some</span>(<span class="string">"en-us"</span>.to_owned()),
                 mfa_enabled: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
-                name: <span class="string">&quot;test&quot;</span>.to_owned(),
+                name: <span class="string">"test"</span>.to_owned(),
                 premium_type: <span class="prelude-val">Some</span>(PremiumType::Nitro),
                 public_flags: <span class="prelude-val">Some</span>(
                     UserFlags::PREMIUM_EARLY_SUPPORTER | UserFlags::VERIFIED_DEVELOPER,
@@ -445,85 +446,85 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Sticker&quot;</span>,
+                    name: <span class="string">"Sticker"</span>,
                     len: <span class="number">11</span>,
                 },
-                Token::Str(<span class="string">&quot;available&quot;</span>),
+                Token::Str(<span class="string">"available"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;sticker&quot;</span>),
-                Token::Str(<span class="string">&quot;format_type&quot;</span>),
+                Token::Str(<span class="string">"sticker"</span>),
+                Token::Str(<span class="string">"format_type"</span>),
                 Token::U8(StickerFormatType::Png.into()),
-                Token::Str(<span class="string">&quot;guild_id&quot;</span>),
+                Token::Str(<span class="string">"guild_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(<span class="number">2</span>),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;stick&quot;</span>),
-                Token::Str(<span class="string">&quot;pack_id&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"stick"</span>),
+                Token::Str(<span class="string">"pack_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;3&quot;</span>),
-                Token::Str(<span class="string">&quot;sort_value&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"3"</span>),
+                Token::Str(<span class="string">"sort_value"</span>),
                 Token::Some,
                 Token::U64(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;tags&quot;</span>),
-                Token::Str(<span class="string">&quot;foo,bar,baz&quot;</span>),
-                Token::Str(<span class="string">&quot;user&quot;</span>),
+                Token::Str(<span class="string">"tags"</span>),
+                Token::Str(<span class="string">"foo,bar,baz"</span>),
+                Token::Str(<span class="string">"user"</span>),
                 Token::Some,
                 Token::Struct {
-                    name: <span class="string">&quot;User&quot;</span>,
+                    name: <span class="string">"User"</span>,
                     len: <span class="number">17</span>,
                 },
-                Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+                Token::Str(<span class="string">"accent_color"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::Some,
                 Token::Str(image_hash::AVATAR_INPUT),
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::Str(<span class="string">"avatar_decoration"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;banner&quot;</span>),
+                Token::Str(<span class="string">"banner"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;bot&quot;</span>),
+                Token::Str(<span class="string">"bot"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;discriminator&quot;</span>),
-                Token::Str(<span class="string">&quot;0001&quot;</span>),
-                Token::Str(<span class="string">&quot;email&quot;</span>),
+                Token::Str(<span class="string">"discriminator"</span>),
+                Token::Str(<span class="string">"0001"</span>),
+                Token::Str(<span class="string">"email"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;address@example.com&quot;</span>),
-                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Str(<span class="string">"address@example.com"</span>),
+                Token::Str(<span class="string">"flags"</span>),
                 Token::Some,
                 Token::U64(<span class="number">131_584</span>),
-                Token::Str(<span class="string">&quot;global_name&quot;</span>),
+                Token::Str(<span class="string">"global_name"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;locale&quot;</span>),
+                Token::Str(<span class="string">"test"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"locale"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;en-us&quot;</span>),
-                Token::Str(<span class="string">&quot;mfa_enabled&quot;</span>),
+                Token::Str(<span class="string">"en-us"</span>),
+                Token::Str(<span class="string">"mfa_enabled"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;username&quot;</span>),
-                Token::Str(<span class="string">&quot;test&quot;</span>),
-                Token::Str(<span class="string">&quot;premium_type&quot;</span>),
+                Token::Str(<span class="string">"username"</span>),
+                Token::Str(<span class="string">"test"</span>),
+                Token::Str(<span class="string">"premium_type"</span>),
                 Token::Some,
                 Token::U8(<span class="number">2</span>),
-                Token::Str(<span class="string">&quot;public_flags&quot;</span>),
+                Token::Str(<span class="string">"public_flags"</span>),
                 Token::Some,
                 Token::U64(<span class="number">131_584</span>),
-                Token::Str(<span class="string">&quot;system&quot;</span>),
+                Token::Str(<span class="string">"system"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;verified&quot;</span>),
+                Token::Str(<span class="string">"verified"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">true</span>),
                 Token::StructEnd,

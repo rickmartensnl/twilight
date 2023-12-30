@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -252,15 +253,15 @@
 ///
 /// # Examples
 ///
-/// Create a request to create a message with a content of &quot;test&quot; in a
+/// Create a request to create a message with a content of "test" in a
 /// channel with an ID of 1:
 ///
 /// ```
 /// use twilight_http::{request::Request, routing::Route};
 ///
-/// let body = br#&quot;{
-///     &quot;content&quot;: &quot;test&quot;
-/// }&quot;#
+/// let body = br#"{
+///     "content": "test"
+/// }"#
 /// .to_vec();
 ///
 /// let request = Request::builder(&amp;Route::CreateMessage { channel_id: 1 })
@@ -268,12 +269,12 @@
 ///     .build();
 /// ```
 </span><span class="attr">#[derive(Debug)]
-#[must_use = <span class="string">&quot;request has not been fully built&quot;</span>]
+#[must_use = <span class="string">"request has not been fully built"</span>]
 </span><span class="kw">pub struct </span>RequestBuilder(Request);
 
 <span class="kw">impl </span>RequestBuilder {
     <span class="doccomment">/// Create a new request builder.
-    </span><span class="kw">pub fn </span>new(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>new(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">'_</span>&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(Request::from_route(route))
     }
 
@@ -282,7 +283,7 @@
     ///
     /// The path and query should not include the leading slash as that is
     /// prefixed by the client. In the URL
-    /// `https://discord.com/api/vX/channels/123/pins` the &quot;path and query&quot;
+    /// `https://discord.com/api/vX/channels/123/pins` the "path and query"
     /// is considered to be `channels/123/pins`.
     ///
     /// # Examples
@@ -299,7 +300,7 @@
     /// };
     ///
     /// let method = Method::Post;
-    /// let path_and_query = &quot;channels/123/pins&quot;.to_owned();
+    /// let path_and_query = "channels/123/pins".to_owned();
     /// let ratelimit_path = Path::from_str(&amp;path_and_query)?;
     ///
     /// let _request = RequestBuilder::raw(method, ratelimit_path, path_and_query).build();
@@ -319,7 +320,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built request.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;request information is not useful on its own and must be acted on&quot;</span>]
+    #[must_use = <span class="string">"request information is not useful on its own and must be acted on"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Request {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -360,7 +361,7 @@
         <span class="prelude-val">Ok</span>(<span class="self">self</span>.body(bytes))
     }
 
-    <span class="doccomment">/// Whether to use the client&#39;s authorization token in the request, if one
+    <span class="doccomment">/// Whether to use the client's authorization token in the request, if one
     /// is set.
     ///
     /// This is primarily useful for executing webhooks.
@@ -387,22 +388,22 @@
     ///
     /// # Examples
     ///
-    /// Create a request to create a message with a content of &quot;test&quot; in a
+    /// Create a request to create a message with a content of "test" in a
     /// channel with an ID of 1:
     ///
     /// ```
     /// use twilight_http::{request::Request, routing::Route};
     ///
-    /// let body = br#&quot;{
-    ///     &quot;content&quot;: &quot;test&quot;
-    /// }&quot;#
+    /// let body = br#"{
+    ///     "content": "test"
+    /// }"#
     /// .to_vec();
     ///
     /// let request = Request::builder(&amp;Route::CreateMessage { channel_id: 1 })
     ///     .body(body)
     ///     .build();
     /// ```
-    </span><span class="kw">pub fn </span>builder(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; RequestBuilder {
+    </span><span class="kw">pub fn </span>builder(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">'_</span>&gt;) -&gt; RequestBuilder {
         RequestBuilder::new(route)
     }
 
@@ -426,7 +427,7 @@
     /// ```
     ///
     /// [`builder`]: Self::builder
-    </span><span class="kw">pub fn </span>from_route(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>from_route(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">'_</span>&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             body: <span class="prelude-val">None</span>,
             form: <span class="prelude-val">None</span>,
@@ -468,7 +469,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>.ratelimit_path
     }
 
-    <span class="doccomment">/// Whether to use the client&#39;s authorization token in the request.
+    <span class="doccomment">/// Whether to use the client's authorization token in the request.
     </span><span class="kw">pub const fn </span>use_authorization_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="self">self</span>.use_authorization_token
     }

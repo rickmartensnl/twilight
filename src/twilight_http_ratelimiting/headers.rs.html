@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/headers.rs`."><title>headers.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http-ratelimiting/src/headers.rs`."><title>headers.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_http_ratelimiting" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -819,19 +820,19 @@
 
 <span class="kw">impl </span>HeaderParsingError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>HeaderParsingErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (HeaderParsingErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
@@ -854,40 +855,40 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>HeaderParsingError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             HeaderParsingErrorType::Missing { name } =&gt; {
-                f.write_str(<span class="string">&quot;at least one header, &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"at least one header, '"</span>)<span class="question-mark">?</span>;
                 f.write_str(name.name())<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;&#39;, is missing&quot;</span>)
+                f.write_str(<span class="string">"', is missing"</span>)
             }
             HeaderParsingErrorType::NotUtf8 { name, value } =&gt; {
-                f.write_str(<span class="string">&quot;header &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"header '"</span>)<span class="question-mark">?</span>;
                 f.write_str(name.name())<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;&#39; contains invalid UTF-16: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"' contains invalid UTF-16: "</span>)<span class="question-mark">?</span>;
 
                 Debug::fmt(value, f)
             }
             HeaderParsingErrorType::Parsing { kind, name, value } =&gt; {
-                f.write_str(<span class="string">&quot;header &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"header '"</span>)<span class="question-mark">?</span>;
                 f.write_str(name.name())<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;&#39; can not be parsed as a &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"' can not be parsed as a "</span>)<span class="question-mark">?</span>;
                 f.write_str(kind.name())<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;: &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">": '"</span>)<span class="question-mark">?</span>;
                 f.write_str(value)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;&#39;&quot;</span>)
+                f.write_str(<span class="string">"'"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>HeaderParsingError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -942,33 +943,33 @@
 
 <span class="kw">impl </span>HeaderName {
     <span class="doccomment">/// Lowercased name for the bucket header.
-    </span><span class="kw">pub const </span>BUCKET: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-bucket&quot;</span>;
+    </span><span class="kw">pub const </span>BUCKET: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-bucket"</span>;
 
     <span class="doccomment">/// Lowercased name for the global header.
-    </span><span class="kw">pub const </span>GLOBAL: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-global&quot;</span>;
+    </span><span class="kw">pub const </span>GLOBAL: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-global"</span>;
 
     <span class="doccomment">/// Lowercased name for the limit header.
-    </span><span class="kw">pub const </span>LIMIT: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-limit&quot;</span>;
+    </span><span class="kw">pub const </span>LIMIT: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-limit"</span>;
 
     <span class="doccomment">/// Lowercased name for the remaining header.
-    </span><span class="kw">pub const </span>REMAINING: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-remaining&quot;</span>;
+    </span><span class="kw">pub const </span>REMAINING: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-remaining"</span>;
 
     <span class="doccomment">/// Lowercased name for the reset-after header.
-    </span><span class="kw">pub const </span>RESET_AFTER: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-reset-after&quot;</span>;
+    </span><span class="kw">pub const </span>RESET_AFTER: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-reset-after"</span>;
 
     <span class="doccomment">/// Lowercased name for the reset header.
-    </span><span class="kw">pub const </span>RESET: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-reset&quot;</span>;
+    </span><span class="kw">pub const </span>RESET: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-reset"</span>;
 
     <span class="doccomment">/// Lowercased name for the retry-after header.
-    </span><span class="comment">// It&#39;s correct for this to not have the `x-ratelimit-` prefix.
-    </span><span class="kw">pub const </span>RETRY_AFTER: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;retry-after&quot;</span>;
+    </span><span class="comment">// It's correct for this to not have the `x-ratelimit-` prefix.
+    </span><span class="kw">pub const </span>RETRY_AFTER: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"retry-after"</span>;
 
     <span class="doccomment">/// Lowercased name for the scope header.
-    </span><span class="kw">pub const </span>SCOPE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;x-ratelimit-scope&quot;</span>;
+    </span><span class="kw">pub const </span>SCOPE: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"x-ratelimit-scope"</span>;
 
     <span class="doccomment">/// Lowercased name of the header.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    </span><span class="kw">pub const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str {
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::Bucket =&gt; <span class="self">Self</span>::BUCKET,
             <span class="self">Self</span>::Global =&gt; <span class="self">Self</span>::GLOBAL,
@@ -983,7 +984,7 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>HeaderName {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         f.write_str(<span class="self">self</span>.name())
     }
 }
@@ -1004,18 +1005,18 @@
 
 <span class="kw">impl </span>HeaderType {
     <span class="doccomment">/// Name of the type of header.
-    </span><span class="kw">const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    </span><span class="kw">const fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Bool =&gt; <span class="string">&quot;bool&quot;</span>,
-            <span class="self">Self</span>::Float =&gt; <span class="string">&quot;float&quot;</span>,
-            <span class="self">Self</span>::Integer =&gt; <span class="string">&quot;integer&quot;</span>,
-            <span class="self">Self</span>::String =&gt; <span class="string">&quot;string&quot;</span>,
+            <span class="self">Self</span>::Bool =&gt; <span class="string">"bool"</span>,
+            <span class="self">Self</span>::Float =&gt; <span class="string">"float"</span>,
+            <span class="self">Self</span>::Integer =&gt; <span class="string">"integer"</span>,
+            <span class="self">Self</span>::String =&gt; <span class="string">"string"</span>,
         }
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>HeaderType {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         f.write_str(<span class="self">self</span>.name())
     }
 }
@@ -1118,18 +1119,18 @@
     </span>Global,
     <span class="doccomment">/// Ratelimit is shared, affecting all users of the resource.
     ///
-    /// Does not affect the application&#39;s individual buckets or global limits.
+    /// Does not affect the application's individual buckets or global limits.
     </span>Shared,
     <span class="doccomment">/// Ratelimit is per-resource, such as for an individual bucket.
     </span>User,
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>RatelimitScope {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         f.write_str(<span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Global =&gt; <span class="string">&quot;global&quot;</span>,
-            <span class="self">Self</span>::Shared =&gt; <span class="string">&quot;shared&quot;</span>,
-            <span class="self">Self</span>::User =&gt; <span class="string">&quot;user&quot;</span>,
+            <span class="self">Self</span>::Global =&gt; <span class="string">"global"</span>,
+            <span class="self">Self</span>::Shared =&gt; <span class="string">"shared"</span>,
+            <span class="self">Self</span>::User =&gt; <span class="string">"user"</span>,
         })
     }
 }
@@ -1139,9 +1140,9 @@
 
     <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>s {
-            <span class="string">&quot;global&quot; </span>=&gt; <span class="self">Self</span>::Global,
-            <span class="string">&quot;shared&quot; </span>=&gt; <span class="self">Self</span>::Shared,
-            <span class="string">&quot;user&quot; </span>=&gt; <span class="self">Self</span>::User,
+            <span class="string">"global" </span>=&gt; <span class="self">Self</span>::Global,
+            <span class="string">"shared" </span>=&gt; <span class="self">Self</span>::Shared,
+            <span class="string">"user" </span>=&gt; <span class="self">Self</span>::User,
             <span class="kw">_ </span>=&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(HeaderParsingError {
                     kind: HeaderParsingErrorType::Parsing {
@@ -1156,7 +1157,7 @@
     }
 }
 
-<span class="kw">impl </span>TryFrom&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>str&gt; <span class="kw">for </span>RatelimitScope {
+<span class="kw">impl </span>TryFrom&lt;<span class="kw-2">&amp;</span><span class="lifetime">'_ </span>str&gt; <span class="kw">for </span>RatelimitScope {
     <span class="kw">type </span>Error = HeaderParsingError;
 
     <span class="kw">fn </span>try_from(value: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
@@ -1213,13 +1214,13 @@
     ///
     /// let headers = [
     ///     (
-    ///         &quot;x-ratelimit-bucket&quot;,
-    ///         &quot;d721dea6054f6322373d361f98e5c38b&quot;.as_bytes(),
+    ///         "x-ratelimit-bucket",
+    ///         "d721dea6054f6322373d361f98e5c38b".as_bytes(),
     ///     ),
-    ///     (&quot;x-ratelimit-limit&quot;, &quot;10&quot;.as_bytes()),
-    ///     (&quot;x-ratelimit-remaining&quot;, &quot;9&quot;.as_bytes()),
-    ///     (&quot;x-ratelimit-reset&quot;, &quot;1573795260.333&quot;.as_bytes()),
-    ///     (&quot;x-ratelimit-reset-after&quot;, &quot;10.000&quot;.as_bytes()),
+    ///     ("x-ratelimit-limit", "10".as_bytes()),
+    ///     ("x-ratelimit-remaining", "9".as_bytes()),
+    ///     ("x-ratelimit-reset", "1573795260.333".as_bytes()),
+    ///     ("x-ratelimit-reset-after", "10.000".as_bytes()),
     /// ];
     ///
     /// let headers = RatelimitHeaders::from_pairs(headers.into_iter())?;
@@ -1238,8 +1239,8 @@
     /// use twilight_http_ratelimiting::RatelimitHeaders;
     ///
     /// let headers = [
-    ///     (&quot;retry-after&quot;, &quot;487&quot;.as_bytes()),
-    ///     (&quot;x-ratelimit-global&quot;, &quot;true&quot;.as_bytes()),
+    ///     ("retry-after", "487".as_bytes()),
+    ///     ("x-ratelimit-global", "true".as_bytes()),
     /// ];
     ///
     /// let headers = RatelimitHeaders::from_pairs(headers.into_iter())?;
@@ -1254,8 +1255,8 @@
     ///
     /// Errors if a required header is missing or if a header value is of an
     /// invalid type.
-    </span><span class="kw">pub fn </span>from_pairs&lt;<span class="lifetime">&#39;a</span>&gt;(
-        headers: <span class="kw">impl </span>Iterator&lt;Item = (<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8])&gt;,
+    </span><span class="kw">pub fn </span>from_pairs&lt;<span class="lifetime">'a</span>&gt;(
+        headers: <span class="kw">impl </span>Iterator&lt;Item = (<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str, <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8])&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, HeaderParsingError&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>bucket = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>global = <span class="bool-val">false</span>;
@@ -1442,12 +1443,12 @@
         <span class="kw">let </span>map = {
             <span class="kw">let </span><span class="kw-2">mut </span>map = HeaderMap::new();
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-global&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;true&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-global"</span>),
+                HeaderValue::from_static(<span class="string">"true"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;retry-after&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;65&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"retry-after"</span>),
+                HeaderValue::from_static(<span class="string">"65"</span>),
             );
 
             map
@@ -1465,16 +1466,16 @@
         <span class="kw">let </span>map = {
             <span class="kw">let </span><span class="kw-2">mut </span>map = HeaderMap::new();
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-global&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;true&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-global"</span>),
+                HeaderValue::from_static(<span class="string">"true"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;retry-after&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;65&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"retry-after"</span>),
+                HeaderValue::from_static(<span class="string">"65"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-scope&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;global&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-scope"</span>),
+                HeaderValue::from_static(<span class="string">"global"</span>),
             );
 
             map
@@ -1501,28 +1502,28 @@
         <span class="kw">let </span>map = {
             <span class="kw">let </span><span class="kw-2">mut </span>map = HeaderMap::new();
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-limit&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;10&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-limit"</span>),
+                HeaderValue::from_static(<span class="string">"10"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-remaining&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;9&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-remaining"</span>),
+                HeaderValue::from_static(<span class="string">"9"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-reset&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;1470173023.123&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-reset"</span>),
+                HeaderValue::from_static(<span class="string">"1470173023.123"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-reset-after&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;64.57&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-reset-after"</span>),
+                HeaderValue::from_static(<span class="string">"64.57"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-bucket&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;abcd1234&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-bucket"</span>),
+                HeaderValue::from_static(<span class="string">"abcd1234"</span>),
             );
             map.insert(
-                HttpHeaderName::from_static(<span class="string">&quot;x-ratelimit-scope&quot;</span>),
-                HeaderValue::from_static(<span class="string">&quot;shared&quot;</span>),
+                HttpHeaderName::from_static(<span class="string">"x-ratelimit-scope"</span>),
+                HeaderValue::from_static(<span class="string">"shared"</span>),
             );
 
             map
@@ -1533,7 +1534,7 @@
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw-2">&amp;</span>headers,
             RatelimitHeaders::Present(present)
-            <span class="kw">if </span>present.bucket.as_deref() == <span class="prelude-val">Some</span>(<span class="string">&quot;abcd1234&quot;</span>)
+            <span class="kw">if </span>present.bucket.as_deref() == <span class="prelude-val">Some</span>(<span class="string">"abcd1234"</span>)
         ));
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw-2">&amp;</span>headers,
@@ -1566,14 +1567,14 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>name() {
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-bucket&quot;</span>, HeaderName::BUCKET);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-global&quot;</span>, HeaderName::GLOBAL);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-limit&quot;</span>, HeaderName::LIMIT);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-remaining&quot;</span>, HeaderName::REMAINING);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-reset-after&quot;</span>, HeaderName::RESET_AFTER);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-reset&quot;</span>, HeaderName::RESET);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;retry-after&quot;</span>, HeaderName::RETRY_AFTER);
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;x-ratelimit-scope&quot;</span>, HeaderName::SCOPE);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-bucket"</span>, HeaderName::BUCKET);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-global"</span>, HeaderName::GLOBAL);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-limit"</span>, HeaderName::LIMIT);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-remaining"</span>, HeaderName::REMAINING);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-reset-after"</span>, HeaderName::RESET_AFTER);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-reset"</span>, HeaderName::RESET);
+        <span class="macro">assert_eq!</span>(<span class="string">"retry-after"</span>, HeaderName::RETRY_AFTER);
+        <span class="macro">assert_eq!</span>(<span class="string">"x-ratelimit-scope"</span>, HeaderName::SCOPE);
         <span class="macro">assert_eq!</span>(HeaderName::BUCKET, HeaderName::Bucket.name());
         <span class="macro">assert_eq!</span>(HeaderName::GLOBAL, HeaderName::Global.name());
         <span class="macro">assert_eq!</span>(HeaderName::LIMIT, HeaderName::Limit.name());
@@ -1586,10 +1587,10 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>type_name() {
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;bool&quot;</span>, HeaderType::Bool.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;float&quot;</span>, HeaderType::Float.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;integer&quot;</span>, HeaderType::Integer.name());
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;string&quot;</span>, HeaderType::String.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"bool"</span>, HeaderType::Bool.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"float"</span>, HeaderType::Float.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"integer"</span>, HeaderType::Integer.name());
+        <span class="macro">assert_eq!</span>(<span class="string">"string"</span>, HeaderType::String.name());
     }
 }
 </code></pre></div></section></main></body></html>

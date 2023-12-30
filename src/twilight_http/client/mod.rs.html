@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2828,11 +2829,11 @@
 };
 
 <span class="kw">const </span>TWILIGHT_USER_AGENT: <span class="kw-2">&amp;</span>str = <span class="macro">concat!</span>(
-    <span class="string">&quot;DiscordBot (&quot;</span>,
-    <span class="macro">env!</span>(<span class="string">&quot;CARGO_PKG_HOMEPAGE&quot;</span>),
-    <span class="string">&quot;, &quot;</span>,
-    <span class="macro">env!</span>(<span class="string">&quot;CARGO_PKG_VERSION&quot;</span>),
-    <span class="string">&quot;) Twilight-rs&quot;</span>,
+    <span class="string">"DiscordBot ("</span>,
+    <span class="macro">env!</span>(<span class="string">"CARGO_PKG_HOMEPAGE"</span>),
+    <span class="string">", "</span>,
+    <span class="macro">env!</span>(<span class="string">"CARGO_PKG_VERSION"</span>),
+    <span class="string">") Twilight-rs"</span>,
 );
 
 <span class="doccomment">/// Wrapper for an authorization token with a debug implementation that redacts
@@ -2851,8 +2852,8 @@
 }
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>Token {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;&lt;redacted&gt;&quot;</span>)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"&lt;redacted&gt;"</span>)
     }
 }
 
@@ -2864,7 +2865,7 @@
     }
 }
 
-<span class="doccomment">/// Twilight&#39;s http client.
+<span class="doccomment">/// Twilight's http client.
 ///
 /// Almost all of the client methods require authentication, and as such, the client must be
 /// supplied with a Discord Token. Get yours [here].
@@ -2876,7 +2877,7 @@
 ///
 /// # OAuth
 ///
-/// To use Bearer tokens prefix the token with `&quot;Bearer &quot;`, including the space
+/// To use Bearer tokens prefix the token with `"Bearer "`, including the space
 /// at the end like so:
 ///
 /// ```no_run
@@ -2884,8 +2885,8 @@
 /// use std::env;
 /// use twilight_http::Client;
 ///
-/// let bearer = env::var(&quot;BEARER_TOKEN&quot;)?;
-/// let token = format!(&quot;Bearer {bearer}&quot;);
+/// let bearer = env::var("BEARER_TOKEN")?;
+/// let token = format!("Bearer {bearer}");
 ///
 /// let client = Client::new(token);
 /// # Ok(()) }
@@ -2912,7 +2913,7 @@
 ///
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let client = Client::new(&quot;my token&quot;.to_owned());
+/// let client = Client::new("my token".to_owned());
 /// # Ok(()) }
 /// ```
 ///
@@ -2925,7 +2926,7 @@
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 /// let client = Client::builder()
-///     .token(&quot;my token&quot;.to_owned())
+///     .token("my token".to_owned())
 ///     .timeout(Duration::from_secs(5))
 ///     .build();
 /// # Ok(()) }
@@ -2989,7 +2990,7 @@
     /// use std::env;
     /// use twilight_http::Client;
     ///
-    /// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+    /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     ///
     /// // Cache the application ID for repeated use later in the process.
     /// let application_id = {
@@ -3006,7 +3007,7 @@
     ///     .models()
     ///     .await?;
     ///
-    /// println!(&quot;there are {} global commands&quot;, commands.len());
+    /// println!("there are {} global commands", commands.len());
     /// # Ok(()) }
     /// ```
     ///
@@ -3014,7 +3015,7 @@
     </span><span class="kw">pub const fn </span>interaction(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         application_id: Id&lt;ApplicationMarker&gt;,
-    ) -&gt; InteractionClient&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; InteractionClient&lt;<span class="lifetime">'_</span>&gt; {
         InteractionClient::new(<span class="self">self</span>, application_id)
     }
 
@@ -3041,7 +3042,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         auto_moderation_rule_id: Id&lt;AutoModerationRuleMarker&gt;,
-    ) -&gt; GetAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {
         GetAutoModerationRule::new(<span class="self">self</span>, guild_id, auto_moderation_rule_id)
     }
 
@@ -3053,7 +3054,7 @@
     </span><span class="kw">pub const fn </span>auto_moderation_rules(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; GetGuildAutoModerationRules&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildAutoModerationRules&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildAutoModerationRules::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3063,32 +3064,32 @@
     ///
     /// # Examples
     ///
-    /// Create a rule that deletes messages that contain the word &quot;darn&quot;:
+    /// Create a rule that deletes messages that contain the word "darn":
     ///
     /// ```no_run
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_http::Client;
     /// use twilight_model::{guild::auto_moderation::AutoModerationEventType, id::Id};
     ///
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// client
-    ///     .create_auto_moderation_rule(guild_id, &quot;no darns&quot;, AutoModerationEventType::MessageSend)
+    ///     .create_auto_moderation_rule(guild_id, "no darns", AutoModerationEventType::MessageSend)
     ///     .action_block_message()
     ///     .enabled(true)
-    ///     .with_keyword(&amp;[&quot;darn&quot;])
+    ///     .with_keyword(&amp;["darn"])
     ///     .await?;
     /// # Ok(()) }
     /// ```
     ///
     /// [`MANAGE_GUILD`]: twilight_model::guild::Permissions::MANAGE_GUILD
-    </span><span class="kw">pub const fn </span>create_auto_moderation_rule&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>create_auto_moderation_rule&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         event_type: AutoModerationEventType,
-    ) -&gt; CreateAutoModerationRule&lt;<span class="lifetime">&#39;a</span>&gt; {
+    ) -&gt; CreateAutoModerationRule&lt;<span class="lifetime">'a</span>&gt; {
         CreateAutoModerationRule::new(<span class="self">self</span>, guild_id, name, event_type)
     }
 
@@ -3101,7 +3102,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         auto_moderation_rule_id: Id&lt;AutoModerationRuleMarker&gt;,
-    ) -&gt; DeleteAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {
         DeleteAutoModerationRule::new(<span class="self">self</span>, guild_id, auto_moderation_rule_id)
     }
 
@@ -3114,7 +3115,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         auto_moderation_rule_id: Id&lt;AutoModerationRuleMarker&gt;,
-    ) -&gt; UpdateAutoModerationRule&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {
         UpdateAutoModerationRule::new(<span class="self">self</span>, guild_id, auto_moderation_rule_id)
     }
 
@@ -3128,12 +3129,12 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;token&quot;.to_owned());
+    /// # let client = Client::new("token".to_owned());
     /// let guild_id = Id::new(101);
     /// let audit_log = client.audit_log(guild_id).await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>audit_log(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetAuditLog&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>audit_log(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetAuditLog&lt;<span class="lifetime">'_</span>&gt; {
         GetAuditLog::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3149,31 +3150,31 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(1);
     ///
     /// let bans = client.bans(guild_id).await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>bans(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetBans&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>bans(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetBans&lt;<span class="lifetime">'_</span>&gt; {
         GetBans::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get information about a ban of a guild.
     ///
     /// Includes the user banned and the reason.
-    </span><span class="kw">pub const fn </span>ban(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;, user_id: Id&lt;UserMarker&gt;) -&gt; GetBan&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>ban(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;, user_id: Id&lt;UserMarker&gt;) -&gt; GetBan&lt;<span class="lifetime">'_</span>&gt; {
         GetBan::new(<span class="self">self</span>, guild_id, user_id)
     }
 
-    <span class="doccomment">/// Bans a user from a guild, optionally with the number of seconds&#39; worth of
+    <span class="doccomment">/// Bans a user from a guild, optionally with the number of seconds' worth of
     /// messages to delete and the reason.
     ///
     /// # Examples
     ///
     /// Ban user `200` from guild `100`, deleting
-    /// `86_400` second&#39;s (this is equivalent to `1` day) worth of messages, for the reason `&quot;memes&quot;`:
+    /// `86_400` second's (this is equivalent to `1` day) worth of messages, for the reason `"memes"`:
     ///
     /// ```no_run
     /// # use twilight_http::{request::AuditLogReason, Client};
@@ -3181,14 +3182,14 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(100);
     /// let user_id = Id::new(200);
     /// client
     ///     .create_ban(guild_id, user_id)
     ///     .delete_message_seconds(86_400)?
-    ///     .reason(&quot;memes&quot;)?
+    ///     .reason("memes")?
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3196,7 +3197,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; CreateBan&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CreateBan&lt;<span class="lifetime">'_</span>&gt; {
         CreateBan::new(<span class="self">self</span>, guild_id, user_id)
     }
 
@@ -3212,7 +3213,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(100);
     /// let user_id = Id::new(200);
@@ -3224,7 +3225,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; DeleteBan&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteBan&lt;<span class="lifetime">'_</span>&gt; {
         DeleteBan::new(<span class="self">self</span>, guild_id, user_id)
     }
 
@@ -3240,24 +3241,24 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let channel_id = Id::new(100);
     /// #
     /// let channel = client.channel(channel_id).await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannel&lt;<span class="lifetime">'_</span>&gt; {
         GetChannel::new(<span class="self">self</span>, channel_id)
     }
 
     <span class="doccomment">/// Delete a channel by ID.
-    </span><span class="kw">pub const fn </span>delete_channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; DeleteChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>delete_channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; DeleteChannel&lt;<span class="lifetime">'_</span>&gt; {
         DeleteChannel::new(<span class="self">self</span>, channel_id)
     }
 
     <span class="doccomment">/// Update a channel.
-    </span><span class="kw">pub const fn </span>update_channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; UpdateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>update_channel(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {
         UpdateChannel::new(<span class="self">self</span>, channel_id)
     }
 
@@ -3270,7 +3271,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         webhook_channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; FollowNewsChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; FollowNewsChannel&lt;<span class="lifetime">'_</span>&gt; {
         FollowNewsChannel::new(<span class="self">self</span>, channel_id, webhook_channel_id)
     }
 
@@ -3280,7 +3281,7 @@
     /// the channel is a guild channel.
     ///
     /// [`MANAGE_CHANNELS`]: twilight_model::guild::Permissions::MANAGE_CHANNELS
-    </span><span class="kw">pub const fn </span>channel_invites(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelInvites&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>channel_invites(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelInvites&lt;<span class="lifetime">'_</span>&gt; {
         GetChannelInvites::new(<span class="self">self</span>, channel_id)
     }
 
@@ -3299,7 +3300,7 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     /// let channel_id = Id::new(123);
     /// let message_id = Id::new(234);
     /// let limit: u16 = 6;
@@ -3324,14 +3325,14 @@
     /// [`around`]: GetChannelMessages::around
     /// [`before`]: GetChannelMessages::before
     /// [`limit`]: GetChannelMessages::limit
-    </span><span class="kw">pub const fn </span>channel_messages(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelMessages&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>channel_messages(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelMessages&lt;<span class="lifetime">'_</span>&gt; {
         GetChannelMessages::new(<span class="self">self</span>, channel_id)
     }
 
     <span class="kw">pub const fn </span>delete_channel_permission(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; DeleteChannelPermission&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteChannelPermission&lt;<span class="lifetime">'_</span>&gt; {
         DeleteChannelPermission::new(<span class="self">self</span>, channel_id)
     }
 
@@ -3345,7 +3346,7 @@
     /// ```no_run
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// # use twilight_http::Client;
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// use twilight_model::{
     ///     guild::Permissions,
@@ -3371,17 +3372,17 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         permission_overwrite: <span class="kw-2">&amp;</span>PermissionOverwrite,
-    ) -&gt; UpdateChannelPermission&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateChannelPermission&lt;<span class="lifetime">'_</span>&gt; {
         UpdateChannelPermission::new(<span class="self">self</span>, channel_id, permission_overwrite)
     }
 
     <span class="doccomment">/// Get all the webhooks of a channel.
-    </span><span class="kw">pub const fn </span>channel_webhooks(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelWebhooks&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>channel_webhooks(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetChannelWebhooks&lt;<span class="lifetime">'_</span>&gt; {
         GetChannelWebhooks::new(<span class="self">self</span>, channel_id)
     }
 
     <span class="doccomment">/// Get information about the current user.
-    </span><span class="kw">pub const fn </span>current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUser&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUser&lt;<span class="lifetime">'_</span>&gt; {
         GetCurrentUser::new(<span class="self">self</span>)
     }
 
@@ -3389,17 +3390,17 @@
     </span><span class="kw">pub const fn </span>current_user_guild_member(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; GetCurrentUserGuildMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetCurrentUserGuildMember&lt;<span class="lifetime">'_</span>&gt; {
         GetCurrentUserGuildMember::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get information about the current OAuth authorization.
-    </span><span class="kw">pub const fn </span>current_authorization(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentAuthorizationInformation&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>current_authorization(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentAuthorizationInformation&lt;<span class="lifetime">'_</span>&gt; {
         GetCurrentAuthorizationInformation::new(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Get information about the current bot application.
-    </span><span class="kw">pub const fn </span>current_user_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetUserApplicationInfo&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>current_user_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetUserApplicationInfo&lt;<span class="lifetime">'_</span>&gt; {
         GetUserApplicationInfo::new(<span class="self">self</span>)
     }
 
@@ -3407,11 +3408,11 @@
     ///
     /// All parameters are optional. If the username is changed, it may cause the discriminator to
     /// be randomized.
-    </span><span class="kw">pub const fn </span>update_current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; UpdateCurrentUser&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>update_current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; UpdateCurrentUser&lt;<span class="lifetime">'_</span>&gt; {
         UpdateCurrentUser::new(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Update the current user&#39;s voice state.
+    <span class="doccomment">/// Update the current user's voice state.
     ///
     /// All parameters are optional.
     ///
@@ -3422,14 +3423,14 @@
     </span><span class="kw">pub const fn </span>update_current_user_voice_state(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; UpdateCurrentUserVoiceState&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateCurrentUserVoiceState&lt;<span class="lifetime">'_</span>&gt; {
         UpdateCurrentUserVoiceState::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get the current user&#39;s connections.
+    <span class="doccomment">/// Get the current user's connections.
     ///
     /// Requires the `connections` `OAuth2` scope.
-    </span><span class="kw">pub const fn </span>current_user_connections(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUserConnections&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>current_user_connections(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUserConnections&lt;<span class="lifetime">'_</span>&gt; {
         GetCurrentUserConnections::new(<span class="self">self</span>)
     }
 
@@ -3446,7 +3447,7 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let after = Id::new(300);
     /// let before = Id::new(400);
@@ -3458,11 +3459,11 @@
     ///     .await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>current_user_guilds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUserGuilds&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>current_user_guilds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetCurrentUserGuilds&lt;<span class="lifetime">'_</span>&gt; {
         GetCurrentUserGuilds::new(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// Get the emojis for a guild, by the guild&#39;s id.
+    <span class="doccomment">/// Get the emojis for a guild, by the guild's id.
     ///
     /// # Examples
     ///
@@ -3474,18 +3475,18 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(100);
     ///
     /// client.emojis(guild_id).await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>emojis(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetEmojis&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>emojis(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetEmojis&lt;<span class="lifetime">'_</span>&gt; {
         GetEmojis::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get an emoji for a guild by the the guild&#39;s ID and emoji&#39;s ID.
+    <span class="doccomment">/// Get an emoji for a guild by the the guild's ID and emoji's ID.
     ///
     /// # Examples
     ///
@@ -3497,7 +3498,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(50);
     /// let emoji_id = Id::new(100);
@@ -3509,7 +3510,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         emoji_id: Id&lt;EmojiMarker&gt;,
-    ) -&gt; GetEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetEmoji&lt;<span class="lifetime">'_</span>&gt; {
         GetEmoji::new(<span class="self">self</span>, guild_id, emoji_id)
     }
 
@@ -3520,12 +3521,12 @@
     /// and `{data}` is the base64-encoded image. See [Discord Docs/Image Data].
     ///
     /// [Discord Docs/Image Data]: https://discord.com/developers/docs/reference#image-data
-    </span><span class="kw">pub const fn </span>create_emoji&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>create_emoji&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        image: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; CreateEmoji&lt;<span class="lifetime">&#39;a</span>&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        image: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; CreateEmoji&lt;<span class="lifetime">'a</span>&gt; {
         CreateEmoji::new(<span class="self">self</span>, guild_id, name, image)
     }
 
@@ -3534,7 +3535,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         emoji_id: Id&lt;EmojiMarker&gt;,
-    ) -&gt; DeleteEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteEmoji&lt;<span class="lifetime">'_</span>&gt; {
         DeleteEmoji::new(<span class="self">self</span>, guild_id, emoji_id)
     }
 
@@ -3543,7 +3544,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         emoji_id: Id&lt;EmojiMarker&gt;,
-    ) -&gt; UpdateEmoji&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateEmoji&lt;<span class="lifetime">'_</span>&gt; {
         UpdateEmoji::new(<span class="self">self</span>, guild_id, emoji_id)
     }
 
@@ -3559,7 +3560,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let info = client.gateway().await?;
     /// # Ok(()) }
@@ -3573,20 +3574,20 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let info = client.gateway().authed().await?.model().await?;
     ///
-    /// println!(&quot;URL: {}&quot;, info.url);
-    /// println!(&quot;Recommended shards to use: {}&quot;, info.shards);
+    /// println!("URL: {}", info.url);
+    /// println!("Recommended shards to use: {}", info.shards);
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>gateway(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetGateway&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>gateway(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetGateway&lt;<span class="lifetime">'_</span>&gt; {
         GetGateway::new(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Get information about a guild.
-    </span><span class="kw">pub const fn </span>guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuild&lt;<span class="lifetime">'_</span>&gt; {
         GetGuild::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3601,12 +3602,12 @@
     /// length is too short or too long.
     ///
     /// [`CreateGuildErrorType::NameInvalid`]: crate::request::guild::create_guild::CreateGuildErrorType::NameInvalid
-    </span><span class="kw">pub fn </span>create_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, name: String) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuild&lt;<span class="lifetime">&#39;_</span>&gt;, CreateGuildError&gt; {
+    </span><span class="kw">pub fn </span>create_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, name: String) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuild&lt;<span class="lifetime">'_</span>&gt;, CreateGuildError&gt; {
         CreateGuild::new(<span class="self">self</span>, name)
     }
 
     <span class="doccomment">/// Delete a guild permanently. The user must be the owner.
-    </span><span class="kw">pub const fn </span>delete_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; DeleteGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>delete_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; DeleteGuild&lt;<span class="lifetime">'_</span>&gt; {
         DeleteGuild::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3615,17 +3616,17 @@
     /// All endpoints are optional. See [Discord Docs/Modify Guild].
     ///
     /// [Discord Docs/Modify Guild]: https://discord.com/developers/docs/resources/guild#modify-guild
-    </span><span class="kw">pub const fn </span>update_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; UpdateGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>update_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; UpdateGuild&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuild::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Leave a guild by id.
-    </span><span class="kw">pub const fn </span>leave_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; LeaveGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>leave_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; LeaveGuild&lt;<span class="lifetime">'_</span>&gt; {
         LeaveGuild::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get the channels in a guild.
-    </span><span class="kw">pub const fn </span>guild_channels(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildChannels&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_channels(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildChannels&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildChannels::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3648,11 +3649,11 @@
     /// [`NameInvalid`]: twilight_validate::channel::ChannelValidationErrorType::NameInvalid
     /// [`RateLimitPerUserInvalid`]: twilight_validate::channel::ChannelValidationErrorType::RateLimitPerUserInvalid
     /// [`TopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TopicInvalid
-    </span><span class="kw">pub fn </span>create_guild_channel&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_guild_channel&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildChannel&lt;<span class="lifetime">&#39;a</span>&gt;, ChannelValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt; {
         CreateGuildChannel::new(<span class="self">self</span>, guild_id, name)
     }
 
@@ -3671,24 +3672,24 @@
     ///
     /// This function accepts an `Iterator` of `(Id&lt;ChannelMarker&gt;, u64)`. It also
     /// accepts an `Iterator` of `Position`, which has extra fields.
-    </span><span class="kw">pub const fn </span>update_guild_channel_positions&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>update_guild_channel_positions&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        channel_positions: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Position],
-    ) -&gt; UpdateGuildChannelPositions&lt;<span class="lifetime">&#39;a</span>&gt; {
+        channel_positions: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Position],
+    ) -&gt; UpdateGuildChannelPositions&lt;<span class="lifetime">'a</span>&gt; {
         UpdateGuildChannelPositions::new(<span class="self">self</span>, guild_id, channel_positions)
     }
 
-    <span class="doccomment">/// Get a guild&#39;s widget.
+    <span class="doccomment">/// Get a guild's widget.
     ///
     /// See [Discord Docs/Get Guild Widget].
     ///
     /// [Discord Docs/Get Guild Widget]: https://discord.com/developers/docs/resources/guild#get-guild-widget
-    </span><span class="kw">pub const fn </span>guild_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildWidget&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_widget(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildWidget&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildWidget::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get a guild&#39;s widget settings.
+    <span class="doccomment">/// Get a guild's widget settings.
     ///
     /// See [Discord Docs/Get Guild Widget Settings].
     ///
@@ -3696,11 +3697,11 @@
     </span><span class="kw">pub const fn </span>guild_widget_settings(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; GetGuildWidgetSettings&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildWidgetSettings&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildWidgetSettings::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Modify a guild&#39;s widget.
+    <span class="doccomment">/// Modify a guild's widget.
     ///
     /// See [Discord Docs/Modify Guild Widget].
     ///
@@ -3708,21 +3709,21 @@
     </span><span class="kw">pub const fn </span>update_guild_widget_settings(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; UpdateGuildWidgetSettings&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildWidgetSettings&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildWidgetSettings::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get the guild&#39;s integrations.
-    </span><span class="kw">pub const fn </span>guild_integrations(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildIntegrations&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="doccomment">/// Get the guild's integrations.
+    </span><span class="kw">pub const fn </span>guild_integrations(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildIntegrations&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildIntegrations::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Delete an integration for a guild, by the integration&#39;s id.
+    <span class="doccomment">/// Delete an integration for a guild, by the integration's id.
     </span><span class="kw">pub const fn </span>delete_guild_integration(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         integration_id: Id&lt;IntegrationMarker&gt;,
-    ) -&gt; DeleteGuildIntegration&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteGuildIntegration&lt;<span class="lifetime">'_</span>&gt; {
         DeleteGuildIntegration::new(<span class="self">self</span>, guild_id, integration_id)
     }
 
@@ -3731,16 +3732,16 @@
     /// Requires the [`MANAGE_GUILD`] permission.
     ///
     /// [`MANAGE_GUILD`]: twilight_model::guild::Permissions::MANAGE_GUILD
-    </span><span class="kw">pub const fn </span>guild_invites(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildInvites&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_invites(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildInvites&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildInvites::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Update a guild&#39;s MFA level.
+    <span class="doccomment">/// Update a guild's MFA level.
     </span><span class="kw">pub const fn </span>update_guild_mfa(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         level: MfaLevel,
-    ) -&gt; UpdateGuildMfa&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildMfa&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildMfa::new(<span class="self">self</span>, guild_id, level)
     }
 
@@ -3759,7 +3760,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(100);
     /// let user_id = Id::new(3000);
@@ -3777,7 +3778,7 @@
     /// limit is invalid.
     ///
     /// [`ValidationErrorType::GetGuildMembers`]: twilight_validate::request::ValidationErrorType::GetGuildMembers
-    </span><span class="kw">pub const fn </span>guild_members(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildMembers&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_members(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildMembers&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildMembers::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3795,11 +3796,11 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(100);
     /// let members = client
-    ///     .search_guild_members(guild_id, &quot;Wumpus&quot;)
+    ///     .search_guild_members(guild_id, "Wumpus")
     ///     .limit(10)?
     ///     .await?;
     /// # Ok(()) }
@@ -3812,11 +3813,11 @@
     ///
     /// [`GUILD_MEMBERS`]: twilight_model::gateway::Intents::GUILD_MEMBERS
     /// [`ValidationErrorType::SearchGuildMembers`]: twilight_validate::request::ValidationErrorType::SearchGuildMembers
-    </span><span class="kw">pub const fn </span>search_guild_members&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>search_guild_members&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        query: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; SearchGuildMembers&lt;<span class="lifetime">&#39;a</span>&gt; {
+        query: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; SearchGuildMembers&lt;<span class="lifetime">'a</span>&gt; {
         SearchGuildMembers::new(<span class="self">self</span>, guild_id, query)
     }
 
@@ -3825,7 +3826,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; GetMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetMember&lt;<span class="lifetime">'_</span>&gt; {
         GetMember::new(<span class="self">self</span>, guild_id, user_id)
     }
 
@@ -3841,12 +3842,12 @@
     ///
     /// [`ValidationErrorType::Nickname`]: twilight_validate::request::ValidationErrorType::Nickname
     /// [Discord Docs/Add Guild Member]: https://discord.com/developers/docs/resources/guild#add-guild-member
-    </span><span class="kw">pub const fn </span>add_guild_member&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>add_guild_member&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-        access_token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; AddGuildMember&lt;<span class="lifetime">&#39;a</span>&gt; {
+        access_token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; AddGuildMember&lt;<span class="lifetime">'a</span>&gt; {
         AddGuildMember::new(<span class="self">self</span>, guild_id, user_id, access_token)
     }
 
@@ -3855,7 +3856,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; RemoveMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; RemoveMember&lt;<span class="lifetime">'_</span>&gt; {
         RemoveMember::new(<span class="self">self</span>, guild_id, user_id)
     }
 
@@ -3865,7 +3866,7 @@
     ///
     /// # Examples
     ///
-    /// Update a member&#39;s nickname to &quot;pinky pie&quot; and server mute them:
+    /// Update a member's nickname to "pinky pie" and server mute them:
     ///
     /// ```no_run
     /// use std::env;
@@ -3873,17 +3874,17 @@
     /// use twilight_model::id::Id;
     ///
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(env::var(&quot;DISCORD_TOKEN&quot;)?);
+    /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let member = client
     ///     .update_guild_member(Id::new(1), Id::new(2))
     ///     .mute(true)
-    ///     .nick(Some(&quot;pinkie pie&quot;))?
+    ///     .nick(Some("pinkie pie"))?
     ///     .await?
     ///     .model()
     ///     .await?;
     ///
     /// println!(
-    ///     &quot;user {} now has the nickname &#39;{:?}&#39;&quot;,
+    ///     "user {} now has the nickname '{:?}'",
     ///     member.user.id, member.nick,
     /// );
     /// # Ok(()) }
@@ -3900,15 +3901,15 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; UpdateGuildMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildMember&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildMember::new(<span class="self">self</span>, guild_id, user_id)
     }
 
-    <span class="doccomment">/// Update the user&#39;s member in a guild.
+    <span class="doccomment">/// Update the user's member in a guild.
     </span><span class="kw">pub const fn </span>update_current_member(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; UpdateCurrentMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateCurrentMember&lt;<span class="lifetime">'_</span>&gt; {
         UpdateCurrentMember::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3916,7 +3917,7 @@
     ///
     /// # Examples
     ///
-    /// In guild `1`, add role `2` to user `3`, for the reason `&quot;test&quot;`:
+    /// In guild `1`, add role `2` to user `3`, for the reason `"test"`:
     ///
     /// ```no_run
     /// # use twilight_http::{request::AuditLogReason, Client};
@@ -3924,7 +3925,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let guild_id = Id::new(1);
     /// let role_id = Id::new(2);
@@ -3932,7 +3933,7 @@
     ///
     /// client
     ///     .add_guild_member_role(guild_id, user_id, role_id)
-    ///     .reason(&quot;test&quot;)?
+    ///     .reason("test")?
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3941,7 +3942,7 @@
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; AddRoleToMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; AddRoleToMember&lt;<span class="lifetime">'_</span>&gt; {
         AddRoleToMember::new(<span class="self">self</span>, guild_id, user_id, role_id)
     }
 
@@ -3951,24 +3952,24 @@
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; RemoveRoleFromMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; RemoveRoleFromMember&lt;<span class="lifetime">'_</span>&gt; {
         RemoveRoleFromMember::new(<span class="self">self</span>, guild_id, user_id, role_id)
     }
 
     <span class="doccomment">/// Retrieves the onboarding data for a guild.
-    </span><span class="kw">pub const fn </span>guild_onboarding(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildOnboarding&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_onboarding(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildOnboarding&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildOnboarding::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// For public guilds, get the guild preview.
     ///
     /// This works even if the user is not in the guild.
-    </span><span class="kw">pub const fn </span>guild_preview(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildPreview&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_preview(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildPreview&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildPreview::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get the counts of guild members to be pruned.
-    </span><span class="kw">pub const fn </span>guild_prune_count(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildPruneCount&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_prune_count(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildPruneCount&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildPruneCount::new(<span class="self">self</span>, guild_id)
     }
 
@@ -3977,28 +3978,28 @@
     /// See [Discord Docs/Begin Guild Prune].
     ///
     /// [Discord Docs/Begin Guild Prune]: https://discord.com/developers/docs/resources/guild#begin-guild-prune
-    </span><span class="kw">pub const fn </span>create_guild_prune(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; CreateGuildPrune&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>create_guild_prune(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; CreateGuildPrune&lt;<span class="lifetime">'_</span>&gt; {
         CreateGuildPrune::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get a guild&#39;s vanity url, if there is one.
-    </span><span class="kw">pub const fn </span>guild_vanity_url(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildVanityUrl&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="doccomment">/// Get a guild's vanity url, if there is one.
+    </span><span class="kw">pub const fn </span>guild_vanity_url(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildVanityUrl&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildVanityUrl::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get voice region data for the guild.
     ///
     /// Can return VIP servers if the guild is VIP-enabled.
-    </span><span class="kw">pub const fn </span>guild_voice_regions(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildVoiceRegions&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_voice_regions(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildVoiceRegions&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildVoiceRegions::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Get the webhooks of a guild.
-    </span><span class="kw">pub const fn </span>guild_webhooks(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildWebhooks&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_webhooks(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildWebhooks&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildWebhooks::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Get the guild&#39;s welcome screen.
+    <span class="doccomment">/// Get the guild's welcome screen.
     ///
     /// If the welcome screen is not enabled, this requires the [`MANAGE_GUILD`]
     /// permission.
@@ -4007,11 +4008,11 @@
     </span><span class="kw">pub const fn </span>guild_welcome_screen(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; GetGuildWelcomeScreen&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildWelcomeScreen&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildWelcomeScreen::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Update the guild&#39;s welcome screen.
+    <span class="doccomment">/// Update the guild's welcome screen.
     ///
     /// Requires the [`MANAGE_GUILD`] permission.
     ///
@@ -4019,7 +4020,7 @@
     </span><span class="kw">pub const fn </span>update_guild_welcome_screen(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; UpdateGuildWelcomeScreen&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildWelcomeScreen&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildWelcomeScreen::new(<span class="self">self</span>, guild_id)
     }
 
@@ -4036,15 +4037,15 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
-    /// let invite = client.invite(&quot;code&quot;).with_counts().await?;
+    /// let invite = client.invite("code").with_counts().await?;
     /// # Ok(()) }
     /// ```
     ///
     /// [`with_counts`]: crate::request::channel::invite::GetInvite::with_counts
     /// [`with_expiration`]: crate::request::channel::invite::GetInvite::with_expiration
-    </span><span class="kw">pub const fn </span>invite&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; GetInvite&lt;<span class="lifetime">&#39;a</span>&gt; {
+    </span><span class="kw">pub const fn </span>invite&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>, code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; GetInvite&lt;<span class="lifetime">'a</span>&gt; {
         GetInvite::new(<span class="self">self</span>, code)
     }
 
@@ -4060,7 +4061,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let channel_id = Id::new(123);
     /// let invite = client.create_invite(channel_id).max_uses(3)?.await?;
@@ -4068,7 +4069,7 @@
     /// ```
     ///
     /// [`CREATE_INVITE`]: twilight_model::guild::Permissions::CREATE_INVITE
-    </span><span class="kw">pub const fn </span>create_invite(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; CreateInvite&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>create_invite(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; CreateInvite&lt;<span class="lifetime">'_</span>&gt; {
         CreateInvite::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4079,7 +4080,7 @@
     ///
     /// [`MANAGE_CHANNELS`]: twilight_model::guild::Permissions::MANAGE_CHANNELS
     /// [`MANAGE_GUILD`]: twilight_model::guild::Permissions::MANAGE_GUILD
-    </span><span class="kw">pub const fn </span>delete_invite&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; DeleteInvite&lt;<span class="lifetime">&#39;a</span>&gt; {
+    </span><span class="kw">pub const fn </span>delete_invite&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>, code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; DeleteInvite&lt;<span class="lifetime">'a</span>&gt; {
         DeleteInvite::new(<span class="self">self</span>, code)
     }
 
@@ -4088,7 +4089,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; GetMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetMessage&lt;<span class="lifetime">'_</span>&gt; {
         GetMessage::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4104,12 +4105,12 @@
     /// use twilight_http::Client;
     /// use twilight_model::id::Id;
     ///
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let channel_id = Id::new(123);
     /// let message = client
     ///     .create_message(channel_id)
-    ///     .content(&quot;Twilight is best pony&quot;)?
+    ///     .content("Twilight is best pony")?
     ///     .tts(true)
     ///     .await?;
     /// # Ok(()) }
@@ -4120,7 +4121,7 @@
     /// [`content`]: CreateMessage::content
     /// [`embeds`]: CreateMessage::embeds
     /// [`sticker_ids`]: CreateMessage::sticker_ids
-    </span><span class="kw">pub const fn </span>create_message(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; CreateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>create_message(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; CreateMessage&lt;<span class="lifetime">'_</span>&gt; {
         CreateMessage::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4129,7 +4130,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; DeleteMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteMessage&lt;<span class="lifetime">'_</span>&gt; {
         DeleteMessage::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4148,11 +4149,11 @@
     ///
     /// [Discord Docs/Bulk Delete Messages]: https://discord.com/developers/docs/resources/channel#bulk-delete-messages
     /// [`ChannelValidationErrorType::BulkDeleteMessagesInvalid`]: twilight_validate::channel::ChannelValidationErrorType::BulkDeleteMessagesInvalid
-    </span><span class="kw">pub fn </span>delete_messages&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>delete_messages&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        message_ids: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Id&lt;MessageMarker&gt;],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;DeleteMessages&lt;<span class="lifetime">&#39;a</span>&gt;, ChannelValidationError&gt; {
+        message_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;MessageMarker&gt;],
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;DeleteMessages&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt; {
         DeleteMessages::new(<span class="self">self</span>, channel_id, message_ids)
     }
 
@@ -4165,22 +4166,22 @@
     ///
     /// # Examples
     ///
-    /// Replace the content with `&quot;test update&quot;`:
+    /// Replace the content with `"test update"`:
     ///
     /// ```no_run
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_http::Client;
     /// use twilight_model::id::Id;
     ///
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     /// client
     ///     .update_message(Id::new(1), Id::new(2))
-    ///     .content(Some(&quot;test update&quot;))?
+    ///     .content(Some("test update"))?
     ///     .await?;
     /// # Ok(()) }
     /// ```
     ///
-    /// Remove the message&#39;s content:
+    /// Remove the message's content:
     ///
     /// ```no_run
     /// # use twilight_http::Client;
@@ -4188,7 +4189,7 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// client
     ///     .update_message(Id::new(1), Id::new(2))
     ///     .content(None)?
@@ -4204,7 +4205,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; UpdateMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateMessage&lt;<span class="lifetime">'_</span>&gt; {
         UpdateMessage::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4213,12 +4214,12 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; CrosspostMessage&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CrosspostMessage&lt;<span class="lifetime">'_</span>&gt; {
         CrosspostMessage::new(<span class="self">self</span>, channel_id, message_id)
     }
 
     <span class="doccomment">/// Get the pins of a channel.
-    </span><span class="kw">pub const fn </span>pins(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetPins&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>pins(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetPins&lt;<span class="lifetime">'_</span>&gt; {
         GetPins::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4227,7 +4228,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; CreatePin&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CreatePin&lt;<span class="lifetime">'_</span>&gt; {
         CreatePin::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4236,7 +4237,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; DeletePin&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeletePin&lt;<span class="lifetime">'_</span>&gt; {
         DeletePin::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4244,12 +4245,12 @@
     ///
     /// This endpoint is limited to 100 users maximum, so if a message has more than 100 reactions,
     /// requests must be chained until all reactions are retrieved.
-    </span><span class="kw">pub const fn </span>reactions&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>reactions&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        emoji: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; GetReactions&lt;<span class="lifetime">&#39;a</span>&gt; {
+        emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; GetReactions&lt;<span class="lifetime">'a</span>&gt; {
         GetReactions::new(<span class="self">self</span>, channel_id, message_id, emoji)
     }
 
@@ -4264,54 +4265,54 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// #
     /// let channel_id = Id::new(123);
     /// let message_id = Id::new(456);
-    /// let emoji = RequestReactionType::Unicode { name: &quot;🌃&quot; };
+    /// let emoji = RequestReactionType::Unicode { name: "🌃" };
     ///
     /// let reaction = client
     ///     .create_reaction(channel_id, message_id, &amp;emoji)
     ///     .await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>create_reaction&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>create_reaction&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        emoji: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; CreateReaction&lt;<span class="lifetime">&#39;a</span>&gt; {
+        emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; CreateReaction&lt;<span class="lifetime">'a</span>&gt; {
         CreateReaction::new(<span class="self">self</span>, channel_id, message_id, emoji)
     }
 
-    <span class="doccomment">/// Delete the current user&#39;s (`@me`) reaction on a message.
-    </span><span class="kw">pub const fn </span>delete_current_user_reaction&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    <span class="doccomment">/// Delete the current user's (`@me`) reaction on a message.
+    </span><span class="kw">pub const fn </span>delete_current_user_reaction&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        emoji: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; DeleteReaction&lt;<span class="lifetime">&#39;a</span>&gt; {
+        emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; DeleteReaction&lt;<span class="lifetime">'a</span>&gt; {
         DeleteReaction::new(<span class="self">self</span>, channel_id, message_id, emoji, TargetUser::Current)
     }
 
     <span class="doccomment">/// Delete a reaction by a user on a message.
-    </span><span class="kw">pub const fn </span>delete_reaction&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>delete_reaction&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        emoji: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt;,
+        emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; DeleteReaction&lt;<span class="lifetime">&#39;a</span>&gt; {
+    ) -&gt; DeleteReaction&lt;<span class="lifetime">'a</span>&gt; {
         DeleteReaction::new(<span class="self">self</span>, channel_id, message_id, emoji, TargetUser::Id(user_id))
     }
 
     <span class="doccomment">/// Remove all reactions on a message of an emoji.
-    </span><span class="kw">pub const fn </span>delete_all_reaction&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>delete_all_reaction&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        emoji: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>RequestReactionType&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; DeleteAllReaction&lt;<span class="lifetime">&#39;a</span>&gt; {
+        emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>RequestReactionType&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; DeleteAllReaction&lt;<span class="lifetime">'a</span>&gt; {
         DeleteAllReaction::new(<span class="self">self</span>, channel_id, message_id, emoji)
     }
 
@@ -4320,7 +4321,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; DeleteAllReactions&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteAllReactions&lt;<span class="lifetime">'_</span>&gt; {
         DeleteAllReactions::new(<span class="self">self</span>, channel_id, message_id)
     }
 
@@ -4328,7 +4329,7 @@
     </span><span class="kw">pub const fn </span>create_typing_trigger(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; CreateTypingTrigger&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CreateTypingTrigger&lt;<span class="lifetime">'_</span>&gt; {
         CreateTypingTrigger::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4336,12 +4337,12 @@
     </span><span class="kw">pub const fn </span>create_private_channel(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         recipient_id: Id&lt;UserMarker&gt;,
-    ) -&gt; CreatePrivateChannel&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CreatePrivateChannel&lt;<span class="lifetime">'_</span>&gt; {
         CreatePrivateChannel::new(<span class="self">self</span>, recipient_id)
     }
 
     <span class="doccomment">/// Get the roles of a guild.
-    </span><span class="kw">pub const fn </span>roles(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildRoles&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>roles(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildRoles&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildRoles::new(<span class="self">self</span>, guild_id)
     }
 
@@ -4355,17 +4356,17 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// let guild_id = Id::new(234);
     ///
     /// client
     ///     .create_role(guild_id)
     ///     .color(0xd90083)
-    ///     .name(&quot;Bright Pink&quot;)
+    ///     .name("Bright Pink")
     ///     .await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>create_role(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; CreateRole&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>create_role(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; CreateRole&lt;<span class="lifetime">'_</span>&gt; {
         CreateRole::new(<span class="self">self</span>, guild_id)
     }
 
@@ -4374,7 +4375,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; DeleteRole&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteRole&lt;<span class="lifetime">'_</span>&gt; {
         DeleteRole::new(<span class="self">self</span>, guild_id, role_id)
     }
 
@@ -4383,18 +4384,18 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; UpdateRole&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateRole&lt;<span class="lifetime">'_</span>&gt; {
         UpdateRole::new(<span class="self">self</span>, guild_id, role_id)
     }
 
     <span class="doccomment">/// Modify the position of the roles.
     ///
     /// The minimum amount of roles to modify, is a swap between two roles.
-    </span><span class="kw">pub const fn </span>update_role_positions&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>update_role_positions&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        roles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[(Id&lt;RoleMarker&gt;, u64)],
-    ) -&gt; UpdateRolePositions&lt;<span class="lifetime">&#39;a</span>&gt; {
+        roles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[(Id&lt;RoleMarker&gt;, u64)],
+    ) -&gt; UpdateRolePositions&lt;<span class="lifetime">'a</span>&gt; {
         UpdateRolePositions::new(<span class="self">self</span>, guild_id, roles)
     }
 
@@ -4408,16 +4409,16 @@
     /// is not between 1 and 120 characters in length.
     ///
     /// [`ValidationError::StageTopic`]: twilight_validate::request::ValidationErrorType::StageTopic
-    </span><span class="kw">pub fn </span>create_stage_instance&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_stage_instance&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        topic: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateStageInstance&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateStageInstance&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         CreateStageInstance::new(<span class="self">self</span>, channel_id, topic)
     }
 
     <span class="doccomment">/// Gets the stage instance associated with a stage channel, if it exists.
-    </span><span class="kw">pub const fn </span>stage_instance(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>stage_instance(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetStageInstance&lt;<span class="lifetime">'_</span>&gt; {
         GetStageInstance::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4427,7 +4428,7 @@
     </span><span class="kw">pub const fn </span>update_stage_instance(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; UpdateStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateStageInstance&lt;<span class="lifetime">'_</span>&gt; {
         UpdateStageInstance::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4437,7 +4438,7 @@
     </span><span class="kw">pub const fn </span>delete_stage_instance(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; DeleteStageInstance&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteStageInstance&lt;<span class="lifetime">'_</span>&gt; {
         DeleteStageInstance::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4451,11 +4452,11 @@
     /// name is invalid.
     ///
     /// [`ValidationErrorType::TemplateName`]: twilight_validate::request::ValidationErrorType::TemplateName
-    </span><span class="kw">pub fn </span>create_guild_from_template&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
-        template_code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildFromTemplate&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+    </span><span class="kw">pub fn </span>create_guild_from_template&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
+        template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildFromTemplate&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         CreateGuildFromTemplate::new(<span class="self">self</span>, template_code, name)
     }
 
@@ -4470,48 +4471,48 @@
     /// name is invalid.
     ///
     /// [`ValidationErrorType::TemplateName`]: twilight_validate::request::ValidationErrorType::TemplateName
-    </span><span class="kw">pub fn </span>create_template&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_template&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateTemplate&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateTemplate&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         CreateTemplate::new(<span class="self">self</span>, guild_id, name)
     }
 
     <span class="doccomment">/// Delete a template by ID and code.
-    </span><span class="kw">pub const fn </span>delete_template&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>delete_template&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        template_code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; DeleteTemplate&lt;<span class="lifetime">&#39;a</span>&gt; {
+        template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; DeleteTemplate&lt;<span class="lifetime">'a</span>&gt; {
         DeleteTemplate::new(<span class="self">self</span>, guild_id, template_code)
     }
 
     <span class="doccomment">/// Get a template by its code.
-    </span><span class="kw">pub const fn </span>get_template&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, template_code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; GetTemplate&lt;<span class="lifetime">&#39;a</span>&gt; {
+    </span><span class="kw">pub const fn </span>get_template&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>, template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; GetTemplate&lt;<span class="lifetime">'a</span>&gt; {
         GetTemplate::new(<span class="self">self</span>, template_code)
     }
 
     <span class="doccomment">/// Get a list of templates in a guild, by ID.
-    </span><span class="kw">pub const fn </span>get_templates(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetTemplates&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>get_templates(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetTemplates&lt;<span class="lifetime">'_</span>&gt; {
         GetTemplates::new(<span class="self">self</span>, guild_id)
     }
 
     <span class="doccomment">/// Sync a template to the current state of the guild, by ID and code.
-    </span><span class="kw">pub const fn </span>sync_template&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>sync_template&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        template_code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; SyncTemplate&lt;<span class="lifetime">&#39;a</span>&gt; {
+        template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; SyncTemplate&lt;<span class="lifetime">'a</span>&gt; {
         SyncTemplate::new(<span class="self">self</span>, guild_id, template_code)
     }
 
-    <span class="doccomment">/// Update the template&#39;s metadata, by ID and code.
-    </span><span class="kw">pub const fn </span>update_template&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    <span class="doccomment">/// Update the template's metadata, by ID and code.
+    </span><span class="kw">pub const fn </span>update_template&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        template_code: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; UpdateTemplate&lt;<span class="lifetime">&#39;a</span>&gt; {
+        template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; UpdateTemplate&lt;<span class="lifetime">'a</span>&gt; {
         UpdateTemplate::new(<span class="self">self</span>, guild_id, template_code)
     }
 
@@ -4527,13 +4528,13 @@
     /// use twilight_http::Client;
     /// use twilight_model::id::Id;
     ///
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     /// let guild_id = Id::new(234);
     ///
     /// let threads = client.active_threads(guild_id).await?.model().await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>active_threads(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetActiveThreads&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>active_threads(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetActiveThreads&lt;<span class="lifetime">'_</span>&gt; {
         GetActiveThreads::new(<span class="self">self</span>, guild_id)
     }
 
@@ -4545,22 +4546,22 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; AddThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; AddThreadMember&lt;<span class="lifetime">'_</span>&gt; {
         AddThreadMember::new(<span class="self">self</span>, channel_id, user_id)
     }
 
     <span class="doccomment">/// Start a thread in a forum channel.
-    </span><span class="kw">pub const fn </span>create_forum_thread&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>create_forum_thread&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; CreateForumThread&lt;<span class="lifetime">&#39;_</span>&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; CreateForumThread&lt;<span class="lifetime">'_</span>&gt; {
         CreateForumThread::new(<span class="self">self</span>, channel_id, name)
     }
 
     <span class="doccomment">/// Start a thread that is not connected to a message.
     ///
-    /// Automatic archive durations are not locked behind the guild&#39;s boost
+    /// Automatic archive durations are not locked behind the guild's boost
     /// level.
     ///
     /// To make a [`PrivateThread`], the guild must also have the
@@ -4568,7 +4569,7 @@
     ///
     /// # Errors
     ///
-    /// Returns an error of type [`NameInvalid`] if the channel&#39;s name&#39;s length is
+    /// Returns an error of type [`NameInvalid`] if the channel's name's length is
     /// incorrect.
     ///
     /// Returns an error of type [`TypeInvalid`] if the channel is not a thread.
@@ -4576,12 +4577,12 @@
     /// [`NameInvalid`]: twilight_validate::channel::ChannelValidationErrorType::NameInvalid
     /// [`PrivateThread`]: twilight_model::channel::ChannelType::PrivateThread
     /// [`TypeInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TypeInvalid
-    </span><span class="kw">pub fn </span>create_thread&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_thread&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         kind: ChannelType,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThread&lt;<span class="lifetime">&#39;_</span>&gt;, ChannelValidationError&gt; {
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThread&lt;<span class="lifetime">'_</span>&gt;, ChannelValidationError&gt; {
         CreateThread::new(<span class="self">self</span>, channel_id, name, kind)
     }
 
@@ -4593,15 +4594,15 @@
     /// When called on a [`GuildAnnouncement`] channel, this creates a
     /// [`AnnouncementThread`].
     ///
-    /// Automatic archive durations are not locked behind the guild&#39;s boost
+    /// Automatic archive durations are not locked behind the guild's boost
     /// level.
     ///
-    /// The thread&#39;s ID will be the same as its parent message. This ensures
+    /// The thread's ID will be the same as its parent message. This ensures
     /// only one thread can be created per message.
     ///
     /// # Errors
     ///
-    /// Returns an error of type [`NameInvalid`] if the channel&#39;s name&#39;s length is
+    /// Returns an error of type [`NameInvalid`] if the channel's name's length is
     /// incorrect.
     ///
     /// Returns an error of type [`TypeInvalid`] if the channel is not a thread.
@@ -4612,17 +4613,17 @@
     /// [`NameInvalid`]: twilight_validate::channel::ChannelValidationErrorType::NameInvalid
     /// [`PublicThread`]: twilight_model::channel::ChannelType::PublicThread
     /// [`TypeInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TypeInvalid
-    </span><span class="kw">pub fn </span>create_thread_from_message&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_thread_from_message&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThreadFromMessage&lt;<span class="lifetime">&#39;_</span>&gt;, ChannelValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThreadFromMessage&lt;<span class="lifetime">'_</span>&gt;, ChannelValidationError&gt; {
         CreateThreadFromMessage::new(<span class="self">self</span>, channel_id, message_id, name)
     }
 
     <span class="doccomment">/// Add the current user to a thread.
-    </span><span class="kw">pub const fn </span>join_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; JoinThread&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>join_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; JoinThread&lt;<span class="lifetime">'_</span>&gt; {
         JoinThread::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4633,14 +4634,14 @@
     </span><span class="kw">pub const fn </span>joined_private_archived_threads(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; GetJoinedPrivateArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetJoinedPrivateArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {
         GetJoinedPrivateArchivedThreads::new(<span class="self">self</span>, channel_id)
     }
 
     <span class="doccomment">/// Remove the current user from a thread.
     ///
     /// Requires that the thread is not archived.
-    </span><span class="kw">pub const fn </span>leave_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; LeaveThread&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>leave_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; LeaveThread&lt;<span class="lifetime">'_</span>&gt; {
         LeaveThread::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4653,7 +4654,7 @@
     </span><span class="kw">pub const fn </span>private_archived_threads(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; GetPrivateArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetPrivateArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {
         GetPrivateArchivedThreads::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4676,7 +4677,7 @@
     </span><span class="kw">pub const fn </span>public_archived_threads(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; GetPublicArchivedThreads&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetPublicArchivedThreads&lt;<span class="lifetime">'_</span>&gt; {
         GetPublicArchivedThreads::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4694,7 +4695,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; RemoveThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; RemoveThreadMember&lt;<span class="lifetime">'_</span>&gt; {
         RemoveThreadMember::new(<span class="self">self</span>, channel_id, user_id)
     }
 
@@ -4705,14 +4706,14 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; GetThreadMember&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetThreadMember&lt;<span class="lifetime">'_</span>&gt; {
         GetThreadMember::new(<span class="self">self</span>, channel_id, user_id)
     }
 
     <span class="doccomment">/// Returns the [`ThreadMember`]s of the thread.
     ///
     /// [`ThreadMember`]: twilight_model::channel::thread::ThreadMember
-    </span><span class="kw">pub const fn </span>thread_members(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetThreadMembers&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>thread_members(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; GetThreadMembers&lt;<span class="lifetime">'_</span>&gt; {
         GetThreadMembers::new(<span class="self">self</span>, channel_id)
     }
 
@@ -4720,16 +4721,16 @@
     ///
     /// All fields are optional. The minimum length of the name is 1 UTF-16
     /// characters and the maximum is 100 UTF-16 characters.
-    </span><span class="kw">pub const fn </span>update_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; UpdateThread&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>update_thread(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: Id&lt;ChannelMarker&gt;) -&gt; UpdateThread&lt;<span class="lifetime">'_</span>&gt; {
         UpdateThread::new(<span class="self">self</span>, channel_id)
     }
 
-    <span class="doccomment">/// Get a user&#39;s information by id.
-    </span><span class="kw">pub const fn </span>user(<span class="kw-2">&amp;</span><span class="self">self</span>, user_id: Id&lt;UserMarker&gt;) -&gt; GetUser&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="doccomment">/// Get a user's information by id.
+    </span><span class="kw">pub const fn </span>user(<span class="kw-2">&amp;</span><span class="self">self</span>, user_id: Id&lt;UserMarker&gt;) -&gt; GetUser&lt;<span class="lifetime">'_</span>&gt; {
         GetUser::new(<span class="self">self</span>, user_id)
     }
 
-    <span class="doccomment">/// Update another user&#39;s voice state.
+    <span class="doccomment">/// Update another user's voice state.
     ///
     /// # Caveats
     ///
@@ -4740,17 +4741,17 @@
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; UpdateUserVoiceState&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateUserVoiceState&lt;<span class="lifetime">'_</span>&gt; {
         UpdateUserVoiceState::new(<span class="self">self</span>, guild_id, user_id, channel_id)
     }
 
     <span class="doccomment">/// Get a list of voice regions that can be used when creating a guild.
-    </span><span class="kw">pub const fn </span>voice_regions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetVoiceRegions&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>voice_regions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetVoiceRegions&lt;<span class="lifetime">'_</span>&gt; {
         GetVoiceRegions::new(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Get a webhook by ID.
-    </span><span class="kw">pub const fn </span>webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id&lt;WebhookMarker&gt;) -&gt; GetWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id&lt;WebhookMarker&gt;) -&gt; GetWebhook&lt;<span class="lifetime">'_</span>&gt; {
         GetWebhook::new(<span class="self">self</span>, id)
     }
 
@@ -4764,43 +4765,43 @@
     /// #
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     /// let channel_id = Id::new(123);
     ///
-    /// let webhook = client.create_webhook(channel_id, &quot;Twily Bot&quot;)?.await?;
+    /// let webhook = client.create_webhook(channel_id, "Twily Bot")?.await?;
     /// # Ok(()) }
     /// ```
     ///
     /// # Errors
     ///
-    /// Returns an error of type [`WebhookUsername`] if the webhook&#39;s name is
+    /// Returns an error of type [`WebhookUsername`] if the webhook's name is
     /// invalid.
     ///
     /// [`WebhookUsername`]: twilight_validate::request::ValidationErrorType::WebhookUsername
-    </span><span class="kw">pub fn </span>create_webhook&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_webhook&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateWebhook&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateWebhook&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         CreateWebhook::new(<span class="self">self</span>, channel_id, name)
     }
 
     <span class="doccomment">/// Delete a webhook by its ID.
-    </span><span class="kw">pub const fn </span>delete_webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id&lt;WebhookMarker&gt;) -&gt; DeleteWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>delete_webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id&lt;WebhookMarker&gt;) -&gt; DeleteWebhook&lt;<span class="lifetime">'_</span>&gt; {
         DeleteWebhook::new(<span class="self">self</span>, id)
     }
 
     <span class="doccomment">/// Update a webhook by ID.
-    </span><span class="kw">pub const fn </span>update_webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, webhook_id: Id&lt;WebhookMarker&gt;) -&gt; UpdateWebhook&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>update_webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, webhook_id: Id&lt;WebhookMarker&gt;) -&gt; UpdateWebhook&lt;<span class="lifetime">'_</span>&gt; {
         UpdateWebhook::new(<span class="self">self</span>, webhook_id)
     }
 
     <span class="doccomment">/// Update a webhook, with a token, by ID.
-    </span><span class="kw">pub const fn </span>update_webhook_with_token&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>update_webhook_with_token&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         webhook_id: Id&lt;WebhookMarker&gt;,
-        token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; UpdateWebhookWithToken&lt;<span class="lifetime">&#39;a</span>&gt; {
+        token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; UpdateWebhookWithToken&lt;<span class="lifetime">'a</span>&gt; {
         UpdateWebhookWithToken::new(<span class="self">self</span>, webhook_id, token)
     }
 
@@ -4816,12 +4817,12 @@
     /// use twilight_http::Client;
     /// use twilight_model::id::Id;
     ///
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     /// let id = Id::new(432);
     ///
     /// let webhook = client
-    ///     .execute_webhook(id, &quot;webhook token&quot;)
-    ///     .content(&quot;Pinkie...&quot;)?
+    ///     .execute_webhook(id, "webhook token")
+    ///     .content("Pinkie...")?
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4830,21 +4831,21 @@
     /// [`components`]: ExecuteWebhook::components
     /// [`content`]: ExecuteWebhook::content
     /// [`embeds`]: ExecuteWebhook::embeds
-    </span><span class="kw">pub const fn </span>execute_webhook&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>execute_webhook&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         webhook_id: Id&lt;WebhookMarker&gt;,
-        token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-    ) -&gt; ExecuteWebhook&lt;<span class="lifetime">&#39;a</span>&gt; {
+        token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    ) -&gt; ExecuteWebhook&lt;<span class="lifetime">'a</span>&gt; {
         ExecuteWebhook::new(<span class="self">self</span>, webhook_id, token)
     }
 
     <span class="doccomment">/// Get a webhook message by webhook ID, token, and message ID.
-    </span><span class="kw">pub const fn </span>webhook_message&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>webhook_message&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         webhook_id: Id&lt;WebhookMarker&gt;,
-        token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; GetWebhookMessage&lt;<span class="lifetime">&#39;a</span>&gt; {
+    ) -&gt; GetWebhookMessage&lt;<span class="lifetime">'a</span>&gt; {
         GetWebhookMessage::new(<span class="self">self</span>, webhook_id, token, message_id)
     }
 
@@ -4862,10 +4863,10 @@
     /// use twilight_http::Client;
     /// use twilight_model::id::Id;
     ///
-    /// let client = Client::new(&quot;token&quot;.to_owned());
+    /// let client = Client::new("token".to_owned());
     /// client
-    ///     .update_webhook_message(Id::new(1), &quot;token here&quot;, Id::new(2))
-    ///     .content(Some(&quot;new message content&quot;))?
+    ///     .update_webhook_message(Id::new(1), "token here", Id::new(2))
+    ///     .content(Some("new message content"))?
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4874,12 +4875,12 @@
     /// [`components`]: UpdateWebhookMessage::components
     /// [`content`]: UpdateWebhookMessage::content
     /// [`embeds`]: UpdateWebhookMessage::embeds
-    </span><span class="kw">pub const fn </span>update_webhook_message&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>update_webhook_message&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         webhook_id: Id&lt;WebhookMarker&gt;,
-        token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; UpdateWebhookMessage&lt;<span class="lifetime">&#39;a</span>&gt; {
+    ) -&gt; UpdateWebhookMessage&lt;<span class="lifetime">'a</span>&gt; {
         UpdateWebhookMessage::new(<span class="self">self</span>, webhook_id, token, message_id)
     }
 
@@ -4893,18 +4894,18 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;token&quot;.to_owned());
+    /// # let client = Client::new("token".to_owned());
     /// client
-    ///     .delete_webhook_message(Id::new(1), &quot;token here&quot;, Id::new(2))
+    ///     .delete_webhook_message(Id::new(1), "token here", Id::new(2))
     ///     .await?;
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>delete_webhook_message&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub const fn </span>delete_webhook_message&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         webhook_id: Id&lt;WebhookMarker&gt;,
-        token: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; DeleteWebhookMessage&lt;<span class="lifetime">&#39;a</span>&gt; {
+    ) -&gt; DeleteWebhookMessage&lt;<span class="lifetime">'a</span>&gt; {
         DeleteWebhookMessage::new(<span class="self">self</span>, webhook_id, token, message_id)
     }
 
@@ -4917,7 +4918,7 @@
     /// # use twilight_model::id::Id;
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;token&quot;.to_owned());
+    /// # let client = Client::new("token".to_owned());
     /// let guild_id = Id::new(1);
     /// let scheduled_event_id = Id::new(2);
     ///
@@ -4930,7 +4931,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         scheduled_event_id: Id&lt;ScheduledEventMarker&gt;,
-    ) -&gt; DeleteGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {
         DeleteGuildScheduledEvent::new(<span class="self">self</span>, guild_id, scheduled_event_id)
     }
 
@@ -4952,19 +4953,19 @@
     /// use twilight_model::{guild::scheduled_event::PrivacyLevel, id::Id, util::Timestamp};
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;token&quot;.to_owned());
+    /// # let client = Client::new("token".to_owned());
     /// let guild_id = Id::new(1);
     /// let channel_id = Id::new(2);
-    /// let garfield_start_time = Timestamp::parse(&quot;2022-01-01T14:00:00+00:00&quot;)?;
+    /// let garfield_start_time = Timestamp::parse("2022-01-01T14:00:00+00:00")?;
     ///
     /// client
     ///     .create_guild_scheduled_event(guild_id, PrivacyLevel::GuildOnly)
     ///     .stage_instance(
     ///         channel_id,
-    ///         &quot;Garfield Appreciation Hour&quot;,
+    ///         "Garfield Appreciation Hour",
     ///         &amp;garfield_start_time,
     ///     )?
-    ///     .description(&quot;Discuss: How important is Garfield to You?&quot;)?
+    ///     .description("Discuss: How important is Garfield to You?")?
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4976,22 +4977,22 @@
     /// use twilight_model::{guild::scheduled_event::PrivacyLevel, id::Id, util::Timestamp};
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;token&quot;.to_owned());
+    /// # let client = Client::new("token".to_owned());
     /// let guild_id = Id::new(1);
-    /// let garfield_con_start_time = Timestamp::parse(&quot;2022-01-04T08:00:00+00:00&quot;)?;
-    /// let garfield_con_end_time = Timestamp::parse(&quot;2022-01-06T17:00:00+00:00&quot;)?;
+    /// let garfield_con_start_time = Timestamp::parse("2022-01-04T08:00:00+00:00")?;
+    /// let garfield_con_end_time = Timestamp::parse("2022-01-06T17:00:00+00:00")?;
     ///
     /// client
     ///     .create_guild_scheduled_event(guild_id, PrivacyLevel::GuildOnly)
     ///     .external(
-    ///         &quot;Garfield Con 2022&quot;,
-    ///         &quot;Baltimore Convention Center&quot;,
+    ///         "Garfield Con 2022",
+    ///         "Baltimore Convention Center",
     ///         &amp;garfield_con_start_time,
     ///         &amp;garfield_con_end_time,
     ///     )?
     ///     .description(
-    ///         &quot;In a spiritual successor to BronyCon, Garfield fans from \
-    /// around the globe celebrate all things related to the loveable cat.&quot;,
+    ///         "In a spiritual successor to BronyCon, Garfield fans from \
+    /// around the globe celebrate all things related to the loveable cat.",
     ///     )?
     ///     .await?;
     /// # Ok(()) }
@@ -5002,7 +5003,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         privacy_level: PrivacyLevel,
-    ) -&gt; CreateGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; CreateGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {
         CreateGuildScheduledEvent::new(<span class="self">self</span>, guild_id, privacy_level)
     }
 
@@ -5011,7 +5012,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         scheduled_event_id: Id&lt;ScheduledEventMarker&gt;,
-    ) -&gt; GetGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildScheduledEvent::new(<span class="self">self</span>, guild_id, scheduled_event_id)
     }
 
@@ -5030,7 +5031,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         scheduled_event_id: Id&lt;ScheduledEventMarker&gt;,
-    ) -&gt; GetGuildScheduledEventUsers&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildScheduledEventUsers&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildScheduledEventUsers::new(<span class="self">self</span>, guild_id, scheduled_event_id)
     }
 
@@ -5038,7 +5039,7 @@
     </span><span class="kw">pub const fn </span>guild_scheduled_events(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; GetGuildScheduledEvents&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildScheduledEvents&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildScheduledEvents::new(<span class="self">self</span>, guild_id)
     }
 
@@ -5062,7 +5063,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         scheduled_event_id: Id&lt;ScheduledEventMarker&gt;,
-    ) -&gt; UpdateGuildScheduledEvent&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildScheduledEvent&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildScheduledEvent::new(<span class="self">self</span>, guild_id, scheduled_event_id)
     }
 
@@ -5076,15 +5077,15 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let id = Id::new(123);
     /// let sticker = client.sticker(id).await?.model().await?;
     ///
-    /// println!(&quot;{sticker:#?}&quot;);
+    /// println!("{sticker:#?}");
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>sticker(<span class="kw-2">&amp;</span><span class="self">self</span>, sticker_id: Id&lt;StickerMarker&gt;) -&gt; GetSticker&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>sticker(<span class="kw-2">&amp;</span><span class="self">self</span>, sticker_id: Id&lt;StickerMarker&gt;) -&gt; GetSticker&lt;<span class="lifetime">'_</span>&gt; {
         GetSticker::new(<span class="self">self</span>, sticker_id)
     }
 
@@ -5097,14 +5098,14 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let packs = client.nitro_sticker_packs().await?.model().await?;
     ///
-    /// println!(&quot;{}&quot;, packs.sticker_packs.len());
+    /// println!("{}", packs.sticker_packs.len());
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>nitro_sticker_packs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetNitroStickerPacks&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>nitro_sticker_packs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetNitroStickerPacks&lt;<span class="lifetime">'_</span>&gt; {
         GetNitroStickerPacks::new(<span class="self">self</span>)
     }
 
@@ -5118,19 +5119,19 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// let stickers = client.guild_stickers(guild_id).await?.models().await?;
     ///
-    /// println!(&quot;{}&quot;, stickers.len());
+    /// println!("{}", stickers.len());
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">pub const fn </span>guild_stickers(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildStickers&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">pub const fn </span>guild_stickers(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetGuildStickers&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildStickers::new(<span class="self">self</span>, guild_id)
     }
 
-    <span class="doccomment">/// Returns a guild sticker by the guild&#39;s ID and the sticker&#39;s ID.
+    <span class="doccomment">/// Returns a guild sticker by the guild's ID and the sticker's ID.
     ///
     /// # Examples
     ///
@@ -5140,7 +5141,7 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// let sticker_id = Id::new(2);
@@ -5150,14 +5151,14 @@
     ///     .model()
     ///     .await?;
     ///
-    /// println!(&quot;{sticker:#?}&quot;);
+    /// println!("{sticker:#?}");
     /// # Ok(()) }
     /// ```
     </span><span class="kw">pub const fn </span>guild_sticker(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         sticker_id: Id&lt;StickerMarker&gt;,
-    ) -&gt; GetGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; GetGuildSticker&lt;<span class="lifetime">'_</span>&gt; {
         GetGuildSticker::new(<span class="self">self</span>, guild_id, sticker_id)
     }
 
@@ -5171,22 +5172,22 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// let sticker = client
     ///     .create_guild_sticker(
     ///         guild_id,
-    ///         &amp;&quot;sticker name&quot;,
-    ///         &amp;&quot;sticker description&quot;,
-    ///         &amp;&quot;sticker,tags&quot;,
+    ///         &amp;"sticker name",
+    ///         &amp;"sticker description",
+    ///         &amp;"sticker,tags",
     ///         &amp;[23, 23, 23, 23],
     ///     )?
     ///     .await?
     ///     .model()
     ///     .await?;
     ///
-    /// println!(&quot;{sticker:#?}&quot;);
+    /// println!("{sticker:#?}");
     /// # Ok(()) }
     /// ```
     ///
@@ -5201,14 +5202,14 @@
     /// [`DescriptionInvalid`]: twilight_validate::sticker::StickerValidationErrorType::DescriptionInvalid
     /// [`NameInvalid`]: twilight_validate::sticker::StickerValidationErrorType::NameInvalid
     /// [`TagsInvalid`]: twilight_validate::sticker::StickerValidationErrorType::TagsInvalid
-    </span><span class="kw">pub fn </span>create_guild_sticker&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+    </span><span class="kw">pub fn </span>create_guild_sticker&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        description: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        tags: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        file: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt;, StickerValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        description: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        file: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8],
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildSticker&lt;<span class="lifetime">'_</span>&gt;, StickerValidationError&gt; {
         CreateGuildSticker::new(<span class="self">self</span>, guild_id, name, description, tags, file)
     }
 
@@ -5222,25 +5223,25 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// let sticker_id = Id::new(2);
     /// let sticker = client
     ///     .update_guild_sticker(guild_id, sticker_id)
-    ///     .description(&quot;new description&quot;)?
+    ///     .description("new description")?
     ///     .await?
     ///     .model()
     ///     .await?;
     ///
-    /// println!(&quot;{sticker:#?}&quot;);
+    /// println!("{sticker:#?}");
     /// # Ok(()) }
     /// ```
     </span><span class="kw">pub const fn </span>update_guild_sticker(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         sticker_id: Id&lt;StickerMarker&gt;,
-    ) -&gt; UpdateGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; UpdateGuildSticker&lt;<span class="lifetime">'_</span>&gt; {
         UpdateGuildSticker::new(<span class="self">self</span>, guild_id, sticker_id)
     }
 
@@ -5254,7 +5255,7 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let client = Client::new(&quot;my token&quot;.to_owned());
+    /// let client = Client::new("my token".to_owned());
     ///
     /// let guild_id = Id::new(1);
     /// let sticker_id = Id::new(2);
@@ -5266,7 +5267,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         sticker_id: Id&lt;StickerMarker&gt;,
-    ) -&gt; DeleteGuildSticker&lt;<span class="lifetime">&#39;_</span>&gt; {
+    ) -&gt; DeleteGuildSticker&lt;<span class="lifetime">'_</span>&gt; {
         DeleteGuildSticker::new(<span class="self">self</span>, guild_id, sticker_id)
     }
 
@@ -5305,10 +5306,10 @@
             use_authorization_token,
         } = request;
 
-        <span class="kw">let </span>protocol = <span class="kw">if </span><span class="self">self</span>.use_http { <span class="string">&quot;http&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;https&quot; </span>};
-        <span class="kw">let </span>host = <span class="self">self</span>.proxy.as_deref().unwrap_or(<span class="string">&quot;discord.com&quot;</span>);
+        <span class="kw">let </span>protocol = <span class="kw">if </span><span class="self">self</span>.use_http { <span class="string">"http" </span>} <span class="kw">else </span>{ <span class="string">"https" </span>};
+        <span class="kw">let </span>host = <span class="self">self</span>.proxy.as_deref().unwrap_or(<span class="string">"discord.com"</span>);
 
-        <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">&quot;{protocol}://{host}/api/v{API_VERSION}/{path}&quot;</span>);
+        <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">"{protocol}://{host}/api/v{API_VERSION}/{path}"</span>);
         <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>url);
 
         <span class="kw">let </span><span class="kw-2">mut </span>builder = hyper::Request::builder().method(method.to_http()).uri(<span class="kw-2">&amp;</span>url);
@@ -5338,15 +5339,15 @@
                 }
             } <span class="kw">else if let </span><span class="prelude-val">Some</span>(bytes) = <span class="kw-2">&amp;</span>body {
                 headers.insert(CONTENT_LENGTH, HeaderValue::from(bytes.len()));
-                headers.insert(CONTENT_TYPE, HeaderValue::from_static(<span class="string">&quot;application/json&quot;</span>));
+                headers.insert(CONTENT_TYPE, HeaderValue::from_static(<span class="string">"application/json"</span>));
             } <span class="kw">else if </span><span class="macro">matches!</span>(method, Method::Put | Method::Post | Method::Patch) {
                 headers.insert(CONTENT_LENGTH, HeaderValue::from(<span class="number">0</span>));
             }
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;decompression&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
             </span>headers.insert(
                 hyper::header::ACCEPT_ENCODING,
-                HeaderValue::from_static(<span class="string">&quot;br&quot;</span>),
+                HeaderValue::from_static(<span class="string">"br"</span>),
             );
 
             headers.insert(USER_AGENT, HeaderValue::from_static(TWILIGHT_USER_AGENT));
@@ -5379,7 +5380,7 @@
             source: <span class="prelude-val">Some</span>(Box::new(source)),
         })<span class="question-mark">?</span>);
 
-        <span class="comment">// For requests that don&#39;t use an authorization token we don&#39;t need to
+        <span class="comment">// For requests that don't use an authorization token we don't need to
         // remember whether the token is invalid. This may be for requests such
         // as webhooks and interactions.
         </span><span class="kw">let </span>invalid_token = use_authorization_token
@@ -5403,9 +5404,9 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>client_debug_with_token() {
         <span class="macro">assert!</span>(
-            <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, Client::new(<span class="string">&quot;Bot foo&quot;</span>.to_owned())).contains(<span class="string">&quot;token: Some(&lt;redacted&gt;)&quot;</span>)
+            <span class="macro">format!</span>(<span class="string">"{:?}"</span>, Client::new(<span class="string">"Bot foo"</span>.to_owned())).contains(<span class="string">"token: Some(&lt;redacted&gt;)"</span>)
         );
-        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, Client::builder().build()).contains(<span class="string">&quot;token: None&quot;</span>));
+        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, Client::builder().build()).contains(<span class="string">"token: None"</span>));
     }
 }
 </code></pre></div></section></main></body></html>

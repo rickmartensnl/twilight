@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/link/webhook.rs`."><title>webhook.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/link/webhook.rs`."><title>webhook.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -257,42 +258,42 @@
 
 <span class="kw">impl </span>WebhookParseError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>WebhookParseErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (WebhookParseErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>WebhookParseError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
             WebhookParseErrorType::IdInvalid { .. } =&gt; {
-                f.write_str(<span class="string">&quot;url path segment isn&#39;t a valid ID&quot;</span>)
+                f.write_str(<span class="string">"url path segment isn't a valid ID"</span>)
             }
             WebhookParseErrorType::SegmentMissing =&gt; {
-                f.write_str(<span class="string">&quot;url is missing a required path segment&quot;</span>)
+                f.write_str(<span class="string">"url is missing a required path segment"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>WebhookParseError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -318,12 +319,12 @@
 /// use twilight_util::link::webhook;
 ///
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let url = &quot;https://canary.discord.com/api/webhooks/794590023369752587/tjxHaPHLKp9aEdSwJuLeHhHHGEqIxt1aay4I67FOP9uzsYEWmj0eJmDn-2ZvCYLyOb_K&quot;;
+/// let url = "https://canary.discord.com/api/webhooks/794590023369752587/tjxHaPHLKp9aEdSwJuLeHhHHGEqIxt1aay4I67FOP9uzsYEWmj0eJmDn-2ZvCYLyOb_K";
 ///
 /// let (id, token) = webhook::parse(url)?;
 /// assert_eq!(Id::new(794590023369752587), id);
 /// assert_eq!(
-///     Some(&quot;tjxHaPHLKp9aEdSwJuLeHhHHGEqIxt1aay4I67FOP9uzsYEWmj0eJmDn-2ZvCYLyOb_K&quot;),
+///     Some("tjxHaPHLKp9aEdSwJuLeHhHHGEqIxt1aay4I67FOP9uzsYEWmj0eJmDn-2ZvCYLyOb_K"),
 ///     token,
 /// );
 /// # Ok(()) }
@@ -336,7 +337,7 @@
 /// use twilight_util::link::webhook;
 ///
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// let url = &quot;https://canary.discord.com/api/webhooks/794590023369752587&quot;;
+/// let url = "https://canary.discord.com/api/webhooks/794590023369752587";
 ///
 /// let (id, token) = webhook::parse(url)?;
 /// assert_eq!(Id::new(794590023369752587), id);
@@ -350,17 +351,17 @@
 /// the URL is not a valid integer.
 ///
 /// Returns [`WebhookParseErrorType::SegmentMissing`] error type if one of the
-/// required segments is missing. This can be the &quot;api&quot; or &quot;webhooks&quot; standard
+/// required segments is missing. This can be the "api" or "webhooks" standard
 /// segment of the URL or the segment containing the webhook ID.
 </span><span class="kw">pub fn </span>parse(url: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;(Id&lt;WebhookMarker&gt;, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;), WebhookParseError&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>segments = {
-        <span class="kw">let </span><span class="kw-2">mut </span>start = url.split(<span class="string">&quot;discord.com/api/webhooks/&quot;</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>start = url.split(<span class="string">"discord.com/api/webhooks/"</span>);
         <span class="kw">let </span>path = start.nth(<span class="number">1</span>).ok_or(WebhookParseError {
             kind: WebhookParseErrorType::SegmentMissing,
             source: <span class="prelude-val">None</span>,
         })<span class="question-mark">?</span>;
 
-        path.split(<span class="string">&#39;/&#39;</span>)
+        path.split(<span class="string">'/'</span>)
     };
 
     <span class="kw">let </span>id_segment = segments.next().ok_or(WebhookParseError {
@@ -368,7 +369,7 @@
         source: <span class="prelude-val">None</span>,
     })<span class="question-mark">?</span>;
 
-    <span class="comment">// If we don&#39;t have this check it&#39;ll return `IdInvalid`, which isn&#39;t right.
+    <span class="comment">// If we don't have this check it'll return `IdInvalid`, which isn't right.
     </span><span class="kw">if </span>id_segment.is_empty() {
         <span class="kw">return </span><span class="prelude-val">Err</span>(WebhookParseError {
             kind: WebhookParseErrorType::SegmentMissing,
@@ -384,7 +385,7 @@
         })<span class="question-mark">?</span>;
     <span class="kw">let </span><span class="kw-2">mut </span>token = segments.next();
 
-    <span class="comment">// Don&#39;t return an empty token if the segment is empty.
+    <span class="comment">// Don't return an empty token if the segment is empty.
     </span><span class="kw">if </span>token.map(str::is_empty).unwrap_or_default() {
         token = <span class="prelude-val">None</span>;
     }
@@ -406,15 +407,15 @@
     </span><span class="kw">fn </span>parse_no_token() {
         <span class="macro">assert_eq!</span>(
             (Id::new(<span class="number">123</span>), <span class="prelude-val">None</span>),
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/123&quot;</span>).unwrap(),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/123"</span>).unwrap(),
         );
-        <span class="comment">// There&#39;s a / after the ID signifying another segment, but the token
+        <span class="comment">// There's a / after the ID signifying another segment, but the token
         // ends up being None.
         </span><span class="macro">assert_eq!</span>(
             (Id::new(<span class="number">123</span>), <span class="prelude-val">None</span>),
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/123&quot;</span>).unwrap(),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/123"</span>).unwrap(),
         );
-        <span class="macro">assert!</span>(<span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/123/&quot;</span>)
+        <span class="macro">assert!</span>(<span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/123/"</span>)
             .unwrap()
             .<span class="number">1
             </span>.is_none());
@@ -423,25 +424,25 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>parse_with_token() {
         <span class="macro">assert_eq!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/456/token&quot;</span>).unwrap(),
-            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;token&quot;</span>)),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/456/token"</span>).unwrap(),
+            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">"token"</span>)),
         );
         <span class="comment">// The value of the segment(s) after the token are ignored.
         </span><span class="macro">assert_eq!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/456/token/github&quot;</span>).unwrap(),
-            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;token&quot;</span>)),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/456/token/github"</span>).unwrap(),
+            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">"token"</span>)),
         );
         <span class="macro">assert_eq!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/456/token/slack&quot;</span>).unwrap(),
-            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;token&quot;</span>)),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/456/token/slack"</span>).unwrap(),
+            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">"token"</span>)),
         );
         <span class="macro">assert_eq!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/456/token/randomsegment&quot;</span>).unwrap(),
-            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;token&quot;</span>)),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/456/token/randomsegment"</span>).unwrap(),
+            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">"token"</span>)),
         );
         <span class="macro">assert_eq!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/456/token/one/two/three&quot;</span>).unwrap(),
-            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;token&quot;</span>)),
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/456/token/one/two/three"</span>).unwrap(),
+            (Id::new(<span class="number">456</span>), <span class="prelude-val">Some</span>(<span class="string">"token"</span>)),
         );
     }
 
@@ -449,21 +450,21 @@
     </span><span class="kw">fn </span>parse_invalid() {
         <span class="comment">// Base URL is improper.
         </span><span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/foo/bar/456&quot;</span>)
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/foo/bar/456"</span>)
                 .unwrap_err()
                 .kind(),
             <span class="kw-2">&amp;</span>WebhookParseErrorType::SegmentMissing,
         ));
         <span class="comment">// No ID is present.
         </span><span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/&quot;</span>)
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/"</span>)
                 .unwrap_err()
                 .kind(),
             <span class="kw-2">&amp;</span>WebhookParseErrorType::SegmentMissing,
         ));
-        <span class="comment">// ID segment isn&#39;t an integer.
+        <span class="comment">// ID segment isn't an integer.
         </span><span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            <span class="kw">super</span>::parse(<span class="string">&quot;https://discord.com/api/webhooks/notaninteger&quot;</span>)
+            <span class="kw">super</span>::parse(<span class="string">"https://discord.com/api/webhooks/notaninteger"</span>)
                 .unwrap_err()
                 .kind(),
             <span class="kw-2">&amp;</span>WebhookParseErrorType::IdInvalid { .. },

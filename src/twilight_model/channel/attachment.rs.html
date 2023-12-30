@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/attachment.rs`."><title>attachment.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/attachment.rs`."><title>attachment.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -140,7 +141,7 @@
 
 <span class="attr">#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Attachment {
-    <span class="doccomment">/// Attachment&#39;s [media type].
+    <span class="doccomment">/// Attachment's [media type].
     ///
     /// [media type]: https://en.wikipedia.org/wiki/Media_type
     </span><span class="kw">pub </span>content_type: <span class="prelude-ty">Option</span>&lt;String&gt;,
@@ -149,27 +150,27 @@
     /// Ephemeral attachments will automatically be removed after a set period
     /// of time. Ephemeral attachments on messages are guaranteed to be
     /// available as long as the message itself exists.
-    </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">&quot;is_false&quot;</span>)]
+    </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">"is_false"</span>)]
     </span><span class="kw">pub </span>ephemeral: bool,
     <span class="doccomment">/// Duration of the audio file (currently for voice messages).
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>duration_secs: <span class="prelude-ty">Option</span>&lt;f64&gt;,
     <span class="kw">pub </span>filename: String,
     <span class="comment">// Flags for this attachment.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;AttachmentFlags&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>description: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>height: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="kw">pub </span>id: Id&lt;AttachmentMarker&gt;,
     <span class="kw">pub </span>proxy_url: String,
     <span class="kw">pub </span>size: u64,
     <span class="kw">pub </span>url: String,
     <span class="doccomment">/// Base64 encoded bytearray representing a sampled waveform (currently for voice messages).
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>waveform: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>width: <span class="prelude-ty">Option</span>&lt;u64&gt;,
 }
 
@@ -197,7 +198,7 @@
     <span class="macro">assert_impl_all!</span>(
         Attachment: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         PartialEq,
         Serialize
     );
@@ -205,18 +206,18 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>attachment() {
         <span class="kw">let </span>value = Attachment {
-            content_type: <span class="prelude-val">Some</span>(<span class="string">&quot;image/png&quot;</span>.to_owned()),
+            content_type: <span class="prelude-val">Some</span>(<span class="string">"image/png"</span>.to_owned()),
             ephemeral: <span class="bool-val">false</span>,
-            filename: <span class="string">&quot;a.png&quot;</span>.to_owned(),
+            filename: <span class="string">"a.png"</span>.to_owned(),
             flags: <span class="prelude-val">Some</span>(AttachmentFlags::IS_REMIX),
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;a image&quot;</span>.to_owned()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"a image"</span>.to_owned()),
             duration_secs: <span class="prelude-val">Some</span>(<span class="number">3.2</span>),
             height: <span class="prelude-val">Some</span>(<span class="number">184</span>),
             id: Id::new(<span class="number">700_000_000_000_000_000</span>),
-            proxy_url: <span class="string">&quot;https://cdn.example.com/1.png&quot;</span>.to_owned(),
+            proxy_url: <span class="string">"https://cdn.example.com/1.png"</span>.to_owned(),
             size: <span class="number">13_593</span>,
-            url: <span class="string">&quot;https://example.com/1.png&quot;</span>.to_owned(),
-            waveform: <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;waveform&quot;</span>)),
+            url: <span class="string">"https://example.com/1.png"</span>.to_owned(),
+            waveform: <span class="prelude-val">Some</span>(String::from(<span class="string">"waveform"</span>)),
             width: <span class="prelude-val">Some</span>(<span class="number">184</span>),
         };
 
@@ -224,39 +225,39 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Attachment&quot;</span>,
+                    name: <span class="string">"Attachment"</span>,
                     len: <span class="number">12</span>,
                 },
-                Token::Str(<span class="string">&quot;content_type&quot;</span>),
+                Token::Str(<span class="string">"content_type"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;image/png&quot;</span>),
-                Token::Str(<span class="string">&quot;duration_secs&quot;</span>),
+                Token::Str(<span class="string">"image/png"</span>),
+                Token::Str(<span class="string">"duration_secs"</span>),
                 Token::Some,
                 Token::F64(<span class="number">3.2</span>),
-                Token::Str(<span class="string">&quot;filename&quot;</span>),
-                Token::Str(<span class="string">&quot;a.png&quot;</span>),
-                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Str(<span class="string">"filename"</span>),
+                Token::Str(<span class="string">"a.png"</span>),
+                Token::Str(<span class="string">"flags"</span>),
                 Token::Some,
                 Token::U64(<span class="number">4</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;a image&quot;</span>),
-                Token::Str(<span class="string">&quot;height&quot;</span>),
+                Token::Str(<span class="string">"a image"</span>),
+                Token::Str(<span class="string">"height"</span>),
                 Token::Some,
                 Token::U64(<span class="number">184</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;700000000000000000&quot;</span>),
-                Token::Str(<span class="string">&quot;proxy_url&quot;</span>),
-                Token::Str(<span class="string">&quot;https://cdn.example.com/1.png&quot;</span>),
-                Token::Str(<span class="string">&quot;size&quot;</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"700000000000000000"</span>),
+                Token::Str(<span class="string">"proxy_url"</span>),
+                Token::Str(<span class="string">"https://cdn.example.com/1.png"</span>),
+                Token::Str(<span class="string">"size"</span>),
                 Token::U64(<span class="number">13_593</span>),
-                Token::Str(<span class="string">&quot;url&quot;</span>),
-                Token::Str(<span class="string">&quot;https://example.com/1.png&quot;</span>),
-                Token::Str(<span class="string">&quot;waveform&quot;</span>),
+                Token::Str(<span class="string">"url"</span>),
+                Token::Str(<span class="string">"https://example.com/1.png"</span>),
+                Token::Str(<span class="string">"waveform"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;waveform&quot;</span>),
-                Token::Str(<span class="string">&quot;width&quot;</span>),
+                Token::Str(<span class="string">"waveform"</span>),
+                Token::Str(<span class="string">"width"</span>),
                 Token::Some,
                 Token::U64(<span class="number">184</span>),
                 Token::StructEnd,

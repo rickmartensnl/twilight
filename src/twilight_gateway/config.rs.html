@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/config.rs`."><title>config.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/config.rs`."><title>config.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -490,14 +491,14 @@
 }
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>Token {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;&lt;redacted&gt;&quot;</span>)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"&lt;redacted&gt;"</span>)
     }
 }
 
 <span class="doccomment">/// Configuration used by the shard to identify with the gateway and operate.
 ///
-/// Use [`Config::builder`] to configure a shard&#39;s configuration.
+/// Use [`Config::builder`] to configure a shard's configuration.
 ///
 /// May be reused by cloning, also reusing the hidden TLS context---reducing
 /// memory usage. The TLS context may still be reused with an otherwise
@@ -511,7 +512,7 @@
     </span>identify_properties: <span class="prelude-ty">Option</span>&lt;IdentifyProperties&gt;,
     <span class="doccomment">/// Intents that the shard requests when identifying with the gateway.
     </span>intents: Intents,
-    <span class="doccomment">/// When the gateway will stop sending a guild&#39;s member list in
+    <span class="doccomment">/// When the gateway will stop sending a guild's member list in
     /// Guild Create events.
     </span>large_threshold: u64,
     <span class="doccomment">/// Presence to set when identifying with the gateway.
@@ -532,7 +533,7 @@
     </span>tls: TlsContainer,
     <span class="doccomment">/// Token used to authenticate when identifying with the gateway.
     ///
-    /// The token is prefixed with &quot;Bot &quot;, which is required by Discord for
+    /// The token is prefixed with "Bot ", which is required by Discord for
     /// authentication.
     </span>token: Token,
 }
@@ -550,7 +551,7 @@
         <span class="self">Self</span>::builder(token, intents).build()
     }
 
-    <span class="doccomment">/// Create a builder to customize a shard&#39;s configuration.
+    <span class="doccomment">/// Create a builder to customize a shard's configuration.
     ///
     /// # Panics
     ///
@@ -574,7 +575,7 @@
         <span class="self">self</span>.intents
     }
 
-    <span class="doccomment">/// Maximum threshold at which point the gateway will stop sending a guild&#39;s
+    <span class="doccomment">/// Maximum threshold at which point the gateway will stop sending a guild's
     /// member list in Guild Create events.
     </span><span class="kw">pub const fn </span>large_threshold(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
         <span class="self">self</span>.large_threshold
@@ -583,8 +584,8 @@
     <span class="doccomment">/// Immutable reference to the presence to set when identifying
     /// with the gateway.
     ///
-    /// This will be the bot&#39;s presence. For example, setting the online status
-    /// to Do Not Disturb will show the status in the bot&#39;s presence.
+    /// This will be the bot's presence. For example, setting the online status
+    /// to Do Not Disturb will show the status in the bot's presence.
     </span><span class="kw">pub const fn </span>presence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>UpdatePresencePayload&gt; {
         <span class="self">self</span>.presence.as_ref()
     }
@@ -625,7 +626,7 @@
 
 <span class="doccomment">/// Builder to customize the operation of a shard.
 </span><span class="attr">#[derive(Debug)]
-#[must_use = <span class="string">&quot;builder must be completed to be used&quot;</span>]
+#[must_use = <span class="string">"builder must be completed to be used"</span>]
 </span><span class="kw">pub struct </span>ConfigBuilder {
     <span class="doccomment">/// Inner configuration being modified.
     </span>inner: Config,
@@ -640,8 +641,8 @@
     ///
     /// Panics if loading TLS certificates fails.
     </span><span class="kw">pub fn </span>new(<span class="kw-2">mut </span>token: String, intents: Intents) -&gt; <span class="self">Self </span>{
-        <span class="kw">if </span>!token.starts_with(<span class="string">&quot;Bot &quot;</span>) {
-            token.insert_str(<span class="number">0</span>, <span class="string">&quot;Bot &quot;</span>);
+        <span class="kw">if </span>!token.starts_with(<span class="string">"Bot "</span>) {
+            token.insert_str(<span class="number">0</span>, <span class="string">"Bot "</span>);
         }
 
         <span class="self">Self </span>{
@@ -662,7 +663,7 @@
     }
 
     <span class="doccomment">/// Create a new builder from an existing configuration.
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.15.3&quot;</span>, note = <span class="string">&quot;use From&lt;Config&gt; instead&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.15.3"</span>, note = <span class="string">"use From&lt;Config&gt; instead"</span>)]
     </span><span class="kw">pub const fn </span>with_config(config: Config) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{ inner: config }
     }
@@ -699,8 +700,8 @@
     /// use twilight_gateway::{Config, Intents, Shard};
     /// use twilight_model::gateway::payload::outgoing::identify::IdentifyProperties;
     ///
-    /// let token = env::var(&quot;DISCORD_TOKEN&quot;)?;
-    /// let properties = IdentifyProperties::new(&quot;twilight.rs&quot;, &quot;twilight.rs&quot;, OS);
+    /// let token = env::var("DISCORD_TOKEN")?;
+    /// let properties = IdentifyProperties::new("twilight.rs", "twilight.rs", OS);
     ///
     /// let config = Config::builder(token, Intents::empty())
     ///     .identify_properties(properties)
@@ -722,7 +723,7 @@
     /// # Examples
     ///
     /// If you pass `200`, then if there are 250 members in a guild the member
-    /// list won&#39;t be sent. If there are 150 members, then the list *will* be
+    /// list won't be sent. If there are 150 members, then the list *will* be
     /// sent.
     ///
     /// # Panics
@@ -738,7 +739,7 @@
 
         <span class="macro">assert!</span>(
             large_threshold &gt;= MINIMUM &amp;&amp; large_threshold &lt;= MAXIMUM,
-            <span class="string">&quot;large threshold isn&#39;t in the accepted range&quot;
+            <span class="string">"large threshold isn't in the accepted range"
         </span>);
 
         <span class="self">self</span>.inner.large_threshold = large_threshold;
@@ -751,15 +752,15 @@
     /// The active presence of a session is maintained across re-connections
     /// when a session can be [successfully resumed], and when a new session has
     /// to be made shards will send the configured presence. Manually updating
-    /// the presence after a disconnection isn&#39;t necessary.
+    /// the presence after a disconnection isn't necessary.
     ///
-    /// Default is no presence, which defaults to strictly being &quot;online&quot;
+    /// Default is no presence, which defaults to strictly being "online"
     /// with no special qualities.
     ///
     /// # Examples
     ///
-    /// Set the bot user&#39;s presence to idle with the status &quot;Not accepting
-    /// commands&quot;:
+    /// Set the bot user's presence to idle with the status "Not accepting
+    /// commands":
     ///
     /// ```no_run
     /// use std::env;
@@ -771,11 +772,11 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let config = Config::builder(env::var(&quot;DISCORD_TOKEN&quot;)?, Intents::empty())
+    /// let config = Config::builder(env::var("DISCORD_TOKEN")?, Intents::empty())
     ///     .presence(UpdatePresencePayload::new(
     ///         vec![MinimalActivity {
     ///             kind: ActivityType::Playing,
-    ///             name: &quot;Not accepting commands&quot;.into(),
+    ///             name: "Not accepting commands".into(),
     ///             url: None,
     ///         }
     ///         .into()],
@@ -867,7 +868,7 @@
     <span class="macro">assert_impl_all!</span>(ConfigBuilder: Debug, Send, Sync);
 
     <span class="kw">fn </span>builder() -&gt; ConfigBuilder {
-        ConfigBuilder::new(<span class="string">&quot;test&quot;</span>.to_owned(), Intents::empty())
+        ConfigBuilder::new(<span class="string">"test"</span>.to_owned(), Intents::empty())
     }
 
     <span class="attr">#[tokio::test]
@@ -882,13 +883,13 @@
         }
     }
 
-    <span class="attr">#[should_panic(expected = <span class="string">&quot;large threshold isn&#39;t in the accepted range&quot;</span>)]
+    <span class="attr">#[should_panic(expected = <span class="string">"large threshold isn't in the accepted range"</span>)]
     #[tokio::test]
     </span><span class="kw">async fn </span>large_threshold_minimum() {
         drop(builder().large_threshold(<span class="number">49</span>));
     }
 
-    <span class="attr">#[should_panic(expected = <span class="string">&quot;large threshold isn&#39;t in the accepted range&quot;</span>)]
+    <span class="attr">#[should_panic(expected = <span class="string">"large threshold isn't in the accepted range"</span>)]
     #[tokio::test]
     </span><span class="kw">async fn </span>large_threshold_maximum() {
         drop(builder().large_threshold(<span class="number">251</span>));
@@ -896,8 +897,8 @@
 
     <span class="attr">#[tokio::test]
     </span><span class="kw">async fn </span>config_prefixes_bot_to_token() {
-        <span class="kw">const </span>WITHOUT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;test&quot;</span>;
-        <span class="kw">const </span>WITH: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Bot test&quot;</span>;
+        <span class="kw">const </span>WITHOUT: <span class="kw-2">&amp;</span>str = <span class="string">"test"</span>;
+        <span class="kw">const </span>WITH: <span class="kw-2">&amp;</span>str = <span class="string">"Bot test"</span>;
 
         <span class="macro">assert_eq!</span>(
             ConfigBuilder::new(WITHOUT.to_owned(), Intents::empty())
@@ -919,9 +920,9 @@
 
     <span class="attr">#[tokio::test]
     </span><span class="kw">async fn </span>config_debug() {
-        <span class="kw">let </span>config = Config::new(<span class="string">&quot;Bot foo&quot;</span>.to_owned(), Intents::empty());
+        <span class="kw">let </span>config = Config::new(<span class="string">"Bot foo"</span>.to_owned(), Intents::empty());
 
-        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">&quot;{config:?}&quot;</span>).contains(<span class="string">&quot;token: &lt;redacted&gt;&quot;</span>));
+        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">"{config:?}"</span>).contains(<span class="string">"token: &lt;redacted&gt;"</span>));
     }
 }
 </code></pre></div></section></main></body></html>

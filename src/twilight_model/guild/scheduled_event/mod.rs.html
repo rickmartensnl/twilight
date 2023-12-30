@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -308,28 +309,28 @@
     ///
     /// Present on events of [`EntityType::StageInstance`] and
     /// [`EntityType::Voice`].
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="doccomment">/// User object of the event&#39;s creator.
+    <span class="doccomment">/// User object of the event's creator.
     ///
     /// Only present on events created after October 25th, 2021.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>creator: <span class="prelude-ty">Option</span>&lt;User&gt;,
-    <span class="doccomment">/// ID of the event&#39;s creator.
+    <span class="doccomment">/// ID of the event's creator.
     ///
     /// Only present on events created after October 25th, 2021.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>creator_id: <span class="prelude-ty">Option</span>&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="doccomment">/// Description of the event.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>description: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="doccomment">/// ID of the event&#39;s entity.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// ID of the event's entity.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>entity_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ScheduledEventEntityMarker&gt;&gt;,
     <span class="doccomment">/// Metadata of an entity, if it exists.
     ///
     /// Currently, only present on events of [`EntityType::External`].
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>entity_metadata: <span class="prelude-ty">Option</span>&lt;EntityMetadata&gt;,
     <span class="doccomment">/// Type of entity associated with the event.
     </span><span class="kw">pub </span>entity_type: EntityType,
@@ -337,8 +338,8 @@
     </span><span class="kw">pub </span>guild_id: Id&lt;GuildMarker&gt;,
     <span class="doccomment">/// ID of the event.
     </span><span class="kw">pub </span>id: Id&lt;ScheduledEventMarker&gt;,
-    <span class="doccomment">/// Hash of the event&#39;s cover image, if it has one.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Hash of the event's cover image, if it has one.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>image: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="doccomment">/// Name of the event.
     </span><span class="kw">pub </span>name: String,
@@ -348,14 +349,14 @@
     ///
     /// Required on events of type [`EntityType::External`]. It also may be
     /// present in other event types.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>scheduled_end_time: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="doccomment">/// Scheduled start time of the event.
     </span><span class="kw">pub </span>scheduled_start_time: Timestamp,
     <span class="doccomment">/// Status of the event.
     </span><span class="kw">pub </span>status: Status,
     <span class="doccomment">/// Number of users subscribed to the event.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>user_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
 }
 
@@ -369,7 +370,7 @@
 <span class="doccomment">/// Type of event.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(from = <span class="string">&quot;u8&quot;</span>, into = <span class="string">&quot;u8&quot;</span>)]
+#[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
 </span><span class="kw">pub enum </span>EntityType {
     <span class="doccomment">/// Event takes place in a stage instance.
     </span>StageInstance,
@@ -406,7 +407,7 @@
 <span class="doccomment">/// Privacy level of an event.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(from = <span class="string">&quot;u8&quot;</span>, into = <span class="string">&quot;u8&quot;</span>)]
+#[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
 </span><span class="kw">pub enum </span>PrivacyLevel {
     <span class="doccomment">/// Event is only accessible to guild members.
     </span>GuildOnly,
@@ -435,7 +436,7 @@
 <span class="doccomment">/// Status of an event.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[non_exhaustive]
-#[serde(from = <span class="string">&quot;u8&quot;</span>, into = <span class="string">&quot;u8&quot;</span>)]
+#[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
 </span><span class="kw">pub enum </span>Status {
     <span class="doccomment">/// Event is scheduled.
     ///
@@ -486,20 +487,20 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>scheduled_event() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span>scheduled_start_time = Timestamp::parse(<span class="string">&quot;2022-01-01T00:00:00.000000+00:00&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>scheduled_start_time = Timestamp::parse(<span class="string">"2022-01-01T00:00:00.000000+00:00"</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let </span>value = GuildScheduledEvent {
             channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             creator: <span class="prelude-val">None</span>,
             creator_id: <span class="prelude-val">None</span>,
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;this is a dance party for garfield lovers&quot;</span>.into()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"this is a dance party for garfield lovers"</span>.into()),
             entity_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">2</span>)),
             entity_metadata: <span class="prelude-val">None</span>,
             entity_type: EntityType::StageInstance,
             guild_id: Id::new(<span class="number">3</span>),
             id: Id::new(<span class="number">4</span>),
             image: <span class="prelude-val">Some</span>(COVER),
-            name: <span class="string">&quot;garfield dance party&quot;</span>.into(),
+            name: <span class="string">"garfield dance party"</span>.into(),
             privacy_level: PrivacyLevel::GuildOnly,
             scheduled_end_time: <span class="prelude-val">None</span>,
             scheduled_start_time,
@@ -511,40 +512,40 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;GuildScheduledEvent&quot;</span>,
+                    name: <span class="string">"GuildScheduledEvent"</span>,
                     len: <span class="number">12</span>,
                 },
-                Token::Str(<span class="string">&quot;channel_id&quot;</span>),
+                Token::Str(<span class="string">"channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;this is a dance party for garfield lovers&quot;</span>),
-                Token::Str(<span class="string">&quot;entity_id&quot;</span>),
+                Token::Str(<span class="string">"this is a dance party for garfield lovers"</span>),
+                Token::Str(<span class="string">"entity_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
-                Token::Str(<span class="string">&quot;entity_type&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"entity_type"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;guild_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;3&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;4&quot;</span>),
-                Token::Str(<span class="string">&quot;image&quot;</span>),
+                Token::Str(<span class="string">"guild_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"3"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"4"</span>),
+                Token::Str(<span class="string">"image"</span>),
                 Token::Some,
                 Token::Str(COVER_INPUT),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;garfield dance party&quot;</span>),
-                Token::Str(<span class="string">&quot;privacy_level&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"garfield dance party"</span>),
+                Token::Str(<span class="string">"privacy_level"</span>),
                 Token::U8(<span class="number">2</span>),
-                Token::Str(<span class="string">&quot;scheduled_start_time&quot;</span>),
-                Token::Str(<span class="string">&quot;2022-01-01T00:00:00.000000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;status&quot;</span>),
+                Token::Str(<span class="string">"scheduled_start_time"</span>),
+                Token::Str(<span class="string">"2022-01-01T00:00:00.000000+00:00"</span>),
+                Token::Str(<span class="string">"status"</span>),
                 Token::U8(<span class="number">3</span>),
-                Token::Str(<span class="string">&quot;user_count&quot;</span>),
+                Token::Str(<span class="string">"user_count"</span>),
                 Token::Some,
                 Token::U64(<span class="number">1</span>),
                 Token::StructEnd,

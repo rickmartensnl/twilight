@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/scheduled_event/create_guild_scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/scheduled_event/create_guild_scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -282,25 +283,25 @@
 };
 
 <span class="attr">#[derive(Serialize)]
-</span><span class="kw">struct </span>CreateGuildScheduledEventFields&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+</span><span class="kw">struct </span>CreateGuildScheduledEventFields&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>description: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>entity_metadata: <span class="prelude-ty">Option</span>&lt;EntityMetadataFields&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>description: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>entity_metadata: <span class="prelude-ty">Option</span>&lt;EntityMetadataFields&lt;<span class="lifetime">'a</span>&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>entity_type: <span class="prelude-ty">Option</span>&lt;EntityType&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>image: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>image: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>privacy_level: <span class="prelude-ty">Option</span>&lt;PrivacyLevel&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>scheduled_end_time: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>scheduled_start_time: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>scheduled_end_time: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>scheduled_start_time: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp&gt;,
 }
 
 <span class="doccomment">/// Create a scheduled event in a guild.
@@ -321,19 +322,19 @@
 /// use twilight_model::{guild::scheduled_event::PrivacyLevel, id::Id, util::Timestamp};
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// # let client = Client::new(&quot;token&quot;.to_owned());
+/// # let client = Client::new("token".to_owned());
 /// let guild_id = Id::new(1);
 /// let channel_id = Id::new(2);
-/// let garfield_start_time = Timestamp::parse(&quot;2022-01-01T14:00:00+00:00&quot;)?;
+/// let garfield_start_time = Timestamp::parse("2022-01-01T14:00:00+00:00")?;
 ///
 /// client
 ///     .create_guild_scheduled_event(guild_id, PrivacyLevel::GuildOnly)
 ///     .stage_instance(
 ///         channel_id,
-///         &quot;Garfield Appreciation Hour&quot;,
+///         "Garfield Appreciation Hour",
 ///         &amp;garfield_start_time,
 ///     )?
-///     .description(&quot;Discuss: How important is Garfield to You?&quot;)?
+///     .description("Discuss: How important is Garfield to You?")?
 ///     .await?;
 /// # Ok(()) }
 /// ```
@@ -345,38 +346,38 @@
 /// use twilight_model::{guild::scheduled_event::PrivacyLevel, id::Id, util::Timestamp};
 /// # #[tokio::main]
 /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-/// # let client = Client::new(&quot;token&quot;.to_owned());
+/// # let client = Client::new("token".to_owned());
 /// let guild_id = Id::new(1);
-/// let garfield_con_start_time = Timestamp::parse(&quot;2022-01-04T08:00:00+00:00&quot;)?;
-/// let garfield_con_end_time = Timestamp::parse(&quot;2022-01-06T17:00:00+00:00&quot;)?;
+/// let garfield_con_start_time = Timestamp::parse("2022-01-04T08:00:00+00:00")?;
+/// let garfield_con_end_time = Timestamp::parse("2022-01-06T17:00:00+00:00")?;
 ///
 /// client
 ///     .create_guild_scheduled_event(guild_id, PrivacyLevel::GuildOnly)
 ///     .external(
-///         &quot;Garfield Con 2022&quot;,
-///         &quot;Baltimore Convention Center&quot;,
+///         "Garfield Con 2022",
+///         "Baltimore Convention Center",
 ///         &amp;garfield_con_start_time,
 ///         &amp;garfield_con_end_time,
 ///     )?
 ///     .description(
-///         &quot;In a spiritual successor to BronyCon, Garfield fans from \
-/// around the globe celebrate all things related to the loveable cat.&quot;,
+///         "In a spiritual successor to BronyCon, Garfield fans from \
+/// around the globe celebrate all things related to the loveable cat.",
 ///     )?
 ///     .await?;
 /// # Ok(()) }
 /// ```
 ///
 /// [Discord Docs/Create Guild Scheduled Event]: https://discord.com/developers/docs/resources/guild-scheduled-event#create-guild-scheduled-event
-</span><span class="kw">pub struct </span>CreateGuildScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
     guild_id: Id&lt;GuildMarker&gt;,
-    http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
-    fields: CreateGuildScheduledEventFields&lt;<span class="lifetime">&#39;a</span>&gt;,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
+    fields: CreateGuildScheduledEventFields&lt;<span class="lifetime">'a</span>&gt;,
+    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; CreateGuildScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(
-        http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
+        http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
         guild_id: Id&lt;GuildMarker&gt;,
         privacy_level: PrivacyLevel,
     ) -&gt; <span class="self">Self </span>{
@@ -409,11 +410,11 @@
     /// [`ScheduledEventName`]: twilight_validate::request::ValidationErrorType::ScheduledEventName
     </span><span class="kw">pub fn </span>external(
         <span class="self">self</span>,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        location: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp,
-        scheduled_end_time: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildExternalScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        location: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
+        scheduled_end_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildExternalScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         validate_scheduled_event_name(name)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(CreateGuildExternalScheduledEvent::new(
@@ -437,9 +438,9 @@
     </span><span class="kw">pub fn </span>stage_instance(
         <span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         validate_scheduled_event_name(name)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(CreateGuildStageInstanceScheduledEvent::new(
@@ -462,9 +463,9 @@
     </span><span class="kw">pub fn </span>voice(
         <span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
-        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt;, ValidationError&gt; {
+        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+        scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
         validate_scheduled_event_name(name)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(CreateGuildVoiceScheduledEvent::new(
@@ -493,8 +494,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AuditLogReason&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>CreateGuildScheduledEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
         validate_audit_reason(reason)<span class="question-mark">?</span>;
 
         <span class="self">self</span>.reason.replace(reason);

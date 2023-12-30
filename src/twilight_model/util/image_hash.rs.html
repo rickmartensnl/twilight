@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/util/image_hash.rs`."><title>image_hash.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/util/image_hash.rs`."><title>image_hash.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -851,7 +852,7 @@
 };
 
 <span class="doccomment">/// Key indicating an animated image hash.
-</span><span class="kw">const </span>ANIMATED_KEY: <span class="kw-2">&amp;</span>str = <span class="string">&quot;a_&quot;</span>;
+</span><span class="kw">const </span>ANIMATED_KEY: <span class="kw-2">&amp;</span>str = <span class="string">"a_"</span>;
 
 <span class="doccomment">/// Length of an image hash.
 </span><span class="kw">const </span>HASH_LEN: usize = <span class="number">32</span>;
@@ -870,20 +871,20 @@
     };
 
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ImageHashParseErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -903,18 +904,18 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ImageHashParseError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
             ImageHashParseErrorType::Format =&gt; {
-                f.write_str(<span class="string">&quot;image hash isn&#39;t in a discord image hash format&quot;</span>)
+                f.write_str(<span class="string">"image hash isn't in a discord image hash format"</span>)
             }
             ImageHashParseErrorType::Range { index, value } =&gt; {
-                f.write_str(<span class="string">&quot;value (&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"value ("</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>value, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;) at encountered index (&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">") at encountered index ("</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>index, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;) is not an acceptable value&quot;</span>)
+                f.write_str(<span class="string">") is not an acceptable value"</span>)
             }
         }
     }
@@ -929,7 +930,7 @@
     <span class="doccomment">/// Input is either animated and not 34 characters long or is not animated
     /// and is not 32 characters long.
     </span>Format,
-    <span class="doccomment">/// Input is out of the accepted range (&#39;0&#39; to &#39;9&#39;, &#39;a&#39; to &#39;f&#39;).
+    <span class="doccomment">/// Input is out of the accepted range ('0' to '9', 'a' to 'f').
     </span>Range {
         <span class="doccomment">/// Index of the byte.
         </span>index: usize,
@@ -943,9 +944,9 @@
 /// This works by storing image hashes as packed integers rather than
 /// heap-allocated [`std::string::String`]s.
 ///
-/// Parsing methods only support hashes provided by Discord&#39;s APIs.
+/// Parsing methods only support hashes provided by Discord's APIs.
 ///
-/// Clyde AI has a unique hash that doesn&#39;t match the patterns of other hashes,
+/// Clyde AI has a unique hash that doesn't match the patterns of other hashes,
 /// uniquely processed as [`ImageHash::CLYDE`].
 </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 </span><span class="kw">pub struct </span>ImageHash {
@@ -962,11 +963,11 @@
         animated: <span class="bool-val">true</span>,
         bytes: {
             <span class="kw">let </span><span class="kw-2">mut </span>bytes = [<span class="number">0</span>; <span class="number">16</span>];
-            bytes[<span class="number">0</span>] = <span class="string">b&#39;c&#39;</span>;
-            bytes[<span class="number">1</span>] = <span class="string">b&#39;l&#39;</span>;
-            bytes[<span class="number">2</span>] = <span class="string">b&#39;y&#39;</span>;
-            bytes[<span class="number">3</span>] = <span class="string">b&#39;d&#39;</span>;
-            bytes[<span class="number">4</span>] = <span class="string">b&#39;e&#39;</span>;
+            bytes[<span class="number">0</span>] = <span class="string">b'c'</span>;
+            bytes[<span class="number">1</span>] = <span class="string">b'l'</span>;
+            bytes[<span class="number">2</span>] = <span class="string">b'y'</span>;
+            bytes[<span class="number">3</span>] = <span class="string">b'd'</span>;
+            bytes[<span class="number">4</span>] = <span class="string">b'e'</span>;
 
             bytes
         },
@@ -984,7 +985,7 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = &quot;1acefe340fafb4ecefae407f3abdb323&quot;;
+    /// let input = "1acefe340fafb4ecefae407f3abdb323";
     /// let parsed = ImageHash::parse(input.as_bytes())?;
     ///
     /// let (bytes, is_animated) = (parsed.bytes(), parsed.is_animated());
@@ -1010,7 +1011,7 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = &quot;b2a6536641da91a0b59bd66557c56c36&quot;;
+    /// let input = "b2a6536641da91a0b59bd66557c56c36";
     /// let parsed = ImageHash::parse(input.as_bytes())?;
     ///
     /// assert!(!parsed.is_animated());
@@ -1024,7 +1025,7 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = &quot;a_b2a6536641da91a0b59bd66557c56c36&quot;;
+    /// let input = "a_b2a6536641da91a0b59bd66557c56c36";
     /// let parsed = ImageHash::parse(input.as_bytes())?;
     ///
     /// assert!(parsed.is_animated());
@@ -1035,11 +1036,11 @@
     /// # Errors
     ///
     /// Returns an [`ImageHashParseErrorType::Format`] error type if the
-    /// provided value isn&#39;t in a Discord image hash format. Refer to the
-    /// variant&#39;s documentation for more details.
+    /// provided value isn't in a Discord image hash format. Refer to the
+    /// variant's documentation for more details.
     ///
     /// Returns an [`ImageHashParseErrorType::Range`] error type if one of the
-    /// hex values is outside of the accepted range. Refer to the variant&#39;s
+    /// hex values is outside of the accepted range. Refer to the variant's
     /// documentation for more details.
     </span><span class="kw">pub const fn </span>parse(value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ImageHashParseError&gt; {
         <span class="doccomment">/// Number of digits allocated in the half-byte.
@@ -1066,14 +1067,14 @@
 
         <span class="kw">while </span>seeking_idx &lt; value.len() {
             <span class="kw">let </span>byte_left = <span class="kw">match </span>value[seeking_idx] {
-                byte @ <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>=&gt; byte - <span class="string">b&#39;0&#39;</span>,
-                byte @ <span class="string">b&#39;a&#39;</span>..=<span class="string">b&#39;f&#39; </span>=&gt; byte - <span class="string">b&#39;a&#39; </span>+ DIGITS_ALLOCATED,
+                byte @ <span class="string">b'0'</span>..=<span class="string">b'9' </span>=&gt; byte - <span class="string">b'0'</span>,
+                byte @ <span class="string">b'a'</span>..=<span class="string">b'f' </span>=&gt; byte - <span class="string">b'a' </span>+ DIGITS_ALLOCATED,
                 other =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(ImageHashParseError::range(seeking_idx, other)),
             };
             seeking_idx += <span class="number">1</span>;
             <span class="kw">let </span>byte_right = <span class="kw">match </span>value[seeking_idx] {
-                byte @ <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>=&gt; byte - <span class="string">b&#39;0&#39;</span>,
-                byte @ <span class="string">b&#39;a&#39;</span>..=<span class="string">b&#39;f&#39; </span>=&gt; byte - <span class="string">b&#39;a&#39; </span>+ DIGITS_ALLOCATED,
+                byte @ <span class="string">b'0'</span>..=<span class="string">b'9' </span>=&gt; byte - <span class="string">b'0'</span>,
+                byte @ <span class="string">b'a'</span>..=<span class="string">b'f' </span>=&gt; byte - <span class="string">b'a' </span>+ DIGITS_ALLOCATED,
                 other =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(ImageHashParseError::range(seeking_idx, other)),
             };
 
@@ -1098,7 +1099,7 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = b&quot;f49d812ca33c1cbbeec96b9f64487c7c&quot;;
+    /// let input = b"f49d812ca33c1cbbeec96b9f64487c7c";
     /// let hash = ImageHash::parse(input)?;
     /// let bytes = hash.bytes();
     ///
@@ -1127,11 +1128,11 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let animated_input = &quot;a_5145104ad8e8c9e765883813e4abbcc8&quot;;
+    /// let animated_input = "a_5145104ad8e8c9e765883813e4abbcc8";
     /// let animated_hash = ImageHash::parse(animated_input.as_bytes())?;
     /// assert!(animated_hash.is_animated());
     ///
-    /// let static_input = &quot;c7e7c4b8469d790cb9b293759e60953d&quot;;
+    /// let static_input = "c7e7c4b8469d790cb9b293759e60953d";
     /// let static_hash = ImageHash::parse(static_input.as_bytes())?;
     /// assert!(!static_hash.is_animated());
     /// # Ok(()) }
@@ -1150,13 +1151,13 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = b&quot;1d9811c4cd3782148915c522b02878fc&quot;;
+    /// let input = b"1d9811c4cd3782148915c522b02878fc";
     /// let hash = ImageHash::parse(input)?;
     /// let mut nibbles = hash.nibbles();
     ///
-    /// assert_eq!(Some(b&#39;1&#39;), nibbles.next());
-    /// assert_eq!(Some(b&#39;d&#39;), nibbles.next());
-    /// assert_eq!(Some(b&#39;c&#39;), nibbles.nth(29));
+    /// assert_eq!(Some(b'1'), nibbles.next());
+    /// assert_eq!(Some(b'd'), nibbles.next());
+    /// assert_eq!(Some(b'c'), nibbles.nth(29));
     /// assert!(nibbles.next().is_none());
     /// # Ok(()) }
     /// ```
@@ -1172,11 +1173,11 @@
             <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
-        value[<span class="number">0</span>] == <span class="string">b&#39;c&#39;
-            </span>&amp;&amp; value[<span class="number">1</span>] == <span class="string">b&#39;l&#39;
-            </span>&amp;&amp; value[<span class="number">2</span>] == <span class="string">b&#39;y&#39;
-            </span>&amp;&amp; value[<span class="number">3</span>] == <span class="string">b&#39;d&#39;
-            </span>&amp;&amp; value[<span class="number">4</span>] == <span class="string">b&#39;e&#39;
+        value[<span class="number">0</span>] == <span class="string">b'c'
+            </span>&amp;&amp; value[<span class="number">1</span>] == <span class="string">b'l'
+            </span>&amp;&amp; value[<span class="number">2</span>] == <span class="string">b'y'
+            </span>&amp;&amp; value[<span class="number">3</span>] == <span class="string">b'd'
+            </span>&amp;&amp; value[<span class="number">4</span>] == <span class="string">b'e'
     </span>}
 
     <span class="doccomment">/// Determine whether a haystack starts with a needle.
@@ -1199,30 +1200,30 @@
     </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>ImageHash {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>ImageHash {
     <span class="doccomment">/// Parse an image hash string into an efficient decimal store.
     ///
     /// # Examples
     ///
-    /// Refer to [`ImageHash::parse`]&#39;s documentation for examples.
+    /// Refer to [`ImageHash::parse`]'s documentation for examples.
     ///
     /// # Errors
     ///
     /// Returns an [`ImageHashParseErrorType::Format`] error type if the
-    /// provided value isn&#39;t in a Discord image hash format. Refer to the
-    /// variant&#39;s documentation for more details.
+    /// provided value isn't in a Discord image hash format. Refer to the
+    /// variant's documentation for more details.
     ///
     /// Returns an [`ImageHashParseErrorType::Range`] error type if one of the
-    /// hex values is outside of the accepted range. Refer to the variant&#39;s
+    /// hex values is outside of the accepted range. Refer to the variant's
     /// documentation for more details.
-    </span><span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+    </span><span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">struct </span>ImageHashVisitor;
 
-        <span class="kw">impl </span>Visitor&lt;<span class="lifetime">&#39;_</span>&gt; <span class="kw">for </span>ImageHashVisitor {
+        <span class="kw">impl </span>Visitor&lt;<span class="lifetime">'_</span>&gt; <span class="kw">for </span>ImageHashVisitor {
             <span class="kw">type </span>Value = ImageHash;
 
-            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-                f.write_str(<span class="string">&quot;image hash&quot;</span>)
+            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+                f.write_str(<span class="string">"image hash"</span>)
             }
 
             <span class="kw">fn </span>visit_str&lt;E: DeError&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt; {
@@ -1245,15 +1246,15 @@
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use twilight_model::util::ImageHash;
     ///
-    /// let input = &quot;a_b0e09d6697b11e9c79a89e5e3756ddee&quot;;
+    /// let input = "a_b0e09d6697b11e9c79a89e5e3756ddee";
     /// let parsed = ImageHash::parse(input.as_bytes())?;
     ///
     /// assert_eq!(input, parsed.to_string());
     /// # Ok(()) }
     /// ```
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">if </span><span class="kw-2">*</span><span class="self">self </span>== <span class="self">Self</span>::CLYDE {
-            <span class="kw">return </span>f.write_str(<span class="string">&quot;clyde&quot;</span>);
+            <span class="kw">return </span>f.write_str(<span class="string">"clyde"</span>);
         }
 
         <span class="kw">if </span><span class="self">self</span>.is_animated() {
@@ -1277,16 +1278,16 @@
     ///
     /// # Examples
     ///
-    /// Refer to [`ImageHash::parse`]&#39;s documentation for examples.
+    /// Refer to [`ImageHash::parse`]'s documentation for examples.
     ///
     /// # Errors
     ///
     /// Returns an [`ImageHashParseErrorType::Format`] error type if the
-    /// provided value isn&#39;t in a Discord image hash format. Refer to the
-    /// variant&#39;s documentation for more details.
+    /// provided value isn't in a Discord image hash format. Refer to the
+    /// variant's documentation for more details.
     ///
     /// Returns an [`ImageHashParseErrorType::Range`] error type if one of the
-    /// hex values is outside of the accepted range. Refer to the variant&#39;s
+    /// hex values is outside of the accepted range. Refer to the variant's
     /// documentation for more details.
     </span><span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Err&gt; {
         <span class="self">Self</span>::parse(s.as_bytes())
@@ -1306,16 +1307,16 @@
     ///
     /// # Examples
     ///
-    /// Refer to [`ImageHash::parse`]&#39;s documentation for examples.
+    /// Refer to [`ImageHash::parse`]'s documentation for examples.
     ///
     /// # Errors
     ///
     /// Returns an [`ImageHashParseErrorType::Format`] error type if the
-    /// provided value isn&#39;t in a Discord image hash format. Refer to the
-    /// variant&#39;s documentation for more details.
+    /// provided value isn't in a Discord image hash format. Refer to the
+    /// variant's documentation for more details.
     ///
     /// Returns an [`ImageHashParseErrorType::Range`] error type if one of the
-    /// hex values is outside of the accepted range. Refer to the variant&#39;s
+    /// hex values is outside of the accepted range. Refer to the variant's
     /// documentation for more details.
     </span><span class="kw">fn </span>try_from(value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
         <span class="self">Self</span>::parse(value)
@@ -1329,16 +1330,16 @@
     ///
     /// # Examples
     ///
-    /// Refer to [`ImageHash::parse`]&#39;s documentation for examples.
+    /// Refer to [`ImageHash::parse`]'s documentation for examples.
     ///
     /// # Errors
     ///
     /// Returns an [`ImageHashParseErrorType::Format`] error type if the
-    /// provided value isn&#39;t in a Discord image hash format. Refer to the
-    /// variant&#39;s documentation for more details.
+    /// provided value isn't in a Discord image hash format. Refer to the
+    /// variant's documentation for more details.
     ///
     /// Returns an [`ImageHashParseErrorType::Range`] error type if one of the
-    /// hex values is outside of the accepted range. Refer to the variant&#39;s
+    /// hex values is outside of the accepted range. Refer to the variant's
     /// documentation for more details.
     </span><span class="kw">fn </span>try_from(value: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
         <span class="self">Self</span>::try_from(value.as_bytes())
@@ -1355,13 +1356,13 @@
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 /// use twilight_model::util::ImageHash;
 ///
-/// let input = b&quot;1d9811c4cd3782148915c522b02878fc&quot;;
+/// let input = b"1d9811c4cd3782148915c522b02878fc";
 /// let hash = ImageHash::parse(input)?;
 /// let mut nibbles = hash.nibbles();
 ///
-/// assert_eq!(Some(b&#39;1&#39;), nibbles.next());
-/// assert_eq!(Some(b&#39;d&#39;), nibbles.next());
-/// assert_eq!(Some(b&#39;c&#39;), nibbles.nth(29));
+/// assert_eq!(Some(b'1'), nibbles.next());
+/// assert_eq!(Some(b'd'), nibbles.next());
+/// assert_eq!(Some(b'c'), nibbles.nth(29));
 /// assert!(nibbles.next().is_none());
 /// # Ok(()) }
 /// ```
@@ -1427,13 +1428,13 @@
 
     <span class="doccomment">/// Convert 4 bits in a byte integer to a nibble.
     ///
-    /// Values 0-9 correlate to representations &#39;0&#39; through &#39;9&#39;, while values
-    /// 10-15 correlate to representations &#39;a&#39; through &#39;f&#39;.
+    /// Values 0-9 correlate to representations '0' through '9', while values
+    /// 10-15 correlate to representations 'a' through 'f'.
     </span><span class="kw">const fn </span>nibble(value: u8) -&gt; u8 {
         <span class="kw">if </span>value &lt; <span class="number">10 </span>{
-            <span class="string">b&#39;0&#39; </span>+ value
+            <span class="string">b'0' </span>+ value
         } <span class="kw">else </span>{
-            <span class="string">b&#39;a&#39; </span>+ (value - <span class="number">10</span>)
+            <span class="string">b'a' </span>+ (value - <span class="number">10</span>)
         }
     }
 }
@@ -1511,7 +1512,7 @@
     <span class="doccomment">/// Test that reconstruction of parted hashes is correct.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>new() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="kw">let </span>source = ImageHash::parse(<span class="string">b&quot;85362c0262ef125a1182b1fad66b6a89&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>source = ImageHash::parse(<span class="string">b"85362c0262ef125a1182b1fad66b6a89"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>(bytes, animated) = (source.bytes(), source.is_animated());
 
         <span class="kw">let </span>reconstructed = ImageHash::new(bytes, animated);
@@ -1522,7 +1523,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>parse() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="kw">let </span>actual = ImageHash::parse(<span class="string">b&quot;77450a7713f093adaebab32b18dacc46&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>actual = ImageHash::parse(<span class="string">b"77450a7713f093adaebab32b18dacc46"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>expected = [
             <span class="number">70</span>, <span class="number">204</span>, <span class="number">218</span>, <span class="number">24</span>, <span class="number">43</span>, <span class="number">179</span>, <span class="number">186</span>, <span class="number">174</span>, <span class="number">173</span>, <span class="number">147</span>, <span class="number">240</span>, <span class="number">19</span>, <span class="number">119</span>, <span class="number">10</span>, <span class="number">69</span>, <span class="number">119</span>,
         ];
@@ -1534,12 +1535,12 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>display() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;58ec815c650e72f8eb31eec52e54b3b5&quot;</span>,
-            ImageHash::parse(<span class="string">b&quot;58ec815c650e72f8eb31eec52e54b3b5&quot;</span>)<span class="question-mark">?</span>.to_string()
+            <span class="string">"58ec815c650e72f8eb31eec52e54b3b5"</span>,
+            ImageHash::parse(<span class="string">b"58ec815c650e72f8eb31eec52e54b3b5"</span>)<span class="question-mark">?</span>.to_string()
         );
         <span class="macro">assert_eq!</span>(
-            <span class="string">&quot;a_e382aeb1574bf3e4fe852f862bc4919c&quot;</span>,
-            ImageHash::parse(<span class="string">b&quot;a_e382aeb1574bf3e4fe852f862bc4919c&quot;</span>)<span class="question-mark">?</span>.to_string()
+            <span class="string">"a_e382aeb1574bf3e4fe852f862bc4919c"</span>,
+            ImageHash::parse(<span class="string">b"a_e382aeb1574bf3e4fe852f862bc4919c"</span>)<span class="question-mark">?</span>.to_string()
         );
 
         <span class="prelude-val">Ok</span>(())
@@ -1549,13 +1550,13 @@
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>parse_format() {
         <span class="kw">const </span>INPUTS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>[u8]] = <span class="kw-2">&amp;</span>[
-            <span class="string">b&quot;not correct length&quot;</span>,
-            <span class="string">b&quot;&quot;</span>,
-            <span class="string">b&quot;a_&quot;</span>,
+            <span class="string">b"not correct length"</span>,
+            <span class="string">b""</span>,
+            <span class="string">b"a_"</span>,
             <span class="comment">// `a_` followed by 33 bytes.
-            </span><span class="string">b&quot;a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>,
+            </span><span class="string">b"a_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</span>,
             <span class="comment">// 31 bytes.
-            </span><span class="string">b&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>,
+            </span><span class="string">b"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</span>,
         ];
 
         <span class="kw">for </span>input <span class="kw">in </span>INPUTS {
@@ -1568,21 +1569,21 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>parse_range() {
-        <span class="kw">let </span><span class="kw-2">mut </span>input = [<span class="string">b&#39;a&#39;</span>; <span class="number">32</span>];
-        input[<span class="number">17</span>] = <span class="string">b&#39;-&#39;</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>input = [<span class="string">b'a'</span>; <span class="number">32</span>];
+        input[<span class="number">17</span>] = <span class="string">b'-'</span>;
 
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             ImageHash::parse(<span class="kw-2">&amp;</span>input).unwrap_err().kind(),
             ImageHashParseErrorType::Range {
                 index: <span class="number">17</span>,
-                value: <span class="string">b&#39;-&#39;</span>,
+                value: <span class="string">b'-'</span>,
             }
         ));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>nibbles() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="kw">const </span>INPUT: <span class="kw-2">&amp;</span>[u8] = <span class="string">b&quot;39eb706d6fbaeb22837c350993b97b42&quot;</span>;
+        <span class="kw">const </span>INPUT: <span class="kw-2">&amp;</span>[u8] = <span class="string">b"39eb706d6fbaeb22837c350993b97b42"</span>;
 
         <span class="kw">let </span>hash = ImageHash::parse(INPUT)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>iter = hash.nibbles();
@@ -1600,33 +1601,33 @@
     /// [`Nibbles`] functions like a double ended iterator should.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>nibbles_double_ended() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="kw">const </span>INPUT: <span class="kw-2">&amp;</span>[u8] = <span class="string">b&quot;e72bbdec903c420b7aa9c45fc7994ac8&quot;</span>;
+        <span class="kw">const </span>INPUT: <span class="kw-2">&amp;</span>[u8] = <span class="string">b"e72bbdec903c420b7aa9c45fc7994ac8"</span>;
 
         <span class="kw">let </span>hash = ImageHash::parse(INPUT)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>iter = hash.nibbles();
 
-        <span class="comment">// Since we haven&#39;t started the iterator there should be no previous
+        <span class="comment">// Since we haven't started the iterator there should be no previous
         // item.
         </span><span class="macro">assert!</span>(iter.next_back().is_none());
 
         <span class="comment">// This should be index 0 in the input.
-        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b&#39;e&#39;</span>), iter.next());
+        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b'e'</span>), iter.next());
 
-        <span class="comment">// We&#39;re at index 0, so there&#39;s nothing before that.
+        <span class="comment">// We're at index 0, so there's nothing before that.
         </span><span class="macro">assert!</span>(iter.next_back().is_none());
 
         <span class="comment">// Try somewhere in the middle.
-        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b&#39;e&#39;</span>), iter.nth(<span class="number">5</span>));
+        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b'e'</span>), iter.nth(<span class="number">5</span>));
 
         <span class="comment">// Skip all the way past the rest of the input to the last byte.
-        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b&#39;8&#39;</span>), iter.nth(<span class="number">24</span>));
+        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b'8'</span>), iter.nth(<span class="number">24</span>));
 
-        <span class="comment">// Now that we&#39;re at the end, any additional retrievals will return no
+        <span class="comment">// Now that we're at the end, any additional retrievals will return no
         // item.
         </span><span class="macro">assert!</span>(iter.next().is_none());
 
         <span class="comment">// Last input.
-        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b&#39;8&#39;</span>), iter.next_back());
+        </span><span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="string">b'8'</span>), iter.next_back());
 
         <span class="comment">// And finally, the next one should be None again.
         </span><span class="macro">assert!</span>(iter.next().is_none());
@@ -1638,8 +1639,8 @@
     /// `a_` prefix.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>is_animated() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="macro">assert!</span>(ImageHash::parse(<span class="string">b&quot;a_06c16474723fe537c283b8efa61a30c8&quot;</span>)<span class="question-mark">?</span>.is_animated());
-        <span class="macro">assert!</span>(!ImageHash::parse(<span class="string">b&quot;06c16474723fe537c283b8efa61a30c8&quot;</span>)<span class="question-mark">?</span>.is_animated());
+        <span class="macro">assert!</span>(ImageHash::parse(<span class="string">b"a_06c16474723fe537c283b8efa61a30c8"</span>)<span class="question-mark">?</span>.is_animated());
+        <span class="macro">assert!</span>(!ImageHash::parse(<span class="string">b"06c16474723fe537c283b8efa61a30c8"</span>)<span class="question-mark">?</span>.is_animated());
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -1648,8 +1649,8 @@
     /// [`ImageHash::CLYDE`].
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>clyde() -&gt; <span class="prelude-ty">Result</span>&lt;(), ImageHashParseError&gt; {
-        <span class="macro">assert_eq!</span>(ImageHash::CLYDE, ImageHash::parse(<span class="string">b&quot;clyde&quot;</span>)<span class="question-mark">?</span>);
-        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ImageHash::CLYDE, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">&quot;clyde&quot;</span>)]);
+        <span class="macro">assert_eq!</span>(ImageHash::CLYDE, ImageHash::parse(<span class="string">b"clyde"</span>)<span class="question-mark">?</span>);
+        serde_test::assert_tokens(<span class="kw-2">&amp;</span>ImageHash::CLYDE, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">"clyde"</span>)]);
 
         <span class="prelude-val">Ok</span>(())
     }

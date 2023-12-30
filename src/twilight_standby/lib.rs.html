@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-standby/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_standby" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-standby/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_standby" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1583,7 +1584,7 @@
 <a href="#1583" id="1583">1583</a>
 <a href="#1584" id="1584">1584</a>
 <a href="#1585" id="1585">1585</a>
-</pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]
+</pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![warn(
     clippy::missing_const_for_fn,
     clippy::missing_docs_in_private_items,
@@ -1660,10 +1661,10 @@
 }
 
 <span class="kw">impl</span>&lt;T: Debug&gt; Debug <span class="kw">for </span>Bystander&lt;T&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.debug_struct(<span class="string">&quot;Bystander&quot;</span>)
-            .field(<span class="string">&quot;func&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;dyn Fn(&amp;T) -&gt; bool&gt;&quot;</span>)
-            .field(<span class="string">&quot;sender&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.sender)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.debug_struct(<span class="string">"Bystander"</span>)
+            .field(<span class="string">"func"</span>, <span class="kw-2">&amp;</span><span class="string">"&lt;dyn Fn(&amp;T) -&gt; bool&gt;"</span>)
+            .field(<span class="string">"sender"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.sender)
             .finish()
     }
 }
@@ -1733,7 +1734,7 @@
     /// [`process`]: Self::process
     /// [`wait_for`]: Self::wait_for
     /// [`wait_for_message_stream`]: Self::wait_for_message_stream
-    </span><span class="attr">#[must_use = <span class="string">&quot;must process events to be useful&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"must process events to be useful"</span>]
     </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::default()
     }
@@ -1744,13 +1745,13 @@
     /// processed. For example, by using [`ProcessResults::matched`] you can
     /// determine how many calls were sent an event.
     ///
-    /// When a bystander checks to see if an event is what it&#39;s waiting for, it
+    /// When a bystander checks to see if an event is what it's waiting for, it
     /// will receive the event by cloning it.
     ///
     /// This function must be called when events are received in order for
     /// futures returned by methods to fulfill.
     </span><span class="kw">pub fn </span>process(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event) -&gt; ProcessResults {
-        <span class="macro">tracing::trace!</span>(event_type = <span class="question-mark">?</span>event.kind(), <span class="question-mark">?</span>event, <span class="string">&quot;processing event&quot;</span>);
+        <span class="macro">tracing::trace!</span>(event_type = <span class="question-mark">?</span>event.kind(), <span class="question-mark">?</span>event, <span class="string">"processing event"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>completions = ProcessResults::new();
 
@@ -1829,12 +1830,12 @@
     /// [`BanAdd`]: twilight_model::gateway::payload::incoming::BanAdd
     /// [`Canceled`]: future::Canceled
     /// [`wait_for_stream`]: Self::wait_for_stream
-    </span><span class="kw">pub fn </span>wait_for&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForGuildEventFuture {
-        <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">&quot;waiting for event in guild&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">"waiting for event in guild"</span>);
 
         WaitForGuildEventFuture {
             rx: <span class="self">Self</span>::insert_future(<span class="kw-2">&amp;</span><span class="self">self</span>.guilds, guild_id, check),
@@ -1869,7 +1870,7 @@
     ///
     /// while let Some(event) = stream.next().await {
     ///     if let Event::BanAdd(ban) = event {
-    ///         println!(&quot;user {} was banned in guild {}&quot;, ban.user.id, ban.guild_id);
+    ///         println!("user {} was banned in guild {}", ban.user.id, ban.guild_id);
     ///     }
     /// }
     /// # Ok(()) }
@@ -1882,12 +1883,12 @@
     ///
     /// [`BanAdd`]: twilight_model::gateway::payload::incoming::BanAdd
     /// [`wait_for`]: Self::wait_for
-    </span><span class="kw">pub fn </span>wait_for_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForGuildEventStream {
-        <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">&quot;waiting for event in guild&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">"waiting for event in guild"</span>);
 
         WaitForGuildEventStream {
             rx: <span class="self">Self</span>::insert_stream(<span class="kw-2">&amp;</span><span class="self">self</span>.guilds, guild_id, check),
@@ -1933,11 +1934,11 @@
     /// [`Canceled`]: future::Canceled
     /// [`Ready`]: twilight_model::gateway::payload::incoming::Ready
     /// [`wait_for_event_stream`]: Self::wait_for_event_stream
-    </span><span class="kw">pub fn </span>wait_for_event&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_event&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForEventFuture {
-        <span class="macro">tracing::trace!</span>(<span class="string">&quot;waiting for event&quot;</span>);
+        <span class="macro">tracing::trace!</span>(<span class="string">"waiting for event"</span>);
 
         <span class="kw">let </span>(tx, rx) = oneshot::channel();
 
@@ -1980,7 +1981,7 @@
     /// });
     ///
     /// while let Some(event) = events.next().await {
-    ///     println!(&quot;got event with type {:?}&quot;, event.kind());
+    ///     println!("got event with type {:?}", event.kind());
     /// }
     /// # Ok(()) }
     /// ```
@@ -1992,11 +1993,11 @@
     ///
     /// [`Ready`]: twilight_model::gateway::payload::incoming::Ready
     /// [`wait_for_event`]: Self::wait_for_event
-    </span><span class="kw">pub fn </span>wait_for_event_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_event_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Event) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForEventStream {
-        <span class="macro">tracing::trace!</span>(<span class="string">&quot;waiting for event&quot;</span>);
+        <span class="macro">tracing::trace!</span>(<span class="string">"waiting for event"</span>);
 
         <span class="kw">let </span>(tx, rx) = mpsc::unbounded_channel();
 
@@ -2018,7 +2019,7 @@
     ///
     /// # Examples
     ///
-    /// Wait for a message in channel 123 by user 456 with the content &quot;test&quot;:
+    /// Wait for a message in channel 123 by user 456 with the content "test":
     ///
     /// ```no_run
     /// # #[tokio::main]
@@ -2034,7 +2035,7 @@
     ///
     /// let message = standby
     ///     .wait_for_message(channel_id, move |event: &amp;MessageCreate| {
-    ///         event.author.id == author_id &amp;&amp; event.content == &quot;test&quot;
+    ///         event.author.id == author_id &amp;&amp; event.content == "test"
     ///     })
     ///     .await?;
     /// # Ok(()) }
@@ -2047,12 +2048,12 @@
     ///
     /// [`Canceled`]: future::Canceled
     /// [`wait_for_message_stream`]: Self::wait_for_message_stream
-    </span><span class="kw">pub fn </span>wait_for_message&lt;F: Fn(<span class="kw-2">&amp;</span>MessageCreate) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_message&lt;F: Fn(<span class="kw-2">&amp;</span>MessageCreate) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForMessageFuture {
-        <span class="macro">tracing::trace!</span>(%channel_id, <span class="string">&quot;waiting for message in channel&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%channel_id, <span class="string">"waiting for message in channel"</span>);
 
         WaitForMessageFuture {
             rx: <span class="self">Self</span>::insert_future(<span class="kw-2">&amp;</span><span class="self">self</span>.messages, channel_id, check),
@@ -2067,7 +2068,7 @@
     /// # Examples
     ///
     /// Wait for multiple messages in channel 123 by user 456 with the content
-    /// &quot;test&quot;:
+    /// "test":
     ///
     /// ```no_run
     /// # #[tokio::main]
@@ -2082,11 +2083,11 @@
     /// let channel_id = Id::new(123);
     ///
     /// let mut messages = standby.wait_for_message_stream(channel_id, move |event: &amp;MessageCreate| {
-    ///     event.author.id == author_id &amp;&amp; event.content == &quot;test&quot;
+    ///     event.author.id == author_id &amp;&amp; event.content == "test"
     /// });
     ///
     /// while let Some(message) = messages.next().await {
-    ///     println!(&quot;got message by {}&quot;, message.author.id);
+    ///     println!("got message by {}", message.author.id);
     /// }
     /// # Ok(()) }
     /// ```
@@ -2097,12 +2098,12 @@
     /// dropped.
     ///
     /// [`wait_for_message`]: Self::wait_for_message
-    </span><span class="kw">pub fn </span>wait_for_message_stream&lt;F: Fn(<span class="kw-2">&amp;</span>MessageCreate) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_message_stream&lt;F: Fn(<span class="kw-2">&amp;</span>MessageCreate) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForMessageStream {
-        <span class="macro">tracing::trace!</span>(%channel_id, <span class="string">&quot;waiting for message in channel&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%channel_id, <span class="string">"waiting for message in channel"</span>);
 
         WaitForMessageStream {
             rx: <span class="self">Self</span>::insert_stream(<span class="kw-2">&amp;</span><span class="self">self</span>.messages, channel_id, check),
@@ -2145,12 +2146,12 @@
     ///
     /// [`Canceled`]: future::Canceled
     /// [`wait_for_reaction_stream`]: Self::wait_for_reaction_stream
-    </span><span class="kw">pub fn </span>wait_for_reaction&lt;F: Fn(<span class="kw-2">&amp;</span>ReactionAdd) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_reaction&lt;F: Fn(<span class="kw-2">&amp;</span>ReactionAdd) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForReactionFuture {
-        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">&quot;waiting for reaction on message&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">"waiting for reaction on message"</span>);
 
         WaitForReactionFuture {
             rx: <span class="self">Self</span>::insert_future(<span class="kw-2">&amp;</span><span class="self">self</span>.reactions, message_id, check),
@@ -2164,7 +2165,7 @@
     ///
     /// # Examples
     ///
-    /// Wait for multiple reactions on message 123 with unicode reaction &quot;🤠&quot;:
+    /// Wait for multiple reactions on message 123 with unicode reaction "🤠":
     ///
     /// ```no_run
     /// # #[tokio::main]
@@ -2182,11 +2183,11 @@
     /// let message_id = Id::new(123);
     ///
     /// let mut reactions = standby.wait_for_reaction_stream(message_id, |event: &amp;ReactionAdd| {
-    ///     matches!(&amp;event.emoji, ReactionType::Unicode { name } if name == &quot;🤠&quot;)
+    ///     matches!(&amp;event.emoji, ReactionType::Unicode { name } if name == "🤠")
     /// });
     ///
     /// while let Some(reaction) = reactions.next().await {
-    ///     println!(&quot;got a reaction by {}&quot;, reaction.user_id);
+    ///     println!("got a reaction by {}", reaction.user_id);
     /// }
     /// # Ok(()) }
     /// ```
@@ -2197,12 +2198,12 @@
     /// dropped.
     ///
     /// [`wait_for_reaction`]: Self::wait_for_reaction
-    </span><span class="kw">pub fn </span>wait_for_reaction_stream&lt;F: Fn(<span class="kw-2">&amp;</span>ReactionAdd) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_reaction_stream&lt;F: Fn(<span class="kw-2">&amp;</span>ReactionAdd) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForReactionStream {
-        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">&quot;waiting for reaction on message&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">"waiting for reaction on message"</span>);
 
         WaitForReactionStream {
             rx: <span class="self">Self</span>::insert_stream(<span class="kw-2">&amp;</span><span class="self">self</span>.reactions, message_id, check),
@@ -2238,12 +2239,12 @@
     /// ```
     ///
     /// [`wait_for_component_stream`]: Self::wait_for_component_stream
-    </span><span class="kw">pub fn </span>wait_for_component&lt;F: Fn(<span class="kw-2">&amp;</span>Interaction) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_component&lt;F: Fn(<span class="kw-2">&amp;</span>Interaction) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForComponentFuture {
-        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">&quot;waiting for component on message&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">"waiting for component on message"</span>);
 
         WaitForComponentFuture {
             rx: <span class="self">Self</span>::insert_future(<span class="kw-2">&amp;</span><span class="self">self</span>.components, message_id, check),
@@ -2260,7 +2261,7 @@
     /// # Examples
     ///
     /// Wait for multiple button components on message 123 with a `custom_id` of
-    /// &quot;Click&quot;:
+    /// "Click":
     ///
     /// ```no_run
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
@@ -2276,25 +2277,25 @@
     ///
     /// let mut components = standby.wait_for_component_stream(message_id, |event: &amp;Interaction| {
     ///     if let Some(InteractionData::MessageComponent(data)) = &amp;event.data {
-    ///         data.custom_id == &quot;Click&quot;.to_string()
+    ///         data.custom_id == "Click".to_string()
     ///     } else {
     ///         false
     ///     }
     /// });
     ///
     /// while let Some(component) = components.next().await {
-    ///     println!(&quot;got a component by {}&quot;, component.author_id().unwrap());
+    ///     println!("got a component by {}", component.author_id().unwrap());
     /// }
     /// # Ok(()) }
     /// ```
     ///
     /// [`wait_for_component`]: Self::wait_for_component
-    </span><span class="kw">pub fn </span>wait_for_component_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Interaction) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+    </span><span class="kw">pub fn </span>wait_for_component_stream&lt;F: Fn(<span class="kw-2">&amp;</span>Interaction) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
     ) -&gt; WaitForComponentStream {
-        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">&quot;waiting for component on message&quot;</span>);
+        <span class="macro">tracing::trace!</span>(%message_id, <span class="string">"waiting for component on message"</span>);
 
         WaitForComponentStream {
             rx: <span class="self">Self</span>::insert_stream(<span class="kw-2">&amp;</span><span class="self">self</span>.components, message_id, check),
@@ -2307,7 +2308,7 @@
     }
 
     <span class="doccomment">/// Append a new future bystander into a map according to the ID.
-    </span><span class="kw">fn </span>insert_future&lt;F: Fn(<span class="kw-2">&amp;</span>V) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>, K: Eq + Hash, V&gt;(
+    </span><span class="kw">fn </span>insert_future&lt;F: Fn(<span class="kw-2">&amp;</span>V) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>, K: Eq + Hash, V&gt;(
         map: <span class="kw-2">&amp;</span>BystanderMap&lt;K, V&gt;,
         id: K,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
@@ -2324,7 +2325,7 @@
     }
 
     <span class="doccomment">/// Append a new stream bystander into a map according to the ID.
-    </span><span class="kw">fn </span>insert_stream&lt;F: Fn(<span class="kw-2">&amp;</span>V) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>, K: Eq + Hash, V&gt;(
+    </span><span class="kw">fn </span>insert_stream&lt;F: Fn(<span class="kw-2">&amp;</span>V) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>, K: Eq + Hash, V&gt;(
         map: <span class="kw-2">&amp;</span>BystanderMap&lt;K, V&gt;,
         id: K,
         check: <span class="kw">impl </span>Into&lt;Box&lt;F&gt;&gt;,
@@ -2342,12 +2343,12 @@
 
     <span class="doccomment">/// Process a general event that is not of any particular type or in any
     /// particular guild.
-    </span><span class="attr">#[tracing::instrument(level = <span class="string">&quot;trace&quot;</span>)]
-    </span><span class="kw">fn </span>process_event&lt;K: Debug + Display + Eq + Hash + PartialEq + <span class="lifetime">&#39;static</span>, V: Clone + Debug&gt;(
+    </span><span class="attr">#[tracing::instrument(level = <span class="string">"trace"</span>)]
+    </span><span class="kw">fn </span>process_event&lt;K: Debug + Display + Eq + Hash + PartialEq + <span class="lifetime">'static</span>, V: Clone + Debug&gt;(
         map: <span class="kw-2">&amp;</span>DashMap&lt;K, Bystander&lt;V&gt;&gt;,
         event: <span class="kw-2">&amp;</span>V,
     ) -&gt; ProcessResults {
-        <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>event, <span class="string">&quot;processing event&quot;</span>);
+        <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>event, <span class="string">"processing event"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>results = ProcessResults::new();
 
@@ -2355,7 +2356,7 @@
             <span class="kw">let </span>result = <span class="self">Self</span>::bystander_process(bystander, event);
             results.handle(result);
 
-            <span class="macro">tracing::trace!</span>(bystander_id = %id, <span class="question-mark">?</span>result, <span class="string">&quot;event bystander processed&quot;</span>);
+            <span class="macro">tracing::trace!</span>(bystander_id = %id, <span class="question-mark">?</span>result, <span class="string">"event bystander processed"</span>);
 
             <span class="comment">// We want to retain bystanders that are *incomplete* and remove
             // bystanders that are *complete*.
@@ -2367,29 +2368,29 @@
 
     <span class="doccomment">/// Process a general event that is either of a particular type or in a
     /// particular guild.
-    </span><span class="attr">#[tracing::instrument(level = <span class="string">&quot;trace&quot;</span>)]
+    </span><span class="attr">#[tracing::instrument(level = <span class="string">"trace"</span>)]
     </span><span class="kw">fn </span>process_specific_event&lt;
-        K: Debug + Display + Eq + Hash + PartialEq + <span class="lifetime">&#39;static</span>,
+        K: Debug + Display + Eq + Hash + PartialEq + <span class="lifetime">'static</span>,
         V: Clone + Debug,
     &gt;(
         map: <span class="kw-2">&amp;</span>DashMap&lt;K, Vec&lt;Bystander&lt;V&gt;&gt;&gt;,
         guild_id: K,
         event: <span class="kw-2">&amp;</span>V,
     ) -&gt; ProcessResults {
-        <span class="comment">// Iterate over a guild&#39;s bystanders and mark it for removal if there
+        <span class="comment">// Iterate over a guild's bystanders and mark it for removal if there
         // are no bystanders remaining.
         </span><span class="kw">let </span>(remove_guild, results) = <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>bystanders) = map.get_mut(<span class="kw-2">&amp;</span>guild_id) {
             <span class="kw">let </span>results = <span class="self">Self</span>::bystander_iter(<span class="kw-2">&amp;mut </span>bystanders, event);
 
             (bystanders.is_empty(), results)
         } <span class="kw">else </span>{
-            <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">&quot;guild has no event bystanders&quot;</span>);
+            <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">"guild has no event bystanders"</span>);
 
             <span class="kw">return </span>ProcessResults::new();
         };
 
         <span class="kw">if </span>remove_guild {
-            <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">&quot;removing guild from map&quot;</span>);
+            <span class="macro">tracing::trace!</span>(%guild_id, <span class="string">"removing guild from map"</span>);
 
             map.remove(<span class="kw-2">&amp;</span>guild_id);
         }
@@ -2398,12 +2399,12 @@
     }
 
     <span class="doccomment">/// Iterate over bystanders and remove the ones that match the predicate.
-    </span><span class="attr">#[tracing::instrument(level = <span class="string">&quot;trace&quot;</span>)]
+    </span><span class="attr">#[tracing::instrument(level = <span class="string">"trace"</span>)]
     </span><span class="kw">fn </span>bystander_iter&lt;E: Clone + Debug&gt;(
         bystanders: <span class="kw-2">&amp;mut </span>Vec&lt;Bystander&lt;E&gt;&gt;,
         event: <span class="kw-2">&amp;</span>E,
     ) -&gt; ProcessResults {
-        <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>bystanders, <span class="string">&quot;iterating over bystanders&quot;</span>);
+        <span class="macro">tracing::trace!</span>(<span class="question-mark">?</span>bystanders, <span class="string">"iterating over bystanders"</span>);
 
         <span class="comment">// Iterate over the list of bystanders by using an index and manually
         // indexing in to the list.
@@ -2412,8 +2413,8 @@
         //
         // In each iteration we decide whether to retain a bystander: if we do
         // then we can increment our index and move on, but if we opt to instead
-        // remove it then we do so and don&#39;t increment the index. The reason we
-        // don&#39;t increment the index is because when we remove an element the
+        // remove it then we do so and don't increment the index. The reason we
+        // don't increment the index is because when we remove an element the
         // index does not become empty and instead everything to the right is
         // shifted to the left, illustrated as such:
         //
@@ -2432,19 +2433,19 @@
         // **`Vec::retain`** we need to mutate the entries in order to take out
         // the sender and `Vec::retain` only gives us immutable references.
         //
-        // A form of enumeration can&#39;t be used because sometimes the index
-        // doesn&#39;t advance; iterators would continue to provide incrementing
+        // A form of enumeration can't be used because sometimes the index
+        // doesn't advance; iterators would continue to provide incrementing
         // enumeration indexes while we sometimes want to reuse an index.
         </span><span class="kw">let </span><span class="kw-2">mut </span>index = <span class="number">0</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>results = ProcessResults::new();
 
         <span class="kw">while </span>index &lt; bystanders.len() {
-            <span class="macro">tracing::trace!</span>(%index, <span class="string">&quot;checking bystander&quot;</span>);
+            <span class="macro">tracing::trace!</span>(%index, <span class="string">"checking bystander"</span>);
 
             <span class="kw">let </span>status = <span class="self">Self</span>::bystander_process(<span class="kw-2">&amp;mut </span>bystanders[index], event);
             results.handle(status);
 
-            <span class="macro">tracing::trace!</span>(%index, <span class="question-mark">?</span>status, <span class="string">&quot;checked bystander&quot;</span>);
+            <span class="macro">tracing::trace!</span>(%index, <span class="question-mark">?</span>status, <span class="string">"checked bystander"</span>);
 
             <span class="kw">if </span>status.is_complete() {
                 bystanders.remove(index);
@@ -2461,7 +2462,7 @@
     ///
     /// Returns whether the bystander is fulfilled; if the bystander has been
     /// fulfilled then the channel is now closed.
-    </span><span class="attr">#[tracing::instrument(level = <span class="string">&quot;trace&quot;</span>)]
+    </span><span class="attr">#[tracing::instrument(level = <span class="string">"trace"</span>)]
     </span><span class="kw">fn </span>bystander_process&lt;T: Clone + Debug&gt;(
         bystander: <span class="kw-2">&amp;mut </span>Bystander&lt;T&gt;,
         event: <span class="kw-2">&amp;</span>T,
@@ -2469,25 +2470,25 @@
         <span class="comment">// We need to take the sender out because `OneshotSender`s consume
         // themselves when calling `OneshotSender::send`.
         </span><span class="kw">let </span><span class="prelude-val">Some</span>(sender) = bystander.sender.take() <span class="kw">else </span>{
-            <span class="macro">tracing::trace!</span>(<span class="string">&quot;bystander has no sender, indicating for removal&quot;</span>);
+            <span class="macro">tracing::trace!</span>(<span class="string">"bystander has no sender, indicating for removal"</span>);
 
             <span class="kw">return </span>ProcessStatus::AlreadyComplete;
         };
 
         <span class="comment">// The channel may have closed due to the receiver dropping their end,
-        // in which case we can say we&#39;re done.
+        // in which case we can say we're done.
         </span><span class="kw">if </span>sender.is_closed() {
-            <span class="macro">tracing::trace!</span>(<span class="string">&quot;bystander&#39;s rx dropped, indicating for removal&quot;</span>);
+            <span class="macro">tracing::trace!</span>(<span class="string">"bystander's rx dropped, indicating for removal"</span>);
 
             <span class="kw">return </span>ProcessStatus::Dropped;
         }
 
-        <span class="comment">// Lastly check to see if the predicate matches the event. If it doesn&#39;t
+        <span class="comment">// Lastly check to see if the predicate matches the event. If it doesn't
         // then we can short-circuit.
         </span><span class="kw">if </span>!(bystander.func)(event) {
-            <span class="macro">tracing::trace!</span>(<span class="string">&quot;bystander check doesn&#39;t match, not removing&quot;</span>);
+            <span class="macro">tracing::trace!</span>(<span class="string">"bystander check doesn't match, not removing"</span>);
 
-            <span class="comment">// Put the sender back into its bystander since we&#39;ll still need it
+            <span class="comment">// Put the sender back into its bystander since we'll still need it
             // next time around.
             </span>bystander.sender.replace(sender);
 
@@ -2496,11 +2497,11 @@
 
         <span class="kw">match </span>sender {
             Sender::Future(tx) =&gt; {
-                <span class="comment">// We don&#39;t care if the event successfully sends or not since
-                // we&#39;re going to be tossing out the bystander anyway.
+                <span class="comment">// We don't care if the event successfully sends or not since
+                // we're going to be tossing out the bystander anyway.
                 </span>drop(tx.send(event.clone()));
 
-                <span class="macro">tracing::trace!</span>(<span class="string">&quot;bystander matched event, indicating for removal&quot;</span>);
+                <span class="macro">tracing::trace!</span>(<span class="string">"bystander matched event, indicating for removal"</span>);
 
                 ProcessStatus::SentFuture
             }
@@ -2509,7 +2510,7 @@
                 // still open then we need to retain the bystander, otherwise we
                 // need to mark it for removal.
                 </span><span class="kw">if </span>tx.send(event.clone()).is_ok() {
-                    <span class="macro">tracing::trace!</span>(<span class="string">&quot;bystander is a stream, retaining in map&quot;</span>);
+                    <span class="macro">tracing::trace!</span>(<span class="string">"bystander is a stream, retaining in map"</span>);
 
                     bystander.sender.replace(Sender::Stream(tx));
 
@@ -2687,11 +2688,11 @@
                 discriminator: <span class="number">1</span>,
                 email: <span class="prelude-val">None</span>,
                 flags: <span class="prelude-val">None</span>,
-                global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                 id: Id::new(<span class="number">2</span>),
                 locale: <span class="prelude-val">None</span>,
                 mfa_enabled: <span class="prelude-val">None</span>,
-                name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+                name: <span class="string">"twilight"</span>.to_owned(),
                 premium_type: <span class="prelude-val">None</span>,
                 public_flags: <span class="prelude-val">None</span>,
                 system: <span class="prelude-val">None</span>,
@@ -2699,7 +2700,7 @@
             },
             channel_id: Id::new(<span class="number">1</span>),
             components: Vec::new(),
-            content: <span class="string">&quot;test&quot;</span>.to_owned(),
+            content: <span class="string">"test"</span>.to_owned(),
             edited_timestamp: <span class="prelude-val">None</span>,
             embeds: Vec::new(),
             flags: <span class="prelude-val">None</span>,
@@ -2718,7 +2719,7 @@
             referenced_message: <span class="prelude-val">None</span>,
             role_subscription_data: <span class="prelude-val">None</span>,
             sticker_items: Vec::new(),
-            timestamp: Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>),
+            timestamp: Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>),
             thread: <span class="prelude-val">None</span>,
             tts: <span class="bool-val">false</span>,
             webhook_id: <span class="prelude-val">None</span>,
@@ -2729,7 +2730,7 @@
         GatewayReaction {
             channel_id: Id::new(<span class="number">2</span>),
             emoji: ReactionType::Unicode {
-                name: <span class="string">&quot;🍎&quot;</span>.to_owned(),
+                name: <span class="string">"🍎"</span>.to_owned(),
             },
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
             member: <span class="prelude-val">None</span>,
@@ -2784,7 +2785,7 @@
             channel_id: <span class="prelude-val">None</span>,
             data: <span class="prelude-val">Some</span>(InteractionData::MessageComponent(
                 MessageComponentInteractionData {
-                    custom_id: String::from(<span class="string">&quot;Click&quot;</span>),
+                    custom_id: String::from(<span class="string">"Click"</span>),
                     component_type: ComponentType::Button,
                     values: Vec::new(),
                 },
@@ -2793,10 +2794,10 @@
             guild_locale: <span class="prelude-val">None</span>,
             id: Id::new(<span class="number">4</span>),
             kind: InteractionType::MessageComponent,
-            locale: <span class="prelude-val">Some</span>(<span class="string">&quot;en-GB&quot;</span>.to_owned()),
+            locale: <span class="prelude-val">Some</span>(<span class="string">"en-GB"</span>.to_owned()),
             member: <span class="prelude-val">None</span>,
             message: <span class="prelude-val">Some</span>(message()),
-            token: String::from(<span class="string">&quot;token&quot;</span>),
+            token: String::from(<span class="string">"token"</span>),
             user: <span class="prelude-val">Some</span>(User {
                 accent_color: <span class="prelude-val">None</span>,
                 avatar: <span class="prelude-val">None</span>,
@@ -2806,11 +2807,11 @@
                 discriminator: <span class="number">1</span>,
                 email: <span class="prelude-val">None</span>,
                 flags: <span class="prelude-val">None</span>,
-                global_name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+                global_name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
                 id: Id::new(<span class="number">2</span>),
                 locale: <span class="prelude-val">None</span>,
                 mfa_enabled: <span class="prelude-val">None</span>,
-                name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+                name: <span class="string">"twilight"</span>.to_owned(),
                 premium_type: <span class="prelude-val">None</span>,
                 public_flags: <span class="prelude-val">None</span>,
                 system: <span class="prelude-val">None</span>,
@@ -2962,7 +2963,7 @@
                 id: Id::new(<span class="number">1</span>),
             },
             guilds: Vec::new(),
-            resume_gateway_url: <span class="string">&quot;wss://gateway.discord.gg&quot;</span>.into(),
+            resume_gateway_url: <span class="string">"wss://gateway.discord.gg"</span>.into(),
             session_id: String::new(),
             shard: <span class="prelude-val">Some</span>(ShardId::new(<span class="number">5</span>, <span class="number">7</span>)),
             user: CurrentUser {
@@ -2974,7 +2975,7 @@
                 email: <span class="prelude-val">None</span>,
                 id: Id::new(<span class="number">1</span>),
                 mfa_enabled: <span class="bool-val">true</span>,
-                name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+                name: <span class="string">"twilight"</span>.to_owned(),
                 verified: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
                 premium_type: <span class="prelude-val">None</span>,
                 public_flags: <span class="prelude-val">None</span>,

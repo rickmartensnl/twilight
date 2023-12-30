@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/client.rs`."><title>client.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/client.rs`."><title>client.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -442,28 +443,28 @@
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (ClientErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ClientError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
-            ClientErrorType::NodesUnconfigured =&gt; f.write_str(<span class="string">&quot;no node has been configured&quot;</span>),
+            ClientErrorType::NodesUnconfigured =&gt; f.write_str(<span class="string">"no node has been configured"</span>),
             ClientErrorType::SendingVoiceUpdate =&gt; {
-                f.write_str(<span class="string">&quot;couldn&#39;t send voice update to node&quot;</span>)
+                f.write_str(<span class="string">"couldn't send voice update to node"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>ClientError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -471,9 +472,9 @@
 </span><span class="attr">#[derive(Debug)]
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>ClientErrorType {
-    <span class="doccomment">/// A node isn&#39;t configured, so the operation isn&#39;t possible to fulfill.
+    <span class="doccomment">/// A node isn't configured, so the operation isn't possible to fulfill.
     </span>NodesUnconfigured,
-    <span class="doccomment">/// Sending a voice update event to the node failed because the node&#39;s
+    <span class="doccomment">/// Sending a voice update event to the node failed because the node's
     /// connection was shutdown.
     </span>SendingVoiceUpdate,
 }
@@ -559,7 +560,7 @@
     ///
     /// This requires the `VoiceServerUpdate` and `VoiceStateUpdate` events that
     /// you receive from Discord over the gateway to send voice updates to
-    /// nodes. For simplicity in some applications&#39; event loops, any event can
+    /// nodes. For simplicity in some applications' event loops, any event can
     /// be provided, but they will just be ignored.
     ///
     /// The Ready event can optionally be provided to do some cleaning of
@@ -569,12 +570,12 @@
     /// # Errors
     ///
     /// Returns a [`ClientErrorType::NodesUnconfigured`] error type if no nodes
-    /// have been added to the client when attempting to retrieve a guild&#39;s
+    /// have been added to the client when attempting to retrieve a guild's
     /// player.
     ///
     /// [crate documentation]: crate#examples
     </span><span class="kw">pub async fn </span>process(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event) -&gt; <span class="prelude-ty">Result</span>&lt;(), ClientError&gt; {
-        <span class="macro">tracing::trace!</span>(<span class="string">&quot;processing event: {event:?}&quot;</span>);
+        <span class="macro">tracing::trace!</span>(<span class="string">"processing event: {event:?}"</span>);
 
         <span class="kw">let </span>guild_id = <span class="kw">match </span>event {
             Event::Ready(e) =&gt; {
@@ -590,7 +591,7 @@
             }
             Event::VoiceStateUpdate(e) =&gt; {
                 <span class="kw">if </span>e.user_id != <span class="self">self</span>.user_id {
-                    <span class="macro">tracing::trace!</span>(<span class="string">&quot;got voice state update from another user&quot;</span>);
+                    <span class="macro">tracing::trace!</span>(<span class="string">"got voice state update from another user"</span>);
 
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(());
                 }
@@ -610,14 +611,14 @@
                     }
                     guild_id
                 } <span class="kw">else </span>{
-                    <span class="macro">tracing::trace!</span>(<span class="string">&quot;event has no guild ID: {e:?}&quot;</span>);
+                    <span class="macro">tracing::trace!</span>(<span class="string">"event has no guild ID: {e:?}"</span>);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(());
                 }
             }
             <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(()),
         };
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;got voice server/state update for {guild_id:?}: {event:?}&quot;</span>);
+        <span class="macro">tracing::debug!</span>(<span class="string">"got voice server/state update for {guild_id:?}: {event:?}"</span>);
 
         <span class="kw">let </span>update = {
             <span class="kw">let </span>server = <span class="self">self</span>.server_updates.get(<span class="kw-2">&amp;</span>guild_id);
@@ -627,20 +628,20 @@
                     <span class="kw">let </span>server = server.value();
                     <span class="kw">let </span>session = session.value();
                     <span class="macro">tracing::debug!</span>(
-                        <span class="string">&quot;got both halves for {guild_id}: {server:?}; Session ID: {session:?}&quot;</span>,
+                        <span class="string">"got both halves for {guild_id}: {server:?}; Session ID: {session:?}"</span>,
                     );
                     VoiceUpdate::new(guild_id, session.as_ref(), server.clone())
                 }
                 (<span class="prelude-val">Some</span>(server), <span class="prelude-val">None</span>) =&gt; {
                     <span class="macro">tracing::debug!</span>(
-                        <span class="string">&quot;guild {guild_id} is now waiting for other half; got: {:?}&quot;</span>,
+                        <span class="string">"guild {guild_id} is now waiting for other half; got: {:?}"</span>,
                         server.value()
                     );
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(());
                 }
                 (<span class="prelude-val">None</span>, <span class="prelude-val">Some</span>(session)) =&gt; {
                     <span class="macro">tracing::debug!</span>(
-                        <span class="string">&quot;guild {guild_id} is now waiting for other half; got session ID: {:?}&quot;</span>,
+                        <span class="string">"guild {guild_id} is now waiting for other half; got session ID: {:?}"</span>,
                         session.value()
                     );
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(());
@@ -649,18 +650,18 @@
             }
         };
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;getting player for guild {guild_id}&quot;</span>);
+        <span class="macro">tracing::debug!</span>(<span class="string">"getting player for guild {guild_id}"</span>);
 
         <span class="kw">let </span>player = <span class="self">self</span>.player(guild_id).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;sending voice update for guild {guild_id}: {update:?}&quot;</span>);
+        <span class="macro">tracing::debug!</span>(<span class="string">"sending voice update for guild {guild_id}: {update:?}"</span>);
 
         player.send(update).map_err(|source| ClientError {
             kind: ClientErrorType::SendingVoiceUpdate,
             source: <span class="prelude-val">Some</span>(Box::new(source)),
         })<span class="question-mark">?</span>;
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;sent voice update for guild {guild_id}&quot;</span>);
+        <span class="macro">tracing::debug!</span>(<span class="string">"sent voice update for guild {guild_id}"</span>);
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -714,7 +715,7 @@
         <span class="self">self</span>.nodes.remove(<span class="kw-2">&amp;</span>address).is_some()
     }
 
-    <span class="doccomment">/// Determine the &quot;best&quot; node for new players according to available nodes&#39;
+    <span class="doccomment">/// Determine the "best" node for new players according to available nodes'
     /// penalty scores. Disconnected nodes will not be considered.
     ///
     /// Refer to [`Node::penalty`] for how this is calculated.
@@ -756,7 +757,7 @@
     <span class="doccomment">/// Retrieve a player for the guild.
     ///
     /// Creates a player configured to use the best available node if a player
-    /// for the guild doesn&#39;t already exist. Use [`PlayerManager::get`] to only
+    /// for the guild doesn't already exist. Use [`PlayerManager::get`] to only
     /// retrieve and not create.
     ///
     /// # Errors
@@ -782,7 +783,7 @@
     /// We can do this by iterating over the map and removing the ones that we
     /// can calculate came from a shard.
     ///
-    /// This map should be small or empty, and if it isn&#39;t, then it needs to be
+    /// This map should be small or empty, and if it isn't, then it needs to be
     /// cleared out anyway.
     </span><span class="kw">fn </span>clear_shard_states(<span class="kw-2">&amp;</span><span class="self">self</span>, shard_id: u64) {
         <span class="kw">let </span>shard_count = <span class="self">self</span>.shard_count;

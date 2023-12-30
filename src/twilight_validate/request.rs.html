@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/request.rs`."><title>request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/request.rs`."><title>request.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1418,7 +1419,7 @@
 <span class="doccomment">/// The maximum audit log reason length in UTF-16 codepoints.
 </span><span class="kw">pub const </span>AUDIT_REASON_MAX: usize = <span class="number">512</span>;
 
-<span class="doccomment">/// Maximum length of an auto moderation block action&#39;s custom message.
+<span class="doccomment">/// Maximum length of an auto moderation block action's custom message.
 </span><span class="kw">pub const </span>AUTO_MODERATION_ACTION_BLOCK_CUSTOM_MESSAGE_LENGTH_MAX: usize = <span class="number">150</span>;
 
 <span class="doccomment">/// Maximum amount of mentions that triggers an auto moderation action.
@@ -1463,10 +1464,10 @@
 <span class="doccomment">/// Minimum amount of users to return when getting reactions.
 </span><span class="kw">pub const </span>GET_REACTIONS_LIMIT_MAX: u16 = <span class="number">100</span>;
 
-<span class="doccomment">/// Maximum length of a guild&#39;s name.
+<span class="doccomment">/// Maximum length of a guild's name.
 </span><span class="kw">pub const </span>GUILD_NAME_LENGTH_MAX: usize = <span class="number">100</span>;
 
-<span class="doccomment">/// Minimum length of a guild&#39;s name.
+<span class="doccomment">/// Minimum length of a guild's name.
 </span><span class="kw">pub const </span>GUILD_NAME_LENGTH_MIN: usize = <span class="number">2</span>;
 
 <span class="doccomment">/// Maximum amount of days to prune users from a guild.
@@ -1475,7 +1476,7 @@
 <span class="doccomment">/// Minimum amount of days to prune users from a guild.
 </span><span class="kw">pub const </span>GUILD_PRUNE_DAYS_MIN: u16 = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of an invite&#39;s age, in seconds.
+<span class="doccomment">/// Maximum length of an invite's age, in seconds.
 </span><span class="kw">pub const </span>INVITE_AGE_MAX: u32 = <span class="number">604_800</span>;
 
 <span class="doccomment">/// Maximum uses of an invite, if not unlimited.
@@ -1487,10 +1488,10 @@
 <span class="doccomment">/// Minimum length of a nickname.
 </span><span class="kw">pub const </span>NICKNAME_LIMIT_MIN: usize = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of a scheduled event&#39;s description.
+<span class="doccomment">/// Maximum length of a scheduled event's description.
 </span><span class="kw">pub const </span>SCHEDULED_EVENT_DESCRIPTION_MAX: usize = <span class="number">1000</span>;
 
-<span class="doccomment">/// Minimum length of a scheduled event&#39;s description.
+<span class="doccomment">/// Minimum length of a scheduled event's description.
 </span><span class="kw">pub const </span>SCHEDULED_EVENT_DESCRIPTION_MIN: usize = <span class="number">1</span>;
 
 <span class="doccomment">/// Maximum amount of scheduled event users to get.
@@ -1499,10 +1500,10 @@
 <span class="doccomment">/// Minimum amount of scheduled event users to get.
 </span><span class="kw">pub const </span>SCHEDULED_EVENT_GET_USERS_MIN: u16 = <span class="number">1</span>;
 
-<span class="doccomment">/// Maximum length of a scheduled event&#39;s name.
+<span class="doccomment">/// Maximum length of a scheduled event's name.
 </span><span class="kw">pub const </span>SCHEDULED_EVENT_NAME_MAX: usize = <span class="number">100</span>;
 
-<span class="doccomment">/// Minimum length of a scheduled event&#39;s name.
+<span class="doccomment">/// Minimum length of a scheduled event's name.
 </span><span class="kw">pub const </span>SCHEDULED_EVENT_NAME_MIN: usize = <span class="number">1</span>;
 
 <span class="doccomment">/// Maximum amount of guild members to search for.
@@ -1539,13 +1540,13 @@
 </span><span class="kw">pub const </span>WEBHOOK_USERNAME_LIMIT_MIN: usize = <span class="number">2</span>;
 
 <span class="doccomment">/// Forbidden substrings in usernames.
-</span><span class="kw">const </span>USERNAME_INVALID_SUBSTRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">5</span>] = [<span class="string">&quot;@&quot;</span>, <span class="string">&quot;#&quot;</span>, <span class="string">&quot;:&quot;</span>, <span class="string">&quot;```&quot;</span>, <span class="string">&quot;discord&quot;</span>];
+</span><span class="kw">const </span>USERNAME_INVALID_SUBSTRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">5</span>] = [<span class="string">"@"</span>, <span class="string">"#"</span>, <span class="string">":"</span>, <span class="string">"```"</span>, <span class="string">"discord"</span>];
 
 <span class="doccomment">/// Forbidden usernames.
-</span><span class="kw">const </span>USERNAME_INVALID_STRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">2</span>] = [<span class="string">&quot;everyone&quot;</span>, <span class="string">&quot;here&quot;</span>];
+</span><span class="kw">const </span>USERNAME_INVALID_STRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">2</span>] = [<span class="string">"everyone"</span>, <span class="string">"here"</span>];
 
 <span class="doccomment">/// Forbidden webhook usernames.
-</span><span class="kw">const </span>WEBHOOK_INVALID_STRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">1</span>] = [<span class="string">&quot;clyde&quot;</span>];
+</span><span class="kw">const </span>WEBHOOK_INVALID_STRINGS: [<span class="kw-2">&amp;</span>str; <span class="number">1</span>] = [<span class="string">"clyde"</span>];
 
 <span class="doccomment">/// A field is not valid.
 </span><span class="attr">#[derive(Debug)]
@@ -1556,20 +1557,20 @@
 
 <span class="kw">impl </span>ValidationError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ValidationErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (ValidationErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="prelude-val">None</span>)
     }
@@ -1577,214 +1578,214 @@
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ValidationError {
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             ValidationErrorType::AuditReason { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided audit reason length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided audit reason length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>AUDIT_REASON_MAX, f)
             }
             ValidationErrorType::AutoModerationBlockActionCustomMessageLimit { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided auto moderation block action custom message length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided auto moderation block action custom message length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>AUTO_MODERATION_ACTION_BLOCK_CUSTOM_MESSAGE_LENGTH_MAX, f)
             }
             ValidationErrorType::AutoModerationMetadataMentionTotalLimit { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided auto moderation metadata mention_total_limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided auto moderation metadata mention_total_limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>AUTO_MODERATION_METADATA_MENTION_TOTAL_LIMIT, f)
             }
             ValidationErrorType::CreateGuildBanDeleteMessageSeconds {
                 seconds: delete_message_seconds,
             } =&gt; {
-                f.write_str(<span class="string">&quot;provided create guild ban delete_message_seconds is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided create guild ban delete_message_seconds is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(delete_message_seconds, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>CREATE_GUILD_BAN_DELETE_MESSAGE_SECONDS_MAX, f)
             }
             ValidationErrorType::CommunicationDisabledUntil { .. } =&gt; {
-                f.write_str(<span class="string">&quot;provided timestamp is too far in the future&quot;</span>)
+                f.write_str(<span class="string">"provided timestamp is too far in the future"</span>)
             }
             ValidationErrorType::GetChannelMessages { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get guild members limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get guild members limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GET_CHANNEL_MESSAGES_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_CHANNEL_MESSAGES_LIMIT_MAX, f)
             }
             ValidationErrorType::GetCurrentUserGuilds { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get current user guilds limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get current user guilds limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GET_CURRENT_USER_GUILDS_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_CURRENT_USER_GUILDS_LIMIT_MAX, f)
             }
             ValidationErrorType::GetGuildAuditLog { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get guild audit log limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get guild audit log limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GET_GUILD_MEMBERS_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_GUILD_MEMBERS_LIMIT_MAX, f)
             }
             ValidationErrorType::GetGuildBans { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get guild bans limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get guild bans limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_GUILD_BANS_LIMIT_MAX, f)
             }
             ValidationErrorType::GetGuildMembers { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get guild members limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get guild members limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GET_GUILD_MEMBERS_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_GUILD_MEMBERS_LIMIT_MAX, f)
             }
             ValidationErrorType::GetReactions { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided get reactions limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided get reactions limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GET_REACTIONS_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GET_REACTIONS_LIMIT_MAX, f)
             }
             ValidationErrorType::GuildName { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided guild name length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided guild name length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_NAME_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_NAME_LENGTH_MAX, f)
             }
             ValidationErrorType::GuildPruneDays { days } =&gt; {
-                f.write_str(<span class="string">&quot;provided prune days is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided prune days is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(days, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_PRUNE_DAYS_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>GUILD_PRUNE_DAYS_MAX, f)
             }
             ValidationErrorType::InviteMaxAge { max_age } =&gt; {
-                f.write_str(<span class="string">&quot;provided invite max_age is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided invite max_age is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(max_age, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>INVITE_AGE_MAX, f)
             }
             ValidationErrorType::InviteMaxUses { max_uses } =&gt; {
-                f.write_str(<span class="string">&quot;provided invite max_uses is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided invite max_uses is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(max_uses, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>INVITE_USES_MAX, f)
             }
             ValidationErrorType::Nickname { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided nickname length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided nickname length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>NICKNAME_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>NICKNAME_LIMIT_MAX, f)
             }
             ValidationErrorType::ScheduledEventDescription { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided scheduled event description is length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided scheduled event description is length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_DESCRIPTION_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_DESCRIPTION_MAX, f)
             }
             ValidationErrorType::ScheduledEventGetUsers { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided scheduled event get users limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided scheduled event get users limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_GET_USERS_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_GET_USERS_MAX, f)
             }
             ValidationErrorType::ScheduledEventName { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided scheduled event name is length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided scheduled event name is length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_NAME_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SCHEDULED_EVENT_NAME_MAX, f)
             }
             ValidationErrorType::SearchGuildMembers { limit } =&gt; {
-                f.write_str(<span class="string">&quot;provided search guild members limit is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided search guild members limit is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(limit, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>SEARCH_GUILD_MEMBERS_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SEARCH_GUILD_MEMBERS_LIMIT_MAX, f)
             }
             ValidationErrorType::StageTopic { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided stage instance topic length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided stage instance topic length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>STAGE_TOPIC_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>STAGE_TOPIC_LENGTH_MAX, f)
             }
             ValidationErrorType::TemplateDescription { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided guild template description topic length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided guild template description topic length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEMPLATE_DESCRIPTION_LENGTH_MAX, f)
             }
             ValidationErrorType::TemplateName { len } =&gt; {
-                f.write_str(<span class="string">&quot;provided guild template name length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided guild template name length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(len, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>TEMPLATE_NAME_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEMPLATE_NAME_LENGTH_MAX, f)
             }
             ValidationErrorType::Username { len, substring }
             | ValidationErrorType::WebhookUsername { len, substring } =&gt; {
-                f.write_str(<span class="string">&quot;provided username&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"provided username"</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(len) = len {
-                    f.write_str(<span class="string">&quot; length is &quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">" length is "</span>)<span class="question-mark">?</span>;
                     Display::fmt(len, f)<span class="question-mark">?</span>;
-                    f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                     Display::fmt(<span class="kw-2">&amp;</span>USERNAME_LIMIT_MIN, f)<span class="question-mark">?</span>;
-                    f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
                     Display::fmt(<span class="kw-2">&amp;</span>USERNAME_LIMIT_MAX, f)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(substring) = substring {
                     <span class="kw">if </span>len.is_some() {
-                        f.write_str(<span class="string">&quot;, and&quot;</span>)<span class="question-mark">?</span>;
+                        f.write_str(<span class="string">", and"</span>)<span class="question-mark">?</span>;
                     }
 
-                    f.write_str(<span class="string">&quot; cannot contain &quot;</span>)<span class="question-mark">?</span>;
+                    f.write_str(<span class="string">" cannot contain "</span>)<span class="question-mark">?</span>;
                     Display::fmt(substring, f)<span class="question-mark">?</span>;
                 }
 
@@ -1919,14 +1920,14 @@
         <span class="doccomment">/// Invalid length.
         </span>len: <span class="prelude-ty">Option</span>&lt;usize&gt;,
         <span class="doccomment">/// Invalid substring.
-        </span>substring: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;,
+        </span>substring: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt;,
     },
     <span class="doccomment">/// Provided webhook username was invalid.
     </span>WebhookUsername {
         <span class="doccomment">/// Invalid length.
         </span>len: <span class="prelude-ty">Option</span>&lt;usize&gt;,
         <span class="doccomment">/// Invalid substring.
-        </span>substring: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;,
+        </span>substring: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt;,
     },
 }
 
@@ -1953,7 +1954,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that an auto moderation block action&#39;s `custom_message` is correct.
+<span class="doccomment">/// Ensure that an auto moderation block action's `custom_message` is correct.
 ///
 /// The length must be at most [`AUTO_MODERATION_ACTION_BLOCK_CUSTOM_MESSAGE_LENGTH_MAX`].
 /// This is based on [this documentation entry].
@@ -1978,7 +1979,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that an auto moderation rule&#39;s `mention_total_limit` is correct.
+<span class="doccomment">/// Ensure that an auto moderation rule's `mention_total_limit` is correct.
 ///
 /// The length must be at most [`AUTO_MODERATION_METADATA_MENTION_TOTAL_LIMIT`].
 /// This is based on [this documentation entry].
@@ -2179,7 +2180,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a guild name&#39;s length is correct.
+<span class="doccomment">/// Ensure that a guild name's length is correct.
 ///
 /// The length must be at least [`GUILD_NAME_LENGTH_MIN`] and at most
 /// [`GUILD_NAME_LENGTH_MAX`]. This is based on [this documentation entry].
@@ -2288,7 +2289,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a scheduled event&#39;s description is correct.
+<span class="doccomment">/// Ensure that a scheduled event's description is correct.
 ///
 /// The length must be at least [`SCHEDULED_EVENT_DESCRIPTION_MIN`] and at most
 /// [`SCHEDULED_EVENT_DESCRIPTION_MAX`]. This is based on
@@ -2313,7 +2314,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a scheduled event&#39;s get users limit amount is correct.
+<span class="doccomment">/// Ensure that a scheduled event's get users limit amount is correct.
 ///
 /// The length must be at least [`SCHEDULED_EVENT_GET_USERS_MIN`] and at most
 /// [`SCHEDULED_EVENT_GET_USERS_MAX`]. This is based on [this documentation
@@ -2335,7 +2336,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a scheduled event&#39;s name is correct.
+<span class="doccomment">/// Ensure that a scheduled event's name is correct.
 ///
 /// The length must be at least [`SCHEDULED_EVENT_NAME_MIN`] and at most
 /// [`SCHEDULED_EVENT_NAME_MAX`]. This is based on [this documentation entry].
@@ -2380,7 +2381,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that the stage instance&#39;s topic length is correct.
+<span class="doccomment">/// Ensure that the stage instance's topic length is correct.
 ///
 /// The length must be at least [`STAGE_TOPIC_LENGTH_MIN`] and at most
 /// [`STAGE_TOPIC_LENGTH_MAX`]. This is based on [this documentation entry].
@@ -2403,7 +2404,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a guild template&#39;s description length is correct.
+<span class="doccomment">/// Ensure that a guild template's description length is correct.
 ///
 /// The length must be at most [`TEMPLATE_DESCRIPTION_LENGTH_MAX`]. This is
 /// based on [this documentation entry].
@@ -2426,7 +2427,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure that a guild template&#39;s name length is correct.
+<span class="doccomment">/// Ensure that a guild template's name length is correct.
 ///
 /// The length must be at least [`TEMPLATE_NAME_LENGTH_MIN`] and at most
 /// [`TEMPLATE_NAME_LENGTH_MAX`]. This is based on [this documentation entry].
@@ -2531,20 +2532,20 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>username_variants() {
         <span class="kw">let </span>expected = <span class="macro">format!</span>(
-            <span class="string">&quot;provided username length is 200, but it must be at least {USERNAME_LIMIT_MIN} and at \
-            most {USERNAME_LIMIT_MAX}, and cannot contain :&quot;
+            <span class="string">"provided username length is 200, but it must be at least {USERNAME_LIMIT_MIN} and at \
+            most {USERNAME_LIMIT_MAX}, and cannot contain :"
         </span>);
         <span class="kw">let </span>actual = ValidationError {
             kind: ValidationErrorType::Username {
                 len: <span class="prelude-val">Some</span>(<span class="number">200</span>),
-                substring: <span class="prelude-val">Some</span>(<span class="string">&quot;:&quot;</span>),
+                substring: <span class="prelude-val">Some</span>(<span class="string">":"</span>),
             },
         };
         <span class="macro">assert_eq!</span>(expected, actual.to_string());
 
         <span class="kw">let </span>expected = <span class="macro">format!</span>(
-            <span class="string">&quot;provided username length is 200, but it must be at least {USERNAME_LIMIT_MIN} and at \
-            most {USERNAME_LIMIT_MAX}&quot;</span>,
+            <span class="string">"provided username length is 200, but it must be at least {USERNAME_LIMIT_MIN} and at \
+            most {USERNAME_LIMIT_MAX}"</span>,
         );
         <span class="kw">let </span>actual = ValidationError {
             kind: ValidationErrorType::Username {
@@ -2554,11 +2555,11 @@
         };
         <span class="macro">assert_eq!</span>(expected, actual.to_string());
 
-        <span class="kw">let </span>expected = <span class="string">&quot;provided username cannot contain :&quot;</span>.to_string();
+        <span class="kw">let </span>expected = <span class="string">"provided username cannot contain :"</span>.to_string();
         <span class="kw">let </span>actual = ValidationError {
             kind: ValidationErrorType::Username {
                 len: <span class="prelude-val">None</span>,
-                substring: <span class="prelude-val">Some</span>(<span class="string">&quot;:&quot;</span>),
+                substring: <span class="prelude-val">Some</span>(<span class="string">":"</span>),
             },
         };
         <span class="macro">assert_eq!</span>(expected, actual.to_string());
@@ -2566,20 +2567,20 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>audit_reason_length() {
-        <span class="macro">assert!</span>(audit_reason(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(audit_reason(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(audit_reason(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">500</span>)).is_ok());
-        <span class="macro">assert!</span>(audit_reason(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">512</span>)).is_ok());
+        <span class="macro">assert!</span>(audit_reason(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(audit_reason(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(audit_reason(<span class="string">"a"</span>.repeat(<span class="number">500</span>)).is_ok());
+        <span class="macro">assert!</span>(audit_reason(<span class="string">"a"</span>.repeat(<span class="number">512</span>)).is_ok());
 
-        <span class="macro">assert!</span>(audit_reason(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">513</span>)).is_err());
+        <span class="macro">assert!</span>(audit_reason(<span class="string">"a"</span>.repeat(<span class="number">513</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>auto_moderation_block_action_custom_message() {
-        <span class="macro">assert!</span>(auto_moderation_block_action_custom_message_limit(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(auto_moderation_block_action_custom_message_limit(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">150</span>)).is_ok());
+        <span class="macro">assert!</span>(auto_moderation_block_action_custom_message_limit(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(auto_moderation_block_action_custom_message_limit(<span class="string">"a"</span>.repeat(<span class="number">150</span>)).is_ok());
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
-            auto_moderation_block_action_custom_message_limit(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">151</span>))
+            auto_moderation_block_action_custom_message_limit(<span class="string">"a"</span>.repeat(<span class="number">151</span>))
                 .unwrap_err()
                 .kind,
             ValidationErrorType::AutoModerationBlockActionCustomMessageLimit { len: <span class="number">151 </span>}
@@ -2676,12 +2677,12 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>guild_name_length() {
-        <span class="macro">assert!</span>(guild_name(<span class="string">&quot;aa&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(guild_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(guild_name(<span class="string">"aa"</span>).is_ok());
+        <span class="macro">assert!</span>(guild_name(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(guild_name(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(guild_name(<span class="string">&quot;a&quot;</span>).is_err());
-        <span class="macro">assert!</span>(guild_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(guild_name(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(guild_name(<span class="string">"a"</span>).is_err());
+        <span class="macro">assert!</span>(guild_name(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2713,20 +2714,20 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>nickname_length() {
-        <span class="macro">assert!</span>(nickname(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(nickname(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">32</span>)).is_ok());
+        <span class="macro">assert!</span>(nickname(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(nickname(<span class="string">"a"</span>.repeat(<span class="number">32</span>)).is_ok());
 
-        <span class="macro">assert!</span>(nickname(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(nickname(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">33</span>)).is_err());
+        <span class="macro">assert!</span>(nickname(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(nickname(<span class="string">"a"</span>.repeat(<span class="number">33</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>scheduled_event_description_length() {
-        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">1000</span>)).is_ok());
+        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">"a"</span>.repeat(<span class="number">1000</span>)).is_ok());
 
-        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">1001</span>)).is_err());
+        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(scheduled_event_description(<span class="string">"a"</span>.repeat(<span class="number">1001</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2739,11 +2740,11 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>scheduled_event_name_length() {
-        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(scheduled_event_name(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2757,57 +2758,57 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>stage_topic_length() {
-        <span class="macro">assert!</span>(stage_topic(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(stage_topic(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">120</span>)).is_ok());
+        <span class="macro">assert!</span>(stage_topic(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(stage_topic(<span class="string">"a"</span>.repeat(<span class="number">120</span>)).is_ok());
 
-        <span class="macro">assert!</span>(stage_topic(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(stage_topic(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">121</span>)).is_err());
+        <span class="macro">assert!</span>(stage_topic(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(stage_topic(<span class="string">"a"</span>.repeat(<span class="number">121</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>template_description_length() {
-        <span class="macro">assert!</span>(template_description(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(template_description(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(template_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">120</span>)).is_ok());
+        <span class="macro">assert!</span>(template_description(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(template_description(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(template_description(<span class="string">"a"</span>.repeat(<span class="number">120</span>)).is_ok());
 
-        <span class="macro">assert!</span>(template_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">121</span>)).is_err());
+        <span class="macro">assert!</span>(template_description(<span class="string">"a"</span>.repeat(<span class="number">121</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>template_name_length() {
-        <span class="macro">assert!</span>(template_name(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(template_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(template_name(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(template_name(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(template_name(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(template_name(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(template_name(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(template_name(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>username_length() {
-        <span class="macro">assert!</span>(username(<span class="string">&quot;aa&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">32</span>)).is_ok());
+        <span class="macro">assert!</span>(username(<span class="string">"aa"</span>).is_ok());
+        <span class="macro">assert!</span>(username(<span class="string">"a"</span>.repeat(<span class="number">32</span>)).is_ok());
 
-        <span class="macro">assert!</span>(username(<span class="string">&quot;a&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">33</span>)).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"a"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"a"</span>.repeat(<span class="number">33</span>)).is_err());
 
-        <span class="macro">assert!</span>(username(<span class="string">&quot;no @ in username&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;no # in username&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;no : in username&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">r&quot;no ``` in username&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;no discord in username&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;everyone&quot;</span>).is_err());
-        <span class="macro">assert!</span>(username(<span class="string">&quot;here&quot;</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"no @ in username"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"no # in username"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"no : in username"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">r"no ``` in username"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"no discord in username"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"everyone"</span>).is_err());
+        <span class="macro">assert!</span>(username(<span class="string">"here"</span>).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>webhook_username_length() {
-        <span class="macro">assert!</span>(webhook_username(<span class="string">&quot;aa&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(webhook_username(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">80</span>)).is_ok());
+        <span class="macro">assert!</span>(webhook_username(<span class="string">"aa"</span>).is_ok());
+        <span class="macro">assert!</span>(webhook_username(<span class="string">"a"</span>.repeat(<span class="number">80</span>)).is_ok());
 
-        <span class="macro">assert!</span>(webhook_username(<span class="string">&quot;a&quot;</span>).is_err());
-        <span class="macro">assert!</span>(webhook_username(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">81</span>)).is_err());
+        <span class="macro">assert!</span>(webhook_username(<span class="string">"a"</span>).is_err());
+        <span class="macro">assert!</span>(webhook_username(<span class="string">"a"</span>.repeat(<span class="number">81</span>)).is_err());
 
-        <span class="macro">assert!</span>(webhook_username(<span class="string">&quot;clyde&quot;</span>).is_err());
+        <span class="macro">assert!</span>(webhook_username(<span class="string">"clyde"</span>).is_err());
     }
 }
 </code></pre></div></section></main></body></html>

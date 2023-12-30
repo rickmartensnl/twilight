@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/sticker/pack.rs`."><title>pack.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/sticker/pack.rs`."><title>pack.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -157,9 +158,9 @@
 /// [`Standard`]: super::StickerType::Standard
 </span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>StickerPack {
-    <span class="doccomment">/// ID of the sticker pack&#39;s banner image.
+    <span class="doccomment">/// ID of the sticker pack's banner image.
     </span><span class="kw">pub </span>banner_asset_id: <span class="prelude-ty">Option</span>&lt;Id&lt;StickerBannerAssetMarker&gt;&gt;,
-    <span class="doccomment">/// ID of the sticker that is shown as the pack&#39;s icon.
+    <span class="doccomment">/// ID of the sticker that is shown as the pack's icon.
     </span><span class="kw">pub </span>cover_sticker_id: <span class="prelude-ty">Option</span>&lt;Id&lt;StickerMarker&gt;&gt;,
     <span class="doccomment">/// Description of the sticker pack.
     </span><span class="kw">pub </span>description: String,
@@ -167,7 +168,7 @@
     </span><span class="kw">pub </span>id: Id&lt;StickerPackMarker&gt;,
     <span class="doccomment">/// Name of the sticker pack.
     </span><span class="kw">pub </span>name: String,
-    <span class="doccomment">/// ID of the pack&#39;s SKU.
+    <span class="doccomment">/// ID of the pack's SKU.
     </span><span class="kw">pub </span>sku_id: Id&lt;StickerPackSkuMarker&gt;,
     <span class="doccomment">/// List of stickers in the pack.
     </span><span class="kw">pub </span>stickers: Vec&lt;Sticker&gt;,
@@ -198,7 +199,7 @@
     <span class="macro">assert_impl_all!</span>(
         StickerPack: Clone,
         Debug,
-        Deserialize&lt;<span class="lifetime">&#39;static</span>&gt;,
+        Deserialize&lt;<span class="lifetime">'static</span>&gt;,
         Eq,
         Hash,
         PartialEq,
@@ -212,21 +213,21 @@
         <span class="kw">let </span>value = StickerPack {
             banner_asset_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">761_773_777_976_819_732</span>)),
             cover_sticker_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">749_053_689_419_006_003</span>)),
-            description: <span class="string">&quot;Say hello to Wumpus!&quot;</span>.into(),
+            description: <span class="string">"Say hello to Wumpus!"</span>.into(),
             id: Id::new(<span class="number">847_199_849_233_514_549</span>),
-            name: <span class="string">&quot;Wumpus Beyond&quot;</span>.into(),
+            name: <span class="string">"Wumpus Beyond"</span>.into(),
             sku_id: Id::new(<span class="number">847_199_849_233_514_547</span>),
             stickers: Vec::from([Sticker {
                 available: <span class="bool-val">true</span>,
-                description: <span class="prelude-val">Some</span>(<span class="string">&quot;Wumpus waves hello&quot;</span>.into()),
+                description: <span class="prelude-val">Some</span>(<span class="string">"Wumpus waves hello"</span>.into()),
                 format_type: StickerFormatType::Lottie,
                 guild_id: <span class="prelude-val">None</span>,
                 id: Id::new(<span class="number">749_054_660_769_218_631</span>),
                 kind: StickerType::Standard,
-                name: <span class="string">&quot;Wave&quot;</span>.into(),
+                name: <span class="string">"Wave"</span>.into(),
                 pack_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">847_199_849_233_514_549</span>)),
                 sort_value: <span class="prelude-val">Some</span>(<span class="number">12</span>),
-                tags: <span class="string">&quot;wumpus, hello, sup, hi, oi, heyo, heya, yo, wave&quot;</span>.into(),
+                tags: <span class="string">"wumpus, hello, sup, hi, oi, heyo, heya, yo, wave"</span>.into(),
                 user: <span class="prelude-val">None</span>,
             }]),
         };
@@ -235,56 +236,56 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;StickerPack&quot;</span>,
+                    name: <span class="string">"StickerPack"</span>,
                     len: <span class="number">7</span>,
                 },
-                Token::Str(<span class="string">&quot;banner_asset_id&quot;</span>),
+                Token::Str(<span class="string">"banner_asset_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;761773777976819732&quot;</span>),
-                Token::Str(<span class="string">&quot;cover_sticker_id&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"761773777976819732"</span>),
+                Token::Str(<span class="string">"cover_sticker_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;749053689419006003&quot;</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
-                Token::Str(<span class="string">&quot;Say hello to Wumpus!&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;847199849233514549&quot;</span>),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;Wumpus Beyond&quot;</span>),
-                Token::Str(<span class="string">&quot;sku_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;847199849233514547&quot;</span>),
-                Token::Str(<span class="string">&quot;stickers&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"749053689419006003"</span>),
+                Token::Str(<span class="string">"description"</span>),
+                Token::Str(<span class="string">"Say hello to Wumpus!"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"847199849233514549"</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"Wumpus Beyond"</span>),
+                Token::Str(<span class="string">"sku_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"847199849233514547"</span>),
+                Token::Str(<span class="string">"stickers"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;Sticker&quot;</span>,
+                    name: <span class="string">"Sticker"</span>,
                     len: <span class="number">9</span>,
                 },
-                Token::Str(<span class="string">&quot;available&quot;</span>),
+                Token::Str(<span class="string">"available"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;Wumpus waves hello&quot;</span>),
-                Token::Str(<span class="string">&quot;format_type&quot;</span>),
+                Token::Str(<span class="string">"Wumpus waves hello"</span>),
+                Token::Str(<span class="string">"format_type"</span>),
                 Token::U8(<span class="number">3</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;749054660769218631&quot;</span>),
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"749054660769218631"</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;Wave&quot;</span>),
-                Token::Str(<span class="string">&quot;pack_id&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"Wave"</span>),
+                Token::Str(<span class="string">"pack_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;847199849233514549&quot;</span>),
-                Token::Str(<span class="string">&quot;sort_value&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"847199849233514549"</span>),
+                Token::Str(<span class="string">"sort_value"</span>),
                 Token::Some,
                 Token::U64(<span class="number">12</span>),
-                Token::Str(<span class="string">&quot;tags&quot;</span>),
-                Token::Str(<span class="string">&quot;wumpus, hello, sup, hi, oi, heyo, heya, yo, wave&quot;</span>),
+                Token::Str(<span class="string">"tags"</span>),
+                Token::Str(<span class="string">"wumpus, hello, sup, hi, oi, heyo, heya, yo, wave"</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
                 Token::StructEnd,

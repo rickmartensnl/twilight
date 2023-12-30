@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/permission.rs`."><title>permission.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/permission.rs`."><title>permission.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1153,7 +1154,7 @@
 //! # Disabled Member Communication Caveats
 //!
 //! The permission calculator checks the [current system time] against when a
-//! given member had their [communication disabled until]. If a member&#39;s
+//! given member had their [communication disabled until]. If a member's
 //! communication is disabled, then they are restricted to
 //! [read-only permissions]. If the system time is incorrect then this may
 //! result in invalid behavior. This behavior can be opted out of via
@@ -1202,24 +1203,24 @@
 
 <span class="kw">impl </span>ChannelError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ChannelErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (ChannelErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 
-    <span class="doccomment">/// Create a root error from an error while retrieving a member&#39;s roles.
+    <span class="doccomment">/// Create a root error from an error while retrieving a member's roles.
     </span><span class="comment">// clippy: the contents of `member_roles_error` is consumed
     </span><span class="attr">#[allow(clippy::needless_pass_by_value)]
     </span><span class="kw">fn </span>from_member_roles(member_roles_error: MemberRolesErrorType) -&gt; <span class="self">Self </span>{
@@ -1235,39 +1236,39 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ChannelError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
             ChannelErrorType::ChannelNotInGuild { channel_id } =&gt; {
-                f.write_str(<span class="string">&quot;channel &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"channel "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>channel_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; is not in a guild&quot;</span>)
+                f.write_str(<span class="string">" is not in a guild"</span>)
             }
             ChannelErrorType::ChannelUnavailable { channel_id } =&gt; {
-                f.write_str(<span class="string">&quot;channel &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"channel "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>channel_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; is either not in the cache or is not a guild channel&quot;</span>)
+                f.write_str(<span class="string">" is either not in the cache or is not a guild channel"</span>)
             }
             ChannelErrorType::MemberUnavailable { guild_id, user_id } =&gt; {
-                f.write_str(<span class="string">&quot;member (guild: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"member (guild: "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>guild_id, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;; user: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"; user: "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>user_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;) is not present in the cache&quot;</span>)
+                f.write_str(<span class="string">") is not present in the cache"</span>)
             }
             ChannelErrorType::ParentChannelNotPresent { thread_id } =&gt; {
-                f.write_str(<span class="string">&quot;thread &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"thread "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>thread_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; has no parent&quot;</span>)
+                f.write_str(<span class="string">" has no parent"</span>)
             }
             ChannelErrorType::RoleUnavailable { role_id } =&gt; {
-                f.write_str(<span class="string">&quot;member has role &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"member has role "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>role_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; but it is not present in the cache&quot;</span>)
+                f.write_str(<span class="string">" but it is not present in the cache"</span>)
             }
         }
     }
@@ -1291,7 +1292,7 @@
         <span class="doccomment">/// ID of the channel.
         </span>channel_id: Id&lt;ChannelMarker&gt;,
     },
-    <span class="doccomment">/// The user&#39;s member information is not available in the guild.
+    <span class="doccomment">/// The user's member information is not available in the guild.
     ///
     /// This could be because the user is not currently a member of the guild or
     /// because the member entity has not yet been received by the cache.
@@ -1301,12 +1302,12 @@
         <span class="doccomment">/// ID of the user.
         </span>user_id: Id&lt;UserMarker&gt;,
     },
-    <span class="doccomment">/// A thread&#39;s parent ID is not present.
+    <span class="doccomment">/// A thread's parent ID is not present.
     </span>ParentChannelNotPresent {
         <span class="doccomment">/// ID of the thread.
         </span>thread_id: Id&lt;ChannelMarker&gt;,
     },
-    <span class="doccomment">/// One of the user&#39;s roles is not available in the guild.
+    <span class="doccomment">/// One of the user's roles is not available in the guild.
     ///
     /// The reasons this could happen could be due to the cache missing a
     /// [`RoleCreate`] event or a user application race condition.
@@ -1327,24 +1328,24 @@
 
 <span class="kw">impl </span>RootError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>RootErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (RootErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 
-    <span class="doccomment">/// Create a root error from an error while retrieving a member&#39;s roles.
+    <span class="doccomment">/// Create a root error from an error while retrieving a member's roles.
     </span><span class="comment">// clippy: the contents of `member_roles_error` is consumed
     </span><span class="attr">#[allow(clippy::needless_pass_by_value)]
     </span><span class="kw">fn </span>from_member_roles(member_roles_error: MemberRolesErrorType) -&gt; <span class="self">Self </span>{
@@ -1360,21 +1361,21 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>RootError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="self">self</span>.kind {
             RootErrorType::MemberUnavailable { guild_id, user_id } =&gt; {
-                f.write_str(<span class="string">&quot;member (guild: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"member (guild: "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>guild_id, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;; user: &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"; user: "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>user_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;) is not present in the cache&quot;</span>)
+                f.write_str(<span class="string">") is not present in the cache"</span>)
             }
             RootErrorType::RoleUnavailable { role_id } =&gt; {
-                f.write_str(<span class="string">&quot;member has role &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"member has role "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>role_id, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; but it is not present in the cache&quot;</span>)
+                f.write_str(<span class="string">" but it is not present in the cache"</span>)
             }
         }
     }
@@ -1386,7 +1387,7 @@
 </span><span class="attr">#[derive(Debug)]
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>RootErrorType {
-    <span class="doccomment">/// The user&#39;s member information is not available in the guild.
+    <span class="doccomment">/// The user's member information is not available in the guild.
     ///
     /// This could be because the user is not currently a member of the guild or
     /// because the member entity has not yet been received by the cache.
@@ -1396,7 +1397,7 @@
         <span class="doccomment">/// ID of the user.
         </span>user_id: Id&lt;UserMarker&gt;,
     },
-    <span class="doccomment">/// One of the user&#39;s roles is not available in the guild.
+    <span class="doccomment">/// One of the user's roles is not available in the guild.
     ///
     /// The reasons this could happen could be due to the cache missing a
     /// [`RoleCreate`] event or a user application race condition.
@@ -1408,31 +1409,31 @@
     },
 }
 
-<span class="doccomment">/// Error type that occurred while getting a member&#39;s assigned roles&#39;
-/// permissions as well as the `@everyone` role&#39;s permissions.
+<span class="doccomment">/// Error type that occurred while getting a member's assigned roles'
+/// permissions as well as the `@everyone` role's permissions.
 </span><span class="kw">enum </span>MemberRolesErrorType {
     <span class="doccomment">/// Role is missing from the cache.
     </span>RoleMissing { role_id: Id&lt;RoleMarker&gt; },
 }
 
-<span class="doccomment">/// Member&#39;s roles&#39; permissions and the guild&#39;s `@everyone` role&#39;s permissions.
+<span class="doccomment">/// Member's roles' permissions and the guild's `@everyone` role's permissions.
 </span><span class="kw">struct </span>MemberRoles {
-    <span class="doccomment">/// User&#39;s roles and their permissions.
+    <span class="doccomment">/// User's roles and their permissions.
     </span>assigned: Vec&lt;(Id&lt;RoleMarker&gt;, Permissions)&gt;,
-    <span class="doccomment">/// Permissions of the guild&#39;s `@everyone` role.
+    <span class="doccomment">/// Permissions of the guild's `@everyone` role.
     </span>everyone: Permissions,
 }
 
 <span class="doccomment">/// Calculate the permissions of a member with information from the cache.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;has no effect if unused&quot;</span>]
-</span><span class="kw">pub struct </span>InMemoryCachePermissions&lt;<span class="lifetime">&#39;a</span>&gt; {
-    cache: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>InMemoryCache,
+#[must_use = <span class="string">"has no effect if unused"</span>]
+</span><span class="kw">pub struct </span>InMemoryCachePermissions&lt;<span class="lifetime">'a</span>&gt; {
+    cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache,
     check_member_communication_disabled: bool,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; InMemoryCachePermissions&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const fn </span>new(cache: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>InMemoryCache) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; InMemoryCachePermissions&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const fn </span>new(cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             cache,
             check_member_communication_disabled: <span class="bool-val">true</span>,
@@ -1440,17 +1441,17 @@
     }
 
     <span class="doccomment">/// Immutable reference to the underlying cache.
-    </span><span class="kw">pub const fn </span>cache_ref(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>InMemoryCache {
+    </span><span class="kw">pub const fn </span>cache_ref(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache {
         <span class="self">self</span>.cache
     }
 
     <span class="doccomment">/// Consume the statistics interface, returning the underlying cache
     /// reference.
-    </span><span class="kw">pub const fn </span>into_cache(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>InMemoryCache {
+    </span><span class="kw">pub const fn </span>into_cache(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache {
         <span class="self">self</span>.cache
     }
 
-    <span class="doccomment">/// Whether to check whether a [member&#39;s communication is disabled][field].
+    <span class="doccomment">/// Whether to check whether a [member's communication is disabled][field].
     ///
     /// Refer to the [module level] documentation for information and caveats.
     ///
@@ -1471,7 +1472,7 @@
     ///
     /// Returns [`Permissions::all`] if the user is the owner of the guild.
     ///
-    /// If the member&#39;s [communication has been disabled] then they will be
+    /// If the member's [communication has been disabled] then they will be
     /// restricted to [read-only permissions]. Refer to the [module level]
     /// documentation for more information.
     ///
@@ -1496,7 +1497,7 @@
     /// let user_id = Id::new(5);
     ///
     /// let permissions = cache.permissions().in_channel(user_id, channel_id)?;
-    /// println!(&quot;User {user_id} in channel {channel_id} has permissions {permissions:?}&quot;);
+    /// println!("User {user_id} in channel {channel_id} has permissions {permissions:?}");
     /// # Ok(()) }
     /// ```
     ///
@@ -1509,7 +1510,7 @@
     /// member for the user in the guild is not present.
     ///
     /// Returns a [`ChannelErrorType::RoleUnavailable`] error type if one of the
-    /// member&#39;s roles is not in the cache.
+    /// member's roles is not in the cache.
     ///
     /// [`Permissions::all`]: twilight_model::guild::Permissions::all
     /// [`ResourceType::CHANNEL`]: crate::ResourceType::CHANNEL
@@ -1566,7 +1567,7 @@
     ///
     /// Returns [`Permissions::all`] if the user is the owner of the guild.
     ///
-    /// If the member&#39;s [communication has been disabled] then they will be
+    /// If the member's [communication has been disabled] then they will be
     /// restricted to [read-only permissions]. Refer to the [module level]
     /// documentation for more information.
     ///
@@ -1590,7 +1591,7 @@
     /// let user_id = Id::new(5);
     ///
     /// let permissions = cache.permissions().root(user_id, guild_id)?;
-    /// println!(&quot;User {user_id} in guild {guild_id} has permissions {permissions:?}&quot;);
+    /// println!("User {user_id} in guild {guild_id} has permissions {permissions:?}");
     /// # Ok(()) }
     /// ```
     ///
@@ -1600,7 +1601,7 @@
     /// member for the user in the guild is not present.
     ///
     /// Returns a [`RootErrorType::RoleUnavailable`] error type if one of the
-    /// member&#39;s roles is not in the cache.
+    /// member's roles is not in the cache.
     ///
     /// [`Permissions::all`]: twilight_model::guild::Permissions::all
     /// [`ResourceType::MEMBER`]: crate::ResourceType::MEMBER
@@ -1688,8 +1689,8 @@
             .unwrap_or_default()
     }
 
-    <span class="doccomment">/// Retrieve a member&#39;s roles&#39; permissions and the guild&#39;s `@everyone`
-    /// role&#39;s permissions.
+    <span class="doccomment">/// Retrieve a member's roles' permissions and the guild's `@everyone`
+    /// role's permissions.
     ///
     /// # Errors
     ///
@@ -1698,7 +1699,7 @@
     </span><span class="kw">fn </span>member_roles(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        member: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>CachedMember,
+        member: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CachedMember,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;MemberRoles, MemberRolesErrorType&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>member_roles = Vec::with_capacity(member.roles.len());
 
@@ -1803,7 +1804,7 @@
     <span class="macro">assert_fields!</span>(ChannelErrorType::RoleUnavailable: role_id);
     <span class="macro">assert_impl_all!</span>(ChannelErrorType: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(ChannelError: Debug, Send, Sync);
-    <span class="macro">assert_impl_all!</span>(InMemoryCachePermissions&lt;<span class="lifetime">&#39;_</span>&gt;: Clone, Debug, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(InMemoryCachePermissions&lt;<span class="lifetime">'_</span>&gt;: Clone, Debug, Send, Sync);
     <span class="macro">assert_fields!</span>(RootErrorType::MemberUnavailable: guild_id, user_id);
     <span class="macro">assert_fields!</span>(RootErrorType::RoleUnavailable: role_id);
     <span class="macro">assert_impl_all!</span>(RootErrorType: Debug, Send, Sync);
@@ -1857,12 +1858,12 @@
             member_count: <span class="prelude-val">None</span>,
             members: Vec::new(),
             mfa_level: MfaLevel::Elevated,
-            name: <span class="string">&quot;this is a guild&quot;</span>.to_owned(),
+            name: <span class="string">"this is a guild"</span>.to_owned(),
             nsfw_level: NSFWLevel::AgeRestricted,
             owner: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
             owner_id: OWNER_ID,
             permissions: <span class="prelude-val">None</span>,
-            preferred_locale: <span class="string">&quot;en-GB&quot;</span>.to_owned(),
+            preferred_locale: <span class="string">"en-GB"</span>.to_owned(),
             premium_progress_bar_enabled: <span class="bool-val">false</span>,
             premium_subscription_count: <span class="prelude-val">Some</span>(<span class="number">0</span>),
             premium_tier: PremiumTier::None,
@@ -1919,7 +1920,7 @@
             member: <span class="prelude-val">None</span>,
             member_count: <span class="prelude-val">None</span>,
             message_count: <span class="prelude-val">None</span>,
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
             newly_created: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
             owner_id: <span class="prelude-val">None</span>,
@@ -1972,7 +1973,7 @@
             member: <span class="prelude-val">None</span>,
             member_count: <span class="prelude-val">None</span>,
             message_count: <span class="prelude-val">None</span>,
-            name: <span class="prelude-val">Some</span>(<span class="string">&quot;test thread&quot;</span>.to_owned()),
+            name: <span class="prelude-val">Some</span>(<span class="string">"test thread"</span>.to_owned()),
             newly_created: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
             owner_id: <span class="prelude-val">None</span>,
@@ -2034,13 +2035,13 @@
     <span class="doccomment">/// Test that the permissions interface returns the correct permissions for
     /// a member on a root level.
     ///
-    /// Notably [`root`] doesn&#39;t require that the guild *itself* is in the
+    /// Notably [`root`] doesn't require that the guild *itself* is in the
     /// cache.
     ///
     /// [`root`]: super::InMemoryCachePermissions::root
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>root() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">&quot;2021-09-19T14:17:32.000000+00:00&quot;</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2021-09-19T14:17:32.000000+00:00"</span>)<span class="question-mark">?</span>);
 
         <span class="kw">let </span>cache = InMemoryCache::new();
         <span class="kw">let </span>permissions = cache.permissions();
@@ -2171,7 +2172,7 @@
     /// [`Permissions::VIEW_CHANNEL`] permissions on a [guild level][`root`]
     /// - the same is true on a [channel level][`in_channel`]
     /// - administrators are never timed out
-    /// - checking whether the member&#39;s communication is disabled is configurable
+    /// - checking whether the member's communication is disabled is configurable
     ///
     /// [`in_channel`]: super::InMemoryCachePermissions::in_channel
     /// [`root`]: super::InMemoryCachePermissions::root

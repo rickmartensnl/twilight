@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/embed.rs`."><title>embed.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/embed.rs`."><title>embed.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -621,20 +622,20 @@
 
 <span class="kw">impl </span>EmbedValidationError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>EmbedValidationErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -646,68 +647,68 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>EmbedValidationError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             EmbedValidationErrorType::AuthorNameTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;the author name is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the author name is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>AUTHOR_NAME_LENGTH, f)
             }
             EmbedValidationErrorType::ColorNotRgb { color } =&gt; {
-                f.write_str(<span class="string">&quot;the color is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the color is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(color, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be less than &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be less than "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>COLOR_MAXIMUM, f)
             }
             EmbedValidationErrorType::DescriptionTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;the description is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the description is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>DESCRIPTION_LENGTH, f)
             }
             EmbedValidationErrorType::EmbedTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;the combined total length of the embed is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the combined total length of the embed is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>EMBED_TOTAL_LENGTH, f)
             }
             EmbedValidationErrorType::FieldNameTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a field name is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a field name is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>FIELD_NAME_LENGTH, f)
             }
             EmbedValidationErrorType::FieldValueTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a field value is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a field value is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>FIELD_VALUE_LENGTH, f)
             }
             EmbedValidationErrorType::FooterTextTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;the footer&#39;s text is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the footer's text is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>FOOTER_TEXT_LENGTH, f)
             }
             EmbedValidationErrorType::TitleTooLarge { chars } =&gt; {
-                f.write_str(<span class="string">&quot;the title&#39;s length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the title's length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TITLE_LENGTH, f)
             }
             EmbedValidationErrorType::TooManyFields { amount } =&gt; {
-                f.write_str(<span class="string">&quot;there are &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"there are "</span>)<span class="question-mark">?</span>;
                 Display::fmt(amount, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; fields, but the maximum amount is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" fields, but the maximum amount is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>FIELD_COUNT, f)
             }
@@ -721,7 +722,7 @@
 </span><span class="attr">#[derive(Debug)]
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>EmbedValidationErrorType {
-    <span class="doccomment">/// Embed author&#39;s name is larger than [`AUTHOR_NAME_LENGTH`].
+    <span class="doccomment">/// Embed author's name is larger than [`AUTHOR_NAME_LENGTH`].
     </span>AuthorNameTooLarge {
         <span class="doccomment">/// Provided number of codepoints.
         </span>chars: usize,
@@ -745,12 +746,12 @@
         <span class="doccomment">/// Provided number of codepoints.
         </span>chars: usize,
     },
-    <span class="doccomment">/// A field&#39;s name is larger than [`FIELD_NAME_LENGTH`].
+    <span class="doccomment">/// A field's name is larger than [`FIELD_NAME_LENGTH`].
     </span>FieldNameTooLarge {
         <span class="doccomment">/// Provided number of codepoints.
         </span>chars: usize,
     },
-    <span class="doccomment">/// A field&#39;s value is larger than [`FIELD_VALUE_LENGTH`].
+    <span class="doccomment">/// A field's value is larger than [`FIELD_VALUE_LENGTH`].
     </span>FieldValueTooLarge {
         <span class="doccomment">/// Provided number of codepoints.
         </span>chars: usize,
@@ -777,7 +778,7 @@
 /// # Errors
 ///
 /// Returns an error of type [`AuthorNameTooLarge`] if
-/// the author&#39;s name is too large.
+/// the author's name is too large.
 ///
 /// Returns an error of type [`ColorNotRgb`] if if the provided color is not a
 /// valid RGB integer. Refer to [`COLOR_MAXIMUM`] to know what the maximum
@@ -790,10 +791,10 @@
 /// large.
 ///
 /// Returns an error of type [`FieldNameTooLarge`] if
-/// a field&#39;s name is too long.
+/// a field's name is too long.
 ///
 /// Returns an error of type [`FieldValueTooLarge`] if
-/// a field&#39;s value is too long.
+/// a field's value is too long.
 ///
 /// Returns an error of type [`FooterTextTooLarge`] if
 /// the footer text is too long.
@@ -948,7 +949,7 @@
             fields: Vec::new(),
             footer: <span class="prelude-val">None</span>,
             image: <span class="prelude-val">None</span>,
-            kind: <span class="string">&quot;rich&quot;</span>.to_owned(),
+            kind: <span class="string">"rich"</span>.to_owned(),
             provider: <span class="prelude-val">None</span>,
             thumbnail: <span class="prelude-val">None</span>,
             timestamp: <span class="prelude-val">None</span>,
@@ -970,18 +971,18 @@
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
         embed.author.replace(EmbedAuthor {
             icon_url: <span class="prelude-val">None</span>,
-            name: <span class="string">&quot;twilight&quot;</span>.to_owned(),
+            name: <span class="string">"twilight"</span>.to_owned(),
             proxy_icon_url: <span class="prelude-val">None</span>,
             url: <span class="prelude-val">None</span>,
         });
         embed.color.replace(<span class="number">0xff_00_00</span>);
-        embed.description.replace(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>));
+        embed.description.replace(<span class="string">"a"</span>.repeat(<span class="number">100</span>));
         embed.fields.push(EmbedField {
             inline: <span class="bool-val">true</span>,
-            name: <span class="string">&quot;b&quot;</span>.repeat(<span class="number">25</span>),
-            value: <span class="string">&quot;c&quot;</span>.repeat(<span class="number">200</span>),
+            name: <span class="string">"b"</span>.repeat(<span class="number">25</span>),
+            value: <span class="string">"c"</span>.repeat(<span class="number">200</span>),
         });
-        embed.title.replace(<span class="string">&quot;this is a normal title&quot;</span>.to_owned());
+        embed.title.replace(<span class="string">"this is a normal title"</span>.to_owned());
 
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
     }
@@ -991,7 +992,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
         embed.author.replace(EmbedAuthor {
             icon_url: <span class="prelude-val">None</span>,
-            name: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">256</span>),
+            name: str::repeat(<span class="string">"a"</span>, <span class="number">256</span>),
             proxy_icon_url: <span class="prelude-val">None</span>,
             url: <span class="prelude-val">None</span>,
         });
@@ -999,7 +1000,7 @@
 
         embed.author.replace(EmbedAuthor {
             icon_url: <span class="prelude-val">None</span>,
-            name: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">257</span>),
+            name: str::repeat(<span class="string">"a"</span>, <span class="number">257</span>),
             proxy_icon_url: <span class="prelude-val">None</span>,
             url: <span class="prelude-val">None</span>,
         });
@@ -1012,13 +1013,13 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>embed_description_limit() {
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
-        embed.description.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">2048</span>));
+        embed.description.replace(str::repeat(<span class="string">"a"</span>, <span class="number">2048</span>));
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
-        embed.description.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">4096</span>));
+        embed.description.replace(str::repeat(<span class="string">"a"</span>, <span class="number">4096</span>));
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
-        embed.description.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">4097</span>));
+        embed.description.replace(str::repeat(<span class="string">"a"</span>, <span class="number">4097</span>));
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).unwrap_err().kind(),
             EmbedValidationErrorType::DescriptionTooLarge { chars: <span class="number">4097 </span>}
@@ -1032,8 +1033,8 @@
         <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">26 </span>{
             embed.fields.push(EmbedField {
                 inline: <span class="bool-val">true</span>,
-                name: <span class="string">&quot;a&quot;</span>.to_owned(),
-                value: <span class="string">&quot;a&quot;</span>.to_owned(),
+                name: <span class="string">"a"</span>.to_owned(),
+                value: <span class="string">"a"</span>.to_owned(),
             });
         }
 
@@ -1048,15 +1049,15 @@
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
         embed.fields.push(EmbedField {
             inline: <span class="bool-val">true</span>,
-            name: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">256</span>),
-            value: <span class="string">&quot;a&quot;</span>.to_owned(),
+            name: str::repeat(<span class="string">"a"</span>, <span class="number">256</span>),
+            value: <span class="string">"a"</span>.to_owned(),
         });
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
         embed.fields.push(EmbedField {
             inline: <span class="bool-val">true</span>,
-            name: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">257</span>),
-            value: <span class="string">&quot;a&quot;</span>.to_owned(),
+            name: str::repeat(<span class="string">"a"</span>, <span class="number">257</span>),
+            value: <span class="string">"a"</span>.to_owned(),
         });
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).unwrap_err().kind(),
@@ -1069,15 +1070,15 @@
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
         embed.fields.push(EmbedField {
             inline: <span class="bool-val">true</span>,
-            name: <span class="string">&quot;a&quot;</span>.to_owned(),
-            value: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">1024</span>),
+            name: <span class="string">"a"</span>.to_owned(),
+            value: str::repeat(<span class="string">"a"</span>, <span class="number">1024</span>),
         });
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
         embed.fields.push(EmbedField {
             inline: <span class="bool-val">true</span>,
-            name: <span class="string">&quot;a&quot;</span>.to_owned(),
-            value: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">1025</span>),
+            name: <span class="string">"a"</span>.to_owned(),
+            value: str::repeat(<span class="string">"a"</span>, <span class="number">1025</span>),
         });
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).unwrap_err().kind(),
@@ -1091,14 +1092,14 @@
         embed.footer.replace(EmbedFooter {
             icon_url: <span class="prelude-val">None</span>,
             proxy_icon_url: <span class="prelude-val">None</span>,
-            text: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">2048</span>),
+            text: str::repeat(<span class="string">"a"</span>, <span class="number">2048</span>),
         });
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
         embed.footer.replace(EmbedFooter {
             icon_url: <span class="prelude-val">None</span>,
             proxy_icon_url: <span class="prelude-val">None</span>,
-            text: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">2049</span>),
+            text: str::repeat(<span class="string">"a"</span>, <span class="number">2049</span>),
         });
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).unwrap_err().kind(),
@@ -1109,10 +1110,10 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>embed_title_limit() {
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
-        embed.title.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">256</span>));
+        embed.title.replace(str::repeat(<span class="string">"a"</span>, <span class="number">256</span>));
         <span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
-        embed.title.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">257</span>));
+        embed.title.replace(str::repeat(<span class="string">"a"</span>, <span class="number">257</span>));
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             <span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).unwrap_err().kind(),
             EmbedValidationErrorType::TitleTooLarge { chars: <span class="number">257 </span>}
@@ -1122,24 +1123,24 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>embed_combined_limit() {
         <span class="kw">let </span><span class="kw-2">mut </span>embed = base_embed();
-        embed.description.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">2048</span>));
-        embed.title.replace(str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">256</span>));
+        embed.description.replace(str::repeat(<span class="string">"a"</span>, <span class="number">2048</span>));
+        embed.title.replace(str::repeat(<span class="string">"a"</span>, <span class="number">256</span>));
 
         <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">5 </span>{
             embed.fields.push(EmbedField {
                 inline: <span class="bool-val">true</span>,
-                name: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">100</span>),
-                value: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">500</span>),
+                name: str::repeat(<span class="string">"a"</span>, <span class="number">100</span>),
+                value: str::repeat(<span class="string">"a"</span>, <span class="number">500</span>),
             });
         }
 
-        <span class="comment">// we&#39;re at 5304 characters now
+        <span class="comment">// we're at 5304 characters now
         </span><span class="macro">assert!</span>(<span class="kw">super</span>::embed(<span class="kw-2">&amp;</span>embed).is_ok());
 
         embed.footer.replace(EmbedFooter {
             icon_url: <span class="prelude-val">None</span>,
             proxy_icon_url: <span class="prelude-val">None</span>,
-            text: str::repeat(<span class="string">&quot;a&quot;</span>, <span class="number">1000</span>),
+            text: str::repeat(<span class="string">"a"</span>, <span class="number">1000</span>),
         });
 
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(

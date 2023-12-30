@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/guild/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1122,9 +1123,9 @@
     <span class="kw">pub </span>afk_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub </span>afk_timeout: AfkTimeout,
     <span class="kw">pub </span>application_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ApplicationMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>approximate_member_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>approximate_presence_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="kw">pub </span>banner: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="attr">#[serde(default)]
@@ -1138,16 +1139,16 @@
     </span><span class="kw">pub </span>features: Vec&lt;GuildFeature&gt;,
     <span class="kw">pub </span>icon: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
     <span class="kw">pub </span>id: Id&lt;GuildMarker&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>joined_at: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
     <span class="kw">pub </span>large: bool,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>max_members: <span class="prelude-ty">Option</span>&lt;u64&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>max_presences: <span class="prelude-ty">Option</span>&lt;u64&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>max_video_channel_users: <span class="prelude-ty">Option</span>&lt;u64&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>member_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>members: Vec&lt;Member&gt;,
@@ -1155,14 +1156,14 @@
     <span class="kw">pub </span>name: String,
     <span class="kw">pub </span>nsfw_level: NSFWLevel,
     <span class="kw">pub </span>owner_id: Id&lt;UserMarker&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>owner: <span class="prelude-ty">Option</span>&lt;bool&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permissions: <span class="prelude-ty">Option</span>&lt;Permissions&gt;,
     <span class="kw">pub </span>preferred_locale: String,
     <span class="doccomment">/// Whether the premium progress bar is enabled in the guild.
     </span><span class="kw">pub </span>premium_progress_bar_enabled: bool,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>premium_subscription_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>premium_tier: PremiumTier,
@@ -1174,12 +1175,12 @@
     <span class="kw">pub </span>roles: Vec&lt;Role&gt;,
     <span class="kw">pub </span>rules_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="doccomment">/// The ID of the channel where admins and moderators of Community guilds receive safety alerts from Discord.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>safety_alerts_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub </span>splash: <span class="prelude-ty">Option</span>&lt;ImageHash&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Vec::is_empty&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Vec::is_empty"</span>)]
     </span><span class="kw">pub </span>stage_instances: Vec&lt;StageInstance&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Vec::is_empty&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Vec::is_empty"</span>)]
     </span><span class="kw">pub </span>stickers: Vec&lt;Sticker&gt;,
     <span class="kw">pub </span>system_channel_flags: SystemChannelFlags,
     <span class="kw">pub </span>system_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
@@ -1191,17 +1192,17 @@
     <span class="kw">pub </span>verification_level: VerificationLevel,
     <span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>voice_states: Vec&lt;VoiceState&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>widget_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>widget_enabled: <span class="prelude-ty">Option</span>&lt;bool&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>Guild {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Guild {
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+    </span><span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="attr">#[derive(Debug, Deserialize)]
-        #[serde(field_identifier, rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+        #[serde(field_identifier, rename_all = <span class="string">"snake_case"</span>)]
         </span><span class="kw">enum </span>Field {
             AfkChannelId,
             AfkTimeout,
@@ -1256,15 +1257,15 @@
 
         <span class="kw">struct </span>GuildVisitor;
 
-        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>GuildVisitor {
+        <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>GuildVisitor {
             <span class="kw">type </span>Value = Guild;
 
-            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-                f.write_str(<span class="string">&quot;struct Guild&quot;</span>)
+            <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+                f.write_str(<span class="string">"struct Guild"</span>)
             }
 
             <span class="attr">#[allow(clippy::too_many_lines)]
-            </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
+            </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
                 <span class="kw">let </span><span class="kw-2">mut </span>afk_channel_id = <span class="prelude-val">None</span>::&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw">_</span>&gt;&gt;;
                 <span class="kw">let </span><span class="kw-2">mut </span>afk_timeout = <span class="prelude-val">None</span>;
                 <span class="kw">let </span><span class="kw-2">mut </span>application_id = <span class="prelude-val">None</span>::&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw">_</span>&gt;&gt;;
@@ -1329,49 +1330,49 @@
                     <span class="kw">match </span>key {
                         Field::AfkChannelId =&gt; {
                             <span class="kw">if </span>afk_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;afk_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"afk_channel_id"</span>));
                             }
 
                             afk_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::AfkTimeout =&gt; {
                             <span class="kw">if </span>afk_timeout.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;afk_timeout&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"afk_timeout"</span>));
                             }
 
                             afk_timeout = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::ApplicationId =&gt; {
                             <span class="kw">if </span>application_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;application_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"application_id"</span>));
                             }
 
                             application_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::ApproximateMemberCount =&gt; {
                             <span class="kw">if </span>approximate_member_count.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;approximate_member_count&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"approximate_member_count"</span>));
                             }
 
                             approximate_member_count = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::ApproximatePresenceCount =&gt; {
                             <span class="kw">if </span>approximate_presence_count.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;approximate_presence_count&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"approximate_presence_count"</span>));
                             }
 
                             approximate_presence_count = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Banner =&gt; {
                             <span class="kw">if </span>banner.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;banner&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"banner"</span>));
                             }
 
                             banner = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Channels =&gt; {
                             <span class="kw">if </span>channels.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;channels&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"channels"</span>));
                             }
 
                             channels = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -1379,7 +1380,7 @@
                         Field::DefaultMessageNotifications =&gt; {
                             <span class="kw">if </span>default_message_notifications.is_some() {
                                 <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(
-                                    <span class="string">&quot;default_message_notifications&quot;</span>,
+                                    <span class="string">"default_message_notifications"</span>,
                                 ));
                             }
 
@@ -1387,147 +1388,147 @@
                         }
                         Field::Description =&gt; {
                             <span class="kw">if </span>description.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;description&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"description"</span>));
                             }
 
                             description = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::DiscoverySplash =&gt; {
                             <span class="kw">if </span>discovery_splash.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;discovery_splash&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"discovery_splash"</span>));
                             }
 
                             discovery_splash = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Emojis =&gt; {
                             <span class="kw">if </span>emojis.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;emojis&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"emojis"</span>));
                             }
 
                             emojis = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::ExplicitContentFilter =&gt; {
                             <span class="kw">if </span>explicit_content_filter.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;explicit_content_filter&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"explicit_content_filter"</span>));
                             }
 
                             explicit_content_filter = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Features =&gt; {
                             <span class="kw">if </span>features.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;features&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"features"</span>));
                             }
 
                             features = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Icon =&gt; {
                             <span class="kw">if </span>icon.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;icon&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"icon"</span>));
                             }
 
                             icon = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Id =&gt; {
                             <span class="kw">if </span>id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"id"</span>));
                             }
 
                             id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::JoinedAt =&gt; {
                             <span class="kw">if </span>joined_at.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;joined_at&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"joined_at"</span>));
                             }
 
                             joined_at = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Large =&gt; {
                             <span class="kw">if </span>large.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;large&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"large"</span>));
                             }
 
                             large = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::MaxMembers =&gt; {
                             <span class="kw">if </span>max_members.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;max_members&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"max_members"</span>));
                             }
 
                             max_members = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::MaxPresences =&gt; {
                             <span class="kw">if </span>max_presences.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;max_presences&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"max_presences"</span>));
                             }
 
                             max_presences = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::MaxVideoChannelUsers =&gt; {
                             <span class="kw">if </span>max_video_channel_users.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;max_video_channel_users&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"max_video_channel_users"</span>));
                             }
 
                             max_video_channel_users = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::MemberCount =&gt; {
                             <span class="kw">if </span>member_count.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;member_count&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"member_count"</span>));
                             }
 
                             member_count = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Members =&gt; {
                             <span class="kw">if </span>members.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;members&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"members"</span>));
                             }
 
                             members = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::MfaLevel =&gt; {
                             <span class="kw">if </span>mfa_level.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;mfa_level&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"mfa_level"</span>));
                             }
 
                             mfa_level = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Name =&gt; {
                             <span class="kw">if </span>name.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;name&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"name"</span>));
                             }
 
                             name = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::NsfwLevel =&gt; {
                             <span class="kw">if </span>nsfw_level.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;nsfw_level&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"nsfw_level"</span>));
                             }
 
                             nsfw_level = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Owner =&gt; {
                             <span class="kw">if </span>owner.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;owner&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"owner"</span>));
                             }
 
                             owner = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::OwnerId =&gt; {
                             <span class="kw">if </span>owner_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;owner_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"owner_id"</span>));
                             }
 
                             owner_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Permissions =&gt; {
                             <span class="kw">if </span>permissions.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;permissions&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"permissions"</span>));
                             }
 
                             permissions = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::PreferredLocale =&gt; {
                             <span class="kw">if </span>preferred_locale.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;preferred_locale&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"preferred_locale"</span>));
                             }
 
                             preferred_locale = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -1535,7 +1536,7 @@
                         Field::PremiumProgressBarEnabled =&gt; {
                             <span class="kw">if </span>premium_progress_bar_enabled.is_some() {
                                 <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(
-                                    <span class="string">&quot;premium_progress_bar_enabled&quot;</span>,
+                                    <span class="string">"premium_progress_bar_enabled"</span>,
                                 ));
                             }
 
@@ -1543,21 +1544,21 @@
                         }
                         Field::PremiumSubscriptionCount =&gt; {
                             <span class="kw">if </span>premium_subscription_count.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;premium_subscription_count&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"premium_subscription_count"</span>));
                             }
 
                             premium_subscription_count = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::PremiumTier =&gt; {
                             <span class="kw">if </span>premium_tier.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;premium_tier&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"premium_tier"</span>));
                             }
 
                             premium_tier = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Presences =&gt; {
                             <span class="kw">if </span>presences.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;presences&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"presences"</span>));
                             }
 
                             <span class="kw">let </span>deserializer = PresenceListDeserializer::new(Id::new(<span class="number">1</span>));
@@ -1566,112 +1567,112 @@
                         }
                         Field::PublicUpdatesChannelId =&gt; {
                             <span class="kw">if </span>public_updates_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;public_updates_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"public_updates_channel_id"</span>));
                             }
 
                             public_updates_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Roles =&gt; {
                             <span class="kw">if </span>roles.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;roles&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"roles"</span>));
                             }
 
                             roles = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::SafetyAlertsChannelId =&gt; {
                             <span class="kw">if </span>safety_alerts_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;safety_alerts_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"safety_alerts_channel_id"</span>));
                             }
 
                             safety_alerts_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Splash =&gt; {
                             <span class="kw">if </span>splash.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;splash&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"splash"</span>));
                             }
 
                             splash = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::StageInstances =&gt; {
                             <span class="kw">if </span>stage_instances.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;stage_instances&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"stage_instances"</span>));
                             }
 
                             stage_instances = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Stickers =&gt; {
                             <span class="kw">if </span>stickers.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;stickers&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"stickers"</span>));
                             }
 
                             stickers = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::SystemChannelId =&gt; {
                             <span class="kw">if </span>system_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;system_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"system_channel_id"</span>));
                             }
 
                             system_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::SystemChannelFlags =&gt; {
                             <span class="kw">if </span>system_channel_flags.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;system_channel_flags&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"system_channel_flags"</span>));
                             }
 
                             system_channel_flags = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::RulesChannelId =&gt; {
                             <span class="kw">if </span>rules_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;rules_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"rules_channel_id"</span>));
                             }
 
                             rules_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Threads =&gt; {
                             <span class="kw">if </span>threads.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;threads&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"threads"</span>));
                             }
 
                             threads = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::Unavailable =&gt; {
                             <span class="kw">if </span>unavailable.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;unavailable&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"unavailable"</span>));
                             }
 
                             unavailable = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::VerificationLevel =&gt; {
                             <span class="kw">if </span>verification_level.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;verification_level&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"verification_level"</span>));
                             }
 
                             verification_level = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::VoiceStates =&gt; {
                             <span class="kw">if </span>voice_states.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;voice_states&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"voice_states"</span>));
                             }
 
                             voice_states = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::VanityUrlCode =&gt; {
                             <span class="kw">if </span>vanity_url_code.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;vanity_url_code&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"vanity_url_code"</span>));
                             }
 
                             vanity_url_code = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::WidgetChannelId =&gt; {
                             <span class="kw">if </span>widget_channel_id.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;widget_channel_id&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"widget_channel_id"</span>));
                             }
 
                             widget_channel_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                         }
                         Field::WidgetEnabled =&gt; {
                             <span class="kw">if </span>widget_enabled.is_some() {
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;widget_enabled&quot;</span>));
+                                <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"widget_enabled"</span>));
                             }
 
                             widget_enabled = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -1680,25 +1681,25 @@
                 }
 
                 <span class="kw">let </span>afk_timeout =
-                    afk_timeout.ok_or_else(|| DeError::missing_field(<span class="string">&quot;afk_timeout&quot;</span>))<span class="question-mark">?</span>;
+                    afk_timeout.ok_or_else(|| DeError::missing_field(<span class="string">"afk_timeout"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>default_message_notifications = default_message_notifications
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;default_message_notifications&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"default_message_notifications"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>explicit_content_filter = explicit_content_filter
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;explicit_content_filter&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>features = features.ok_or_else(|| DeError::missing_field(<span class="string">&quot;features&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>id = id.ok_or_else(|| DeError::missing_field(<span class="string">&quot;id&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>mfa_level = mfa_level.ok_or_else(|| DeError::missing_field(<span class="string">&quot;mfa_level&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>name = name.ok_or_else(|| DeError::missing_field(<span class="string">&quot;name&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>owner_id = owner_id.ok_or_else(|| DeError::missing_field(<span class="string">&quot;owner_id&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"explicit_content_filter"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>features = features.ok_or_else(|| DeError::missing_field(<span class="string">"features"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>id = id.ok_or_else(|| DeError::missing_field(<span class="string">"id"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>mfa_level = mfa_level.ok_or_else(|| DeError::missing_field(<span class="string">"mfa_level"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>name = name.ok_or_else(|| DeError::missing_field(<span class="string">"name"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>owner_id = owner_id.ok_or_else(|| DeError::missing_field(<span class="string">"owner_id"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>preferred_locale =
-                    preferred_locale.ok_or_else(|| DeError::missing_field(<span class="string">&quot;preferred_locale&quot;</span>))<span class="question-mark">?</span>;
-                <span class="kw">let </span>roles = roles.ok_or_else(|| DeError::missing_field(<span class="string">&quot;roles&quot;</span>))<span class="question-mark">?</span>;
+                    preferred_locale.ok_or_else(|| DeError::missing_field(<span class="string">"preferred_locale"</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>roles = roles.ok_or_else(|| DeError::missing_field(<span class="string">"roles"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>system_channel_flags = system_channel_flags
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;system_channel_flags&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"system_channel_flags"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>premium_progress_bar_enabled = premium_progress_bar_enabled
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;premium_progress_bar_enabled&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"premium_progress_bar_enabled"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>verification_level = verification_level
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;verification_level&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"verification_level"</span>))<span class="question-mark">?</span>;
 
                 <span class="kw">let </span>afk_channel_id = afk_channel_id.unwrap_or_default();
                 <span class="kw">let </span>application_id = application_id.unwrap_or_default();
@@ -1717,7 +1718,7 @@
                 <span class="kw">let </span>max_video_channel_users = max_video_channel_users.unwrap_or_default();
                 <span class="kw">let </span>member_count = member_count.unwrap_or_default();
                 <span class="kw">let </span>members = members.unwrap_or_default();
-                <span class="kw">let </span>nsfw_level = nsfw_level.ok_or_else(|| DeError::missing_field(<span class="string">&quot;nsfw_level&quot;</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>nsfw_level = nsfw_level.ok_or_else(|| DeError::missing_field(<span class="string">"nsfw_level"</span>))<span class="question-mark">?</span>;
                 <span class="kw">let </span>owner = owner.unwrap_or_default();
                 <span class="kw">let </span>permissions = permissions.unwrap_or_default();
                 <span class="kw">let </span>premium_subscription_count = premium_subscription_count.unwrap_or_default();
@@ -1808,55 +1809,55 @@
         }
 
         <span class="kw">const </span>FIELDS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
-            <span class="string">&quot;afk_channel_id&quot;</span>,
-            <span class="string">&quot;afk_timeout&quot;</span>,
-            <span class="string">&quot;application_id&quot;</span>,
-            <span class="string">&quot;approximate_member_count&quot;</span>,
-            <span class="string">&quot;approximate_presence_count&quot;</span>,
-            <span class="string">&quot;banner&quot;</span>,
-            <span class="string">&quot;channels&quot;</span>,
-            <span class="string">&quot;default_message_notifications&quot;</span>,
-            <span class="string">&quot;description&quot;</span>,
-            <span class="string">&quot;discovery_splash&quot;</span>,
-            <span class="string">&quot;emojis&quot;</span>,
-            <span class="string">&quot;explicit_content_filter&quot;</span>,
-            <span class="string">&quot;features&quot;</span>,
-            <span class="string">&quot;icon&quot;</span>,
-            <span class="string">&quot;id&quot;</span>,
-            <span class="string">&quot;joined_at&quot;</span>,
-            <span class="string">&quot;large&quot;</span>,
-            <span class="string">&quot;max_members&quot;</span>,
-            <span class="string">&quot;max_presences&quot;</span>,
-            <span class="string">&quot;max_video_channel_users&quot;</span>,
-            <span class="string">&quot;member_count&quot;</span>,
-            <span class="string">&quot;members&quot;</span>,
-            <span class="string">&quot;mfa_level&quot;</span>,
-            <span class="string">&quot;name&quot;</span>,
-            <span class="string">&quot;nsfw_level&quot;</span>,
-            <span class="string">&quot;owner&quot;</span>,
-            <span class="string">&quot;owner_id&quot;</span>,
-            <span class="string">&quot;permissions&quot;</span>,
-            <span class="string">&quot;preferred_locale&quot;</span>,
-            <span class="string">&quot;premium_progress_bar_enabled&quot;</span>,
-            <span class="string">&quot;premium_subscription_count&quot;</span>,
-            <span class="string">&quot;premium_tier&quot;</span>,
-            <span class="string">&quot;presences&quot;</span>,
-            <span class="string">&quot;public_updates_channel_id&quot;</span>,
-            <span class="string">&quot;roles&quot;</span>,
-            <span class="string">&quot;splash&quot;</span>,
-            <span class="string">&quot;system_channel_id&quot;</span>,
-            <span class="string">&quot;system_channel_flags&quot;</span>,
-            <span class="string">&quot;rules_channel_id&quot;</span>,
-            <span class="string">&quot;threads&quot;</span>,
-            <span class="string">&quot;unavailable&quot;</span>,
-            <span class="string">&quot;verification_level&quot;</span>,
-            <span class="string">&quot;voice_states&quot;</span>,
-            <span class="string">&quot;vanity_url_code&quot;</span>,
-            <span class="string">&quot;widget_channel_id&quot;</span>,
-            <span class="string">&quot;widget_enabled&quot;</span>,
+            <span class="string">"afk_channel_id"</span>,
+            <span class="string">"afk_timeout"</span>,
+            <span class="string">"application_id"</span>,
+            <span class="string">"approximate_member_count"</span>,
+            <span class="string">"approximate_presence_count"</span>,
+            <span class="string">"banner"</span>,
+            <span class="string">"channels"</span>,
+            <span class="string">"default_message_notifications"</span>,
+            <span class="string">"description"</span>,
+            <span class="string">"discovery_splash"</span>,
+            <span class="string">"emojis"</span>,
+            <span class="string">"explicit_content_filter"</span>,
+            <span class="string">"features"</span>,
+            <span class="string">"icon"</span>,
+            <span class="string">"id"</span>,
+            <span class="string">"joined_at"</span>,
+            <span class="string">"large"</span>,
+            <span class="string">"max_members"</span>,
+            <span class="string">"max_presences"</span>,
+            <span class="string">"max_video_channel_users"</span>,
+            <span class="string">"member_count"</span>,
+            <span class="string">"members"</span>,
+            <span class="string">"mfa_level"</span>,
+            <span class="string">"name"</span>,
+            <span class="string">"nsfw_level"</span>,
+            <span class="string">"owner"</span>,
+            <span class="string">"owner_id"</span>,
+            <span class="string">"permissions"</span>,
+            <span class="string">"preferred_locale"</span>,
+            <span class="string">"premium_progress_bar_enabled"</span>,
+            <span class="string">"premium_subscription_count"</span>,
+            <span class="string">"premium_tier"</span>,
+            <span class="string">"presences"</span>,
+            <span class="string">"public_updates_channel_id"</span>,
+            <span class="string">"roles"</span>,
+            <span class="string">"splash"</span>,
+            <span class="string">"system_channel_id"</span>,
+            <span class="string">"system_channel_flags"</span>,
+            <span class="string">"rules_channel_id"</span>,
+            <span class="string">"threads"</span>,
+            <span class="string">"unavailable"</span>,
+            <span class="string">"verification_level"</span>,
+            <span class="string">"voice_states"</span>,
+            <span class="string">"vanity_url_code"</span>,
+            <span class="string">"widget_channel_id"</span>,
+            <span class="string">"widget_enabled"</span>,
         ];
 
-        deserializer.deserialize_struct(<span class="string">&quot;Guild&quot;</span>, FIELDS, GuildVisitor)
+        deserializer.deserialize_struct(<span class="string">"Guild"</span>, FIELDS, GuildVisitor)
     }
 }
 
@@ -1877,7 +1878,7 @@
     <span class="attr">#[allow(clippy::too_many_lines)]
     #[test]
     </span><span class="kw">fn </span>guild() -&gt; <span class="prelude-ty">Result</span>&lt;(), TimestampParseError&gt; {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>)<span class="question-mark">?</span>);
 
         <span class="kw">let </span>value = Guild {
             afk_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">2</span>)),
@@ -1888,7 +1889,7 @@
             banner: <span class="prelude-val">Some</span>(image_hash::BANNER),
             channels: Vec::new(),
             default_message_notifications: DefaultMessageNotificationLevel::Mentions,
-            description: <span class="prelude-val">Some</span>(<span class="string">&quot;a description&quot;</span>.to_owned()),
+            description: <span class="prelude-val">Some</span>(<span class="string">"a description"</span>.to_owned()),
             discovery_splash: <span class="prelude-val">Some</span>(image_hash::SPLASH),
             emojis: Vec::new(),
             explicit_content_filter: ExplicitContentFilter::MembersWithoutRole,
@@ -1903,12 +1904,12 @@
             member_count: <span class="prelude-val">Some</span>(<span class="number">12_000</span>),
             members: Vec::new(),
             mfa_level: MfaLevel::Elevated,
-            name: <span class="string">&quot;the name&quot;</span>.to_owned(),
+            name: <span class="string">"the name"</span>.to_owned(),
             nsfw_level: NSFWLevel::Default,
             owner_id: Id::new(<span class="number">5</span>),
             owner: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
             permissions: <span class="prelude-val">Some</span>(Permissions::SEND_MESSAGES),
-            preferred_locale: <span class="string">&quot;en-us&quot;</span>.to_owned(),
+            preferred_locale: <span class="string">"en-us"</span>.to_owned(),
             premium_progress_bar_enabled: <span class="bool-val">false</span>,
             premium_subscription_count: <span class="prelude-val">Some</span>(<span class="number">3</span>),
             premium_tier: PremiumTier::Tier1,
@@ -1924,7 +1925,7 @@
             system_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">7</span>)),
             threads: Vec::new(),
             unavailable: <span class="bool-val">false</span>,
-            vanity_url_code: <span class="prelude-val">Some</span>(<span class="string">&quot;twilight&quot;</span>.to_owned()),
+            vanity_url_code: <span class="prelude-val">Some</span>(<span class="string">"twilight"</span>.to_owned()),
             verification_level: VerificationLevel::Medium,
             voice_states: Vec::new(),
             widget_channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">8</span>)),
@@ -1935,142 +1936,142 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Guild&quot;</span>,
+                    name: <span class="string">"Guild"</span>,
                     len: <span class="number">47</span>,
                 },
-                Token::Str(<span class="string">&quot;afk_channel_id&quot;</span>),
+                Token::Str(<span class="string">"afk_channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
-                Token::Str(<span class="string">&quot;afk_timeout&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;AfkTimeout&quot; </span>},
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"afk_timeout"</span>),
+                Token::NewtypeStruct { name: <span class="string">"AfkTimeout" </span>},
                 Token::U16(<span class="number">900</span>),
-                Token::Str(<span class="string">&quot;application_id&quot;</span>),
+                Token::Str(<span class="string">"application_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;3&quot;</span>),
-                Token::Str(<span class="string">&quot;approximate_member_count&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"3"</span>),
+                Token::Str(<span class="string">"approximate_member_count"</span>),
                 Token::Some,
                 Token::U64(<span class="number">1_200</span>),
-                Token::Str(<span class="string">&quot;approximate_presence_count&quot;</span>),
+                Token::Str(<span class="string">"approximate_presence_count"</span>),
                 Token::Some,
                 Token::U64(<span class="number">900</span>),
-                Token::Str(<span class="string">&quot;banner&quot;</span>),
+                Token::Str(<span class="string">"banner"</span>),
                 Token::Some,
                 Token::Str(image_hash::BANNER_INPUT),
-                Token::Str(<span class="string">&quot;channels&quot;</span>),
+                Token::Str(<span class="string">"channels"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;default_message_notifications&quot;</span>),
+                Token::Str(<span class="string">"default_message_notifications"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;a description&quot;</span>),
-                Token::Str(<span class="string">&quot;discovery_splash&quot;</span>),
+                Token::Str(<span class="string">"a description"</span>),
+                Token::Str(<span class="string">"discovery_splash"</span>),
                 Token::Some,
                 Token::Str(image_hash::SPLASH_INPUT),
-                Token::Str(<span class="string">&quot;emojis&quot;</span>),
+                Token::Str(<span class="string">"emojis"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;explicit_content_filter&quot;</span>),
+                Token::Str(<span class="string">"explicit_content_filter"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;features&quot;</span>),
+                Token::Str(<span class="string">"features"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
-                Token::Str(<span class="string">&quot;BANNER&quot;</span>),
+                Token::Str(<span class="string">"BANNER"</span>),
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;icon&quot;</span>),
+                Token::Str(<span class="string">"icon"</span>),
                 Token::Some,
                 Token::Str(image_hash::ICON_INPUT),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;joined_at&quot;</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"joined_at"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2015-04-26T06:26:56.936000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;large&quot;</span>),
+                Token::Str(<span class="string">"2015-04-26T06:26:56.936000+00:00"</span>),
+                Token::Str(<span class="string">"large"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;max_members&quot;</span>),
+                Token::Str(<span class="string">"max_members"</span>),
                 Token::Some,
                 Token::U64(<span class="number">25_000</span>),
-                Token::Str(<span class="string">&quot;max_presences&quot;</span>),
+                Token::Str(<span class="string">"max_presences"</span>),
                 Token::Some,
                 Token::U64(<span class="number">10_000</span>),
-                Token::Str(<span class="string">&quot;max_video_channel_users&quot;</span>),
+                Token::Str(<span class="string">"max_video_channel_users"</span>),
                 Token::Some,
                 Token::U64(<span class="number">10</span>),
-                Token::Str(<span class="string">&quot;member_count&quot;</span>),
+                Token::Str(<span class="string">"member_count"</span>),
                 Token::Some,
                 Token::U64(<span class="number">12_000</span>),
-                Token::Str(<span class="string">&quot;members&quot;</span>),
+                Token::Str(<span class="string">"members"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;mfa_level&quot;</span>),
+                Token::Str(<span class="string">"mfa_level"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;name&quot;</span>),
-                Token::Str(<span class="string">&quot;the name&quot;</span>),
-                Token::Str(<span class="string">&quot;nsfw_level&quot;</span>),
+                Token::Str(<span class="string">"name"</span>),
+                Token::Str(<span class="string">"the name"</span>),
+                Token::Str(<span class="string">"nsfw_level"</span>),
                 Token::U8(<span class="number">0</span>),
-                Token::Str(<span class="string">&quot;owner_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;5&quot;</span>),
-                Token::Str(<span class="string">&quot;owner&quot;</span>),
+                Token::Str(<span class="string">"owner_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"5"</span>),
+                Token::Str(<span class="string">"owner"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;permissions&quot;</span>),
+                Token::Str(<span class="string">"permissions"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2048&quot;</span>),
-                Token::Str(<span class="string">&quot;preferred_locale&quot;</span>),
-                Token::Str(<span class="string">&quot;en-us&quot;</span>),
-                Token::Str(<span class="string">&quot;premium_progress_bar_enabled&quot;</span>),
+                Token::Str(<span class="string">"2048"</span>),
+                Token::Str(<span class="string">"preferred_locale"</span>),
+                Token::Str(<span class="string">"en-us"</span>),
+                Token::Str(<span class="string">"premium_progress_bar_enabled"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;premium_subscription_count&quot;</span>),
+                Token::Str(<span class="string">"premium_subscription_count"</span>),
                 Token::Some,
                 Token::U64(<span class="number">3</span>),
-                Token::Str(<span class="string">&quot;premium_tier&quot;</span>),
+                Token::Str(<span class="string">"premium_tier"</span>),
                 Token::U8(<span class="number">1</span>),
-                Token::Str(<span class="string">&quot;presences&quot;</span>),
+                Token::Str(<span class="string">"presences"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;public_updates_channel_id&quot;</span>),
+                Token::Str(<span class="string">"public_updates_channel_id"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;roles&quot;</span>),
+                Token::Str(<span class="string">"roles"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;rules_channel_id&quot;</span>),
+                Token::Str(<span class="string">"rules_channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;6&quot;</span>),
-                Token::Str(<span class="string">&quot;safety_alerts_channel_id&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"6"</span>),
+                Token::Str(<span class="string">"safety_alerts_channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;9&quot;</span>),
-                Token::Str(<span class="string">&quot;splash&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"9"</span>),
+                Token::Str(<span class="string">"splash"</span>),
                 Token::Some,
                 Token::Str(image_hash::SPLASH_INPUT),
-                Token::Str(<span class="string">&quot;system_channel_flags&quot;</span>),
+                Token::Str(<span class="string">"system_channel_flags"</span>),
                 Token::U64(<span class="number">2</span>),
-                Token::Str(<span class="string">&quot;system_channel_id&quot;</span>),
+                Token::Str(<span class="string">"system_channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;7&quot;</span>),
-                Token::Str(<span class="string">&quot;threads&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"7"</span>),
+                Token::Str(<span class="string">"threads"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;unavailable&quot;</span>),
+                Token::Str(<span class="string">"unavailable"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;vanity_url_code&quot;</span>),
+                Token::Str(<span class="string">"vanity_url_code"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;twilight&quot;</span>),
-                Token::Str(<span class="string">&quot;verification_level&quot;</span>),
+                Token::Str(<span class="string">"twilight"</span>),
+                Token::Str(<span class="string">"verification_level"</span>),
                 Token::U8(<span class="number">2</span>),
-                Token::Str(<span class="string">&quot;voice_states&quot;</span>),
+                Token::Str(<span class="string">"voice_states"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;widget_channel_id&quot;</span>),
+                Token::Str(<span class="string">"widget_channel_id"</span>),
                 Token::Some,
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;8&quot;</span>),
-                Token::Str(<span class="string">&quot;widget_enabled&quot;</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"8"</span>),
+                Token::Str(<span class="string">"widget_enabled"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">true</span>),
                 Token::StructEnd,

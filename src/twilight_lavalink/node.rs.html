@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/node.rs`."><title>node.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/node.rs`."><title>node.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -771,7 +772,7 @@
 //! Additionally, you will have to create and manage your own [`PlayerManager`]
 //! and make your own players for guilds when your bot joins voice channels.
 //!
-//! This can be a lot of work, and there&#39;s not really much reason to do it
+//! This can be a lot of work, and there's not really much reason to do it
 //! yourself. For that reason, you should almost always use the `Lavalink`
 //! client which does all of this for you.
 //!
@@ -816,49 +817,49 @@
 
 <span class="kw">impl </span>NodeError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>NodeErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (NodeErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>NodeError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             NodeErrorType::BuildingConnectionRequest { .. } =&gt; {
-                f.write_str(<span class="string">&quot;failed to build connection request&quot;</span>)
+                f.write_str(<span class="string">"failed to build connection request"</span>)
             }
-            NodeErrorType::Connecting { .. } =&gt; f.write_str(<span class="string">&quot;Failed to connect to the node&quot;</span>),
+            NodeErrorType::Connecting { .. } =&gt; f.write_str(<span class="string">"Failed to connect to the node"</span>),
             NodeErrorType::SerializingMessage { .. } =&gt; {
-                f.write_str(<span class="string">&quot;failed to serialize outgoing message as json&quot;</span>)
+                f.write_str(<span class="string">"failed to serialize outgoing message as json"</span>)
             }
             NodeErrorType::Unauthorized { address, .. } =&gt; {
-                f.write_str(<span class="string">&quot;the authorization used to connect to node &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"the authorization used to connect to node "</span>)<span class="question-mark">?</span>;
                 Display::fmt(address, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; is invalid&quot;</span>)
+                f.write_str(<span class="string">" is invalid"</span>)
             }
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>NodeError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -872,7 +873,7 @@
     </span>Connecting,
     <span class="doccomment">/// Serializing a JSON message to be sent to a Lavalink node failed.
     </span>SerializingMessage {
-        <span class="doccomment">/// The message that couldn&#39;t be serialized.
+        <span class="doccomment">/// The message that couldn't be serialized.
         </span>message: OutgoingEvent,
     },
     <span class="doccomment">/// The given authorization for the node is incorrect.
@@ -903,25 +904,25 @@
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (NodeSenderErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>NodeSenderError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
-            NodeSenderErrorType::Sending =&gt; f.write_str(<span class="string">&quot;failed to send over channel&quot;</span>),
+            NodeSenderErrorType::Sending =&gt; f.write_str(<span class="string">"failed to send over channel"</span>),
         }
     }
 }
 
 <span class="kw">impl </span>Error <span class="kw">for </span>NodeSenderError {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>)&gt; {
         <span class="self">self</span>.source
             .as_ref()
-            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">&#39;static</span>))
+            .map(|source| <span class="kw-2">&amp;**</span>source <span class="kw">as </span><span class="kw-2">&amp;</span>(<span class="kw">dyn </span>Error + <span class="lifetime">'static</span>))
     }
 }
 
@@ -948,7 +949,7 @@
 <span class="kw">impl </span>Stream <span class="kw">for </span>IncomingEvents {
     <span class="kw">type </span>Item = IncomingEvent;
 
-    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
+    <span class="kw">fn </span>poll_next(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt;&gt; {
         <span class="self">self</span>.inner.poll_recv(cx)
     }
 }
@@ -1000,23 +1001,23 @@
 }
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>NodeConfig {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="doccomment">/// Debug as `&lt;redacted&gt;`. Necessary because debugging a struct field
-        /// with a value of of `&quot;&lt;redacted&gt;&quot;` will insert quotations in the
-        /// string, which doesn&#39;t align with other token debugs.
+        /// with a value of of `"&lt;redacted&gt;"` will insert quotations in the
+        /// string, which doesn't align with other token debugs.
         </span><span class="kw">struct </span>Redacted;
 
         <span class="kw">impl </span>Debug <span class="kw">for </span>Redacted {
-            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-                f.write_str(<span class="string">&quot;&lt;redacted&gt;&quot;</span>)
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+                f.write_str(<span class="string">"&lt;redacted&gt;"</span>)
             }
         }
 
-        f.debug_struct(<span class="string">&quot;NodeConfig&quot;</span>)
-            .field(<span class="string">&quot;address&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.address)
-            .field(<span class="string">&quot;authorization&quot;</span>, <span class="kw-2">&amp;</span>Redacted)
-            .field(<span class="string">&quot;resume&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.resume)
-            .field(<span class="string">&quot;user_id&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.user_id)
+        f.debug_struct(<span class="string">"NodeConfig"</span>)
+            .field(<span class="string">"address"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.address)
+            .field(<span class="string">"authorization"</span>, <span class="kw-2">&amp;</span>Redacted)
+            .field(<span class="string">"resume"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.resume)
+            .field(<span class="string">"user_id"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.user_id)
             .finish()
     }
 }
@@ -1050,7 +1051,7 @@
     <span class="doccomment">/// Create a new configuration for connecting to a node via
     /// [`Node::connect`].
     ///
-    /// If adding a node through the [`Lavalink`] client then you don&#39;t need to
+    /// If adding a node through the [`Lavalink`] client then you don't need to
     /// do this yourself.
     ///
     /// [`Lavalink`]: crate::client::Lavalink
@@ -1140,12 +1141,12 @@
             uptime: <span class="number">0</span>,
         });
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;starting connection to {}&quot;</span>, config.address);
+        <span class="macro">tracing::debug!</span>(<span class="string">"starting connection to {}"</span>, config.address);
 
         <span class="kw">let </span>(conn_loop, lavalink_tx, lavalink_rx) =
             Connection::connect(config.clone(), players.clone(), bilock_right).<span class="kw">await</span><span class="question-mark">?</span>;
 
-        <span class="macro">tracing::debug!</span>(<span class="string">&quot;started connection to {}&quot;</span>, config.address);
+        <span class="macro">tracing::debug!</span>(<span class="string">"started connection to {}"</span>, config.address);
 
         tokio::spawn(conn_loop.run());
 
@@ -1160,7 +1161,7 @@
         ))
     }
 
-    <span class="doccomment">/// Retrieve an immutable reference to the node&#39;s configuration.
+    <span class="doccomment">/// Retrieve an immutable reference to the node's configuration.
     </span><span class="kw">pub const fn </span>config(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>NodeConfig {
         <span class="kw-2">&amp;</span><span class="self">self</span>.config
     }
@@ -1170,10 +1171,10 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>.players
     }
 
-    <span class="doccomment">/// Retrieve an immutable reference to the node&#39;s configuration.
+    <span class="doccomment">/// Retrieve an immutable reference to the node's configuration.
     ///
-    /// Note that sending player events through the node&#39;s sender won&#39;t update
-    /// player states, such as whether it&#39;s paused.
+    /// Note that sending player events through the node's sender won't update
+    /// player states, such as whether it's paused.
     ///
     /// # Errors
     ///
@@ -1185,15 +1186,15 @@
 
     <span class="doccomment">/// Retrieve a unique sender to send events to the Lavalink server.
     ///
-    /// Note that sending player events through the node&#39;s sender won&#39;t update
-    /// player states, such as whether it&#39;s paused.
+    /// Note that sending player events through the node's sender won't update
+    /// player states, such as whether it's paused.
     </span><span class="kw">pub fn </span>sender(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; NodeSender {
         NodeSender {
             inner: <span class="self">self</span>.lavalink_tx.clone(),
         }
     }
 
-    <span class="doccomment">/// Retrieve a copy of the node&#39;s stats.
+    <span class="doccomment">/// Retrieve a copy of the node's stats.
     </span><span class="kw">pub async fn </span>stats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Stats {
         (<span class="kw-2">*</span><span class="self">self</span>.stats.lock().<span class="kw">await</span>).clone()
     }
@@ -1271,14 +1272,14 @@
                     <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(incoming)) = incoming {
                         <span class="self">self</span>.incoming(incoming).<span class="kw">await</span><span class="question-mark">?</span>;
                     } <span class="kw">else </span>{
-                        <span class="macro">tracing::debug!</span>(<span class="string">&quot;connection to {} closed, reconnecting&quot;</span>, <span class="self">self</span>.config.address);
+                        <span class="macro">tracing::debug!</span>(<span class="string">"connection to {} closed, reconnecting"</span>, <span class="self">self</span>.config.address);
                         <span class="self">self</span>.connection = reconnect(<span class="kw-2">&amp;</span><span class="self">self</span>.config).<span class="kw">await</span><span class="question-mark">?</span>;
                     }
                 }
                 outgoing = <span class="self">self</span>.node_from.recv() =&gt; {
                     <span class="kw">if let </span><span class="prelude-val">Some</span>(outgoing) = outgoing {
                         <span class="macro">tracing::debug!</span>(
-                            <span class="string">&quot;forwarding event to {}: {outgoing:?}&quot;</span>,
+                            <span class="string">"forwarding event to {}: {outgoing:?}"</span>,
                             <span class="self">self</span>.config.address,
                         );
 
@@ -1289,7 +1290,7 @@
                         <span class="kw">let </span>msg = Message::Text(payload);
                         <span class="self">self</span>.connection.send(msg).<span class="kw">await</span>.unwrap();
                     } <span class="kw">else </span>{
-                        <span class="macro">tracing::debug!</span>(<span class="string">&quot;node {} closed, ending connection&quot;</span>, <span class="self">self</span>.config.address);
+                        <span class="macro">tracing::debug!</span>(<span class="string">"node {} closed, ending connection"</span>, <span class="self">self</span>.config.address);
 
                         <span class="kw">break</span>;
                     }
@@ -1302,36 +1303,36 @@
 
     <span class="kw">async fn </span>incoming(<span class="kw-2">&amp;mut </span><span class="self">self</span>, incoming: Message) -&gt; <span class="prelude-ty">Result</span>&lt;bool, NodeError&gt; {
         <span class="macro">tracing::debug!</span>(
-            <span class="string">&quot;received message from {}: {incoming:?}&quot;</span>,
+            <span class="string">"received message from {}: {incoming:?}"</span>,
             <span class="self">self</span>.config.address,
         );
 
         <span class="kw">let </span>text = <span class="kw">match </span>incoming {
             Message::Close(<span class="kw">_</span>) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;got close, closing connection&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">"got close, closing connection"</span>);
                 <span class="kw">let </span>_result = <span class="self">self</span>.connection.send(Message::Close(<span class="prelude-val">None</span>)).<span class="kw">await</span>;
 
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
             }
             Message::Ping(data) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;got ping, sending pong&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">"got ping, sending pong"</span>);
                 <span class="kw">let </span>msg = Message::Pong(data);
 
-                <span class="comment">// We don&#39;t need to immediately care if a pong fails.
+                <span class="comment">// We don't need to immediately care if a pong fails.
                 </span><span class="kw">let </span>_result = <span class="self">self</span>.connection.send(msg).<span class="kw">await</span>;
 
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
             }
             Message::Text(text) =&gt; text,
             other =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;got pong or bytes payload: {other:?}&quot;</span>);
+                <span class="macro">tracing::debug!</span>(<span class="string">"got pong or bytes payload: {other:?}"</span>);
 
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
             }
         };
 
         <span class="kw">let </span><span class="prelude-val">Ok</span>(event) = serde_json::from_str(<span class="kw-2">&amp;</span>text) <span class="kw">else </span>{
-            <span class="macro">tracing::warn!</span>(<span class="string">&quot;unknown message from lavalink node: {text}&quot;</span>);
+            <span class="macro">tracing::warn!</span>(<span class="string">"unknown message from lavalink node: {text}"</span>);
 
             <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
         };
@@ -1342,7 +1343,7 @@
             <span class="kw">_ </span>=&gt; {}
         }
 
-        <span class="comment">// It&#39;s fine if the rx end dropped, often users don&#39;t need to care about
+        <span class="comment">// It's fine if the rx end dropped, often users don't need to care about
         // these events.
         </span><span class="kw">if </span>!<span class="self">self</span>.node_to.is_closed() {
             <span class="kw">let </span>_result = <span class="self">self</span>.node_to.send(event);
@@ -1354,7 +1355,7 @@
     <span class="kw">fn </span>player_update(<span class="kw-2">&amp;</span><span class="self">self</span>, update: <span class="kw-2">&amp;</span>PlayerUpdate) -&gt; <span class="prelude-ty">Result</span>&lt;(), NodeError&gt; {
         <span class="kw">let </span><span class="prelude-val">Some</span>(player) = <span class="self">self</span>.players.get(<span class="kw-2">&amp;</span>update.guild_id) <span class="kw">else </span>{
             <span class="macro">tracing::warn!</span>(
-                <span class="string">&quot;invalid player update for guild {}: {update:?}&quot;</span>,
+                <span class="string">"invalid player update for guild {}: {update:?}"</span>,
                 update.guild_id,
             );
 
@@ -1384,18 +1385,18 @@
 }
 
 <span class="kw">fn </span>connect_request(state: <span class="kw-2">&amp;</span>NodeConfig) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;()&gt;, NodeError&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>request = <span class="macro">format!</span>(<span class="string">&quot;ws://{}&quot;</span>, state.address)
+    <span class="kw">let </span><span class="kw-2">mut </span>request = <span class="macro">format!</span>(<span class="string">"ws://{}"</span>, state.address)
         .into_client_request()
         .map_err(|source| NodeError {
             kind: NodeErrorType::BuildingConnectionRequest,
             source: <span class="prelude-val">Some</span>(Box::new(source)),
         })<span class="question-mark">?</span>;
     <span class="kw">let </span>headers = request.headers_mut();
-    headers.insert(<span class="string">&quot;Authorization&quot;</span>, state.authorization.parse().unwrap());
-    headers.insert(<span class="string">&quot;User-Id&quot;</span>, state.user_id.get().into());
+    headers.insert(<span class="string">"Authorization"</span>, state.authorization.parse().unwrap());
+    headers.insert(<span class="string">"User-Id"</span>, state.user_id.get().into());
 
     <span class="kw">if </span>state.resume.is_some() {
-        headers.insert(<span class="string">&quot;Resume-Key&quot;</span>, state.address.to_string().parse().unwrap());
+        headers.insert(<span class="string">"Resume-Key"</span>, state.address.to_string().parse().unwrap());
     }
 
     <span class="prelude-val">Ok</span>(request)
@@ -1409,22 +1410,22 @@
     <span class="kw">let </span>headers = res.headers();
 
     <span class="kw">if let </span><span class="prelude-val">Some</span>(resume) = config.resume.as_ref() {
-        <span class="kw">let </span>header = HeaderName::from_static(<span class="string">&quot;session-resumed&quot;</span>);
+        <span class="kw">let </span>header = HeaderName::from_static(<span class="string">"session-resumed"</span>);
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(value) = headers.get(header) {
-            <span class="kw">if </span>value.as_bytes() == <span class="string">b&quot;false&quot; </span>{
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;session to node {} didn&#39;t resume&quot;</span>, config.address);
+            <span class="kw">if </span>value.as_bytes() == <span class="string">b"false" </span>{
+                <span class="macro">tracing::debug!</span>(<span class="string">"session to node {} didn't resume"</span>, config.address);
 
                 <span class="kw">let </span>payload = <span class="macro">serde_json::json!</span>({
-                    <span class="string">&quot;op&quot;</span>: <span class="string">&quot;configureResuming&quot;</span>,
-                    <span class="string">&quot;key&quot;</span>: config.address,
-                    <span class="string">&quot;timeout&quot;</span>: resume.timeout,
+                    <span class="string">"op"</span>: <span class="string">"configureResuming"</span>,
+                    <span class="string">"key"</span>: config.address,
+                    <span class="string">"timeout"</span>: resume.timeout,
                 });
                 <span class="kw">let </span>msg = Message::Text(serde_json::to_string(<span class="kw-2">&amp;</span>payload).unwrap());
 
                 stream.send(msg).<span class="kw">await</span>.unwrap();
             } <span class="kw">else </span>{
-                <span class="macro">tracing::debug!</span>(<span class="string">&quot;session to {} resumed&quot;</span>, config.address);
+                <span class="macro">tracing::debug!</span>(<span class="string">"session to {} resumed"</span>, config.address);
             }
         }
     }
@@ -1449,7 +1450,7 @@
         <span class="kw">match </span>tokio_tungstenite::connect_async(request).<span class="kw">await </span>{
             <span class="prelude-val">Ok</span>((stream, response)) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>((stream, response)),
             <span class="prelude-val">Err</span>(source) =&gt; {
-                <span class="macro">tracing::warn!</span>(<span class="string">&quot;failed to connect to node {source}: {:?}&quot;</span>, config.address);
+                <span class="macro">tracing::warn!</span>(<span class="string">"failed to connect to node {source}: {:?}"</span>, config.address);
 
                 <span class="kw">if </span><span class="macro">matches!</span>(<span class="kw-2">&amp;</span>source, TungsteniteError::Http(resp) <span class="kw">if </span>resp.status() == StatusCode::UNAUTHORIZED)
                 {
@@ -1463,7 +1464,7 @@
                 }
 
                 <span class="kw">if </span>seconds &gt; <span class="number">64 </span>{
-                    <span class="macro">tracing::debug!</span>(<span class="string">&quot;no longer trying to connect to node {}&quot;</span>, config.address);
+                    <span class="macro">tracing::debug!</span>(<span class="string">"no longer trying to connect to node {}"</span>, config.address);
 
                     <span class="kw">return </span><span class="prelude-val">Err</span>(NodeError {
                         kind: NodeErrorType::Connecting,
@@ -1472,7 +1473,7 @@
                 }
 
                 <span class="macro">tracing::debug!</span>(
-                    <span class="string">&quot;waiting {seconds} seconds before attempting to connect to node {} again&quot;</span>,
+                    <span class="string">"waiting {seconds} seconds before attempting to connect to node {} again"</span>,
                     config.address,
                 );
                 tokio_time::sleep(Duration::from_secs(seconds)).<span class="kw">await</span>;
@@ -1510,12 +1511,12 @@
     </span><span class="kw">fn </span>node_config_debug() {
         <span class="kw">let </span>config = NodeConfig {
             address: SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(<span class="number">127</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>), <span class="number">1312</span>)),
-            authorization: <span class="string">&quot;some auth&quot;</span>.to_owned(),
+            authorization: <span class="string">"some auth"</span>.to_owned(),
             resume: <span class="prelude-val">None</span>,
             user_id: Id::new(<span class="number">123</span>),
         };
 
-        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">&quot;{config:?}&quot;</span>).contains(<span class="string">&quot;authorization: &lt;redacted&gt;&quot;</span>));
+        <span class="macro">assert!</span>(<span class="macro">format!</span>(<span class="string">"{config:?}"</span>).contains(<span class="string">"authorization: &lt;redacted&gt;"</span>));
     }
 }
 </code></pre></div></section></main></body></html>

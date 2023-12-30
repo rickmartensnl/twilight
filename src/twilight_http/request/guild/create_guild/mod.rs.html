@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -529,33 +530,33 @@
 
 <span class="kw">impl </span>CreateGuildError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CreateGuildErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="self">self</span>.source
     }
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (CreateGuildErrorType, <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt;) {
         (<span class="self">self</span>.kind, <span class="self">self</span>.source)
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>CreateGuildError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
-            CreateGuildErrorType::NameInvalid { .. } =&gt; f.write_str(<span class="string">&quot;the guild name is invalid&quot;</span>),
+            CreateGuildErrorType::NameInvalid { .. } =&gt; f.write_str(<span class="string">"the guild name is invalid"</span>),
             CreateGuildErrorType::TooManyChannels { .. } =&gt; {
-                f.write_str(<span class="string">&quot;too many channels were provided&quot;</span>)
+                f.write_str(<span class="string">"too many channels were provided"</span>)
             }
             CreateGuildErrorType::TooManyRoles { .. } =&gt; {
-                f.write_str(<span class="string">&quot;too many roles were provided&quot;</span>)
+                f.write_str(<span class="string">"too many roles were provided"</span>)
             }
         }
     }
@@ -590,27 +591,27 @@
 }
 
 <span class="attr">#[derive(Serialize)]
-</span><span class="kw">struct </span>CreateGuildFields&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+</span><span class="kw">struct </span>CreateGuildFields&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>afk_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>afk_timeout: <span class="prelude-ty">Option</span>&lt;AfkTimeout&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>channels: <span class="prelude-ty">Option</span>&lt;Vec&lt;GuildChannelFields&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>default_message_notifications: <span class="prelude-ty">Option</span>&lt;DefaultMessageNotificationLevel&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>explicit_content_filter: <span class="prelude-ty">Option</span>&lt;ExplicitContentFilter&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
-    </span>icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
     name: String,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>roles: <span class="prelude-ty">Option</span>&lt;Vec&lt;RoleFields&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>system_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>system_channel_flags: <span class="prelude-ty">Option</span>&lt;SystemChannelFlags&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>verification_level: <span class="prelude-ty">Option</span>&lt;VerificationLevel&gt;,
 }
 
@@ -619,17 +620,17 @@
 /// Use [`RoleFieldsBuilder`] to build one.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>RoleFields {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>color: <span class="prelude-ty">Option</span>&lt;u32&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>hoist: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="kw">pub </span>id: Id&lt;RoleMarker&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>mentionable: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="kw">pub </span>name: String,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permissions: <span class="prelude-ty">Option</span>&lt;Permissions&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>position: <span class="prelude-ty">Option</span>&lt;i64&gt;,
 }
 
@@ -661,10 +662,10 @@
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>CategoryFields {
     <span class="kw">pub </span>id: Id&lt;ChannelMarker&gt;,
-    <span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: ChannelType,
     <span class="kw">pub </span>name: String,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;Vec&lt;PermissionOverwrite&gt;&gt;,
 }
 
@@ -674,18 +675,18 @@
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>TextFields {
     <span class="kw">pub </span>id: Id&lt;ChannelMarker&gt;,
-    <span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: ChannelType,
     <span class="kw">pub </span>name: String,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>nsfw: <span class="prelude-ty">Option</span>&lt;bool&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;Vec&lt;PermissionOverwrite&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>parent_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;u16&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>topic: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
@@ -694,17 +695,17 @@
 /// Use [`VoiceFieldsBuilder`] to build one.
 </span><span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>VoiceFields {
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>bitrate: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="kw">pub </span>id: Id&lt;ChannelMarker&gt;,
-    <span class="attr">#[serde(rename = <span class="string">&quot;type&quot;</span>)]
+    <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
     </span><span class="kw">pub </span>kind: ChannelType,
     <span class="kw">pub </span>name: String,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>permission_overwrites: <span class="prelude-ty">Option</span>&lt;Vec&lt;PermissionOverwrite&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>parent_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
-    <span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>user_limit: <span class="prelude-ty">Option</span>&lt;u16&gt;,
 }
 
@@ -712,14 +713,14 @@
 ///
 /// The minimum length of the name is 2 UTF-16 characters and the maximum is 100 UTF-16 characters.
 /// This endpoint can only be used by bots in less than 10 guilds.
-</span><span class="attr">#[must_use = <span class="string">&quot;requests must be configured and executed&quot;</span>]
-</span><span class="kw">pub struct </span>CreateGuild&lt;<span class="lifetime">&#39;a</span>&gt; {
-    fields: CreateGuildFields&lt;<span class="lifetime">&#39;a</span>&gt;,
-    http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client,
+</span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
+</span><span class="kw">pub struct </span>CreateGuild&lt;<span class="lifetime">'a</span>&gt; {
+    fields: CreateGuildFields&lt;<span class="lifetime">'a</span>&gt;,
+    http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; CreateGuild&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Client, name: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, CreateGuildError&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateGuild&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client, name: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, CreateGuildError&gt; {
         validate_guild_name(<span class="kw-2">&amp;</span>name).map_err(|source| CreateGuildError {
             kind: CreateGuildErrorType::NameInvalid { name: name.clone() },
             source: <span class="prelude-val">Some</span>(Box::new(source)),
@@ -746,7 +747,7 @@
     <span class="doccomment">/// Add a role to the list of roles.
     </span><span class="kw">pub fn </span>add_role(<span class="kw-2">mut </span><span class="self">self</span>, role: RoleFields) -&gt; <span class="self">Self </span>{
         <span class="kw">if </span><span class="self">self</span>.fields.roles.is_none() {
-            <span class="kw">let </span>builder = RoleFieldsBuilder::new(<span class="string">&quot;@everyone&quot;</span>.to_owned());
+            <span class="kw">let </span>builder = RoleFieldsBuilder::new(<span class="string">"@everyone"</span>.to_owned());
             <span class="self">self</span>.fields.roles.replace(<span class="macro">vec!</span>[builder.build()]);
         }
 
@@ -789,15 +790,15 @@
     ///     Client,
     /// };
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     ///
-    /// let text = TextFieldsBuilder::new(&quot;text channel&quot;.to_owned())?.build();
-    /// let voice = VoiceFieldsBuilder::new(&quot;voice channel&quot;.to_owned())?.build();
-    /// let text2 = TextFieldsBuilder::new(&quot;other text channel&quot;.to_owned())?
-    ///     .topic(&quot;posting&quot;.to_owned())?
+    /// let text = TextFieldsBuilder::new("text channel".to_owned())?.build();
+    /// let voice = VoiceFieldsBuilder::new("voice channel".to_owned())?.build();
+    /// let text2 = TextFieldsBuilder::new("other text channel".to_owned())?
+    ///     .topic("posting".to_owned())?
     ///     .build();
     ///
-    /// let category = CategoryFieldsBuilder::new(&quot;category channel&quot;.to_owned())?
+    /// let category = CategoryFieldsBuilder::new("category channel".to_owned())?
     ///     .add_text(text2)
     ///     .add_voice(voice);
     ///
@@ -807,7 +808,7 @@
     ///     .build();
     ///
     /// let guild = client
-    ///     .create_guild(&quot;guild name&quot;.to_owned())?
+    ///     .create_guild("guild name".to_owned())?
     ///     .channels(channels)?
     ///     .await?;
     /// # Ok(()) }
@@ -862,7 +863,7 @@
     /// and `{data}` is the base64-encoded image. See [Discord Docs/Image Data].
     ///
     /// [Discord Docs/Image Data]: https://discord.com/developers/docs/reference#image-data
-    </span><span class="kw">pub fn </span>icon(<span class="kw-2">mut </span><span class="self">self</span>, icon: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>icon(<span class="kw-2">mut </span><span class="self">self</span>, icon: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.icon.replace(icon);
 
         <span class="self">self
@@ -897,7 +898,7 @@
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the guild&#39;s [`SystemChannelFlags`].
+    <span class="doccomment">/// Set the guild's [`SystemChannelFlags`].
     </span><span class="kw">pub const fn </span>system_channel_flags(<span class="kw-2">mut </span><span class="self">self</span>, system_channel_flags: SystemChannelFlags) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.fields.system_channel_flags = <span class="prelude-val">Some</span>(system_channel_flags);
 
@@ -913,13 +914,13 @@
     /// ```no_run
     /// use twilight_http::{request::guild::create_guild::RoleFieldsBuilder, Client};
     /// # #[tokio::main] async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// # let client = Client::new(&quot;my token&quot;.to_owned());
+    /// # let client = Client::new("my token".to_owned());
     ///
-    /// let roles = vec![RoleFieldsBuilder::new(&quot;role 1&quot;.to_owned())
+    /// let roles = vec![RoleFieldsBuilder::new("role 1".to_owned())
     ///     .color(0x543923)?
     ///     .build()];
     /// client
-    ///     .create_guild(&quot;guild name&quot;.to_owned())?
+    ///     .create_guild("guild name".to_owned())?
     ///     .roles(roles)?
     ///     .await?;
     /// # Ok(()) }
@@ -940,7 +941,7 @@
         <span class="kw">if let </span><span class="prelude-val">Some</span>(prev_roles) = <span class="self">self</span>.fields.roles.as_mut() {
             roles.insert(<span class="number">0</span>, prev_roles.remove(<span class="number">0</span>));
         } <span class="kw">else </span>{
-            <span class="kw">let </span>builder = RoleFieldsBuilder::new(<span class="string">&quot;@everyone&quot;</span>.to_owned());
+            <span class="kw">let </span>builder = RoleFieldsBuilder::new(<span class="string">"@everyone"</span>.to_owned());
             roles.insert(<span class="number">0</span>, builder.build());
         }
 
@@ -950,13 +951,13 @@
     }
 
     <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.14.0&quot;</span>, note = <span class="string">&quot;use `.await` or `into_future` instead&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
     </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;PartialGuild&gt; {
         <span class="self">self</span>.into_future()
     }
 }
 
-<span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">type </span>Output = <span class="prelude-ty">Result</span>&lt;Response&lt;PartialGuild&gt;, HttpError&gt;;
 
     <span class="kw">type </span>IntoFuture = ResponseFuture&lt;PartialGuild&gt;;
@@ -971,7 +972,7 @@
     }
 }
 
-<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateGuild&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, HttpError&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::CreateGuild);
 

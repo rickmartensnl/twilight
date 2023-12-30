@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/builder/command.rs`."><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-util/src/builder/command.rs`."><title>command.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_util" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1731,22 +1732,22 @@
 //! use twilight_util::builder::command::{BooleanBuilder, CommandBuilder, StringBuilder};
 //!
 //! CommandBuilder::new(
-//!     &quot;blep&quot;,
-//!     &quot;Send a random adorable animal photo&quot;,
+//!     "blep",
+//!     "Send a random adorable animal photo",
 //!     CommandType::ChatInput,
 //! )
 //! .option(
-//!     StringBuilder::new(&quot;animal&quot;, &quot;The type of animal&quot;)
+//!     StringBuilder::new("animal", "The type of animal")
 //!         .required(true)
 //!         .choices([
-//!             (&quot;Dog&quot;, &quot;animal_dog&quot;),
-//!             (&quot;Cat&quot;, &quot;animal_cat&quot;),
-//!             (&quot;Penguin&quot;, &quot;animal_penguin&quot;),
+//!             ("Dog", "animal_dog"),
+//!             ("Cat", "animal_cat"),
+//!             ("Penguin", "animal_penguin"),
 //!         ]),
 //! )
 //! .option(BooleanBuilder::new(
-//!     &quot;only_smol&quot;,
-//!     &quot;Whether to show only baby animals&quot;,
+//!     "only_smol",
+//!     "Whether to show only baby animals",
 //! ));
 //! ```
 //!
@@ -1755,16 +1756,16 @@
 //! use twilight_util::builder::command::{CommandBuilder, NumberBuilder};
 //!
 //! CommandBuilder::new(
-//!     &quot;birthday&quot;,
-//!     &quot;Wish a friend a happy birthday&quot;,
+//!     "birthday",
+//!     "Wish a friend a happy birthday",
 //!     CommandType::ChatInput,
 //! )
-//! .name_localizations([(&quot;zh-CN&quot;, &quot;生日&quot;), (&quot;el&quot;, &quot;γενέθλια&quot;)])
-//! .description_localizations([(&quot;zh-Cn&quot;, &quot;祝你朋友生日快乐&quot;)])
+//! .name_localizations([("zh-CN", "生日"), ("el", "γενέθλια")])
+//! .description_localizations([("zh-Cn", "祝你朋友生日快乐")])
 //! .option(
-//!     NumberBuilder::new(&quot;age&quot;, &quot;Your friend&#39;s age&quot;)
-//!         .name_localizations([(&quot;zh-CN&quot;, &quot;岁数&quot;)])
-//!         .description_localizations([(&quot;zh-CN&quot;, &quot;你朋友的岁数&quot;)]),
+//!     NumberBuilder::new("age", "Your friend's age")
+//!         .name_localizations([("zh-CN", "岁数")])
+//!         .description_localizations([("zh-CN", "你朋友的岁数")]),
 //! );
 //! ```
 
@@ -1781,12 +1782,12 @@
 
 <span class="doccomment">/// Builder to create a [`Command`].
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;must be built into a command&quot;</span>]
+#[must_use = <span class="string">"must be built into a command"</span>]
 </span><span class="kw">pub struct </span>CommandBuilder(Command);
 
 <span class="kw">impl </span>CommandBuilder {
     <span class="doccomment">/// Create a new default [`Command`] builder.
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;, kind: CommandType) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(Command {
             application_id: <span class="prelude-val">None</span>,
@@ -1807,7 +1808,7 @@
 
     <span class="doccomment">/// Consume the builder, returning a [`Command`].
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;must be built into a command&quot;</span>]
+    #[must_use = <span class="string">"must be built into a command"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Command {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -1903,7 +1904,7 @@
 
     <span class="doccomment">/// Set whether the command is age-restricted.
     ///
-    /// Defaults to not being specified, which uses Discord&#39;s default.
+    /// Defaults to not being specified, which uses Discord's default.
     </span><span class="kw">pub const fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.<span class="number">0</span>.nsfw = <span class="prelude-val">Some</span>(nsfw);
 
@@ -1913,12 +1914,12 @@
 
 <span class="doccomment">/// Create an attachment option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>AttachmentBuilder(CommandOption);
 
 <span class="kw">impl </span>AttachmentBuilder {
     <span class="doccomment">/// Create a new default [`AttachmentBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -1940,7 +1941,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -1997,12 +1998,12 @@
 
 <span class="doccomment">/// Create a boolean option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>BooleanBuilder(CommandOption);
 
 <span class="kw">impl </span>BooleanBuilder {
     <span class="doccomment">/// Create a new default [`BooleanBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2024,7 +2025,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2081,12 +2082,12 @@
 
 <span class="doccomment">/// Create a channel option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>ChannelBuilder(CommandOption);
 
 <span class="kw">impl </span>ChannelBuilder {
     <span class="doccomment">/// Create a new default [`ChannelBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2108,7 +2109,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2173,12 +2174,12 @@
 }
 <span class="doccomment">/// Create a integer option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>IntegerBuilder(CommandOption);
 
 <span class="kw">impl </span>IntegerBuilder {
     <span class="doccomment">/// Create a new default [`IntegerBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
@@ -2200,7 +2201,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2234,10 +2235,10 @@
             </span>.<span class="number">0
             </span>.choices
             .as_mut()
-            .expect(<span class="string">&quot;choice exists&quot;</span>)
+            .expect(<span class="string">"choice exists"</span>)
             .iter_mut()
             .find(|choice| choice.name == choice_name)
-            .expect(<span class="string">&quot;choice exists&quot;</span>);
+            .expect(<span class="string">"choice exists"</span>);
 
         choice.name_localizations = <span class="prelude-val">Some</span>(
             name_localizations
@@ -2342,12 +2343,12 @@
 
 <span class="doccomment">/// Create a mentionable option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>MentionableBuilder(CommandOption);
 
 <span class="kw">impl </span>MentionableBuilder {
     <span class="doccomment">/// Create a new default [`MentionableBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2369,7 +2370,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2426,12 +2427,12 @@
 
 <span class="doccomment">/// Create a number option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>NumberBuilder(CommandOption);
 
 <span class="kw">impl </span>NumberBuilder {
     <span class="doccomment">/// Create a new default [`NumberBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
@@ -2453,7 +2454,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2487,10 +2488,10 @@
             </span>.<span class="number">0
             </span>.choices
             .as_mut()
-            .expect(<span class="string">&quot;choice exists&quot;</span>)
+            .expect(<span class="string">"choice exists"</span>)
             .iter_mut()
             .find(|choice| choice.name == choice_name)
-            .expect(<span class="string">&quot;choice exists&quot;</span>);
+            .expect(<span class="string">"choice exists"</span>);
 
         choice.name_localizations = <span class="prelude-val">Some</span>(
             name_localizations
@@ -2595,12 +2596,12 @@
 
 <span class="doccomment">/// Create a role option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>RoleBuilder(CommandOption);
 
 <span class="kw">impl </span>RoleBuilder {
     <span class="doccomment">/// Create a new default [`RoleBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2622,7 +2623,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2679,12 +2680,12 @@
 
 <span class="doccomment">/// Create a string option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>StringBuilder(CommandOption);
 
 <span class="kw">impl </span>StringBuilder {
     <span class="doccomment">/// Create a new default [`StringBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
@@ -2706,7 +2707,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2740,10 +2741,10 @@
             </span>.<span class="number">0
             </span>.choices
             .as_mut()
-            .expect(<span class="string">&quot;choice exists&quot;</span>)
+            .expect(<span class="string">"choice exists"</span>)
             .iter_mut()
             .find(|choice| choice.name == choice_name)
-            .expect(<span class="string">&quot;choice exists&quot;</span>);
+            .expect(<span class="string">"choice exists"</span>);
 
         choice.name_localizations = <span class="prelude-val">Some</span>(
             name_localizations
@@ -2851,12 +2852,12 @@
 
 <span class="doccomment">/// Create a subcommand option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>SubCommandBuilder(CommandOption);
 
 <span class="kw">impl </span>SubCommandBuilder {
     <span class="doccomment">/// Create a new default [`SubCommandBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2878,7 +2879,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -2928,7 +2929,7 @@
         <span class="self">self</span>.<span class="number">0
             </span>.options
             .as_mut()
-            .expect(<span class="string">&quot;set to Some in `new`&quot;</span>)
+            .expect(<span class="string">"set to Some in `new`"</span>)
             .push(option);
 
         <span class="self">self
@@ -2943,12 +2944,12 @@
 
 <span class="doccomment">/// Create a subcommand group option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>SubCommandGroupBuilder(CommandOption);
 
 <span class="kw">impl </span>SubCommandGroupBuilder {
     <span class="doccomment">/// Create a new default [`SubCommandGroupBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -2970,7 +2971,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -3027,12 +3028,12 @@
 
 <span class="doccomment">/// Create a user option with a builder.
 </span><span class="attr">#[derive(Clone, Debug)]
-#[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+#[must_use = <span class="string">"should be used in a command builder"</span>]
 </span><span class="kw">pub struct </span>UserBuilder(CommandOption);
 
 <span class="kw">impl </span>UserBuilder {
     <span class="doccomment">/// Create a new default [`UserBuilder`].
-    </span><span class="attr">#[must_use = <span class="string">&quot;builders have no effect if unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"builders have no effect if unused"</span>]
     </span><span class="kw">pub fn </span>new(name: <span class="kw">impl </span>Into&lt;String&gt;, description: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(CommandOption {
             autocomplete: <span class="prelude-val">None</span>,
@@ -3054,7 +3055,7 @@
 
     <span class="doccomment">/// Consume the builder, returning the built command option.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    #[must_use = <span class="string">&quot;should be used in a command builder&quot;</span>]
+    #[must_use = <span class="string">"should be used in a command builder"</span>]
     </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; CommandOption {
         <span class="self">self</span>.<span class="number">0
     </span>}
@@ -3132,46 +3133,46 @@
     </span><span class="kw">fn </span>construct_command_with_builder() {
         <span class="kw">let </span>command =
             CommandBuilder::new(
-                <span class="string">&quot;permissions&quot;</span>,
-                <span class="string">&quot;Get or edit permissions for a user or a role&quot;</span>,
+                <span class="string">"permissions"</span>,
+                <span class="string">"Get or edit permissions for a user or a role"</span>,
                 CommandType::ChatInput,
             )
             .nsfw(<span class="bool-val">true</span>)
             .option(
-                SubCommandGroupBuilder::new(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;Get or edit permissions for a user&quot;</span>)
+                SubCommandGroupBuilder::new(<span class="string">"user"</span>, <span class="string">"Get or edit permissions for a user"</span>)
                     .subcommands([
-                        SubCommandBuilder::new(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;Get permissions for a user&quot;</span>)
-                            .option(UserBuilder::new(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;The user to get&quot;</span>).required(<span class="bool-val">true</span>))
+                        SubCommandBuilder::new(<span class="string">"get"</span>, <span class="string">"Get permissions for a user"</span>)
+                            .option(UserBuilder::new(<span class="string">"user"</span>, <span class="string">"The user to get"</span>).required(<span class="bool-val">true</span>))
                             .option(ChannelBuilder::new(
-                                <span class="string">&quot;channel&quot;</span>,
-                                <span class="string">&quot;The channel permissions to get. If omitted, the guild \
-                                 permissions will be returned&quot;</span>,
+                                <span class="string">"channel"</span>,
+                                <span class="string">"The channel permissions to get. If omitted, the guild \
+                                 permissions will be returned"</span>,
                             )),
-                        SubCommandBuilder::new(<span class="string">&quot;edit&quot;</span>, <span class="string">&quot;Edit permissions for a user&quot;</span>)
-                            .option(UserBuilder::new(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;The user to edit&quot;</span>).required(<span class="bool-val">true</span>))
+                        SubCommandBuilder::new(<span class="string">"edit"</span>, <span class="string">"Edit permissions for a user"</span>)
+                            .option(UserBuilder::new(<span class="string">"user"</span>, <span class="string">"The user to edit"</span>).required(<span class="bool-val">true</span>))
                             .option(ChannelBuilder::new(
-                                <span class="string">&quot;channel&quot;</span>,
-                                <span class="string">&quot;The channel permissions to edit. If omitted, the guild \
-                                 permissions will be edited&quot;</span>,
+                                <span class="string">"channel"</span>,
+                                <span class="string">"The channel permissions to edit. If omitted, the guild \
+                                 permissions will be edited"</span>,
                             )),
                     ]),
             )
             .option(
-                SubCommandGroupBuilder::new(<span class="string">&quot;role&quot;</span>, <span class="string">&quot;Get or edit permissions for a role&quot;</span>)
+                SubCommandGroupBuilder::new(<span class="string">"role"</span>, <span class="string">"Get or edit permissions for a role"</span>)
                     .subcommands([
-                        SubCommandBuilder::new(<span class="string">&quot;get&quot;</span>, <span class="string">&quot;Get permissions for a role&quot;</span>)
-                            .option(RoleBuilder::new(<span class="string">&quot;role&quot;</span>, <span class="string">&quot;The role to get&quot;</span>).required(<span class="bool-val">true</span>))
+                        SubCommandBuilder::new(<span class="string">"get"</span>, <span class="string">"Get permissions for a role"</span>)
+                            .option(RoleBuilder::new(<span class="string">"role"</span>, <span class="string">"The role to get"</span>).required(<span class="bool-val">true</span>))
                             .option(ChannelBuilder::new(
-                                <span class="string">&quot;channel&quot;</span>,
-                                <span class="string">&quot;The channel permissions to get. If omitted, the guild \
-                                 permissions will be returned&quot;</span>,
+                                <span class="string">"channel"</span>,
+                                <span class="string">"The channel permissions to get. If omitted, the guild \
+                                 permissions will be returned"</span>,
                             )),
-                        SubCommandBuilder::new(<span class="string">&quot;edit&quot;</span>, <span class="string">&quot;Edit permissions for a role&quot;</span>)
-                            .option(RoleBuilder::new(<span class="string">&quot;role&quot;</span>, <span class="string">&quot;The role to edit&quot;</span>).required(<span class="bool-val">true</span>))
+                        SubCommandBuilder::new(<span class="string">"edit"</span>, <span class="string">"Edit permissions for a role"</span>)
+                            .option(RoleBuilder::new(<span class="string">"role"</span>, <span class="string">"The role to edit"</span>).required(<span class="bool-val">true</span>))
                             .option(ChannelBuilder::new(
-                                <span class="string">&quot;channel&quot;</span>,
-                                <span class="string">&quot;The channel permissions to edit. If omitted, the guild \
-                                 permissions will be edited&quot;</span>,
+                                <span class="string">"channel"</span>,
+                                <span class="string">"The channel permissions to edit. If omitted, the guild \
+                                 permissions will be edited"</span>,
                             )),
                     ]),
             )
@@ -3181,11 +3182,11 @@
             application_id: <span class="prelude-val">None</span>,
             default_member_permissions: <span class="prelude-val">None</span>,
             dm_permission: <span class="prelude-val">None</span>,
-            description: String::from(<span class="string">&quot;Get or edit permissions for a user or a role&quot;</span>),
+            description: String::from(<span class="string">"Get or edit permissions for a user or a role"</span>),
             guild_id: <span class="prelude-val">None</span>,
             id: <span class="prelude-val">None</span>,
             kind: CommandType::ChatInput,
-            name: String::from(<span class="string">&quot;permissions&quot;</span>),
+            name: String::from(<span class="string">"permissions"</span>),
             name_localizations: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             description_localizations: <span class="prelude-val">None</span>,
@@ -3194,42 +3195,42 @@
                     autocomplete: <span class="prelude-val">None</span>,
                     channel_types: <span class="prelude-val">None</span>,
                     choices: <span class="prelude-val">None</span>,
-                    description: <span class="string">&quot;Get or edit permissions for a user&quot;</span>.to_owned(),
+                    description: <span class="string">"Get or edit permissions for a user"</span>.to_owned(),
                     description_localizations: <span class="prelude-val">None</span>,
                     kind: CommandOptionType::SubCommandGroup,
                     max_length: <span class="prelude-val">None</span>,
                     max_value: <span class="prelude-val">None</span>,
                     min_length: <span class="prelude-val">None</span>,
                     min_value: <span class="prelude-val">None</span>,
-                    name: <span class="string">&quot;user&quot;</span>.to_owned(),
+                    name: <span class="string">"user"</span>.to_owned(),
                     name_localizations: <span class="prelude-val">None</span>,
                     options: <span class="prelude-val">Some</span>(Vec::from([
                         CommandOption {
                             autocomplete: <span class="prelude-val">None</span>,
                             channel_types: <span class="prelude-val">None</span>,
                             choices: <span class="prelude-val">None</span>,
-                            description: <span class="string">&quot;Get permissions for a user&quot;</span>.to_owned(),
+                            description: <span class="string">"Get permissions for a user"</span>.to_owned(),
                             description_localizations: <span class="prelude-val">None</span>,
                             kind: CommandOptionType::SubCommand,
                             max_length: <span class="prelude-val">None</span>,
                             max_value: <span class="prelude-val">None</span>,
                             min_length: <span class="prelude-val">None</span>,
                             min_value: <span class="prelude-val">None</span>,
-                            name: <span class="string">&quot;get&quot;</span>.to_owned(),
+                            name: <span class="string">"get"</span>.to_owned(),
                             name_localizations: <span class="prelude-val">None</span>,
                             options: <span class="prelude-val">Some</span>(Vec::from([
                                 CommandOption {
                                     autocomplete: <span class="prelude-val">None</span>,
                                     channel_types: <span class="prelude-val">None</span>,
                                     choices: <span class="prelude-val">None</span>,
-                                    description: <span class="string">&quot;The user to get&quot;</span>.to_owned(),
+                                    description: <span class="string">"The user to get"</span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::User,
                                     max_length: <span class="prelude-val">None</span>,
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;user&quot;</span>.to_owned(),
+                                    name: <span class="string">"user"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
@@ -3239,8 +3240,8 @@
                                     channel_types: <span class="prelude-val">Some</span>(Vec::new()),
                                     choices: <span class="prelude-val">None</span>,
                                     description:
-                                        <span class="string">&quot;The channel permissions to get. If omitted, the guild \
-                                        permissions will be returned&quot;
+                                        <span class="string">"The channel permissions to get. If omitted, the guild \
+                                        permissions will be returned"
                                             </span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Channel,
@@ -3248,7 +3249,7 @@
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;channel&quot;</span>.to_owned(),
+                                    name: <span class="string">"channel"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">None</span>,
@@ -3260,28 +3261,28 @@
                             autocomplete: <span class="prelude-val">None</span>,
                             channel_types: <span class="prelude-val">None</span>,
                             choices: <span class="prelude-val">None</span>,
-                            description: <span class="string">&quot;Edit permissions for a user&quot;</span>.to_owned(),
+                            description: <span class="string">"Edit permissions for a user"</span>.to_owned(),
                             description_localizations: <span class="prelude-val">None</span>,
                             kind: CommandOptionType::SubCommand,
                             max_length: <span class="prelude-val">None</span>,
                             max_value: <span class="prelude-val">None</span>,
                             min_length: <span class="prelude-val">None</span>,
                             min_value: <span class="prelude-val">None</span>,
-                            name: <span class="string">&quot;edit&quot;</span>.to_owned(),
+                            name: <span class="string">"edit"</span>.to_owned(),
                             name_localizations: <span class="prelude-val">None</span>,
                             options: <span class="prelude-val">Some</span>(Vec::from([
                                 CommandOption {
                                     autocomplete: <span class="prelude-val">None</span>,
                                     channel_types: <span class="prelude-val">None</span>,
                                     choices: <span class="prelude-val">None</span>,
-                                    description: <span class="string">&quot;The user to edit&quot;</span>.to_owned(),
+                                    description: <span class="string">"The user to edit"</span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::User,
                                     max_length: <span class="prelude-val">None</span>,
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;user&quot;</span>.to_owned(),
+                                    name: <span class="string">"user"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
@@ -3291,8 +3292,8 @@
                                     channel_types: <span class="prelude-val">Some</span>(Vec::new()),
                                     choices: <span class="prelude-val">None</span>,
                                     description:
-                                        <span class="string">&quot;The channel permissions to edit. If omitted, the guild \
-                                        permissions will be edited&quot;
+                                        <span class="string">"The channel permissions to edit. If omitted, the guild \
+                                        permissions will be edited"
                                             </span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Channel,
@@ -3300,7 +3301,7 @@
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;channel&quot;</span>.to_owned(),
+                                    name: <span class="string">"channel"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">None</span>,
@@ -3315,42 +3316,42 @@
                     autocomplete: <span class="prelude-val">None</span>,
                     channel_types: <span class="prelude-val">None</span>,
                     choices: <span class="prelude-val">None</span>,
-                    description: <span class="string">&quot;Get or edit permissions for a role&quot;</span>.to_owned(),
+                    description: <span class="string">"Get or edit permissions for a role"</span>.to_owned(),
                     description_localizations: <span class="prelude-val">None</span>,
                     kind: CommandOptionType::SubCommandGroup,
                     max_length: <span class="prelude-val">None</span>,
                     max_value: <span class="prelude-val">None</span>,
                     min_length: <span class="prelude-val">None</span>,
                     min_value: <span class="prelude-val">None</span>,
-                    name: <span class="string">&quot;role&quot;</span>.to_owned(),
+                    name: <span class="string">"role"</span>.to_owned(),
                     name_localizations: <span class="prelude-val">None</span>,
                     options: <span class="prelude-val">Some</span>(Vec::from([
                         CommandOption {
                             autocomplete: <span class="prelude-val">None</span>,
                             channel_types: <span class="prelude-val">None</span>,
                             choices: <span class="prelude-val">None</span>,
-                            description: <span class="string">&quot;Get permissions for a role&quot;</span>.to_owned(),
+                            description: <span class="string">"Get permissions for a role"</span>.to_owned(),
                             description_localizations: <span class="prelude-val">None</span>,
                             kind: CommandOptionType::SubCommand,
                             max_length: <span class="prelude-val">None</span>,
                             max_value: <span class="prelude-val">None</span>,
                             min_length: <span class="prelude-val">None</span>,
                             min_value: <span class="prelude-val">None</span>,
-                            name: <span class="string">&quot;get&quot;</span>.to_owned(),
+                            name: <span class="string">"get"</span>.to_owned(),
                             name_localizations: <span class="prelude-val">None</span>,
                             options: <span class="prelude-val">Some</span>(Vec::from([
                                 CommandOption {
                                     autocomplete: <span class="prelude-val">None</span>,
                                     channel_types: <span class="prelude-val">None</span>,
                                     choices: <span class="prelude-val">None</span>,
-                                    description: <span class="string">&quot;The role to get&quot;</span>.to_owned(),
+                                    description: <span class="string">"The role to get"</span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Role,
                                     max_length: <span class="prelude-val">None</span>,
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;role&quot;</span>.to_owned(),
+                                    name: <span class="string">"role"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
@@ -3360,8 +3361,8 @@
                                     channel_types: <span class="prelude-val">Some</span>(Vec::new()),
                                     choices: <span class="prelude-val">None</span>,
                                     description:
-                                        <span class="string">&quot;The channel permissions to get. If omitted, the guild \
-                                permissions will be returned&quot;
+                                        <span class="string">"The channel permissions to get. If omitted, the guild \
+                                permissions will be returned"
                                             </span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Channel,
@@ -3369,7 +3370,7 @@
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;channel&quot;</span>.to_owned(),
+                                    name: <span class="string">"channel"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">None</span>,
@@ -3381,28 +3382,28 @@
                             autocomplete: <span class="prelude-val">None</span>,
                             channel_types: <span class="prelude-val">None</span>,
                             choices: <span class="prelude-val">None</span>,
-                            description: <span class="string">&quot;Edit permissions for a role&quot;</span>.to_owned(),
+                            description: <span class="string">"Edit permissions for a role"</span>.to_owned(),
                             description_localizations: <span class="prelude-val">None</span>,
                             kind: CommandOptionType::SubCommand,
                             max_length: <span class="prelude-val">None</span>,
                             max_value: <span class="prelude-val">None</span>,
                             min_length: <span class="prelude-val">None</span>,
                             min_value: <span class="prelude-val">None</span>,
-                            name: <span class="string">&quot;edit&quot;</span>.to_owned(),
+                            name: <span class="string">"edit"</span>.to_owned(),
                             name_localizations: <span class="prelude-val">None</span>,
                             options: <span class="prelude-val">Some</span>(Vec::from([
                                 CommandOption {
                                     autocomplete: <span class="prelude-val">None</span>,
                                     channel_types: <span class="prelude-val">None</span>,
                                     choices: <span class="prelude-val">None</span>,
-                                    description: <span class="string">&quot;The role to edit&quot;</span>.to_owned(),
+                                    description: <span class="string">"The role to edit"</span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Role,
                                     max_length: <span class="prelude-val">None</span>,
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;role&quot;</span>.to_owned(),
+                                    name: <span class="string">"role"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
@@ -3412,8 +3413,8 @@
                                     channel_types: <span class="prelude-val">Some</span>(Vec::new()),
                                     choices: <span class="prelude-val">None</span>,
                                     description:
-                                        <span class="string">&quot;The channel permissions to edit. If omitted, the guild \
-                                permissions will be edited&quot;
+                                        <span class="string">"The channel permissions to edit. If omitted, the guild \
+                                permissions will be edited"
                                             </span>.to_owned(),
                                     description_localizations: <span class="prelude-val">None</span>,
                                     kind: CommandOptionType::Channel,
@@ -3421,7 +3422,7 @@
                                     max_value: <span class="prelude-val">None</span>,
                                     min_length: <span class="prelude-val">None</span>,
                                     min_value: <span class="prelude-val">None</span>,
-                                    name: <span class="string">&quot;channel&quot;</span>.to_owned(),
+                                    name: <span class="string">"channel"</span>.to_owned(),
                                     name_localizations: <span class="prelude-val">None</span>,
                                     options: <span class="prelude-val">None</span>,
                                     required: <span class="prelude-val">None</span>,
@@ -3441,7 +3442,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>validate() {
-        <span class="kw">let </span>result = CommandBuilder::new(<span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, CommandType::ChatInput).validate();
+        <span class="kw">let </span>result = CommandBuilder::new(<span class="string">""</span>, <span class="string">""</span>, CommandType::ChatInput).validate();
 
         <span class="macro">assert!</span>(result.is_err());
     }

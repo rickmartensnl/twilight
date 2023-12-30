@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/component.rs`."><title>component.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-validate/src/component.rs`."><title>component.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_validate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1330,7 +1331,7 @@
 
 <span class="doccomment">/// Maximum number of [`Component`]s allowed inside an [`ActionRow`].
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Action Rows][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#action-rows
@@ -1338,7 +1339,7 @@
 
 <span class="doccomment">/// Maximum number of root [`Component`]s in a message.
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Action Row][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#action-rows
@@ -1349,7 +1350,7 @@
 /// An example of a component with a custom ID is the
 /// [`Button`][`Button::custom_id`].
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Components][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#component-object-component-structure
@@ -1359,7 +1360,7 @@
 ///
 /// An example of a component with a label is the [`Button`][`Button::label`].
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Components][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#component-object-component-structure
@@ -1368,7 +1369,7 @@
 <span class="doccomment">/// Maximum number of [`SelectMenuOption`]s that can be chosen in a
 /// [`SelectMenu`].
 ///
-/// This is defined in Dicsord&#39;s documentation, per
+/// This is defined in Dicsord's documentation, per
 /// [Discord Docs/Select Menu][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
@@ -1377,7 +1378,7 @@
 <span class="doccomment">/// Minimum number of [`SelectMenuOption`]s that can be chosen in a
 /// [`SelectMenu`].
 ///
-/// This is defined in Dicsord&#39;s documentation, per
+/// This is defined in Dicsord's documentation, per
 /// [Discord Docs/Select Menu][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
@@ -1386,7 +1387,7 @@
 <span class="doccomment">/// Maximum number of [`SelectMenuOption`]s that must be chosen in a
 /// [`SelectMenu`].
 ///
-/// This is defined in Dicsord&#39;s documentation, per
+/// This is defined in Dicsord's documentation, per
 /// [Discord Docs/Select Menu][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
@@ -1394,7 +1395,7 @@
 
 <span class="doccomment">/// Maximum number of [`SelectMenuOption`]s in a [`SelectMenu`].
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Select Menu][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
@@ -1402,7 +1403,7 @@
 
 <span class="doccomment">/// Maximum length of a [`SelectMenuOption::description`] in codepoints.
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Select Menu Option][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
@@ -1410,7 +1411,7 @@
 
 <span class="doccomment">/// Maximum length of a [`SelectMenuOption::label`] in codepoints.
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Select Menu Option][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
@@ -1418,7 +1419,7 @@
 
 <span class="doccomment">/// Maximum length of a [`SelectMenuOption::value`] in codepoints.
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Select Menu Option][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
@@ -1426,7 +1427,7 @@
 
 <span class="doccomment">/// Maximum length of a [`SelectMenu::placeholder`] in codepoints.
 ///
-/// This is defined in Discord&#39;s documentation, per
+/// This is defined in Discord's documentation, per
 /// [Discord Docs/Select Menu][1].
 ///
 /// [1]: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-menu-structure
@@ -1479,20 +1480,20 @@
 
 <span class="kw">impl </span>ComponentValidationError {
     <span class="doccomment">/// Immutable reference to the type of error that occurred.
-    </span><span class="attr">#[must_use = <span class="string">&quot;retrieving the type has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"retrieving the type has no effect if left unused"</span>]
     </span><span class="kw">pub const fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ComponentValidationErrorType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
     <span class="doccomment">/// Consume the error, returning the source error if there is any.
     </span><span class="attr">#[allow(clippy::unused_self)]
-    #[must_use = <span class="string">&quot;consuming the error and retrieving the source has no effect if left unused&quot;</span>]
+    #[must_use = <span class="string">"consuming the error and retrieving the source has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_source(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
     <span class="doccomment">/// Consume the error, returning the owned error type and the source error.
-    </span><span class="attr">#[must_use = <span class="string">&quot;consuming the error into its parts has no effect if left unused&quot;</span>]
+    </span><span class="attr">#[must_use = <span class="string">"consuming the error into its parts has no effect if left unused"</span>]
     </span><span class="kw">pub fn </span>into_parts(
         <span class="self">self</span>,
     ) -&gt; (
@@ -1505,150 +1506,150 @@
 
 <span class="kw">impl </span>Display <span class="kw">for </span>ComponentValidationError {
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.kind {
             ComponentValidationErrorType::ActionRowComponentCount { count } =&gt; {
-                f.write_str(<span class="string">&quot;an action row has &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"an action row has "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; children, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" children, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>ACTION_ROW_COMPONENT_COUNT, f)
             }
             ComponentValidationErrorType::ButtonConflict =&gt; {
-                f.write_str(<span class="string">&quot;button has both a custom id and url, which is never valid&quot;</span>)
+                f.write_str(<span class="string">"button has both a custom id and url, which is never valid"</span>)
             }
             ComponentValidationErrorType::ButtonStyle { style } =&gt; {
-                f.write_str(<span class="string">&quot;button has a type of &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"button has a type of "</span>)<span class="question-mark">?</span>;
                 Debug::fmt(style, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, which must have a &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", which must have a "</span>)<span class="question-mark">?</span>;
 
                 f.write_str(<span class="kw">if </span><span class="kw-2">*</span>style == ButtonStyle::Link {
-                    <span class="string">&quot;url&quot;
+                    <span class="string">"url"
                 </span>} <span class="kw">else </span>{
-                    <span class="string">&quot;custom id&quot;
+                    <span class="string">"custom id"
                 </span>})<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; configured&quot;</span>)
+                f.write_str(<span class="string">" configured"</span>)
             }
             ComponentValidationErrorType::ComponentCount { count } =&gt; {
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; components were provided, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" components were provided, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>COMPONENT_COUNT, f)
             }
             ComponentValidationErrorType::ComponentCustomIdLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a component&#39;s custom id is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a component's custom id is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>COMPONENT_CUSTOM_ID_LENGTH, f)
             }
             ComponentValidationErrorType::ComponentLabelLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a component&#39;s label is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a component's label is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>COMPONENT_BUTTON_LABEL_LENGTH, f)
             }
             ComponentValidationErrorType::InvalidChildComponent { kind } =&gt; {
-                f.write_str(<span class="string">&quot;a &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a '"</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>kind, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot; component was provided, but can not be a child component&quot;</span>)
+                f.write_str(<span class="string">" component was provided, but can not be a child component"</span>)
             }
             ComponentValidationErrorType::InvalidRootComponent { kind } =&gt; {
-                f.write_str(<span class="string">&quot;a &#39;&quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a '"</span>)<span class="question-mark">?</span>;
                 Display::fmt(kind, f)<span class="question-mark">?</span>;
 
-                f.write_str(<span class="string">&quot;&#39; component was provided, but can not be a root component&quot;</span>)
+                f.write_str(<span class="string">"' component was provided, but can not be a root component"</span>)
             }
             ComponentValidationErrorType::SelectMaximumValuesCount { count } =&gt; {
-                f.write_str(<span class="string">&quot;maximum number of values that can be chosen is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"maximum number of values that can be chosen is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but must be greater than or equal to &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but must be greater than or equal to "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_MAXIMUM_VALUES_REQUIREMENT, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;and less than or equal to &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"and less than or equal to "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_MAXIMUM_VALUES_LIMIT, f)
             }
             ComponentValidationErrorType::SelectMinimumValuesCount { count } =&gt; {
-                f.write_str(<span class="string">&quot;maximum number of values that must be chosen is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"maximum number of values that must be chosen is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but must be less than or equal to &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but must be less than or equal to "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_MAXIMUM_VALUES_LIMIT, f)
             }
             ComponentValidationErrorType::SelectOptionDescriptionLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a select menu option&#39;s description is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a select menu option's description is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_OPTION_DESCRIPTION_LENGTH, f)
             }
             ComponentValidationErrorType::SelectOptionLabelLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a select menu option&#39;s label is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a select menu option's label is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_OPTION_LABEL_LENGTH, f)
             }
             ComponentValidationErrorType::SelectOptionValueLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a select menu option&#39;s value is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a select menu option's value is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_OPTION_VALUE_LENGTH, f)
             }
             ComponentValidationErrorType::SelectPlaceholderLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a select menu&#39;s placeholder is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a select menu's placeholder is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_PLACEHOLDER_LENGTH, f)
             }
             ComponentValidationErrorType::SelectOptionCount { count } =&gt; {
-                f.write_str(<span class="string">&quot;a select menu has &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a select menu has "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; options, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" options, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>SELECT_OPTION_COUNT, f)
             }
             ComponentValidationErrorType::TextInputLabelLength { len: count } =&gt; {
-                f.write_str(<span class="string">&quot;a text input label length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a text input label length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_LABEL_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_LABEL_MAX, f)
             }
             ComponentValidationErrorType::TextInputMaxLength { len: count } =&gt; {
-                f.write_str(<span class="string">&quot;a text input max length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a text input max length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at least &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at least "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_LENGTH_MIN, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; and at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" and at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_LENGTH_MAX, f)
             }
             ComponentValidationErrorType::TextInputMinLength { len: count } =&gt; {
-                f.write_str(<span class="string">&quot;a text input min length is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a text input min length is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(count, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot;, but it must be at most &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">", but it must be at most "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_LENGTH_MAX, f)
             }
             ComponentValidationErrorType::TextInputPlaceholderLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a text input&#39;s placeholder is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a text input's placeholder is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_PLACEHOLDER_MAX, f)
             }
             ComponentValidationErrorType::TextInputValueLength { chars } =&gt; {
-                f.write_str(<span class="string">&quot;a text input&#39;s value is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"a text input's value is "</span>)<span class="question-mark">?</span>;
                 Display::fmt(<span class="kw-2">&amp;</span>chars, f)<span class="question-mark">?</span>;
-                f.write_str(<span class="string">&quot; characters long, but the max is &quot;</span>)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">" characters long, but the max is "</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(<span class="kw-2">&amp;</span>TEXT_INPUT_PLACEHOLDER_MAX, f)
             }
@@ -2054,7 +2055,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Validate that a [`Component`]&#39;s label is not too long.
+<span class="doccomment">/// Validate that a [`Component`]'s label is not too long.
 ///
 /// # Errors
 ///
@@ -2094,7 +2095,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Validate a [`SelectMenuOption::description`]&#39;s length.
+<span class="doccomment">/// Validate a [`SelectMenuOption::description`]'s length.
 ///
 /// # Errors
 ///
@@ -2164,7 +2165,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Validate a [`SelectMenuOption::label`]&#39;s length.
+<span class="doccomment">/// Validate a [`SelectMenuOption::label`]'s length.
 ///
 /// # Errors
 ///
@@ -2185,7 +2186,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Validate a [`SelectMenuOption::value`]&#39;s length.
+<span class="doccomment">/// Validate a [`SelectMenuOption::value`]'s length.
 ///
 /// # Errors
 ///
@@ -2234,7 +2235,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Validate a [`SelectMenu::placeholder`]&#39;s length.
+<span class="doccomment">/// Validate a [`SelectMenu::placeholder`]'s length.
 ///
 /// # Errors
 ///
@@ -2257,7 +2258,7 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Ensure a [`TextInput::label`]&#39;s length is correct.
+<span class="doccomment">/// Ensure a [`TextInput::label`]'s length is correct.
 ///
 /// The length must be at most [`TEXT_INPUT_LABEL_MAX`].
 ///
@@ -2280,7 +2281,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure a [`TextInput::max_length`]&#39;s value is correct.
+<span class="doccomment">/// Ensure a [`TextInput::max_length`]'s value is correct.
 ///
 /// # Errors
 ///
@@ -2300,7 +2301,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure a [`TextInput::min_length`]&#39;s value is correct.
+<span class="doccomment">/// Ensure a [`TextInput::min_length`]'s value is correct.
 ///
 /// # Errors
 ///
@@ -2320,7 +2321,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure a [`TextInput::placeholder`]&#39;s length is correct.
+<span class="doccomment">/// Ensure a [`TextInput::placeholder`]'s length is correct.
 ///
 /// The length must be at most [`TEXT_INPUT_PLACEHOLDER_MAX`].
 ///
@@ -2345,7 +2346,7 @@
     }
 }
 
-<span class="doccomment">/// Ensure a [`TextInput::value`]&#39;s length is correct.
+<span class="doccomment">/// Ensure a [`TextInput::value`]'s length is correct.
 ///
 /// # Errors
 ///
@@ -2403,26 +2404,26 @@
             custom_id: <span class="prelude-val">None</span>,
             disabled: <span class="bool-val">false</span>,
             emoji: <span class="prelude-val">Some</span>(ReactionType::Unicode {
-                name: <span class="string">&quot;📚&quot;</span>.into()
+                name: <span class="string">"📚"</span>.into()
             }),
-            label: <span class="prelude-val">Some</span>(<span class="string">&quot;Read&quot;</span>.into()),
+            label: <span class="prelude-val">Some</span>(<span class="string">"Read"</span>.into()),
             style: ButtonStyle::Link,
-            url: <span class="prelude-val">Some</span>(<span class="string">&quot;https://abebooks.com&quot;</span>.into()),
+            url: <span class="prelude-val">Some</span>(<span class="string">"https://abebooks.com"</span>.into()),
         };
 
         <span class="kw">let </span>select_menu = SelectMenu {
-            custom_id: <span class="string">&quot;custom id 2&quot;</span>.into(),
+            custom_id: <span class="string">"custom id 2"</span>.into(),
             disabled: <span class="bool-val">false</span>,
             max_values: <span class="prelude-val">Some</span>(<span class="number">2</span>),
             min_values: <span class="prelude-val">Some</span>(<span class="number">1</span>),
             options: Vec::from([SelectMenuOption {
                 default: <span class="bool-val">true</span>,
-                description: <span class="prelude-val">Some</span>(<span class="string">&quot;Book 1 of the Expanse&quot;</span>.into()),
+                description: <span class="prelude-val">Some</span>(<span class="string">"Book 1 of the Expanse"</span>.into()),
                 emoji: <span class="prelude-val">None</span>,
-                label: <span class="string">&quot;Leviathan Wakes&quot;</span>.into(),
-                value: <span class="string">&quot;9780316129084&quot;</span>.into(),
+                label: <span class="string">"Leviathan Wakes"</span>.into(),
+                value: <span class="string">"9780316129084"</span>.into(),
             }]),
-            placeholder: <span class="prelude-val">Some</span>(<span class="string">&quot;Choose a book&quot;</span>.into()),
+            placeholder: <span class="prelude-val">Some</span>(<span class="string">"Choose a book"</span>.into()),
         };
 
         <span class="kw">let </span>action_row = ActionRow {
@@ -2457,12 +2458,12 @@
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>button_conflict() {
         <span class="kw">let </span>button = Button {
-            custom_id: <span class="prelude-val">Some</span>(<span class="string">&quot;a&quot;</span>.to_owned()),
+            custom_id: <span class="prelude-val">Some</span>(<span class="string">"a"</span>.to_owned()),
             disabled: <span class="bool-val">false</span>,
             emoji: <span class="prelude-val">None</span>,
             label: <span class="prelude-val">None</span>,
             style: ButtonStyle::Primary,
-            url: <span class="prelude-val">Some</span>(<span class="string">&quot;https://twilight.rs&quot;</span>.to_owned()),
+            url: <span class="prelude-val">Some</span>(<span class="string">"https://twilight.rs"</span>.to_owned()),
         };
 
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
@@ -2482,7 +2483,7 @@
                 custom_id: <span class="prelude-val">None</span>,
                 disabled: <span class="bool-val">false</span>,
                 emoji: <span class="prelude-val">None</span>,
-                label: <span class="prelude-val">Some</span>(<span class="string">&quot;some label&quot;</span>.to_owned()),
+                label: <span class="prelude-val">Some</span>(<span class="string">"some label"</span>.to_owned()),
                 style: <span class="kw-2">*</span>style,
                 url: <span class="prelude-val">None</span>,
             };
@@ -2501,29 +2502,29 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_label() {
-        <span class="macro">assert!</span>(component_button_label(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_button_label(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_button_label(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">80</span>)).is_ok());
+        <span class="macro">assert!</span>(component_button_label(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(component_button_label(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_button_label(<span class="string">"a"</span>.repeat(<span class="number">80</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_button_label(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">81</span>)).is_err());
+        <span class="macro">assert!</span>(component_button_label(<span class="string">"a"</span>.repeat(<span class="number">81</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_custom_id_length() {
-        <span class="macro">assert!</span>(component_custom_id(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_custom_id(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_custom_id(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(component_custom_id(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(component_custom_id(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_custom_id(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_custom_id(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(component_custom_id(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_option_description_length() {
-        <span class="macro">assert!</span>(component_option_description(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_option_description(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_option_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(component_option_description(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(component_option_description(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_option_description(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_option_description(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(component_option_description(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2545,10 +2546,10 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_select_option_value_length() {
-        <span class="macro">assert!</span>(component_select_option_value(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_select_option_value(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(component_select_option_value(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_select_option_value(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_select_option_value(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(component_select_option_value(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2557,8 +2558,8 @@
             default: <span class="bool-val">false</span>,
             description: <span class="prelude-val">None</span>,
             emoji: <span class="prelude-val">None</span>,
-            label: <span class="string">&quot;label&quot;</span>.into(),
-            value: <span class="string">&quot;value&quot;</span>.into(),
+            label: <span class="string">"label"</span>.into(),
+            value: <span class="string">"value"</span>.into(),
         }]);
 
         <span class="macro">assert!</span>(component_select_options(<span class="kw-2">&amp;</span>select_menu_options).is_ok());
@@ -2584,20 +2585,20 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_select_placeholder_length() {
-        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">150</span>)).is_ok());
+        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">"a"</span>.repeat(<span class="number">150</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">151</span>)).is_err());
+        <span class="macro">assert!</span>(component_select_placeholder(<span class="string">"a"</span>.repeat(<span class="number">151</span>)).is_err());
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_text_input_label_length() {
-        <span class="macro">assert!</span>(component_text_input_label(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_text_input_label(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">45</span>)).is_ok());
+        <span class="macro">assert!</span>(component_text_input_label(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_text_input_label(<span class="string">"a"</span>.repeat(<span class="number">45</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_text_input_label(<span class="string">&quot;&quot;</span>).is_err());
-        <span class="macro">assert!</span>(component_text_input_label(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">46</span>)).is_err());
+        <span class="macro">assert!</span>(component_text_input_label(<span class="string">""</span>).is_err());
+        <span class="macro">assert!</span>(component_text_input_label(<span class="string">"a"</span>.repeat(<span class="number">46</span>)).is_err());
     }
 
     <span class="attr">#[test]
@@ -2620,11 +2621,11 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>component_text_input_placeholder_length() {
-        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">&quot;&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">&quot;a&quot;</span>).is_ok());
-        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">100</span>)).is_ok());
+        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">""</span>).is_ok());
+        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">"a"</span>).is_ok());
+        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">"a"</span>.repeat(<span class="number">100</span>)).is_ok());
 
-        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">&quot;a&quot;</span>.repeat(<span class="number">101</span>)).is_err());
+        <span class="macro">assert!</span>(component_text_input_placeholder(<span class="string">"a"</span>.repeat(<span class="number">101</span>)).is_err());
     }
 
     <span class="attr">#[test]

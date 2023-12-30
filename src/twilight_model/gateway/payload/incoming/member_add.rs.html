@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/member_add.rs`."><title>member_add.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/payload/incoming/member_add.rs`."><title>member_add.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -171,7 +172,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>member_add() {
-        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">&quot;non zero&quot;</span>));
+        <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;
 
         <span class="kw">let </span>value = MemberAdd {
@@ -196,7 +197,7 @@
                     bot: <span class="bool-val">false</span>,
                     discriminator: <span class="number">987</span>,
                     global_name: <span class="prelude-val">None</span>,
-                    name: <span class="string">&quot;ab&quot;</span>.to_string(),
+                    name: <span class="string">"ab"</span>.to_string(),
                     mfa_enabled: <span class="prelude-val">None</span>,
                     locale: <span class="prelude-val">None</span>,
                     verified: <span class="prelude-val">None</span>,
@@ -213,49 +214,49 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Map { len: <span class="prelude-val">None </span>},
-                Token::Str(<span class="string">&quot;guild_id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;1&quot;</span>),
-                Token::Str(<span class="string">&quot;communication_disabled_until&quot;</span>),
+                Token::Str(<span class="string">"guild_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"communication_disabled_until"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;deaf&quot;</span>),
+                Token::Str(<span class="string">"deaf"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;flags&quot;</span>),
+                Token::Str(<span class="string">"flags"</span>),
                 Token::U64(flags.bits()),
-                Token::Str(<span class="string">&quot;joined_at&quot;</span>),
+                Token::Str(<span class="string">"joined_at"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;2021-09-19T17:30:45.000000+00:00&quot;</span>),
-                Token::Str(<span class="string">&quot;mute&quot;</span>),
+                Token::Str(<span class="string">"2021-09-19T17:30:45.000000+00:00"</span>),
+                Token::Str(<span class="string">"mute"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;nick&quot;</span>),
+                Token::Str(<span class="string">"nick"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;pending&quot;</span>),
+                Token::Str(<span class="string">"pending"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;roles&quot;</span>),
+                Token::Str(<span class="string">"roles"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;user&quot;</span>),
+                Token::Str(<span class="string">"user"</span>),
                 Token::Struct {
-                    name: <span class="string">&quot;User&quot;</span>,
+                    name: <span class="string">"User"</span>,
                     len: <span class="number">8</span>,
                 },
-                Token::Str(<span class="string">&quot;accent_color&quot;</span>),
+                Token::Str(<span class="string">"accent_color"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar&quot;</span>),
+                Token::Str(<span class="string">"avatar"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;avatar_decoration&quot;</span>),
+                Token::Str(<span class="string">"avatar_decoration"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;banner&quot;</span>),
+                Token::Str(<span class="string">"banner"</span>),
                 Token::None,
-                Token::Str(<span class="string">&quot;bot&quot;</span>),
+                Token::Str(<span class="string">"bot"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;discriminator&quot;</span>),
-                Token::Str(<span class="string">&quot;0987&quot;</span>),
-                Token::Str(<span class="string">&quot;id&quot;</span>),
-                Token::NewtypeStruct { name: <span class="string">&quot;Id&quot; </span>},
-                Token::Str(<span class="string">&quot;2&quot;</span>),
-                Token::Str(<span class="string">&quot;username&quot;</span>),
-                Token::Str(<span class="string">&quot;ab&quot;</span>),
+                Token::Str(<span class="string">"discriminator"</span>),
+                Token::Str(<span class="string">"0987"</span>),
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"username"</span>),
+                Token::Str(<span class="string">"ab"</span>),
                 Token::StructEnd,
                 Token::MapEnd,
             ],

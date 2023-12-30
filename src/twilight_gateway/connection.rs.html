@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/connection.rs`."><title>connection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/connection.rs`."><title>connection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -139,15 +140,15 @@
 <span class="kw">use </span>tokio_tungstenite::{tungstenite::protocol::WebSocketConfig, MaybeTlsStream, WebSocketStream};
 
 <span class="doccomment">/// Query argument with zlib-stream enabled.
-</span><span class="attr">#[cfg(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>))]
-</span><span class="kw">const </span>COMPRESSION_FEATURES: <span class="kw-2">&amp;</span>str = <span class="string">&quot;&amp;compress=zlib-stream&quot;</span>;
+</span><span class="attr">#[cfg(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>))]
+</span><span class="kw">const </span>COMPRESSION_FEATURES: <span class="kw-2">&amp;</span>str = <span class="string">"&amp;compress=zlib-stream"</span>;
 
 <span class="doccomment">/// No query arguments due to compression being disabled.
-</span><span class="attr">#[cfg(not(any(feature = <span class="string">&quot;zlib-stock&quot;</span>, feature = <span class="string">&quot;zlib-simd&quot;</span>)))]
-</span><span class="kw">const </span>COMPRESSION_FEATURES: <span class="kw-2">&amp;</span>str = <span class="string">&quot;&quot;</span>;
+</span><span class="attr">#[cfg(not(any(feature = <span class="string">"zlib-stock"</span>, feature = <span class="string">"zlib-simd"</span>)))]
+</span><span class="kw">const </span>COMPRESSION_FEATURES: <span class="kw-2">&amp;</span>str = <span class="string">""</span>;
 
 <span class="doccomment">/// URL of the Discord gateway.
-</span><span class="kw">const </span>GATEWAY_URL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;wss://gateway.discord.gg&quot;</span>;
+</span><span class="kw">const </span>GATEWAY_URL: <span class="kw-2">&amp;</span>str = <span class="string">"wss://gateway.discord.gg"</span>;
 
 <span class="doccomment">/// Configuration used for Websocket connections.
 ///
@@ -175,45 +176,45 @@
 
 <span class="doccomment">/// Formatter for a gateway URL, with the API version and compression features
 /// specified.
-</span><span class="kw">struct </span>ConnectionUrl&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">struct </span>ConnectionUrl&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Gateway URL configured by the URL via [`ConfigBuilder::gateway_url`].
     ///
     /// [`ConfigBuilder::gateway_url`]: crate::ConfigBuilder::gateway_url
-    </span>configured_url: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    </span>configured_url: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ConnectionUrl&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="doccomment">/// Initialize a new gateway URL formatter with the user&#39;s configured gateway
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; ConnectionUrl&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="doccomment">/// Initialize a new gateway URL formatter with the user's configured gateway
     /// URL.
-    </span><span class="kw">const fn </span>new(maybe_configured_url: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">const fn </span>new(maybe_configured_url: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             configured_url: maybe_configured_url,
         }
     }
 }
 
-<span class="kw">impl </span>Display <span class="kw">for </span>ConnectionUrl&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
+<span class="kw">impl </span>Display <span class="kw">for </span>ConnectionUrl&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
         <span class="kw">let </span>base_url = <span class="self">self</span>.configured_url.unwrap_or(GATEWAY_URL);
         f.write_str(base_url)<span class="question-mark">?</span>;
 
-        <span class="comment">// Discord&#39;s documentation states:
+        <span class="comment">// Discord's documentation states:
         //
-        // &quot;Generally, it is a good idea to explicitly pass the gateway version
-        // and encoding&quot;.
+        // "Generally, it is a good idea to explicitly pass the gateway version
+        // and encoding".
         //
         // &lt;https://discord.com/developers/docs/topics/gateway#connecting-gateway-url-query-string-params&gt;
-        </span>f.write_str(<span class="string">&quot;/?v=&quot;</span>)<span class="question-mark">?</span>;
+        </span>f.write_str(<span class="string">"/?v="</span>)<span class="question-mark">?</span>;
         Display::fmt(<span class="kw-2">&amp;</span>API_VERSION, f)<span class="question-mark">?</span>;
 
-        f.write_str(<span class="string">&quot;&amp;encoding=json&quot;</span>)<span class="question-mark">?</span>;
+        f.write_str(<span class="string">"&amp;encoding=json"</span>)<span class="question-mark">?</span>;
         f.write_str(COMPRESSION_FEATURES)
     }
 }
 
 <span class="doccomment">/// Connect to the gateway for a given URL, defaulting if not present.
 ///
-/// If a URL isn&#39;t provided then [`GATEWAY_URL`] is used. The Shard ID is used
+/// If a URL isn't provided then [`GATEWAY_URL`] is used. The Shard ID is used
 /// only for tracing logs.
 ///
 /// # Errors
@@ -230,7 +231,7 @@
 ) -&gt; <span class="prelude-ty">Result</span>&lt;Connection, ReceiveMessageError&gt; {
     <span class="kw">let </span>url = ConnectionUrl::new(maybe_gateway_url).to_string();
 
-    <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>url, <span class="string">&quot;shaking hands with gateway&quot;</span>);
+    <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>url, <span class="string">"shaking hands with gateway"</span>);
     <span class="kw">let </span>stream = tls.connect(<span class="kw-2">&amp;</span>url, WEBSOCKET_CONFIG).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(stream)
@@ -247,20 +248,20 @@
         <span class="kw">let </span>url = ConnectionUrl::new(<span class="prelude-val">None</span>).to_string();
         <span class="macro">assert_eq!</span>(
             url,
-            <span class="macro">format!</span>(<span class="string">&quot;{GATEWAY_URL}/?v={API_VERSION}&amp;encoding=json{COMPRESSION_FEATURES}&quot;</span>),
+            <span class="macro">format!</span>(<span class="string">"{GATEWAY_URL}/?v={API_VERSION}&amp;encoding=json{COMPRESSION_FEATURES}"</span>),
         );
     }
 
     <span class="doccomment">/// Test that [`ConnectionUrl`] formats a provided URL as expected.
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>user_provided_url() {
-        <span class="doccomment">/// URL provided by the user in the shard&#39;s configuration.
-        </span><span class="kw">const </span>USER_URL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;ws://localhost:1312&quot;</span>;
+        <span class="doccomment">/// URL provided by the user in the shard's configuration.
+        </span><span class="kw">const </span>USER_URL: <span class="kw-2">&amp;</span>str = <span class="string">"ws://localhost:1312"</span>;
 
         <span class="kw">let </span>valid_url = ConnectionUrl::new(<span class="prelude-val">Some</span>(USER_URL));
         <span class="macro">assert_eq!</span>(
             valid_url.to_string(),
-            <span class="macro">format!</span>(<span class="string">&quot;{USER_URL}/?v={API_VERSION}&amp;encoding=json{COMPRESSION_FEATURES}&quot;</span>),
+            <span class="macro">format!</span>(<span class="string">"{USER_URL}/?v={API_VERSION}&amp;encoding=json{COMPRESSION_FEATURES}"</span>),
         );
     }
 }

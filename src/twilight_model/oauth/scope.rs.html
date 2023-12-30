@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/oauth/scope.rs`."><title>scope.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/oauth/scope.rs`."><title>scope.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -132,126 +133,126 @@
 //!
 //! [Discord Docs/OAuth 2 Scopes]: https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
 
-/// Allows your app to fetch data from a user&#39;s &quot;Now Playing/Recently Played&quot;
+/// Allows your app to fetch data from a user's "Now Playing/Recently Played"
 /// list.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>ACTIVITIES_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;activities.read&quot;</span>;
+</span><span class="kw">pub const </span>ACTIVITIES_READ: <span class="kw-2">&amp;</span>str = <span class="string">"activities.read"</span>;
 
-<span class="doccomment">/// Allows your app to update a user&#39;s activity
+<span class="doccomment">/// Allows your app to update a user's activity
 ///
 /// Requires approval from Discord, but is not required for the Game SDK
 /// activity manager.
-</span><span class="kw">pub const </span>ACTIVITIES_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;activities.write&quot;</span>;
+</span><span class="kw">pub const </span>ACTIVITIES_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">"activities.write"</span>;
 
-<span class="doccomment">/// Allows your app to read build data for a user&#39;s applications.
-</span><span class="kw">pub const </span>APPLICATIONS_BUILDS_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.builds.read&quot;</span>;
+<span class="doccomment">/// Allows your app to read build data for a user's applications.
+</span><span class="kw">pub const </span>APPLICATIONS_BUILDS_READ: <span class="kw-2">&amp;</span>str = <span class="string">"applications.builds.read"</span>;
 
-<span class="doccomment">/// Allows your app to upload/update builds for a user&#39;s applications.
+<span class="doccomment">/// Allows your app to upload/update builds for a user's applications.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>APPLICATIONS_BUILDS_UPLOAD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.builds.upload&quot;</span>;
+</span><span class="kw">pub const </span>APPLICATIONS_BUILDS_UPLOAD: <span class="kw-2">&amp;</span>str = <span class="string">"applications.builds.upload"</span>;
 
 <span class="doccomment">/// Allows your app to use commands in a guild.
-</span><span class="kw">pub const </span>APPLICATIONS_COMMANDS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.commands&quot;</span>;
+</span><span class="kw">pub const </span>APPLICATIONS_COMMANDS: <span class="kw-2">&amp;</span>str = <span class="string">"applications.commands"</span>;
 
 <span class="doccomment">/// Allows your app to update its commands using a Bearer token.
 ///
 /// This is a client credentials grant only.
-</span><span class="kw">pub const </span>APPLICATIONS_COMMANDS_UPDATE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.commands.update&quot;</span>;
+</span><span class="kw">pub const </span>APPLICATIONS_COMMANDS_UPDATE: <span class="kw-2">&amp;</span>str = <span class="string">"applications.commands.update"</span>;
 
 <span class="doccomment">/// Allows your app to update permissions for its commands in a guild a user has
 /// permissions to.
 </span><span class="kw">pub const </span>APPLICATIONS_COMMANDS_PERMISSIONS_UPDATE: <span class="kw-2">&amp;</span>str =
-    <span class="string">&quot;applications.commands.permissions.update&quot;</span>;
+    <span class="string">"applications.commands.permissions.update"</span>;
 
-<span class="doccomment">/// Allows your app to read entitlements for a user&#39;s applications
-</span><span class="kw">pub const </span>APPLICATIONS_ENTITLEMENTS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.entitlements&quot;</span>;
+<span class="doccomment">/// Allows your app to read entitlements for a user's applications
+</span><span class="kw">pub const </span>APPLICATIONS_ENTITLEMENTS: <span class="kw-2">&amp;</span>str = <span class="string">"applications.entitlements"</span>;
 
 <span class="doccomment">/// Allows your app to read and update store data (SKUs, store listings,
-/// achievements, etc.) for a user&#39;s applications.
-</span><span class="kw">pub const </span>APPLICATIONS_STORE_UPDATE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;applications.store.update&quot;</span>;
+/// achievements, etc.) for a user's applications.
+</span><span class="kw">pub const </span>APPLICATIONS_STORE_UPDATE: <span class="kw-2">&amp;</span>str = <span class="string">"applications.store.update"</span>;
 
-<span class="doccomment">/// For oauth2 bots, this puts the bot in the user&#39;s selected guild by default
-</span><span class="kw">pub const </span>BOT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;bot&quot;</span>;
+<span class="doccomment">/// For oauth2 bots, this puts the bot in the user's selected guild by default
+</span><span class="kw">pub const </span>BOT: <span class="kw-2">&amp;</span>str = <span class="string">"bot"</span>;
 
 <span class="doccomment">/// Allows /users/@me/connections to return linked third-party accounts
-</span><span class="kw">pub const </span>CONNECTIONS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;connections&quot;</span>;
+</span><span class="kw">pub const </span>CONNECTIONS: <span class="kw-2">&amp;</span>str = <span class="string">"connections"</span>;
 
-<span class="doccomment">/// Allows your app to see information about the user&#39;s DMs and group DMs
+<span class="doccomment">/// Allows your app to see information about the user's DMs and group DMs
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>DM_CHANNELS_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;dm_channels.read&quot;</span>;
+</span><span class="kw">pub const </span>DM_CHANNELS_READ: <span class="kw-2">&amp;</span>str = <span class="string">"dm_channels.read"</span>;
 
 <span class="doccomment">/// Enables `GET /users/@me` returning an email.
-</span><span class="kw">pub const </span>EMAIL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;email&quot;</span>;
+</span><span class="kw">pub const </span>EMAIL: <span class="kw-2">&amp;</span>str = <span class="string">"email"</span>;
 
 <span class="doccomment">/// Allows your app to join users to a group DM.
-</span><span class="kw">pub const </span>GDM_JOIN: <span class="kw-2">&amp;</span>str = <span class="string">&quot;gdm.join&quot;</span>;
+</span><span class="kw">pub const </span>GDM_JOIN: <span class="kw-2">&amp;</span>str = <span class="string">"gdm.join"</span>;
 
 <span class="doccomment">/// Allows `GET /users/@me/guilds` to return basic information about all of a
-/// user&#39;s guilds.
-</span><span class="kw">pub const </span>GUILDS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;guilds&quot;</span>;
+/// user's guilds.
+</span><span class="kw">pub const </span>GUILDS: <span class="kw-2">&amp;</span>str = <span class="string">"guilds"</span>;
 
 <span class="doccomment">/// Allows `GET /guilds/{guild.id}/members/{user.id}` to be used for joining
 /// users to a guild.
-</span><span class="kw">pub const </span>GUILDS_JOIN: <span class="kw-2">&amp;</span>str = <span class="string">&quot;guilds.join&quot;</span>;
+</span><span class="kw">pub const </span>GUILDS_JOIN: <span class="kw-2">&amp;</span>str = <span class="string">"guilds.join"</span>;
 
-<span class="doccomment">/// Allows `GET /users/@me/guilds/{guild.id}/member` to return a user&#39;s member
+<span class="doccomment">/// Allows `GET /users/@me/guilds/{guild.id}/member` to return a user's member
 /// information in a guild.
-</span><span class="kw">pub const </span>GUILDS_MEMBERS_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;guilds.members.read&quot;</span>;
+</span><span class="kw">pub const </span>GUILDS_MEMBERS_READ: <span class="kw-2">&amp;</span>str = <span class="string">"guilds.members.read"</span>;
 
-<span class="doccomment">/// Allows `GET /users/@me`, but without the user&#39;s email.
-</span><span class="kw">pub const </span>IDENTIFY: <span class="kw-2">&amp;</span>str = <span class="string">&quot;identify&quot;</span>;
+<span class="doccomment">/// Allows `GET /users/@me`, but without the user's email.
+</span><span class="kw">pub const </span>IDENTIFY: <span class="kw-2">&amp;</span>str = <span class="string">"identify"</span>;
 
 <span class="doccomment">/// For local RPC server API access, this allows you to read messages from all
 /// client channels (otherwise restricted to channels/guilds your app creates).
-</span><span class="kw">pub const </span>MESSAGES_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;messages.read&quot;</span>;
+</span><span class="kw">pub const </span>MESSAGES_READ: <span class="kw-2">&amp;</span>str = <span class="string">"messages.read"</span>;
 
-<span class="doccomment">/// Allows your app to know a user&#39;s friends and implicit relationships.
+<span class="doccomment">/// Allows your app to know a user's friends and implicit relationships.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RELATIONSHIPS_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;relationships.read&quot;</span>;
+</span><span class="kw">pub const </span>RELATIONSHIPS_READ: <span class="kw-2">&amp;</span>str = <span class="string">"relationships.read"</span>;
 
-<span class="doccomment">/// Allows your app to update a user&#39;s connection and metadata for the app.
-</span><span class="kw">pub const </span>ROLE_CONNECTIONS_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;role_connections.write&quot;</span>;
+<span class="doccomment">/// Allows your app to update a user's connection and metadata for the app.
+</span><span class="kw">pub const </span>ROLE_CONNECTIONS_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">"role_connections.write"</span>;
 
-<span class="doccomment">/// For local RPC server access, this allows you to control a user&#39;s local
+<span class="doccomment">/// For local RPC server access, this allows you to control a user's local
 /// Discord client.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RPC: <span class="kw-2">&amp;</span>str = <span class="string">&quot;rpc&quot;</span>;
+</span><span class="kw">pub const </span>RPC: <span class="kw-2">&amp;</span>str = <span class="string">"rpc"</span>;
 
-<span class="doccomment">/// For local rpc server access, this allows you to update a user&#39;s activity
+<span class="doccomment">/// For local rpc server access, this allows you to update a user's activity
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RPC_ACTIVITIES_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;rpc.activities.write&quot;</span>;
+</span><span class="kw">pub const </span>RPC_ACTIVITIES_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">"rpc.activities.write"</span>;
 
 <span class="doccomment">/// For local RPC server access, this allows you to receive notifications pushed
 /// out to the user.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RPC_NOTIFICATIONS_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;rpc.notifications.read&quot;</span>;
+</span><span class="kw">pub const </span>RPC_NOTIFICATIONS_READ: <span class="kw-2">&amp;</span>str = <span class="string">"rpc.notifications.read"</span>;
 
-<span class="doccomment">/// For local RPC server access, this allows you to read a user&#39;s voice settings
+<span class="doccomment">/// For local RPC server access, this allows you to read a user's voice settings
 /// and listen for voice events.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RPC_VOICE_READ: <span class="kw-2">&amp;</span>str = <span class="string">&quot;rpc.voice.read&quot;</span>;
+</span><span class="kw">pub const </span>RPC_VOICE_READ: <span class="kw-2">&amp;</span>str = <span class="string">"rpc.voice.read"</span>;
 
-<span class="doccomment">/// For local RPC server access, this allows you to update a user&#39;s voice
+<span class="doccomment">/// For local RPC server access, this allows you to update a user's voice
 /// settings.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>RPC_VOICE_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;rpc.voice.write&quot;</span>;
+</span><span class="kw">pub const </span>RPC_VOICE_WRITE: <span class="kw-2">&amp;</span>str = <span class="string">"rpc.voice.write"</span>;
 
-<span class="doccomment">/// Allows your app to connect to voice on the user&#39;s behalf and see all the
+<span class="doccomment">/// Allows your app to connect to voice on the user's behalf and see all the
 /// voice members.
 ///
 /// Requires approval from Discord.
-</span><span class="kw">pub const </span>VOICE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;voice&quot;</span>;
+</span><span class="kw">pub const </span>VOICE: <span class="kw-2">&amp;</span>str = <span class="string">"voice"</span>;
 
 <span class="doccomment">/// This generates a webhook that is returned in the oauth token response for
 /// authorization code grants.
-</span><span class="kw">pub const </span>WEBHOOK_INCOMING: <span class="kw-2">&amp;</span>str = <span class="string">&quot;webhook.incoming&quot;</span>;
+</span><span class="kw">pub const </span>WEBHOOK_INCOMING: <span class="kw-2">&amp;</span>str = <span class="string">"webhook.incoming"</span>;
 </code></pre></div></section></main></body></html>

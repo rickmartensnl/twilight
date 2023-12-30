@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/component/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (37b2813a7 2023-11-24)" data-channel="nightly" data-search-js="search-f4028ef4dd0903c7.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-f06f02fd918e3bb3.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/component/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-452d19225583af2a.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (3cdd004e5 2023-12-29)" data-channel="nightly" data-search-js="search-c17e98913a53b3b7.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-6902632119e002ca.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -942,10 +943,10 @@
 ///
 /// Component::ActionRow(ActionRow {
 ///     components: Vec::from([Component::Button(Button {
-///         custom_id: Some(&quot;click_one&quot;.to_owned()),
+///         custom_id: Some("click_one".to_owned()),
 ///         disabled: false,
 ///         emoji: None,
-///         label: Some(&quot;Click me!&quot;.to_owned()),
+///         label: Some("Click me!".to_owned()),
 ///         style: ButtonStyle::Primary,
 ///         url: None,
 ///     })]),
@@ -965,7 +966,7 @@
 ///
 /// Component::ActionRow(ActionRow {
 ///     components: vec![Component::SelectMenu(SelectMenu {
-///         custom_id: &quot;class_select_1&quot;.to_owned(),
+///         custom_id: "class_select_1".to_owned(),
 ///         disabled: false,
 ///         max_values: Some(3),
 ///         min_values: Some(1),
@@ -975,36 +976,36 @@
 ///                 emoji: Some(ReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891304148303894),
-///                     name: Some(&quot;rogue&quot;.to_owned()),
+///                     name: Some("rogue".to_owned()),
 ///                 }),
-///                 description: Some(&quot;Sneak n stab&quot;.to_owned()),
-///                 label: &quot;Rogue&quot;.to_owned(),
-///                 value: &quot;rogue&quot;.to_owned(),
+///                 description: Some("Sneak n stab".to_owned()),
+///                 label: "Rogue".to_owned(),
+///                 value: "rogue".to_owned(),
 ///             },
 ///             SelectMenuOption {
 ///                 default: false,
 ///                 emoji: Some(ReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891304081063986),
-///                     name: Some(&quot;mage&quot;.to_owned()),
+///                     name: Some("mage".to_owned()),
 ///                 }),
-///                 description: Some(&quot;Turn &#39;em into a sheep&quot;.to_owned()),
-///                 label: &quot;Mage&quot;.to_owned(),
-///                 value: &quot;mage&quot;.to_owned(),
+///                 description: Some("Turn 'em into a sheep".to_owned()),
+///                 label: "Mage".to_owned(),
+///                 value: "mage".to_owned(),
 ///             },
 ///             SelectMenuOption {
 ///                 default: false,
 ///                 emoji: Some(ReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891303795982337),
-///                     name: Some(&quot;priest&quot;.to_owned()),
+///                     name: Some("priest".to_owned()),
 ///                 }),
-///                 description: Some(&quot;You get heals when I&#39;m done doing damage&quot;.to_owned()),
-///                 label: &quot;Priest&quot;.to_owned(),
-///                 value: &quot;priest&quot;.to_owned(),
+///                 description: Some("You get heals when I'm done doing damage".to_owned()),
+///                 label: "Priest".to_owned(),
+///                 value: "priest".to_owned(),
 ///             },
 ///         ]),
-///         placeholder: Some(&quot;Choose a class&quot;.to_owned()),
+///         placeholder: Some("Choose a class".to_owned()),
 ///     })],
 /// });
 /// ```
@@ -1034,7 +1035,7 @@
     ///     custom_id: None,
     ///     disabled: false,
     ///     emoji: None,
-    ///     label: Some(&quot;ping&quot;.to_owned()),
+    ///     label: Some("ping".to_owned()),
     ///     style: ButtonStyle::Primary,
     ///     url: None,
     /// });
@@ -1076,14 +1077,14 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>Component {
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Component {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         deserializer.deserialize_any(ComponentVisitor)
     }
 }
 
 <span class="attr">#[derive(Debug, Deserialize)]
-#[serde(field_identifier, rename_all = <span class="string">&quot;snake_case&quot;</span>)]
+#[serde(field_identifier, rename_all = <span class="string">"snake_case"</span>)]
 </span><span class="kw">enum </span>Field {
     Components,
     CustomId,
@@ -1105,15 +1106,15 @@
 
 <span class="kw">struct </span>ComponentVisitor;
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Visitor&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>ComponentVisitor {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>ComponentVisitor {
     <span class="kw">type </span>Value = Component;
 
-    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; FmtResult {
-        f.write_str(<span class="string">&quot;struct Component&quot;</span>)
+    <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; FmtResult {
+        f.write_str(<span class="string">"struct Component"</span>)
     }
 
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
+    </span><span class="kw">fn </span>visit_map&lt;V: MapAccess&lt;<span class="lifetime">'de</span>&gt;&gt;(<span class="self">self</span>, <span class="kw-2">mut </span>map: V) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, V::Error&gt; {
         <span class="comment">// Required fields.
         </span><span class="kw">let </span><span class="kw-2">mut </span>components: <span class="prelude-ty">Option</span>&lt;Vec&lt;Component&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>kind: <span class="prelude-ty">Option</span>&lt;ComponentType&gt; = <span class="prelude-val">None</span>;
@@ -1150,112 +1151,112 @@
             <span class="kw">match </span>key {
                 Field::Components =&gt; {
                     <span class="kw">if </span>components.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;components&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"components"</span>));
                     }
 
                     components = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::CustomId =&gt; {
                     <span class="kw">if </span>custom_id.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;custom_id&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"custom_id"</span>));
                     }
 
                     custom_id = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Disabled =&gt; {
                     <span class="kw">if </span>disabled.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;disabled&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"disabled"</span>));
                     }
 
                     disabled = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Emoji =&gt; {
                     <span class="kw">if </span>emoji.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;emoji&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"emoji"</span>));
                     }
 
                     emoji = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Label =&gt; {
                     <span class="kw">if </span>label.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;label&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"label"</span>));
                     }
 
                     label = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::MaxLength =&gt; {
                     <span class="kw">if </span>max_length.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;max_length&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"max_length"</span>));
                     }
 
                     max_length = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::MaxValues =&gt; {
                     <span class="kw">if </span>max_values.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;max_values&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"max_values"</span>));
                     }
 
                     max_values = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::MinLength =&gt; {
                     <span class="kw">if </span>min_length.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;min_length&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"min_length"</span>));
                     }
 
                     min_length = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::MinValues =&gt; {
                     <span class="kw">if </span>min_values.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;min_values&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"min_values"</span>));
                     }
 
                     min_values = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Options =&gt; {
                     <span class="kw">if </span>options.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;options&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"options"</span>));
                     }
 
                     options = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Placeholder =&gt; {
                     <span class="kw">if </span>placeholder.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;placeholder&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"placeholder"</span>));
                     }
 
                     placeholder = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Required =&gt; {
                     <span class="kw">if </span>required.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;required&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"required"</span>));
                     }
 
                     required = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Style =&gt; {
                     <span class="kw">if </span>style.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;style&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"style"</span>));
                     }
 
                     style = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Type =&gt; {
                     <span class="kw">if </span>kind.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;type&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"type"</span>));
                     }
 
                     kind = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Url =&gt; {
                     <span class="kw">if </span>url.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;url&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"url"</span>));
                     }
 
                     url = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
                 }
                 Field::Value =&gt; {
                     <span class="kw">if </span>value.is_some() {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">&quot;value&quot;</span>));
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"value"</span>));
                     }
 
                     value = <span class="prelude-val">Some</span>(map.next_value()<span class="question-mark">?</span>);
@@ -1263,13 +1264,13 @@
             };
         }
 
-        <span class="kw">let </span>kind = kind.ok_or_else(|| DeError::missing_field(<span class="string">&quot;type&quot;</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>kind = kind.ok_or_else(|| DeError::missing_field(<span class="string">"type"</span>))<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>kind {
             <span class="comment">// Required fields:
             // - components
             </span>ComponentType::ActionRow =&gt; {
-                <span class="kw">let </span>components = components.ok_or_else(|| DeError::missing_field(<span class="string">&quot;components&quot;</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>components = components.ok_or_else(|| DeError::missing_field(<span class="string">"components"</span>))<span class="question-mark">?</span>;
 
                 <span class="self">Self</span>::Value::ActionRow(ActionRow { components })
             }
@@ -1284,7 +1285,7 @@
             // - url
             </span>ComponentType::Button =&gt; {
                 <span class="kw">let </span>style = style
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;style&quot;</span>))<span class="question-mark">?
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"style"</span>))<span class="question-mark">?
                     </span>.deserialize_into()
                     .map_err(DeserializerError::into_error)<span class="question-mark">?</span>;
 
@@ -1315,11 +1316,11 @@
             </span>ComponentType::SelectMenu =&gt; {
                 <span class="kw">let </span>custom_id = custom_id
                     .flatten()
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;custom_id&quot;</span>))<span class="question-mark">?
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"custom_id"</span>))<span class="question-mark">?
                     </span>.deserialize_into()
                     .map_err(DeserializerError::into_error)<span class="question-mark">?</span>;
 
-                <span class="kw">let </span>options = options.ok_or_else(|| DeError::missing_field(<span class="string">&quot;options&quot;</span>))<span class="question-mark">?</span>;
+                <span class="kw">let </span>options = options.ok_or_else(|| DeError::missing_field(<span class="string">"options"</span>))<span class="question-mark">?</span>;
 
                 <span class="self">Self</span>::Value::SelectMenu(SelectMenu {
                     custom_id,
@@ -1344,16 +1345,16 @@
             </span>ComponentType::TextInput =&gt; {
                 <span class="kw">let </span>custom_id = custom_id
                     .flatten()
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;custom_id&quot;</span>))<span class="question-mark">?
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"custom_id"</span>))<span class="question-mark">?
                     </span>.deserialize_into()
                     .map_err(DeserializerError::into_error)<span class="question-mark">?</span>;
 
                 <span class="kw">let </span>label = label
                     .flatten()
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;label&quot;</span>))<span class="question-mark">?</span>;
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"label"</span>))<span class="question-mark">?</span>;
 
                 <span class="kw">let </span>style = style
-                    .ok_or_else(|| DeError::missing_field(<span class="string">&quot;style&quot;</span>))<span class="question-mark">?
+                    .ok_or_else(|| DeError::missing_field(<span class="string">"style"</span>))<span class="question-mark">?
                     </span>.deserialize_into()
                     .map_err(DeserializerError::into_error)<span class="question-mark">?</span>;
 
@@ -1437,97 +1438,97 @@
             </span>Component::Unknown(<span class="kw">_</span>) =&gt; <span class="number">1</span>,
         };
 
-        <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">&quot;Component&quot;</span>, len)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>state = serializer.serialize_struct(<span class="string">"Component"</span>, len)<span class="question-mark">?</span>;
 
         <span class="kw">match </span><span class="self">self </span>{
             Component::ActionRow(action_row) =&gt; {
-                state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::ActionRow)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::ActionRow)<span class="question-mark">?</span>;
 
-                state.serialize_field(<span class="string">&quot;components&quot;</span>, <span class="kw-2">&amp;</span>action_row.components)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"components"</span>, <span class="kw-2">&amp;</span>action_row.components)<span class="question-mark">?</span>;
             }
             Component::Button(button) =&gt; {
-                state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::Button)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::Button)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>button.custom_id.is_some() {
-                    state.serialize_field(<span class="string">&quot;custom_id&quot;</span>, <span class="kw-2">&amp;</span>button.custom_id)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"custom_id"</span>, <span class="kw-2">&amp;</span>button.custom_id)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>button.disabled {
-                    state.serialize_field(<span class="string">&quot;disabled&quot;</span>, <span class="kw-2">&amp;</span>button.disabled)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"disabled"</span>, <span class="kw-2">&amp;</span>button.disabled)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>button.emoji.is_some() {
-                    state.serialize_field(<span class="string">&quot;emoji&quot;</span>, <span class="kw-2">&amp;</span>button.emoji)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"emoji"</span>, <span class="kw-2">&amp;</span>button.emoji)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>button.label.is_some() {
-                    state.serialize_field(<span class="string">&quot;label&quot;</span>, <span class="kw-2">&amp;</span>button.label)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"label"</span>, <span class="kw-2">&amp;</span>button.label)<span class="question-mark">?</span>;
                 }
 
-                state.serialize_field(<span class="string">&quot;style&quot;</span>, <span class="kw-2">&amp;</span>button.style)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"style"</span>, <span class="kw-2">&amp;</span>button.style)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>button.url.is_some() {
-                    state.serialize_field(<span class="string">&quot;url&quot;</span>, <span class="kw-2">&amp;</span>button.url)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"url"</span>, <span class="kw-2">&amp;</span>button.url)<span class="question-mark">?</span>;
                 }
             }
             Component::SelectMenu(select_menu) =&gt; {
-                state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::SelectMenu)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::SelectMenu)<span class="question-mark">?</span>;
 
                 <span class="comment">// Due to `custom_id` being required in some variants and
                 // optional in others, serialize as an Option.
-                </span>state.serialize_field(<span class="string">&quot;custom_id&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>select_menu.custom_id))<span class="question-mark">?</span>;
+                </span>state.serialize_field(<span class="string">"custom_id"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>select_menu.custom_id))<span class="question-mark">?</span>;
 
-                state.serialize_field(<span class="string">&quot;disabled&quot;</span>, <span class="kw-2">&amp;</span>select_menu.disabled)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"disabled"</span>, <span class="kw-2">&amp;</span>select_menu.disabled)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>select_menu.max_values.is_some() {
-                    state.serialize_field(<span class="string">&quot;max_values&quot;</span>, <span class="kw-2">&amp;</span>select_menu.max_values)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"max_values"</span>, <span class="kw-2">&amp;</span>select_menu.max_values)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>select_menu.min_values.is_some() {
-                    state.serialize_field(<span class="string">&quot;min_values&quot;</span>, <span class="kw-2">&amp;</span>select_menu.min_values)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"min_values"</span>, <span class="kw-2">&amp;</span>select_menu.min_values)<span class="question-mark">?</span>;
                 }
 
-                state.serialize_field(<span class="string">&quot;options&quot;</span>, <span class="kw-2">&amp;</span>select_menu.options)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"options"</span>, <span class="kw-2">&amp;</span>select_menu.options)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>select_menu.placeholder.is_some() {
-                    state.serialize_field(<span class="string">&quot;placeholder&quot;</span>, <span class="kw-2">&amp;</span>select_menu.placeholder)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"placeholder"</span>, <span class="kw-2">&amp;</span>select_menu.placeholder)<span class="question-mark">?</span>;
                 }
             }
             Component::TextInput(text_input) =&gt; {
-                state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::TextInput)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::TextInput)<span class="question-mark">?</span>;
 
                 <span class="comment">// Due to `custom_id` and `label` being required in some
                 // variants and optional in others, serialize as an Option.
-                </span>state.serialize_field(<span class="string">&quot;custom_id&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>text_input.custom_id))<span class="question-mark">?</span>;
-                state.serialize_field(<span class="string">&quot;label&quot;</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>text_input.label))<span class="question-mark">?</span>;
+                </span>state.serialize_field(<span class="string">"custom_id"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>text_input.custom_id))<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"label"</span>, <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>text_input.label))<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>text_input.max_length.is_some() {
-                    state.serialize_field(<span class="string">&quot;max_length&quot;</span>, <span class="kw-2">&amp;</span>text_input.max_length)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"max_length"</span>, <span class="kw-2">&amp;</span>text_input.max_length)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>text_input.min_length.is_some() {
-                    state.serialize_field(<span class="string">&quot;min_length&quot;</span>, <span class="kw-2">&amp;</span>text_input.min_length)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"min_length"</span>, <span class="kw-2">&amp;</span>text_input.min_length)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>text_input.placeholder.is_some() {
-                    state.serialize_field(<span class="string">&quot;placeholder&quot;</span>, <span class="kw-2">&amp;</span>text_input.placeholder)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"placeholder"</span>, <span class="kw-2">&amp;</span>text_input.placeholder)<span class="question-mark">?</span>;
                 }
 
                 <span class="kw">if </span>text_input.required.is_some() {
-                    state.serialize_field(<span class="string">&quot;required&quot;</span>, <span class="kw-2">&amp;</span>text_input.required)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"required"</span>, <span class="kw-2">&amp;</span>text_input.required)<span class="question-mark">?</span>;
                 }
 
-                state.serialize_field(<span class="string">&quot;style&quot;</span>, <span class="kw-2">&amp;</span>text_input.style)<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"style"</span>, <span class="kw-2">&amp;</span>text_input.style)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>text_input.value.is_some() {
-                    state.serialize_field(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span>text_input.value)<span class="question-mark">?</span>;
+                    state.serialize_field(<span class="string">"value"</span>, <span class="kw-2">&amp;</span>text_input.value)<span class="question-mark">?</span>;
                 }
             }
             <span class="comment">// We are not serializing all fields so this will fail to
             // deserialize. But it is all that can be done to avoid losing
             // incoming messages at this time.
             </span>Component::Unknown(unknown) =&gt; {
-                state.serialize_field(<span class="string">&quot;type&quot;</span>, <span class="kw-2">&amp;</span>ComponentType::Unknown(<span class="kw-2">*</span>unknown))<span class="question-mark">?</span>;
+                state.serialize_field(<span class="string">"type"</span>, <span class="kw-2">&amp;</span>ComponentType::Unknown(<span class="kw-2">*</span>unknown))<span class="question-mark">?</span>;
             }
         }
 
@@ -1557,26 +1558,26 @@
         <span class="kw">let </span>component = Component::ActionRow(ActionRow {
             components: Vec::from([
                 Component::Button(Button {
-                    custom_id: <span class="prelude-val">Some</span>(<span class="string">&quot;test custom id&quot;</span>.into()),
+                    custom_id: <span class="prelude-val">Some</span>(<span class="string">"test custom id"</span>.into()),
                     disabled: <span class="bool-val">true</span>,
                     emoji: <span class="prelude-val">None</span>,
-                    label: <span class="prelude-val">Some</span>(<span class="string">&quot;test label&quot;</span>.into()),
+                    label: <span class="prelude-val">Some</span>(<span class="string">"test label"</span>.into()),
                     style: ButtonStyle::Primary,
                     url: <span class="prelude-val">None</span>,
                 }),
                 Component::SelectMenu(SelectMenu {
-                    custom_id: <span class="string">&quot;test custom id 2&quot;</span>.into(),
+                    custom_id: <span class="string">"test custom id 2"</span>.into(),
                     disabled: <span class="bool-val">false</span>,
                     max_values: <span class="prelude-val">Some</span>(<span class="number">25</span>),
                     min_values: <span class="prelude-val">Some</span>(<span class="number">5</span>),
                     options: Vec::from([SelectMenuOption {
-                        label: <span class="string">&quot;test option label&quot;</span>.into(),
-                        value: <span class="string">&quot;test option value&quot;</span>.into(),
-                        description: <span class="prelude-val">Some</span>(<span class="string">&quot;test description&quot;</span>.into()),
+                        label: <span class="string">"test option label"</span>.into(),
+                        value: <span class="string">"test option value"</span>.into(),
+                        description: <span class="prelude-val">Some</span>(<span class="string">"test description"</span>.into()),
                         emoji: <span class="prelude-val">None</span>,
                         default: <span class="bool-val">false</span>,
                     }]),
-                    placeholder: <span class="prelude-val">Some</span>(<span class="string">&quot;test placeholder&quot;</span>.into()),
+                    placeholder: <span class="prelude-val">Some</span>(<span class="string">"test placeholder"</span>.into()),
                 }),
             ]),
         });
@@ -1585,67 +1586,67 @@
             <span class="kw-2">&amp;</span>component,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(ComponentType::ActionRow.into()),
-                Token::Str(<span class="string">&quot;components&quot;</span>),
+                Token::Str(<span class="string">"components"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">2</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">5</span>,
                 },
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(ComponentType::Button.into()),
-                Token::Str(<span class="string">&quot;custom_id&quot;</span>),
+                Token::Str(<span class="string">"custom_id"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test custom id&quot;</span>),
-                Token::Str(<span class="string">&quot;disabled&quot;</span>),
+                Token::Str(<span class="string">"test custom id"</span>),
+                Token::Str(<span class="string">"disabled"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::Str(<span class="string">&quot;label&quot;</span>),
+                Token::Str(<span class="string">"label"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test label&quot;</span>),
-                Token::Str(<span class="string">&quot;style&quot;</span>),
+                Token::Str(<span class="string">"test label"</span>),
+                Token::Str(<span class="string">"style"</span>),
                 Token::U8(ButtonStyle::Primary.into()),
                 Token::StructEnd,
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">6</span>,
                 },
-                Token::Str(<span class="string">&quot;type&quot;</span>),
+                Token::Str(<span class="string">"type"</span>),
                 Token::U8(ComponentType::SelectMenu.into()),
-                Token::Str(<span class="string">&quot;custom_id&quot;</span>),
+                Token::Str(<span class="string">"custom_id"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test custom id 2&quot;</span>),
-                Token::Str(<span class="string">&quot;disabled&quot;</span>),
+                Token::Str(<span class="string">"test custom id 2"</span>),
+                Token::Str(<span class="string">"disabled"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;max_values&quot;</span>),
+                Token::Str(<span class="string">"max_values"</span>),
                 Token::Some,
                 Token::U8(<span class="number">25</span>),
-                Token::Str(<span class="string">&quot;min_values&quot;</span>),
+                Token::Str(<span class="string">"min_values"</span>),
                 Token::Some,
                 Token::U8(<span class="number">5</span>),
-                Token::Str(<span class="string">&quot;options&quot;</span>),
+                Token::Str(<span class="string">"options"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;SelectMenuOption&quot;</span>,
+                    name: <span class="string">"SelectMenuOption"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::Str(<span class="string">&quot;default&quot;</span>),
+                Token::Str(<span class="string">"default"</span>),
                 Token::Bool(<span class="bool-val">false</span>),
-                Token::Str(<span class="string">&quot;description&quot;</span>),
+                Token::Str(<span class="string">"description"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test description&quot;</span>),
-                Token::Str(<span class="string">&quot;label&quot;</span>),
-                Token::Str(<span class="string">&quot;test option label&quot;</span>),
-                Token::Str(<span class="string">&quot;value&quot;</span>),
-                Token::Str(<span class="string">&quot;test option value&quot;</span>),
+                Token::Str(<span class="string">"test description"</span>),
+                Token::Str(<span class="string">"label"</span>),
+                Token::Str(<span class="string">"test option label"</span>),
+                Token::Str(<span class="string">"value"</span>),
+                Token::Str(<span class="string">"test option value"</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
-                Token::Str(<span class="string">&quot;placeholder&quot;</span>),
+                Token::Str(<span class="string">"placeholder"</span>),
                 Token::Some,
-                Token::Str(<span class="string">&quot;test placeholder&quot;</span>),
+                Token::Str(<span class="string">"test placeholder"</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
                 Token::StructEnd,
@@ -1657,11 +1658,11 @@
     </span><span class="kw">fn </span>action_row() {
         <span class="kw">let </span>value = Component::ActionRow(ActionRow {
             components: Vec::from([Component::Button(Button {
-                custom_id: <span class="prelude-val">Some</span>(<span class="string">&quot;button-1&quot;</span>.to_owned()),
+                custom_id: <span class="prelude-val">Some</span>(<span class="string">"button-1"</span>.to_owned()),
                 disabled: <span class="bool-val">false</span>,
                 emoji: <span class="prelude-val">None</span>,
                 style: ButtonStyle::Primary,
-                label: <span class="prelude-val">Some</span>(<span class="string">&quot;Button&quot;</span>.to_owned()),
+                label: <span class="prelude-val">Some</span>(<span class="string">"Button"</span>.to_owned()),
                 url: <span class="prelude-val">None</span>,
             })]),
         });
@@ -1670,26 +1671,26 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">2</span>,
                 },
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(ComponentType::ActionRow.into()),
-                Token::String(<span class="string">&quot;components&quot;</span>),
+                Token::String(<span class="string">"components"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">4</span>,
                 },
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(<span class="number">2</span>),
-                Token::String(<span class="string">&quot;custom_id&quot;</span>),
+                Token::String(<span class="string">"custom_id"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;button-1&quot;</span>),
-                Token::String(<span class="string">&quot;label&quot;</span>),
+                Token::String(<span class="string">"button-1"</span>),
+                Token::String(<span class="string">"label"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;Button&quot;</span>),
-                Token::String(<span class="string">&quot;style&quot;</span>),
+                Token::String(<span class="string">"Button"</span>),
+                Token::String(<span class="string">"style"</span>),
                 Token::U8(<span class="number">1</span>),
                 Token::StructEnd,
                 Token::SeqEnd,
@@ -1703,48 +1704,48 @@
         <span class="comment">// Free Palestine.
         //
         // Palestinian Flag.
-        </span><span class="kw">const </span>FLAG: <span class="kw-2">&amp;</span>str = <span class="string">&quot;🇵🇸&quot;</span>;
+        </span><span class="kw">const </span>FLAG: <span class="kw-2">&amp;</span>str = <span class="string">"🇵🇸"</span>;
 
         <span class="kw">let </span>value = Component::Button(Button {
-            custom_id: <span class="prelude-val">Some</span>(<span class="string">&quot;test&quot;</span>.to_owned()),
+            custom_id: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
             disabled: <span class="bool-val">false</span>,
             emoji: <span class="prelude-val">Some</span>(ReactionType::Unicode {
                 name: FLAG.to_owned(),
             }),
-            label: <span class="prelude-val">Some</span>(<span class="string">&quot;Test&quot;</span>.to_owned()),
+            label: <span class="prelude-val">Some</span>(<span class="string">"Test"</span>.to_owned()),
             style: ButtonStyle::Link,
-            url: <span class="prelude-val">Some</span>(<span class="string">&quot;https://twilight.rs&quot;</span>.to_owned()),
+            url: <span class="prelude-val">Some</span>(<span class="string">"https://twilight.rs"</span>.to_owned()),
         });
 
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">6</span>,
                 },
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(ComponentType::Button.into()),
-                Token::String(<span class="string">&quot;custom_id&quot;</span>),
+                Token::String(<span class="string">"custom_id"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;test&quot;</span>),
-                Token::String(<span class="string">&quot;emoji&quot;</span>),
+                Token::String(<span class="string">"test"</span>),
+                Token::String(<span class="string">"emoji"</span>),
                 Token::Some,
                 Token::Struct {
-                    name: <span class="string">&quot;ReactionType&quot;</span>,
+                    name: <span class="string">"ReactionType"</span>,
                     len: <span class="number">1</span>,
                 },
-                Token::String(<span class="string">&quot;name&quot;</span>),
+                Token::String(<span class="string">"name"</span>),
                 Token::String(FLAG),
                 Token::StructEnd,
-                Token::String(<span class="string">&quot;label&quot;</span>),
+                Token::String(<span class="string">"label"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;Test&quot;</span>),
-                Token::String(<span class="string">&quot;style&quot;</span>),
+                Token::String(<span class="string">"Test"</span>),
+                Token::String(<span class="string">"style"</span>),
                 Token::U8(ButtonStyle::Link.into()),
-                Token::String(<span class="string">&quot;url&quot;</span>),
+                Token::String(<span class="string">"url"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;https://twilight.rs&quot;</span>),
+                Token::String(<span class="string">"https://twilight.rs"</span>),
                 Token::StructEnd,
             ],
         );
@@ -1753,48 +1754,48 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>text_input() {
         <span class="kw">let </span>value = Component::TextInput(TextInput {
-            custom_id: <span class="string">&quot;test&quot;</span>.to_owned(),
-            label: <span class="string">&quot;The label&quot;</span>.to_owned(),
+            custom_id: <span class="string">"test"</span>.to_owned(),
+            label: <span class="string">"The label"</span>.to_owned(),
             max_length: <span class="prelude-val">Some</span>(<span class="number">100</span>),
             min_length: <span class="prelude-val">Some</span>(<span class="number">1</span>),
-            placeholder: <span class="prelude-val">Some</span>(<span class="string">&quot;Taking this place&quot;</span>.to_owned()),
+            placeholder: <span class="prelude-val">Some</span>(<span class="string">"Taking this place"</span>.to_owned()),
             required: <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
             style: TextInputStyle::Short,
-            value: <span class="prelude-val">Some</span>(<span class="string">&quot;Hello World!&quot;</span>.to_owned()),
+            value: <span class="prelude-val">Some</span>(<span class="string">"Hello World!"</span>.to_owned()),
         });
 
         serde_test::assert_tokens(
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">&quot;Component&quot;</span>,
+                    name: <span class="string">"Component"</span>,
                     len: <span class="number">9</span>,
                 },
-                Token::String(<span class="string">&quot;type&quot;</span>),
+                Token::String(<span class="string">"type"</span>),
                 Token::U8(ComponentType::TextInput.into()),
-                Token::String(<span class="string">&quot;custom_id&quot;</span>),
+                Token::String(<span class="string">"custom_id"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;test&quot;</span>),
-                Token::String(<span class="string">&quot;label&quot;</span>),
+                Token::String(<span class="string">"test"</span>),
+                Token::String(<span class="string">"label"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;The label&quot;</span>),
-                Token::String(<span class="string">&quot;max_length&quot;</span>),
+                Token::String(<span class="string">"The label"</span>),
+                Token::String(<span class="string">"max_length"</span>),
                 Token::Some,
                 Token::U16(<span class="number">100</span>),
-                Token::String(<span class="string">&quot;min_length&quot;</span>),
+                Token::String(<span class="string">"min_length"</span>),
                 Token::Some,
                 Token::U16(<span class="number">1</span>),
-                Token::String(<span class="string">&quot;placeholder&quot;</span>),
+                Token::String(<span class="string">"placeholder"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;Taking this place&quot;</span>),
-                Token::String(<span class="string">&quot;required&quot;</span>),
+                Token::String(<span class="string">"Taking this place"</span>),
+                Token::String(<span class="string">"required"</span>),
                 Token::Some,
                 Token::Bool(<span class="bool-val">true</span>),
-                Token::String(<span class="string">&quot;style&quot;</span>),
+                Token::String(<span class="string">"style"</span>),
                 Token::U8(TextInputStyle::Short <span class="kw">as </span>u8),
-                Token::String(<span class="string">&quot;value&quot;</span>),
+                Token::String(<span class="string">"value"</span>),
                 Token::Some,
-                Token::String(<span class="string">&quot;Hello World!&quot;</span>),
+                Token::String(<span class="string">"Hello World!"</span>),
                 Token::StructEnd,
             ],
         );
