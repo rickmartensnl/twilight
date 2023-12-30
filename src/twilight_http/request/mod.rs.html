@@ -105,6 +105,8 @@
 <a href="#104" id="104">104</a>
 <a href="#105" id="105">105</a>
 <a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Typed request builders, [multipart form support], a [manual request builder]
 //! for low-level request construction, and [audit log reason] support.
 //!
@@ -165,6 +167,7 @@
 <span class="kw">mod </span>get_voice_regions;
 <span class="kw">mod </span>multipart;
 <span class="kw">mod </span>try_into_request;
+<span class="kw">mod </span>update_user_application;
 
 <span class="kw">pub use </span><span class="self">self</span>::{
     audit_reason::AuditLogReason,
@@ -176,6 +179,7 @@
     get_voice_regions::GetVoiceRegions,
     multipart::Form,
     try_into_request::TryIntoRequest,
+    update_user_application::UpdateCurrentUserApplication,
 };
 <span class="kw">pub use </span>twilight_http_ratelimiting::request::Method;
 

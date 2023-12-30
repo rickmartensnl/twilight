@@ -1118,7 +1118,7 @@
 };
 <span class="kw">use </span>std::fmt::{Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult};
 
-<span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
+<span class="attr">#[derive(Clone, Debug, Eq, PartialEq, Serialize, Hash)]
 </span><span class="kw">pub struct </span>Guild {
     <span class="kw">pub </span>afk_channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;,
     <span class="kw">pub </span>afk_timeout: AfkTimeout,

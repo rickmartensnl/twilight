@@ -157,6 +157,15 @@
 <a href="#156" id="156">156</a>
 <a href="#157" id="157">157</a>
 <a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+<a href="#160" id="160">160</a>
+<a href="#161" id="161">161</a>
+<a href="#162" id="162">162</a>
+<a href="#163" id="163">163</a>
+<a href="#164" id="164">164</a>
+<a href="#165" id="165">165</a>
+<a href="#166" id="166">166</a>
+<a href="#167" id="167">167</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::Application;
 <span class="kw">use crate</span>::{user::User, util::Timestamp};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
@@ -230,20 +239,26 @@
 
         <span class="kw">let </span>value = CurrentAuthorizationInformation {
             application: Application {
+                approximate_guild_count: <span class="prelude-val">Some</span>(<span class="number">2</span>),
+                bot: <span class="prelude-val">None</span>,
                 bot_public: <span class="bool-val">true</span>,
                 bot_require_code_grant: <span class="bool-val">true</span>,
                 cover_image: <span class="prelude-val">None</span>,
                 custom_install_url: <span class="prelude-val">None</span>,
                 description: DESCRIPTION.to_owned(),
                 guild_id: <span class="prelude-val">None</span>,
+                guild: <span class="prelude-val">None</span>,
                 flags: <span class="prelude-val">None</span>,
                 icon: <span class="prelude-val">Some</span>(image_hash::ICON),
                 id: Id::new(<span class="number">100_000_000_000_000_000</span>),
                 install_params: <span class="prelude-val">None</span>,
+                interactions_endpoint_url: <span class="prelude-val">None</span>,
                 name: NAME.to_owned(),
                 owner: <span class="prelude-val">None</span>,
                 primary_sku_id: <span class="prelude-val">None</span>,
                 privacy_policy_url: <span class="prelude-val">None</span>,
+                redirect_uris: <span class="prelude-val">None</span>,
+                role_connections_verification_url: <span class="prelude-val">None</span>,
                 rpc_origins: Vec::new(),
                 slug: <span class="prelude-val">None</span>,
                 tags: <span class="prelude-val">None</span>,
@@ -266,8 +281,11 @@
                 Token::Str(<span class="string">"application"</span>),
                 Token::Struct {
                     name: <span class="string">"Application"</span>,
-                    len: <span class="number">15</span>,
+                    len: <span class="number">16</span>,
                 },
+                Token::Str(<span class="string">"approximate_guild_count"</span>),
+                Token::Some,
+                Token::U64(<span class="number">2</span>),
                 Token::Str(<span class="string">"bot_public"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
                 Token::Str(<span class="string">"bot_require_code_grant"</span>),

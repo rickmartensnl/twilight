@@ -4679,6 +4679,21 @@
 <a href="#4678" id="4678">4678</a>
 <a href="#4679" id="4679">4679</a>
 <a href="#4680" id="4680">4680</a>
+<a href="#4681" id="4681">4681</a>
+<a href="#4682" id="4682">4682</a>
+<a href="#4683" id="4683">4683</a>
+<a href="#4684" id="4684">4684</a>
+<a href="#4685" id="4685">4685</a>
+<a href="#4686" id="4686">4686</a>
+<a href="#4687" id="4687">4687</a>
+<a href="#4688" id="4688">4688</a>
+<a href="#4689" id="4689">4689</a>
+<a href="#4690" id="4690">4690</a>
+<a href="#4691" id="4691">4691</a>
+<a href="#4692" id="4692">4692</a>
+<a href="#4693" id="4693">4693</a>
+<a href="#4694" id="4694">4694</a>
+<a href="#4695" id="4695">4695</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 <span class="kw">pub use </span>twilight_http_ratelimiting::request::{Path, PathParseError, PathParseErrorType};
 
@@ -4690,7 +4705,10 @@
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>Route&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Route information to add a user to a guild.
-    </span>AddGuildMember { guild_id: u64, user_id: u64 },
+    </span>AddGuildMember {
+        guild_id: u64,
+        user_id: u64,
+    },
     <span class="doccomment">/// Route information to add a role to guild member.
     </span>AddMemberRole {
         <span class="doccomment">/// The ID of the guild.
@@ -5780,6 +5798,7 @@
         token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         webhook_id: u64,
     },
+    UpdateCurrentUserApplication,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Route&lt;<span class="lifetime">'a</span>&gt; {
@@ -5930,6 +5949,7 @@
             | <span class="self">Self</span>::UpdateTemplate { .. }
             | <span class="self">Self</span>::UpdateUserVoiceState { .. }
             | <span class="self">Self</span>::UpdateWebhookMessage { .. }
+            | <span class="self">Self</span>::UpdateCurrentUserApplication
             | <span class="self">Self</span>::UpdateWebhook { .. } =&gt; Method::Patch,
             <span class="self">Self</span>::CreateChannel { .. }
             | <span class="self">Self</span>::CreateGlobalCommand { .. }
@@ -6218,7 +6238,9 @@
                 Path::ApplicationGuildCommandId(application_id)
             }
             <span class="self">Self</span>::GetCurrentAuthorizationInformation =&gt; Path::OauthMe,
-            <span class="self">Self</span>::GetCurrentUserApplicationInfo =&gt; Path::OauthApplicationsMe,
+            <span class="self">Self</span>::GetCurrentUserApplicationInfo | <span class="self">Self</span>::UpdateCurrentUserApplication =&gt; {
+                Path::ApplicationsMe
+            }
             <span class="self">Self</span>::GetCurrentUser | <span class="self">Self</span>::GetUser { .. } | <span class="self">Self</span>::UpdateCurrentUser =&gt; Path::UsersId,
             <span class="self">Self</span>::GetCurrentUserGuildMember { .. } =&gt; Path::UsersIdGuildsIdMember,
             <span class="self">Self</span>::GetEmoji { guild_id, .. } | <span class="self">Self</span>::UpdateEmoji { guild_id, .. } =&gt; {
@@ -7022,7 +7044,9 @@
                 f.write_str(<span class="string">"/permissions"</span>)
             }
             Route::GetCurrentAuthorizationInformation =&gt; f.write_str(<span class="string">"oauth2/@me"</span>),
-            Route::GetCurrentUserApplicationInfo =&gt; f.write_str(<span class="string">"oauth2/applications/@me"</span>),
+            Route::GetCurrentUserApplicationInfo | Route::UpdateCurrentUserApplication =&gt; {
+                f.write_str(<span class="string">"applications/@me"</span>)
+            }
             Route::GetCurrentUser | Route::UpdateCurrentUser =&gt; f.write_str(<span class="string">"users/@me"</span>),
             Route::GetCurrentUserGuildMember { guild_id } =&gt; {
                 f.write_str(<span class="string">"users/@me/guilds/"</span>)<span class="question-mark">?</span>;
@@ -8686,7 +8710,13 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>get_current_user_application_info() {
         <span class="kw">let </span>route = Route::GetCurrentUserApplicationInfo;
-        <span class="macro">assert_eq!</span>(route.to_string(), <span class="string">"oauth2/applications/@me"</span>);
+        <span class="macro">assert_eq!</span>(route.to_string(), <span class="string">"applications/@me"</span>);
+    }
+
+    <span class="attr">#[test]
+    </span><span class="kw">fn </span>update_current_user_application() {
+        <span class="kw">let </span>route = Route::UpdateCurrentUserApplication;
+        <span class="macro">assert_eq!</span>(route.to_string(), <span class="string">"applications/@me"</span>);
     }
 
     <span class="attr">#[test]

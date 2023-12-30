@@ -258,8 +258,43 @@
 <a href="#257" id="257">257</a>
 <a href="#258" id="258">258</a>
 <a href="#259" id="259">259</a>
+<a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
+<a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{team::Team, ApplicationFlags, InstallParams};
 <span class="kw">use crate</span>::{
+    guild::Guild,
     id::{
         marker::{ApplicationMarker, GuildMarker, OauthSkuMarker},
         Id,
@@ -271,6 +306,12 @@
 
 <span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>Application {
+    <span class="doccomment">/// Approximate count of guilds this app has been added to.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>approximate_guild_count: <span class="prelude-ty">Option</span>&lt;u64&gt;,
+    <span class="doccomment">/// Partial user object for the bot user associated with the app.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>bot: <span class="prelude-ty">Option</span>&lt;User&gt;,
     <span class="kw">pub </span>bot_public: bool,
     <span class="kw">pub </span>bot_require_code_grant: bool,
     <span class="doccomment">/// Default rich presence invite cover image.
@@ -281,6 +322,9 @@
     <span class="doccomment">/// Description of the application.
     </span><span class="kw">pub </span>description: String,
     <span class="kw">pub </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt;,
+    <span class="doccomment">/// Partial object of the associated guild.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>guild: <span class="prelude-ty">Option</span>&lt;Guild&gt;,
     <span class="doccomment">/// Public flags of the application.
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;ApplicationFlags&gt;,
     <span class="doccomment">/// Icon of the application.
@@ -290,6 +334,9 @@
     <span class="doccomment">/// Settings for the application's default in-app authorization, if enabled.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>install_params: <span class="prelude-ty">Option</span>&lt;InstallParams&gt;,
+    <span class="doccomment">/// Interactions endpoint URL for the app.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>interactions_endpoint_url: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Name of the application.
     </span><span class="kw">pub </span>name: String,
     <span class="kw">pub </span>owner: <span class="prelude-ty">Option</span>&lt;User&gt;,
@@ -297,8 +344,14 @@
     <span class="doccomment">/// URL of the application's privacy policy.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>privacy_policy_url: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// Role connection verification URL for the app.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>role_connections_verification_url: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>rpc_origins: Vec&lt;String&gt;,
+    <span class="doccomment">/// Redirect URIs for the application.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>redirect_uris: <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt;,
     <span class="kw">pub </span>slug: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Tags describing the content and functionality of the application.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
@@ -356,16 +409,20 @@
     #[test]
     </span><span class="kw">fn </span>current_application_info() {
         <span class="kw">let </span>value = Application {
+            approximate_guild_count: <span class="prelude-val">Some</span>(<span class="number">2</span>),
+            bot: <span class="prelude-val">None</span>,
             bot_public: <span class="bool-val">true</span>,
             bot_require_code_grant: <span class="bool-val">false</span>,
             cover_image: <span class="prelude-val">Some</span>(image_hash::COVER),
             custom_install_url: <span class="prelude-val">None</span>,
             description: <span class="string">"a pretty cool application"</span>.to_owned(),
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
+            guild: <span class="prelude-val">None</span>,
             flags: <span class="prelude-val">Some</span>(ApplicationFlags::EMBEDDED),
             icon: <span class="prelude-val">Some</span>(image_hash::ICON),
             id: Id::new(<span class="number">2</span>),
             install_params: <span class="prelude-val">None</span>,
+            interactions_endpoint_url: <span class="prelude-val">Some</span>(<span class="string">"https://interactions"</span>.into()),
             name: <span class="string">"cool application"</span>.to_owned(),
             owner: <span class="prelude-val">Some</span>(User {
                 accent_color: <span class="prelude-val">None</span>,
@@ -388,6 +445,8 @@
             }),
             primary_sku_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">4</span>)),
             privacy_policy_url: <span class="prelude-val">Some</span>(<span class="string">"https://privacypolicy"</span>.into()),
+            redirect_uris: <span class="prelude-val">None</span>,
+            role_connections_verification_url: <span class="prelude-val">Some</span>(<span class="string">"https://roleconnections"</span>.into()),
             rpc_origins: <span class="macro">vec!</span>[<span class="string">"one"</span>.to_owned()],
             slug: <span class="prelude-val">Some</span>(<span class="string">"app slug"</span>.to_owned()),
             tags: <span class="prelude-val">Some</span>(Vec::from([
@@ -412,8 +471,11 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"Application"</span>,
-                    len: <span class="number">18</span>,
+                    len: <span class="number">21</span>,
                 },
+                Token::Str(<span class="string">"approximate_guild_count"</span>),
+                Token::Some,
+                Token::U64(<span class="number">2</span>),
                 Token::Str(<span class="string">"bot_public"</span>),
                 Token::Bool(<span class="bool-val">true</span>),
                 Token::Str(<span class="string">"bot_require_code_grant"</span>),
@@ -436,6 +498,9 @@
                 Token::Str(<span class="string">"id"</span>),
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::Str(<span class="string">"2"</span>),
+                Token::Str(<span class="string">"interactions_endpoint_url"</span>),
+                Token::Some,
+                Token::Str(<span class="string">"https://interactions"</span>),
                 Token::Str(<span class="string">"name"</span>),
                 Token::Str(<span class="string">"cool application"</span>),
                 Token::Str(<span class="string">"owner"</span>),
@@ -472,6 +537,9 @@
                 Token::Str(<span class="string">"privacy_policy_url"</span>),
                 Token::Some,
                 Token::Str(<span class="string">"https://privacypolicy"</span>),
+                Token::Str(<span class="string">"role_connections_verification_url"</span>),
+                Token::Some,
+                Token::Str(<span class="string">"https://roleconnections"</span>),
                 Token::Str(<span class="string">"rpc_origins"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
                 Token::Str(<span class="string">"one"</span>),

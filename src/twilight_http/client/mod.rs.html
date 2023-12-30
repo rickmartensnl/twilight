@@ -2704,6 +2704,11 @@
 <a href="#2703" id="2703">2703</a>
 <a href="#2704" id="2704">2704</a>
 <a href="#2705" id="2705">2705</a>
+<a href="#2706" id="2706">2706</a>
+<a href="#2707" id="2707">2707</a>
+<a href="#2708" id="2708">2708</a>
+<a href="#2709" id="2709">2709</a>
+<a href="#2710" id="2710">2710</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
@@ -2715,7 +2720,7 @@
         update_guild_onboarding::{UpdateGuildOnboarding, UpdateGuildOnboardingFields},
         GetGuildOnboarding,
     },
-    GetCurrentAuthorizationInformation,
+    GetCurrentAuthorizationInformation, UpdateCurrentUserApplication,
 };
 <span class="attr">#[allow(deprecated)]
 </span><span class="kw">use crate</span>::{
@@ -3402,6 +3407,11 @@
     <span class="doccomment">/// Get information about the current bot application.
     </span><span class="kw">pub const fn </span>current_user_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; GetUserApplicationInfo&lt;<span class="lifetime">'_</span>&gt; {
         GetUserApplicationInfo::new(<span class="self">self</span>)
+    }
+
+    <span class="doccomment">/// Update the current user's application.
+    </span><span class="kw">pub const fn </span>update_current_user_application(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; UpdateCurrentUserApplication&lt;<span class="lifetime">'_</span>&gt; {
+        UpdateCurrentUserApplication::new(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Update the current user.

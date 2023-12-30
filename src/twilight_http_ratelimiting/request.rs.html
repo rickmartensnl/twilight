@@ -531,6 +531,9 @@
 <a href="#530" id="530">530</a>
 <a href="#531" id="531">531</a>
 <a href="#532" id="532">532</a>
+<a href="#533" id="533">533</a>
+<a href="#534" id="534">534</a>
+<a href="#535" id="535">535</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Request parameters for ratelimiting.
 //!
 //! This module contains the type definitions for parameters
@@ -656,6 +659,8 @@
     </span>ApplicationGuildCommand(u64),
     <span class="doccomment">/// Operating on a specific command in a guild.
     </span>ApplicationGuildCommandId(u64),
+    <span class="doccomment">/// Operating on current user application,
+    </span>ApplicationsMe,
     <span class="doccomment">/// Operating on a channel.
     </span>ChannelsId(u64),
     <span class="doccomment">/// Operating on a channel's followers.
@@ -863,6 +868,7 @@
         <span class="kw">let </span>parts = s.split(<span class="string">'/'</span>).skip(skip).collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>str&gt;&gt;();
 
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>parts[..] {
+            [<span class="string">"applications"</span>, <span class="string">"me"</span>] =&gt; ApplicationsMe,
             [<span class="string">"applications"</span>, id, <span class="string">"commands"</span>] =&gt; ApplicationCommand(parse_id(id)<span class="question-mark">?</span>),
             [<span class="string">"applications"</span>, id, <span class="string">"commands"</span>, <span class="kw">_</span>] =&gt; ApplicationCommandId(parse_id(id)<span class="question-mark">?</span>),
             [<span class="string">"applications"</span>, id, <span class="string">"guilds"</span>, <span class="kw">_</span>, <span class="string">"commands"</span>]
