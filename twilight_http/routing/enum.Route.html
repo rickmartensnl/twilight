@@ -47,7 +47,7 @@
         compute_prune_count: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
         days: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;,
         guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
-        include_roles: &amp;'a [Id&lt;RoleMarker&gt;],
+        include_roles: &amp;'a [<a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.RoleMarker.html" title="struct twilight_model::id::marker::RoleMarker">RoleMarker</a>&gt;],
     },
     CreateGuildScheduledEvent {
         guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
@@ -313,7 +313,7 @@
     GetGuildPruneCount {
         days: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;,
         guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
-        include_roles: &amp;'a [Id&lt;RoleMarker&gt;],
+        include_roles: &amp;'a [<a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.RoleMarker.html" title="struct twilight_model::id::marker::RoleMarker">RoleMarker</a>&gt;],
     },
     GetGuildRoles {
         guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
@@ -653,7 +653,7 @@
 </div></div><div class="sub-variant-field"><span id="variant.CreateGuildPrune.field.days" class="section-header"><a href="#variant.CreateGuildPrune.field.days" class="anchor field">§</a><code>days: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;</code></span><div class="docblock"><p>The number of days that a user must be offline before being able to
 be pruned.</p>
 </div></div><div class="sub-variant-field"><span id="variant.CreateGuildPrune.field.guild_id" class="section-header"><a href="#variant.CreateGuildPrune.field.guild_id" class="anchor field">§</a><code>guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><div class="docblock"><p>The ID of the guild.</p>
-</div></div><div class="sub-variant-field"><span id="variant.CreateGuildPrune.field.include_roles" class="section-header"><a href="#variant.CreateGuildPrune.field.include_roles" class="anchor field">§</a><code>include_roles: &amp;'a [Id&lt;RoleMarker&gt;]</code></span><div class="docblock"><p>The roles to filter the prune by.</p>
+</div></div><div class="sub-variant-field"><span id="variant.CreateGuildPrune.field.include_roles" class="section-header"><a href="#variant.CreateGuildPrune.field.include_roles" class="anchor field">§</a><code>include_roles: &amp;'a [<a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.RoleMarker.html" title="struct twilight_model::id::marker::RoleMarker">RoleMarker</a>&gt;]</code></span><div class="docblock"><p>The roles to filter the prune by.</p>
 <p>A user must have at least one of these roles to be able to be
 pruned.</p>
 </div></div></div><div class="docblock"><p>Route information to create a prune in a guild.</p>
@@ -856,7 +856,7 @@ guild.</p>
 </div><section id="variant.GetGuildPruneCount" class="variant"><a href="#variant.GetGuildPruneCount" class="anchor">§</a><h3 class="code-header">GetGuildPruneCount</h3></section><div class="sub-variant" id="variant.GetGuildPruneCount.fields"><h4>Fields</h4><div class="sub-variant-field"><span id="variant.GetGuildPruneCount.field.days" class="section-header"><a href="#variant.GetGuildPruneCount.field.days" class="anchor field">§</a><code>days: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;</code></span><div class="docblock"><p>The number of days that a user must be offline before being able to
 be pruned.</p>
 </div></div><div class="sub-variant-field"><span id="variant.GetGuildPruneCount.field.guild_id" class="section-header"><a href="#variant.GetGuildPruneCount.field.guild_id" class="anchor field">§</a><code>guild_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><div class="docblock"><p>The ID of the guild.</p>
-</div></div><div class="sub-variant-field"><span id="variant.GetGuildPruneCount.field.include_roles" class="section-header"><a href="#variant.GetGuildPruneCount.field.include_roles" class="anchor field">§</a><code>include_roles: &amp;'a [Id&lt;RoleMarker&gt;]</code></span><div class="docblock"><p>The roles to filter the prune by.</p>
+</div></div><div class="sub-variant-field"><span id="variant.GetGuildPruneCount.field.include_roles" class="section-header"><a href="#variant.GetGuildPruneCount.field.include_roles" class="anchor field">§</a><code>include_roles: &amp;'a [<a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.RoleMarker.html" title="struct twilight_model::id::marker::RoleMarker">RoleMarker</a>&gt;]</code></span><div class="docblock"><p>The roles to filter the prune by.</p>
 <p>A user must have at least one of these roles to be able to be
 pruned.</p>
 </div></div></div><div class="docblock"><p>Route information to get the number of members that would be pruned,

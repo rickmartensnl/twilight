@@ -1226,7 +1226,7 @@
 
 <span class="kw">struct </span>Connection {
     config: NodeConfig,
-    connection: WebSocketStream&lt;MaybeTlsStream&lt;TcpStream&gt;&gt;,
+    stream: WebSocketStream&lt;MaybeTlsStream&lt;TcpStream&gt;&gt;,
     node_from: UnboundedReceiver&lt;OutgoingEvent&gt;,
     node_to: UnboundedSender&lt;IncomingEvent&gt;,
     players: PlayerManager,
@@ -1246,7 +1246,7 @@
         ),
         NodeError,
     &gt; {
-        <span class="kw">let </span>connection = reconnect(<span class="kw-2">&amp;</span>config).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let </span>stream = reconnect(<span class="kw-2">&amp;</span>config).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="kw">let </span>(to_node, from_lavalink) = mpsc::unbounded_channel();
         <span class="kw">let </span>(to_lavalink, from_node) = mpsc::unbounded_channel();
@@ -1254,7 +1254,7 @@
         <span class="prelude-val">Ok</span>((
             <span class="self">Self </span>{
                 config,
-                connection,
+                stream,
                 node_from: from_node,
                 node_to: to_node,
                 players,
@@ -1268,12 +1268,12 @@
     <span class="kw">async fn </span>run(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), NodeError&gt; {
         <span class="kw">loop </span>{
             <span class="macro">tokio::select! </span>{
-                incoming = <span class="self">self</span>.connection.next() =&gt; {
+                incoming = <span class="self">self</span>.stream.next() =&gt; {
                     <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(incoming)) = incoming {
                         <span class="self">self</span>.incoming(incoming).<span class="kw">await</span><span class="question-mark">?</span>;
                     } <span class="kw">else </span>{
                         <span class="macro">tracing::debug!</span>(<span class="string">"connection to {} closed, reconnecting"</span>, <span class="self">self</span>.config.address);
-                        <span class="self">self</span>.connection = reconnect(<span class="kw-2">&amp;</span><span class="self">self</span>.config).<span class="kw">await</span><span class="question-mark">?</span>;
+                        <span class="self">self</span>.stream = reconnect(<span class="kw-2">&amp;</span><span class="self">self</span>.config).<span class="kw">await</span><span class="question-mark">?</span>;
                     }
                 }
                 outgoing = <span class="self">self</span>.node_from.recv() =&gt; {
@@ -1288,7 +1288,7 @@
                             source: <span class="prelude-val">Some</span>(Box::new(source)),
                         })<span class="question-mark">?</span>;
                         <span class="kw">let </span>msg = Message::Text(payload);
-                        <span class="self">self</span>.connection.send(msg).<span class="kw">await</span>.unwrap();
+                        <span class="self">self</span>.stream.send(msg).<span class="kw">await</span>.unwrap();
                     } <span class="kw">else </span>{
                         <span class="macro">tracing::debug!</span>(<span class="string">"node {} closed, ending connection"</span>, <span class="self">self</span>.config.address);
 
@@ -1310,7 +1310,7 @@
         <span class="kw">let </span>text = <span class="kw">match </span>incoming {
             Message::Close(<span class="kw">_</span>) =&gt; {
                 <span class="macro">tracing::debug!</span>(<span class="string">"got close, closing connection"</span>);
-                <span class="kw">let </span>_result = <span class="self">self</span>.connection.send(Message::Close(<span class="prelude-val">None</span>)).<span class="kw">await</span>;
+                <span class="kw">let </span>_result = <span class="self">self</span>.stream.send(Message::Close(<span class="prelude-val">None</span>)).<span class="kw">await</span>;
 
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
             }
@@ -1319,7 +1319,7 @@
                 <span class="kw">let </span>msg = Message::Pong(data);
 
                 <span class="comment">// We don't need to immediately care if a pong fails.
-                </span><span class="kw">let </span>_result = <span class="self">self</span>.connection.send(msg).<span class="kw">await</span>;
+                </span><span class="kw">let </span>_result = <span class="self">self</span>.stream.send(msg).<span class="kw">await</span>;
 
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
             }
