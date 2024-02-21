@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild_channel.rs`."><title>create_guild_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/create_guild_channel.rs`."><title>create_guild_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -376,6 +376,19 @@
 <a href="#374" id="374">374</a>
 <a href="#375" id="375">375</a>
 <a href="#376" id="376">376</a>
+<a href="#377" id="377">377</a>
+<a href="#378" id="378">378</a>
+<a href="#379" id="379">379</a>
+<a href="#380" id="380">380</a>
+<a href="#381" id="381">381</a>
+<a href="#382" id="382">382</a>
+<a href="#383" id="383">383</a>
+<a href="#384" id="384">384</a>
+<a href="#385" id="385">385</a>
+<a href="#386" id="386">386</a>
+<a href="#387" id="387">387</a>
+<a href="#388" id="388">388</a>
+<a href="#389" id="389">389</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -455,50 +468,53 @@
 /// UTF-16 characters and the maximum is 100 UTF-16 characters.
 </span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
 </span><span class="kw">pub struct </span>CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt; {
-    fields: CreateGuildChannelFields&lt;<span class="lifetime">'a</span>&gt;,
+    fields: <span class="prelude-ty">Result</span>&lt;CreateGuildChannelFields&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt;,
     guild_id: Id&lt;GuildMarker&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    reason: <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;, ValidationError&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(
-        http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-        guild_id: Id&lt;GuildMarker&gt;,
-        name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        validate_name(name)<span class="question-mark">?</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client, guild_id: Id&lt;GuildMarker&gt;, name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>fields = <span class="prelude-val">Ok</span>(CreateGuildChannelFields {
+            available_tags: <span class="prelude-val">None</span>,
+            bitrate: <span class="prelude-val">None</span>,
+            default_auto_archive_duration: <span class="prelude-val">None</span>,
+            default_forum_layout: <span class="prelude-val">None</span>,
+            default_reaction_emoji: <span class="prelude-val">None</span>,
+            default_sort_order: <span class="prelude-val">None</span>,
+            default_thread_rate_limit_per_user: <span class="prelude-val">None</span>,
+            kind: <span class="prelude-val">None</span>,
+            name,
+            nsfw: <span class="prelude-val">None</span>,
+            parent_id: <span class="prelude-val">None</span>,
+            permission_overwrites: <span class="prelude-val">None</span>,
+            position: <span class="prelude-val">None</span>,
+            rate_limit_per_user: <span class="prelude-val">None</span>,
+            rtc_region: <span class="prelude-val">None</span>,
+            topic: <span class="prelude-val">None</span>,
+            user_limit: <span class="prelude-val">None</span>,
+            video_quality_mode: <span class="prelude-val">None</span>,
+        })
+        .and_then(|fields| {
+            validate_name(name)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-            fields: CreateGuildChannelFields {
-                available_tags: <span class="prelude-val">None</span>,
-                bitrate: <span class="prelude-val">None</span>,
-                default_auto_archive_duration: <span class="prelude-val">None</span>,
-                default_forum_layout: <span class="prelude-val">None</span>,
-                default_reaction_emoji: <span class="prelude-val">None</span>,
-                default_sort_order: <span class="prelude-val">None</span>,
-                default_thread_rate_limit_per_user: <span class="prelude-val">None</span>,
-                kind: <span class="prelude-val">None</span>,
-                name,
-                nsfw: <span class="prelude-val">None</span>,
-                parent_id: <span class="prelude-val">None</span>,
-                permission_overwrites: <span class="prelude-val">None</span>,
-                position: <span class="prelude-val">None</span>,
-                rate_limit_per_user: <span class="prelude-val">None</span>,
-                rtc_region: <span class="prelude-val">None</span>,
-                topic: <span class="prelude-val">None</span>,
-                user_limit: <span class="prelude-val">None</span>,
-                video_quality_mode: <span class="prelude-val">None</span>,
-            },
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">Self </span>{
+            fields,
             guild_id,
             http,
-            reason: <span class="prelude-val">None</span>,
-        })
+            reason: <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        }
     }
 
     <span class="doccomment">/// Set the available tags for the forum.
-    </span><span class="kw">pub const fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.available_tags = <span class="prelude-val">Some</span>(available_tags);
+    </span><span class="kw">pub fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.available_tags = <span class="prelude-val">Some</span>(available_tags);
+        }
 
         <span class="self">self
     </span>}
@@ -512,51 +528,57 @@
     /// Returns an error of type [`BitrateInvalid`] if the bitrate is invalid.
     ///
     /// [`BitrateInvalid`]: twilight_validate::channel::ChannelValidationErrorType::BitrateInvalid
-    </span><span class="kw">pub const fn </span>bitrate(<span class="kw-2">mut </span><span class="self">self</span>, bitrate: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_bitrate(bitrate) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>bitrate(<span class="kw-2">mut </span><span class="self">self</span>, bitrate: u32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_bitrate(bitrate)<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.fields.bitrate = <span class="prelude-val">Some</span>(bitrate);
+            fields.bitrate = <span class="prelude-val">Some</span>(bitrate);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the default auto archive duration for newly created threads in the
     /// channel.
     ///
     /// Automatic archive durations are not locked behind the guild's boost
     /// level.
-    </span><span class="kw">pub const fn </span>default_auto_archive_duration(
+    </span><span class="kw">pub fn </span>default_auto_archive_duration(
         <span class="kw-2">mut </span><span class="self">self</span>,
         auto_archive_duration: AutoArchiveDuration,
     ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_auto_archive_duration = <span class="prelude-val">Some</span>(auto_archive_duration);
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_auto_archive_duration = <span class="prelude-val">Some</span>(auto_archive_duration);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the default forum layout for new forum channels.
-    </span><span class="kw">pub const fn </span>default_forum_layout(<span class="kw-2">mut </span><span class="self">self</span>, default_forum_layout: ForumLayout) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_forum_layout = <span class="prelude-val">Some</span>(default_forum_layout);
+    </span><span class="kw">pub fn </span>default_forum_layout(<span class="kw-2">mut </span><span class="self">self</span>, default_forum_layout: ForumLayout) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_forum_layout = <span class="prelude-val">Some</span>(default_forum_layout);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the default reaction emoji for new forum threads.
-    </span><span class="kw">pub const fn </span>default_reaction_emoji(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        default_reaction_emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>DefaultReaction,
-    ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_reaction_emoji = <span class="prelude-val">Some</span>(default_reaction_emoji);
+    </span><span class="kw">pub fn </span>default_reaction_emoji(<span class="kw-2">mut </span><span class="self">self</span>, default_reaction_emoji: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>DefaultReaction) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_reaction_emoji = <span class="prelude-val">Some</span>(default_reaction_emoji);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the default sort order for newly created forum channels.
-    </span><span class="kw">pub const fn </span>default_sort_order(<span class="kw-2">mut </span><span class="self">self</span>, default_sort_order: ForumSortOrder) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_sort_order = <span class="prelude-val">Some</span>(default_sort_order);
+    </span><span class="kw">pub fn </span>default_sort_order(<span class="kw-2">mut </span><span class="self">self</span>, default_sort_order: ForumSortOrder) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_sort_order = <span class="prelude-val">Some</span>(default_sort_order);
+        }
 
         <span class="self">self
     </span>}
@@ -568,54 +590,58 @@
     /// The minimum is 0 and the maximum is 21600. This is also known as "Slow Mode". See
     /// [Discord Docs/Channel Object].
     ///
-    /// # Errors
-    ///
-    /// Returns an error of type [`RateLimitPerUserInvalid`] if the time is invalid.
-    ///
-    /// [`RateLimitPerUserInvalid`]: twilight_validate::channel::ChannelValidationErrorType::RateLimitPerUserInvalid
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
-    </span><span class="kw">pub const fn </span>default_thread_rate_limit_per_user(
+    </span><span class="kw">pub fn </span>default_thread_rate_limit_per_user(
         <span class="kw-2">mut </span><span class="self">self</span>,
         default_thread_rate_limit_per_user: u16,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_rate_limit_per_user(default_thread_rate_limit_per_user) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_rate_limit_per_user(default_thread_rate_limit_per_user)<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.fields.default_thread_rate_limit_per_user = <span class="prelude-val">Some</span>(default_thread_rate_limit_per_user);
+            fields.default_thread_rate_limit_per_user = <span class="prelude-val">Some</span>(default_thread_rate_limit_per_user);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the kind of channel.
-    </span><span class="kw">pub const fn </span>kind(<span class="kw-2">mut </span><span class="self">self</span>, kind: ChannelType) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.kind = <span class="prelude-val">Some</span>(kind);
+    </span><span class="kw">pub fn </span>kind(<span class="kw-2">mut </span><span class="self">self</span>, kind: ChannelType) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.kind = <span class="prelude-val">Some</span>(kind);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set whether the channel is marked as NSFW.
-    </span><span class="kw">pub const fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.nsfw = <span class="prelude-val">Some</span>(nsfw);
+    </span><span class="kw">pub fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.nsfw = <span class="prelude-val">Some</span>(nsfw);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// If this is specified, and the parent ID is a `ChannelType::CategoryChannel`, create this
     /// channel as a child of the category channel.
-    </span><span class="kw">pub const fn </span>parent_id(<span class="kw-2">mut </span><span class="self">self</span>, parent_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.parent_id = <span class="prelude-val">Some</span>(parent_id);
+    </span><span class="kw">pub fn </span>parent_id(<span class="kw-2">mut </span><span class="self">self</span>, parent_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.parent_id = <span class="prelude-val">Some</span>(parent_id);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the permission overwrites of a channel.
-    </span><span class="kw">pub const fn </span>permission_overwrites(
+    </span><span class="kw">pub fn </span>permission_overwrites(
         <span class="kw-2">mut </span><span class="self">self</span>,
         permission_overwrites: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[PermissionOverwrite],
     ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.permission_overwrites = <span class="prelude-val">Some</span>(permission_overwrites);
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.permission_overwrites = <span class="prelude-val">Some</span>(permission_overwrites);
+        }
 
         <span class="self">self
     </span>}
@@ -624,8 +650,10 @@
     ///
     /// Positions are numerical and zero-indexed. If you place a channel at position 2, channels
     /// 2-n will shift down one position and the initial channel will take its place.
-    </span><span class="kw">pub const fn </span>position(<span class="kw-2">mut </span><span class="self">self</span>, position: u64) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.position = <span class="prelude-val">Some</span>(position);
+    </span><span class="kw">pub fn </span>position(<span class="kw-2">mut </span><span class="self">self</span>, position: u64) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.position = <span class="prelude-val">Some</span>(position);
+        }
 
         <span class="self">self
     </span>}
@@ -643,23 +671,23 @@
     ///
     /// [`RateLimitPerUserInvalid`]: twilight_validate::channel::ChannelValidationErrorType::RateLimitPerUserInvalid
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
-    </span><span class="kw">pub const fn </span>rate_limit_per_user(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        rate_limit_per_user: u16,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_rate_limit_per_user(rate_limit_per_user) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>rate_limit_per_user(<span class="kw-2">mut </span><span class="self">self</span>, rate_limit_per_user: u16) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_rate_limit_per_user(rate_limit_per_user)<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.fields.rate_limit_per_user = <span class="prelude-val">Some</span>(rate_limit_per_user);
+            fields.rate_limit_per_user = <span class="prelude-val">Some</span>(rate_limit_per_user);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// For voice and stage channels, set the channel's RTC region.
-    </span><span class="kw">pub const fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.rtc_region = <span class="prelude-val">Some</span>(rtc_region);
+    </span><span class="kw">pub fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.rtc_region = <span class="prelude-val">Some</span>(rtc_region);
+        }
 
         <span class="self">self
     </span>}
@@ -676,13 +704,17 @@
     ///
     /// [`TopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TopicInvalid
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
-    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        validate_topic(topic)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_topic(topic)<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.fields.topic.replace(topic);
+            fields.topic.replace(topic);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// For voice channels, set the user limit.
     ///
@@ -690,34 +722,30 @@
     /// inclusive. See [Discord Docs/Modify Channel] for more details.
     ///
     /// [Discord Docs/Modify Channel]: https://discord.com/developers/docs/resources/channel#modify-channel-json-params-guild-channel
-    </span><span class="kw">pub const fn </span>user_limit(<span class="kw-2">mut </span><span class="self">self</span>, user_limit: u16) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.user_limit = <span class="prelude-val">Some</span>(user_limit);
+    </span><span class="kw">pub fn </span>user_limit(<span class="kw-2">mut </span><span class="self">self</span>, user_limit: u16) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.user_limit = <span class="prelude-val">Some</span>(user_limit);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// For voice channels, set the channel's video quality mode.
-    </span><span class="kw">pub const fn </span>video_quality_mode(<span class="kw-2">mut </span><span class="self">self</span>, video_quality_mode: VideoQualityMode) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.video_quality_mode = <span class="prelude-val">Some</span>(video_quality_mode);
+    </span><span class="kw">pub fn </span>video_quality_mode(<span class="kw-2">mut </span><span class="self">self</span>, video_quality_mode: VideoQualityMode) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.video_quality_mode = <span class="prelude-val">Some</span>(video_quality_mode);
+        }
 
         <span class="self">self
     </span>}
-
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Channel&gt; {
-        <span class="self">self</span>.into_future()
-    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        validate_audit_reason(reason)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.reason = validate_audit_reason(reason).and(<span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(reason)));
 
-        <span class="self">self</span>.reason.replace(reason);
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateGuildChannel&lt;<span class="lifetime">'_</span>&gt; {
@@ -737,19 +765,17 @@
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateGuildChannel&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::CreateChannel {
             guild_id: <span class="self">self</span>.guild_id.get(),
-        });
+        })
+        .json(<span class="kw-2">&amp;</span>fields);
 
-        request = request.json(<span class="kw-2">&amp;</span><span class="self">self</span>.fields)<span class="question-mark">?</span>;
-
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason.as_ref() {
-            <span class="kw">let </span>header = request::audit_header(reason)<span class="question-mark">?</span>;
-
-            request = request.headers(header);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason.map_err(Error::validation)<span class="question-mark">? </span>{
+            request = request.headers(request::audit_header(reason)<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Ok</span>(request.build())
+        request.build()
     }
 }
 </code></pre></div></section></main></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../twilight_cache_inmemory/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -1021,6 +1021,81 @@
 <a href="#1019" id="1019">1019</a>
 <a href="#1020" id="1020">1020</a>
 <a href="#1021" id="1021">1021</a>
+<a href="#1022" id="1022">1022</a>
+<a href="#1023" id="1023">1023</a>
+<a href="#1024" id="1024">1024</a>
+<a href="#1025" id="1025">1025</a>
+<a href="#1026" id="1026">1026</a>
+<a href="#1027" id="1027">1027</a>
+<a href="#1028" id="1028">1028</a>
+<a href="#1029" id="1029">1029</a>
+<a href="#1030" id="1030">1030</a>
+<a href="#1031" id="1031">1031</a>
+<a href="#1032" id="1032">1032</a>
+<a href="#1033" id="1033">1033</a>
+<a href="#1034" id="1034">1034</a>
+<a href="#1035" id="1035">1035</a>
+<a href="#1036" id="1036">1036</a>
+<a href="#1037" id="1037">1037</a>
+<a href="#1038" id="1038">1038</a>
+<a href="#1039" id="1039">1039</a>
+<a href="#1040" id="1040">1040</a>
+<a href="#1041" id="1041">1041</a>
+<a href="#1042" id="1042">1042</a>
+<a href="#1043" id="1043">1043</a>
+<a href="#1044" id="1044">1044</a>
+<a href="#1045" id="1045">1045</a>
+<a href="#1046" id="1046">1046</a>
+<a href="#1047" id="1047">1047</a>
+<a href="#1048" id="1048">1048</a>
+<a href="#1049" id="1049">1049</a>
+<a href="#1050" id="1050">1050</a>
+<a href="#1051" id="1051">1051</a>
+<a href="#1052" id="1052">1052</a>
+<a href="#1053" id="1053">1053</a>
+<a href="#1054" id="1054">1054</a>
+<a href="#1055" id="1055">1055</a>
+<a href="#1056" id="1056">1056</a>
+<a href="#1057" id="1057">1057</a>
+<a href="#1058" id="1058">1058</a>
+<a href="#1059" id="1059">1059</a>
+<a href="#1060" id="1060">1060</a>
+<a href="#1061" id="1061">1061</a>
+<a href="#1062" id="1062">1062</a>
+<a href="#1063" id="1063">1063</a>
+<a href="#1064" id="1064">1064</a>
+<a href="#1065" id="1065">1065</a>
+<a href="#1066" id="1066">1066</a>
+<a href="#1067" id="1067">1067</a>
+<a href="#1068" id="1068">1068</a>
+<a href="#1069" id="1069">1069</a>
+<a href="#1070" id="1070">1070</a>
+<a href="#1071" id="1071">1071</a>
+<a href="#1072" id="1072">1072</a>
+<a href="#1073" id="1073">1073</a>
+<a href="#1074" id="1074">1074</a>
+<a href="#1075" id="1075">1075</a>
+<a href="#1076" id="1076">1076</a>
+<a href="#1077" id="1077">1077</a>
+<a href="#1078" id="1078">1078</a>
+<a href="#1079" id="1079">1079</a>
+<a href="#1080" id="1080">1080</a>
+<a href="#1081" id="1081">1081</a>
+<a href="#1082" id="1082">1082</a>
+<a href="#1083" id="1083">1083</a>
+<a href="#1084" id="1084">1084</a>
+<a href="#1085" id="1085">1085</a>
+<a href="#1086" id="1086">1086</a>
+<a href="#1087" id="1087">1087</a>
+<a href="#1088" id="1088">1088</a>
+<a href="#1089" id="1089">1089</a>
+<a href="#1090" id="1090">1090</a>
+<a href="#1091" id="1091">1091</a>
+<a href="#1092" id="1092">1092</a>
+<a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
+<a href="#1095" id="1095">1095</a>
+<a href="#1096" id="1096">1096</a>
 </pre></div><pre class="rust"><code><span class="attr">#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![warn(
@@ -1037,6 +1112,7 @@
 
 </span><span class="kw">pub mod </span>iter;
 <span class="kw">pub mod </span>model;
+<span class="kw">pub mod </span>traits;
 
 <span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
 </span><span class="kw">pub mod </span>permission;
@@ -1053,18 +1129,18 @@
     builder::InMemoryCacheBuilder,
     config::{Config, ResourceType},
     stats::InMemoryCacheStats,
+    traits::{
+        CacheableChannel, CacheableCurrentUser, CacheableEmoji, CacheableGuild,
+        CacheableGuildIntegration, CacheableMember, CacheableMessage, CacheableModels,
+        CacheablePresence, CacheableRole, CacheableStageInstance, CacheableSticker, CacheableUser,
+        CacheableVoiceState,
+    },
 };
 
 <span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
 </span><span class="kw">pub use </span><span class="self">self</span>::permission::InMemoryCachePermissions;
 
-<span class="kw">use </span><span class="self">self</span>::{
-    iter::InMemoryCacheIter,
-    model::{
-        CachedEmoji, CachedGuild, CachedMember, CachedMessage, CachedPresence, CachedSticker,
-        CachedVoiceState,
-    },
-};
+<span class="kw">use </span><span class="self">self</span>::iter::InMemoryCacheIter;
 <span class="kw">use </span>dashmap::{
     mapref::{entry::Entry, one::Ref},
     DashMap, DashSet,
@@ -1210,15 +1286,16 @@
 /// [`Intents`]: ::twilight_model::gateway::Intents
 </span><span class="comment">// When adding a field here, be sure to add it to `InMemoryCache::clear` if
 // necessary.
-</span><span class="attr">#[derive(Debug, Default)]
-</span><span class="kw">pub struct </span>InMemoryCache {
+</span><span class="attr">#[allow(clippy::type_complexity)]
+#[derive(Debug)]
+</span><span class="kw">pub struct </span>InMemoryCache&lt;CacheModels: CacheableModels = DefaultCacheModels&gt; {
     config: Config,
-    channels: DashMap&lt;Id&lt;ChannelMarker&gt;, Channel&gt;,
+    channels: DashMap&lt;Id&lt;ChannelMarker&gt;, CacheModels::Channel&gt;,
     channel_messages: DashMap&lt;Id&lt;ChannelMarker&gt;, VecDeque&lt;Id&lt;MessageMarker&gt;&gt;&gt;,
     <span class="comment">// So long as the lock isn't held across await or panic points this is fine.
-    </span>current_user: Mutex&lt;<span class="prelude-ty">Option</span>&lt;CurrentUser&gt;&gt;,
-    emojis: DashMap&lt;Id&lt;EmojiMarker&gt;, GuildResource&lt;CachedEmoji&gt;&gt;,
-    guilds: DashMap&lt;Id&lt;GuildMarker&gt;, CachedGuild&gt;,
+    </span>current_user: Mutex&lt;<span class="prelude-ty">Option</span>&lt;CacheModels::CurrentUser&gt;&gt;,
+    emojis: DashMap&lt;Id&lt;EmojiMarker&gt;, GuildResource&lt;CacheModels::Emoji&gt;&gt;,
+    guilds: DashMap&lt;Id&lt;GuildMarker&gt;, CacheModels::Guild&gt;,
     guild_channels: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;ChannelMarker&gt;&gt;&gt;,
     guild_emojis: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;EmojiMarker&gt;&gt;&gt;,
     guild_integrations: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;IntegrationMarker&gt;&gt;&gt;,
@@ -1227,16 +1304,18 @@
     guild_roles: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;RoleMarker&gt;&gt;&gt;,
     guild_stage_instances: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StageMarker&gt;&gt;&gt;,
     guild_stickers: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;StickerMarker&gt;&gt;&gt;,
-    integrations:
-        DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;), GuildResource&lt;GuildIntegration&gt;&gt;,
-    members: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedMember&gt;,
-    messages: DashMap&lt;Id&lt;MessageMarker&gt;, CachedMessage&gt;,
-    presences: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedPresence&gt;,
-    roles: DashMap&lt;Id&lt;RoleMarker&gt;, GuildResource&lt;Role&gt;&gt;,
-    stage_instances: DashMap&lt;Id&lt;StageMarker&gt;, GuildResource&lt;StageInstance&gt;&gt;,
-    stickers: DashMap&lt;Id&lt;StickerMarker&gt;, GuildResource&lt;CachedSticker&gt;&gt;,
+    integrations: DashMap&lt;
+        (Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;),
+        GuildResource&lt;CacheModels::GuildIntegration&gt;,
+    &gt;,
+    members: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::Member&gt;,
+    messages: DashMap&lt;Id&lt;MessageMarker&gt;, CacheModels::Message&gt;,
+    presences: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::Presence&gt;,
+    roles: DashMap&lt;Id&lt;RoleMarker&gt;, GuildResource&lt;CacheModels::Role&gt;&gt;,
+    stage_instances: DashMap&lt;Id&lt;StageMarker&gt;, GuildResource&lt;CacheModels::StageInstance&gt;&gt;,
+    stickers: DashMap&lt;Id&lt;StickerMarker&gt;, GuildResource&lt;CacheModels::Sticker&gt;&gt;,
     unavailable_guilds: DashSet&lt;Id&lt;GuildMarker&gt;&gt;,
-    users: DashMap&lt;Id&lt;UserMarker&gt;, User&gt;,
+    users: DashMap&lt;Id&lt;UserMarker&gt;, CacheModels::User&gt;,
     user_guilds: DashMap&lt;Id&lt;UserMarker&gt;, HashSet&lt;Id&lt;GuildMarker&gt;&gt;&gt;,
     <span class="doccomment">/// Mapping of channels and the users currently connected.
     </span><span class="attr">#[allow(clippy::type_complexity)]
@@ -1244,11 +1323,35 @@
     <span class="doccomment">/// Mapping of guilds and users currently connected to its voice channels.
     </span>voice_state_guilds: DashMap&lt;Id&lt;GuildMarker&gt;, HashSet&lt;Id&lt;UserMarker&gt;&gt;&gt;,
     <span class="doccomment">/// Mapping of guild ID and user ID pairs to their voice states.
-    </span>voice_states: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;,
+    </span>voice_states: DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::VoiceState&gt;,
 }
 
-<span class="doccomment">/// Implemented methods and types for the cache.
-</span><span class="kw">impl </span>InMemoryCache {
+<span class="attr">#[allow(missing_docs)]
+#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>DefaultCacheModels;
+
+<span class="kw">impl </span>CacheableModels <span class="kw">for </span>DefaultCacheModels {
+    <span class="kw">type </span>Channel = Channel;
+    <span class="kw">type </span>CurrentUser = CurrentUser;
+    <span class="kw">type </span>Emoji = model::CachedEmoji;
+    <span class="kw">type </span>Guild = model::CachedGuild;
+    <span class="kw">type </span>GuildIntegration = GuildIntegration;
+    <span class="kw">type </span>Member = model::CachedMember;
+    <span class="kw">type </span>Message = model::CachedMessage;
+    <span class="kw">type </span>Presence = model::CachedPresence;
+    <span class="kw">type </span>Role = Role;
+    <span class="kw">type </span>StageInstance = StageInstance;
+    <span class="kw">type </span>Sticker = model::CachedSticker;
+    <span class="kw">type </span>User = User;
+    <span class="kw">type </span>VoiceState = model::CachedVoiceState;
+}
+
+<span class="doccomment">/// The default implementation of [`InMemoryCache`].
+/// This is a type alias to the trait type defaults to allow the compiler
+/// to properly infer the generics.
+</span><span class="kw">pub type </span>DefaultInMemoryCache = InMemoryCache&lt;DefaultCacheModels&gt;;
+
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; InMemoryCache&lt;CacheModels&gt; {
     <span class="doccomment">/// Creates a new, empty cache.
     ///
     /// # Examples
@@ -1257,16 +1360,19 @@
     /// the message cache to 50 messages per channel:
     ///
     /// ```
-    /// use twilight_cache_inmemory::InMemoryCache;
+    /// use twilight_cache_inmemory::DefaultInMemoryCache;
     ///
-    /// let cache = InMemoryCache::builder().message_cache_size(50).build();
+    /// let cache = DefaultInMemoryCache::builder()
+    ///     .message_cache_size(50)
+    ///     .build();
     /// ```
     </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::default()
     }
 
     <span class="doccomment">/// Create a new builder to configure and construct an in-memory cache.
-    </span><span class="kw">pub const fn </span>builder() -&gt; InMemoryCacheBuilder {
+    </span><span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>builder() -&gt; InMemoryCacheBuilder&lt;CacheModels&gt; {
         InMemoryCacheBuilder::new()
     }
 
@@ -1320,17 +1426,17 @@
     /// Iterate over every guild in the cache and print their IDs and names:
     ///
     /// ```no_run
-    /// use twilight_cache_inmemory::InMemoryCache;
+    /// use twilight_cache_inmemory::DefaultInMemoryCache;
     ///
-    /// let cache = InMemoryCache::new();
+    /// let cache = DefaultInMemoryCache::new();
     ///
     /// // later in the application...
     /// for guild in cache.iter().guilds() {
     ///     println!("{}: {}", guild.id(), guild.name());
     /// }
     /// ```
-    </span><span class="attr">#[allow(clippy::iter_not_returning_iterator)]
-    </span><span class="kw">pub const fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheIter&lt;<span class="lifetime">'_</span>&gt; {
+    </span><span class="attr">#[allow(clippy::iter_not_returning_iterator, clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheIter&lt;<span class="lifetime">'_</span>, CacheModels&gt; {
         InMemoryCacheIter::new(<span class="self">self</span>)
     }
 
@@ -1341,15 +1447,16 @@
     /// Print the number of guilds in a cache:
     ///
     /// ```
-    /// use twilight_cache_inmemory::InMemoryCache;
+    /// use twilight_cache_inmemory::DefaultInMemoryCache;
     ///
-    /// let cache = InMemoryCache::new();
+    /// let cache = DefaultInMemoryCache::new();
     ///
     /// // later on...
     /// let guilds = cache.stats().guilds();
     /// println!("guild count: {guilds}");
     /// ```
-    </span><span class="kw">pub const fn </span>stats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheStats&lt;<span class="lifetime">'_</span>&gt; {
+    </span><span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>stats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCacheStats&lt;<span class="lifetime">'_</span>, CacheModels&gt; {
         InMemoryCacheStats::new(<span class="self">self</span>)
     }
 
@@ -1366,12 +1473,12 @@
     ///
     /// ```no_run
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// use twilight_cache_inmemory::{InMemoryCache, ResourceType};
+    /// use twilight_cache_inmemory::{DefaultInMemoryCache, ResourceType};
     /// use twilight_model::id::Id;
     ///
     /// let resource_types = ResourceType::CHANNEL | ResourceType::MEMBER | ResourceType::ROLE;
     ///
-    /// let cache = InMemoryCache::builder()
+    /// let cache = DefaultInMemoryCache::builder()
     ///     .resource_types(resource_types)
     ///     .build();
     ///
@@ -1383,18 +1490,19 @@
     /// # Ok(()) }
     /// ```
     </span><span class="attr">#[cfg(feature = <span class="string">"permission-calculator"</span>)]
-    </span><span class="kw">pub const fn </span>permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCachePermissions&lt;<span class="lifetime">'_</span>&gt; {
+    #[allow(clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InMemoryCachePermissions&lt;<span class="lifetime">'_</span>, CacheModels&gt; {
         InMemoryCachePermissions::new(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Update the cache with an event from the gateway.
-    </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, value: <span class="kw-2">&amp;</span><span class="kw">impl </span>UpdateCache) {
+    </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, value: <span class="kw-2">&amp;</span><span class="kw">impl </span>UpdateCache&lt;CacheModels&gt;) {
         value.update(<span class="self">self</span>);
     }
 
     <span class="doccomment">/// Gets the current user.
     </span><span class="attr">#[allow(clippy::missing_panics_doc)]
-    </span><span class="kw">pub fn </span>current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;CurrentUser&gt; {
+    </span><span class="kw">pub fn </span>current_user(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;CacheModels::CurrentUser&gt; {
         <span class="self">self</span>.current_user
             .lock()
             .expect(<span class="string">"current user poisoned"</span>)
@@ -1405,7 +1513,7 @@
     </span><span class="kw">pub fn </span>channel(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;ChannelMarker&gt;, Channel&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;ChannelMarker&gt;, CacheModels::Channel&gt;&gt; {
         <span class="self">self</span>.channels.get(<span class="kw-2">&amp;</span>channel_id).map(Reference::new)
     }
 
@@ -1430,7 +1538,7 @@
     </span><span class="kw">pub fn </span>emoji(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         emoji_id: Id&lt;EmojiMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;EmojiMarker&gt;, GuildResource&lt;CachedEmoji&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;EmojiMarker&gt;, GuildResource&lt;CacheModels::Emoji&gt;&gt;&gt; {
         <span class="self">self</span>.emojis.get(<span class="kw-2">&amp;</span>emoji_id).map(Reference::new)
     }
 
@@ -1442,7 +1550,7 @@
     </span><span class="kw">pub fn </span>guild(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, CachedGuild&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;GuildMarker&gt;, CacheModels::Guild&gt;&gt; {
         <span class="self">self</span>.guilds.get(<span class="kw-2">&amp;</span>guild_id).map(Reference::new)
     }
 
@@ -1580,7 +1688,11 @@
         guild_id: Id&lt;GuildMarker&gt;,
         integration_id: Id&lt;IntegrationMarker&gt;,
     ) -&gt; <span class="prelude-ty">Option</span>&lt;
-        Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;), GuildResource&lt;GuildIntegration&gt;&gt;,
+        Reference&lt;
+            <span class="lifetime">'_</span>,
+            (Id&lt;GuildMarker&gt;, Id&lt;IntegrationMarker&gt;),
+            GuildResource&lt;CacheModels::GuildIntegration&gt;,
+        &gt;,
     &gt; {
         <span class="self">self</span>.integrations
             .get(<span class="kw-2">&amp;</span>(guild_id, integration_id))
@@ -1597,7 +1709,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedMember&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::Member&gt;&gt; {
         <span class="self">self</span>.members.get(<span class="kw-2">&amp;</span>(guild_id, user_id)).map(Reference::new)
     }
 
@@ -1611,7 +1723,7 @@
     </span><span class="kw">pub fn </span>message(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         message_id: Id&lt;MessageMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;MessageMarker&gt;, CachedMessage&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;MessageMarker&gt;, CacheModels::Message&gt;&gt; {
         <span class="self">self</span>.messages.get(<span class="kw-2">&amp;</span>message_id).map(Reference::new)
     }
 
@@ -1625,7 +1737,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         user_id: Id&lt;UserMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedPresence&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::Presence&gt;&gt; {
         <span class="self">self</span>.presences.get(<span class="kw-2">&amp;</span>(guild_id, user_id)).map(Reference::new)
     }
 
@@ -1637,7 +1749,7 @@
     </span><span class="kw">pub fn </span>role(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         role_id: Id&lt;RoleMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;RoleMarker&gt;, GuildResource&lt;Role&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;RoleMarker&gt;, GuildResource&lt;CacheModels::Role&gt;&gt;&gt; {
         <span class="self">self</span>.roles.get(<span class="kw-2">&amp;</span>role_id).map(Reference::new)
     }
 
@@ -1649,7 +1761,7 @@
     </span><span class="kw">pub fn </span>stage_instance(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         stage_id: Id&lt;StageMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StageMarker&gt;, GuildResource&lt;StageInstance&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StageMarker&gt;, GuildResource&lt;CacheModels::StageInstance&gt;&gt;&gt; {
         <span class="self">self</span>.stage_instances.get(<span class="kw-2">&amp;</span>stage_id).map(Reference::new)
     }
 
@@ -1664,7 +1776,7 @@
     </span><span class="kw">pub fn </span>sticker(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         sticker_id: Id&lt;StickerMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StickerMarker&gt;, GuildResource&lt;CachedSticker&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;StickerMarker&gt;, GuildResource&lt;CacheModels::Sticker&gt;&gt;&gt; {
         <span class="self">self</span>.stickers.get(<span class="kw-2">&amp;</span>sticker_id).map(Reference::new)
     }
 
@@ -1673,7 +1785,10 @@
     /// This requires the [`GUILD_MEMBERS`] intent.
     ///
     /// [`GUILD_MEMBERS`]: ::twilight_model::gateway::Intents::GUILD_MEMBERS
-    </span><span class="kw">pub fn </span>user(<span class="kw-2">&amp;</span><span class="self">self</span>, user_id: Id&lt;UserMarker&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;UserMarker&gt;, User&gt;&gt; {
+    </span><span class="kw">pub fn </span>user(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        user_id: Id&lt;UserMarker&gt;,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, Id&lt;UserMarker&gt;, CacheModels::User&gt;&gt; {
         <span class="self">self</span>.users.get(<span class="kw-2">&amp;</span>user_id).map(Reference::new)
     }
 
@@ -1704,7 +1819,7 @@
     </span><span class="kw">pub fn </span>voice_channel_states(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;VoiceChannelStates&lt;<span class="lifetime">'_</span>&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;VoiceChannelStates&lt;<span class="lifetime">'_</span>, CacheModels::VoiceState&gt;&gt; {
         <span class="kw">let </span>user_ids = <span class="self">self</span>.voice_state_channels.get(<span class="kw-2">&amp;</span>channel_id)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Some</span>(VoiceChannelStates {
@@ -1725,7 +1840,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         user_id: Id&lt;UserMarker&gt;,
         guild_id: Id&lt;GuildMarker&gt;,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Reference&lt;<span class="lifetime">'_</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CacheModels::VoiceState&gt;&gt; {
         <span class="self">self</span>.voice_states
             .get(<span class="kw-2">&amp;</span>(guild_id, user_id))
             .map(Reference::new)
@@ -1746,15 +1861,16 @@
 
         <span class="kw">let </span><span class="kw-2">mut </span>highest_role: <span class="prelude-ty">Option</span>&lt;(i64, Id&lt;RoleMarker&gt;)&gt; = <span class="prelude-val">None</span>;
 
-        <span class="kw">for </span>role_id <span class="kw">in </span><span class="kw-2">&amp;</span>member.roles {
+        <span class="kw">for </span>role_id <span class="kw">in </span>member.roles() {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(role) = <span class="self">self</span>.role(<span class="kw-2">*</span>role_id) {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>((position, id)) = highest_role {
-                    <span class="kw">if </span>role.position &lt; position || (role.position == position &amp;&amp; role.id &gt; id) {
+                    <span class="kw">if </span>role.position() &lt; position || (role.position() == position &amp;&amp; role.id() &gt; id)
+                    {
                         <span class="kw">continue</span>;
                     }
                 }
 
-                highest_role = <span class="prelude-val">Some</span>((role.position, role.id));
+                highest_role = <span class="prelude-val">Some</span>((role.position(), role.id()));
             }
         }
 
@@ -1764,7 +1880,7 @@
     <span class="kw">fn </span>new_with_config(config: Config) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             config,
-            ..InMemoryCache::default()
+            ..<span class="self">Self</span>::default()
         }
     }
 
@@ -1772,6 +1888,42 @@
     /// processed.
     </span><span class="kw">const fn </span>wants(<span class="kw-2">&amp;</span><span class="self">self</span>, resource_type: ResourceType) -&gt; bool {
         <span class="self">self</span>.config.resource_types().contains(resource_type)
+    }
+}
+
+<span class="comment">// This needs to be implemented manually because the compiler apparently
+// can't derive Default for a struct with generics.
+</span><span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; Default <span class="kw">for </span>InMemoryCache&lt;CacheModels&gt; {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            config: Config::default(),
+            channels: DashMap::new(),
+            channel_messages: DashMap::new(),
+            current_user: Mutex::new(<span class="prelude-val">None</span>),
+            emojis: DashMap::new(),
+            guilds: DashMap::new(),
+            guild_channels: DashMap::new(),
+            guild_emojis: DashMap::new(),
+            guild_integrations: DashMap::new(),
+            guild_members: DashMap::new(),
+            guild_presences: DashMap::new(),
+            guild_roles: DashMap::new(),
+            guild_stage_instances: DashMap::new(),
+            guild_stickers: DashMap::new(),
+            integrations: DashMap::new(),
+            members: DashMap::new(),
+            messages: DashMap::new(),
+            presences: DashMap::new(),
+            roles: DashMap::new(),
+            stage_instances: DashMap::new(),
+            stickers: DashMap::new(),
+            unavailable_guilds: DashSet::new(),
+            users: DashMap::new(),
+            user_guilds: DashMap::new(),
+            voice_state_channels: DashMap::new(),
+            voice_state_guilds: DashMap::new(),
+            voice_states: DashMap::new(),
+        }
     }
 }
 
@@ -1838,22 +1990,22 @@
 <span class="doccomment">/// Implemented for dispatch events.
 ///
 /// This trait is sealed and cannot be implemented.
-</span><span class="kw">pub trait </span>UpdateCache: private::Sealed {
+</span><span class="kw">pub trait </span>UpdateCache&lt;CacheModels: CacheableModels&gt;: private::Sealed {
     <span class="doccomment">/// Updates the cache based on data contained within an event.
     </span><span class="comment">// Allow this for presentation purposes in documentation.
-    </span><span class="attr">#[allow(unused_variables)]
-    </span><span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {}
+    </span><span class="attr">#[allow(unused_variables, clippy::type_complexity)]
+    </span><span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {}
 }
 
 <span class="doccomment">/// Iterator over a voice channel's list of voice states.
-</span><span class="kw">pub struct </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>&gt; {
+</span><span class="kw">pub struct </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>, CachedVoiceState&gt; {
     index: usize,
     <span class="attr">#[allow(clippy::type_complexity)]
     </span>user_ids: Ref&lt;<span class="lifetime">'a</span>, Id&lt;ChannelMarker&gt;, HashSet&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;)&gt;&gt;,
     voice_states: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>DashMap&lt;(Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, CachedVoiceState&gt; Iterator <span class="kw">for </span>VoiceChannelStates&lt;<span class="lifetime">'a</span>, CachedVoiceState&gt; {
     <span class="kw">type </span>Item = Reference&lt;<span class="lifetime">'a</span>, (Id&lt;GuildMarker&gt;, Id&lt;UserMarker&gt;), CachedVoiceState&gt;;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -1869,51 +2021,51 @@
     </span>}
 }
 
-<span class="kw">impl </span>UpdateCache <span class="kw">for </span>Event {
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; UpdateCache&lt;CacheModels&gt; <span class="kw">for </span>Event {
     <span class="comment">// clippy: using `.deref()` is cleaner
-    </span><span class="attr">#[allow(clippy::cognitive_complexity, clippy::explicit_deref_methods)]
-    </span><span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, c: <span class="kw-2">&amp;</span>InMemoryCache) {
+    </span><span class="attr">#[allow(clippy::explicit_deref_methods)]
+    </span><span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {
         <span class="kw">match </span><span class="self">self </span>{
-            Event::ChannelCreate(v) =&gt; c.update(v.deref()),
-            Event::ChannelDelete(v) =&gt; c.update(v.deref()),
-            Event::ChannelPinsUpdate(v) =&gt; c.update(v),
-            Event::ChannelUpdate(v) =&gt; c.update(v.deref()),
-            Event::GuildCreate(v) =&gt; c.update(v.deref()),
-            Event::GuildDelete(v) =&gt; c.update(v),
-            Event::GuildEmojisUpdate(v) =&gt; c.update(v),
-            Event::GuildStickersUpdate(v) =&gt; c.update(v),
-            Event::GuildUpdate(v) =&gt; c.update(v.deref()),
-            Event::IntegrationCreate(v) =&gt; c.update(v.deref()),
-            Event::IntegrationDelete(v) =&gt; c.update(v),
-            Event::IntegrationUpdate(v) =&gt; c.update(v.deref()),
-            Event::InteractionCreate(v) =&gt; c.update(v.deref()),
-            Event::MemberAdd(v) =&gt; c.update(v.deref()),
-            Event::MemberRemove(v) =&gt; c.update(v),
-            Event::MemberUpdate(v) =&gt; c.update(v.deref()),
-            Event::MemberChunk(v) =&gt; c.update(v),
-            Event::MessageCreate(v) =&gt; c.update(v.deref()),
-            Event::MessageDelete(v) =&gt; c.update(v),
-            Event::MessageDeleteBulk(v) =&gt; c.update(v),
-            Event::MessageUpdate(v) =&gt; c.update(v.deref()),
-            Event::PresenceUpdate(v) =&gt; c.update(v.deref()),
-            Event::ReactionAdd(v) =&gt; c.update(v.deref()),
-            Event::ReactionRemove(v) =&gt; c.update(v.deref()),
-            Event::ReactionRemoveAll(v) =&gt; c.update(v),
-            Event::ReactionRemoveEmoji(v) =&gt; c.update(v),
-            Event::Ready(v) =&gt; c.update(v.deref()),
-            Event::RoleCreate(v) =&gt; c.update(v),
-            Event::RoleDelete(v) =&gt; c.update(v),
-            Event::RoleUpdate(v) =&gt; c.update(v),
-            Event::StageInstanceCreate(v) =&gt; c.update(v),
-            Event::StageInstanceDelete(v) =&gt; c.update(v),
-            Event::StageInstanceUpdate(v) =&gt; c.update(v),
-            Event::ThreadCreate(v) =&gt; c.update(v.deref()),
-            Event::ThreadUpdate(v) =&gt; c.update(v.deref()),
-            Event::ThreadDelete(v) =&gt; c.update(v),
-            Event::ThreadListSync(v) =&gt; c.update(v),
-            Event::UnavailableGuild(v) =&gt; c.update(v),
-            Event::UserUpdate(v) =&gt; c.update(v),
-            Event::VoiceStateUpdate(v) =&gt; c.update(v.deref()),
+            Event::ChannelCreate(v) =&gt; cache.update(v.deref()),
+            Event::ChannelDelete(v) =&gt; cache.update(v.deref()),
+            Event::ChannelPinsUpdate(v) =&gt; cache.update(v),
+            Event::ChannelUpdate(v) =&gt; cache.update(v.deref()),
+            Event::GuildCreate(v) =&gt; cache.update(v.deref()),
+            Event::GuildDelete(v) =&gt; cache.update(v),
+            Event::GuildEmojisUpdate(v) =&gt; cache.update(v),
+            Event::GuildStickersUpdate(v) =&gt; cache.update(v),
+            Event::GuildUpdate(v) =&gt; cache.update(v.deref()),
+            Event::IntegrationCreate(v) =&gt; cache.update(v.deref()),
+            Event::IntegrationDelete(v) =&gt; cache.update(v),
+            Event::IntegrationUpdate(v) =&gt; cache.update(v.deref()),
+            Event::InteractionCreate(v) =&gt; cache.update(v.deref()),
+            Event::MemberAdd(v) =&gt; cache.update(v.deref()),
+            Event::MemberRemove(v) =&gt; cache.update(v),
+            Event::MemberUpdate(v) =&gt; cache.update(v.deref()),
+            Event::MemberChunk(v) =&gt; cache.update(v),
+            Event::MessageCreate(v) =&gt; cache.update(v.deref()),
+            Event::MessageDelete(v) =&gt; cache.update(v),
+            Event::MessageDeleteBulk(v) =&gt; cache.update(v),
+            Event::MessageUpdate(v) =&gt; cache.update(v.deref()),
+            Event::PresenceUpdate(v) =&gt; cache.update(v.deref()),
+            Event::ReactionAdd(v) =&gt; cache.update(v.deref()),
+            Event::ReactionRemove(v) =&gt; cache.update(v.deref()),
+            Event::ReactionRemoveAll(v) =&gt; cache.update(v),
+            Event::ReactionRemoveEmoji(v) =&gt; cache.update(v),
+            Event::Ready(v) =&gt; cache.update(v.deref()),
+            Event::RoleCreate(v) =&gt; cache.update(v),
+            Event::RoleDelete(v) =&gt; cache.update(v),
+            Event::RoleUpdate(v) =&gt; cache.update(v),
+            Event::StageInstanceCreate(v) =&gt; cache.update(v),
+            Event::StageInstanceDelete(v) =&gt; cache.update(v),
+            Event::StageInstanceUpdate(v) =&gt; cache.update(v),
+            Event::ThreadCreate(v) =&gt; cache.update(v.deref()),
+            Event::ThreadUpdate(v) =&gt; cache.update(v.deref()),
+            Event::ThreadDelete(v) =&gt; cache.update(v),
+            Event::ThreadListSync(v) =&gt; cache.update(v),
+            Event::UnavailableGuild(v) =&gt; cache.update(v),
+            Event::UserUpdate(v) =&gt; cache.update(v),
+            Event::VoiceStateUpdate(v) =&gt; cache.update(v.deref()),
             <span class="comment">// Ignored events.
             </span>Event::AutoModerationActionExecution(<span class="kw">_</span>)
             | Event::AutoModerationRuleCreate(<span class="kw">_</span>)
@@ -1928,7 +2080,6 @@
             | Event::GatewayHello(<span class="kw">_</span>)
             | Event::GatewayInvalidateSession(<span class="kw">_</span>)
             | Event::GatewayReconnect
-            | Event::GiftCodeUpdate
             | Event::GuildAuditLogEntryCreate(<span class="kw">_</span>)
             | Event::GuildIntegrationsUpdate(<span class="kw">_</span>)
             | Event::GuildScheduledEventCreate(<span class="kw">_</span>)
@@ -1938,7 +2089,6 @@
             | Event::GuildScheduledEventUserRemove(<span class="kw">_</span>)
             | Event::InviteCreate(<span class="kw">_</span>)
             | Event::InviteDelete(<span class="kw">_</span>)
-            | Event::PresencesReplace
             | Event::Resumed
             | Event::ThreadMembersUpdate(<span class="kw">_</span>)
             | Event::ThreadMemberUpdate(<span class="kw">_</span>)
@@ -1951,7 +2101,7 @@
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="kw">use crate</span>::{test, InMemoryCache};
+    <span class="kw">use crate</span>::{test, DefaultInMemoryCache};
     <span class="kw">use </span>twilight_model::{
         gateway::payload::incoming::RoleDelete,
         guild::{Member, MemberFlags, Permissions, Role, RoleFlags},
@@ -1961,7 +2111,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>syntax_update() {
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         cache.update(<span class="kw-2">&amp;</span>RoleDelete {
             guild_id: Id::new(<span class="number">1</span>),
             role_id: Id::new(<span class="number">1</span>),
@@ -1970,7 +2120,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>clear() {
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         cache.cache_emoji(Id::new(<span class="number">1</span>), test::emoji(Id::new(<span class="number">3</span>), <span class="prelude-val">None</span>));
         cache.cache_member(Id::new(<span class="number">2</span>), test::member(Id::new(<span class="number">2</span>)));
         cache.clear();
@@ -1981,7 +2131,7 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>highest_role() {
         <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_secs(<span class="number">1_632_072_645</span>).expect(<span class="string">"non zero"</span>));
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span>guild_id = Id::new(<span class="number">1</span>);
         <span class="kw">let </span>user = test::user(Id::new(<span class="number">1</span>));
         <span class="kw">let </span>flags = MemberFlags::BYPASSES_VERIFICATION | MemberFlags::DID_REJOIN;

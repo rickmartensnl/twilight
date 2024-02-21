@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["InteractionData","InteractionType"],"mod":["application_command","message_component","modal"],"struct":["Interaction"]};
+window.SIDEBAR_ITEMS = {"enum":["InteractionData","InteractionType"],"mod":["application_command","message_component","modal"],"struct":["Interaction","InteractionChannel","InteractionDataResolved","InteractionMember"]};

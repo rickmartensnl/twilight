@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/node.rs`."><title>node.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-lavalink/src/node.rs`."><title>node.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_lavalink" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../twilight_lavalink/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -754,12 +754,6 @@
 <a href="#752" id="752">752</a>
 <a href="#753" id="753">753</a>
 <a href="#754" id="754">754</a>
-<a href="#755" id="755">755</a>
-<a href="#756" id="756">756</a>
-<a href="#757" id="757">757</a>
-<a href="#758" id="758">758</a>
-<a href="#759" id="759">759</a>
-<a href="#760" id="760">760</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Nodes for communicating with a Lavalink server.
 //!
 //! Using nodes, you can send events to a server and receive events.
@@ -788,7 +782,7 @@
     sink::SinkExt,
     stream::{Stream, StreamExt},
 };
-<span class="kw">use </span>http::{header::HeaderName, Request, Response, StatusCode};
+<span class="kw">use </span>http::header::{HeaderName, AUTHORIZATION};
 <span class="kw">use </span>std::{
     error::Error,
     fmt::{Debug, Display, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult},
@@ -802,9 +796,8 @@
     sync::mpsc::{<span class="self">self</span>, UnboundedReceiver, UnboundedSender},
     time <span class="kw">as </span>tokio_time,
 };
-<span class="kw">use </span>tokio_tungstenite::{
-    tungstenite::{client::IntoClientRequest, Error <span class="kw">as </span>TungsteniteError, Message},
-    MaybeTlsStream, WebSocketStream,
+<span class="kw">use </span>tokio_websockets::{
+    upgrade, ClientBuilder, Error <span class="kw">as </span>WebsocketError, MaybeTlsStream, Message, WebSocketStream,
 };
 <span class="kw">use </span>twilight_model::id::{marker::UserMarker, Id};
 
@@ -1288,7 +1281,7 @@
                             kind: NodeErrorType::SerializingMessage { message: outgoing },
                             source: <span class="prelude-val">Some</span>(Box::new(source)),
                         })<span class="question-mark">?</span>;
-                        <span class="kw">let </span>msg = Message::Text(payload);
+                        <span class="kw">let </span>msg = Message::text(payload);
                         <span class="self">self</span>.stream.send(msg).<span class="kw">await</span>.unwrap();
                     } <span class="kw">else </span>{
                         <span class="macro">tracing::debug!</span>(<span class="string">"node {} closed, ending connection"</span>, <span class="self">self</span>.config.address);
@@ -1308,31 +1301,19 @@
             <span class="self">self</span>.config.address,
         );
 
-        <span class="kw">let </span>text = <span class="kw">match </span>incoming {
-            Message::Close(<span class="kw">_</span>) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">"got close, closing connection"</span>);
-                <span class="kw">let </span>_result = <span class="self">self</span>.stream.send(Message::Close(<span class="prelude-val">None</span>)).<span class="kw">await</span>;
+        <span class="kw">let </span>text = <span class="kw">if </span>incoming.is_text() {
+            incoming.as_text().expect(<span class="string">"message is text"</span>)
+        } <span class="kw">else if </span>incoming.is_close() {
+            <span class="macro">tracing::debug!</span>(<span class="string">"got close, closing connection"</span>);
 
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
-            }
-            Message::Ping(data) =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">"got ping, sending pong"</span>);
-                <span class="kw">let </span>msg = Message::Pong(data);
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
+        } <span class="kw">else </span>{
+            <span class="macro">tracing::debug!</span>(<span class="string">"got ping, pong or binary payload: {incoming:?}"</span>);
 
-                <span class="comment">// We don't need to immediately care if a pong fails.
-                </span><span class="kw">let </span>_result = <span class="self">self</span>.stream.send(msg).<span class="kw">await</span>;
-
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
-            }
-            Message::Text(text) =&gt; text,
-            other =&gt; {
-                <span class="macro">tracing::debug!</span>(<span class="string">"got pong or bytes payload: {other:?}"</span>);
-
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
-            }
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
         };
 
-        <span class="kw">let </span><span class="prelude-val">Ok</span>(event) = serde_json::from_str(<span class="kw-2">&amp;</span>text) <span class="kw">else </span>{
+        <span class="kw">let </span><span class="prelude-val">Ok</span>(event) = serde_json::from_str(text) <span class="kw">else </span>{
             <span class="macro">tracing::warn!</span>(<span class="string">"unknown message from lavalink node: {text}"</span>);
 
             <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
@@ -1385,22 +1366,27 @@
     }
 }
 
-<span class="kw">fn </span>connect_request(state: <span class="kw-2">&amp;</span>NodeConfig) -&gt; <span class="prelude-ty">Result</span>&lt;Request&lt;()&gt;, NodeError&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>request = <span class="macro">format!</span>(<span class="string">"ws://{}"</span>, state.address)
-        .into_client_request()
+<span class="kw">fn </span>connect_request(state: <span class="kw-2">&amp;</span>NodeConfig) -&gt; <span class="prelude-ty">Result</span>&lt;ClientBuilder, NodeError&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>builder = ClientBuilder::new()
+        .uri(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"ws://{}"</span>, state.address))
         .map_err(|source| NodeError {
             kind: NodeErrorType::BuildingConnectionRequest,
             source: <span class="prelude-val">Some</span>(Box::new(source)),
-        })<span class="question-mark">?</span>;
-    <span class="kw">let </span>headers = request.headers_mut();
-    headers.insert(<span class="string">"Authorization"</span>, state.authorization.parse().unwrap());
-    headers.insert(<span class="string">"User-Id"</span>, state.user_id.get().into());
+        })<span class="question-mark">?
+        </span>.add_header(AUTHORIZATION, state.authorization.parse().unwrap())
+        .add_header(
+            HeaderName::from_static(<span class="string">"User-Id"</span>),
+            state.user_id.get().into(),
+        );
 
     <span class="kw">if </span>state.resume.is_some() {
-        headers.insert(<span class="string">"Resume-Key"</span>, state.address.to_string().parse().unwrap());
+        builder = builder.add_header(
+            HeaderName::from_static(<span class="string">"Resume-Key"</span>),
+            state.address.to_string().parse().unwrap(),
+        );
     }
 
-    <span class="prelude-val">Ok</span>(request)
+    <span class="prelude-val">Ok</span>(builder)
 }
 
 <span class="kw">async fn </span>reconnect(
@@ -1422,7 +1408,7 @@
                     <span class="string">"key"</span>: config.address,
                     <span class="string">"timeout"</span>: resume.timeout,
                 });
-                <span class="kw">let </span>msg = Message::Text(serde_json::to_string(<span class="kw-2">&amp;</span>payload).unwrap());
+                <span class="kw">let </span>msg = Message::text(serde_json::to_string(<span class="kw-2">&amp;</span>payload).unwrap());
 
                 stream.send(msg).<span class="kw">await</span>.unwrap();
             } <span class="kw">else </span>{
@@ -1439,7 +1425,7 @@
 ) -&gt; <span class="prelude-ty">Result</span>&lt;
     (
         WebSocketStream&lt;MaybeTlsStream&lt;TcpStream&gt;&gt;,
-        Response&lt;<span class="prelude-ty">Option</span>&lt;Vec&lt;u8&gt;&gt;&gt;,
+        upgrade::Response,
     ),
     NodeError,
 &gt; {
@@ -1448,13 +1434,15 @@
     <span class="kw">loop </span>{
         <span class="kw">let </span>request = connect_request(config)<span class="question-mark">?</span>;
 
-        <span class="kw">match </span>tokio_tungstenite::connect_async(request).<span class="kw">await </span>{
+        <span class="kw">match </span>request.connect().<span class="kw">await </span>{
             <span class="prelude-val">Ok</span>((stream, response)) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>((stream, response)),
             <span class="prelude-val">Err</span>(source) =&gt; {
                 <span class="macro">tracing::warn!</span>(<span class="string">"failed to connect to node {source}: {:?}"</span>, config.address);
 
-                <span class="kw">if </span><span class="macro">matches!</span>(<span class="kw-2">&amp;</span>source, TungsteniteError::Http(resp) <span class="kw">if </span>resp.status() == StatusCode::UNAUTHORIZED)
-                {
+                <span class="kw">if </span><span class="macro">matches!</span>(
+                    <span class="kw-2">&amp;</span>source,
+                    WebsocketError::Upgrade(upgrade::Error::DidNotSwitchProtocols(<span class="number">401</span>))
+                ) {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(NodeError {
                         kind: NodeErrorType::Unauthorized {
                             address: config.address,

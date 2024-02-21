@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/thread/create_forum_thread/message.rs`."><title>message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/thread/create_forum_thread/message.rs`."><title>message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -223,14 +223,35 @@
 <a href="#221" id="221">221</a>
 <a href="#222" id="222">222</a>
 <a href="#223" id="223">223</a>
+<a href="#224" id="224">224</a>
+<a href="#225" id="225">225</a>
+<a href="#226" id="226">226</a>
+<a href="#227" id="227">227</a>
+<a href="#228" id="228">228</a>
+<a href="#229" id="229">229</a>
+<a href="#230" id="230">230</a>
+<a href="#231" id="231">231</a>
+<a href="#232" id="232">232</a>
+<a href="#233" id="233">233</a>
+<a href="#234" id="234">234</a>
+<a href="#235" id="235">235</a>
+<a href="#236" id="236">236</a>
+<a href="#237" id="237">237</a>
+<a href="#238" id="238">238</a>
+<a href="#239" id="239">239</a>
+<a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{CreateForumThread, ForumThread};
 <span class="kw">use crate</span>::{
-    request::{attachment::PartialAttachment, Nullable, TryIntoRequest},
+    request::{
+        attachment::{AttachmentManager, PartialAttachment},
+        Nullable, TryIntoRequest,
+    },
     response::{Response, ResponseFuture},
     Error,
 };
 <span class="kw">use </span>serde::Serialize;
-<span class="kw">use </span>std::future::IntoFuture;
+<span class="kw">use </span>std::{future::IntoFuture, mem};
 <span class="kw">use </span>twilight_model::{
     channel::message::{AllowedMentions, Component, Embed, MessageFlags},
     http::attachment::Attachment,
@@ -264,19 +285,21 @@
 }
 
 <span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
-</span><span class="kw">pub struct </span>CreateForumThreadMessage&lt;<span class="lifetime">'a</span>&gt;(CreateForumThread&lt;<span class="lifetime">'a</span>&gt;);
+</span><span class="kw">pub struct </span>CreateForumThreadMessage&lt;<span class="lifetime">'a</span>&gt;(<span class="prelude-ty">Result</span>&lt;CreateForumThread&lt;<span class="lifetime">'a</span>&gt;, MessageValidationError&gt;);
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateForumThreadMessage&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const fn </span>new(inner: CreateForumThread&lt;<span class="lifetime">'a</span>&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(inner)
+        <span class="self">Self</span>(<span class="prelude-val">Ok</span>(inner))
     }
 
     <span class="doccomment">/// Specify the [`AllowedMentions`] for the message.
     ///
     /// Unless otherwise called, the request will use the client's default
     /// allowed mentions. Set to `None` to ignore this default.
-    </span><span class="kw">pub const fn </span>allowed_mentions(<span class="kw-2">mut </span><span class="self">self</span>, allowed_mentions: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>AllowedMentions&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.allowed_mentions = <span class="prelude-val">Some</span>(Nullable(allowed_mentions));
+    </span><span class="kw">pub fn </span>allowed_mentions(<span class="kw-2">mut </span><span class="self">self</span>, allowed_mentions: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>AllowedMentions&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(inner) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            inner.fields.message.allowed_mentions = <span class="prelude-val">Some</span>(Nullable(allowed_mentions));
+        }
 
         <span class="self">self
     </span>}
@@ -291,21 +314,25 @@
     /// invalid.
     ///
     /// [`AttachmentFilename`]: twilight_validate::message::MessageValidationErrorType::AttachmentFilename
-    </span><span class="kw">pub fn </span>attachments(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        attachments: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Attachment],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
-        attachments
-            .iter()
-            .try_for_each(|attachment| validate_attachment_filename(<span class="kw-2">&amp;</span>attachment.filename))<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>attachments(<span class="kw-2">mut </span><span class="self">self</span>, attachments: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Attachment]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span><span class="self">self</span>.<span class="number">0</span>.is_ok() {
+            <span class="kw">let </span>validation = attachments
+                .iter()
+                .try_for_each(|attachment| validate_attachment_filename(<span class="kw-2">&amp;</span>attachment.filename));
 
-        <span class="self">self</span>.<span class="number">0</span>.attachment_manager = <span class="self">self
-            </span>.<span class="number">0
-            </span>.attachment_manager
-            .set_files(attachments.iter().collect());
+            <span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validation {
+                <span class="self">self</span>.<span class="number">0 </span>= <span class="prelude-val">Err</span>(source);
+            } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(inner) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+                <span class="kw">let </span><span class="kw-2">mut </span>manager =
+                    mem::replace(<span class="kw-2">&amp;mut </span>inner.attachment_manager, AttachmentManager::new());
+                manager = manager.set_files(attachments.iter().collect());
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+                inner.attachment_manager = manager;
+            }
+        }
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the message's list of [`Component`]s.
     ///
@@ -318,16 +345,16 @@
     /// Refer to the errors section of
     /// [`twilight_validate::component::component`] for a list of errors that
     /// may be returned as a result of validating each provided component.
-    </span><span class="kw">pub fn </span>components(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        components: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Component],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
-        validate_components(components)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>components(<span class="kw-2">mut </span><span class="self">self</span>, components: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Component]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.and_then(|<span class="kw-2">mut </span>inner| {
+            validate_components(components)<span class="question-mark">?</span>;
+            inner.fields.message.components = <span class="prelude-val">Some</span>(components);
 
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.components = <span class="prelude-val">Some</span>(components);
+            <span class="prelude-val">Ok</span>(inner)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the message's content.
     ///
@@ -339,13 +366,16 @@
     /// long.
     ///
     /// [`ContentInvalid`]: twilight_validate::message::MessageValidationErrorType::ContentInvalid
-    </span><span class="kw">pub fn </span>content(<span class="kw-2">mut </span><span class="self">self</span>, content: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
-        validate_content(content)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>content(<span class="kw-2">mut </span><span class="self">self</span>, content: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.and_then(|<span class="kw-2">mut </span>inner| {
+            validate_content(content)<span class="question-mark">?</span>;
+            inner.fields.message.content = <span class="prelude-val">Some</span>(content);
 
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.content = <span class="prelude-val">Some</span>(content);
+            <span class="prelude-val">Ok</span>(inner)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the message's list of embeds.
     ///
@@ -367,13 +397,16 @@
     /// [`EMBED_COUNT_LIMIT`]: twilight_validate::message::EMBED_COUNT_LIMIT
     /// [`EMBED_TOTAL_LENGTH`]: twilight_validate::embed::EMBED_TOTAL_LENGTH
     /// [`TooManyEmbeds`]: twilight_validate::message::MessageValidationErrorType::TooManyEmbeds
-    </span><span class="kw">pub fn </span>embeds(<span class="kw-2">mut </span><span class="self">self</span>, embeds: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Embed]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
-        validate_embeds(embeds)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>embeds(<span class="kw-2">mut </span><span class="self">self</span>, embeds: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Embed]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.and_then(|<span class="kw-2">mut </span>inner| {
+            validate_embeds(embeds)<span class="question-mark">?</span>;
+            inner.fields.message.embeds = <span class="prelude-val">Some</span>(embeds);
 
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.embeds = <span class="prelude-val">Some</span>(embeds);
+            <span class="prelude-val">Ok</span>(inner)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the message's flags.
     ///
@@ -382,8 +415,10 @@
     ///
     /// [`SUPPRESS_EMBEDS`]: MessageFlags::SUPPRESS_EMBEDS
     /// [`SUPPRESS_NOTIFICATIONS`]: MessageFlags::SUPPRESS_NOTIFICATIONS
-    </span><span class="kw">pub const fn </span>flags(<span class="kw-2">mut </span><span class="self">self</span>, flags: MessageFlags) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.flags = <span class="prelude-val">Some</span>(flags);
+    </span><span class="kw">pub fn </span>flags(<span class="kw-2">mut </span><span class="self">self</span>, flags: MessageFlags) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(inner) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            inner.fields.message.flags = <span class="prelude-val">Some</span>(flags);
+        }
 
         <span class="self">self
     </span>}
@@ -400,8 +435,10 @@
     /// [Discord Docs/Uploading Files]: https://discord.com/developers/docs/reference#uploading-files
     /// [`ExecuteWebhook::payload_json`]: crate::request::channel::webhook::ExecuteWebhook::payload_json
     /// [`attachments`]: Self::attachments
-    </span><span class="kw">pub const fn </span>payload_json(<span class="kw-2">mut </span><span class="self">self</span>, payload_json: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.payload_json = <span class="prelude-val">Some</span>(payload_json);
+    </span><span class="kw">pub fn </span>payload_json(<span class="kw-2">mut </span><span class="self">self</span>, payload_json: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(inner) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            inner.fields.message.payload_json = <span class="prelude-val">Some</span>(payload_json);
+        }
 
         <span class="self">self
     </span>}
@@ -413,22 +450,16 @@
     /// Returns an error of type [`StickersInvalid`] if the length is invalid.
     ///
     /// [`StickersInvalid`]: twilight_validate::message::MessageValidationErrorType::StickersInvalid
-    </span><span class="kw">pub fn </span>sticker_ids(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        sticker_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;StickerMarker&gt;],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, MessageValidationError&gt; {
-        validate_sticker_ids(sticker_ids)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>sticker_ids(<span class="kw-2">mut </span><span class="self">self</span>, sticker_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;StickerMarker&gt;]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.and_then(|<span class="kw-2">mut </span>inner| {
+            validate_sticker_ids(sticker_ids)<span class="question-mark">?</span>;
+            inner.fields.message.sticker_ids = <span class="prelude-val">Some</span>(sticker_ids);
 
-        <span class="self">self</span>.<span class="number">0</span>.fields.message.sticker_ids = <span class="prelude-val">Some</span>(sticker_ids);
+            <span class="prelude-val">Ok</span>(inner)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
-
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;ForumThread&gt; {
-        <span class="self">self</span>.into_future()
-    }
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateForumThreadMessage&lt;<span class="lifetime">'_</span>&gt; {
@@ -437,13 +468,18 @@
     <span class="kw">type </span>IntoFuture = ResponseFuture&lt;ForumThread&gt;;
 
     <span class="kw">fn </span>into_future(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoFuture {
-        <span class="self">self</span>.<span class="number">0</span>.exec()
+        <span class="kw">match </span><span class="self">self</span>.<span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(inner) =&gt; inner.exec(),
+            <span class="prelude-val">Err</span>(source) =&gt; ResponseFuture::error(Error::validation(source)),
+        }
     }
 }
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateForumThreadMessage&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw">crate</span>::request::Request, Error&gt; {
-        <span class="self">self</span>.<span class="number">0</span>.try_into_request()
+        <span class="self">self</span>.<span class="number">0
+            </span>.map_err(Error::validation)
+            .and_then(CreateForumThread::try_into_request)
     }
 }
 </code></pre></div></section></main></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/update_channel.rs`."><title>update_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/update_channel.rs`."><title>update_channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -416,6 +416,34 @@
 <a href="#414" id="414">414</a>
 <a href="#415" id="415">415</a>
 <a href="#416" id="416">416</a>
+<a href="#417" id="417">417</a>
+<a href="#418" id="418">418</a>
+<a href="#419" id="419">419</a>
+<a href="#420" id="420">420</a>
+<a href="#421" id="421">421</a>
+<a href="#422" id="422">422</a>
+<a href="#423" id="423">423</a>
+<a href="#424" id="424">424</a>
+<a href="#425" id="425">425</a>
+<a href="#426" id="426">426</a>
+<a href="#427" id="427">427</a>
+<a href="#428" id="428">428</a>
+<a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a>
+<a href="#440" id="440">440</a>
+<a href="#441" id="441">441</a>
+<a href="#442" id="442">442</a>
+<a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -491,16 +519,16 @@
 </span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
 </span><span class="kw">pub struct </span>UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
     channel_id: Id&lt;ChannelMarker&gt;,
-    fields: UpdateChannelFields&lt;<span class="lifetime">'a</span>&gt;,
+    fields: <span class="prelude-ty">Result</span>&lt;UpdateChannelFields&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    reason: <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;, ValidationError&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client, channel_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             channel_id,
-            fields: UpdateChannelFields {
+            fields: <span class="prelude-val">Ok</span>(UpdateChannelFields {
                 available_tags: <span class="prelude-val">None</span>,
                 bitrate: <span class="prelude-val">None</span>,
                 default_forum_layout: <span class="prelude-val">None</span>,
@@ -519,15 +547,17 @@
                 topic: <span class="prelude-val">None</span>,
                 user_limit: <span class="prelude-val">None</span>,
                 video_quality_mode: <span class="prelude-val">None</span>,
-            },
+            }),
             http,
-            reason: <span class="prelude-val">None</span>,
+            reason: <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         }
     }
 
     <span class="doccomment">/// Set the available tags for the forum.
-    </span><span class="kw">pub const fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.available_tags = <span class="prelude-val">Some</span>(available_tags);
+    </span><span class="kw">pub fn </span>available_tags(<span class="kw-2">mut </span><span class="self">self</span>, available_tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[ForumTag]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.available_tags = <span class="prelude-val">Some</span>(available_tags);
+        }
 
         <span class="self">self
     </span>}
@@ -541,37 +571,43 @@
     /// Returns an error of type [`BitrateInvalid`] if the bitrate is invalid.
     ///
     /// [`BitrateInvalid`]: twilight_validate::channel::ChannelValidationErrorType::BitrateInvalid
-    </span><span class="kw">pub const fn </span>bitrate(<span class="kw-2">mut </span><span class="self">self</span>, bitrate: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_bitrate(bitrate) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>bitrate(<span class="kw-2">mut </span><span class="self">self</span>, bitrate: u32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_bitrate(bitrate)<span class="question-mark">?</span>;
+            fields.bitrate = <span class="prelude-val">Some</span>(bitrate);
 
-        <span class="self">self</span>.fields.bitrate = <span class="prelude-val">Some</span>(bitrate);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the default layout for forum channels.
-    </span><span class="kw">pub const fn </span>default_forum_layout(<span class="kw-2">mut </span><span class="self">self</span>, default_forum_layout: ForumLayout) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_forum_layout = <span class="prelude-val">Some</span>(default_forum_layout);
+    </span><span class="kw">pub fn </span>default_forum_layout(<span class="kw-2">mut </span><span class="self">self</span>, default_forum_layout: ForumLayout) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_forum_layout = <span class="prelude-val">Some</span>(default_forum_layout);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the default reaction emoji for new forum threads.
-    </span><span class="kw">pub const fn </span>default_reaction_emoji(
+    </span><span class="kw">pub fn </span>default_reaction_emoji(
         <span class="kw-2">mut </span><span class="self">self</span>,
         default_reaction_emoji: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>DefaultReaction&gt;,
     ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_reaction_emoji = <span class="prelude-val">Some</span>(Nullable(default_reaction_emoji));
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_reaction_emoji = <span class="prelude-val">Some</span>(Nullable(default_reaction_emoji));
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the default sort order for forum channels.
-    </span><span class="kw">pub const fn </span>default_sort_order(<span class="kw-2">mut </span><span class="self">self</span>, default_sort_order: <span class="prelude-ty">Option</span>&lt;ForumSortOrder&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.default_sort_order = <span class="prelude-val">Some</span>(Nullable(default_sort_order));
+    </span><span class="kw">pub fn </span>default_sort_order(<span class="kw-2">mut </span><span class="self">self</span>, default_sort_order: <span class="prelude-ty">Option</span>&lt;ForumSortOrder&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_sort_order = <span class="prelude-val">Some</span>(Nullable(default_sort_order));
+        }
 
         <span class="self">self
     </span>}
@@ -589,28 +625,31 @@
     ///
     /// [`RateLimitPerUserInvalid`]: twilight_validate::channel::ChannelValidationErrorType::RateLimitPerUserInvalid
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
-    </span><span class="kw">pub const fn </span>default_thread_rate_limit_per_user(
+    </span><span class="kw">pub fn </span>default_thread_rate_limit_per_user(
         <span class="kw-2">mut </span><span class="self">self</span>,
         default_thread_rate_limit_per_user: <span class="prelude-ty">Option</span>&lt;u16&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(default_thread_rate_limit_per_user) = default_thread_rate_limit_per_user {
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(source) =
-                twilight_validate::channel::rate_limit_per_user(default_thread_rate_limit_per_user)
-            {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(source);
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(default_thread_rate_limit_per_user) = default_thread_rate_limit_per_user {
+                twilight_validate::channel::rate_limit_per_user(
+                    default_thread_rate_limit_per_user,
+                )<span class="question-mark">?</span>;
             }
-        }
 
-        <span class="self">self</span>.fields.default_thread_rate_limit_per_user =
-            <span class="prelude-val">Some</span>(Nullable(default_thread_rate_limit_per_user));
+            fields.default_thread_rate_limit_per_user =
+                <span class="prelude-val">Some</span>(Nullable(default_thread_rate_limit_per_user));
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the flags of the channel, if supported.
-    </span><span class="kw">pub const fn </span>flags(<span class="kw-2">mut </span><span class="self">self</span>, flags: ChannelFlags) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.flags = <span class="prelude-val">Some</span>(flags);
+    </span><span class="kw">pub fn </span>flags(<span class="kw-2">mut </span><span class="self">self</span>, flags: ChannelFlags) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.flags = <span class="prelude-val">Some</span>(flags);
+        }
 
         <span class="self">self
     </span>}
@@ -628,15 +667,19 @@
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
     /// [`ForumTopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::ForumTopicInvalid
     /// [`GuildForum`]: twilight_model::channel::ChannelType::GuildForum
-    </span><span class="kw">pub fn </span>forum_topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(topic) = topic {
-            validate_forum_topic(topic)<span class="question-mark">?</span>;
-        }
+    </span><span class="kw">pub fn </span>forum_topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(topic) = topic {
+                validate_forum_topic(topic)<span class="question-mark">?</span>;
+            }
 
-        <span class="self">self</span>.fields.topic = topic;
+            fields.topic = topic;
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the name.
     ///
@@ -648,36 +691,45 @@
     /// Returns an error of type [`NameInvalid`] if the name is invalid.
     ///
     /// [`NameInvalid`]: twilight_validate::channel::ChannelValidationErrorType::NameInvalid
-    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        validate_name(name)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_name(name)<span class="question-mark">?</span>;
+            fields.name = <span class="prelude-val">Some</span>(name);
 
-        <span class="self">self</span>.fields.name = <span class="prelude-val">Some</span>(name);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set whether the channel is marked as NSFW.
-    </span><span class="kw">pub const fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.nsfw = <span class="prelude-val">Some</span>(nsfw);
+    </span><span class="kw">pub fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.nsfw = <span class="prelude-val">Some</span>(nsfw);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// If this is specified, and the parent ID is a `ChannelType::CategoryChannel`, move this
     /// channel to a child of the category channel.
-    </span><span class="kw">pub const fn </span>parent_id(<span class="kw-2">mut </span><span class="self">self</span>, parent_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.parent_id = <span class="prelude-val">Some</span>(Nullable(parent_id));
+    </span><span class="kw">pub fn </span>parent_id(<span class="kw-2">mut </span><span class="self">self</span>, parent_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.parent_id = <span class="prelude-val">Some</span>(Nullable(parent_id));
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the permission overwrites of a channel. This will overwrite all permissions that the
     /// channel currently has, so use with caution!
-    </span><span class="kw">pub const fn </span>permission_overwrites(
+    </span><span class="kw">pub fn </span>permission_overwrites(
         <span class="kw-2">mut </span><span class="self">self</span>,
         permission_overwrites: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[PermissionOverwrite],
     ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.permission_overwrites = <span class="prelude-val">Some</span>(permission_overwrites);
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.permission_overwrites = <span class="prelude-val">Some</span>(permission_overwrites);
+        }
 
         <span class="self">self
     </span>}
@@ -686,8 +738,10 @@
     ///
     /// Positions are numerical and zero-indexed. If you place a channel at position 2, channels
     /// 2-n will shift down one position and the initial channel will take its place.
-    </span><span class="kw">pub const fn </span>position(<span class="kw-2">mut </span><span class="self">self</span>, position: u64) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.position = <span class="prelude-val">Some</span>(position);
+    </span><span class="kw">pub fn </span>position(<span class="kw-2">mut </span><span class="self">self</span>, position: u64) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.position = <span class="prelude-val">Some</span>(position);
+        }
 
         <span class="self">self
     </span>}
@@ -705,25 +759,24 @@
     ///
     /// [`RateLimitPerUserInvalid`]: twilight_validate::channel::ChannelValidationErrorType::RateLimitPerUserInvalid
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
-    </span><span class="kw">pub const fn </span>rate_limit_per_user(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        rate_limit_per_user: u16,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = twilight_validate::channel::rate_limit_per_user(rate_limit_per_user) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>rate_limit_per_user(<span class="kw-2">mut </span><span class="self">self</span>, rate_limit_per_user: u16) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            twilight_validate::channel::rate_limit_per_user(rate_limit_per_user)<span class="question-mark">?</span>;
+            fields.rate_limit_per_user = <span class="prelude-val">Some</span>(rate_limit_per_user);
 
-        <span class="self">self</span>.fields.rate_limit_per_user = <span class="prelude-val">Some</span>(rate_limit_per_user);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// For voice and stage channels, set the channel's RTC region.
     ///
     /// Set to `None` to clear.
-    </span><span class="kw">pub const fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.rtc_region = <span class="prelude-val">Some</span>(Nullable(rtc_region));
+    </span><span class="kw">pub fn </span>rtc_region(<span class="kw-2">mut </span><span class="self">self</span>, rtc_region: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.rtc_region = <span class="prelude-val">Some</span>(Nullable(rtc_region));
+        }
 
         <span class="self">self
     </span>}
@@ -739,13 +792,16 @@
     ///
     /// [Discord Docs/Channel Object]: https://discordapp.com/developers/docs/resources/channel#channel-object-channel-structure
     /// [`TopicInvalid`]: twilight_validate::channel::ChannelValidationErrorType::TopicInvalid
-    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        validate_topic(topic)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>topic(<span class="kw-2">mut </span><span class="self">self</span>, topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_topic(topic)<span class="question-mark">?</span>;
+            fields.topic.replace(topic);
 
-        <span class="self">self</span>.fields.topic.replace(topic);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// For voice channels, set the user limit.
     ///
@@ -758,17 +814,22 @@
     ///
     /// [Discord Docs/Modify Channel]: https://discord.com/developers/docs/resources/channel#modify-channel-json-params-guild-channel
     /// [`UserLimitInvalid`]: twilight_validate::channel::ChannelValidationErrorType::UserLimitInvalid
-    </span><span class="kw">pub fn </span>user_limit(<span class="kw-2">mut </span><span class="self">self</span>, user_limit: u16) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ChannelValidationError&gt; {
-        validate_user_limit(user_limit)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>user_limit(<span class="kw-2">mut </span><span class="self">self</span>, user_limit: u16) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_user_limit(user_limit)<span class="question-mark">?</span>;
+            fields.user_limit = <span class="prelude-val">Some</span>(user_limit);
 
-        <span class="self">self</span>.fields.user_limit = <span class="prelude-val">Some</span>(user_limit);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the [`VideoQualityMode`] for the voice channel.
-    </span><span class="kw">pub const fn </span>video_quality_mode(<span class="kw-2">mut </span><span class="self">self</span>, video_quality_mode: VideoQualityMode) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.video_quality_mode = <span class="prelude-val">Some</span>(video_quality_mode);
+    </span><span class="kw">pub fn </span>video_quality_mode(<span class="kw-2">mut </span><span class="self">self</span>, video_quality_mode: VideoQualityMode) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.video_quality_mode = <span class="prelude-val">Some</span>(video_quality_mode);
+        }
 
         <span class="self">self
     </span>}
@@ -780,27 +841,21 @@
     /// `NEWS` feature enabled. See [Discord Docs/Modify Channel].
     ///
     /// [Discord Docs/Modify Channel]: https://discord.com/developers/docs/resources/channel#modify-channel-json-params-guild-channel
-    </span><span class="kw">pub const fn </span>kind(<span class="kw-2">mut </span><span class="self">self</span>, kind: ChannelType) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.kind = <span class="prelude-val">Some</span>(kind);
+    </span><span class="kw">pub fn </span>kind(<span class="kw-2">mut </span><span class="self">self</span>, kind: ChannelType) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.kind = <span class="prelude-val">Some</span>(kind);
+        }
 
         <span class="self">self
     </span>}
-
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Channel&gt; {
-        <span class="self">self</span>.into_future()
-    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        validate_audit_reason(reason)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.reason = validate_audit_reason(reason).and(<span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(reason)));
 
-        <span class="self">self</span>.reason.replace(reason);
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {
@@ -820,16 +875,17 @@
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateChannel&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::UpdateChannel {
             channel_id: <span class="self">self</span>.channel_id.get(),
         })
-        .json(<span class="kw-2">&amp;</span><span class="self">self</span>.fields)<span class="question-mark">?</span>;
+        .json(<span class="kw-2">&amp;</span>fields);
 
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="kw-2">&amp;</span><span class="self">self</span>.reason {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason.map_err(Error::validation)<span class="question-mark">? </span>{
             request = request.headers(request::audit_header(reason)<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Ok</span>(request.build())
+        request.build()
     }
 }
 </code></pre></div></section></main></body></html>

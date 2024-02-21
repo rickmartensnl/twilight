@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/event/reaction.rs`."><title>reaction.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/event/reaction.rs`."><title>reaction.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../twilight_cache_inmemory/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -292,7 +292,13 @@
 <a href="#290" id="290">290</a>
 <a href="#291" id="291">291</a>
 <a href="#292" id="292">292</a>
-</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, InMemoryCache, UpdateCache};
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+</pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
+    config::ResourceType,
+    traits::{CacheableCurrentUser, CacheableMessage},
+    CacheableModels, InMemoryCache, UpdateCache,
+};
 <span class="kw">use </span>twilight_model::{
     channel::message::{Reaction, ReactionCountDetails, ReactionType},
     gateway::payload::incoming::{
@@ -300,8 +306,8 @@
     },
 };
 
-<span class="kw">impl </span>UpdateCache <span class="kw">for </span>ReactionAdd {
-    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; UpdateCache&lt;CacheModels&gt; <span class="kw">for </span>ReactionAdd {
+    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {
         <span class="kw">if </span>!cache.wants(ResourceType::REACTION) {
             <span class="kw">return</span>;
         }
@@ -313,13 +319,13 @@
         };
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(reaction) = message
-            .reactions
+            .reactions_mut()
             .iter_mut()
             .find(|r| reactions_eq(<span class="kw-2">&amp;</span>r.emoji, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.emoji))
         {
             <span class="kw">if </span>!reaction.me {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(current_user) = cache.current_user() {
-                    <span class="kw">if </span>current_user.id == <span class="self">self</span>.<span class="number">0</span>.user_id {
+                    <span class="kw">if </span>current_user.id() == <span class="self">self</span>.<span class="number">0</span>.user_id {
                         reaction.me = <span class="bool-val">true</span>;
                     }
                 }
@@ -329,10 +335,10 @@
         } <span class="kw">else </span>{
             <span class="kw">let </span>me = cache
                 .current_user()
-                .map(|user| user.id == <span class="self">self</span>.<span class="number">0</span>.user_id)
+                .map(|user| user.id() == <span class="self">self</span>.<span class="number">0</span>.user_id)
                 .unwrap_or_default();
 
-            message.reactions.push(Reaction {
+            message.add_reaction(Reaction {
                 burst_colors: Vec::new(),
                 count: <span class="number">1</span>,
                 count_details: ReactionCountDetails {
@@ -347,8 +353,8 @@
     }
 }
 
-<span class="kw">impl </span>UpdateCache <span class="kw">for </span>ReactionRemove {
-    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; UpdateCache&lt;CacheModels&gt; <span class="kw">for </span>ReactionRemove {
+    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {
         <span class="kw">if </span>!cache.wants(ResourceType::REACTION) {
             <span class="kw">return</span>;
         }
@@ -358,13 +364,13 @@
         };
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(reaction) = message
-            .reactions
+            .reactions_mut()
             .iter_mut()
             .find(|r| reactions_eq(<span class="kw-2">&amp;</span>r.emoji, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.emoji))
         {
             <span class="kw">if </span>reaction.me {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(current_user) = cache.current_user() {
-                    <span class="kw">if </span>current_user.id == <span class="self">self</span>.<span class="number">0</span>.user_id {
+                    <span class="kw">if </span>current_user.id() == <span class="self">self</span>.<span class="number">0</span>.user_id {
                         reaction.me = <span class="bool-val">false</span>;
                     }
                 }
@@ -373,16 +379,14 @@
             <span class="kw">if </span>reaction.count &gt; <span class="number">1 </span>{
                 reaction.count -= <span class="number">1</span>;
             } <span class="kw">else </span>{
-                message
-                    .reactions
-                    .retain(|e| !(reactions_eq(<span class="kw-2">&amp;</span>e.emoji, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.emoji)));
+                message.retain_reactions(|e| !(reactions_eq(<span class="kw-2">&amp;</span>e.emoji, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.emoji)));
             }
         }
     }
 }
 
-<span class="kw">impl </span>UpdateCache <span class="kw">for </span>ReactionRemoveAll {
-    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; UpdateCache&lt;CacheModels&gt; <span class="kw">for </span>ReactionRemoveAll {
+    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {
         <span class="kw">if </span>!cache.wants(ResourceType::REACTION) {
             <span class="kw">return</span>;
         }
@@ -391,12 +395,12 @@
             <span class="kw">return</span>;
         };
 
-        message.reactions.clear();
+        message.clear_reactions();
     }
 }
 
-<span class="kw">impl </span>UpdateCache <span class="kw">for </span>ReactionRemoveEmoji {
-    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache) {
+<span class="kw">impl</span>&lt;CacheModels: CacheableModels&gt; UpdateCache&lt;CacheModels&gt; <span class="kw">for </span>ReactionRemoveEmoji {
+    <span class="kw">fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>InMemoryCache&lt;CacheModels&gt;) {
         <span class="kw">if </span>!cache.wants(ResourceType::REACTION) {
             <span class="kw">return</span>;
         }
@@ -406,12 +410,12 @@
         };
 
         <span class="kw">let </span>maybe_index = message
-            .reactions
+            .reactions()
             .iter()
             .position(|r| reactions_eq(<span class="kw-2">&amp;</span>r.emoji, <span class="kw-2">&amp;</span><span class="self">self</span>.emoji));
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(index) = maybe_index {
-            message.reactions.remove(index);
+            message.remove_reaction(index);
         }
     }
 }

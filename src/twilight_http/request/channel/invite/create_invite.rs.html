@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/invite/create_invite.rs`."><title>create_invite.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/channel/invite/create_invite.rs`."><title>create_invite.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -302,7 +302,6 @@
 <a href="#300" id="300">300</a>
 <a href="#301" id="301">301</a>
 <a href="#302" id="302">302</a>
-<a href="#303" id="303">303</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -357,7 +356,7 @@
 /// let client = Client::new("my token".to_owned());
 ///
 /// let channel_id = Id::new(123);
-/// let invite = client.create_invite(channel_id).max_uses(3)?.await?;
+/// let invite = client.create_invite(channel_id).max_uses(3).await?;
 /// # Ok(()) }
 /// ```
 ///
@@ -365,16 +364,16 @@
 </span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
 </span><span class="kw">pub struct </span>CreateInvite&lt;<span class="lifetime">'a</span>&gt; {
     channel_id: Id&lt;ChannelMarker&gt;,
-    fields: CreateInviteFields,
+    fields: <span class="prelude-ty">Result</span>&lt;CreateInviteFields, ValidationError&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    reason: <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;, ValidationError&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateInvite&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client, channel_id: Id&lt;ChannelMarker&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             channel_id,
-            fields: CreateInviteFields {
+            fields: <span class="prelude-val">Ok</span>(CreateInviteFields {
                 max_age: <span class="prelude-val">None</span>,
                 max_uses: <span class="prelude-val">None</span>,
                 temporary: <span class="prelude-val">None</span>,
@@ -382,9 +381,9 @@
                 target_user_id: <span class="prelude-val">None</span>,
                 target_type: <span class="prelude-val">None</span>,
                 unique: <span class="prelude-val">None</span>,
-            },
+            }),
             http,
-            reason: <span class="prelude-val">None</span>,
+            reason: <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         }
     }
 
@@ -408,7 +407,7 @@
     /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let invite = client
     ///     .create_invite(Id::new(1))
-    ///     .max_age(60 * 60)?
+    ///     .max_age(60 * 60)
     ///     .await?
     ///     .model()
     ///     .await?;
@@ -422,16 +421,16 @@
     /// Returns an error of type [`InviteMaxAge`] if the age is invalid.
     ///
     /// [`InviteMaxAge`]: twilight_validate::request::ValidationErrorType::InviteMaxAge
-    </span><span class="kw">pub const fn </span>max_age(<span class="kw-2">mut </span><span class="self">self</span>, max_age: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_invite_max_age(max_age) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>max_age(<span class="kw-2">mut </span><span class="self">self</span>, max_age: u32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_invite_max_age(max_age)<span class="question-mark">?</span>;
+            fields.max_age = <span class="prelude-val">Some</span>(max_age);
 
-        <span class="self">self</span>.fields.max_age = <span class="prelude-val">Some</span>(max_age);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the maximum uses for an invite, or 0 for infinite.
     ///
@@ -451,7 +450,7 @@
     /// let client = Client::new(env::var("DISCORD_TOKEN")?);
     /// let invite = client
     ///     .create_invite(Id::new(1))
-    ///     .max_uses(5)?
+    ///     .max_uses(5)
     ///     .await?
     ///     .model()
     ///     .await?;
@@ -465,41 +464,44 @@
     /// Returns an error of type [`InviteMaxUses`] if the uses is invalid.
     ///
     /// [`InviteMaxUses`]: twilight_validate::request::ValidationErrorType::InviteMaxUses
-    </span><span class="kw">pub const fn </span>max_uses(<span class="kw-2">mut </span><span class="self">self</span>, max_uses: u16) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        <span class="attr">#[allow(clippy::question_mark)]
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(source) = validate_invite_max_uses(max_uses) {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(source);
-        }
+    </span><span class="kw">pub fn </span>max_uses(<span class="kw-2">mut </span><span class="self">self</span>, max_uses: u16) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_invite_max_uses(max_uses)<span class="question-mark">?</span>;
+            fields.max_uses = <span class="prelude-val">Some</span>(max_uses);
 
-        <span class="self">self</span>.fields.max_uses = <span class="prelude-val">Some</span>(max_uses);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Set the target application ID for this invite.
     ///
     /// This only works if [`target_type`] is set to [`TargetType::EmbeddedApplication`].
     ///
     /// [`target_type`]: Self::target_type
-    </span><span class="kw">pub const fn </span>target_application_id(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        target_application_id: Id&lt;ApplicationMarker&gt;,
-    ) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.target_application_id = <span class="prelude-val">Some</span>(target_application_id);
+    </span><span class="kw">pub fn </span>target_application_id(<span class="kw-2">mut </span><span class="self">self</span>, target_application_id: Id&lt;ApplicationMarker&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.target_application_id = <span class="prelude-val">Some</span>(target_application_id);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the target user id for this invite.
-    </span><span class="kw">pub const fn </span>target_user_id(<span class="kw-2">mut </span><span class="self">self</span>, target_user_id: Id&lt;UserMarker&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.target_user_id = <span class="prelude-val">Some</span>(target_user_id);
+    </span><span class="kw">pub fn </span>target_user_id(<span class="kw-2">mut </span><span class="self">self</span>, target_user_id: Id&lt;UserMarker&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.target_user_id = <span class="prelude-val">Some</span>(target_user_id);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the target type for this invite.
-    </span><span class="kw">pub const fn </span>target_type(<span class="kw-2">mut </span><span class="self">self</span>, target_type: TargetType) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.target_type = <span class="prelude-val">Some</span>(target_type);
+    </span><span class="kw">pub fn </span>target_type(<span class="kw-2">mut </span><span class="self">self</span>, target_type: TargetType) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.target_type = <span class="prelude-val">Some</span>(target_type);
+        }
 
         <span class="self">self
     </span>}
@@ -507,8 +509,10 @@
     <span class="doccomment">/// Specify true if the invite should grant temporary membership.
     ///
     /// Defaults to false.
-    </span><span class="kw">pub const fn </span>temporary(<span class="kw-2">mut </span><span class="self">self</span>, temporary: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.temporary = <span class="prelude-val">Some</span>(temporary);
+    </span><span class="kw">pub fn </span>temporary(<span class="kw-2">mut </span><span class="self">self</span>, temporary: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.temporary = <span class="prelude-val">Some</span>(temporary);
+        }
 
         <span class="self">self
     </span>}
@@ -519,27 +523,21 @@
     /// unique one time use invites). See [Discord Docs/Create Channel Invite].
     ///
     /// [Discord Docs/Create Channel Invite]: https://discord.com/developers/docs/resources/channel#create-channel-invite
-    </span><span class="kw">pub const fn </span>unique(<span class="kw-2">mut </span><span class="self">self</span>, unique: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.unique = <span class="prelude-val">Some</span>(unique);
+    </span><span class="kw">pub fn </span>unique(<span class="kw-2">mut </span><span class="self">self</span>, unique: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.unique = <span class="prelude-val">Some</span>(unique);
+        }
 
         <span class="self">self
     </span>}
-
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Invite&gt; {
-        <span class="self">self</span>.into_future()
-    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>CreateInvite&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        validate_audit_reason(reason)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.reason = validate_audit_reason(reason).and(<span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(reason)));
 
-        <span class="self">self</span>.reason.replace(reason);
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateInvite&lt;<span class="lifetime">'_</span>&gt; {
@@ -559,19 +557,17 @@
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateInvite&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::CreateInvite {
             channel_id: <span class="self">self</span>.channel_id.get(),
-        });
+        })
+        .json(<span class="kw-2">&amp;</span>fields);
 
-        request = request.json(<span class="kw-2">&amp;</span><span class="self">self</span>.fields)<span class="question-mark">?</span>;
-
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason {
-            <span class="kw">let </span>header = request::audit_header(reason)<span class="question-mark">?</span>;
-
-            request = request.headers(header);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason.map_err(Error::validation)<span class="question-mark">? </span>{
+            request = request.headers(request::audit_header(reason)<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Ok</span>(request.build())
+        request.build()
     }
 }
 
@@ -585,11 +581,12 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>max_age() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="kw">let </span>client = Client::new(<span class="string">"foo"</span>.to_owned());
-        <span class="kw">let </span><span class="kw-2">mut </span>builder = CreateInvite::new(<span class="kw-2">&amp;</span>client, Id::new(<span class="number">1</span>)).max_age(<span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>), builder.fields.max_age);
-        builder = builder.max_age(<span class="number">604_800</span>)<span class="question-mark">?</span>;
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">604_800</span>), builder.fields.max_age);
-        <span class="macro">assert!</span>(builder.max_age(<span class="number">604_801</span>).is_err());
+        <span class="kw">let </span><span class="kw-2">mut </span>builder = CreateInvite::new(<span class="kw-2">&amp;</span>client, Id::new(<span class="number">1</span>)).max_age(<span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>), builder.fields.as_ref().unwrap().max_age);
+        builder = builder.max_age(<span class="number">604_800</span>);
+        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">604_800</span>), builder.fields.as_ref().unwrap().max_age);
+        builder = builder.max_age(<span class="number">604_801</span>);
+        <span class="macro">assert!</span>(builder.fields.is_err());
 
         <span class="prelude-val">Ok</span>(())
     }
@@ -597,11 +594,12 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>max_uses() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="kw">let </span>client = Client::new(<span class="string">"foo"</span>.to_owned());
-        <span class="kw">let </span><span class="kw-2">mut </span>builder = CreateInvite::new(<span class="kw-2">&amp;</span>client, Id::new(<span class="number">1</span>)).max_uses(<span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>), builder.fields.max_uses);
-        builder = builder.max_uses(<span class="number">100</span>)<span class="question-mark">?</span>;
-        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">100</span>), builder.fields.max_uses);
-        <span class="macro">assert!</span>(builder.max_uses(<span class="number">101</span>).is_err());
+        <span class="kw">let </span><span class="kw-2">mut </span>builder = CreateInvite::new(<span class="kw-2">&amp;</span>client, Id::new(<span class="number">1</span>)).max_uses(<span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>), builder.fields.as_ref().unwrap().max_uses);
+        builder = builder.max_uses(<span class="number">100</span>);
+        <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(<span class="number">100</span>), builder.fields.as_ref().unwrap().max_uses);
+        builder = builder.max_uses(<span class="number">101</span>);
+        <span class="macro">assert!</span>(builder.fields.is_err());
 
         <span class="prelude-val">Ok</span>(())
     }

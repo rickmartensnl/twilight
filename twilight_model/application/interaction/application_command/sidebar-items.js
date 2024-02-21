@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["CommandOptionValue"],"struct":["CommandData","CommandDataOption","CommandInteractionDataResolved","InteractionChannel","InteractionMember"]};
+window.SIDEBAR_ITEMS = {"enum":["CommandOptionValue"],"struct":["CommandData","CommandDataOption"]};

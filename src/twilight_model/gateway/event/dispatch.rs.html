@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/dispatch.rs`."><title>dispatch.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/gateway/event/dispatch.rs`."><title>dispatch.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../twilight_model/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -420,43 +420,6 @@
 <a href="#418" id="418">418</a>
 <a href="#419" id="419">419</a>
 <a href="#420" id="420">420</a>
-<a href="#421" id="421">421</a>
-<a href="#422" id="422">422</a>
-<a href="#423" id="423">423</a>
-<a href="#424" id="424">424</a>
-<a href="#425" id="425">425</a>
-<a href="#426" id="426">426</a>
-<a href="#427" id="427">427</a>
-<a href="#428" id="428">428</a>
-<a href="#429" id="429">429</a>
-<a href="#430" id="430">430</a>
-<a href="#431" id="431">431</a>
-<a href="#432" id="432">432</a>
-<a href="#433" id="433">433</a>
-<a href="#434" id="434">434</a>
-<a href="#435" id="435">435</a>
-<a href="#436" id="436">436</a>
-<a href="#437" id="437">437</a>
-<a href="#438" id="438">438</a>
-<a href="#439" id="439">439</a>
-<a href="#440" id="440">440</a>
-<a href="#441" id="441">441</a>
-<a href="#442" id="442">442</a>
-<a href="#443" id="443">443</a>
-<a href="#444" id="444">444</a>
-<a href="#445" id="445">445</a>
-<a href="#446" id="446">446</a>
-<a href="#447" id="447">447</a>
-<a href="#448" id="448">448</a>
-<a href="#449" id="449">449</a>
-<a href="#450" id="450">450</a>
-<a href="#451" id="451">451</a>
-<a href="#452" id="452">452</a>
-<a href="#453" id="453">453</a>
-<a href="#454" id="454">454</a>
-<a href="#455" id="455">455</a>
-<a href="#456" id="456">456</a>
-<a href="#457" id="457">457</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{<span class="kw">super</span>::payload::incoming::<span class="kw-2">*</span>, Event, EventConversionError, EventType};
 <span class="kw">use </span>serde::{
     de::{Deserialize, DeserializeSeed, Deserializer, Error <span class="kw">as </span>DeError, IgnoredAny},
@@ -484,7 +447,6 @@
     ChannelPinsUpdate(ChannelPinsUpdate),
     ChannelUpdate(Box&lt;ChannelUpdate&gt;),
     CommandPermissionsUpdate(CommandPermissionsUpdate),
-    GiftCodeUpdate,
     GuildAuditLogEntryCreate(Box&lt;GuildAuditLogEntryCreate&gt;),
     GuildCreate(Box&lt;GuildCreate&gt;),
     GuildDelete(GuildDelete),
@@ -512,7 +474,6 @@
     MessageDeleteBulk(MessageDeleteBulk),
     MessageUpdate(Box&lt;MessageUpdate&gt;),
     PresenceUpdate(Box&lt;PresenceUpdate&gt;),
-    PresencesReplace,
     ReactionAdd(Box&lt;ReactionAdd&gt;),
     ReactionRemove(Box&lt;ReactionRemove&gt;),
     ReactionRemoveAll(ReactionRemoveAll),
@@ -554,7 +515,6 @@
             <span class="self">Self</span>::ChannelPinsUpdate(<span class="kw">_</span>) =&gt; EventType::ChannelPinsUpdate,
             <span class="self">Self</span>::ChannelUpdate(<span class="kw">_</span>) =&gt; EventType::ChannelUpdate,
             <span class="self">Self</span>::CommandPermissionsUpdate(<span class="kw">_</span>) =&gt; EventType::CommandPermissionsUpdate,
-            <span class="self">Self</span>::GiftCodeUpdate =&gt; EventType::GiftCodeUpdate,
             <span class="self">Self</span>::GuildAuditLogEntryCreate(<span class="kw">_</span>) =&gt; EventType::GuildAuditLogEntryCreate,
             <span class="self">Self</span>::GuildCreate(<span class="kw">_</span>) =&gt; EventType::GuildCreate,
             <span class="self">Self</span>::GuildDelete(<span class="kw">_</span>) =&gt; EventType::GuildDelete,
@@ -582,7 +542,6 @@
             <span class="self">Self</span>::MessageDeleteBulk(<span class="kw">_</span>) =&gt; EventType::MessageDeleteBulk,
             <span class="self">Self</span>::MessageUpdate(<span class="kw">_</span>) =&gt; EventType::MessageUpdate,
             <span class="self">Self</span>::PresenceUpdate(<span class="kw">_</span>) =&gt; EventType::PresenceUpdate,
-            <span class="self">Self</span>::PresencesReplace =&gt; EventType::PresencesReplace,
             <span class="self">Self</span>::ReactionAdd(<span class="kw">_</span>) =&gt; EventType::ReactionAdd,
             <span class="self">Self</span>::ReactionRemove(<span class="kw">_</span>) =&gt; EventType::ReactionRemove,
             <span class="self">Self</span>::ReactionRemoveAll(<span class="kw">_</span>) =&gt; EventType::ReactionRemoveAll,
@@ -627,7 +586,6 @@
             Event::ChannelPinsUpdate(v) =&gt; <span class="self">Self</span>::ChannelPinsUpdate(v),
             Event::ChannelUpdate(v) =&gt; <span class="self">Self</span>::ChannelUpdate(v),
             Event::CommandPermissionsUpdate(v) =&gt; <span class="self">Self</span>::CommandPermissionsUpdate(v),
-            Event::GiftCodeUpdate =&gt; <span class="self">Self</span>::GiftCodeUpdate,
             Event::GuildAuditLogEntryCreate(v) =&gt; <span class="self">Self</span>::GuildAuditLogEntryCreate(v),
             Event::GuildCreate(v) =&gt; <span class="self">Self</span>::GuildCreate(v),
             Event::GuildDelete(v) =&gt; <span class="self">Self</span>::GuildDelete(v),
@@ -654,7 +612,6 @@
             Event::MessageDeleteBulk(v) =&gt; <span class="self">Self</span>::MessageDeleteBulk(v),
             Event::MessageUpdate(v) =&gt; <span class="self">Self</span>::MessageUpdate(v),
             Event::PresenceUpdate(v) =&gt; <span class="self">Self</span>::PresenceUpdate(v),
-            Event::PresencesReplace =&gt; <span class="self">Self</span>::PresencesReplace,
             Event::ReactionAdd(v) =&gt; <span class="self">Self</span>::ReactionAdd(v),
             Event::ReactionRemove(v) =&gt; <span class="self">Self</span>::ReactionRemove(v),
             Event::ReactionRemoveAll(v) =&gt; <span class="self">Self</span>::ReactionRemoveAll(v),
@@ -731,11 +688,6 @@
             <span class="string">"APPLICATION_COMMAND_PERMISSIONS_UPDATE" </span>=&gt; DispatchEvent::CommandPermissionsUpdate(
                 CommandPermissionsUpdate::deserialize(deserializer)<span class="question-mark">?</span>,
             ),
-            <span class="string">"GIFT_CODE_UPDATE" </span>=&gt; {
-                deserializer.deserialize_ignored_any(IgnoredAny)<span class="question-mark">?</span>;
-
-                DispatchEvent::GiftCodeUpdate
-            }
             <span class="string">"GUILD_AUDIT_LOG_ENTRY_CREATE" </span>=&gt; DispatchEvent::GuildAuditLogEntryCreate(Box::new(
                 GuildAuditLogEntryCreate::deserialize(deserializer)<span class="question-mark">?</span>,
             )),
@@ -838,11 +790,6 @@
             <span class="string">"PRESENCE_UPDATE" </span>=&gt; {
                 DispatchEvent::PresenceUpdate(Box::new(PresenceUpdate::deserialize(deserializer)<span class="question-mark">?</span>))
             }
-            <span class="string">"PRESENCES_REPLACE" </span>=&gt; {
-                deserializer.deserialize_ignored_any(IgnoredAny)<span class="question-mark">?</span>;
-
-                DispatchEvent::PresencesReplace
-            }
             <span class="string">"READY" </span>=&gt; DispatchEvent::Ready(Box::new(Ready::deserialize(deserializer)<span class="question-mark">?</span>)),
             <span class="string">"RESUMED" </span>=&gt; {
                 deserializer.deserialize_ignored_any(IgnoredAny)<span class="question-mark">?</span>;
@@ -891,27 +838,6 @@
             }
             other =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::unknown_variant(other, <span class="kw-2">&amp;</span>[])),
         })
-    }
-}
-
-<span class="attr">#[cfg(test)]
-</span><span class="kw">mod </span>tests {
-    <span class="kw">use super</span>::{DispatchEvent, DispatchEventWithTypeDeserializer};
-    <span class="kw">use </span>serde::de::DeserializeSeed;
-    <span class="kw">use </span>serde_json::Deserializer;
-
-    <span class="attr">#[test]
-    </span><span class="kw">fn </span>gift_code_update() {
-        <span class="comment">// Input will be ignored so long as it's valid JSON.
-        </span><span class="kw">let </span>input = <span class="string">r#"{
-            "a": "b"
-        }"#</span>;
-
-        <span class="kw">let </span>deserializer = DispatchEventWithTypeDeserializer::new(<span class="string">"GIFT_CODE_UPDATE"</span>);
-        <span class="kw">let </span><span class="kw-2">mut </span>json_deserializer = Deserializer::from_str(input);
-        <span class="kw">let </span>event = deserializer.deserialize(<span class="kw-2">&amp;mut </span>json_deserializer).unwrap();
-
-        <span class="macro">assert_eq!</span>(event, DispatchEvent::GiftCodeUpdate);
     }
 }
 </code></pre></div></section></main></body></html>

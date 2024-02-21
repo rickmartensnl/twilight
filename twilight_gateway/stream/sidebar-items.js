@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["StartRecommendedErrorType"],"fn":["create_bucket","create_range","create_recommended"],"struct":["ShardEventStream","ShardMessageStream","ShardRef","StartRecommendedError"]};

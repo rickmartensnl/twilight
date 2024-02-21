@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -2701,30 +2701,13 @@
 <a href="#2699" id="2699">2699</a>
 <a href="#2700" id="2700">2700</a>
 <a href="#2701" id="2701">2701</a>
-<a href="#2702" id="2702">2702</a>
-<a href="#2703" id="2703">2703</a>
-<a href="#2704" id="2704">2704</a>
-<a href="#2705" id="2705">2705</a>
-<a href="#2706" id="2706">2706</a>
-<a href="#2707" id="2707">2707</a>
-<a href="#2708" id="2708">2708</a>
-<a href="#2709" id="2709">2709</a>
-<a href="#2710" id="2710">2710</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
 
 <span class="kw">pub use </span><span class="self">self</span>::{builder::ClientBuilder, interaction::InteractionClient};
 
-<span class="kw">use </span><span class="kw">crate</span>::request::{
-    guild::{
-        update_guild_onboarding::{UpdateGuildOnboarding, UpdateGuildOnboardingFields},
-        GetGuildOnboarding,
-    },
-    GetCurrentAuthorizationInformation, UpdateCurrentUserApplication,
-};
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">use crate</span>::{
+<span class="kw">use crate</span>::{
     client::connector::Connector,
     error::{Error, ErrorType},
     request::{
@@ -2761,7 +2744,6 @@
                 GetGuildAutoModerationRules, UpdateAutoModerationRule,
             },
             ban::{CreateBan, DeleteBan, GetBan, GetBans},
-            create_guild::CreateGuildError,
             emoji::{CreateEmoji, DeleteEmoji, GetEmoji, GetEmojis, UpdateEmoji},
             integration::{DeleteGuildIntegration, GetGuildIntegrations},
             member::{
@@ -2774,13 +2756,14 @@
                 UpdateGuildSticker,
             },
             update_guild_channel_positions::Position,
+            update_guild_onboarding::{UpdateGuildOnboarding, UpdateGuildOnboardingFields},
             user::{UpdateCurrentUserVoiceState, UpdateUserVoiceState},
             CreateGuild, CreateGuildChannel, CreateGuildPrune, DeleteGuild, GetActiveThreads,
-            GetAuditLog, GetGuild, GetGuildChannels, GetGuildInvites, GetGuildPreview,
-            GetGuildPruneCount, GetGuildVanityUrl, GetGuildVoiceRegions, GetGuildWebhooks,
-            GetGuildWelcomeScreen, GetGuildWidget, GetGuildWidgetSettings, UpdateCurrentMember,
-            UpdateGuild, UpdateGuildChannelPositions, UpdateGuildMfa, UpdateGuildWelcomeScreen,
-            UpdateGuildWidgetSettings,
+            GetAuditLog, GetGuild, GetGuildChannels, GetGuildInvites, GetGuildOnboarding,
+            GetGuildPreview, GetGuildPruneCount, GetGuildVanityUrl, GetGuildVoiceRegions,
+            GetGuildWebhooks, GetGuildWelcomeScreen, GetGuildWidget, GetGuildWidgetSettings,
+            UpdateCurrentMember, UpdateGuild, UpdateGuildChannelPositions, UpdateGuildMfa,
+            UpdateGuildWelcomeScreen, UpdateGuildWidgetSettings,
         },
         scheduled_event::{
             CreateGuildScheduledEvent, DeleteGuildScheduledEvent, GetGuildScheduledEvent,
@@ -2796,16 +2779,18 @@
             GetCurrentUserGuildMember, GetCurrentUserGuilds, GetUser, LeaveGuild,
             UpdateCurrentUser,
         },
-        GetGateway, GetUserApplicationInfo, GetVoiceRegions, Method, Request,
+        GetCurrentAuthorizationInformation, GetGateway, GetUserApplicationInfo, GetVoiceRegions,
+        Method, Request, UpdateCurrentUserApplication,
     },
     response::ResponseFuture,
     API_VERSION,
 };
-<span class="kw">use </span>hyper::{
-    client::Client <span class="kw">as </span>HyperClient,
-    header::{HeaderMap, HeaderValue, AUTHORIZATION, CONTENT_LENGTH, CONTENT_TYPE, USER_AGENT},
-    Body,
+<span class="kw">use </span>http::header::{
+    HeaderMap, HeaderValue, AUTHORIZATION, CONTENT_LENGTH, CONTENT_TYPE, USER_AGENT,
 };
+<span class="kw">use </span>http_body_util::Full;
+<span class="kw">use </span>hyper::body::Bytes;
+<span class="kw">use </span>hyper_util::client::legacy::Client <span class="kw">as </span>HyperClient;
 <span class="kw">use </span>std::{
     fmt::{Debug, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult},
     ops::Deref,
@@ -2829,9 +2814,6 @@
         },
         Id,
     },
-};
-<span class="kw">use </span>twilight_validate::{
-    channel::ChannelValidationError, request::ValidationError, sticker::StickerValidationError,
 };
 
 <span class="kw">const </span>TWILIGHT_USER_AGENT: <span class="kw-2">&amp;</span>str = <span class="macro">concat!</span>(
@@ -2946,7 +2928,7 @@
 </span><span class="kw">pub struct </span>Client {
     <span class="kw">pub</span>(<span class="kw">crate</span>) default_allowed_mentions: <span class="prelude-ty">Option</span>&lt;AllowedMentions&gt;,
     default_headers: <span class="prelude-ty">Option</span>&lt;HeaderMap&gt;,
-    http: HyperClient&lt;Connector&gt;,
+    http: HyperClient&lt;Connector, Full&lt;Bytes&gt;&gt;,
     proxy: <span class="prelude-ty">Option</span>&lt;Box&lt;str&gt;&gt;,
     ratelimiter: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Ratelimiter&gt;&gt;,
     timeout: Duration,
@@ -3084,7 +3066,7 @@
     ///     .create_auto_moderation_rule(guild_id, "no darns", AutoModerationEventType::MessageSend)
     ///     .action_block_message()
     ///     .enabled(true)
-    ///     .with_keyword(&amp;["darn"])
+    ///     .with_keyword(&amp;["darn"], &amp;["d(?:4|a)rn"], &amp;["darn it"])
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3194,8 +3176,8 @@
     /// let user_id = Id::new(200);
     /// client
     ///     .create_ban(guild_id, user_id)
-    ///     .delete_message_seconds(86_400)?
-    ///     .reason("memes")?
+    ///     .delete_message_seconds(86_400)
+    ///     .reason("memes")
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3314,7 +3296,7 @@
     /// let messages = client
     ///     .channel_messages(channel_id)
     ///     .before(message_id)
-    ///     .limit(limit)?
+    ///     .limit(limit)
     ///     .await?;
     ///
     /// # Ok(()) }
@@ -3466,7 +3448,7 @@
     ///     .current_user_guilds()
     ///     .after(after)
     ///     .before(before)
-    ///     .limit(25)?
+    ///     .limit(25)
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3613,7 +3595,7 @@
     /// length is too short or too long.
     ///
     /// [`CreateGuildErrorType::NameInvalid`]: crate::request::guild::create_guild::CreateGuildErrorType::NameInvalid
-    </span><span class="kw">pub fn </span>create_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, name: String) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuild&lt;<span class="lifetime">'_</span>&gt;, CreateGuildError&gt; {
+    </span><span class="kw">pub fn </span>create_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, name: String) -&gt; CreateGuild&lt;<span class="lifetime">'_</span>&gt; {
         CreateGuild::new(<span class="self">self</span>, name)
     }
 
@@ -3664,7 +3646,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt; {
+    ) -&gt; CreateGuildChannel&lt;<span class="lifetime">'a</span>&gt; {
         CreateGuildChannel::new(<span class="self">self</span>, guild_id, name)
     }
 
@@ -3778,7 +3760,7 @@
     /// let members = client
     ///     .guild_members(guild_id)
     ///     .after(user_id)
-    ///     .limit(500)?
+    ///     .limit(500)
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3812,7 +3794,7 @@
     /// let guild_id = Id::new(100);
     /// let members = client
     ///     .search_guild_members(guild_id, "Wumpus")
-    ///     .limit(10)?
+    ///     .limit(10)
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -3889,7 +3871,7 @@
     /// let member = client
     ///     .update_guild_member(Id::new(1), Id::new(2))
     ///     .mute(true)
-    ///     .nick(Some("pinkie pie"))?
+    ///     .nick(Some("pinkie pie"))
     ///     .await?
     ///     .model()
     ///     .await?;
@@ -3944,7 +3926,7 @@
     ///
     /// client
     ///     .add_guild_member_role(guild_id, user_id, role_id)
-    ///     .reason("test")?
+    ///     .reason("test")
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4075,7 +4057,7 @@
     /// # let client = Client::new("my token".to_owned());
     /// #
     /// let channel_id = Id::new(123);
-    /// let invite = client.create_invite(channel_id).max_uses(3)?.await?;
+    /// let invite = client.create_invite(channel_id).max_uses(3).await?;
     /// # Ok(()) }
     /// ```
     ///
@@ -4121,7 +4103,7 @@
     /// let channel_id = Id::new(123);
     /// let message = client
     ///     .create_message(channel_id)
-    ///     .content("Twilight is best pony")?
+    ///     .content("Twilight is best pony")
     ///     .tts(true)
     ///     .await?;
     /// # Ok(()) }
@@ -4164,7 +4146,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         message_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;MessageMarker&gt;],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;DeleteMessages&lt;<span class="lifetime">'a</span>&gt;, ChannelValidationError&gt; {
+    ) -&gt; DeleteMessages&lt;<span class="lifetime">'a</span>&gt; {
         DeleteMessages::new(<span class="self">self</span>, channel_id, message_ids)
     }
 
@@ -4187,7 +4169,7 @@
     /// let client = Client::new("my token".to_owned());
     /// client
     ///     .update_message(Id::new(1), Id::new(2))
-    ///     .content(Some("test update"))?
+    ///     .content(Some("test update"))
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4203,7 +4185,7 @@
     /// # let client = Client::new("my token".to_owned());
     /// client
     ///     .update_message(Id::new(1), Id::new(2))
-    ///     .content(None)?
+    ///     .content(None)
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4424,7 +4406,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         topic: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateStageInstance&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
+    ) -&gt; CreateStageInstance&lt;<span class="lifetime">'a</span>&gt; {
         CreateStageInstance::new(<span class="self">self</span>, channel_id, topic)
     }
 
@@ -4467,7 +4449,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         template_code: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildFromTemplate&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
+    ) -&gt; CreateGuildFromTemplate&lt;<span class="lifetime">'a</span>&gt; {
         CreateGuildFromTemplate::new(<span class="self">self</span>, template_code, name)
     }
 
@@ -4486,7 +4468,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateTemplate&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
+    ) -&gt; CreateTemplate&lt;<span class="lifetime">'a</span>&gt; {
         CreateTemplate::new(<span class="self">self</span>, guild_id, name)
     }
 
@@ -4593,7 +4575,7 @@
         channel_id: Id&lt;ChannelMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         kind: ChannelType,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThread&lt;<span class="lifetime">'_</span>&gt;, ChannelValidationError&gt; {
+    ) -&gt; CreateThread&lt;<span class="lifetime">'_</span>&gt; {
         CreateThread::new(<span class="self">self</span>, channel_id, name, kind)
     }
 
@@ -4629,7 +4611,7 @@
         channel_id: Id&lt;ChannelMarker&gt;,
         message_id: Id&lt;MessageMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateThreadFromMessage&lt;<span class="lifetime">'_</span>&gt;, ChannelValidationError&gt; {
+    ) -&gt; CreateThreadFromMessage&lt;<span class="lifetime">'_</span>&gt; {
         CreateThreadFromMessage::new(<span class="self">self</span>, channel_id, message_id, name)
     }
 
@@ -4779,7 +4761,7 @@
     /// # let client = Client::new("my token".to_owned());
     /// let channel_id = Id::new(123);
     ///
-    /// let webhook = client.create_webhook(channel_id, "Twily Bot")?.await?;
+    /// let webhook = client.create_webhook(channel_id, "Twily Bot").await?;
     /// # Ok(()) }
     /// ```
     ///
@@ -4793,7 +4775,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateWebhook&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
+    ) -&gt; CreateWebhook&lt;<span class="lifetime">'a</span>&gt; {
         CreateWebhook::new(<span class="self">self</span>, channel_id, name)
     }
 
@@ -4833,7 +4815,7 @@
     ///
     /// let webhook = client
     ///     .execute_webhook(id, "webhook token")
-    ///     .content("Pinkie...")?
+    ///     .content("Pinkie...")
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4877,7 +4859,7 @@
     /// let client = Client::new("token".to_owned());
     /// client
     ///     .update_webhook_message(Id::new(1), "token here", Id::new(2))
-    ///     .content(Some("new message content"))?
+    ///     .content(Some("new message content"))
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -4975,8 +4957,8 @@
     ///         channel_id,
     ///         "Garfield Appreciation Hour",
     ///         &amp;garfield_start_time,
-    ///     )?
-    ///     .description("Discuss: How important is Garfield to You?")?
+    ///     )
+    ///     .description("Discuss: How important is Garfield to You?")
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -5000,11 +4982,11 @@
     ///         "Baltimore Convention Center",
     ///         &amp;garfield_con_start_time,
     ///         &amp;garfield_con_end_time,
-    ///     )?
+    ///     )
     ///     .description(
     ///         "In a spiritual successor to BronyCon, Garfield fans from \
     /// around the globe celebrate all things related to the loveable cat.",
-    ///     )?
+    ///     )
     ///     .await?;
     /// # Ok(()) }
     /// ```
@@ -5193,7 +5175,7 @@
     ///         &amp;"sticker description",
     ///         &amp;"sticker,tags",
     ///         &amp;[23, 23, 23, 23],
-    ///     )?
+    ///     )
     ///     .await?
     ///     .model()
     ///     .await?;
@@ -5220,7 +5202,7 @@
         description: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         tags: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         file: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8],
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildSticker&lt;<span class="lifetime">'_</span>&gt;, StickerValidationError&gt; {
+    ) -&gt; CreateGuildSticker&lt;<span class="lifetime">'_</span>&gt; {
         CreateGuildSticker::new(<span class="self">self</span>, guild_id, name, description, tags, file)
     }
 
@@ -5240,7 +5222,7 @@
     /// let sticker_id = Id::new(2);
     /// let sticker = client
     ///     .update_guild_sticker(guild_id, sticker_id)
-    ///     .description("new description")?
+    ///     .description("new description")
     ///     .await?
     ///     .model()
     ///     .await?;
@@ -5323,7 +5305,7 @@
         <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">"{protocol}://{host}/api/v{API_VERSION}/{path}"</span>);
         <span class="macro">tracing::debug!</span>(<span class="question-mark">?</span>url);
 
-        <span class="kw">let </span><span class="kw-2">mut </span>builder = hyper::Request::builder().method(method.to_http()).uri(<span class="kw-2">&amp;</span>url);
+        <span class="kw">let </span><span class="kw-2">mut </span>builder = hyper::Request::builder().method(method.name()).uri(<span class="kw-2">&amp;</span>url);
 
         <span class="kw">if </span>use_authorization_token {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(token) = <span class="self">self</span>.token.as_deref() {
@@ -5379,11 +5361,11 @@
         }
 
         <span class="kw">let </span>try_req = <span class="kw">if let </span><span class="prelude-val">Some</span>(form) = form {
-            builder.body(Body::from(form.build()))
+            builder.body(Full::from(form.build()))
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(bytes) = body {
-            builder.body(Body::from(bytes))
+            builder.body(Full::from(bytes))
         } <span class="kw">else </span>{
-            builder.body(Body::empty())
+            builder.body(Full::default())
         };
 
         <span class="kw">let </span>inner = <span class="self">self</span>.http.request(try_req.map_err(|source| Error {

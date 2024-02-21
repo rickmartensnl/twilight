@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/message_component.rs`."><title>message_component.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/message_component.rs`."><title>message_component.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../twilight_model/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -87,20 +87,29 @@
 <a href="#85" id="85">85</a>
 <a href="#86" id="86">86</a>
 <a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
+<a href="#94" id="94">94</a>
+<a href="#95" id="95">95</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! [`MessageComponent`] interaction.
 //!
 //! [`MessageComponent`]: crate::application::interaction::InteractionType::MessageComponent
 
-</span><span class="kw">use </span><span class="kw">crate</span>::channel::message::component::ComponentType;
+</span><span class="kw">use </span><span class="kw">crate</span>::application::interaction::InteractionDataResolved;
+<span class="kw">use </span><span class="kw">crate</span>::channel::message::component::ComponentType;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
-<span class="doccomment">/// Data received when an [`MessageComponent`] interaction is executed.
+<span class="doccomment">/// Data received when a [`MessageComponent`] interaction is executed.
 ///
 /// See [Discord Docs/Message Component Data Structure].
 ///
 /// [`MessageComponent`]: crate::application::interaction::InteractionType::MessageComponent
 /// [Discord Docs/Message Component Data Structure]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure
-</span><span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
+</span><span class="attr">#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>MessageComponentInteractionData {
     <span class="doccomment">/// User defined identifier for the component.
     ///
@@ -110,11 +119,17 @@
     </span><span class="kw">pub </span>custom_id: String,
     <span class="doccomment">/// Type of the component.
     </span><span class="kw">pub </span>component_type: ComponentType,
+    <span class="doccomment">/// Converted users, roles, channels, or attachments.
+    ///
+    /// Only used for [`SelectMenu`] components.
+    ///
+    /// [`SelectMenu`]: crate::channel::message::component::SelectMenu
+    </span><span class="kw">pub </span>resolved: <span class="prelude-ty">Option</span>&lt;InteractionDataResolved&gt;,
     <span class="doccomment">/// Values selected by the user.
     ///
     /// Only used for [`SelectMenu`] components.
     ///
-    /// [`SelectMenu`]: ComponentType::SelectMenu
+    /// [`SelectMenu`]: crate::channel::message::component::SelectMenu
     </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>values: Vec&lt;String&gt;,
 }
@@ -126,7 +141,7 @@
     <span class="kw">use </span>serde::{Deserialize, Serialize};
     <span class="kw">use </span>serde_test::Token;
     <span class="kw">use </span>static_assertions::{assert_fields, assert_impl_all};
-    <span class="kw">use </span>std::{fmt::Debug, hash::Hash};
+    <span class="kw">use </span>std::fmt::Debug;
 
     <span class="macro">assert_fields!</span>(
         MessageComponentInteractionData: custom_id,
@@ -137,8 +152,6 @@
         MessageComponentInteractionData: Clone,
         Debug,
         Deserialize&lt;<span class="lifetime">'static</span>&gt;,
-        Eq,
-        Hash,
         PartialEq,
         Send,
         Serialize,
@@ -150,6 +163,7 @@
         <span class="kw">let </span>value = MessageComponentInteractionData {
             custom_id: <span class="string">"test"</span>.to_owned(),
             component_type: ComponentType::Button,
+            resolved: <span class="prelude-val">None</span>,
             values: Vec::from([<span class="string">"1"</span>.to_owned(), <span class="string">"2"</span>.to_owned()]),
         };
 
@@ -158,12 +172,14 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"MessageComponentInteractionData"</span>,
-                    len: <span class="number">3</span>,
+                    len: <span class="number">4</span>,
                 },
                 Token::String(<span class="string">"custom_id"</span>),
                 Token::String(<span class="string">"test"</span>),
                 Token::String(<span class="string">"component_type"</span>),
                 Token::U8(ComponentType::Button.into()),
+                Token::String(<span class="string">"resolved"</span>),
+                Token::None,
                 Token::String(<span class="string">"values"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">2</span>) },
                 Token::String(<span class="string">"1"</span>),

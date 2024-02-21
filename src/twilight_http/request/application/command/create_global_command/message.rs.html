@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/application/command/create_global_command/message.rs`."><title>message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/application/command/create_global_command/message.rs`."><title>message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -144,11 +144,25 @@
 <a href="#142" id="142">142</a>
 <a href="#143" id="143">143</a>
 <a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::CommandBorrowed;
 <span class="kw">use crate</span>::{
     client::Client,
     error::Error,
-    request::{Request, RequestBuilder, TryIntoRequest},
+    request::{Request, TryIntoRequest},
     response::{Response, ResponseFuture},
     routing::Route,
 };
@@ -160,6 +174,14 @@
 };
 <span class="kw">use </span>twilight_validate::command::{name <span class="kw">as </span>validate_name, CommandValidationError};
 
+<span class="kw">struct </span>CreateGlobalMessageCommandFields&lt;<span class="lifetime">'a</span>&gt; {
+    default_member_permissions: <span class="prelude-ty">Option</span>&lt;Permissions&gt;,
+    dm_permission: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+    name_localizations: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>HashMap&lt;String, String&gt;&gt;,
+    nsfw: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+}
+
 <span class="doccomment">/// Create a new message global command.
 ///
 /// Creating a command with the same name as an already-existing global command
@@ -170,12 +192,8 @@
 </span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
 </span><span class="kw">pub struct </span>CreateGlobalMessageCommand&lt;<span class="lifetime">'a</span>&gt; {
     application_id: Id&lt;ApplicationMarker&gt;,
-    default_member_permissions: <span class="prelude-ty">Option</span>&lt;Permissions&gt;,
-    dm_permission: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    fields: <span class="prelude-ty">Result</span>&lt;CreateGlobalMessageCommandFields&lt;<span class="lifetime">'a</span>&gt;, CommandValidationError&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-    name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    name_localizations: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>HashMap&lt;String, String&gt;&gt;,
-    nsfw: <span class="prelude-ty">Option</span>&lt;bool&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateGlobalMessageCommand&lt;<span class="lifetime">'a</span>&gt; {
@@ -183,25 +201,34 @@
         http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
         application_id: Id&lt;ApplicationMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, CommandValidationError&gt; {
-        validate_name(name)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-            application_id,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>fields = <span class="prelude-val">Ok</span>(CreateGlobalMessageCommandFields {
             default_member_permissions: <span class="prelude-val">None</span>,
             dm_permission: <span class="prelude-val">None</span>,
-            http,
             name,
             name_localizations: <span class="prelude-val">None</span>,
             nsfw: <span class="prelude-val">None</span>,
         })
+        .and_then(|fields| {
+            validate_name(name)<span class="question-mark">?</span>;
+
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">Self </span>{
+            application_id,
+            fields,
+            http,
+        }
     }
 
     <span class="doccomment">/// Default permissions required for a member to run the command.
     ///
     /// Defaults to [`None`].
-    </span><span class="kw">pub const fn </span>default_member_permissions(<span class="kw-2">mut </span><span class="self">self</span>, default: Permissions) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.default_member_permissions = <span class="prelude-val">Some</span>(default);
+    </span><span class="kw">pub fn </span>default_member_permissions(<span class="kw-2">mut </span><span class="self">self</span>, default: Permissions) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.default_member_permissions = <span class="prelude-val">Some</span>(default);
+        }
 
         <span class="self">self
     </span>}
@@ -209,8 +236,10 @@
     <span class="doccomment">/// Set whether the command is available in DMs.
     ///
     /// Defaults to [`None`].
-    </span><span class="kw">pub const fn </span>dm_permission(<span class="kw-2">mut </span><span class="self">self</span>, dm_permission: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.dm_permission = <span class="prelude-val">Some</span>(dm_permission);
+    </span><span class="kw">pub fn </span>dm_permission(<span class="kw-2">mut </span><span class="self">self</span>, dm_permission: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.dm_permission = <span class="prelude-val">Some</span>(dm_permission);
+        }
 
         <span class="self">self
     </span>}
@@ -224,33 +253,30 @@
     /// Returns an error of type [`NameLengthInvalid`] if the name is invalid.
     ///
     /// [`NameLengthInvalid`]: twilight_validate::command::CommandValidationErrorType::NameLengthInvalid
-    </span><span class="kw">pub fn </span>name_localizations(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        localizations: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HashMap&lt;String, String&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, CommandValidationError&gt; {
-        <span class="kw">for </span>name <span class="kw">in </span>localizations.values() {
-            validate_name(name)<span class="question-mark">?</span>;
-        }
+    </span><span class="kw">pub fn </span>name_localizations(<span class="kw-2">mut </span><span class="self">self</span>, localizations: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HashMap&lt;String, String&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            <span class="kw">for </span>name <span class="kw">in </span>localizations.values() {
+                validate_name(name)<span class="question-mark">?</span>;
+            }
 
-        <span class="self">self</span>.name_localizations = <span class="prelude-val">Some</span>(localizations);
+            fields.name_localizations = <span class="prelude-val">Some</span>(localizations);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
-
-    <span class="doccomment">/// Set whether the command is age-restricted.
-    ///
-    /// Defaults to not being specified, which uses Discord's default.
-    </span><span class="kw">pub const fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.nsfw = <span class="prelude-val">Some</span>(nsfw);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Command&gt; {
-        <span class="self">self</span>.into_future()
-    }
+    <span class="doccomment">/// Set whether the command is age-restricted.
+    ///
+    /// Defaults to not being specified, which uses Discord's default.
+    </span><span class="kw">pub fn </span>nsfw(<span class="kw-2">mut </span><span class="self">self</span>, nsfw: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.nsfw = <span class="prelude-val">Some</span>(nsfw);
+        }
+
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>CreateGlobalMessageCommand&lt;<span class="lifetime">'_</span>&gt; {
@@ -270,22 +296,24 @@
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>CreateGlobalMessageCommand&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
+
         Request::builder(<span class="kw-2">&amp;</span>Route::CreateGlobalCommand {
             application_id: <span class="self">self</span>.application_id.get(),
         })
         .json(<span class="kw-2">&amp;</span>CommandBorrowed {
             application_id: <span class="prelude-val">Some</span>(<span class="self">self</span>.application_id),
-            default_member_permissions: <span class="self">self</span>.default_member_permissions,
-            dm_permission: <span class="self">self</span>.dm_permission,
+            default_member_permissions: fields.default_member_permissions,
+            dm_permission: fields.dm_permission,
             description: <span class="prelude-val">None</span>,
             description_localizations: <span class="prelude-val">None</span>,
             kind: CommandType::Message,
-            name: <span class="self">self</span>.name,
-            name_localizations: <span class="self">self</span>.name_localizations,
-            nsfw: <span class="self">self</span>.nsfw,
+            name: fields.name,
+            name_localizations: fields.name_localizations,
+            nsfw: fields.nsfw,
             options: <span class="prelude-val">None</span>,
         })
-        .map(RequestBuilder::build)
+        .build()
     }
 }
 </code></pre></div></section></main></body></html>

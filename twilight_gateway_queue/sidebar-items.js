@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["LargeBotQueue","LocalQueue","NoOpQueue"],"trait":["Queue"]};
+window.SIDEBAR_ITEMS = {"constant":["IDENTIFY_DELAY","LIMIT_PERIOD"],"struct":["InMemoryQueue"],"trait":["Queue"]};

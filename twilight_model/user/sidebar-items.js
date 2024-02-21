@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["ConnectionVisibility","PremiumType"],"struct":["Connection","CurrentUser","CurrentUserGuild","DiscriminatorDisplay","User","UserFlags","UserProfile"]};
+window.SIDEBAR_ITEMS = {"enum":["ConnectionVisibility","PremiumType"],"struct":["Connection","CurrentUser","CurrentUserGuild","DiscriminatorDisplay","User","UserFlags"]};

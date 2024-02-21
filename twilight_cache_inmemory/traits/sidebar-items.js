@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":["CacheableChannel","CacheableCurrentUser","CacheableEmoji","CacheableGuild","CacheableGuildIntegration","CacheableMember","CacheableMessage","CacheableModels","CacheablePresence","CacheableRole","CacheableStageInstance","CacheableSticker","CacheableUser","CacheableVoiceState"]};

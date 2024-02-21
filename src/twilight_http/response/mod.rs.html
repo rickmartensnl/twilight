@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/response/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -684,6 +684,12 @@
 <a href="#682" id="682">682</a>
 <a href="#683" id="683">683</a>
 <a href="#684" id="684">684</a>
+<a href="#685" id="685">685</a>
+<a href="#686" id="686">686</a>
+<a href="#687" id="687">687</a>
+<a href="#688" id="688">688</a>
+<a href="#689" id="689">689</a>
+<a href="#690" id="690">690</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Response utility type and related types.
 //!
 //! The heart of the response module is the [`Response`] itself: it's a wrapper
@@ -739,11 +745,12 @@
 <span class="kw">pub use </span><span class="self">self</span>::{future::ResponseFuture, status_code::StatusCode};
 
 <span class="kw">use </span><span class="self">self</span>::marker::ListBody;
-<span class="kw">use </span>hyper::{
-    body::{<span class="self">self</span>, Bytes},
+<span class="kw">use </span>http::{
     header::{HeaderValue, Iter <span class="kw">as </span>HeaderMapIter},
-    Body, Response <span class="kw">as </span>HyperResponse,
+    Response <span class="kw">as </span>HyperResponse,
 };
+<span class="kw">use </span>http_body_util::BodyExt;
+<span class="kw">use </span>hyper::body::{Bytes, Incoming};
 <span class="kw">use </span>serde::de::DeserializeOwned;
 <span class="kw">use </span>std::{
     error::Error,
@@ -860,12 +867,12 @@
 /// ```
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>Response&lt;T&gt; {
-    inner: HyperResponse&lt;Body&gt;,
+    inner: HyperResponse&lt;Incoming&gt;,
     phantom: PhantomData&lt;T&gt;,
 }
 
 <span class="kw">impl</span>&lt;T&gt; Response&lt;T&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(inner: HyperResponse&lt;Body&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>new(inner: HyperResponse&lt;Incoming&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             inner,
             phantom: PhantomData,
@@ -923,7 +930,7 @@
         </span><span class="kw">let </span>compressed = <span class="self">self
             </span>.inner
             .headers()
-            .get(hyper::header::CONTENT_ENCODING)
+            .get(http::header::CONTENT_ENCODING)
             .is_some();
 
         <span class="kw">let </span>body = <span class="self">self</span>.inner.into_body();
@@ -935,12 +942,14 @@
                     <span class="kw">return </span>decompress(body).<span class="kw">await</span>;
                 }
 
-                body::to_bytes(body)
+                <span class="prelude-val">Ok</span>(body
+                    .collect()
                     .<span class="kw">await
                     </span>.map_err(|source| DeserializeBodyError {
                         kind: DeserializeBodyErrorType::Chunking,
                         source: <span class="prelude-val">Some</span>(Box::new(source)),
-                    })
+                    })<span class="question-mark">?
+                    </span>.to_bytes())
             }
         };
 
@@ -1057,7 +1066,7 @@
 ///
 /// let client = Client::new(env::var("DISCORD_TOKEN")?);
 /// let response = client.create_message(channel_id)
-</span><span class="comment">//      .content("test")?
+</span><span class="comment">//      .content("test")
 </span><span class="doccomment">///     .await?;
 /// let mut headers = response.headers();
 ///
@@ -1244,14 +1253,12 @@
     <span class="kw">fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>: Pin&lt;<span class="kw-2">&amp;mut </span><span class="self">Self</span>&gt;, cx: <span class="kw-2">&amp;mut </span>Context&lt;<span class="lifetime">'_</span>&gt;) -&gt; Poll&lt;<span class="self">Self</span>::Output&gt; {
         <span class="kw">match </span>Pin::new(<span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0</span>).poll(cx) {
             Poll::Ready(<span class="prelude-val">Ok</span>(bytes)) =&gt; Poll::Ready(String::from_utf8(bytes).map_err(|source| {
-                <span class="comment">// This is a very cold path. Converting a response body to a
-                // UTF-8 valid string should basically never fail anyway; it's
-                // worth it to have the context readily available for the user.
-                </span><span class="kw">let </span>copy = source.as_bytes().to_owned();
+                <span class="kw">let </span>utf8_error = source.utf8_error();
+                <span class="kw">let </span>bytes = source.into_bytes();
 
                 DeserializeBodyError {
-                    kind: DeserializeBodyErrorType::BodyNotUtf8 { bytes: copy },
-                    source: <span class="prelude-val">Some</span>(Box::new(source)),
+                    kind: DeserializeBodyErrorType::BodyNotUtf8 { bytes },
+                    source: <span class="prelude-val">Some</span>(Box::new(utf8_error)),
                 }
             })),
             Poll::Ready(<span class="prelude-val">Err</span>(source)) =&gt; Poll::Ready(<span class="prelude-val">Err</span>(source)),
@@ -1261,17 +1268,22 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"decompression"</span>)]
-</span><span class="kw">async fn </span>decompress(body: Body) -&gt; <span class="prelude-ty">Result</span>&lt;Bytes, DeserializeBodyError&gt; {
+</span><span class="kw">async fn </span>decompress&lt;B: hyper::body::Body&gt;(body: B) -&gt; <span class="prelude-ty">Result</span>&lt;Bytes, DeserializeBodyError&gt;
+<span class="kw">where
+    </span>&lt;B <span class="kw">as </span>hyper::body::Body&gt;::Error: Send + Sync + Error + <span class="lifetime">'static</span>,
+{
     <span class="kw">use </span>brotli::Decompressor;
     <span class="kw">use </span>hyper::body::Buf;
     <span class="kw">use </span>std::io::Read;
 
-    <span class="kw">let </span>aggregate = body::aggregate(body)
+    <span class="kw">let </span>aggregate = body
+        .collect()
         .<span class="kw">await
         </span>.map_err(|source| DeserializeBodyError {
             kind: DeserializeBodyErrorType::Chunking,
             source: <span class="prelude-val">Some</span>(Box::new(source)),
-        })<span class="question-mark">?</span>;
+        })<span class="question-mark">?
+        </span>.aggregate();
 
     <span class="comment">// Determine the size of the entire buffer, in order to create the
     // decompressed and compressed buffers.
@@ -1316,7 +1328,7 @@
     #[tokio::test]
     </span><span class="kw">async fn </span>test_decompression() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;&gt; {
         <span class="kw">use </span><span class="kw">super</span>::decompress;
-        <span class="kw">use </span>hyper::Body;
+        <span class="kw">use </span>http_body_util::Full;
         <span class="kw">use </span>twilight_model::guild::invite::Invite;
 
         <span class="kw">const </span>COMPRESSED: [u8; <span class="number">685</span>] = [
@@ -1359,7 +1371,7 @@
             <span class="number">3</span>,
         ];
 
-        <span class="kw">let </span>decompressed = decompress(Body::from(COMPRESSED.as_ref())).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let </span>decompressed = decompress(Full::new(COMPRESSED.as_slice())).<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="kw">let </span>deserialized = serde_json::from_slice::&lt;Invite&gt;(<span class="kw-2">&amp;</span>decompressed)<span class="question-mark">?</span>;
 

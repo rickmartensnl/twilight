@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/config.rs`."><title>config.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/config.rs`."><title>config.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../twilight_gateway/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -446,31 +446,14 @@
 <a href="#444" id="444">444</a>
 <a href="#445" id="445">445</a>
 <a href="#446" id="446">446</a>
-<a href="#447" id="447">447</a>
-<a href="#448" id="448">448</a>
-<a href="#449" id="449">449</a>
-<a href="#450" id="450">450</a>
-<a href="#451" id="451">451</a>
-<a href="#452" id="452">452</a>
-<a href="#453" id="453">453</a>
-<a href="#454" id="454">454</a>
-<a href="#455" id="455">455</a>
-<a href="#456" id="456">456</a>
-<a href="#457" id="457">457</a>
-<a href="#458" id="458">458</a>
-<a href="#459" id="459">459</a>
-<a href="#460" id="460">460</a>
-<a href="#461" id="461">461</a>
-<a href="#462" id="462">462</a>
-<a href="#463" id="463">463</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! User configuration for shards.
 
-</span><span class="kw">use crate</span>::{tls::TlsContainer, EventTypeFlags, Session};
+</span><span class="kw">use crate</span>::{queue::InMemoryQueue, Session};
 <span class="kw">use </span>std::{
     fmt::{Debug, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult},
     sync::Arc,
 };
-<span class="kw">use </span>twilight_gateway_queue::{LocalQueue, Queue};
+<span class="kw">use </span>tokio_websockets::Connector;
 <span class="kw">use </span>twilight_model::gateway::{
     payload::outgoing::{identify::IdentifyProperties, update_presence::UpdatePresencePayload},
     Intents,
@@ -499,16 +482,12 @@
 
 <span class="doccomment">/// Configuration used by the shard to identify with the gateway and operate.
 ///
-/// Use [`Config::builder`] to configure a shard's configuration.
-///
 /// May be reused by cloning, also reusing the hidden TLS context---reducing
 /// memory usage. The TLS context may still be reused with an otherwise
 /// different config by turning it into to a [`ConfigBuilder`] through the
 /// [`From&lt;Config&gt;`] implementation and then rebuilding it into a rew config.
 </span><span class="attr">#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>Config {
-    <span class="doccomment">/// Event type flags.
-    </span>event_types: EventTypeFlags,
+</span><span class="kw">pub struct </span>Config&lt;Q = InMemoryQueue&gt; {
     <span class="doccomment">/// Identification properties the shard will use.
     </span>identify_properties: <span class="prelude-ty">Option</span>&lt;IdentifyProperties&gt;,
     <span class="doccomment">/// Intents that the shard requests when identifying with the gateway.
@@ -521,7 +500,7 @@
     <span class="doccomment">/// Gateway proxy URL.
     </span>proxy_url: <span class="prelude-ty">Option</span>&lt;Box&lt;str&gt;&gt;,
     <span class="doccomment">/// Queue in use by the shard.
-    </span>queue: Arc&lt;<span class="kw">dyn </span>Queue&gt;,
+    </span>queue: Q,
     <span class="doccomment">/// Whether [outgoing message] ratelimiting is enabled.
     ///
     /// [outgoing message]: crate::Shard::send
@@ -531,7 +510,7 @@
     <span class="doccomment">/// TLS connector for Websocket connections.
     </span><span class="comment">// We need this to be public so [`stream`] can reuse TLS on multiple shards
     // if unconfigured.
-    </span>tls: TlsContainer,
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) tls: Arc&lt;Connector&gt;,
     <span class="doccomment">/// Token used to authenticate when identifying with the gateway.
     ///
     /// The token is prefixed with "Bot ", which is required by Discord for
@@ -542,30 +521,15 @@
 <span class="kw">impl </span>Config {
     <span class="doccomment">/// Create a new default shard configuration.
     ///
-    /// Shortcut for calling [`builder`][`Self::builder`] and immediately
-    /// finalizing the builder.
-    ///
     /// # Panics
     ///
     /// Panics if loading TLS certificates fails.
     </span><span class="kw">pub fn </span>new(token: String, intents: Intents) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>::builder(token, intents).build()
+        ConfigBuilder::new(token, intents).build()
     }
+}
 
-    <span class="doccomment">/// Create a builder to customize a shard's configuration.
-    ///
-    /// # Panics
-    ///
-    /// Panics if loading TLS certificates fails.
-    </span><span class="kw">pub fn </span>builder(token: String, intents: Intents) -&gt; ConfigBuilder {
-        ConfigBuilder::new(token, intents)
-    }
-
-    <span class="doccomment">/// Event type flags.
-    </span><span class="kw">pub const fn </span>event_types(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; EventTypeFlags {
-        <span class="self">self</span>.event_types
-    }
-
+<span class="kw">impl</span>&lt;Q&gt; Config&lt;Q&gt; {
     <span class="doccomment">/// Immutable reference to the identification properties the shard will use.
     </span><span class="kw">pub const fn </span>identify_properties(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>IdentifyProperties&gt; {
         <span class="self">self</span>.identify_properties.as_ref()
@@ -597,7 +561,7 @@
     }
 
     <span class="doccomment">/// Immutable reference to the queue in use by the shard.
-    </span><span class="kw">pub fn </span>queue(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Arc&lt;<span class="kw">dyn </span>Queue&gt; {
+    </span><span class="kw">pub const fn </span>queue(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Q {
         <span class="kw-2">&amp;</span><span class="self">self</span>.queue
     }
 
@@ -606,11 +570,6 @@
     /// [outgoing message]: crate::Shard::send
     </span><span class="kw">pub const fn </span>ratelimit_messages(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="self">self</span>.ratelimit_messages
-    }
-
-    <span class="doccomment">/// Immutable reference to the TLS connector in use by the shard.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>tls(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>TlsContainer {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.tls
     }
 
     <span class="doccomment">/// Immutable reference to the token used to authenticate when identifying
@@ -628,9 +587,9 @@
 <span class="doccomment">/// Builder to customize the operation of a shard.
 </span><span class="attr">#[derive(Debug)]
 #[must_use = <span class="string">"builder must be completed to be used"</span>]
-</span><span class="kw">pub struct </span>ConfigBuilder {
+</span><span class="kw">pub struct </span>ConfigBuilder&lt;Q = InMemoryQueue&gt; {
     <span class="doccomment">/// Inner configuration being modified.
-    </span>inner: Config,
+    </span>inner: Config&lt;Q&gt;,
 }
 
 <span class="kw">impl </span>ConfigBuilder {
@@ -648,43 +607,27 @@
 
         <span class="self">Self </span>{
             inner: Config {
-                event_types: EventTypeFlags::all(),
                 identify_properties: <span class="prelude-val">None</span>,
                 intents,
                 large_threshold: <span class="number">50</span>,
                 presence: <span class="prelude-val">None</span>,
                 proxy_url: <span class="prelude-val">None</span>,
-                queue: Arc::new(LocalQueue::new()),
+                queue: InMemoryQueue::default(),
                 ratelimit_messages: <span class="bool-val">true</span>,
                 session: <span class="prelude-val">None</span>,
-                tls: TlsContainer::new().unwrap(),
+                tls: Arc::new(Connector::new().unwrap()),
                 token: Token::new(token.into_boxed_str()),
             },
         }
     }
+}
 
-    <span class="doccomment">/// Create a new builder from an existing configuration.
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.15.3"</span>, note = <span class="string">"use From&lt;Config&gt; instead"</span>)]
-    </span><span class="kw">pub const fn </span>with_config(config: Config) -&gt; <span class="self">Self </span>{
-        <span class="self">Self </span>{ inner: config }
-    }
-
+<span class="kw">impl</span>&lt;Q&gt; ConfigBuilder&lt;Q&gt; {
     <span class="doccomment">/// Consume the builder, constructing a shard.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
-    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Config {
+    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Config&lt;Q&gt; {
         <span class="self">self</span>.inner
     }
-
-    <span class="doccomment">/// Set the event types to process.
-    ///
-    /// This is an optimization technique; all events not included in the
-    /// provided event type flags will not be deserialized by the gateway and
-    /// will be discarded.
-    </span><span class="kw">pub const fn </span>event_types(<span class="kw-2">mut </span><span class="self">self</span>, event_types: EventTypeFlags) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.inner.event_types = event_types;
-
-        <span class="self">self
-    </span>}
 
     <span class="doccomment">/// Set the properties to identify with.
     ///
@@ -698,13 +641,13 @@
     /// ```no_run
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use std::env::{self, consts::OS};
-    /// use twilight_gateway::{Config, Intents, Shard};
+    /// use twilight_gateway::{ConfigBuilder, Intents, Shard};
     /// use twilight_model::gateway::payload::outgoing::identify::IdentifyProperties;
     ///
     /// let token = env::var("DISCORD_TOKEN")?;
     /// let properties = IdentifyProperties::new("twilight.rs", "twilight.rs", OS);
     ///
-    /// let config = Config::builder(token, Intents::empty())
+    /// let config = ConfigBuilder::new(token, Intents::empty())
     ///     .identify_properties(properties)
     ///     .build();
     /// # Ok(()) }
@@ -765,7 +708,7 @@
     ///
     /// ```no_run
     /// use std::env;
-    /// use twilight_gateway::{Config, Intents, Shard, ShardId};
+    /// use twilight_gateway::{ConfigBuilder, Intents, Shard, ShardId};
     /// use twilight_model::gateway::{
     ///     payload::outgoing::update_presence::UpdatePresencePayload,
     ///     presence::{ActivityType, MinimalActivity, Status},
@@ -773,7 +716,7 @@
     ///
     /// # #[tokio::main]
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// let config = Config::builder(env::var("DISCORD_TOKEN")?, Intents::empty())
+    /// let config = ConfigBuilder::new(env::var("DISCORD_TOKEN")?, Intents::empty())
     ///     .presence(UpdatePresencePayload::new(
     ///         vec![MinimalActivity {
     ///             kind: ActivityType::Playing,
@@ -813,16 +756,39 @@
 
     <span class="doccomment">/// Set the queue to use for queueing shard sessions.
     ///
-    /// Defaults to a [`LocalQueue`].
+    /// Defaults to [`InMemoryQueue`] with its default settings.
     ///
-    /// Refer to the [`queue`] module for more information.
-    ///
-    /// [`queue`]: crate::queue
-    </span><span class="kw">pub fn </span>queue(<span class="kw-2">mut </span><span class="self">self</span>, queue: Arc&lt;<span class="kw">dyn </span>Queue&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.inner.queue = queue;
+    /// Note that [`InMemoryQueue`] with a `max_concurrency` of `0` effectively
+    /// turns itself into a no-op.
+    </span><span class="kw">pub fn </span>queue&lt;NewQ&gt;(<span class="self">self</span>, queue: NewQ) -&gt; ConfigBuilder&lt;NewQ&gt; {
+        <span class="kw">let </span>Config {
+            identify_properties,
+            intents,
+            large_threshold,
+            presence,
+            proxy_url,
+            queue: <span class="kw">_</span>,
+            ratelimit_messages,
+            session,
+            tls,
+            token,
+        } = <span class="self">self</span>.inner;
 
-        <span class="self">self
-    </span>}
+        ConfigBuilder {
+            inner: Config {
+                identify_properties,
+                intents,
+                large_threshold,
+                presence,
+                proxy_url,
+                queue,
+                ratelimit_messages,
+                session,
+                tls,
+                token,
+            },
+        }
+    }
 
     <span class="doccomment">/// Set whether or not outgoing messages will be ratelimited.
     ///
@@ -852,8 +818,8 @@
     </span>}
 }
 
-<span class="kw">impl </span>From&lt;Config&gt; <span class="kw">for </span>ConfigBuilder {
-    <span class="kw">fn </span>from(value: Config) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;Q&gt; From&lt;Config&lt;Q&gt;&gt; <span class="kw">for </span>ConfigBuilder&lt;Q&gt; {
+    <span class="kw">fn </span>from(value: Config&lt;Q&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{ inner: value }
     }
 }

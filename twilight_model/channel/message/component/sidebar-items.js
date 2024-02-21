@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["ButtonStyle","Component","ComponentType","TextInputStyle"],"struct":["ActionRow","Button","SelectMenu","SelectMenuOption","TextInput"]};
+window.SIDEBAR_ITEMS = {"enum":["ButtonStyle","Component","ComponentType","SelectDefaultValue","SelectMenuType","TextInputStyle"],"struct":["ActionRow","Button","SelectMenu","SelectMenuOption","TextInput"]};

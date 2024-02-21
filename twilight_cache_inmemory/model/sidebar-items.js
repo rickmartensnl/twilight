@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["message"],"struct":["CachedEmoji","CachedGuild","CachedMember","CachedPresence","CachedSticker","CachedVoiceState"]};
+window.SIDEBAR_ITEMS = {"mod":["message"],"struct":["CachedEmoji","CachedGuild","CachedMember","CachedPresence","CachedSticker","CachedVoiceState","ComputedInteractionMember"]};

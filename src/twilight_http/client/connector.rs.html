@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/connector.rs`."><title>connector.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/connector.rs`."><title>connector.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -66,6 +66,7 @@
 <a href="#64" id="64">64</a>
 <a href="#65" id="65">65</a>
 <a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! HTTP connectors with different features.
 
 /// HTTPS connector using `rustls` as a TLS backend.
@@ -73,28 +74,28 @@
 </span><span class="kw">type </span>HttpsConnector&lt;T&gt; = hyper_rustls::HttpsConnector&lt;T&gt;;
 <span class="doccomment">/// HTTPS connector using `hyper-tls` as a TLS backend.
 </span><span class="attr">#[cfg(all(
-    feature = <span class="string">"native"</span>,
+    feature = <span class="string">"native-tls"</span>,
     not(any(feature = <span class="string">"rustls-native-roots"</span>, feature = <span class="string">"rustls-webpki-roots"</span>))
 ))]
 </span><span class="kw">type </span>HttpsConnector&lt;T&gt; = hyper_tls::HttpsConnector&lt;T&gt;;
 
-<span class="doccomment">/// HTTP connector using `trust-dns` as a DNS backend.
-</span><span class="attr">#[cfg(feature = <span class="string">"trust-dns"</span>)]
-</span><span class="kw">type </span>HttpConnector = hyper_trust_dns::TrustDnsHttpConnector;
+<span class="doccomment">/// HTTP connector using `hickory` as a DNS backend.
+</span><span class="attr">#[cfg(feature = <span class="string">"hickory"</span>)]
+</span><span class="kw">type </span>HttpConnector = hyper_hickory::TokioHickoryHttpConnector;
 <span class="doccomment">/// HTTP connector.
-</span><span class="attr">#[cfg(not(feature = <span class="string">"trust-dns"</span>))]
-</span><span class="kw">type </span>HttpConnector = hyper::client::HttpConnector;
+</span><span class="attr">#[cfg(not(feature = <span class="string">"hickory"</span>))]
+</span><span class="kw">type </span>HttpConnector = hyper_util::client::legacy::connect::HttpConnector;
 
 <span class="doccomment">/// Re-exported generic connector for use in the client.
 </span><span class="attr">#[cfg(any(
-    feature = <span class="string">"native"</span>,
+    feature = <span class="string">"native-tls"</span>,
     feature = <span class="string">"rustls-native-roots"</span>,
     feature = <span class="string">"rustls-webpki-roots"
 </span>))]
 </span><span class="kw">pub type </span>Connector = HttpsConnector&lt;HttpConnector&gt;;
 <span class="doccomment">/// Re-exported generic connector for use in the client.
 </span><span class="attr">#[cfg(not(any(
-    feature = <span class="string">"native"</span>,
+    feature = <span class="string">"native-tls"</span>,
     feature = <span class="string">"rustls-native-roots"</span>,
     feature = <span class="string">"rustls-webpki-roots"
 </span>)))]
@@ -102,16 +103,17 @@
 
 <span class="doccomment">/// Create a connector with the specified features.
 </span><span class="kw">pub fn </span>create() -&gt; Connector {
-    <span class="attr">#[cfg(not(feature = <span class="string">"trust-dns"</span>))]
-    </span><span class="kw">let </span><span class="kw-2">mut </span>connector = hyper::client::HttpConnector::new();
-    <span class="attr">#[cfg(feature = <span class="string">"trust-dns"</span>)]
-    </span><span class="kw">let </span><span class="kw-2">mut </span>connector = hyper_trust_dns::TrustDnsResolver::default().into_http_connector();
+    <span class="attr">#[cfg(not(feature = <span class="string">"hickory"</span>))]
+    </span><span class="kw">let </span><span class="kw-2">mut </span>connector = HttpConnector::new();
+    <span class="attr">#[cfg(feature = <span class="string">"hickory"</span>)]
+    </span><span class="kw">let </span><span class="kw-2">mut </span>connector = hyper_hickory::TokioHickoryResolver::default().into_http_connector();
 
     connector.enforce_http(<span class="bool-val">false</span>);
 
     <span class="attr">#[cfg(feature = <span class="string">"rustls-native-roots"</span>)]
     </span><span class="kw">let </span>connector = hyper_rustls::HttpsConnectorBuilder::new()
         .with_native_roots()
+        .expect(<span class="string">"no native root certificates found"</span>)
         .https_or_http()
         .enable_http1()
         .enable_http2()
@@ -124,7 +126,7 @@
         .enable_http2()
         .wrap_connector(connector);
     <span class="attr">#[cfg(all(
-        feature = <span class="string">"native"</span>,
+        feature = <span class="string">"native-tls"</span>,
         not(feature = <span class="string">"rustls-native-roots"</span>),
         not(feature = <span class="string">"rustls-webpki-roots"</span>)
     ))]

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/channel.rs`."><title>channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-gateway/src/channel.rs`."><title>channel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_gateway" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../twilight_gateway/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -128,63 +128,17 @@
 <a href="#126" id="126">126</a>
 <a href="#127" id="127">127</a>
 <a href="#128" id="128">128</a>
-<a href="#129" id="129">129</a>
-<a href="#130" id="130">130</a>
-<a href="#131" id="131">131</a>
-<a href="#132" id="132">132</a>
-<a href="#133" id="133">133</a>
-<a href="#134" id="134">134</a>
-<a href="#135" id="135">135</a>
-<a href="#136" id="136">136</a>
-<a href="#137" id="137">137</a>
-<a href="#138" id="138">138</a>
-<a href="#139" id="139">139</a>
-<a href="#140" id="140">140</a>
-<a href="#141" id="141">141</a>
-<a href="#142" id="142">142</a>
-<a href="#143" id="143">143</a>
-<a href="#144" id="144">144</a>
-<a href="#145" id="145">145</a>
-<a href="#146" id="146">146</a>
-<a href="#147" id="147">147</a>
-<a href="#148" id="148">148</a>
-<a href="#149" id="149">149</a>
-<a href="#150" id="150">150</a>
-<a href="#151" id="151">151</a>
-<a href="#152" id="152">152</a>
-<a href="#153" id="153">153</a>
-<a href="#154" id="154">154</a>
-<a href="#155" id="155">155</a>
-<a href="#156" id="156">156</a>
-<a href="#157" id="157">157</a>
-<a href="#158" id="158">158</a>
-<a href="#159" id="159">159</a>
-<a href="#160" id="160">160</a>
-<a href="#161" id="161">161</a>
-<a href="#162" id="162">162</a>
-<a href="#163" id="163">163</a>
-<a href="#164" id="164">164</a>
-<a href="#165" id="165">165</a>
-<a href="#166" id="166">166</a>
-<a href="#167" id="167">167</a>
-<a href="#168" id="168">168</a>
-<a href="#169" id="169">169</a>
-<a href="#170" id="170">170</a>
-<a href="#171" id="171">171</a>
-<a href="#172" id="172">172</a>
-<a href="#173" id="173">173</a>
-<a href="#174" id="174">174</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Channel for users to send messages when calling [`Shard::send`] isn't
 //! possible.
 //!
 //! [`Shard::send`]: crate::Shard::send
 
 </span><span class="kw">use crate</span>::{
-    command::{<span class="self">self</span>, Command},
-    error::{SendError, SendErrorType},
-    CloseFrame,
+    command::Command,
+    error::{ChannelError, ChannelErrorType},
+    json, CloseFrame,
 };
-<span class="kw">use </span>tokio::sync::mpsc::{<span class="self">self</span>, error::TrySendError};
+<span class="kw">use </span>tokio::sync::mpsc;
 
 <span class="doccomment">/// Channel between a user and shard for sending outgoing gateway messages.
 </span><span class="attr">#[derive(Debug)]
@@ -192,11 +146,11 @@
     <span class="doccomment">/// Receiving half for shards to receive users' close frames.
     </span><span class="kw">pub </span>close_rx: mpsc::Receiver&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
     <span class="doccomment">/// Sending half for users to send close frames via shards.
-    </span>close_tx: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
+    </span><span class="kw">pub </span>close_tx: mpsc::Sender&lt;CloseFrame&lt;<span class="lifetime">'static</span>&gt;&gt;,
     <span class="doccomment">/// Receiving half for shards to receive users' commands.
     </span><span class="kw">pub </span>command_rx: mpsc::UnboundedReceiver&lt;String&gt;,
     <span class="doccomment">/// Sending half for users to send commands via shards.
-    </span>command_tx: mpsc::UnboundedSender&lt;String&gt;,
+    </span><span class="kw">pub </span>command_tx: mpsc::UnboundedSender&lt;String&gt;,
 }
 
 <span class="kw">impl </span>MessageChannel {
@@ -224,10 +178,6 @@
 
 <span class="doccomment">/// Channel to send messages over a [`Shard`] to the Discord gateway.
 ///
-/// Unlike the methods on [`Shard`], messages queued up through this are
-/// conditionally sent when not ratelimited and identified (except for close
-/// frames which are sent as long as the shard is connected to the Websocket).
-///
 /// [`Shard`]: crate::Shard
 </span><span class="attr">#[derive(Clone, Debug)]
 </span><span class="kw">pub struct </span>MessageSender {
@@ -250,27 +200,23 @@
     ///
     /// # Errors
     ///
-    /// Returns a [`SendErrorType::Sending`] error type if the channel is
+    /// Returns a [`ChannelErrorType::Closed`] error type if the channel is
     /// closed.
-    ///
-    /// Returns a [`SendErrorType::Serializing`] error type if the provided
-    /// command failed to serialize.
-    </span><span class="kw">pub fn </span>command(<span class="kw-2">&amp;</span><span class="self">self</span>, command: <span class="kw-2">&amp;</span><span class="kw">impl </span>Command) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
-        <span class="kw">let </span>json = command::prepare(command)<span class="question-mark">?</span>;
-
-        <span class="self">self</span>.send(json)
+    </span><span class="attr">#[allow(clippy::missing_panics_doc)]
+    </span><span class="kw">pub fn </span>command(<span class="kw-2">&amp;</span><span class="self">self</span>, command: <span class="kw-2">&amp;</span><span class="kw">impl </span>Command) -&gt; <span class="prelude-ty">Result</span>&lt;(), ChannelError&gt; {
+        <span class="self">self</span>.send(json::to_string(command).expect(<span class="string">"serialization cannot fail"</span>))
     }
 
     <span class="doccomment">/// Send a JSON encoded gateway event to the associated shard.
     ///
     /// # Errors
     ///
-    /// Returns a [`SendErrorType::Sending`] error type if the channel is
+    /// Returns a [`ChannelErrorType::Closed`] error type if the channel is
     /// closed.
-    </span><span class="kw">pub fn </span>send(<span class="kw-2">&amp;</span><span class="self">self</span>, json: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
-        <span class="self">self</span>.command.send(json).map_err(|<span class="kw">_</span>| SendError {
-            kind: SendErrorType::Sending,
-            source: <span class="prelude-val">None</span>,
+    </span><span class="kw">pub fn </span>send(<span class="kw-2">&amp;</span><span class="self">self</span>, json: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), ChannelError&gt; {
+        <span class="self">self</span>.command.send(json).map_err(|source| ChannelError {
+            kind: ChannelErrorType::Closed,
+            source: <span class="prelude-val">Some</span>(Box::new(source)),
         })
     }
 
@@ -284,17 +230,19 @@
     ///
     /// # Errors
     ///
-    /// Returns a [`SendErrorType::Sending`] error type if the channel is
+    /// Returns a [`ChannelErrorType::Closed`] error type if the channel is
     /// closed.
     ///
     /// [`Shard::close`]: crate::Shard::close
-    </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;</span><span class="self">self</span>, close_frame: CloseFrame&lt;<span class="lifetime">'static</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), SendError&gt; {
-        <span class="kw">match </span><span class="self">self</span>.close.try_send(close_frame) {
-            <span class="prelude-val">Ok</span>(()) | <span class="prelude-val">Err</span>(TrySendError::Full(<span class="kw">_</span>)) =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(SendError {
-                kind: SendErrorType::Sending,
-                source: <span class="prelude-val">None</span>,
-            }),
+    </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;</span><span class="self">self</span>, close_frame: CloseFrame&lt;<span class="lifetime">'static</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), ChannelError&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Err</span>(source @ mpsc::error::TrySendError::Closed(<span class="kw">_</span>)) = <span class="self">self</span>.close.try_send(close_frame)
+        {
+            <span class="prelude-val">Err</span>(ChannelError {
+                kind: ChannelErrorType::Closed,
+                source: <span class="prelude-val">Some</span>(Box::new(source)),
+            })
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(())
         }
     }
 }
@@ -302,50 +250,10 @@
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::{MessageChannel, MessageSender};
-    <span class="kw">use </span><span class="kw">crate</span>::json;
     <span class="kw">use </span>static_assertions::assert_impl_all;
-    <span class="kw">use </span>std::{error::Error, fmt::Debug};
-    <span class="kw">use </span>twilight_model::{
-        gateway::{
-            payload::outgoing::{Heartbeat, RequestGuildMembers},
-            CloseFrame,
-        },
-        id::Id,
-    };
+    <span class="kw">use </span>std::fmt::Debug;
 
     <span class="macro">assert_impl_all!</span>(MessageChannel: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(MessageSender: Clone, Debug, Send, Sync);
-
-    <span class="attr">#[test]
-    </span><span class="kw">fn </span>channel_sending() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>channel = MessageChannel::new();
-        <span class="kw">let </span>sender = channel.sender();
-        <span class="macro">assert!</span>(channel.command_rx.try_recv().is_err());
-        <span class="macro">assert!</span>(channel.close_rx.try_recv().is_err());
-
-        <span class="kw">let </span>frame = CloseFrame::NORMAL;
-        <span class="kw">let </span>request = RequestGuildMembers::builder(Id::new(<span class="number">1</span>)).query(<span class="string">""</span>, <span class="prelude-val">None</span>);
-        <span class="kw">let </span>heartbeat = Heartbeat::new(<span class="prelude-val">Some</span>(<span class="number">30_000</span>));
-        <span class="kw">let </span>heartbeat_string = json::to_string(<span class="kw-2">&amp;</span>heartbeat)<span class="question-mark">?</span>;
-        <span class="macro">assert!</span>(sender.command(<span class="kw-2">&amp;</span>request).is_ok());
-        <span class="macro">assert!</span>(sender.send(heartbeat_string.clone()).is_ok());
-        <span class="macro">assert!</span>(sender.close(frame.clone()).is_ok());
-        <span class="macro">assert!</span>(sender.close(frame.clone()).is_ok());
-
-        <span class="macro">assert_eq!</span>(request, json::from_str(<span class="kw-2">&amp;</span>channel.command_rx.try_recv()<span class="question-mark">?</span>)<span class="question-mark">?</span>);
-        <span class="macro">assert_eq!</span>(heartbeat_string, channel.command_rx.try_recv()<span class="question-mark">?</span>);
-        <span class="macro">assert_eq!</span>(frame, channel.close_rx.try_recv()<span class="question-mark">?</span>);
-        <span class="macro">assert!</span>(channel.close_rx.try_recv().is_err());
-
-        <span class="macro">assert!</span>(!sender.is_closed());
-        drop(channel);
-        <span class="macro">assert!</span>(sender.is_closed());
-
-        <span class="macro">assert!</span>(sender.command(<span class="kw-2">&amp;</span>request).is_err());
-        <span class="macro">assert!</span>(sender.send(heartbeat_string).is_err());
-        <span class="macro">assert!</span>(sender.close(frame).is_err());
-
-        <span class="prelude-val">Ok</span>(())
-    }
 }
 </code></pre></div></section></main></body></html>

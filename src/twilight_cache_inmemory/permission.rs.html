@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/permission.rs`."><title>permission.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-cache-inmemory/src/permission.rs`."><title>permission.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="twilight_cache_inmemory" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../twilight_cache_inmemory/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -1129,6 +1129,13 @@
 <a href="#1127" id="1127">1127</a>
 <a href="#1128" id="1128">1128</a>
 <a href="#1129" id="1129">1129</a>
+<a href="#1130" id="1130">1130</a>
+<a href="#1131" id="1131">1131</a>
+<a href="#1132" id="1132">1132</a>
+<a href="#1133" id="1133">1133</a>
+<a href="#1134" id="1134">1134</a>
+<a href="#1135" id="1135">1135</a>
+<a href="#1136" id="1136">1136</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Calculate the permissions for members in on a guild- or channel-level with
 //! information from the cache.
 //!
@@ -1143,11 +1150,11 @@
 //! their required [`ResourceType`]s like so:
 //!
 //! ```
-//! use twilight_cache_inmemory::{InMemoryCache, ResourceType};
+//! use twilight_cache_inmemory::{DefaultInMemoryCache, ResourceType};
 //!
 //! let resource_types = ResourceType::CHANNEL | ResourceType::MEMBER | ResourceType::ROLE;
 //!
-//! let cache = InMemoryCache::builder()
+//! let cache = DefaultInMemoryCache::builder()
 //!     .resource_types(resource_types)
 //!     .build();
 //! ```
@@ -1167,14 +1174,17 @@
 //! [read-only permissions]: MEMBER_COMMUNICATION_DISABLED_ALLOWLIST
 
 </span><span class="kw">use </span><span class="kw">super</span>::InMemoryCache;
-<span class="kw">use </span><span class="kw">crate</span>::model::member::CachedMember;
+<span class="kw">use crate</span>::{
+    traits::{CacheableChannel, CacheableGuild, CacheableMember, CacheableRole},
+    CacheableModels,
+};
 <span class="kw">use </span>std::{
     error::Error,
     fmt::{Display, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult},
     time::{Duration, SystemTime},
 };
 <span class="kw">use </span>twilight_model::{
-    channel::{permission_overwrite::PermissionOverwrite, Channel, ChannelType},
+    channel::{permission_overwrite::PermissionOverwrite, ChannelType},
     guild::Permissions,
     id::{
         marker::{ChannelMarker, GuildMarker, RoleMarker, UserMarker},
@@ -1189,7 +1199,7 @@
 /// Refer to the [module level] documentation for more information on how
 /// disabled member communication is calculated.
 ///
-/// [communication has been disabled]: CachedMember::communication_disabled_until
+/// [communication has been disabled]: crate::MemberInterface::communication_disabled_until
 /// [module level]: crate::permission
 </span><span class="kw">pub const </span>MEMBER_COMMUNICATION_DISABLED_ALLOWLIST: Permissions = Permissions::from_bits_truncate(
     Permissions::READ_MESSAGE_HISTORY.bits() | Permissions::VIEW_CHANNEL.bits(),
@@ -1426,15 +1436,17 @@
 }
 
 <span class="doccomment">/// Calculate the permissions of a member with information from the cache.
-</span><span class="attr">#[derive(Clone, Debug)]
+</span><span class="attr">#[allow(clippy::type_complexity)]
+#[derive(Clone, Debug)]
 #[must_use = <span class="string">"has no effect if unused"</span>]
-</span><span class="kw">pub struct </span>InMemoryCachePermissions&lt;<span class="lifetime">'a</span>&gt; {
-    cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache,
+</span><span class="kw">pub struct </span>InMemoryCachePermissions&lt;<span class="lifetime">'a</span>, CacheModels: CacheableModels&gt; {
+    cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache&lt;CacheModels&gt;,
     check_member_communication_disabled: bool,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; InMemoryCachePermissions&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const fn </span>new(cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, CacheModels: CacheableModels&gt; InMemoryCachePermissions&lt;<span class="lifetime">'a</span>, CacheModels&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">const fn </span>new(cache: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache&lt;CacheModels&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             cache,
             check_member_communication_disabled: <span class="bool-val">true</span>,
@@ -1442,13 +1454,15 @@
     }
 
     <span class="doccomment">/// Immutable reference to the underlying cache.
-    </span><span class="kw">pub const fn </span>cache_ref(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache {
+    </span><span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>cache_ref(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache&lt;CacheModels&gt; {
         <span class="self">self</span>.cache
     }
 
     <span class="doccomment">/// Consume the statistics interface, returning the underlying cache
     /// reference.
-    </span><span class="kw">pub const fn </span>into_cache(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache {
+    </span><span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="kw">pub const fn </span>into_cache(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>InMemoryCache&lt;CacheModels&gt; {
         <span class="self">self</span>.cache
     }
 
@@ -1458,7 +1472,7 @@
     ///
     /// Defaults to being enabled.
     ///
-    /// [field]: CachedMember::communication_disabled_until
+    /// [field]: crate::MemberInterface::communication_disabled_until
     /// [module level]: crate::permission
     </span><span class="kw">pub const fn </span>check_member_communication_disabled(
         <span class="kw-2">mut </span><span class="self">self</span>,
@@ -1487,10 +1501,10 @@
     ///
     /// ```no_run
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// use twilight_cache_inmemory::InMemoryCache;
+    /// use twilight_cache_inmemory::DefaultInMemoryCache;
     /// use twilight_model::id::Id;
     ///
-    /// let cache = InMemoryCache::new();
+    /// let cache = DefaultInMemoryCache::new();
     ///
     /// // later on...
     ///
@@ -1518,7 +1532,7 @@
     /// [`ResourceType::MEMBER`]: crate::ResourceType::MEMBER
     /// [`ResourceType::ROLE`]: crate::ResourceType::ROLE
     /// [`ResourceType`]: crate::ResourceType
-    /// [communication has been disabled]: CachedMember::communication_disabled_until
+    /// [communication has been disabled]: crate::MemberInterface::communication_disabled_until
     /// [module level]: crate::permission
     /// [read-only permissions]: MEMBER_COMMUNICATION_DISABLED_ALLOWLIST
     </span><span class="kw">pub fn </span>in_channel(
@@ -1531,7 +1545,7 @@
             source: <span class="prelude-val">None</span>,
         })<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>guild_id = channel.guild_id.ok_or(ChannelError {
+        <span class="kw">let </span>guild_id = channel.guild_id().ok_or(ChannelError {
             kind: ChannelErrorType::ChannelNotInGuild { channel_id },
             source: <span class="prelude-val">None</span>,
         })<span class="question-mark">?</span>;
@@ -1549,17 +1563,17 @@
             </span>.member_roles(guild_id, <span class="kw-2">&amp;</span>member)
             .map_err(ChannelError::from_member_roles)<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>overwrites = <span class="kw">match </span>channel.kind {
+        <span class="kw">let </span>overwrites = <span class="kw">match </span>channel.kind() {
             ChannelType::AnnouncementThread
             | ChannelType::PrivateThread
             | ChannelType::PublicThread =&gt; <span class="self">self</span>.parent_overwrites(<span class="kw-2">&amp;</span>channel)<span class="question-mark">?</span>,
-            <span class="kw">_ </span>=&gt; channel.permission_overwrites.clone().unwrap_or_default(),
+            <span class="kw">_ </span>=&gt; channel.permission_overwrites().unwrap_or_default().to_vec(),
         };
 
         <span class="kw">let </span>calculator =
             PermissionCalculator::new(guild_id, user_id, everyone, assigned.as_slice());
 
-        <span class="kw">let </span>permissions = calculator.in_channel(channel.kind, overwrites.as_slice());
+        <span class="kw">let </span>permissions = calculator.in_channel(channel.kind(), overwrites.as_slice());
 
         <span class="prelude-val">Ok</span>(<span class="self">self</span>.disable_member_communication(<span class="kw-2">&amp;</span>member, permissions))
     }
@@ -1581,10 +1595,10 @@
     ///
     /// ```no_run
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
-    /// use twilight_cache_inmemory::InMemoryCache;
+    /// use twilight_cache_inmemory::DefaultInMemoryCache;
     /// use twilight_model::id::Id;
     ///
-    /// let cache = InMemoryCache::new();
+    /// let cache = DefaultInMemoryCache::new();
     ///
     /// // later on...
     ///
@@ -1608,7 +1622,7 @@
     /// [`ResourceType::MEMBER`]: crate::ResourceType::MEMBER
     /// [`ResourceType::ROLE`]: crate::ResourceType::ROLE
     /// [`ResourceType`]: crate::ResourceType
-    /// [communication has been disabled]: CachedMember::communication_disabled_until
+    /// [communication has been disabled]: crate::MemberInterface::communication_disabled_until
     /// [module level]: crate::permission
     /// [read-only permissions]: MEMBER_COMMUNICATION_DISABLED_ALLOWLIST
     </span><span class="kw">pub fn </span>root(
@@ -1648,7 +1662,7 @@
     /// [read-only permissions]: MEMBER_COMMUNICATION_DISABLED_ALLOWLIST
     </span><span class="kw">fn </span>disable_member_communication(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        member: <span class="kw-2">&amp;</span>CachedMember,
+        member: <span class="kw-2">&amp;</span>CacheModels::Member,
         permissions: Permissions,
     ) -&gt; Permissions {
         <span class="comment">// Administrators are never disabled.
@@ -1686,7 +1700,7 @@
         <span class="self">self</span>.cache
             .guilds
             .get(<span class="kw-2">&amp;</span>guild_id)
-            .map(|r| r.owner_id == user_id)
+            .map(|r| r.owner_id() == user_id)
             .unwrap_or_default()
     }
 
@@ -1700,16 +1714,16 @@
     </span><span class="kw">fn </span>member_roles(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: Id&lt;GuildMarker&gt;,
-        member: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CachedMember,
+        member: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CacheModels::Member,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;MemberRoles, MemberRolesErrorType&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>member_roles = Vec::with_capacity(member.roles.len());
+        <span class="kw">let </span><span class="kw-2">mut </span>member_roles = Vec::with_capacity(member.roles().len());
 
-        <span class="kw">for </span>role_id <span class="kw">in </span><span class="kw-2">&amp;</span>member.roles {
+        <span class="kw">for </span>role_id <span class="kw">in </span>member.roles() {
             <span class="kw">let </span><span class="prelude-val">Some</span>(role) = <span class="self">self</span>.cache.roles.get(role_id) <span class="kw">else </span>{
                 <span class="kw">return </span><span class="prelude-val">Err</span>(MemberRolesErrorType::RoleMissing { role_id: <span class="kw-2">*</span>role_id });
             };
 
-            member_roles.push((<span class="kw-2">*</span>role_id, role.permissions));
+            member_roles.push((<span class="kw-2">*</span>role_id, role.permissions()));
         }
 
         <span class="kw">let </span>everyone_role_id = guild_id.cast();
@@ -1717,7 +1731,7 @@
         <span class="kw">if let </span><span class="prelude-val">Some</span>(everyone_role) = <span class="self">self</span>.cache.roles.get(<span class="kw-2">&amp;</span>everyone_role_id) {
             <span class="prelude-val">Ok</span>(MemberRoles {
                 assigned: member_roles,
-                everyone: everyone_role.permissions,
+                everyone: everyone_role.permissions(),
             })
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(MemberRolesErrorType::RoleMissing {
@@ -1730,11 +1744,11 @@
     /// parent and child permissions.
     </span><span class="kw">fn </span>parent_overwrites(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        thread: <span class="kw-2">&amp;</span>Channel,
+        thread: <span class="kw-2">&amp;</span>CacheModels::Channel,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;PermissionOverwrite&gt;, ChannelError&gt; {
-        <span class="kw">let </span>parent_id = thread.parent_id.ok_or(ChannelError {
+        <span class="kw">let </span>parent_id = thread.parent_id().ok_or(ChannelError {
             kind: ChannelErrorType::ParentChannelNotPresent {
-                thread_id: thread.id,
+                thread_id: thread.id(),
             },
             source: <span class="prelude-val">None</span>,
         })<span class="question-mark">?</span>;
@@ -1746,9 +1760,9 @@
             source: <span class="prelude-val">None</span>,
         })<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>channel.guild_id.is_some() {
-            <span class="kw">let </span>channel_overwrites = channel.permission_overwrites.as_deref().unwrap_or(<span class="kw-2">&amp;</span>[]);
-            <span class="kw">let </span>thread_overwrites = thread.permission_overwrites.as_deref().unwrap_or(<span class="kw-2">&amp;</span>[]);
+        <span class="kw">if </span>channel.guild_id().is_some() {
+            <span class="kw">let </span>channel_overwrites = channel.permission_overwrites().unwrap_or_default();
+            <span class="kw">let </span>thread_overwrites = thread.permission_overwrites().unwrap_or_default();
 
             <span class="kw">let </span><span class="kw-2">mut </span>overwrites =
                 Vec::with_capacity(channel_overwrites.len() + thread_overwrites.len());
@@ -1760,7 +1774,7 @@
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(ChannelError {
                 kind: ChannelErrorType::ChannelNotInGuild {
-                    channel_id: channel.id,
+                    channel_id: channel.id(),
                 },
                 source: <span class="prelude-val">None</span>,
             })
@@ -1773,7 +1787,7 @@
     <span class="kw">use super</span>::{
         ChannelError, ChannelErrorType, InMemoryCachePermissions, RootError, RootErrorType,
     };
-    <span class="kw">use crate</span>::{test, InMemoryCache};
+    <span class="kw">use crate</span>::{test, DefaultCacheModels, DefaultInMemoryCache};
     <span class="kw">use </span>static_assertions::{assert_fields, assert_impl_all};
     <span class="kw">use </span>std::{
         error::Error,
@@ -1805,7 +1819,7 @@
     <span class="macro">assert_fields!</span>(ChannelErrorType::RoleUnavailable: role_id);
     <span class="macro">assert_impl_all!</span>(ChannelErrorType: Debug, Send, Sync);
     <span class="macro">assert_impl_all!</span>(ChannelError: Debug, Send, Sync);
-    <span class="macro">assert_impl_all!</span>(InMemoryCachePermissions&lt;<span class="lifetime">'_</span>&gt;: Clone, Debug, Send, Sync);
+    <span class="macro">assert_impl_all!</span>(InMemoryCachePermissions&lt;<span class="lifetime">'_</span>, DefaultCacheModels&gt;: Clone, Debug, Send, Sync);
     <span class="macro">assert_fields!</span>(RootErrorType::MemberUnavailable: guild_id, user_id);
     <span class="macro">assert_fields!</span>(RootErrorType::RoleUnavailable: role_id);
     <span class="macro">assert_impl_all!</span>(RootErrorType: Debug, Send, Sync);
@@ -2013,7 +2027,7 @@
     /// [`root`]: super::InMemoryCachePermissions::root
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>root_errors() {
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span>permissions = cache.permissions();
         <span class="macro">assert!</span>(<span class="macro">matches!</span>(
             permissions.root(USER_ID, GUILD_ID).unwrap_err().kind(),
@@ -2044,7 +2058,7 @@
     </span><span class="kw">fn </span>root() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="kw">let </span>joined_at = <span class="prelude-val">Some</span>(Timestamp::from_str(<span class="string">"2021-09-19T14:17:32.000000+00:00"</span>)<span class="question-mark">?</span>);
 
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span>permissions = cache.permissions();
 
         cache.update(<span class="kw-2">&amp;</span>GuildCreate(base_guild()));
@@ -2090,7 +2104,7 @@
     /// [`in_channel`]: super::InMemoryCachePermissions::in_channel
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>in_channel() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span>permissions = cache.permissions();
 
         cache.update(<span class="kw-2">&amp;</span>GuildCreate(base_guild()));
@@ -2152,7 +2166,7 @@
     /// [`root`]: super::InMemoryCachePermissions::root
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>owner() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span>permissions = cache.permissions();
         cache.update(<span class="kw-2">&amp;</span>GuildCreate(base_guild()));
 
@@ -2196,7 +2210,7 @@
             Timestamp::from_micros(micros).map_err(From::from)
         }
 
-        <span class="kw">let </span>cache = InMemoryCache::new();
+        <span class="kw">let </span>cache = DefaultInMemoryCache::new();
         <span class="kw">let </span><span class="kw-2">mut </span>permissions = cache.permissions();
 
         <span class="kw">let </span>in_past = acceptable_time(<span class="bool-val">false</span>)<span class="question-mark">?</span>;

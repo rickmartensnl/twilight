@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["CompressionErrorType","ProcessErrorType","ReceiveMessageErrorType","SendErrorType"],"struct":["CompressionError","ProcessError","ReceiveMessageError","SendError"]};
+window.SIDEBAR_ITEMS = {"enum":["ChannelErrorType","CompressionErrorType","ReceiveMessageErrorType","StartRecommendedErrorType"],"struct":["ChannelError","CompressionError","ReceiveMessageError","StartRecommendedError"]};

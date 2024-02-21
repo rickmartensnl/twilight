@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["current_application_info","scope","team"],"struct":["Application","ApplicationFlags","CurrentAuthorizationInformation","InstallParams","PartialApplication"]};
+window.SIDEBAR_ITEMS = {"mod":["scope","team"],"struct":["Application","ApplicationFlags","CurrentAuthorizationInformation","InstallParams","PartialApplication"]};

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/scheduled_event/create_guild_scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/scheduled_event/create_guild_scheduled_event/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -252,6 +252,12 @@
 <a href="#250" id="250">250</a>
 <a href="#251" id="251">251</a>
 <a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
+<a href="#256" id="256">256</a>
+<a href="#257" id="257">257</a>
+<a href="#258" id="258">258</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>external;
 <span class="kw">mod </span>stage_instance;
 <span class="kw">mod </span>voice;
@@ -265,7 +271,7 @@
 <span class="kw">use crate</span>::{
     client::Client,
     error::Error,
-    request::{AuditLogReason, Request, RequestBuilder},
+    request::{AuditLogReason, Request},
     response::ResponseFuture,
     routing::Route,
 };
@@ -334,8 +340,8 @@
 ///         channel_id,
 ///         "Garfield Appreciation Hour",
 ///         &amp;garfield_start_time,
-///     )?
-///     .description("Discuss: How important is Garfield to You?")?
+///     )
+///     .description("Discuss: How important is Garfield to You?")
 ///     .await?;
 /// # Ok(()) }
 /// ```
@@ -359,11 +365,11 @@
 ///         "Baltimore Convention Center",
 ///         &amp;garfield_con_start_time,
 ///         &amp;garfield_con_end_time,
-///     )?
+///     )
 ///     .description(
 ///         "In a spiritual successor to BronyCon, Garfield fans from \
 /// around the globe celebrate all things related to the loveable cat.",
-///     )?
+///     )
 ///     .await?;
 /// # Ok(()) }
 /// ```
@@ -372,8 +378,8 @@
 </span><span class="kw">pub struct </span>CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
     guild_id: Id&lt;GuildMarker&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
-    fields: CreateGuildScheduledEventFields&lt;<span class="lifetime">'a</span>&gt;,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    fields: <span class="prelude-ty">Result</span>&lt;CreateGuildScheduledEventFields&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt;,
+    reason: <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;, ValidationError&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
@@ -385,7 +391,7 @@
         <span class="self">Self </span>{
             guild_id,
             http,
-            fields: CreateGuildScheduledEventFields {
+            fields: <span class="prelude-val">Ok</span>(CreateGuildScheduledEventFields {
                 channel_id: <span class="prelude-val">None</span>,
                 description: <span class="prelude-val">None</span>,
                 entity_metadata: <span class="prelude-val">None</span>,
@@ -395,8 +401,8 @@
                 privacy_level: <span class="prelude-val">Some</span>(privacy_level),
                 scheduled_end_time: <span class="prelude-val">None</span>,
                 scheduled_start_time: <span class="prelude-val">None</span>,
-            },
-            reason: <span class="prelude-val">None</span>,
+            }),
+            reason: <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         }
     }
 
@@ -410,21 +416,27 @@
     ///
     /// [`ScheduledEventName`]: twilight_validate::request::ValidationErrorType::ScheduledEventName
     </span><span class="kw">pub fn </span>external(
-        <span class="self">self</span>,
+        <span class="kw-2">mut </span><span class="self">self</span>,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         location: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
         scheduled_end_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildExternalScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
-        validate_scheduled_event_name(name)<span class="question-mark">?</span>;
+    ) -&gt; CreateGuildExternalScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_scheduled_event_name(name)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(CreateGuildExternalScheduledEvent::new(
+            fields.name.replace(name);
+
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        CreateGuildExternalScheduledEvent::new(
             <span class="self">self</span>,
             name,
             location,
             scheduled_start_time,
             scheduled_end_time,
-        ))
+        )
     }
 
     <span class="doccomment">/// Create a stage instance scheduled event in a guild.
@@ -437,19 +449,19 @@
     ///
     /// [`ScheduledEventName`]: twilight_validate::request::ValidationErrorType::ScheduledEventName
     </span><span class="kw">pub fn </span>stage_instance(
-        <span class="self">self</span>,
+        <span class="kw-2">mut </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
-        validate_scheduled_event_name(name)<span class="question-mark">?</span>;
+    ) -&gt; CreateGuildStageInstanceScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_scheduled_event_name(name)<span class="question-mark">?</span>;
+            fields.name.replace(name);
 
-        <span class="prelude-val">Ok</span>(CreateGuildStageInstanceScheduledEvent::new(
-            <span class="self">self</span>,
-            channel_id,
-            name,
-            scheduled_start_time,
-        ))
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        CreateGuildStageInstanceScheduledEvent::new(<span class="self">self</span>, channel_id, name, scheduled_start_time)
     }
 
     <span class="doccomment">/// Create a voice channel scheduled event in a guild.
@@ -462,19 +474,19 @@
     ///
     /// [`ScheduledEventName`]: twilight_validate::request::ValidationErrorType::ScheduledEventName
     </span><span class="kw">pub fn </span>voice(
-        <span class="self">self</span>,
+        <span class="kw-2">mut </span><span class="self">self</span>,
         channel_id: Id&lt;ChannelMarker&gt;,
         name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         scheduled_start_time: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Timestamp,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt; {
-        validate_scheduled_event_name(name)<span class="question-mark">?</span>;
+    ) -&gt; CreateGuildVoiceScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            validate_scheduled_event_name(name)<span class="question-mark">?</span>;
+            fields.name.replace(name);
 
-        <span class="prelude-val">Ok</span>(CreateGuildVoiceScheduledEvent::new(
-            <span class="self">self</span>,
-            channel_id,
-            name,
-            scheduled_start_time,
-        ))
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        CreateGuildVoiceScheduledEvent::new(<span class="self">self</span>, channel_id, name, scheduled_start_time)
     }
 
     <span class="kw">fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;GuildScheduledEvent&gt; {
@@ -487,21 +499,21 @@
     }
 
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
+
         Request::builder(<span class="kw-2">&amp;</span>Route::CreateGuildScheduledEvent {
             guild_id: <span class="self">self</span>.guild_id.get(),
         })
-        .json(<span class="kw-2">&amp;</span><span class="self">self</span>.fields)
-        .map(RequestBuilder::build)
+        .json(<span class="kw-2">&amp;</span>fields)
+        .build()
     }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>CreateGuildScheduledEvent&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        validate_audit_reason(reason)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.reason = validate_audit_reason(reason).and(<span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(reason)));
 
-        <span class="self">self</span>.reason.replace(reason);
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 }
 </code></pre></div></section></main></body></html>

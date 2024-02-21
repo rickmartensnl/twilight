@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/member/update_guild_member.rs`."><title>update_guild_member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/guild/member/update_guild_member.rs`."><title>update_guild_member.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -296,6 +296,12 @@
 <a href="#294" id="294">294</a>
 <a href="#295" id="295">295</a>
 <a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -343,11 +349,11 @@
 /// [Discord Docs/Modify Guild Member]: https://discord.com/developers/docs/resources/guild#modify-guild-member
 </span><span class="attr">#[must_use = <span class="string">"requests must be configured and executed"</span>]
 </span><span class="kw">pub struct </span>UpdateGuildMember&lt;<span class="lifetime">'a</span>&gt; {
-    fields: UpdateGuildMemberFields&lt;<span class="lifetime">'a</span>&gt;,
+    fields: <span class="prelude-ty">Result</span>&lt;UpdateGuildMemberFields&lt;<span class="lifetime">'a</span>&gt;, ValidationError&gt;,
     guild_id: Id&lt;GuildMarker&gt;,
     http: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Client,
     user_id: Id&lt;UserMarker&gt;,
-    reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    reason: <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;, ValidationError&gt;,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; UpdateGuildMember&lt;<span class="lifetime">'a</span>&gt; {
@@ -357,24 +363,26 @@
         user_id: Id&lt;UserMarker&gt;,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
-            fields: UpdateGuildMemberFields {
+            fields: <span class="prelude-val">Ok</span>(UpdateGuildMemberFields {
                 channel_id: <span class="prelude-val">None</span>,
                 communication_disabled_until: <span class="prelude-val">None</span>,
                 deaf: <span class="prelude-val">None</span>,
                 mute: <span class="prelude-val">None</span>,
                 nick: <span class="prelude-val">None</span>,
                 roles: <span class="prelude-val">None</span>,
-            },
+            }),
             guild_id,
             http,
             user_id,
-            reason: <span class="prelude-val">None</span>,
+            reason: <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         }
     }
 
     <span class="doccomment">/// Move the member to a different voice channel.
-    </span><span class="kw">pub const fn </span>channel_id(<span class="kw-2">mut </span><span class="self">self</span>, channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.channel_id = <span class="prelude-val">Some</span>(Nullable(channel_id));
+    </span><span class="kw">pub fn </span>channel_id(<span class="kw-2">mut </span><span class="self">self</span>, channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.channel_id = <span class="prelude-val">Some</span>(Nullable(channel_id));
+        }
 
         <span class="self">self
     </span>}
@@ -395,29 +403,34 @@
     /// [Guild Timeout]: https://support.discord.com/hc/en-us/articles/4413305239191-Time-Out-FAQ
     /// [`CommunicationDisabledUntil`]: twilight_validate::request::ValidationErrorType::CommunicationDisabledUntil
     /// [`MODERATE_MEMBERS`]: twilight_model::guild::Permissions::MODERATE_MEMBERS
-    </span><span class="kw">pub fn </span>communication_disabled_until(
-        <span class="kw-2">mut </span><span class="self">self</span>,
-        timestamp: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(timestamp) = timestamp {
-            validate_communication_disabled_until(timestamp)<span class="question-mark">?</span>;
-        }
+    </span><span class="kw">pub fn </span>communication_disabled_until(<span class="kw-2">mut </span><span class="self">self</span>, timestamp: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(timestamp) = timestamp {
+                validate_communication_disabled_until(timestamp)<span class="question-mark">?</span>;
+            }
 
-        <span class="self">self</span>.fields.communication_disabled_until = <span class="prelude-val">Some</span>(Nullable(timestamp));
+            fields.communication_disabled_until = <span class="prelude-val">Some</span>(Nullable(timestamp));
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+            <span class="prelude-val">Ok</span>(fields)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// If true, restrict the member's ability to hear sound from a voice channel.
-    </span><span class="kw">pub const fn </span>deaf(<span class="kw-2">mut </span><span class="self">self</span>, deaf: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.deaf = <span class="prelude-val">Some</span>(deaf);
+    </span><span class="kw">pub fn </span>deaf(<span class="kw-2">mut </span><span class="self">self</span>, deaf: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.deaf = <span class="prelude-val">Some</span>(deaf);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// If true, restrict the member's ability to speak in a voice channel.
-    </span><span class="kw">pub const fn </span>mute(<span class="kw-2">mut </span><span class="self">self</span>, mute: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.mute = <span class="prelude-val">Some</span>(mute);
+    </span><span class="kw">pub fn </span>mute(<span class="kw-2">mut </span><span class="self">self</span>, mute: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.mute = <span class="prelude-val">Some</span>(mute);
+        }
 
         <span class="self">self
     </span>}
@@ -432,38 +445,36 @@
     /// short or too long.
     ///
     /// [`Nickname`]: twilight_validate::request::ValidationErrorType::Nickname
-    </span><span class="kw">pub fn </span>nick(<span class="kw-2">mut </span><span class="self">self</span>, nick: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(nick) = nick {
-            validate_nickname(nick)<span class="question-mark">?</span>;
-        }
+    </span><span class="kw">pub fn </span>nick(<span class="kw-2">mut </span><span class="self">self</span>, nick: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fields = <span class="self">self</span>.fields.and_then(|<span class="kw-2">mut </span>fields| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(nick) = nick {
+                validate_nickname(nick)<span class="question-mark">?</span>;
+            }
 
-        <span class="self">self</span>.fields.nick = <span class="prelude-val">Some</span>(Nullable(nick));
+            fields.nick = <span class="prelude-val">Some</span>(Nullable(nick));
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
-
-    <span class="doccomment">/// Set the new list of roles for a member.
-    </span><span class="kw">pub const fn </span>roles(<span class="kw-2">mut </span><span class="self">self</span>, roles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;RoleMarker&gt;]) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.fields.roles = <span class="prelude-val">Some</span>(roles);
+            <span class="prelude-val">Ok</span>(fields)
+        });
 
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Execute the request, returning a future resolving to a [`Response`].
-    </span><span class="attr">#[deprecated(since = <span class="string">"0.14.0"</span>, note = <span class="string">"use `.await` or `into_future` instead"</span>)]
-    </span><span class="kw">pub fn </span>exec(<span class="self">self</span>) -&gt; ResponseFuture&lt;Member&gt; {
-        <span class="self">self</span>.into_future()
-    }
+    <span class="doccomment">/// Set the new list of roles for a member.
+    </span><span class="kw">pub fn </span>roles(<span class="kw-2">mut </span><span class="self">self</span>, roles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;RoleMarker&gt;]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.roles = <span class="prelude-val">Some</span>(roles);
+        }
+
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AuditLogReason&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>UpdateGuildMember&lt;<span class="lifetime">'a</span>&gt; {
-    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ValidationError&gt; {
-        validate_audit_reason(reason)<span class="question-mark">?</span>;
+    <span class="kw">fn </span>reason(<span class="kw-2">mut </span><span class="self">self</span>, reason: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.reason = validate_audit_reason(reason).and(<span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(reason)));
 
-        <span class="self">self</span>.reason.replace(reason);
-
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
-    }
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>UpdateGuildMember&lt;<span class="lifetime">'_</span>&gt; {
@@ -483,17 +494,18 @@
 
 <span class="kw">impl </span>TryIntoRequest <span class="kw">for </span>UpdateGuildMember&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>try_into_request(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
+        <span class="kw">let </span>fields = <span class="self">self</span>.fields.map_err(Error::validation)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request = Request::builder(<span class="kw-2">&amp;</span>Route::UpdateMember {
             guild_id: <span class="self">self</span>.guild_id.get(),
             user_id: <span class="self">self</span>.user_id.get(),
         })
-        .json(<span class="kw-2">&amp;</span><span class="self">self</span>.fields)<span class="question-mark">?</span>;
+        .json(<span class="kw-2">&amp;</span>fields);
 
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="kw-2">&amp;</span><span class="self">self</span>.reason {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = <span class="self">self</span>.reason.map_err(Error::validation)<span class="question-mark">? </span>{
             request = request.headers(request::audit_header(reason)<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Ok</span>(request.build())
+        request.build()
     }
 }
 
@@ -534,7 +546,7 @@
             guild_id: GUILD_ID.get(),
             user_id: USER_ID.get(),
         };
-        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body)<span class="question-mark">?</span>.build();
+        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body).build()<span class="question-mark">?</span>;
 
         <span class="macro">assert_eq!</span>(actual.body, expected.body);
         <span class="macro">assert_eq!</span>(actual.path, expected.path);
@@ -545,7 +557,7 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>nick_set_null() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="kw">let </span>client = Client::new(<span class="string">"foo"</span>.to_owned());
-        <span class="kw">let </span>builder = UpdateGuildMember::new(<span class="kw-2">&amp;</span>client, GUILD_ID, USER_ID).nick(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>builder = UpdateGuildMember::new(<span class="kw-2">&amp;</span>client, GUILD_ID, USER_ID).nick(<span class="prelude-val">None</span>);
         <span class="kw">let </span>actual = builder.try_into_request()<span class="question-mark">?</span>;
 
         <span class="kw">let </span>body = UpdateGuildMemberFields {
@@ -560,7 +572,7 @@
             guild_id: GUILD_ID.get(),
             user_id: USER_ID.get(),
         };
-        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body)<span class="question-mark">?</span>.build();
+        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body).build()<span class="question-mark">?</span>;
 
         <span class="macro">assert_eq!</span>(actual.body, expected.body);
 
@@ -570,7 +582,7 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>nick_set_value() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="kw">let </span>client = Client::new(<span class="string">"foo"</span>.to_owned());
-        <span class="kw">let </span>builder = UpdateGuildMember::new(<span class="kw-2">&amp;</span>client, GUILD_ID, USER_ID).nick(<span class="prelude-val">Some</span>(<span class="string">"foo"</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>builder = UpdateGuildMember::new(<span class="kw-2">&amp;</span>client, GUILD_ID, USER_ID).nick(<span class="prelude-val">Some</span>(<span class="string">"foo"</span>));
         <span class="kw">let </span>actual = builder.try_into_request()<span class="question-mark">?</span>;
 
         <span class="kw">let </span>body = UpdateGuildMemberFields {
@@ -585,7 +597,7 @@
             guild_id: GUILD_ID.get(),
             user_id: USER_ID.get(),
         };
-        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body)<span class="question-mark">?</span>.build();
+        <span class="kw">let </span>expected = Request::builder(<span class="kw-2">&amp;</span>route).json(<span class="kw-2">&amp;</span>body).build()<span class="question-mark">?</span>;
 
         <span class="macro">assert_eq!</span>(actual.body, expected.body);
 

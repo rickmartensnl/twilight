@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (3246e7951 2024-02-19)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/request/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0-nightly (bb594538f 2024-02-20)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-c37d3936c59ababd.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../twilight_http/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -242,12 +242,25 @@
 <a href="#240" id="240">240</a>
 <a href="#241" id="241">241</a>
 <a href="#242" id="242">242</a>
+<a href="#243" id="243">243</a>
+<a href="#244" id="244">244</a>
+<a href="#245" id="245">245</a>
+<a href="#246" id="246">246</a>
+<a href="#247" id="247">247</a>
+<a href="#248" id="248">248</a>
+<a href="#249" id="249">249</a>
+<a href="#250" id="250">250</a>
+<a href="#251" id="251">251</a>
+<a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{Form, Method};
 <span class="kw">use crate</span>::{
     error::Error,
     routing::{Path, Route},
 };
-<span class="kw">use </span>hyper::header::{HeaderMap, HeaderName, HeaderValue};
+<span class="kw">use </span>http::header::{HeaderMap, HeaderName, HeaderValue};
 <span class="kw">use </span>serde::Serialize;
 
 <span class="doccomment">/// Builder to create a customized request.
@@ -271,12 +284,12 @@
 /// ```
 </span><span class="attr">#[derive(Debug)]
 #[must_use = <span class="string">"request has not been fully built"</span>]
-</span><span class="kw">pub struct </span>RequestBuilder(Request);
+</span><span class="kw">pub struct </span>RequestBuilder(<span class="prelude-ty">Result</span>&lt;Request, Error&gt;);
 
 <span class="kw">impl </span>RequestBuilder {
     <span class="doccomment">/// Create a new request builder.
     </span><span class="kw">pub fn </span>new(route: <span class="kw-2">&amp;</span>Route&lt;<span class="lifetime">'_</span>&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(Request::from_route(route))
+        <span class="self">Self</span>(<span class="prelude-val">Ok</span>(Request::from_route(route)))
     }
 
     <span class="doccomment">/// Create a request with raw information about the method, ratelimiting
@@ -308,7 +321,7 @@
     /// # Ok(()) }
     /// ```
     </span><span class="kw">pub const fn </span>raw(method: Method, ratelimit_path: Path, path_and_query: String) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(Request {
+        <span class="self">Self</span>(<span class="prelude-val">Ok</span>(Request {
             body: <span class="prelude-val">None</span>,
             form: <span class="prelude-val">None</span>,
             headers: <span class="prelude-val">None</span>,
@@ -316,19 +329,28 @@
             path: path_and_query,
             ratelimit_path,
             use_authorization_token: <span class="bool-val">true</span>,
-        })
+        }))
     }
 
     <span class="doccomment">/// Consume the builder, returning the built request.
+    ///
+    /// # Errors
+    ///
+    /// Returns an [`ErrorType::Json`] error type JSON input could not be
+    /// serialized.
+    ///
+    /// [`ErrorType::Json`]: crate::error::ErrorType::Json
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
     #[must_use = <span class="string">"request information is not useful on its own and must be acted on"</span>]
-    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; Request {
+    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Request, Error&gt; {
         <span class="self">self</span>.<span class="number">0
     </span>}
 
     <span class="doccomment">/// Set the contents of the body.
     </span><span class="kw">pub fn </span>body(<span class="kw-2">mut </span><span class="self">self</span>, body: Vec&lt;u8&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.body = <span class="prelude-val">Some</span>(body);
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(request) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            request.body = <span class="prelude-val">Some</span>(body);
+        }
 
         <span class="self">self
     </span>}
@@ -336,38 +358,42 @@
     <span class="doccomment">/// Set the multipart form.
     </span><span class="attr">#[allow(clippy::missing_const_for_fn)]
     </span><span class="kw">pub fn </span>form(<span class="kw-2">mut </span><span class="self">self</span>, form: Form) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.form = <span class="prelude-val">Some</span>(form);
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(request) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            request.form = <span class="prelude-val">Some</span>(form);
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the headers to add.
     </span><span class="kw">pub fn </span>headers(<span class="kw-2">mut </span><span class="self">self</span>, iter: <span class="kw">impl </span>Iterator&lt;Item = (HeaderName, HeaderValue)&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.headers.replace(iter.collect());
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(request) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            request.headers.replace(iter.collect());
+        }
 
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Set the body, to be serialized as JSON.
-    ///
-    /// # Errors
-    ///
-    /// Returns an [`ErrorType::Json`] error type if the value could not be
-    /// serialized as JSON.
-    ///
-    /// [`ErrorType::Json`]: crate::error::ErrorType::Json
-    </span><span class="kw">pub fn </span>json(<span class="self">self</span>, to: <span class="kw-2">&amp;</span><span class="kw">impl </span>Serialize) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
-        <span class="kw">let </span>bytes = <span class="kw">crate</span>::json::to_vec(to).map_err(Error::json)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>json(<span class="kw-2">mut </span><span class="self">self</span>, to: <span class="kw-2">&amp;</span><span class="kw">impl </span>Serialize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0 </span>= <span class="self">self</span>.<span class="number">0</span>.and_then(|<span class="kw-2">mut </span>request| {
+            <span class="kw">let </span>bytes = <span class="kw">crate</span>::json::to_vec(to).map_err(Error::json)<span class="question-mark">?</span>;
+            request.body = <span class="prelude-val">Some</span>(bytes);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.body(bytes))
-    }
+            <span class="prelude-val">Ok</span>(request)
+        });
+
+        <span class="self">self
+    </span>}
 
     <span class="doccomment">/// Whether to use the client's authorization token in the request, if one
     /// is set.
     ///
     /// This is primarily useful for executing webhooks.
-    </span><span class="kw">pub const fn </span>use_authorization_token(<span class="kw-2">mut </span><span class="self">self</span>, use_authorization_token: bool) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.<span class="number">0</span>.use_authorization_token = use_authorization_token;
+    </span><span class="kw">pub fn </span>use_authorization_token(<span class="kw-2">mut </span><span class="self">self</span>, use_authorization_token: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(request) = <span class="self">self</span>.<span class="number">0</span>.as_mut() {
+            request.use_authorization_token = use_authorization_token;
+        }
 
         <span class="self">self
     </span>}
