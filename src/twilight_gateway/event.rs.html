@@ -705,8 +705,8 @@
         /// [`Intents::GUILD_MESSAGES`]: crate::Intents::GUILD_MESSAGES
         </span><span class="kw">const </span>GUILD_MESSAGES = <span class="self">Self</span>::MESSAGE_CREATE.bits()
             | <span class="self">Self</span>::MESSAGE_DELETE.bits()
-            | <span class="self">Self</span>::MESSAGE_DELETE.bits()
-            | <span class="self">Self</span>::MESSAGE_DELETE_BULK.bits();
+            | <span class="self">Self</span>::MESSAGE_DELETE_BULK.bits()
+            | <span class="self">Self</span>::MESSAGE_UPDATE.bits();
 
         <span class="doccomment">/// All [`EventTypeFlags`] in [`Intents::GUILD_MESSAGE_REACTIONS`].
         ///
