@@ -1270,7 +1270,7 @@
 <span class="kw">where
     </span>&lt;B <span class="kw">as </span>hyper::body::Body&gt;::Error: Send + Sync + Error + <span class="lifetime">'static</span>,
 {
-    <span class="kw">use </span>brotli::Decompressor;
+    <span class="kw">use </span>brotli_decompressor::Decompressor;
     <span class="kw">use </span>hyper::body::Buf;
     <span class="kw">use </span>std::io::Read;
 
