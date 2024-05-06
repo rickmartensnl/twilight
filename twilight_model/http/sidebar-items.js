@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["attachment","interaction","permission_overwrite"]};
+window.SIDEBAR_ITEMS = {"mod":["attachment","channel_position","interaction","permission_overwrite"]};

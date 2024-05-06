@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["Position","UpdateGuildChannelPositions"]};
+window.SIDEBAR_ITEMS = {"struct":["UpdateGuildChannelPositions"]};
