@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (791adf759 2024-05-21)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/application/interaction/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (6f3df08aa 2024-05-30)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -778,6 +778,66 @@
 <a href="#778" id="778">778</a>
 <a href="#779" id="779">779</a>
 <a href="#780" id="780">780</a>
+<a href="#781" id="781">781</a>
+<a href="#782" id="782">782</a>
+<a href="#783" id="783">783</a>
+<a href="#784" id="784">784</a>
+<a href="#785" id="785">785</a>
+<a href="#786" id="786">786</a>
+<a href="#787" id="787">787</a>
+<a href="#788" id="788">788</a>
+<a href="#789" id="789">789</a>
+<a href="#790" id="790">790</a>
+<a href="#791" id="791">791</a>
+<a href="#792" id="792">792</a>
+<a href="#793" id="793">793</a>
+<a href="#794" id="794">794</a>
+<a href="#795" id="795">795</a>
+<a href="#796" id="796">796</a>
+<a href="#797" id="797">797</a>
+<a href="#798" id="798">798</a>
+<a href="#799" id="799">799</a>
+<a href="#800" id="800">800</a>
+<a href="#801" id="801">801</a>
+<a href="#802" id="802">802</a>
+<a href="#803" id="803">803</a>
+<a href="#804" id="804">804</a>
+<a href="#805" id="805">805</a>
+<a href="#806" id="806">806</a>
+<a href="#807" id="807">807</a>
+<a href="#808" id="808">808</a>
+<a href="#809" id="809">809</a>
+<a href="#810" id="810">810</a>
+<a href="#811" id="811">811</a>
+<a href="#812" id="812">812</a>
+<a href="#813" id="813">813</a>
+<a href="#814" id="814">814</a>
+<a href="#815" id="815">815</a>
+<a href="#816" id="816">816</a>
+<a href="#817" id="817">817</a>
+<a href="#818" id="818">818</a>
+<a href="#819" id="819">819</a>
+<a href="#820" id="820">820</a>
+<a href="#821" id="821">821</a>
+<a href="#822" id="822">822</a>
+<a href="#823" id="823">823</a>
+<a href="#824" id="824">824</a>
+<a href="#825" id="825">825</a>
+<a href="#826" id="826">826</a>
+<a href="#827" id="827">827</a>
+<a href="#828" id="828">828</a>
+<a href="#829" id="829">829</a>
+<a href="#830" id="830">830</a>
+<a href="#831" id="831">831</a>
+<a href="#832" id="832">832</a>
+<a href="#833" id="833">833</a>
+<a href="#834" id="834">834</a>
+<a href="#835" id="835">835</a>
+<a href="#836" id="836">836</a>
+<a href="#837" id="837">837</a>
+<a href="#838" id="838">838</a>
+<a href="#839" id="839">839</a>
+<a href="#840" id="840">840</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Used when receiving interactions through gateway or webhooks.
 //!
 //! See [Discord Docs/Receiving and Responding].
@@ -815,6 +875,8 @@
 };
 <span class="kw">use </span>serde_value::{DeserializerError, Value};
 <span class="kw">use </span>std::fmt::{Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult};
+
+<span class="kw">use </span><span class="kw">super</span>::monetization::Entitlement;
 
 <span class="doccomment">/// Payload received when a user executes an interaction.
 ///
@@ -859,6 +921,8 @@
     /// [`ModalSubmit`]: InteractionType::ModalSubmit
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>data: <span class="prelude-ty">Option</span>&lt;InteractionData&gt;,
+    <span class="doccomment">/// For monetized apps, any entitlements for the invoking user, representing access to premium SKUs
+    </span><span class="kw">pub </span>entitlements: Vec&lt;Entitlement&gt;,
     <span class="doccomment">/// ID of the guild the interaction was invoked in.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span><span class="kw">pub </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt;,
@@ -957,6 +1021,7 @@
     Channel,
     ChannelId,
     Data,
+    Entitlements,
     GuildId,
     GuildLocale,
     Id,
@@ -985,6 +1050,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>channel: <span class="prelude-ty">Option</span>&lt;Channel&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>data: <span class="prelude-ty">Option</span>&lt;Value&gt; = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>entitlements: Vec&lt;Entitlement&gt; = Vec::new();
         <span class="kw">let </span><span class="kw-2">mut </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>guild_locale: <span class="prelude-ty">Option</span>&lt;String&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>id: <span class="prelude-ty">Option</span>&lt;Id&lt;InteractionMarker&gt;&gt; = <span class="prelude-val">None</span>;
@@ -1041,6 +1107,13 @@
                     }
 
                     data = map.next_value()<span class="question-mark">?</span>;
+                }
+                InteractionField::Entitlements =&gt; {
+                    <span class="kw">if </span>data.is_some() {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"entitlements"</span>));
+                    }
+
+                    entitlements = map.next_value()<span class="question-mark">?</span>;
                 }
                 InteractionField::GuildId =&gt; {
                     <span class="kw">if </span>guild_id.is_some() {
@@ -1160,6 +1233,7 @@
             channel,
             channel_id,
             data,
+            entitlements,
             guild_id,
             guild_locale,
             id,
@@ -1201,7 +1275,10 @@
         Interaction, InteractionData, InteractionDataResolved, InteractionMember, InteractionType,
     };
     <span class="kw">use crate</span>::{
-        application::command::{CommandOptionType, CommandType},
+        application::{
+            command::{CommandOptionType, CommandType},
+            monetization::{entitlement::Entitlement, EntitlementType},
+        },
         channel::Channel,
         guild::{MemberFlags, PartialMember, Permissions},
         id::Id,
@@ -1314,6 +1391,18 @@
                 }),
                 target_id: <span class="prelude-val">None</span>,
             }))),
+            entitlements: <span class="macro">vec!</span>[Entitlement {
+                application_id: Id::new(<span class="number">100</span>),
+                consumed: <span class="bool-val">false</span>,
+                deleted: <span class="bool-val">false</span>,
+                ends_at: <span class="prelude-val">None</span>,
+                guild_id: <span class="prelude-val">None</span>,
+                id: Id::new(<span class="number">200</span>),
+                kind: EntitlementType::ApplicationSubscription,
+                sku_id: Id::new(<span class="number">300</span>),
+                starts_at: <span class="prelude-val">None</span>,
+                user_id: <span class="prelude-val">None</span>,
+            }],
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">400</span>)),
             guild_locale: <span class="prelude-val">Some</span>(<span class="string">"de"</span>.to_owned()),
             id: Id::new(<span class="number">500</span>),
@@ -1361,7 +1450,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"Interaction"</span>,
-                    len: <span class="number">12</span>,
+                    len: <span class="number">13</span>,
                 },
                 Token::Str(<span class="string">"app_permissions"</span>),
                 Token::Some,
@@ -1479,6 +1568,37 @@
                 Token::MapEnd,
                 Token::StructEnd,
                 Token::StructEnd,
+                Token::Str(<span class="string">"entitlements"</span>),
+                Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
+                Token::Struct {
+                    name: <span class="string">"Entitlement"</span>,
+                    len: <span class="number">10</span>,
+                },
+                Token::Str(<span class="string">"application_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"100"</span>),
+                Token::Str(<span class="string">"consumed"</span>),
+                Token::Bool(<span class="bool-val">false</span>),
+                Token::Str(<span class="string">"deleted"</span>),
+                Token::Bool(<span class="bool-val">false</span>),
+                Token::Str(<span class="string">"ends_at"</span>),
+                Token::None,
+                Token::Str(<span class="string">"guild_id"</span>),
+                Token::None,
+                Token::Str(<span class="string">"id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"200"</span>),
+                Token::Str(<span class="string">"type"</span>),
+                Token::U8(<span class="number">8</span>),
+                Token::Str(<span class="string">"sku_id"</span>),
+                Token::NewtypeStruct { name: <span class="string">"Id" </span>},
+                Token::Str(<span class="string">"300"</span>),
+                Token::Str(<span class="string">"starts_at"</span>),
+                Token::None,
+                Token::Str(<span class="string">"user_id"</span>),
+                Token::None,
+                Token::StructEnd,
+                Token::SeqEnd,
                 Token::Str(<span class="string">"guild_id"</span>),
                 Token::Some,
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},

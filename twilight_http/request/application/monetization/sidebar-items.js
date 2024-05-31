@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["create_test_entitlement","delete_test_entitlement","get_entitlements","get_skus"]};

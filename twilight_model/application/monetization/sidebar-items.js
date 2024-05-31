@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["entitlement","entitlement_type","sku","sku_flags","sku_type"]};

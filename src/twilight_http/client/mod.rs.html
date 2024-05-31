@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (791adf759 2024-05-21)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-http/src/client/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="twilight_http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0-nightly (6f3df08aa 2024-05-30)" data-channel="nightly" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2695,13 +2695,130 @@
 <a href="#2695" id="2695">2695</a>
 <a href="#2696" id="2696">2696</a>
 <a href="#2697" id="2697">2697</a>
+<a href="#2698" id="2698">2698</a>
+<a href="#2699" id="2699">2699</a>
+<a href="#2700" id="2700">2700</a>
+<a href="#2701" id="2701">2701</a>
+<a href="#2702" id="2702">2702</a>
+<a href="#2703" id="2703">2703</a>
+<a href="#2704" id="2704">2704</a>
+<a href="#2705" id="2705">2705</a>
+<a href="#2706" id="2706">2706</a>
+<a href="#2707" id="2707">2707</a>
+<a href="#2708" id="2708">2708</a>
+<a href="#2709" id="2709">2709</a>
+<a href="#2710" id="2710">2710</a>
+<a href="#2711" id="2711">2711</a>
+<a href="#2712" id="2712">2712</a>
+<a href="#2713" id="2713">2713</a>
+<a href="#2714" id="2714">2714</a>
+<a href="#2715" id="2715">2715</a>
+<a href="#2716" id="2716">2716</a>
+<a href="#2717" id="2717">2717</a>
+<a href="#2718" id="2718">2718</a>
+<a href="#2719" id="2719">2719</a>
+<a href="#2720" id="2720">2720</a>
+<a href="#2721" id="2721">2721</a>
+<a href="#2722" id="2722">2722</a>
+<a href="#2723" id="2723">2723</a>
+<a href="#2724" id="2724">2724</a>
+<a href="#2725" id="2725">2725</a>
+<a href="#2726" id="2726">2726</a>
+<a href="#2727" id="2727">2727</a>
+<a href="#2728" id="2728">2728</a>
+<a href="#2729" id="2729">2729</a>
+<a href="#2730" id="2730">2730</a>
+<a href="#2731" id="2731">2731</a>
+<a href="#2732" id="2732">2732</a>
+<a href="#2733" id="2733">2733</a>
+<a href="#2734" id="2734">2734</a>
+<a href="#2735" id="2735">2735</a>
+<a href="#2736" id="2736">2736</a>
+<a href="#2737" id="2737">2737</a>
+<a href="#2738" id="2738">2738</a>
+<a href="#2739" id="2739">2739</a>
+<a href="#2740" id="2740">2740</a>
+<a href="#2741" id="2741">2741</a>
+<a href="#2742" id="2742">2742</a>
+<a href="#2743" id="2743">2743</a>
+<a href="#2744" id="2744">2744</a>
+<a href="#2745" id="2745">2745</a>
+<a href="#2746" id="2746">2746</a>
+<a href="#2747" id="2747">2747</a>
+<a href="#2748" id="2748">2748</a>
+<a href="#2749" id="2749">2749</a>
+<a href="#2750" id="2750">2750</a>
+<a href="#2751" id="2751">2751</a>
+<a href="#2752" id="2752">2752</a>
+<a href="#2753" id="2753">2753</a>
+<a href="#2754" id="2754">2754</a>
+<a href="#2755" id="2755">2755</a>
+<a href="#2756" id="2756">2756</a>
+<a href="#2757" id="2757">2757</a>
+<a href="#2758" id="2758">2758</a>
+<a href="#2759" id="2759">2759</a>
+<a href="#2760" id="2760">2760</a>
+<a href="#2761" id="2761">2761</a>
+<a href="#2762" id="2762">2762</a>
+<a href="#2763" id="2763">2763</a>
+<a href="#2764" id="2764">2764</a>
+<a href="#2765" id="2765">2765</a>
+<a href="#2766" id="2766">2766</a>
+<a href="#2767" id="2767">2767</a>
+<a href="#2768" id="2768">2768</a>
+<a href="#2769" id="2769">2769</a>
+<a href="#2770" id="2770">2770</a>
+<a href="#2771" id="2771">2771</a>
+<a href="#2772" id="2772">2772</a>
+<a href="#2773" id="2773">2773</a>
+<a href="#2774" id="2774">2774</a>
+<a href="#2775" id="2775">2775</a>
+<a href="#2776" id="2776">2776</a>
+<a href="#2777" id="2777">2777</a>
+<a href="#2778" id="2778">2778</a>
+<a href="#2779" id="2779">2779</a>
+<a href="#2780" id="2780">2780</a>
+<a href="#2781" id="2781">2781</a>
+<a href="#2782" id="2782">2782</a>
+<a href="#2783" id="2783">2783</a>
+<a href="#2784" id="2784">2784</a>
+<a href="#2785" id="2785">2785</a>
+<a href="#2786" id="2786">2786</a>
+<a href="#2787" id="2787">2787</a>
+<a href="#2788" id="2788">2788</a>
+<a href="#2789" id="2789">2789</a>
+<a href="#2790" id="2790">2790</a>
+<a href="#2791" id="2791">2791</a>
+<a href="#2792" id="2792">2792</a>
+<a href="#2793" id="2793">2793</a>
+<a href="#2794" id="2794">2794</a>
+<a href="#2795" id="2795">2795</a>
+<a href="#2796" id="2796">2796</a>
+<a href="#2797" id="2797">2797</a>
+<a href="#2798" id="2798">2798</a>
+<a href="#2799" id="2799">2799</a>
+<a href="#2800" id="2800">2800</a>
+<a href="#2801" id="2801">2801</a>
+<a href="#2802" id="2802">2802</a>
+<a href="#2803" id="2803">2803</a>
+<a href="#2804" id="2804">2804</a>
+<a href="#2805" id="2805">2805</a>
+<a href="#2806" id="2806">2806</a>
+<a href="#2807" id="2807">2807</a>
+<a href="#2808" id="2808">2808</a>
+<a href="#2809" id="2809">2809</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
 
 <span class="kw">pub use </span><span class="self">self</span>::{builder::ClientBuilder, interaction::InteractionClient};
 
-<span class="kw">use crate</span>::{
+<span class="kw">use </span><span class="kw">crate</span>::request::application::monetization::{
+    CreateTestEntitlement, CreateTestEntitlementOwner, DeleteTestEntitlement, GetEntitlements,
+    GetSKUs,
+};
+<span class="attr">#[allow(deprecated)]
+</span><span class="kw">use crate</span>::{
     client::connector::Connector,
     error::{Error, ErrorType},
     request::{
@@ -2801,9 +2918,9 @@
     http::{channel_position::Position, permission_overwrite::PermissionOverwrite},
     id::{
         marker::{
-            ApplicationMarker, AutoModerationRuleMarker, ChannelMarker, EmojiMarker, GuildMarker,
-            IntegrationMarker, MessageMarker, RoleMarker, ScheduledEventMarker, StickerMarker,
-            UserMarker, WebhookMarker,
+            ApplicationMarker, AutoModerationRuleMarker, ChannelMarker, EmojiMarker,
+            EntitlementMarker, GuildMarker, IntegrationMarker, MessageMarker, RoleMarker,
+            ScheduledEventMarker, SkuMarker, StickerMarker, UserMarker, WebhookMarker,
         },
         Id,
     },
@@ -3470,6 +3587,29 @@
     /// ```
     </span><span class="kw">pub const fn </span>emojis(<span class="kw-2">&amp;</span><span class="self">self</span>, guild_id: Id&lt;GuildMarker&gt;) -&gt; GetEmojis&lt;<span class="lifetime">'_</span>&gt; {
         GetEmojis::new(<span class="self">self</span>, guild_id)
+    }
+
+    <span class="doccomment">/// Get the entitlements for an application.
+    ///
+    /// # Examples
+    ///
+    /// Get emojis for the application `100`:
+    ///
+    /// ```no_run
+    /// # use twilight_http::Client;
+    /// # use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// # let client = Client::new("my token".to_owned());
+    /// #
+    /// let application_id = Id::new(100);
+    ///
+    /// client.entitlements(application_id).await?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="kw">pub const fn </span>entitlements(<span class="kw-2">&amp;</span><span class="self">self</span>, application_id: Id&lt;ApplicationMarker&gt;) -&gt; GetEntitlements&lt;<span class="lifetime">'_</span>&gt; {
+        GetEntitlements::new(<span class="self">self</span>, application_id)
     }
 
     <span class="doccomment">/// Get an emoji for a guild by the the guild's ID and emoji's ID.
@@ -5252,6 +5392,90 @@
         sticker_id: Id&lt;StickerMarker&gt;,
     ) -&gt; DeleteGuildSticker&lt;<span class="lifetime">'_</span>&gt; {
         DeleteGuildSticker::new(<span class="self">self</span>, guild_id, sticker_id)
+    }
+
+    <span class="doccomment">/// Creates a test entitlement to a given SKU for a given guild or user. Discord
+    /// will act as though that user or guild has entitlement to your premium offering.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use twilight_http::{Client, request::application::monetization::CreateTestEntitlementOwner};
+    /// use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// let client = Client::new("my token".to_owned());
+    ///
+    /// let application_id = Id::new(1);
+    /// let sku_id = Id::new(2);
+    /// let owner = CreateTestEntitlementOwner::Guild(Id::new(3));
+    ///
+    /// client.create_test_entitlement(
+    ///    application_id,
+    ///    sku_id,
+    ///    owner,
+    /// ).await?;
+    ///
+    /// # Ok(()) }
+    </span><span class="kw">pub const fn </span>create_test_entitlement(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        application_id: Id&lt;ApplicationMarker&gt;,
+        sku_id: Id&lt;SkuMarker&gt;,
+        owner: CreateTestEntitlementOwner,
+    ) -&gt; CreateTestEntitlement&lt;<span class="lifetime">'_</span>&gt; {
+        CreateTestEntitlement::new(<span class="self">self</span>, application_id, sku_id, owner)
+    }
+
+    <span class="doccomment">/// Deletes a currently-active test entitlement. Discord will act as though that user or
+    /// guild no longer has entitlement to your premium offering.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use twilight_http::Client;
+    /// use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// let client = Client::new("my token".to_owned());
+    ///
+    /// let application_id = Id::new(1);
+    /// let entitlement_id = Id::new(2);
+    ///
+    /// client.delete_test_entitlement(
+    ///   application_id,
+    ///   entitlement_id,
+    /// ).await?;
+    ///
+    /// # Ok(()) }
+    </span><span class="kw">pub const fn </span>delete_test_entitlement(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        application_id: Id&lt;ApplicationMarker&gt;,
+        entitlement_id: Id&lt;EntitlementMarker&gt;,
+    ) -&gt; DeleteTestEntitlement&lt;<span class="lifetime">'_</span>&gt; {
+        DeleteTestEntitlement::new(<span class="self">self</span>, application_id, entitlement_id)
+    }
+
+    <span class="doccomment">/// Returns all SKUs for a given application.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use twilight_http::Client;
+    /// use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// let client = Client::new("my token".to_owned());
+    ///
+    /// let application_id = Id::new(1);
+    ///
+    /// let skus = client.get_skus(application_id).await?;
+    ///
+    /// # Ok(()) }
+    </span><span class="kw">pub const fn </span>get_skus(<span class="kw-2">&amp;</span><span class="self">self</span>, application_id: Id&lt;ApplicationMarker&gt;) -&gt; GetSKUs&lt;<span class="lifetime">'_</span>&gt; {
+        GetSKUs::new(<span class="self">self</span>, application_id)
     }
 
     <span class="doccomment">/// Execute a request, returning a future resolving to a [`Response`].
