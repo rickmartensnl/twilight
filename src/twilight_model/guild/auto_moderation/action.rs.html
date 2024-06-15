@@ -131,6 +131,14 @@
 <a href="#131" id="131">131</a>
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::id::{marker::ChannelMarker, Id};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -182,6 +190,8 @@
     /// [`Keyword`]: super::AutoModerationTriggerType::Keyword
     /// [`Permissions::MODERATE_MEMBERS`]: crate::guild::Permissions::MODERATE_MEMBERS
     </span>Timeout,
+    <span class="doccomment">/// Prevents a member from using text, voice, or other interactions.
+    </span>BlockMemberInteraction,
     <span class="doccomment">/// Variant value is unknown to the library.
     </span>Unknown(u8),
 }
@@ -192,6 +202,7 @@
             <span class="number">1 </span>=&gt; <span class="self">Self</span>::BlockMessage,
             <span class="number">2 </span>=&gt; <span class="self">Self</span>::SendAlertMessage,
             <span class="number">3 </span>=&gt; <span class="self">Self</span>::Timeout,
+            <span class="number">4 </span>=&gt; <span class="self">Self</span>::BlockMemberInteraction,
             <span class="kw">_ </span>=&gt; <span class="self">Self</span>::Unknown(value),
         }
     }
@@ -203,6 +214,7 @@
             AutoModerationActionType::BlockMessage =&gt; <span class="number">1</span>,
             AutoModerationActionType::SendAlertMessage =&gt; <span class="number">2</span>,
             AutoModerationActionType::Timeout =&gt; <span class="number">3</span>,
+            AutoModerationActionType::BlockMemberInteraction =&gt; <span class="number">4</span>,
             AutoModerationActionType::Unknown(unknown) =&gt; unknown,
         }
     }
@@ -261,6 +273,10 @@
         <span class="macro">assert_eq!</span>(<span class="number">1</span>, u8::from(AutoModerationActionType::BlockMessage));
         <span class="macro">assert_eq!</span>(<span class="number">2</span>, u8::from(AutoModerationActionType::SendAlertMessage));
         <span class="macro">assert_eq!</span>(<span class="number">3</span>, u8::from(AutoModerationActionType::Timeout));
+        <span class="macro">assert_eq!</span>(
+            <span class="number">4</span>,
+            u8::from(AutoModerationActionType::BlockMemberInteraction)
+        );
         <span class="macro">assert_eq!</span>(<span class="number">250</span>, u8::from(AutoModerationActionType::Unknown(<span class="number">250</span>)));
     }
 }

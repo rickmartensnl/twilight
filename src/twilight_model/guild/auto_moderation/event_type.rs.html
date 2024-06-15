@@ -54,6 +54,11 @@
 <a href="#54" id="54">54</a>
 <a href="#55" id="55">55</a>
 <a href="#56" id="56">56</a>
+<a href="#57" id="57">57</a>
+<a href="#58" id="58">58</a>
+<a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// Indicates in what event context a rule should be checked.
@@ -62,6 +67,8 @@
 </span><span class="kw">pub enum </span>AutoModerationEventType {
     <span class="doccomment">/// When a member sends or edits a message in a guild.
     </span>MessageSend,
+    <span class="doccomment">/// When a member edits their profile.
+    </span>MemberUpdate,
     <span class="doccomment">/// Variant value is unknown to the library.
     </span>Unknown(u8),
 }
@@ -70,6 +77,7 @@
     <span class="kw">fn </span>from(value: u8) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value {
             <span class="number">1 </span>=&gt; <span class="self">Self</span>::MessageSend,
+            <span class="number">2 </span>=&gt; <span class="self">Self</span>::MemberUpdate,
             <span class="kw">_ </span>=&gt; <span class="self">Self</span>::Unknown(value),
         }
     }
@@ -79,6 +87,7 @@
     <span class="kw">fn </span>from(value: AutoModerationEventType) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>value {
             AutoModerationEventType::MessageSend =&gt; <span class="number">1</span>,
+            AutoModerationEventType::MemberUpdate =&gt; <span class="number">2</span>,
             AutoModerationEventType::Unknown(unknown) =&gt; unknown,
         }
     }
@@ -107,6 +116,7 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>values() {
         <span class="macro">assert_eq!</span>(<span class="number">1</span>, u8::from(AutoModerationEventType::MessageSend));
+        <span class="macro">assert_eq!</span>(<span class="number">2</span>, u8::from(AutoModerationEventType::MemberUpdate));
         <span class="macro">assert_eq!</span>(<span class="number">250</span>, u8::from(AutoModerationEventType::Unknown(<span class="number">250</span>)));
     }
 }
