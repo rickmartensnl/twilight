@@ -298,6 +298,31 @@
 <a href="#298" id="298">298</a>
 <a href="#299" id="299">299</a>
 <a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
+<a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
+<a href="#317" id="317">317</a>
+<a href="#318" id="318">318</a>
+<a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
+<a href="#324" id="324">324</a>
+<a href="#325" id="325">325</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::guild::Permissions;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -370,6 +395,14 @@
     </span>StageTopic,
     <span class="doccomment">/// System message denoting a guild application premium subscription.
     </span>GuildApplicationPremiumSubscription,
+    <span class="doccomment">/// System message denoting a guild auto moderation incident alerts are enabled.
+    </span>GuildIncidentAlertModeEnabled,
+    <span class="doccomment">/// System message denoting a guild auto moderation incident alerts are disabled.
+    </span>GuildIncidentAlertModeDisabled,
+    <span class="doccomment">/// System message denoting a guild raid incident report.
+    </span>GuildIncidentReportRaid,
+    <span class="doccomment">/// System message denoting a false positive guild raid incident report.
+    </span>GuildIncidentReportRaidFalseAlarm,
     <span class="doccomment">/// Variant value is unknown to the library.
     </span>Unknown(u8),
 }
@@ -411,6 +444,11 @@
                 | <span class="self">Self</span>::StageEnd
                 | <span class="self">Self</span>::StageSpeaker
                 | <span class="self">Self</span>::StageTopic
+                | <span class="self">Self</span>::GuildApplicationPremiumSubscription
+                | <span class="self">Self</span>::GuildIncidentAlertModeEnabled
+                | <span class="self">Self</span>::GuildIncidentAlertModeDisabled
+                | <span class="self">Self</span>::GuildIncidentReportRaid
+                | <span class="self">Self</span>::GuildIncidentReportRaidFalseAlarm
         )
     }
 
@@ -473,6 +511,10 @@
             <span class="number">29 </span>=&gt; <span class="self">Self</span>::StageSpeaker,
             <span class="number">31 </span>=&gt; <span class="self">Self</span>::StageTopic,
             <span class="number">32 </span>=&gt; <span class="self">Self</span>::GuildApplicationPremiumSubscription,
+            <span class="number">36 </span>=&gt; <span class="self">Self</span>::GuildIncidentAlertModeEnabled,
+            <span class="number">37 </span>=&gt; <span class="self">Self</span>::GuildIncidentAlertModeDisabled,
+            <span class="number">38 </span>=&gt; <span class="self">Self</span>::GuildIncidentReportRaid,
+            <span class="number">39 </span>=&gt; <span class="self">Self</span>::GuildIncidentReportRaidFalseAlarm,
             unknown =&gt; <span class="self">Self</span>::Unknown(unknown),
         }
     }
@@ -512,6 +554,10 @@
             MessageType::StageSpeaker =&gt; <span class="number">29</span>,
             MessageType::StageTopic =&gt; <span class="number">31</span>,
             MessageType::GuildApplicationPremiumSubscription =&gt; <span class="number">32</span>,
+            MessageType::GuildIncidentAlertModeEnabled =&gt; <span class="number">36</span>,
+            MessageType::GuildIncidentAlertModeDisabled =&gt; <span class="number">37</span>,
+            MessageType::GuildIncidentReportRaid =&gt; <span class="number">38</span>,
+            MessageType::GuildIncidentReportRaidFalseAlarm =&gt; <span class="number">39</span>,
             MessageType::Unknown(unknown) =&gt; unknown,
         }
     }
@@ -580,7 +626,11 @@
             (MessageType::StageEnd, <span class="number">28</span>, <span class="bool-val">true</span>),
             (MessageType::StageSpeaker, <span class="number">29</span>, <span class="bool-val">true</span>),
             (MessageType::StageTopic, <span class="number">31</span>, <span class="bool-val">true</span>),
-            (MessageType::GuildApplicationPremiumSubscription, <span class="number">32</span>, <span class="bool-val">false</span>),
+            (MessageType::GuildApplicationPremiumSubscription, <span class="number">32</span>, <span class="bool-val">true</span>),
+            (MessageType::GuildIncidentAlertModeEnabled, <span class="number">36</span>, <span class="bool-val">true</span>),
+            (MessageType::GuildIncidentAlertModeDisabled, <span class="number">37</span>, <span class="bool-val">true</span>),
+            (MessageType::GuildIncidentReportRaid, <span class="number">38</span>, <span class="bool-val">true</span>),
+            (MessageType::GuildIncidentReportRaidFalseAlarm, <span class="number">39</span>, <span class="bool-val">true</span>),
         ];
 
         <span class="kw">for </span>(message_type, number, deletable) <span class="kw">in </span>MAP {

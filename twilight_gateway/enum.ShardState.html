@@ -12,9 +12,9 @@
 <p>The websocket connection may still be open.</p>
 </div><div class="sub-variant" id="variant.Disconnected.fields"><h4>Fields</h4><div class="sub-variant-field"><span id="variant.Disconnected.field.reconnect_attempts" class="section-header"><a href="#variant.Disconnected.field.reconnect_attempts" class="anchor field">§</a><code>reconnect_attempts: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a></code></span><div class="docblock"><p>Number of reconnection attempts that have been made.</p>
 </div></div></div><section id="variant.FatallyClosed" class="variant"><a href="#variant.FatallyClosed" class="anchor">§</a><h3 class="code-header">FatallyClosed</h3></section><div class="docblock"><p>Shard has fatally closed.</p>
-<p>Possible reasons may be due to <a href="CloseCode::AuthenticationFailed">failed authentication</a>,
-<a href="CloseCode::InvalidIntents">invalid intents</a>, or other reasons. Refer to the documentation for
-[<code>CloseCode</code>] for possible reasons.</p>
+<p>Possible reasons may be due to <a href="../twilight_model/gateway/close_code/enum.CloseCode.html#variant.AuthenticationFailed" title="variant twilight_model::gateway::close_code::CloseCode::AuthenticationFailed">failed authentication</a>,
+<a href="../twilight_model/gateway/close_code/enum.CloseCode.html#variant.InvalidIntents" title="variant twilight_model::gateway::close_code::CloseCode::InvalidIntents">invalid intents</a>, or other reasons. Refer to the documentation for
+<a href="../twilight_model/gateway/close_code/enum.CloseCode.html" title="enum twilight_model::gateway::close_code::CloseCode"><code>CloseCode</code></a> for possible reasons.</p>
 </div><section id="variant.Identifying" class="variant"><a href="#variant.Identifying" class="anchor">§</a><h3 class="code-header">Identifying</h3></section><div class="docblock"><p>Shard is waiting to establish or resume a session.</p>
 </div><section id="variant.Resuming" class="variant"><a href="#variant.Resuming" class="anchor">§</a><h3 class="code-header">Resuming</h3></section><div class="docblock"><p>Shard is replaying missed dispatch events.</p>
 <p>The shard is considered identified whilst resuming.</p>
