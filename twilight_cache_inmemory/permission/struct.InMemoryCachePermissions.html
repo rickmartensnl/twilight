@@ -10,10 +10,10 @@ reference.</p>
 <p>Defaults to being enabled.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.in_channel" class="method"><a class="src rightside" href="../../src/twilight_cache_inmemory/permission.rs.html#400-441">source</a><h4 class="code-header">pub fn <a href="#method.in_channel" class="fn">in_channel</a>(
     &amp;self,
-    user_id: Id&lt;UserMarker&gt;,
-    channel_id: Id&lt;ChannelMarker&gt;,
-) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Permissions, <a class="struct" href="struct.ChannelError.html" title="struct twilight_cache_inmemory::permission::ChannelError">ChannelError</a>&gt;</h4></section></summary><div class="docblock"><p>Calculate the permissions of a member in a guild channel.</p>
-<p>Returns <a href="twilight_model::guild::Permissions::all"><code>Permissions::all</code></a> if the user is the owner of the guild.</p>
+    user_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.UserMarker.html" title="struct twilight_model::id::marker::UserMarker">UserMarker</a>&gt;,
+    channel_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.ChannelMarker.html" title="struct twilight_model::id::marker::ChannelMarker">ChannelMarker</a>&gt;,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a>, <a class="struct" href="struct.ChannelError.html" title="struct twilight_cache_inmemory::permission::ChannelError">ChannelError</a>&gt;</h4></section></summary><div class="docblock"><p>Calculate the permissions of a member in a guild channel.</p>
+<p>Returns <a href="../../twilight_model/guild/permissions/struct.Permissions.html#method.all" title="associated function twilight_model::guild::permissions::Permissions::all"><code>Permissions::all</code></a> if the user is the owner of the guild.</p>
 <p>If the member’s <a href="../model/struct.CachedMember.html#method.communication_disabled_until" title="method twilight_cache_inmemory::model::CachedMember::communication_disabled_until">communication has been disabled</a> then they will be
 restricted to <a href="constant.MEMBER_COMMUNICATION_DISABLED_ALLOWLIST.html" title="constant twilight_cache_inmemory::permission::MEMBER_COMMUNICATION_DISABLED_ALLOWLIST">read-only permissions</a>. Refer to the <a href="index.html" title="mod twilight_cache_inmemory::permission">module level</a>
 documentation for more information.</p>
@@ -45,10 +45,10 @@ member for the user in the guild is not present.</p>
 member’s roles is not in the cache.</p>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.root" class="method"><a class="src rightside" href="../../src/twilight_cache_inmemory/permission.rs.html#490-513">source</a><h4 class="code-header">pub fn <a href="#method.root" class="fn">root</a>(
     &amp;self,
-    user_id: Id&lt;UserMarker&gt;,
-    guild_id: Id&lt;GuildMarker&gt;,
-) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Permissions, <a class="struct" href="struct.RootError.html" title="struct twilight_cache_inmemory::permission::RootError">RootError</a>&gt;</h4></section></summary><div class="docblock"><p>Calculate the guild-level permissions of a member.</p>
-<p>Returns <a href="twilight_model::guild::Permissions::all"><code>Permissions::all</code></a> if the user is the owner of the guild.</p>
+    user_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.UserMarker.html" title="struct twilight_model::id::marker::UserMarker">UserMarker</a>&gt;,
+    guild_id: <a class="struct" href="../../twilight_model/id/struct.Id.html" title="struct twilight_model::id::Id">Id</a>&lt;<a class="struct" href="../../twilight_model/id/marker/struct.GuildMarker.html" title="struct twilight_model::id::marker::GuildMarker">GuildMarker</a>&gt;,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../twilight_model/guild/permissions/struct.Permissions.html" title="struct twilight_model::guild::permissions::Permissions">Permissions</a>, <a class="struct" href="struct.RootError.html" title="struct twilight_cache_inmemory::permission::RootError">RootError</a>&gt;</h4></section></summary><div class="docblock"><p>Calculate the guild-level permissions of a member.</p>
+<p>Returns <a href="../../twilight_model/guild/permissions/struct.Permissions.html#method.all" title="associated function twilight_model::guild::permissions::Permissions::all"><code>Permissions::all</code></a> if the user is the owner of the guild.</p>
 <p>If the member’s <a href="../model/struct.CachedMember.html#method.communication_disabled_until" title="method twilight_cache_inmemory::model::CachedMember::communication_disabled_until">communication has been disabled</a> then they will be
 restricted to <a href="constant.MEMBER_COMMUNICATION_DISABLED_ALLOWLIST.html" title="constant twilight_cache_inmemory::permission::MEMBER_COMMUNICATION_DISABLED_ALLOWLIST">read-only permissions</a>. Refer to the <a href="index.html" title="mod twilight_cache_inmemory::permission">module level</a>
 documentation for more information.</p>

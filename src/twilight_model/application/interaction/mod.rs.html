@@ -844,6 +844,8 @@
 <a href="#844" id="844">844</a>
 <a href="#845" id="845">845</a>
 <a href="#846" id="846">846</a>
+<a href="#847" id="847">847</a>
+<a href="#848" id="848">848</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Used when receiving interactions through gateway or webhooks.
 //!
 //! See [Discord Docs/Receiving and Responding].
@@ -1056,7 +1058,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>channel: <span class="prelude-ty">Option</span>&lt;Channel&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>channel_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ChannelMarker&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>data: <span class="prelude-ty">Option</span>&lt;Value&gt; = <span class="prelude-val">None</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>entitlements: Vec&lt;Entitlement&gt; = Vec::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>entitlements: <span class="prelude-ty">Option</span>&lt;Vec&lt;Entitlement&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>guild_id: <span class="prelude-ty">Option</span>&lt;Id&lt;GuildMarker&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>guild_locale: <span class="prelude-ty">Option</span>&lt;String&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>id: <span class="prelude-ty">Option</span>&lt;Id&lt;InteractionMarker&gt;&gt; = <span class="prelude-val">None</span>;
@@ -1115,7 +1117,7 @@
                     data = map.next_value()<span class="question-mark">?</span>;
                 }
                 InteractionField::Entitlements =&gt; {
-                    <span class="kw">if </span>data.is_some() {
+                    <span class="kw">if </span>entitlements.is_some() {
                         <span class="kw">return </span><span class="prelude-val">Err</span>(DeError::duplicate_field(<span class="string">"entitlements"</span>));
                     }
 
@@ -1232,6 +1234,8 @@
                 <span class="prelude-val">Some</span>(InteractionData::ModalSubmit(data))
             }
         };
+
+        <span class="kw">let </span>entitlements = entitlements.unwrap_or_default();
 
         <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Value {
             app_permissions,
