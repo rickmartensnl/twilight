@@ -372,6 +372,9 @@
 <a href="#372" id="372">372</a>
 <a href="#373" id="373">373</a>
 <a href="#374" id="374">374</a>
+<a href="#375" id="375">375</a>
+<a href="#376" id="376">376</a>
+<a href="#377" id="377">377</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>private {
     <span class="kw">use </span><span class="kw">crate</span>::request::{
         application::{
@@ -450,6 +453,7 @@
             UpdateCurrentMember, UpdateGuild, UpdateGuildChannelPositions, UpdateGuildMfa,
             UpdateGuildWelcomeScreen, UpdateGuildWidgetSettings,
         },
+        poll::{EndPoll, GetAnswerVoters},
         scheduled_event::{
             CreateGuildExternalScheduledEvent, CreateGuildStageInstanceScheduledEvent,
             CreateGuildVoiceScheduledEvent, DeleteGuildScheduledEvent, GetGuildScheduledEvent,
@@ -538,10 +542,12 @@
     <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhook&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteWebhookMessage&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>DeleteTestEntitlement&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>EndPoll&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhook&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>ExecuteWebhookAndWait&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>FollowNewsChannel&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>GetActiveThreads&lt;<span class="lifetime">'_</span>&gt; {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAnswerVoters&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAuditLog&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>GetAutoModerationRule&lt;<span class="lifetime">'_</span>&gt; {}
     <span class="kw">impl </span>Sealed <span class="kw">for </span>GetBan&lt;<span class="lifetime">'_</span>&gt; {}

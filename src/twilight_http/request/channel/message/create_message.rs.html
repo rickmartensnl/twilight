@@ -394,6 +394,19 @@
 <a href="#394" id="394">394</a>
 <a href="#395" id="395">395</a>
 <a href="#396" id="396">396</a>
+<a href="#397" id="397">397</a>
+<a href="#398" id="398">398</a>
+<a href="#399" id="399">399</a>
+<a href="#400" id="400">400</a>
+<a href="#401" id="401">401</a>
+<a href="#402" id="402">402</a>
+<a href="#403" id="403">403</a>
+<a href="#404" id="404">404</a>
+<a href="#405" id="405">405</a>
+<a href="#406" id="406">406</a>
+<a href="#407" id="407">407</a>
+<a href="#408" id="408">408</a>
+<a href="#409" id="409">409</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     client::Client,
     error::Error,
@@ -415,6 +428,7 @@
         marker::{ChannelMarker, MessageMarker, StickerMarker},
         Id,
     },
+    poll::Poll,
 };
 <span class="kw">use </span>twilight_validate::message::{
     attachment <span class="kw">as </span>validate_attachment, components <span class="kw">as </span>validate_components,
@@ -442,6 +456,8 @@
     </span>nonce: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>payload_json: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>poll: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Poll&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>sticker_ids: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Id&lt;StickerMarker&gt;]&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
@@ -498,6 +514,7 @@
                 message_reference: <span class="prelude-val">None</span>,
                 nonce: <span class="prelude-val">None</span>,
                 payload_json: <span class="prelude-val">None</span>,
+                poll: <span class="prelude-val">None</span>,
                 allowed_mentions: <span class="prelude-val">None</span>,
                 sticker_ids: <span class="prelude-val">None</span>,
                 tts: <span class="prelude-val">None</span>,
@@ -614,6 +631,15 @@
 
             <span class="prelude-val">Ok</span>(fields)
         });
+
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Specify if this message is a poll.
+    </span><span class="kw">pub fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>, poll: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Poll) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.poll = <span class="prelude-val">Some</span>(poll);
+        }
 
         <span class="self">self
     </span>}

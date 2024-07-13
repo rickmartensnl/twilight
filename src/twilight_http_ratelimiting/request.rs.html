@@ -546,6 +546,8 @@
 <a href="#546" id="546">546</a>
 <a href="#547" id="547">547</a>
 <a href="#548" id="548">548</a>
+<a href="#549" id="549">549</a>
+<a href="#550" id="550">550</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Request parameters for ratelimiting.
 //!
 //! This module contains the type definitions for parameters
@@ -702,6 +704,8 @@
     </span>ChannelsIdPins(u64),
     <span class="doccomment">/// Operating on a channel's individual pinned message.
     </span>ChannelsIdPinsMessageId(u64),
+    <span class="doccomment">/// Operating on a channel's polls.
+    </span>ChannelsIdPolls(u64),
     <span class="doccomment">/// Operating on a group DM's recipients.
     </span>ChannelsIdRecipients(u64),
     <span class="doccomment">/// Operating on a thread's members.

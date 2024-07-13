@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["PollLayoutType"],"struct":["AnswerCount","PartialPollMediaEmoji","Poll","PollAnswer","PollMedia","PollResults"]};

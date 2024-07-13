@@ -742,6 +742,12 @@
 <a href="#742" id="742">742</a>
 <a href="#743" id="743">743</a>
 <a href="#744" id="744">744</a>
+<a href="#745" id="745">745</a>
+<a href="#746" id="746">746</a>
+<a href="#747" id="747">747</a>
+<a href="#748" id="748">748</a>
+<a href="#749" id="749">749</a>
+<a href="#750" id="750">750</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Textual user communication method.
 </span><span class="attr">#![warn(missing_docs)]
 
@@ -788,6 +794,7 @@
         },
         Id,
     },
+    poll::Poll,
     user::User,
     util::Timestamp,
 };
@@ -905,6 +912,9 @@
     </span><span class="kw">pub </span>mentions: Vec&lt;Mention&gt;,
     <span class="doccomment">/// Whether the message is pinned.
     </span><span class="kw">pub </span>pinned: bool,
+    <span class="doccomment">/// The poll associated with the message.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>poll: <span class="prelude-ty">Option</span>&lt;Poll&gt;,
     <span class="doccomment">/// List of reactions to the message.
     </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">"Vec::is_empty"</span>)]
     </span><span class="kw">pub </span>reactions: Vec&lt;Reaction&gt;,
@@ -1018,6 +1028,7 @@
             mention_roles: Vec::new(),
             mentions: Vec::new(),
             pinned: <span class="bool-val">false</span>,
+            poll: <span class="prelude-val">None</span>,
             reactions: Vec::new(),
             reference: <span class="prelude-val">None</span>,
             role_subscription_data: <span class="prelude-val">None</span>,
@@ -1229,6 +1240,7 @@
             mention_roles: Vec::new(),
             mentions: Vec::new(),
             pinned: <span class="bool-val">false</span>,
+            poll: <span class="prelude-val">None</span>,
             reactions: <span class="macro">vec!</span>[Reaction {
                 burst_colors: Vec::new(),
                 count: <span class="number">7</span>,

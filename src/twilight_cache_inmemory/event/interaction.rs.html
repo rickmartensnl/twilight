@@ -339,6 +339,7 @@
 <a href="#339" id="339">339</a>
 <a href="#340" id="340">340</a>
 <a href="#341" id="341">341</a>
+<a href="#342" id="342">342</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, CacheableModels, InMemoryCache, UpdateCache};
 <span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>twilight_model::{
@@ -554,6 +555,7 @@
                             mention_roles: Vec::new(),
                             mentions: Vec::new(),
                             pinned: <span class="bool-val">false</span>,
+                            poll: <span class="prelude-val">None</span>,
                             reactions: Vec::new(),
                             reference: <span class="prelude-val">None</span>,
                             role_subscription_data: <span class="prelude-val">None</span>,

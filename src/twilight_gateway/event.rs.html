@@ -437,6 +437,18 @@
 <a href="#437" id="437">437</a>
 <a href="#438" id="438">438</a>
 <a href="#439" id="439">439</a>
+<a href="#440" id="440">440</a>
+<a href="#441" id="441">441</a>
+<a href="#442" id="442">442</a>
+<a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
+<a href="#445" id="445">445</a>
+<a href="#446" id="446">446</a>
+<a href="#447" id="447">447</a>
+<a href="#448" id="448">448</a>
+<a href="#449" id="449">449</a>
+<a href="#450" id="450">450</a>
+<a href="#451" id="451">451</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Optimization for skipping deserialization of unwanted events.
 
 </span><span class="kw">use </span>bitflags::bitflags;
@@ -577,6 +589,10 @@
         </span><span class="kw">const </span>MESSAGE_DELETE = <span class="number">1 </span>&lt;&lt; <span class="number">20</span>;
         <span class="doccomment">/// Multiple messages have been deleted in a channel.
         </span><span class="kw">const </span>MESSAGE_DELETE_BULK = <span class="number">1 </span>&lt;&lt; <span class="number">21</span>;
+        <span class="doccomment">/// Message poll vote has been added.
+        </span><span class="kw">const </span>MESSAGE_POLL_VOTE_ADD = <span class="number">1 </span>&lt;&lt; <span class="number">28</span>;
+        <span class="doccomment">/// Message poll vote has been removed.
+        </span><span class="kw">const </span>MESSAGE_POLL_VOTE_REMOVE = <span class="number">1 </span>&lt;&lt; <span class="number">29</span>;
         <span class="doccomment">/// Message in a channel has been updated.
         </span><span class="kw">const </span>MESSAGE_UPDATE = <span class="number">1 </span>&lt;&lt; <span class="number">22</span>;
         <span class="doccomment">/// User's presence details are updated.
@@ -721,6 +737,12 @@
             | <span class="self">Self</span>::MESSAGE_DELETE_BULK.bits()
             | <span class="self">Self</span>::MESSAGE_UPDATE.bits();
 
+         <span class="doccomment">/// All [`EventTypeFlags`] in [`Intents::DIRECT_MESSAGE_POLLS`] and [`Intents::GUILD_MESSAGE_POLLS`].
+        ///
+        /// [`Intents::DIRECT_MESSAGE_POLLS`]: crate::Intents::DIRECT_MESSAGE_POLLS
+        /// [`Intents::GUILD_MESSAGE_POLLS`]: crate::Intents::GUILD_MESSAGE_POLLS
+        </span><span class="kw">const </span>MESSAGE_POLLS = <span class="self">Self</span>::MESSAGE_POLL_VOTE_ADD.bits() | <span class="self">Self</span>::MESSAGE_POLL_VOTE_REMOVE.bits();
+
         <span class="doccomment">/// All [`EventTypeFlags`] in [`Intents::GUILD_MESSAGE_REACTIONS`].
         ///
         /// [`Intents::GUILD_MESSAGE_REACTIONS`]: crate::Intents::GUILD_MESSAGE_REACTIONS
@@ -809,6 +831,8 @@
             EventType::MessageCreate =&gt; <span class="self">Self</span>::MESSAGE_CREATE,
             EventType::MessageDelete =&gt; <span class="self">Self</span>::MESSAGE_DELETE,
             EventType::MessageDeleteBulk =&gt; <span class="self">Self</span>::MESSAGE_DELETE_BULK,
+            EventType::MessagePollVoteAdd =&gt; <span class="self">Self</span>::MESSAGE_POLL_VOTE_ADD,
+            EventType::MessagePollVoteRemove =&gt; <span class="self">Self</span>::MESSAGE_POLL_VOTE_REMOVE,
             EventType::MessageUpdate =&gt; <span class="self">Self</span>::MESSAGE_UPDATE,
             EventType::PresenceUpdate =&gt; <span class="self">Self</span>::PRESENCE_UPDATE,
             EventType::ReactionAdd =&gt; <span class="self">Self</span>::REACTION_ADD,

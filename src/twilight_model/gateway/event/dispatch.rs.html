@@ -427,6 +427,18 @@
 <a href="#427" id="427">427</a>
 <a href="#428" id="428">428</a>
 <a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a>
+<a href="#440" id="440">440</a>
+<a href="#441" id="441">441</a>
 </pre></div><pre class="rust"><code><span class="kw">use super</span>::{<span class="kw">super</span>::payload::incoming::<span class="kw-2">*</span>, Event, EventConversionError, EventType};
 <span class="kw">use </span>serde::{
     de::{Deserialize, DeserializeSeed, Deserializer, Error <span class="kw">as </span>DeError, IgnoredAny},
@@ -482,6 +494,8 @@
     MessageCreate(Box&lt;MessageCreate&gt;),
     MessageDelete(MessageDelete),
     MessageDeleteBulk(MessageDeleteBulk),
+    MessagePollVoteAdd(MessagePollVoteAdd),
+    MessagePollVoteRemove(MessagePollVoteRemove),
     MessageUpdate(Box&lt;MessageUpdate&gt;),
     PresenceUpdate(Box&lt;PresenceUpdate&gt;),
     ReactionAdd(Box&lt;ReactionAdd&gt;),
@@ -553,6 +567,8 @@
             <span class="self">Self</span>::MessageCreate(<span class="kw">_</span>) =&gt; EventType::MessageCreate,
             <span class="self">Self</span>::MessageDelete(<span class="kw">_</span>) =&gt; EventType::MessageDelete,
             <span class="self">Self</span>::MessageDeleteBulk(<span class="kw">_</span>) =&gt; EventType::MessageDeleteBulk,
+            <span class="self">Self</span>::MessagePollVoteAdd(<span class="kw">_</span>) =&gt; EventType::MessagePollVoteAdd,
+            <span class="self">Self</span>::MessagePollVoteRemove(<span class="kw">_</span>) =&gt; EventType::MessagePollVoteRemove,
             <span class="self">Self</span>::MessageUpdate(<span class="kw">_</span>) =&gt; EventType::MessageUpdate,
             <span class="self">Self</span>::PresenceUpdate(<span class="kw">_</span>) =&gt; EventType::PresenceUpdate,
             <span class="self">Self</span>::ReactionAdd(<span class="kw">_</span>) =&gt; EventType::ReactionAdd,
@@ -623,6 +639,8 @@
             Event::MessageCreate(v) =&gt; <span class="self">Self</span>::MessageCreate(v),
             Event::MessageDelete(v) =&gt; <span class="self">Self</span>::MessageDelete(v),
             Event::MessageDeleteBulk(v) =&gt; <span class="self">Self</span>::MessageDeleteBulk(v),
+            Event::MessagePollVoteAdd(v) =&gt; <span class="self">Self</span>::MessagePollVoteAdd(v),
+            Event::MessagePollVoteRemove(v) =&gt; <span class="self">Self</span>::MessagePollVoteRemove(v),
             Event::MessageUpdate(v) =&gt; <span class="self">Self</span>::MessageUpdate(v),
             Event::PresenceUpdate(v) =&gt; <span class="self">Self</span>::PresenceUpdate(v),
             Event::ReactionAdd(v) =&gt; <span class="self">Self</span>::ReactionAdd(v),
@@ -800,6 +818,12 @@
             <span class="string">"MESSAGE_REACTION_REMOVE_ALL" </span>=&gt; {
                 DispatchEvent::ReactionRemoveAll(ReactionRemoveAll::deserialize(deserializer)<span class="question-mark">?</span>)
             }
+            <span class="string">"MESSAGE_POLL_VOTE_ADD" </span>=&gt; {
+                DispatchEvent::MessagePollVoteAdd(MessagePollVoteAdd::deserialize(deserializer)<span class="question-mark">?</span>)
+            }
+            <span class="string">"MESSAGE_POLL_VOTE_REMOVE" </span>=&gt; DispatchEvent::MessagePollVoteRemove(
+                MessagePollVoteRemove::deserialize(deserializer)<span class="question-mark">?</span>,
+            ),
             <span class="string">"MESSAGE_UPDATE" </span>=&gt; {
                 DispatchEvent::MessageUpdate(Box::new(MessageUpdate::deserialize(deserializer)<span class="question-mark">?</span>))
             }

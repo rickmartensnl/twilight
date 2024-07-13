@@ -371,6 +371,14 @@
 <a href="#371" id="371">371</a>
 <a href="#372" id="372">372</a>
 <a href="#373" id="373">373</a>
+<a href="#374" id="374">374</a>
+<a href="#375" id="375">375</a>
+<a href="#376" id="376">376</a>
+<a href="#377" id="377">377</a>
+<a href="#378" id="378">378</a>
+<a href="#379" id="379">379</a>
+<a href="#380" id="380">380</a>
+<a href="#381" id="381">381</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// The type of an event.
@@ -429,6 +437,8 @@
     MessageCreate,
     MessageDelete,
     MessageDeleteBulk,
+    MessagePollVoteAdd,
+    MessagePollVoteRemove,
     MessageUpdate,
     PresenceUpdate,
     <span class="attr">#[serde(rename = <span class="string">"MESSAGE_REACTION_ADD"</span>)]
@@ -507,6 +517,8 @@
             <span class="self">Self</span>::MessageDelete =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_DELETE"</span>),
             <span class="self">Self</span>::MessageDeleteBulk =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_DELETE_BULK"</span>),
             <span class="self">Self</span>::MessageUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_UPDATE"</span>),
+            <span class="self">Self</span>::MessagePollVoteAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_POLL_VOTE_ADD"</span>),
+            <span class="self">Self</span>::MessagePollVoteRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_POLL_VOTE_REMOVE"</span>),
             <span class="self">Self</span>::PresenceUpdate =&gt; <span class="prelude-val">Some</span>(<span class="string">"PRESENCE_UPDATE"</span>),
             <span class="self">Self</span>::ReactionAdd =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_ADD"</span>),
             <span class="self">Self</span>::ReactionRemove =&gt; <span class="prelude-val">Some</span>(<span class="string">"MESSAGE_REACTION_REMOVE"</span>),
@@ -584,6 +596,8 @@
             <span class="string">"MESSAGE_DELETE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDelete),
             <span class="string">"MESSAGE_DELETE_BULK" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageDeleteBulk),
             <span class="string">"MESSAGE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessageUpdate),
+            <span class="string">"MESSAGE_POLL_VOTE_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessagePollVoteAdd),
+            <span class="string">"MESSAGE_POLL_VOTE_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::MessagePollVoteRemove),
             <span class="string">"PRESENCE_UPDATE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::PresenceUpdate),
             <span class="string">"MESSAGE_REACTION_ADD" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionAdd),
             <span class="string">"MESSAGE_REACTION_REMOVE" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::ReactionRemove),
@@ -713,6 +727,8 @@
         assert_variant(EventType::MessageDelete, <span class="string">"MESSAGE_DELETE"</span>);
         assert_variant(EventType::MessageDeleteBulk, <span class="string">"MESSAGE_DELETE_BULK"</span>);
         assert_variant(EventType::MessageUpdate, <span class="string">"MESSAGE_UPDATE"</span>);
+        assert_variant(EventType::MessagePollVoteAdd, <span class="string">"MESSAGE_POLL_VOTE_ADD"</span>);
+        assert_variant(EventType::MessagePollVoteRemove, <span class="string">"MESSAGE_POLL_VOTE_REMOVE"</span>);
         assert_variant(EventType::PresenceUpdate, <span class="string">"PRESENCE_UPDATE"</span>);
         assert_variant(EventType::ReactionAdd, <span class="string">"MESSAGE_REACTION_ADD"</span>);
         assert_variant(EventType::ReactionRemove, <span class="string">"MESSAGE_REACTION_REMOVE"</span>);

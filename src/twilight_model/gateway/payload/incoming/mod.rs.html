@@ -113,6 +113,9 @@
 <a href="#113" id="113">113</a>
 <a href="#114" id="114">114</a>
 <a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Payloads that are incoming from the Discord Gateway API.
 //!
 //! These are sent by the Discord Gateway API to shards. The only payload
@@ -168,6 +171,8 @@
 <span class="kw">mod </span>message_create;
 <span class="kw">mod </span>message_delete;
 <span class="kw">mod </span>message_delete_bulk;
+<span class="kw">mod </span>message_poll_vote_add;
+<span class="kw">mod </span>message_poll_vote_remove;
 <span class="kw">mod </span>message_update;
 <span class="kw">mod </span>presence_update;
 <span class="kw">mod </span>reaction_add;
@@ -216,7 +221,8 @@
     invite_create::InviteCreate, invite_delete::InviteDelete, member_add::MemberAdd,
     member_chunk::MemberChunk, member_remove::MemberRemove, member_update::MemberUpdate,
     message_create::MessageCreate, message_delete::MessageDelete,
-    message_delete_bulk::MessageDeleteBulk, message_update::MessageUpdate,
+    message_delete_bulk::MessageDeleteBulk, message_poll_vote_add::MessagePollVoteAdd,
+    message_poll_vote_remove::MessagePollVoteRemove, message_update::MessageUpdate,
     presence_update::PresenceUpdate, reaction_add::ReactionAdd, reaction_remove::ReactionRemove,
     reaction_remove_all::ReactionRemoveAll, reaction_remove_emoji::ReactionRemoveEmoji,
     ready::Ready, role_create::RoleCreate, role_delete::RoleDelete, role_update::RoleUpdate,

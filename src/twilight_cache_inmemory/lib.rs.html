@@ -1097,6 +1097,8 @@
 <a href="#1097" id="1097">1097</a>
 <a href="#1098" id="1098">1098</a>
 <a href="#1099" id="1099">1099</a>
+<a href="#1100" id="1100">1100</a>
+<a href="#1101" id="1101">1101</a>
 </pre></div><pre class="rust"><code><span class="attr">#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![warn(
@@ -2093,6 +2095,8 @@
             | Event::GuildScheduledEventUserRemove(<span class="kw">_</span>)
             | Event::InviteCreate(<span class="kw">_</span>)
             | Event::InviteDelete(<span class="kw">_</span>)
+            | Event::MessagePollVoteAdd(<span class="kw">_</span>)
+            | Event::MessagePollVoteRemove(<span class="kw">_</span>)
             | Event::Resumed
             | Event::ThreadMembersUpdate(<span class="kw">_</span>)
             | Event::ThreadMemberUpdate(<span class="kw">_</span>)

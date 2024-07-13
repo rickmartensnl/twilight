@@ -541,6 +541,18 @@
 <a href="#541" id="541">541</a>
 <a href="#542" id="542">542</a>
 <a href="#543" id="543">543</a>
+<a href="#544" id="544">544</a>
+<a href="#545" id="545">545</a>
+<a href="#546" id="546">546</a>
+<a href="#547" id="547">547</a>
+<a href="#548" id="548">548</a>
+<a href="#549" id="549">549</a>
+<a href="#550" id="550">550</a>
+<a href="#551" id="551">551</a>
+<a href="#552" id="552">552</a>
+<a href="#553" id="553">553</a>
+<a href="#554" id="554">554</a>
+<a href="#555" id="555">555</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::wildcard_imports)]
 
 </span><span class="kw">pub mod </span>gateway;
@@ -664,6 +676,10 @@
     </span>MessageDelete(MessageDelete),
     <span class="doccomment">/// Multiple messages were deleted in a channel.
     </span>MessageDeleteBulk(MessageDeleteBulk),
+    <span class="doccomment">/// A vote was added to a poll.
+    </span>MessagePollVoteAdd(MessagePollVoteAdd),
+    <span class="doccomment">/// A vote was removed from a poll.
+    </span>MessagePollVoteRemove(MessagePollVoteRemove),
     <span class="doccomment">/// A message was updated in a channel.
     </span>MessageUpdate(Box&lt;MessageUpdate&gt;),
     <span class="doccomment">/// A user's active presence (such as game or online status) was updated.
@@ -761,6 +777,8 @@
             Event::MessageDelete(e) =&gt; e.guild_id,
             Event::MessageDeleteBulk(e) =&gt; e.guild_id,
             Event::MessageUpdate(e) =&gt; e.guild_id,
+            Event::MessagePollVoteAdd(e) =&gt; e.guild_id,
+            Event::MessagePollVoteRemove(e) =&gt; e.guild_id,
             Event::PresenceUpdate(e) =&gt; <span class="prelude-val">Some</span>(e.<span class="number">0</span>.guild_id),
             Event::ReactionAdd(e) =&gt; e.<span class="number">0</span>.guild_id,
             Event::ReactionRemove(e) =&gt; e.<span class="number">0</span>.guild_id,
@@ -845,6 +863,8 @@
             <span class="self">Self</span>::MessageCreate(<span class="kw">_</span>) =&gt; EventType::MessageCreate,
             <span class="self">Self</span>::MessageDelete(<span class="kw">_</span>) =&gt; EventType::MessageDelete,
             <span class="self">Self</span>::MessageDeleteBulk(<span class="kw">_</span>) =&gt; EventType::MessageDeleteBulk,
+            <span class="self">Self</span>::MessagePollVoteAdd(<span class="kw">_</span>) =&gt; EventType::MessagePollVoteAdd,
+            <span class="self">Self</span>::MessagePollVoteRemove(<span class="kw">_</span>) =&gt; EventType::MessagePollVoteRemove,
             <span class="self">Self</span>::MessageUpdate(<span class="kw">_</span>) =&gt; EventType::MessageUpdate,
             <span class="self">Self</span>::PresenceUpdate(<span class="kw">_</span>) =&gt; EventType::PresenceUpdate,
             <span class="self">Self</span>::ReactionAdd(<span class="kw">_</span>) =&gt; EventType::ReactionAdd,
@@ -924,6 +944,8 @@
             DispatchEvent::MessageCreate(v) =&gt; <span class="self">Self</span>::MessageCreate(v),
             DispatchEvent::MessageDelete(v) =&gt; <span class="self">Self</span>::MessageDelete(v),
             DispatchEvent::MessageDeleteBulk(v) =&gt; <span class="self">Self</span>::MessageDeleteBulk(v),
+            DispatchEvent::MessagePollVoteAdd(v) =&gt; <span class="self">Self</span>::MessagePollVoteAdd(v),
+            DispatchEvent::MessagePollVoteRemove(v) =&gt; <span class="self">Self</span>::MessagePollVoteRemove(v),
             DispatchEvent::MessageUpdate(v) =&gt; <span class="self">Self</span>::MessageUpdate(v),
             DispatchEvent::PresenceUpdate(v) =&gt; <span class="self">Self</span>::PresenceUpdate(v),
             DispatchEvent::ReactionAdd(v) =&gt; <span class="self">Self</span>::ReactionAdd(v),
@@ -1083,5 +1105,7 @@
     <span class="macro">const_assert!</span>(mem::size_of::&lt;UserUpdate&gt;() &lt;= EVENT_THRESHOLD);
     <span class="macro">const_assert!</span>(mem::size_of::&lt;VoiceServerUpdate&gt;() &lt;= EVENT_THRESHOLD);
     <span class="macro">const_assert!</span>(mem::size_of::&lt;WebhooksUpdate&gt;() &lt;= EVENT_THRESHOLD);
+    <span class="macro">const_assert!</span>(mem::size_of::&lt;MessagePollVoteAdd&gt;() &lt;= EVENT_THRESHOLD);
+    <span class="macro">const_assert!</span>(mem::size_of::&lt;MessagePollVoteRemove&gt;() &lt;= EVENT_THRESHOLD);
 }
 </code></pre></div></section></main></body></html>

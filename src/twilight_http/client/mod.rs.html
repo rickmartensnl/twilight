@@ -2810,6 +2810,62 @@
 <a href="#2810" id="2810">2810</a>
 <a href="#2811" id="2811">2811</a>
 <a href="#2812" id="2812">2812</a>
+<a href="#2813" id="2813">2813</a>
+<a href="#2814" id="2814">2814</a>
+<a href="#2815" id="2815">2815</a>
+<a href="#2816" id="2816">2816</a>
+<a href="#2817" id="2817">2817</a>
+<a href="#2818" id="2818">2818</a>
+<a href="#2819" id="2819">2819</a>
+<a href="#2820" id="2820">2820</a>
+<a href="#2821" id="2821">2821</a>
+<a href="#2822" id="2822">2822</a>
+<a href="#2823" id="2823">2823</a>
+<a href="#2824" id="2824">2824</a>
+<a href="#2825" id="2825">2825</a>
+<a href="#2826" id="2826">2826</a>
+<a href="#2827" id="2827">2827</a>
+<a href="#2828" id="2828">2828</a>
+<a href="#2829" id="2829">2829</a>
+<a href="#2830" id="2830">2830</a>
+<a href="#2831" id="2831">2831</a>
+<a href="#2832" id="2832">2832</a>
+<a href="#2833" id="2833">2833</a>
+<a href="#2834" id="2834">2834</a>
+<a href="#2835" id="2835">2835</a>
+<a href="#2836" id="2836">2836</a>
+<a href="#2837" id="2837">2837</a>
+<a href="#2838" id="2838">2838</a>
+<a href="#2839" id="2839">2839</a>
+<a href="#2840" id="2840">2840</a>
+<a href="#2841" id="2841">2841</a>
+<a href="#2842" id="2842">2842</a>
+<a href="#2843" id="2843">2843</a>
+<a href="#2844" id="2844">2844</a>
+<a href="#2845" id="2845">2845</a>
+<a href="#2846" id="2846">2846</a>
+<a href="#2847" id="2847">2847</a>
+<a href="#2848" id="2848">2848</a>
+<a href="#2849" id="2849">2849</a>
+<a href="#2850" id="2850">2850</a>
+<a href="#2851" id="2851">2851</a>
+<a href="#2852" id="2852">2852</a>
+<a href="#2853" id="2853">2853</a>
+<a href="#2854" id="2854">2854</a>
+<a href="#2855" id="2855">2855</a>
+<a href="#2856" id="2856">2856</a>
+<a href="#2857" id="2857">2857</a>
+<a href="#2858" id="2858">2858</a>
+<a href="#2859" id="2859">2859</a>
+<a href="#2860" id="2860">2860</a>
+<a href="#2861" id="2861">2861</a>
+<a href="#2862" id="2862">2862</a>
+<a href="#2863" id="2863">2863</a>
+<a href="#2864" id="2864">2864</a>
+<a href="#2865" id="2865">2865</a>
+<a href="#2866" id="2866">2866</a>
+<a href="#2867" id="2867">2867</a>
+<a href="#2868" id="2868">2868</a>
 </pre></div><pre class="rust"><code><span class="kw">mod </span>builder;
 <span class="kw">mod </span>connector;
 <span class="kw">mod </span>interaction;
@@ -2878,6 +2934,7 @@
             UpdateCurrentMember, UpdateGuild, UpdateGuildChannelPositions, UpdateGuildMfa,
             UpdateGuildWelcomeScreen, UpdateGuildWidgetSettings,
         },
+        poll::{EndPoll, GetAnswerVoters},
         scheduled_event::{
             CreateGuildScheduledEvent, DeleteGuildScheduledEvent, GetGuildScheduledEvent,
             GetGuildScheduledEventUsers, GetGuildScheduledEvents, UpdateGuildScheduledEvent,
@@ -5433,6 +5490,32 @@
         CreateTestEntitlement::new(<span class="self">self</span>, application_id, sku_id, owner)
     }
 
+    <span class="doccomment">/// Ends a poll in a channel.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use twilight_http::Client;
+    /// use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// let client = Client::new("my token".to_owned());
+    ///
+    /// let channel_id = Id::new(1);
+    /// let message_id = Id::new(2);
+    ///
+    /// client.end_poll(channel_id, message_id).await?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="kw">pub const fn </span>end_poll(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        channel_id: Id&lt;ChannelMarker&gt;,
+        message_id: Id&lt;MessageMarker&gt;,
+    ) -&gt; EndPoll&lt;<span class="lifetime">'_</span>&gt; {
+        EndPoll::new(<span class="self">self</span>, channel_id, message_id)
+    }
+
     <span class="doccomment">/// Deletes a currently-active test entitlement. Discord will act as though that user or
     /// guild no longer has entitlement to your premium offering.
     ///
@@ -5461,6 +5544,35 @@
         entitlement_id: Id&lt;EntitlementMarker&gt;,
     ) -&gt; DeleteTestEntitlement&lt;<span class="lifetime">'_</span>&gt; {
         DeleteTestEntitlement::new(<span class="self">self</span>, application_id, entitlement_id)
+    }
+
+    <span class="doccomment">/// /// Get the voters for an answer in a poll.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// use twilight_http::Client;
+    /// use twilight_model::id::Id;
+    ///
+    /// # #[tokio::main]
+    /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    /// let client = Client::new("my token".to_owned());
+    ///
+    /// let channel_id = Id::new(1);
+    /// let message_id = Id::new(2);
+    /// let answer_id = 1;
+    ///
+    /// let voters = client.get_answer_voters(channel_id, message_id, answer_id).await?;
+    ///
+    /// println!("{:?}", voters);
+    /// # Ok(()) }
+    </span><span class="kw">pub const fn </span>get_answer_voters(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        channel_id: Id&lt;ChannelMarker&gt;,
+        message_id: Id&lt;MessageMarker&gt;,
+        answer_id: u8,
+    ) -&gt; GetAnswerVoters&lt;<span class="lifetime">'_</span>&gt; {
+        GetAnswerVoters::new(<span class="self">self</span>, channel_id, message_id, answer_id)
     }
 
     <span class="doccomment">/// Returns all SKUs for a given application.

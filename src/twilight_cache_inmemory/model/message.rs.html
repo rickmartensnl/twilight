@@ -538,6 +538,10 @@
 <a href="#538" id="538">538</a>
 <a href="#539" id="539">539</a>
 <a href="#540" id="540">540</a>
+<a href="#541" id="541">541</a>
+<a href="#542" id="542">542</a>
+<a href="#543" id="543">543</a>
+<a href="#544" id="544">544</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Cached message-related models.
 
 </span><span class="kw">use </span>serde::Serialize;
@@ -560,6 +564,7 @@
         },
         Id,
     },
+    poll::Poll,
     util::Timestamp,
 };
 
@@ -654,6 +659,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) mention_roles: Vec&lt;Id&lt;RoleMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) mentions: Vec&lt;Id&lt;UserMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) pinned: bool,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) poll: <span class="prelude-ty">Option</span>&lt;Poll&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) reactions: Vec&lt;Reaction&gt;,
     reference: <span class="prelude-ty">Option</span>&lt;MessageReference&gt;,
     role_subscription_data: <span class="prelude-ty">Option</span>&lt;RoleSubscriptionData&gt;,
@@ -860,6 +866,7 @@
             mention_roles,
             mentions,
             pinned,
+            poll,
             reactions,
             reference,
             referenced_message: <span class="kw">_</span>,
@@ -893,6 +900,7 @@
             mention_roles,
             mentions: mentions.into_iter().map(|mention| mention.id).collect(),
             pinned,
+            poll,
             reactions,
             reference,
             role_subscription_data,

@@ -4707,6 +4707,60 @@
 <a href="#4707" id="4707">4707</a>
 <a href="#4708" id="4708">4708</a>
 <a href="#4709" id="4709">4709</a>
+<a href="#4710" id="4710">4710</a>
+<a href="#4711" id="4711">4711</a>
+<a href="#4712" id="4712">4712</a>
+<a href="#4713" id="4713">4713</a>
+<a href="#4714" id="4714">4714</a>
+<a href="#4715" id="4715">4715</a>
+<a href="#4716" id="4716">4716</a>
+<a href="#4717" id="4717">4717</a>
+<a href="#4718" id="4718">4718</a>
+<a href="#4719" id="4719">4719</a>
+<a href="#4720" id="4720">4720</a>
+<a href="#4721" id="4721">4721</a>
+<a href="#4722" id="4722">4722</a>
+<a href="#4723" id="4723">4723</a>
+<a href="#4724" id="4724">4724</a>
+<a href="#4725" id="4725">4725</a>
+<a href="#4726" id="4726">4726</a>
+<a href="#4727" id="4727">4727</a>
+<a href="#4728" id="4728">4728</a>
+<a href="#4729" id="4729">4729</a>
+<a href="#4730" id="4730">4730</a>
+<a href="#4731" id="4731">4731</a>
+<a href="#4732" id="4732">4732</a>
+<a href="#4733" id="4733">4733</a>
+<a href="#4734" id="4734">4734</a>
+<a href="#4735" id="4735">4735</a>
+<a href="#4736" id="4736">4736</a>
+<a href="#4737" id="4737">4737</a>
+<a href="#4738" id="4738">4738</a>
+<a href="#4739" id="4739">4739</a>
+<a href="#4740" id="4740">4740</a>
+<a href="#4741" id="4741">4741</a>
+<a href="#4742" id="4742">4742</a>
+<a href="#4743" id="4743">4743</a>
+<a href="#4744" id="4744">4744</a>
+<a href="#4745" id="4745">4745</a>
+<a href="#4746" id="4746">4746</a>
+<a href="#4747" id="4747">4747</a>
+<a href="#4748" id="4748">4748</a>
+<a href="#4749" id="4749">4749</a>
+<a href="#4750" id="4750">4750</a>
+<a href="#4751" id="4751">4751</a>
+<a href="#4752" id="4752">4752</a>
+<a href="#4753" id="4753">4753</a>
+<a href="#4754" id="4754">4754</a>
+<a href="#4755" id="4755">4755</a>
+<a href="#4756" id="4756">4756</a>
+<a href="#4757" id="4757">4757</a>
+<a href="#4758" id="4758">4758</a>
+<a href="#4759" id="4759">4759</a>
+<a href="#4760" id="4760">4760</a>
+<a href="#4761" id="4761">4761</a>
+<a href="#4762" id="4762">4762</a>
+<a href="#4763" id="4763">4763</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 <span class="kw">pub use </span>twilight_http_ratelimiting::request::{Path, PathParseError, PathParseErrorType};
 
@@ -5057,11 +5111,17 @@
         token: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
         webhook_id: u64,
     },
-    DeleteTestEntitlement {
+    <span class="doccomment">/// Route information to delete a test entitlement.
+    </span>DeleteTestEntitlement {
         <span class="doccomment">/// The ID of the application.
         </span>application_id: u64,
         <span class="doccomment">/// The ID of the entitlement.
         </span>entitlement_id: u64,
+    },
+    <span class="doccomment">/// Route information to end a poll.
+    </span>EndPoll {
+        channel_id: u64,
+        message_id: u64,
     },
     <span class="doccomment">/// Route information to execute a webhook by ID and token.
     </span>ExecuteWebhook {
@@ -5083,6 +5143,19 @@
     </span>GetActiveThreads {
         <span class="doccomment">/// ID of the guild.
         </span>guild_id: u64,
+    },
+    <span class="doccomment">/// Route information for fetching poll vote information.
+    </span>GetAnswerVoters {
+        <span class="doccomment">/// Get users after this user ID.
+        </span>after: <span class="prelude-ty">Option</span>&lt;u64&gt;,
+        <span class="doccomment">/// The id of the poll answer.
+        </span>answer_id: u8,
+        <span class="doccomment">/// The ID of the channel the poll is in.
+        </span>channel_id: u64,
+        <span class="doccomment">/// The maximum number of users to return (1-100).
+        </span>limit: <span class="prelude-ty">Option</span>&lt;u8&gt;,
+        <span class="doccomment">/// The message ID of the poll.
+        </span>message_id: u64,
     },
     <span class="doccomment">/// Route information to get a paginated list of audit logs in a guild.
     </span>GetAuditLogs {
@@ -5907,6 +5980,7 @@
             | <span class="self">Self</span>::RemoveThreadMember { .. }
             | <span class="self">Self</span>::UnpinMessage { .. } =&gt; Method::Delete,
             <span class="self">Self</span>::GetActiveThreads { .. }
+            | <span class="self">Self</span>::GetAnswerVoters { .. }
             | <span class="self">Self</span>::GetAuditLogs { .. }
             | <span class="self">Self</span>::GetAutoModerationRule { .. }
             | <span class="self">Self</span>::GetBan { .. }
@@ -6032,6 +6106,7 @@
             | <span class="self">Self</span>::CreateWebhook { .. }
             | <span class="self">Self</span>::CrosspostMessage { .. }
             | <span class="self">Self</span>::DeleteMessages { .. }
+            | <span class="self">Self</span>::EndPoll { .. }
             | <span class="self">Self</span>::ExecuteWebhook { .. }
             | <span class="self">Self</span>::FollowNewsChannel { .. }
             | <span class="self">Self</span>::InteractionCallback { .. }
@@ -6369,6 +6444,9 @@
             }
             <span class="self">Self</span>::UpdateNickname { guild_id } =&gt; Path::GuildsIdMembersMeNick(guild_id),
             <span class="self">Self</span>::UpdateGuildMfa { guild_id } =&gt; Path::GuildsIdMfa(guild_id),
+            <span class="self">Self</span>::EndPoll { channel_id, .. } | <span class="self">Self</span>::GetAnswerVoters { channel_id, .. } =&gt; {
+                Path::ChannelsIdPolls(channel_id)
+            }
         }
     }
 }
@@ -6506,6 +6584,25 @@
                 f.write_str(<span class="string">"/auto-moderation/rules/"</span>)<span class="question-mark">?</span>;
 
                 Display::fmt(auto_moderation_rule_id, f)
+            }
+            Route::GetAnswerVoters {
+                after,
+                answer_id,
+                channel_id,
+                limit,
+                message_id,
+            } =&gt; {
+                f.write_str(<span class="string">"channels/"</span>)<span class="question-mark">?</span>;
+                Display::fmt(channel_id, f)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"/polls/"</span>)<span class="question-mark">?</span>;
+                Display::fmt(message_id, f)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"/answers/"</span>)<span class="question-mark">?</span>;
+                Display::fmt(answer_id, f)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"?"</span>)<span class="question-mark">?</span>;
+
+                <span class="kw">let </span><span class="kw-2">mut </span>writer = QueryStringFormatter::new(f);
+                writer.write_opt_param(<span class="string">"after"</span>, after.as_ref())<span class="question-mark">?</span>;
+                writer.write_opt_param(<span class="string">"limit"</span>, limit.as_ref())
             }
             Route::GetGlobalCommands {
                 application_id,
@@ -7019,6 +7116,17 @@
                 }
 
                 <span class="prelude-val">Ok</span>(())
+            }
+            Route::EndPoll {
+                channel_id,
+                message_id,
+            } =&gt; {
+                f.write_str(<span class="string">"channels/"</span>)<span class="question-mark">?</span>;
+                Display::fmt(channel_id, f)<span class="question-mark">?</span>;
+                f.write_str(<span class="string">"/polls/"</span>)<span class="question-mark">?</span>;
+                Display::fmt(message_id, f)<span class="question-mark">?</span>;
+
+                f.write_str(<span class="string">"/expire"</span>)
             }
             Route::ExecuteWebhook {
                 thread_id,
