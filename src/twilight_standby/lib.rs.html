@@ -1582,6 +1582,8 @@
 <a href="#1582" id="1582">1582</a>
 <a href="#1583" id="1583">1583</a>
 <a href="#1584" id="1584">1584</a>
+<a href="#1585" id="1585">1585</a>
+<a href="#1586" id="1586">1586</a>
 </pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![warn(
     clippy::missing_const_for_fn,
@@ -2166,7 +2168,7 @@
     /// # async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
     /// use tokio_stream::StreamExt;
     /// use twilight_model::{
-    ///     channel::message::ReactionType,
+    ///     channel::message::EmojiReactionType,
     ///     gateway::payload::incoming::ReactionAdd,
     ///     id::Id,
     /// };
@@ -2177,7 +2179,7 @@
     /// let message_id = Id::new(123);
     ///
     /// let mut reactions = standby.wait_for_reaction_stream(message_id, |event: &amp;ReactionAdd| {
-    ///     matches!(&amp;event.emoji, ReactionType::Unicode { name } if name == "🤠")
+    ///     matches!(&amp;event.emoji, EmojiReactionType::Unicode { name } if name == "🤠")
     /// });
     ///
     /// while let Some(reaction) = reactions.next().await {
@@ -2650,7 +2652,7 @@
             InteractionType,
         },
         channel::{
-            message::{component::ComponentType, Message, MessageType, ReactionType},
+            message::{component::ComponentType, EmojiReactionType, Message, MessageType},
             Channel, ChannelType,
         },
         gateway::{
@@ -2722,8 +2724,10 @@
 
     <span class="kw">fn </span>reaction() -&gt; GatewayReaction {
         GatewayReaction {
+            burst: <span class="bool-val">false</span>,
+            burst_colors: Vec::new(),
             channel_id: Id::new(<span class="number">2</span>),
-            emoji: ReactionType::Unicode {
+            emoji: EmojiReactionType::Unicode {
                 name: <span class="string">"🍎"</span>.to_owned(),
             },
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),

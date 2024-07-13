@@ -15,7 +15,7 @@
 <a href="#15" id="15">15</a>
 <a href="#16" id="16">16</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
-    channel::message::ReactionType,
+    channel::message::EmojiReactionType,
     id::{
         marker::{ChannelMarker, GuildMarker, MessageMarker},
         Id,
@@ -26,7 +26,7 @@
 <span class="attr">#[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 </span><span class="kw">pub struct </span>ReactionRemoveEmoji {
     <span class="kw">pub </span>channel_id: Id&lt;ChannelMarker&gt;,
-    <span class="kw">pub </span>emoji: ReactionType,
+    <span class="kw">pub </span>emoji: EmojiReactionType,
     <span class="kw">pub </span>guild_id: Id&lt;GuildMarker&gt;,
     <span class="kw">pub </span>message_id: Id&lt;MessageMarker&gt;,
 }

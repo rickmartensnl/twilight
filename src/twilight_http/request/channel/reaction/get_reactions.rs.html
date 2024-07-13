@@ -115,6 +115,21 @@
 <a href="#115" id="115">115</a>
 <a href="#116" id="116">116</a>
 <a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::RequestReactionType;
 <span class="kw">use crate</span>::{
     client::Client,
@@ -125,6 +140,7 @@
 };
 <span class="kw">use </span>std::future::IntoFuture;
 <span class="kw">use </span>twilight_model::{
+    channel::message::ReactionType,
     id::{
         marker::{ChannelMarker, MessageMarker, UserMarker},
         Id,
@@ -138,6 +154,7 @@
 <span class="kw">struct </span>GetReactionsFields {
     after: <span class="prelude-ty">Option</span>&lt;Id&lt;UserMarker&gt;&gt;,
     limit: <span class="prelude-ty">Option</span>&lt;u16&gt;,
+    kind: <span class="prelude-ty">Option</span>&lt;ReactionType&gt;,
 }
 
 <span class="doccomment">/// Get a list of users that reacted to a message with an `emoji`.
@@ -166,6 +183,7 @@
             fields: <span class="prelude-val">Ok</span>(GetReactionsFields {
                 after: <span class="prelude-val">None</span>,
                 limit: <span class="prelude-val">None</span>,
+                kind: <span class="prelude-val">None</span>,
             }),
             http,
             message_id,
@@ -202,6 +220,17 @@
 
         <span class="self">self
     </span>}
+
+    <span class="doccomment">/// Set the kind of reaction to retrieve.
+    ///
+    /// This can be either a super reaction or a normal reaction.
+    </span><span class="kw">pub fn </span>kind(<span class="kw-2">mut </span><span class="self">self</span>, kind: ReactionType) -&gt; <span class="self">Self </span>{
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(fields) = <span class="self">self</span>.fields.as_mut() {
+            fields.kind = <span class="prelude-val">Some</span>(kind);
+        }
+
+        <span class="self">self
+    </span>}
 }
 
 <span class="kw">impl </span>IntoFuture <span class="kw">for </span>GetReactions&lt;<span class="lifetime">'_</span>&gt; {
@@ -229,6 +258,7 @@
             emoji: <span class="self">self</span>.emoji,
             limit: fields.limit,
             message_id: <span class="self">self</span>.message_id.get(),
+            kind: fields.kind.map(Into::into),
         }))
     }
 }

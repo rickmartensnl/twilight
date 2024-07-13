@@ -139,7 +139,7 @@
 <a href="#139" id="139">139</a>
 <a href="#140" id="140">140</a>
 <a href="#141" id="141">141</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::channel::{message::ReactionType, ChannelType};
+</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::channel::{message::EmojiReactionType, ChannelType};
 <span class="kw">use </span><span class="kw">crate</span>::id::marker::{ChannelMarker, RoleMarker, UserMarker};
 <span class="kw">use </span><span class="kw">crate</span>::id::Id;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
@@ -206,7 +206,7 @@
     <span class="doccomment">/// Emoji associated with the option. Appears left of the label and
     /// description.
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
-    </span><span class="kw">pub </span>emoji: <span class="prelude-ty">Option</span>&lt;ReactionType&gt;,
+    </span><span class="kw">pub </span>emoji: <span class="prelude-ty">Option</span>&lt;EmojiReactionType&gt;,
     <span class="doccomment">/// User-facing name.
     </span><span class="kw">pub </span>label: String,
     <span class="doccomment">/// Developer defined value.

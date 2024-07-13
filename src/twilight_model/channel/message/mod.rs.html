@@ -740,6 +740,8 @@
 <a href="#740" id="740">740</a>
 <a href="#741" id="741">741</a>
 <a href="#742" id="742">742</a>
+<a href="#743" id="743">743</a>
+<a href="#744" id="744">744</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Textual user communication method.
 </span><span class="attr">#![warn(missing_docs)]
 
@@ -755,6 +757,7 @@
 <span class="kw">mod </span>kind;
 <span class="kw">mod </span>mention;
 <span class="kw">mod </span>reaction;
+<span class="kw">mod </span>reaction_type;
 <span class="kw">mod </span>reference;
 <span class="kw">mod </span>role_subscription_data;
 
@@ -768,7 +771,8 @@
     interaction::MessageInteraction,
     kind::MessageType,
     mention::Mention,
-    reaction::{Reaction, ReactionCountDetails, ReactionType},
+    reaction::{EmojiReactionType, Reaction, ReactionCountDetails},
+    reaction_type::ReactionType,
     reference::MessageReference,
     role_subscription_data::RoleSubscriptionData,
     sticker::Sticker,
@@ -940,8 +944,8 @@
     <span class="kw">use super</span>::{
         reaction::ReactionCountDetails,
         sticker::{MessageSticker, StickerFormatType},
-        Message, MessageActivity, MessageActivityType, MessageApplication, MessageFlags,
-        MessageReference, MessageType, Reaction, ReactionType,
+        EmojiReactionType, Message, MessageActivity, MessageActivityType, MessageApplication,
+        MessageFlags, MessageReference, MessageType, Reaction,
     };
     <span class="kw">use crate</span>::{
         channel::{ChannelMention, ChannelType},
@@ -1232,7 +1236,7 @@
                     burst: <span class="number">0</span>,
                     normal: <span class="number">7</span>,
                 },
-                emoji: ReactionType::Unicode {
+                emoji: EmojiReactionType::Unicode {
                     name: <span class="string">"a"</span>.to_owned(),
                 },
                 me: <span class="bool-val">true</span>,
@@ -1429,7 +1433,7 @@
                 Token::StructEnd,
                 Token::Str(<span class="string">"emoji"</span>),
                 Token::Struct {
-                    name: <span class="string">"ReactionType"</span>,
+                    name: <span class="string">"EmojiReactionType"</span>,
                     len: <span class="number">1</span>,
                 },
                 Token::Str(<span class="string">"name"</span>),

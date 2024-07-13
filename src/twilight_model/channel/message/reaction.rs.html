@@ -209,17 +209,17 @@
     <span class="doccomment">/// Reaction count details for each type of reaction.
     </span><span class="kw">pub </span>count_details: ReactionCountDetails,
     <span class="doccomment">/// Emoji of this reaction.
-    </span><span class="kw">pub </span>emoji: ReactionType,
+    </span><span class="kw">pub </span>emoji: EmojiReactionType,
     <span class="doccomment">/// Whether the current user has reacted with this emoji.
     </span><span class="kw">pub </span>me: bool,
     <span class="doccomment">/// Whether the current user super-reacted using this emoji
     </span><span class="kw">pub </span>me_burst: bool,
 }
 
-<span class="doccomment">/// Type of [`Reaction`].
+<span class="doccomment">/// Type of emoji in a [`Reaction`].
 </span><span class="attr">#[derive(Clone, Debug, Eq, Hash, PartialEq, Deserialize, Serialize)]
 #[serde(untagged)]
-</span><span class="kw">pub enum </span>ReactionType {
+</span><span class="kw">pub enum </span>EmojiReactionType {
     <span class="doccomment">/// Custom [`Emoji`].
     ///
     /// [`Emoji`]: crate::guild::Emoji
@@ -261,7 +261,7 @@
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="kw">use super</span>::{Reaction, ReactionCountDetails, ReactionType};
+    <span class="kw">use super</span>::{EmojiReactionType, Reaction, ReactionCountDetails};
     <span class="kw">use crate</span>::{id::Id, util::HexColor};
     <span class="kw">use </span>serde_test::Token;
 
@@ -274,7 +274,7 @@
                 burst: <span class="number">0</span>,
                 normal: <span class="number">7</span>,
             },
-            emoji: ReactionType::Unicode {
+            emoji: EmojiReactionType::Unicode {
                 name: <span class="string">"a"</span>.to_owned(),
             },
             me: <span class="bool-val">true</span>,
@@ -306,7 +306,7 @@
                 Token::StructEnd,
                 Token::Str(<span class="string">"emoji"</span>),
                 Token::Struct {
-                    name: <span class="string">"ReactionType"</span>,
+                    name: <span class="string">"EmojiReactionType"</span>,
                     len: <span class="number">1</span>,
                 },
                 Token::Str(<span class="string">"name"</span>),
@@ -323,7 +323,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>custom() {
-        <span class="kw">let </span>value = ReactionType::Custom {
+        <span class="kw">let </span>value = EmojiReactionType::Custom {
             animated: <span class="bool-val">false</span>,
             id: Id::new(<span class="number">1337</span>),
             name: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>.to_owned()),
@@ -333,7 +333,7 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">"ReactionType"</span>,
+                    name: <span class="string">"EmojiReactionType"</span>,
                     len: <span class="number">3</span>,
                 },
                 Token::Str(<span class="string">"animated"</span>),
@@ -370,7 +370,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>unicode() {
-        <span class="kw">let </span>value = ReactionType::Unicode {
+        <span class="kw">let </span>value = EmojiReactionType::Unicode {
             name: <span class="string">"\u{1f643}"</span>.to_owned(),
         };
 
@@ -378,7 +378,7 @@
             <span class="kw-2">&amp;</span>value,
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
-                    name: <span class="string">"ReactionType"</span>,
+                    name: <span class="string">"EmojiReactionType"</span>,
                     len: <span class="number">1</span>,
                 },
                 Token::Str(<span class="string">"name"</span>),

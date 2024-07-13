@@ -2677,7 +2677,7 @@
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
     <span class="kw">use </span>static_assertions::{assert_fields, assert_impl_all};
-    <span class="kw">use </span>twilight_model::channel::message::ReactionType;
+    <span class="kw">use </span>twilight_model::channel::message::EmojiReactionType;
 
     <span class="macro">assert_fields!</span>(ComponentValidationErrorType::ActionRowComponentCount: count);
     <span class="macro">assert_fields!</span>(ComponentValidationErrorType::ComponentCount: count);
@@ -2708,7 +2708,7 @@
         <span class="kw">let </span>button = Button {
             custom_id: <span class="prelude-val">None</span>,
             disabled: <span class="bool-val">false</span>,
-            emoji: <span class="prelude-val">Some</span>(ReactionType::Unicode {
+            emoji: <span class="prelude-val">Some</span>(EmojiReactionType::Unicode {
                 name: <span class="string">"📚"</span>.into()
             }),
             label: <span class="prelude-val">Some</span>(<span class="string">"Read"</span>.into()),

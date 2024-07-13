@@ -1085,7 +1085,7 @@
     text_input::{TextInput, TextInputStyle},
 };
 
-<span class="kw">use </span><span class="kw">super</span>::ReactionType;
+<span class="kw">use </span><span class="kw">super</span>::EmojiReactionType;
 <span class="kw">use </span><span class="kw">crate</span>::channel::ChannelType;
 <span class="kw">use </span>serde::{
     de::{Deserializer, Error <span class="kw">as </span>DeError, IgnoredAny, MapAccess, Visitor},
@@ -1124,7 +1124,7 @@
 /// use twilight_model::{
 ///     channel::message::{
 ///         component::{ActionRow, Component, SelectMenu, SelectMenuOption, SelectMenuType},
-///         ReactionType,
+///         EmojiReactionType,
 ///     },
 ///     id::Id,
 /// };
@@ -1141,7 +1141,7 @@
 ///         options: Some(Vec::from([
 ///             SelectMenuOption {
 ///                 default: false,
-///                 emoji: Some(ReactionType::Custom {
+///                 emoji: Some(EmojiReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891304148303894),
 ///                     name: Some("rogue".to_owned()),
@@ -1152,7 +1152,7 @@
 ///             },
 ///             SelectMenuOption {
 ///                 default: false,
-///                 emoji: Some(ReactionType::Custom {
+///                 emoji: Some(EmojiReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891304081063986),
 ///                     name: Some("mage".to_owned()),
@@ -1163,7 +1163,7 @@
 ///             },
 ///             SelectMenuOption {
 ///                 default: false,
-///                 emoji: Some(ReactionType::Custom {
+///                 emoji: Some(EmojiReactionType::Custom {
 ///                     animated: false,
 ///                     id: Id::new(625891303795982337),
 ///                     name: Some("priest".to_owned()),
@@ -1305,7 +1305,7 @@
         </span><span class="kw">let </span><span class="kw-2">mut </span>channel_types: <span class="prelude-ty">Option</span>&lt;Vec&lt;ChannelType&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>default_values: <span class="prelude-ty">Option</span>&lt;Vec&lt;SelectDefaultValue&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>disabled: <span class="prelude-ty">Option</span>&lt;bool&gt; = <span class="prelude-val">None</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>emoji: <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Option</span>&lt;ReactionType&gt;&gt; = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>emoji: <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Option</span>&lt;EmojiReactionType&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>max_length: <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Option</span>&lt;u16&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>max_values: <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Option</span>&lt;u8&gt;&gt; = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>min_length: <span class="prelude-ty">Option</span>&lt;<span class="prelude-ty">Option</span>&lt;u16&gt;&gt; = <span class="prelude-val">None</span>;
@@ -1965,7 +1965,7 @@
         <span class="kw">let </span>value = Component::Button(Button {
             custom_id: <span class="prelude-val">Some</span>(<span class="string">"test"</span>.to_owned()),
             disabled: <span class="bool-val">false</span>,
-            emoji: <span class="prelude-val">Some</span>(ReactionType::Unicode {
+            emoji: <span class="prelude-val">Some</span>(EmojiReactionType::Unicode {
                 name: FLAG.to_owned(),
             }),
             label: <span class="prelude-val">Some</span>(<span class="string">"Test"</span>.to_owned()),
@@ -1988,7 +1988,7 @@
                 Token::String(<span class="string">"emoji"</span>),
                 Token::Some,
                 Token::Struct {
-                    name: <span class="string">"ReactionType"</span>,
+                    name: <span class="string">"EmojiReactionType"</span>,
                     len: <span class="number">1</span>,
                 },
                 Token::String(<span class="string">"name"</span>),

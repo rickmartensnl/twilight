@@ -292,13 +292,19 @@
 <a href="#292" id="292">292</a>
 <a href="#293" id="293">293</a>
 <a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     config::ResourceType,
     traits::{CacheableCurrentUser, CacheableMessage},
     CacheableModels, InMemoryCache, UpdateCache,
 };
 <span class="kw">use </span>twilight_model::{
-    channel::message::{Reaction, ReactionCountDetails, ReactionType},
+    channel::message::{EmojiReactionType, Reaction, ReactionCountDetails},
     gateway::payload::incoming::{
         ReactionAdd, ReactionRemove, ReactionRemoveAll, ReactionRemoveEmoji,
     },
@@ -418,14 +424,16 @@
     }
 }
 
-<span class="kw">fn </span>reactions_eq(a: <span class="kw-2">&amp;</span>ReactionType, b: <span class="kw-2">&amp;</span>ReactionType) -&gt; bool {
+<span class="kw">fn </span>reactions_eq(a: <span class="kw-2">&amp;</span>EmojiReactionType, b: <span class="kw-2">&amp;</span>EmojiReactionType) -&gt; bool {
     <span class="kw">match </span>(a, b) {
-        (ReactionType::Custom { id: id_a, .. }, ReactionType::Custom { id: id_b, .. }) =&gt; {
-            id_a == id_b
-        }
-        (ReactionType::Unicode { name: name_a }, ReactionType::Unicode { name: name_b }) =&gt; {
-            name_a == name_b
-        }
+        (
+            EmojiReactionType::Custom { id: id_a, .. },
+            EmojiReactionType::Custom { id: id_b, .. },
+        ) =&gt; id_a == id_b,
+        (
+            EmojiReactionType::Unicode { name: name_a },
+            EmojiReactionType::Unicode { name: name_b },
+        ) =&gt; name_a == name_b,
         <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
     }
 }
@@ -435,7 +443,7 @@
     <span class="kw">use </span><span class="kw">super</span>::reactions_eq;
     <span class="kw">use crate</span>::{model::CachedMessage, test};
     <span class="kw">use </span>twilight_model::{
-        channel::message::{Reaction, ReactionType},
+        channel::message::{EmojiReactionType, Reaction},
         gateway::{
             payload::incoming::{ReactionRemove, ReactionRemoveAll, ReactionRemoveEmoji},
             GatewayReaction,
@@ -447,7 +455,7 @@
         msg.reactions.iter().find(|<span class="kw-2">&amp;</span>r| {
             reactions_eq(
                 <span class="kw-2">&amp;</span>r.emoji,
-                <span class="kw-2">&amp;</span>ReactionType::Custom {
+                <span class="kw-2">&amp;</span>EmojiReactionType::Custom {
                     animated: <span class="bool-val">false</span>,
                     id: Id::new(<span class="number">6</span>),
                     name: <span class="prelude-val">None</span>,
@@ -466,11 +474,11 @@
         <span class="kw">let </span>world_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
         <span class="kw">let </span>smiley_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
         <span class="kw">let </span>custom_react = find_custom_react(<span class="kw-2">&amp;</span>msg);
 
         <span class="macro">assert!</span>(world_react.is_some());
@@ -485,8 +493,10 @@
     </span><span class="kw">fn </span>reaction_remove() {
         <span class="kw">let </span>cache = test::cache_with_message_and_reactions();
         cache.update(<span class="kw-2">&amp;</span>ReactionRemove(GatewayReaction {
+            burst: <span class="bool-val">false</span>,
+            burst_colors: Vec::new(),
             channel_id: Id::new(<span class="number">2</span>),
-            emoji: ReactionType::Unicode {
+            emoji: EmojiReactionType::Unicode {
                 name: <span class="string">"😀"</span>.to_owned(),
             },
             guild_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
@@ -496,8 +506,10 @@
             user_id: Id::new(<span class="number">5</span>),
         }));
         cache.update(<span class="kw-2">&amp;</span>ReactionRemove(GatewayReaction {
+            burst: <span class="bool-val">false</span>,
+            burst_colors: Vec::new(),
             channel_id: Id::new(<span class="number">2</span>),
-            emoji: ReactionType::Custom {
+            emoji: EmojiReactionType::Custom {
                 animated: <span class="bool-val">false</span>,
                 id: Id::new(<span class="number">6</span>),
                 name: <span class="prelude-val">None</span>,
@@ -516,11 +528,11 @@
         <span class="kw">let </span>world_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
         <span class="kw">let </span>smiley_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
         <span class="kw">let </span>custom_react = find_custom_react(<span class="kw-2">&amp;</span>msg);
 
         <span class="macro">assert!</span>(world_react.is_some());
@@ -549,7 +561,7 @@
         <span class="kw">let </span>cache = test::cache_with_message_and_reactions();
         cache.update(<span class="kw-2">&amp;</span>ReactionRemoveEmoji {
             channel_id: Id::new(<span class="number">2</span>),
-            emoji: ReactionType::Unicode {
+            emoji: EmojiReactionType::Unicode {
                 name: <span class="string">"😀"</span>.to_owned(),
             },
             guild_id: Id::new(<span class="number">1</span>),
@@ -557,7 +569,7 @@
         });
         cache.update(<span class="kw-2">&amp;</span>ReactionRemoveEmoji {
             channel_id: Id::new(<span class="number">2</span>),
-            emoji: ReactionType::Custom {
+            emoji: EmojiReactionType::Custom {
                 animated: <span class="bool-val">false</span>,
                 id: Id::new(<span class="number">6</span>),
                 name: <span class="prelude-val">None</span>,
@@ -573,11 +585,11 @@
         <span class="kw">let </span>world_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"🗺️"</span>));
         <span class="kw">let </span>smiley_react = msg
             .reactions
             .iter()
-            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, ReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
+            .find(|<span class="kw-2">&amp;</span>r| <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>r.emoji, EmojiReactionType::Unicode {name} <span class="kw">if </span>name == <span class="string">"😀"</span>));
         <span class="kw">let </span>custom_react = find_custom_react(<span class="kw-2">&amp;</span>msg);
 
         <span class="macro">assert!</span>(world_react.is_some());

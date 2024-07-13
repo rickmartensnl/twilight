@@ -23,7 +23,7 @@ Component::ActionRow(ActionRow {
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>twilight_model::{
     channel::message::{
         component::{ActionRow, Component, SelectMenu, SelectMenuOption, SelectMenuType},
-        ReactionType,
+        EmojiReactionType,
     },
     id::Id,
 };
@@ -40,7 +40,7 @@ Component::ActionRow(ActionRow {
         options: <span class="prelude-val">Some</span>(Vec::from([
             SelectMenuOption {
                 default: <span class="bool-val">false</span>,
-                emoji: <span class="prelude-val">Some</span>(ReactionType::Custom {
+                emoji: <span class="prelude-val">Some</span>(EmojiReactionType::Custom {
                     animated: <span class="bool-val">false</span>,
                     id: Id::new(<span class="number">625891304148303894</span>),
                     name: <span class="prelude-val">Some</span>(<span class="string">"rogue"</span>.to_owned()),
@@ -51,7 +51,7 @@ Component::ActionRow(ActionRow {
             },
             SelectMenuOption {
                 default: <span class="bool-val">false</span>,
-                emoji: <span class="prelude-val">Some</span>(ReactionType::Custom {
+                emoji: <span class="prelude-val">Some</span>(EmojiReactionType::Custom {
                     animated: <span class="bool-val">false</span>,
                     id: Id::new(<span class="number">625891304081063986</span>),
                     name: <span class="prelude-val">Some</span>(<span class="string">"mage"</span>.to_owned()),
@@ -62,7 +62,7 @@ Component::ActionRow(ActionRow {
             },
             SelectMenuOption {
                 default: <span class="bool-val">false</span>,
-                emoji: <span class="prelude-val">Some</span>(ReactionType::Custom {
+                emoji: <span class="prelude-val">Some</span>(EmojiReactionType::Custom {
                     animated: <span class="bool-val">false</span>,
                     id: Id::new(<span class="number">625891303795982337</span>),
                     name: <span class="prelude-val">Some</span>(<span class="string">"priest"</span>.to_owned()),

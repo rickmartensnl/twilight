@@ -4703,6 +4703,10 @@
 <a href="#4703" id="4703">4703</a>
 <a href="#4704" id="4704">4704</a>
 <a href="#4705" id="4705">4705</a>
+<a href="#4706" id="4706">4706</a>
+<a href="#4707" id="4707">4707</a>
+<a href="#4708" id="4708">4708</a>
+<a href="#4709" id="4709">4709</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 <span class="kw">pub use </span>twilight_http_ratelimiting::request::{Path, PathParseError, PathParseErrorType};
 
@@ -5490,6 +5494,8 @@
         </span>limit: <span class="prelude-ty">Option</span>&lt;u16&gt;,
         <span class="doccomment">/// The ID of the message.
         </span>message_id: u64,
+        <span class="doccomment">/// The type of reactions to fetch.
+        </span>kind: <span class="prelude-ty">Option</span>&lt;u8&gt;,
     },
     GetSKUs {
         <span class="doccomment">/// The ID of the application.
@@ -7440,6 +7446,7 @@
                 emoji,
                 limit,
                 message_id,
+                kind,
             } =&gt; {
                 f.write_str(<span class="string">"channels/"</span>)<span class="question-mark">?</span>;
                 Display::fmt(channel_id, f)<span class="question-mark">?</span>;
@@ -7451,7 +7458,8 @@
                 <span class="kw">let </span><span class="kw-2">mut </span>query_formatter = QueryStringFormatter::new(f);
 
                 query_formatter.write_opt_param(<span class="string">"after"</span>, after.as_ref())<span class="question-mark">?</span>;
-                query_formatter.write_opt_param(<span class="string">"limit"</span>, limit.as_ref())
+                query_formatter.write_opt_param(<span class="string">"limit"</span>, limit.as_ref())<span class="question-mark">?</span>;
+                query_formatter.write_opt_param(<span class="string">"type"</span>, kind.as_ref())
             }
             Route::GetSticker { sticker_id } =&gt; {
                 f.write_str(<span class="string">"stickers/"</span>)<span class="question-mark">?</span>;

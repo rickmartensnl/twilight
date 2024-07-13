@@ -236,7 +236,7 @@ dropped.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>tokio_stream::StreamExt;
 <span class="kw">use </span>twilight_model::{
-    channel::message::ReactionType,
+    channel::message::EmojiReactionType,
     gateway::payload::incoming::ReactionAdd,
     id::Id,
 };
@@ -247,7 +247,7 @@ dropped.</p>
 <span class="kw">let </span>message_id = Id::new(<span class="number">123</span>);
 
 <span class="kw">let </span><span class="kw-2">mut </span>reactions = standby.wait_for_reaction_stream(message_id, |event: <span class="kw-2">&amp;</span>ReactionAdd| {
-    <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>event.emoji, ReactionType::Unicode { name } <span class="kw">if </span>name == <span class="string">"🤠"</span>)
+    <span class="macro">matches!</span>(<span class="kw-2">&amp;</span>event.emoji, EmojiReactionType::Unicode { name } <span class="kw">if </span>name == <span class="string">"🤠"</span>)
 });
 
 <span class="kw">while let </span><span class="prelude-val">Some</span>(reaction) = reactions.next().<span class="kw">await </span>{

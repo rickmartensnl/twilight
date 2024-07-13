@@ -123,7 +123,7 @@
 <a href="#123" id="123">123</a>
 <a href="#124" id="124">124</a>
 <a href="#125" id="125">125</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::channel::message::ReactionType;
+</pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::channel::message::EmojiReactionType;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="doccomment">/// Clickable [`Component`] below messages.
@@ -145,7 +145,7 @@
     /// Defaults to `false`.
     </span><span class="kw">pub </span>disabled: bool,
     <span class="doccomment">/// Visual emoji for clients to display with the button.
-    </span><span class="kw">pub </span>emoji: <span class="prelude-ty">Option</span>&lt;ReactionType&gt;,
+    </span><span class="kw">pub </span>emoji: <span class="prelude-ty">Option</span>&lt;EmojiReactionType&gt;,
     <span class="doccomment">/// Text appearing on the button.
     </span><span class="kw">pub </span>label: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Style variant of the button.
