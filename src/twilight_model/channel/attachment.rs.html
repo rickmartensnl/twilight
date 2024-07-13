@@ -131,6 +131,13 @@
 <a href="#131" id="131">131</a>
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::AttachmentFlags;
 <span class="kw">use crate</span>::{
     id::{marker::AttachmentMarker, Id},
@@ -165,6 +172,9 @@
     <span class="kw">pub </span>id: Id&lt;AttachmentMarker&gt;,
     <span class="kw">pub </span>proxy_url: String,
     <span class="kw">pub </span>size: u64,
+    <span class="doccomment">/// The title of the file.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span><span class="kw">pub </span>title: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>url: String,
     <span class="doccomment">/// Base64 encoded bytearray representing a sampled waveform (currently for voice messages).
     </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
@@ -215,6 +225,7 @@
             id: Id::new(<span class="number">700_000_000_000_000_000</span>),
             proxy_url: <span class="string">"https://cdn.example.com/1.png"</span>.to_owned(),
             size: <span class="number">13_593</span>,
+            title: <span class="prelude-val">Some</span>(<span class="string">"a title"</span>.to_owned()),
             url: <span class="string">"https://example.com/1.png"</span>.to_owned(),
             waveform: <span class="prelude-val">Some</span>(String::from(<span class="string">"waveform"</span>)),
             width: <span class="prelude-val">Some</span>(<span class="number">184</span>),
@@ -225,7 +236,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"Attachment"</span>,
-                    len: <span class="number">12</span>,
+                    len: <span class="number">13</span>,
                 },
                 Token::Str(<span class="string">"content_type"</span>),
                 Token::Some,
@@ -251,6 +262,9 @@
                 Token::Str(<span class="string">"https://cdn.example.com/1.png"</span>),
                 Token::Str(<span class="string">"size"</span>),
                 Token::U64(<span class="number">13_593</span>),
+                Token::Str(<span class="string">"title"</span>),
+                Token::Some,
+                Token::Str(<span class="string">"a title"</span>),
                 Token::Str(<span class="string">"url"</span>),
                 Token::Str(<span class="string">"https://example.com/1.png"</span>),
                 Token::Str(<span class="string">"waveform"</span>),
