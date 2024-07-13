@@ -542,6 +542,10 @@
 <a href="#542" id="542">542</a>
 <a href="#543" id="543">543</a>
 <a href="#544" id="544">544</a>
+<a href="#545" id="545">545</a>
+<a href="#546" id="546">546</a>
+<a href="#547" id="547">547</a>
+<a href="#548" id="548">548</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Cached message-related models.
 
 </span><span class="kw">use </span>serde::Serialize;
@@ -550,8 +554,8 @@
     channel::{
         message::{
             sticker::MessageSticker, Component, Embed, Message, MessageActivity,
-            MessageApplication, MessageFlags, MessageInteraction, MessageReference, MessageType,
-            Reaction, RoleSubscriptionData,
+            MessageApplication, MessageCall, MessageFlags, MessageInteraction, MessageReference,
+            MessageType, Reaction, RoleSubscriptionData,
         },
         Attachment, ChannelMention,
     },
@@ -643,6 +647,7 @@
     application_id: <span class="prelude-ty">Option</span>&lt;Id&lt;ApplicationMarker&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) attachments: Vec&lt;Attachment&gt;,
     author: Id&lt;UserMarker&gt;,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) call: <span class="prelude-ty">Option</span>&lt;MessageCall&gt;,
     channel_id: Id&lt;ChannelMarker&gt;,
     components: Vec&lt;Component&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) content: String,
@@ -850,6 +855,7 @@
             application_id,
             attachments,
             author,
+            call,
             channel_id,
             components,
             content,
@@ -885,6 +891,7 @@
             application_id,
             attachments,
             author: author.id,
+            call,
             channel_id,
             components,
             content,
@@ -921,6 +928,7 @@
             &amp;&amp; <span class="self">self</span>.application_id == other.application_id
             &amp;&amp; <span class="self">self</span>.attachments == other.attachments
             &amp;&amp; <span class="self">self</span>.author == other.author.id
+            &amp;&amp; <span class="self">self</span>.call == other.call
             &amp;&amp; <span class="self">self</span>.channel_id == other.channel_id
             &amp;&amp; <span class="self">self</span>.components == other.components
             &amp;&amp; <span class="self">self</span>.content == other.content

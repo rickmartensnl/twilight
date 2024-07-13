@@ -748,6 +748,29 @@
 <a href="#748" id="748">748</a>
 <a href="#749" id="749">749</a>
 <a href="#750" id="750">750</a>
+<a href="#751" id="751">751</a>
+<a href="#752" id="752">752</a>
+<a href="#753" id="753">753</a>
+<a href="#754" id="754">754</a>
+<a href="#755" id="755">755</a>
+<a href="#756" id="756">756</a>
+<a href="#757" id="757">757</a>
+<a href="#758" id="758">758</a>
+<a href="#759" id="759">759</a>
+<a href="#760" id="760">760</a>
+<a href="#761" id="761">761</a>
+<a href="#762" id="762">762</a>
+<a href="#763" id="763">763</a>
+<a href="#764" id="764">764</a>
+<a href="#765" id="765">765</a>
+<a href="#766" id="766">766</a>
+<a href="#767" id="767">767</a>
+<a href="#768" id="768">768</a>
+<a href="#769" id="769">769</a>
+<a href="#770" id="770">770</a>
+<a href="#771" id="771">771</a>
+<a href="#772" id="772">772</a>
+<a href="#773" id="773">773</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Textual user communication method.
 </span><span class="attr">#![warn(missing_docs)]
 
@@ -758,6 +781,7 @@
 <span class="kw">mod </span>activity;
 <span class="kw">mod </span>allowed_mentions;
 <span class="kw">mod </span>application;
+<span class="kw">mod </span>call;
 <span class="kw">mod </span>flags;
 <span class="kw">mod </span>interaction;
 <span class="kw">mod </span>kind;
@@ -771,6 +795,7 @@
     activity::{MessageActivity, MessageActivityType},
     allowed_mentions::{AllowedMentions, MentionType},
     application::MessageApplication,
+    call::MessageCall,
     component::Component,
     embed::Embed,
     flags::MessageFlags,
@@ -831,6 +856,8 @@
     </span><span class="kw">pub </span>attachments: Vec&lt;Attachment&gt;,
     <span class="doccomment">/// Author of the message.
     </span><span class="kw">pub </span>author: User,
+    <span class="doccomment">/// The call associated with the message.
+    </span><span class="kw">pub </span>call: <span class="prelude-ty">Option</span>&lt;MessageCall&gt;,
     <span class="doccomment">/// ID of the [`Channel`] the message was sent in.
     </span><span class="kw">pub </span>channel_id: Id&lt;ChannelMarker&gt;,
     <span class="doccomment">/// List of provided components, such as buttons.
@@ -955,7 +982,7 @@
         reaction::ReactionCountDetails,
         sticker::{MessageSticker, StickerFormatType},
         EmojiReactionType, Message, MessageActivity, MessageActivityType, MessageApplication,
-        MessageFlags, MessageReference, MessageType, Reaction,
+        MessageCall, MessageFlags, MessageReference, MessageType, Reaction,
     };
     <span class="kw">use crate</span>::{
         channel::{ChannelMention, ChannelType},
@@ -1000,6 +1027,10 @@
                 system: <span class="prelude-val">None</span>,
                 verified: <span class="prelude-val">None</span>,
             },
+            call: <span class="prelude-val">Some</span>(MessageCall {
+                ended_timestamp: <span class="prelude-val">None</span>,
+                participants: Vec::new(),
+            }),
             channel_id: Id::new(<span class="number">2</span>),
             components: Vec::new(),
             content: <span class="string">"ping"</span>.to_owned(),
@@ -1049,7 +1080,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"Message"</span>,
-                    len: <span class="number">18</span>,
+                    len: <span class="number">19</span>,
                 },
                 Token::Str(<span class="string">"attachments"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
@@ -1082,6 +1113,18 @@
                 Token::Str(<span class="string">"3"</span>),
                 Token::Str(<span class="string">"username"</span>),
                 Token::Str(<span class="string">"test"</span>),
+                Token::StructEnd,
+                Token::Str(<span class="string">"call"</span>),
+                Token::Some,
+                Token::Struct {
+                    name: <span class="string">"MessageCall"</span>,
+                    len: <span class="number">2</span>,
+                },
+                Token::Str(<span class="string">"ended_timestamp"</span>),
+                Token::None,
+                Token::Str(<span class="string">"participants"</span>),
+                Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
+                Token::SeqEnd,
                 Token::StructEnd,
                 Token::Str(<span class="string">"channel_id"</span>),
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},
@@ -1207,6 +1250,7 @@
                 system: <span class="prelude-val">None</span>,
                 verified: <span class="prelude-val">None</span>,
             },
+            call: <span class="prelude-val">None</span>,
             channel_id: Id::new(<span class="number">2</span>),
             components: Vec::new(),
             content: <span class="string">"ping"</span>.to_owned(),
@@ -1278,7 +1322,7 @@
             <span class="kw-2">&amp;</span>[
                 Token::Struct {
                     name: <span class="string">"Message"</span>,
-                    len: <span class="number">25</span>,
+                    len: <span class="number">26</span>,
                 },
                 Token::Str(<span class="string">"activity"</span>),
                 Token::Some,
@@ -1345,6 +1389,8 @@
                 Token::Str(<span class="string">"username"</span>),
                 Token::Str(<span class="string">"test"</span>),
                 Token::StructEnd,
+                Token::Str(<span class="string">"call"</span>),
+                Token::None,
                 Token::Str(<span class="string">"channel_id"</span>),
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::Str(<span class="string">"2"</span>),

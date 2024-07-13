@@ -581,6 +581,9 @@
 <a href="#581" id="581">581</a>
 <a href="#582" id="582">582</a>
 <a href="#583" id="583">583</a>
+<a href="#584" id="584">584</a>
+<a href="#585" id="585">585</a>
+<a href="#586" id="586">586</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{
     channel::{thread::ThreadMetadata, Attachment, ChannelType, Message},
     guild::{MemberFlags, Permissions, Role},
@@ -780,6 +783,7 @@
                         system: <span class="prelude-val">None</span>,
                         verified: <span class="prelude-val">None</span>,
                     },
+                    call: <span class="prelude-val">None</span>,
                     channel_id: Id::new(<span class="number">2</span>),
                     components: Vec::new(),
                     content: <span class="string">"ping"</span>.to_owned(),
@@ -961,7 +965,7 @@
                 Token::Str(<span class="string">"4"</span>),
                 Token::Struct {
                     name: <span class="string">"Message"</span>,
-                    len: <span class="number">18</span>,
+                    len: <span class="number">19</span>,
                 },
                 Token::Str(<span class="string">"attachments"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">0</span>) },
@@ -995,6 +999,8 @@
                 Token::Str(<span class="string">"username"</span>),
                 Token::Str(<span class="string">"test"</span>),
                 Token::StructEnd,
+                Token::Str(<span class="string">"call"</span>),
+                Token::None,
                 Token::Str(<span class="string">"channel_id"</span>),
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::Str(<span class="string">"2"</span>),

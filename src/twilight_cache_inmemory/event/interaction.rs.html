@@ -340,6 +340,7 @@
 <a href="#340" id="340">340</a>
 <a href="#341" id="341">341</a>
 <a href="#342" id="342">342</a>
+<a href="#343" id="343">343</a>
 </pre></div><pre class="rust"><code><span class="kw">use crate</span>::{config::ResourceType, CacheableModels, InMemoryCache, UpdateCache};
 <span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>twilight_model::{
@@ -527,6 +528,7 @@
                                 system: <span class="prelude-val">None</span>,
                                 verified: <span class="prelude-val">None</span>,
                             },
+                            call: <span class="prelude-val">None</span>,
                             channel_id: Id::new(<span class="number">2</span>),
                             components: Vec::new(),
                             content: <span class="string">"ping"</span>.to_owned(),
