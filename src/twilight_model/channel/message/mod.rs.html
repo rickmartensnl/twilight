@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (c6727fc9b 2024-07-12)" data-channel="nightly" data-search-js="search-d234aafac6c221dd.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `twilight-model/src/channel/message/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="twilight_model" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0-nightly (032be6f7b 2024-07-16)" data-channel="nightly" data-search-js="search-d234aafac6c221dd.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -771,6 +771,19 @@
 <a href="#771" id="771">771</a>
 <a href="#772" id="772">772</a>
 <a href="#773" id="773">773</a>
+<a href="#774" id="774">774</a>
+<a href="#775" id="775">775</a>
+<a href="#776" id="776">776</a>
+<a href="#777" id="777">777</a>
+<a href="#778" id="778">778</a>
+<a href="#779" id="779">779</a>
+<a href="#780" id="780">780</a>
+<a href="#781" id="781">781</a>
+<a href="#782" id="782">782</a>
+<a href="#783" id="783">783</a>
+<a href="#784" id="784">784</a>
+<a href="#785" id="785">785</a>
+<a href="#786" id="786">786</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Textual user communication method.
 </span><span class="attr">#![warn(missing_docs)]
 
@@ -789,7 +802,9 @@
 <span class="kw">mod </span>reaction;
 <span class="kw">mod </span>reaction_type;
 <span class="kw">mod </span>reference;
+<span class="kw">mod </span>reference_type;
 <span class="kw">mod </span>role_subscription_data;
+<span class="kw">mod </span>snapshot;
 
 <span class="kw">pub use </span><span class="self">self</span>::{
     activity::{MessageActivity, MessageActivityType},
@@ -805,11 +820,12 @@
     reaction::{EmojiReactionType, Reaction, ReactionCountDetails},
     reaction_type::ReactionType,
     reference::MessageReference,
+    reference_type::MessageReferenceType,
     role_subscription_data::RoleSubscriptionData,
-    sticker::Sticker,
+    snapshot::MessageSnapshot,
+    sticker::{MessageSticker, Sticker},
 };
 
-<span class="kw">use </span><span class="self">self</span>::sticker::MessageSticker;
 <span class="kw">use crate</span>::{
     channel::{Attachment, Channel, ChannelMention},
     guild::PartialMember,
@@ -937,6 +953,10 @@
     </span><span class="kw">pub </span>mention_roles: Vec&lt;Id&lt;RoleMarker&gt;&gt;,
     <span class="doccomment">/// Users mentioned in the message.
     </span><span class="kw">pub </span>mentions: Vec&lt;Mention&gt;,
+    <span class="doccomment">/// The message associated with the [`MessageReference`]. This is a minimal subset
+    /// of fields in a message (e.g. author is excluded.).
+    </span><span class="attr">#[serde(default, skip_serializing_if = <span class="string">"Vec::is_empty"</span>)]
+    </span><span class="kw">pub </span>message_snapshots: Vec&lt;MessageSnapshot&gt;,
     <span class="doccomment">/// Whether the message is pinned.
     </span><span class="kw">pub </span>pinned: bool,
     <span class="doccomment">/// The poll associated with the message.
@@ -980,6 +1000,7 @@
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::{
         reaction::ReactionCountDetails,
+        reference_type::MessageReferenceType,
         sticker::{MessageSticker, StickerFormatType},
         EmojiReactionType, Message, MessageActivity, MessageActivityType, MessageApplication,
         MessageCall, MessageFlags, MessageReference, MessageType, Reaction,
@@ -1058,6 +1079,7 @@
             mention_everyone: <span class="bool-val">false</span>,
             mention_roles: Vec::new(),
             mentions: Vec::new(),
+            message_snapshots: Vec::new(),
             pinned: <span class="bool-val">false</span>,
             poll: <span class="prelude-val">None</span>,
             reactions: Vec::new(),
@@ -1283,6 +1305,7 @@
             mention_everyone: <span class="bool-val">false</span>,
             mention_roles: Vec::new(),
             mentions: Vec::new(),
+            message_snapshots: Vec::new(),
             pinned: <span class="bool-val">false</span>,
             poll: <span class="prelude-val">None</span>,
             reactions: <span class="macro">vec!</span>[Reaction {
@@ -1301,6 +1324,7 @@
             reference: <span class="prelude-val">Some</span>(MessageReference {
                 channel_id: <span class="prelude-val">Some</span>(Id::new(<span class="number">1</span>)),
                 guild_id: <span class="prelude-val">None</span>,
+                kind: MessageReferenceType::Default,
                 message_id: <span class="prelude-val">None</span>,
                 fail_if_not_exists: <span class="prelude-val">None</span>,
             }),
@@ -1507,12 +1531,14 @@
                 Token::Some,
                 Token::Struct {
                     name: <span class="string">"MessageReference"</span>,
-                    len: <span class="number">1</span>,
+                    len: <span class="number">2</span>,
                 },
                 Token::Str(<span class="string">"channel_id"</span>),
                 Token::Some,
                 Token::NewtypeStruct { name: <span class="string">"Id" </span>},
                 Token::Str(<span class="string">"1"</span>),
+                Token::Str(<span class="string">"type"</span>),
+                Token::U8(<span class="number">0</span>),
                 Token::StructEnd,
                 Token::Str(<span class="string">"sticker_items"</span>),
                 Token::Seq { len: <span class="prelude-val">Some</span>(<span class="number">1</span>) },
