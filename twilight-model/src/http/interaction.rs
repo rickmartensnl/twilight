@@ -102,6 +102,10 @@ pub enum InteractionResponseType {
     Modal = 9,
     /// Respond to an interaction with an upgrade button, only available
     /// for apps with monetization enabled
+    ///
+    /// Please send a [`InteractionResponseType::ChannelMessageWithSource`]
+    /// with an [`Button`](crate::channel::message::component::Button) with the style [`ButtonStyle::Premium`](crate::channel::message::component::ButtonStyle)
+    /// instead.
     PremiumRequired = 10,
 }
 
